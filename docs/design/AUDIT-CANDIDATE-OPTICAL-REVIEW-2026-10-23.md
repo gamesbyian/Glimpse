@@ -28,3 +28,12 @@ Both R03 phone crops were inspected in the same source-hashed output. The previe
 ## Audit scoring
 
 No GUX result is upgraded by render success or clearer proposals alone. Preserve first cycle **18 PASS / 8 ISSUE / 34 UNVERIFIED** until the exact source and native evidence or owner-visible interpretation task supports rescoring. This report provides the concrete redesign inputs and traceable defect descriptions.
+
+
+## Revisions made in response to the above optical findings (source only, pending newest raster)
+
+**R01 v2:** The small circular photo-chip layout from the six first-pass R01 boards is superseded for *visual proposal review* by six source-editable, **X05 paper-wedge photographic reels**, generated deterministically from the six checked-in public reference images. [Mapping, source labels and state inventory](../../design/proposals/audit-revisions/R01-PHOTOGRAPHIC-CONTINUITY.md). The photo near the pointer is now source-identical across rest/drag and correctly changes to p13's different source after snap. Empty and single-item boards likewise use the physical paper wheel with empty apertures. These changes address the earlier *source composition* defects, but do not close the native reel or independent 401×890 optical acceptance gates.
+
+**R02 v2:** All four proposed before/after/save/share/return illustrations now embed the exact X07 original p12 JPEG, and p12c uses a visibly different crop of those exact bytes. The Share-choice proposal now has two actual photographic thumbnails, and its edited thumbnail crop origin was corrected to stay inside its clipping rectangle. The validator checks source bytes against X07, crop transforms, and non-acknowledged share recipient outcomes. The latest proof must visually inspect this four-state revision, not rely on the earlier two-vector contact sheet.
+
+**Review tool:** [12-scene mobile-first comparison atlas](../../design/atlas/audit-visual-comparisons.html) holds the earlier/revised phone-side drawing pairs without relying on annotation panels. [Native QA matrix](R01-R02-NATIVE-EVIDENCE-MATRIX.md) defines the next separate Android proof gate. This section records source deltas, not a new counted GUX PASS or owner approval.
