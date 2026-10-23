@@ -1,0 +1,65 @@
+name: Glimpse visual references | one-shot branch validation
+
+# One-time push trigger: this workflow file being introduced/changed on the
+# dedicated visual PR branch. No triggers on ordinary source/docs pushes.
+# Keep opt-in dispatch for a future intentional fresh visual review.
+on:
+  push:
+    branches:
+      - agent/visual-state-reconciliation-20261023
+    paths:
+      - .github/workflows/glimpse-reference-one-shot.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: glimpse-visual-reference-once-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  reference-proof:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+          cache-dependency-path: requirements.txt
+      - name: Structural contract and identity checks
+        run: |
+          set -euo pipefail
+          python3 scripts/validate-visual-spec.py
+          python3 scripts/validate-storyboard-coverage.py
+          python3 scripts/validate-core-state-evidence.py
+          python3 scripts/validate-storyboard-semantics.py
+          python3 scripts/validate-svg-photo-portability.py
+      - name: Install disposable raster dependencies
+        run: |
+          python3 -m pip install --disable-pip-version-check 'cairosvg>=2.7,<3' 'Pillow>=10,<13'
+      - name: Render source-hashed focus review groups
+        run: |
+          set -euo pipefail
+          python3 scripts/render-visual-reference-sheets.py --set core-34-named-states --set source-detail-paired --native --output /tmp/glimpse-visual-phone
+          python3 scripts/render-visual-reference-sheets.py --set reel-grid-crop-share --set critical-type-comparison --native --output /tmp/glimpse-visual-journeys
+      - name: Package immutable review evidence
+        if: always()
+        run: |
+          mkdir -p /tmp/glimpse-visual-evidence
+          cp -a /tmp/glimpse-visual-phone /tmp/glimpse-visual-evidence/phone 2>/dev/null || true
+          cp -a /tmp/glimpse-visual-journeys /tmp/glimpse-visual-evidence/journeys 2>/dev/null || true
+          printf '%s\n' "${GITHUB_SHA}" > /tmp/glimpse-visual-evidence/head-sha.txt
+          printf '%s\n' "Draft optical reference only; no human/device/owner pass claimed" > /tmp/glimpse-visual-evidence/NO-OPTICAL-SIGNOFF.txt
+      - name: Upload draft visual evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: glimpse-reference-draft-${{ github.sha }}
+          path: /tmp/glimpse-visual-evidence
+          retention-days: 14
+          if-no-files-found: warn
