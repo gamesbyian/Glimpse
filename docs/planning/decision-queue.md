@@ -1,3 +1,5 @@
+> **2026-10-22 migration reconciliation:** All six reel comparison SVGs and six image fixtures, the compact review PDF, and four selected reel studies are now present in this repository under `design/`. The legacy upload queue for these files is complete; only the large tactile board remains blocked. Preserve open qualitative decisions and physical-device proof gates. See [asset inventory](../assets.md).
+
 # Glimpse: specification audit decisions and next-work queue
 
 **Current: 2026-10-22. Owner: Glimpse design/engineering planning.** All status statements reflect document/source inspection only; **no Android app or new prototype has been built**. Keep this short queue alongside [current decisions](current-decisions.md). This queue is the operational action list for the two full audits and is not a second full product spec.

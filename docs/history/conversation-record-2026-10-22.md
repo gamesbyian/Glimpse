@@ -136,11 +136,11 @@ A **complete raw verbatim transcript** of this ChatGPT conversation is **not exp
 
 ## Source-of-truth links
 
-- [Glimpse decision record](../GLIMPSE-CURRENT-DECISIONS.md)
-- [Reel comparison and verdict](../GLIMPSE-REEL-LAYOUT-COMPARISON-2026-10-22.md)
-- [Editable comparison source](../design/reel-comparison/)
-- [Compact comparison PDF](../artifacts/Glimpse_Reel_Layout_Comparison_Review.pdf)
-- [Reproducible comparison ZIP](../artifacts/Glimpse_Reel_Comparison_Reproducible_Source.zip)
-- [Feature and technical contracts](../GLIMPSE-FEATURE-SPEC-COMPLETENESS-AUDIT.md)
+- [Glimpse decision record](../planning/current-decisions.md)
+- [Reel comparison and verdict](../design/reel-layout-comparison.md)
+- [Editable comparison source](../../design/research/reel-layout/README.md)
+- [Compact comparison PDF](../../design/research/reel-layout/comparison-review.pdf)
+- [Reproducible comparison ZIP](../../design/research/reel-layout/README.md)
+- [Feature and technical contracts](../product/feature-audit.md)
 - [Open original binary handoff issue](https://github.com/gamesbyian/general-purpose/issues/28)
 - [Human-expectation research issue](https://github.com/gamesbyian/general-purpose/issues/29)

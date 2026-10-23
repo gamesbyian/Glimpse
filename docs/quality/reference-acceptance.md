@@ -1,3 +1,5 @@
+> **Repository reference status (2026-10-22):** The complete six-variant comparison study, fixtures, compact review PDF and four reference/study PNGs are now tracked under `design/`. The tactile identity board remains in the preserved private archive; no mockup is a physical-device or functional acceptance result. See [asset inventory](../assets.md).
+
 # Glimpse visual-reference and semantics acceptance contract (pre-build)
 
 Date: 2026-10-22. **Planning only.** Translates Ring Road and ROYGBIV practice into a bounded Glimpse design-to-code protocol. No app screenshots, tests or device measurements are claimed.

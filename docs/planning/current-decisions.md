@@ -1,3 +1,5 @@
+> **Repository migration note (2026-10-22):** This document records the earlier planning state. Glimpse now has its own repository, and 17 current visual/reference assets have been migrated. The single oversized tactile board remains in the private source archive. The historical phrase “do not build an app under this planning task” described the earlier audit, not a standing prohibition on implementing Glimpse. See [current asset inventory](../assets.md) and [README](../../README.md) for the current handoff.
+
 # Glimpse: current decisions and non-building handoff
 
 **Current as of 2026-10-22.** This is the short routing authority for pre-implementation decisions. Historical Waltz documents remain valuable evidence, **not competing current decisions**. The project folder was renamed from `Waltz/` to **`Glimpse/`** in a content-preserving Git tree commit; historical references to Waltz name remain historical only. Do not build an app under this planning task.
