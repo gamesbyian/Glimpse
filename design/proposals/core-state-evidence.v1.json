@@ -491,7 +491,7 @@
       "assetPath": "design/proposals/state-refinements/accessibility-high-contrast.svg",
       "evidenceLevel": "pictured-state",
       "phoneEvidenceLabels": [
-        "High contrast   ✓ ON",
+        "High contrast   ON",
         "Reduced motion   OFF",
         "Keep high contrast"
       ],
