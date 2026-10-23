@@ -84,3 +84,5 @@ Only adopt secondary reels when uncoached evidence demonstrates added usefulness
 **Not a release:** current layout is a semantic prototype; there is a first-hand owner report from a real installed phone, but no comprehensive physical-device acceptance or signed release, and no guarantee of five-minute background updates.
 
 - [x] Extend opt-in raster tool with source-hashed native phone crops, 25 state refinements, 34 named state sheets and corrected Source Detail/type groups. **Prepared only**, no fresh branch raster test.
+
+- [x] Add distinct visual mechanisms to eight structurally pictured states (large collections, supported/unsupported Lock, nested conditions, per-photo exclusions, restore conflicts, failed and uncertain activity). Source illustrations only.
