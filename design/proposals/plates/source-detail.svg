@@ -1,26 +1,32 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1160" height="920" viewBox="0 0 1160 920" role="img" aria-label="Proposed Glimpse source-detail annotated layout, default state, not yet approved"><rect width="1160" height="920" fill="#E9E3D9"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="1160" height="920" viewBox="0 0 1160 920" role="img" aria-label="Proposed Glimpse source-detail annotated layout, default state, not yet approved"><title>Google Photos provider detail · Glimpse draft</title><desc>Specific source details, narrow Android picker permission, source preview, rights uncertainty and explicit navigation.</desc><metadata>{&quot;surfaceId&quot;:&quot;source-detail&quot;,&quot;stateId&quot;:&quot;online&quot;,&quot;journeyId&quot;:&quot;source-directory-detail&quot;,&quot;appliedStatus&quot;:&quot;unchanged&quot;,&quot;proposalStatus&quot;:&quot;draft-not-owner-approved&quot;}</metadata><rect width="1160" height="920" fill="#E9E3D9"/>
 <rect x="15" y="14" width="401" height="890" rx="22" fill="#F6F0E6" stroke="#C4B7A4" stroke-width="2"/>
 <text x="40" y="44" fill="#153F46" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="650" text-anchor="start">9:41</text>
 <text x="391" y="44" fill="#667975" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="400" text-anchor="end">● ▰ ▴</text>
 <path d="M31 56 L400 56" stroke="#C8B7A1" stroke-width="1" fill="none"/>
-<text x="36" y="99" fill="#153F46" font-family="Arial,Helvetica,sans-serif" font-size="32" font-weight="700" text-anchor="start">Source details</text>
-<text x="38" y="125" fill="#667975" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="400" text-anchor="start">Provenance and rights</text>
-<rect x="41" y="155" width="346" height="49" rx="14" fill="#FFFCF6" stroke="#C8B7A1" stroke-width="1"/>
-<text x="56" y="185" fill="#667975" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="400" text-anchor="start">Search photos or providers</text>
-<rect x="41" y="222" width="334" height="105" rx="13" fill="#FFFCF6" stroke="#C8B7A1" stroke-width="1"/>
-<text x="55" y="248" fill="#153F46" font-family="Arial,Helvetica,sans-serif" font-size="17" font-weight="650" text-anchor="start">Curated public archive</text>
-<text x="55" y="270" fill="#667975" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="400" text-anchor="start">Source · rights and creator visible</text>
-<text x="55" y="310" fill="#1D5960" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="650" text-anchor="start">View provider</text>
-<rect x="41" y="342" width="334" height="105" rx="13" fill="#FFFCF6" stroke="#C8B7A1" stroke-width="1"/>
-<text x="55" y="368" fill="#153F46" font-family="Arial,Helvetica,sans-serif" font-size="17" font-weight="650" text-anchor="start">NASA image of the day</text>
-<text x="55" y="390" fill="#667975" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="400" text-anchor="start">Rights vary by source image</text>
-<text x="55" y="430" fill="#1D5960" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="650" text-anchor="start">Inspect image</text>
-<rect x="41" y="462" width="334" height="105" rx="13" fill="#FFFCF6" stroke="#C8B7A1" stroke-width="1"/>
-<text x="55" y="488" fill="#153F46" font-family="Arial,Helvetica,sans-serif" font-size="17" font-weight="650" text-anchor="start">Wikimedia Commons</text>
-<text x="55" y="510" fill="#667975" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="400" text-anchor="start">Attribution and licence required</text>
-<text x="55" y="550" fill="#1D5960" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="650" text-anchor="start">Browse source</text>
-<rect x="44" y="636" width="340" height="42" rx="18" fill="#1D5960" stroke="#1D5960" stroke-width="1"/>
-<text x="214" y="663" fill="#FFFFFF" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="650" text-anchor="middle">Add selected to collection</text>
+<text x="36" y="99" fill="#153F46" font-family="Arial,Helvetica,sans-serif" font-size="32" font-weight="700" text-anchor="start">Google Photos</text>
+<text x="38" y="125" fill="#667975" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="400" text-anchor="start">Selected item access and provenance</text>
+<rect x="41" y="155" width="346" height="99" rx="14" fill="#FFFCF6" stroke="#C8B7A1"/>
+<text x="57" y="181" fill="#153F46" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="700">Google Photos · provider details</text>
+<text x="57" y="207" fill="#667975" font-family="Arial,Helvetica,sans-serif" font-size="13">Access via Android Photo Picker</text>
+<text x="57" y="232" fill="#1D5960" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="700">Only explicitly selected items</text>
+<rect x="41" y="270" width="346" height="244" rx="14" fill="#E9E0F5" stroke="#C8B7A1"/>
+<clipPath id="provider-preview"><rect x="51" y="280" width="325" height="170" rx="10"/></clipPath>
+<g clip-path="url(#provider-preview)">
+<rect x="51" y="280" width="325" height="170" fill="#EDB783"/>
+<circle cx="286" cy="327" r="33" fill="#F8DEAA"/>
+<path d="M51 409 Q119 315 213 398 T376 363 L376 450H51Z" fill="#447983"/>
+<path d="M51 434 Q120 370 227 422 T376 403 L376 450H51Z" fill="#254D62"/>
+</g>
+<text x="55" y="479" fill="#153F46" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="700">Illustrative image preview</text>
+<text x="55" y="501" fill="#667975" font-family="Arial,Helvetica,sans-serif" font-size="12">No album is silently imported</text>
+<rect x="41" y="529" width="346" height="100" rx="13" fill="#FFFCF6" stroke="#C8B7A1"/>
+<text x="55" y="554" fill="#153F46" font-family="Arial,Helvetica,sans-serif" font-size="17" font-weight="700">Provenance and usage</text>
+<text x="55" y="577" fill="#667975" font-family="Arial,Helvetica,sans-serif" font-size="13">Personal source · permissions per item</text>
+<text x="55" y="605" fill="#1D5960" font-family="Arial,Helvetica,sans-serif" font-size="13">Rights are not automatically verified</text>
+<rect x="44" y="652" width="340" height="47" rx="14" fill="#1D5960" stroke="#1D5960"/>
+<text x="214" y="681" fill="#FFFFFF" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="700" text-anchor="middle">Choose photos from this source</text>
+<rect x="44" y="716" width="340" height="47" rx="14" fill="#FFFCF6" stroke="#C8B7A1"/>
+<text x="214" y="745" fill="#153F46" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="700" text-anchor="middle">Back to Discover</text>
 <rect x="24" y="823" width="384" height="56" rx="0" fill="#FFFCF6" stroke="none" stroke-width="1"/>
 <path d="M24 823 L408 823" stroke="#CEBC9F" stroke-width="1" fill="none"/>
 <text x="71" y="857" fill="#667975" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="600" text-anchor="middle">Home</text>
