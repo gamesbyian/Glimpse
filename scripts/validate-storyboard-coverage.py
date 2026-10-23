@@ -46,7 +46,8 @@ for group in groups:
             errors.append("Missing explicit unapproved status " + path)
         # Keep user imports, local file paths and arbitrary external network
         # references out of public reference art.
-        if re.search(r"(?:file://|content://|/data/user/|https?://[^\s\x22]+)", content):
+        safe_text = content.replace("http://www.w3.org/2000/svg", "").replace("http://www.w3.org/1999/xlink", "")
+        if re.search(r"(?:file://|content://|/data/user/|https?://[^\s\x22]+)", safe_text):
             errors.append("Disallowed external/private path in " + path)
     valid = {f["id"] for f in frames}
     for edge in group.get("transitions", []):
