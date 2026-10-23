@@ -82,6 +82,17 @@ SETS["audit-r02-copy-transition"] = [
     ("Share choose original or edited", "design/proposals/audit-revisions/r02-share-choice.svg"),
     ("Return from sharesheet", "design/proposals/audit-revisions/r02-return-dismiss.svg"),
 ]
+# New photographic references keep X05's large five-wedge paper reel geometry.
+# These are independently generated from the six checked-in public JPEG fixtures.
+SETS["audit-r01-photo-backed"] = [
+    (label, "design/proposals/audit-revisions/r01-photo-" + slug + ".svg")
+    for label, slug in (
+        ("R01 photo-backed 22 at rest", "rest-22"),
+        ("R01 photo-backed 18-degree drag", "drag-18"),
+        ("R01 photo-backed p13 after snap", "snap-13"),
+        ("R01 photo-backed finite p22", "last-22"),
+    )
+]
 # Exhaustive galleries are deliberately opt-in, never part of the cheap default.
 SETS["entire-original-66"] = [
     (p.stem, str(p.relative_to(ROOT)))
