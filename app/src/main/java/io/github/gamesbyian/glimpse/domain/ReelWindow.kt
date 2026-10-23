@@ -6,6 +6,24 @@ package io.github.gamesbyian.glimpse.domain
  * are inserted near either endpoint.
  */
 object ReelWindow {
+    /**
+     * Return the tapped aperture offset for the currently drawn cropped
+     * wheel, or null when touching paper outside the photo ring. This is
+     * geometry only; callers still check that a real photo occupies the slot.
+     */
+    fun tapOffset(x: Float, y: Float, width: Float, height: Float): Int? {
+        if (width <= 0f || height <= 0f) return null
+        val dx = x - width * .5f
+        val dy = y - height * .82f
+        val radius = kotlin.math.hypot(dx, dy)
+        val outer = width * .84f
+        if (radius < outer * .31f || radius > outer * .95f) return null
+        val angle = Math.toDegrees(kotlin.math.atan2(dy, dx).toDouble()).toFloat()
+        val relative = (angle + 90f + 540f) % 360f - 180f
+        val offset = kotlin.math.round(relative / 72f).toInt()
+        return offset.takeIf { it in -2..2 && kotlin.math.abs(relative - it * 72f) <= 31f }
+    }
+
     fun focusIndex(ids: List<String>, selectedId: String?): Int =
         if (ids.isEmpty()) -1
         else ids.indexOf(selectedId).takeIf { it >= 0 } ?: 0

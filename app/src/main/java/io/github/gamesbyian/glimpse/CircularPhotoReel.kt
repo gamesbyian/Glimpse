@@ -4,10 +4,12 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Paint
 import android.graphics.Path
+import android.graphics.Rect
 import android.graphics.RectF
 import android.util.LruCache
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.gestures.detectHorizontalDragGestures
+import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -126,6 +128,16 @@ fun CircularPhotoReel(
                         contentDescription = "Paper photo reel. Swipe left for next photo, right for previous. Previous and Next buttons are also available."
                     }
                     .pointerInput(ids, selectedId) {
+                        detectTapGestures { position ->
+                            ReelWindow.tapOffset(
+                                position.x, position.y,
+                                size.width.toFloat(), size.height.toFloat()
+                            )?.let { offset ->
+                                slots.getOrNull(offset + 2)?.let(updatedOnSelect)
+                            }
+                        }
+                    }
+                    .pointerInput(ids, selectedId) {
                         detectHorizontalDragGestures(
                             onDragStart = { totalDrag = 0f },
                             onHorizontalDrag = { change, amount ->
@@ -189,7 +201,20 @@ fun CircularPhotoReel(
                         val dst = RectF(x - dw / 2, y - dh / 2, x + dw / 2, y + dh / 2)
                         native.save()
                         native.clipPath(wedge)
-                        native.drawBitmap(bitmap, null, dst, picture)
+                        // Centre-crop into the paper aperture. Never stretch
+                        // the original imported artwork to fit a wedge.
+                        val targetAspect = dw / dh
+                        val srcAspect = bitmap.width.toFloat() / bitmap.height
+                        val src: Rect = if (srcAspect > targetAspect) {
+                            val crop = (bitmap.height * targetAspect).toInt().coerceAtLeast(1)
+                            val x0 = (bitmap.width - crop) / 2
+                            Rect(x0, 0, x0 + crop, bitmap.height)
+                        } else {
+                            val crop = (bitmap.width / targetAspect).toInt().coerceAtLeast(1)
+                            val y0 = (bitmap.height - crop) / 2
+                            Rect(0, y0, bitmap.width, y0 + crop)
+                        }
+                        native.drawBitmap(bitmap, src, dst, picture)
                         native.restore()
                     }
                     native.drawPath(wedge, stroke)
