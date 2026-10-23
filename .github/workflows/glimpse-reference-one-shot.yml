@@ -2,7 +2,7 @@ name: Glimpse visual references | one-shot branch validation
 
 # One-time push trigger: this workflow file being introduced/changed on the
 # dedicated visual PR branch. No triggers on ordinary source/docs pushes.
-# Audit source-proof expansion: six R01 finite reel visual candidates and the R03 truth pair.
+# Recheck finalized R01 pointer-to-selected mapping and finite ID validity for six candidates.
 # Keep opt-in dispatch for a future intentional fresh visual review.
 on:
   push:
