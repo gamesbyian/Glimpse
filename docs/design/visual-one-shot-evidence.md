@@ -2,14 +2,14 @@
 
 **Automated tool result only. No visual, native, accessibility, or owner approval.**
 
-- Workflow source commit: `97d82df2ee98cdb461cb3acbe23b6284fa587924`
-- Workflow run ID: `40023342954`
-- Workflow run URL: https://github.com/gamesbyian/Glimpse/actions/runs/40023342954
+- Workflow source commit: `76829b700f1f952b94ce8e490b5aed5a406e15e5`
+- Workflow run ID: `40023670567`
+- Workflow run URL: https://github.com/gamesbyian/Glimpse/actions/runs/40023670567
 - Run attempt: `1`
 - Workflow result before publishing: `success`
 - Branch: `agent/visual-state-reconciliation-20261023`
-- Review sets: named 34, source detail, reel/grid/crop/share and large text
-- CI artifact name: `glimpse-reference-draft-97d82df2ee98cdb461cb3acbe23b6284fa587924`
+- Review sets: 34 states, Source Detail, reel/grid/crop/share, large text, complete original 66 + P0 82 + P1 55
+- CI artifact name: `glimpse-reference-draft-76829b700f1f952b94ce8e490b5aed5a406e15e5`
 
 ## Structural script outputs
 
@@ -66,5 +66,8 @@ Source-level SVG/photo portability PASS (not optical, device or owner PASS).
 - Raster ledger: /tmp/glimpse-visual-journeys/index.json
   - Groups: reel-grid-crop-share, critical-type-comparison
   - Native PNG crops: 23
+- Raster ledger: /tmp/glimpse-visual-complete/index.json
+  - Groups: entire-original-66, entire-p0-82, entire-p1-55
+  - Native PNG crops: 203
 
 **Status describes automatic structural/render execution, NOT whether humans saw/read or accepted the PNG files.**
