@@ -116,6 +116,17 @@ def main():
     final_uses = [n.get("href") for n in final_root.iter(SVG + "use")]
     if len(final_uses) < 4 or final_uses[0] != "#fixture4" or final_uses[3] != "#fixture4":
         ERRORS.append("x05.08-last: p22 hero and selected aperture disagree")
+    # Native raster sweep found status captions outside their pale badges.
+    # Enforce enough width for the known short status strings.
+    badge_fixture = {
+        "x08/01-home-active.svg": ('<rect x="49" y="494" width="116"', 'CURRENT HOME'),
+        "x08/06-status-collapsed.svg": ('<rect x="49" y="494" width="116"', 'CURRENT HOME'),
+        "x10/06-rotation-delayed.svg": ('<rect x="49" y="374" width="167"', 'LAST ACKNOWLEDGED'),
+    }
+    for frame, (chip, label) in badge_fixture.items():
+        payload = (P0 / frame).read_text(encoding="utf-8")
+        if chip not in payload or label not in payload:
+            ERRORS.append(frame + ": current/confirmed status badge would clip")
     # Optical defects discovered in the first current-branch raster sheets.
     # These are protective source assertions, not independent pixel proof.
     optical_fixtures = {
@@ -134,7 +145,7 @@ def main():
     blur = (ROOT / "design/proposals/state-refinements/image-editor-blur-extend.svg").read_text(encoding="utf-8")
     if "feGaussianBlur" in blur:
         ERRORS.append("image-editor-blur-extend: unsupported CairoSVG filter reintroduced")
-    print(json.dumps({"cases": len(expected)+len(scale)+3+len(x07)+len(optical_fixtures)+1,
+    print(json.dumps({"cases": len(expected)+len(scale)+3+len(x07)+len(optical_fixtures)+1+len(badge_fixture),
                       "semanticSourceErrors": ERRORS,
                       "opticalProof": False, "deviceProof": False,
                       "ownerApproval": False}, indent=2))
