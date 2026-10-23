@@ -14,17 +14,21 @@
 - Added [`validate-core-state-evidence.py`](../../scripts/validate-core-state-evidence.py), [`validate-storyboard-semantics.py`](../../scripts/validate-storyboard-semantics.py), and opt-in [`render-visual-reference-sheets.py`](../../scripts/render-visual-reference-sheets.py). The first verifies all 34 exact paths, baselines, registry and phone-side visible-text SVG elements (x<420). The second verifies key X05/X06/X11/X13 identities and statuses. **Text positions may still be clipped by clip paths or font metrics, so neither proves an optical PASS.** The renderer uses actual CairoSVG/Pillow PNG rasterization to make comparable panels with no emulator CI.
 - Updated `AGENTS.md`, both visual manifests, source/atlas READMEs, atlas homepage, gap register, bidirectional reference audit and implementation queue. Native Kotlin, Room, import, Photo Picker, apply, shuffle, Android workflows and resources are untouched.
 
+## Post-handoff continuation: actual raster reconnaissance and critical fixes
+
+A [separate source-hashed optical findings log](../design/optical-review-log-2026-10-23.md) records **69 rendered frame slots across nine comparison sheets**, generated using CairoSVG/Pillow from the original offline Actions visual reference artifact (main `74b5f23`, not the new PR branch). This first-pass optical inspection exposed and led to repaired X05 broken image paths (**24 missing images in eight scenes**); repaired X05 scenes were reproduced locally and raster reviewed before the three research images were embedded directly into the branch SVGs. It also exposed and led to a repaired false X11 90°-rotation illustration and X09 large-text Home/Reel/Import reflows; new Reel/Import and rotation layouts were rasterized locally before source reproduction. A new fast [photo-portability validator](../../scripts/validate-svg-photo-portability.py) detects future external file dependencies. The **fresh branch source and 10 new state refinements have still not been optically reviewed as a complete package**; other P1 and 15 named states are pending. [PR #6](https://github.com/gamesbyian/Glimpse/pull/6) remains deliberately draft.
+
 ## Executed verification and outstanding verification
 
 **Executed with live GitHub file reads:** checked that all 34 `phoneEvidenceLabels` are present as x<420 SVG text elements in their exact paths, with zero missing; independently read X05 frame selection labels (p12 until snap, p13 after snap and interruption, p22 at last) and X06 boundary fixture labels (1/1, 2/3, 3/5, 12/22, 39/60, 22/22). Read X11 `p12c` source and X13 `p12c` metadata after editing. This is source-level verification only.
 
-**Not yet executed in this session:** local Python validators, CairoSVG PNG rendering, actual visual inspection of PNG contact sheets, independent pixel/text-overlap detection, device screenshots, TalkBack, physical swipe interruption and OEM handoffs. There was no source checkout or GitHub Action directly executed from this agent environment. Do not state those tests passed or that any reference is approved. Next agent should run the following in a checkout from branch / merged main:
+**Not yet executed for the current PR HEAD:** local Python validators, end-to-end fresh-branch CairoSVG contact sheets, complete pixel/text-overlap coverage, device screenshots, TalkBack, physical swipe interruption and OEM handoffs. **Executed against recovered pre-PR source:** representative CairoSVG/Pillow rasters and optical inspection detailed above, including local reproduction of corrective renders. There was no source checkout or GitHub Action directly executed from this agent environment. Do not state those tests passed or that any reference is approved. Next agent should run the following in a checkout from branch / merged main:
 
 ```sh
 python3 scripts/validate-visual-spec.py
 python3 scripts/validate-storyboard-coverage.py
 python3 scripts/validate-core-state-evidence.py
-python3 scripts/validate-storyboard-semantics.py
+python3 scripts/validate-storyboard-semantics.py\npython3 scripts/validate-svg-photo-portability.py
 python3 -m pip install cairosvg pillow    # local disposable environment only
 python3 scripts/render-visual-reference-sheets.py --output /tmp/glimpse-optical
 python3 scripts/render-visual-reference-sheets.py --output /tmp/glimpse-optical-full --full
