@@ -1,0 +1,191 @@
+{
+  "schemaVersion": 1,
+  "status": "P1_PARTIAL_DRAFT_NOT_APPROVED",
+  "coverage": "4 of 11 planned P1 work packages (X13, X16, X19, X22)",
+  "groups": [
+    {
+      "id": "x13",
+      "title": "Android sharing and return",
+      "frames": [
+        {
+          "id": "01-original",
+          "path": "design/proposals/advanced-storyboards/x13/01-original.svg",
+          "caption": "Original chosen",
+          "action": "Share original",
+          "invariant": "Show source image as outgoing content",
+          "ordinal": 1
+        },
+        {
+          "id": "02-edited",
+          "path": "design/proposals/advanced-storyboards/x13/02-edited.svg",
+          "caption": "Edited copy chosen",
+          "action": "Share edited copy",
+          "invariant": "Select only the edited file, preserve original",
+          "ordinal": 2
+        },
+        {
+          "id": "03-chooser",
+          "path": "design/proposals/advanced-storyboards/x13/03-chooser.svg",
+          "caption": "System Sharesheet",
+          "action": "Choose recipient",
+          "invariant": "No claim of sending merely because chooser opened",
+          "ordinal": 3
+        },
+        {
+          "id": "04-cancel",
+          "path": "design/proposals/advanced-storyboards/x13/04-cancel.svg",
+          "caption": "Sharing cancelled",
+          "action": "Return to photo",
+          "invariant": "Preserve selected photo and wallpaper",
+          "ordinal": 4
+        },
+        {
+          "id": "05-unavailable",
+          "path": "design/proposals/advanced-storyboards/x13/05-unavailable.svg",
+          "caption": "No compatible handler",
+          "action": "Save or copy",
+          "invariant": "Recovery independent of installed apps",
+          "ordinal": 5
+        }
+      ]
+    },
+    {
+      "id": "x16",
+      "title": "Rule conflict and simulation",
+      "frames": [
+        {
+          "id": "01-rules",
+          "path": "design/proposals/advanced-storyboards/x16/01-rules.svg",
+          "caption": "Two enabled rules",
+          "action": "Inspect overlap",
+          "invariant": "Both rules individually valid",
+          "ordinal": 1
+        },
+        {
+          "id": "02-conflict",
+          "path": "design/proposals/advanced-storyboards/x16/02-conflict.svg",
+          "caption": "Conflict at 20:00",
+          "action": "Explain winner",
+          "invariant": "Explicit collision, not silent resolution",
+          "ordinal": 2
+        },
+        {
+          "id": "03-precedence",
+          "path": "design/proposals/advanced-storyboards/x16/03-precedence.svg",
+          "caption": "Evening rule wins",
+          "action": "Adjust priorities",
+          "invariant": "English explanation and reversible change",
+          "ordinal": 3
+        },
+        {
+          "id": "04-nested",
+          "path": "design/proposals/advanced-storyboards/x16/04-nested.svg",
+          "caption": "Nested conditions",
+          "action": "Simulate",
+          "invariant": "Logical grouping remains visually explicit",
+          "ordinal": 4
+        },
+        {
+          "id": "05-simulate",
+          "path": "design/proposals/advanced-storyboards/x16/05-simulate.svg",
+          "caption": "Schedule simulation",
+          "action": "Save rule",
+          "invariant": "Simulation cannot apply wallpaper",
+          "ordinal": 5
+        }
+      ]
+    },
+    {
+      "id": "x19",
+      "title": "Backup and restore integrity",
+      "frames": [
+        {
+          "id": "01-export-scope",
+          "path": "design/proposals/advanced-storyboards/x19/01-export-scope.svg",
+          "caption": "Export scope",
+          "action": "Configure",
+          "invariant": "Photo bytes excluded unless explicitly chosen",
+          "ordinal": 1
+        },
+        {
+          "id": "02-export-confirm",
+          "path": "design/proposals/advanced-storyboards/x19/02-export-confirm.svg",
+          "caption": "Review exported content",
+          "action": "Export backup",
+          "invariant": "Exact scope visible before file is produced",
+          "ordinal": 2
+        },
+        {
+          "id": "03-restore-review",
+          "path": "design/proposals/advanced-storyboards/x19/03-restore-review.svg",
+          "caption": "Restore preview",
+          "action": "Review conflicts",
+          "invariant": "Preview missing providers and ID collisions",
+          "ordinal": 3
+        },
+        {
+          "id": "04-restore-conflict",
+          "path": "design/proposals/advanced-storyboards/x19/04-restore-conflict.svg",
+          "caption": "Resolve conflict",
+          "action": "Choose safe merge",
+          "invariant": "Keep existing user data until chosen",
+          "ordinal": 4
+        },
+        {
+          "id": "05-restore-result",
+          "path": "design/proposals/advanced-storyboards/x19/05-restore-result.svg",
+          "caption": "Restore completed",
+          "action": "Return to Collections",
+          "invariant": "Outcome and exclusions auditable",
+          "ordinal": 5
+        }
+      ]
+    },
+    {
+      "id": "x22",
+      "title": "Exact diagnostic report handoff",
+      "frames": [
+        {
+          "id": "01-draft",
+          "path": "design/proposals/advanced-storyboards/x22/01-draft.svg",
+          "caption": "Describe the problem",
+          "action": "Review diagnostics",
+          "invariant": "Report is local draft, never auto uploaded",
+          "ordinal": 1
+        },
+        {
+          "id": "02-redacted",
+          "path": "design/proposals/advanced-storyboards/x22/02-redacted.svg",
+          "caption": "Review exact outgoing fields",
+          "action": "Edit redactions",
+          "invariant": "Exclude image bytes, tokens and private paths",
+          "ordinal": 2
+        },
+        {
+          "id": "03-consent",
+          "path": "design/proposals/advanced-storyboards/x22/03-consent.svg",
+          "caption": "Choose report scope",
+          "action": "Enable selected fields",
+          "invariant": "Consent granular and reversible",
+          "ordinal": 3
+        },
+        {
+          "id": "04-chooser",
+          "path": "design/proposals/advanced-storyboards/x22/04-chooser.svg",
+          "caption": "Choose destination",
+          "action": "Copy / Save / Share",
+          "invariant": "Chooser display is not a successful submission",
+          "ordinal": 4
+        },
+        {
+          "id": "05-absent",
+          "path": "design/proposals/advanced-storyboards/x22/05-absent.svg",
+          "caption": "No supported handler",
+          "action": "Copy details",
+          "invariant": "Retain draft after cancelled/unavailable share",
+          "ordinal": 5
+        }
+      ]
+    }
+  ]
+}
