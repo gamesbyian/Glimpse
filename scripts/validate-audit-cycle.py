@@ -37,7 +37,7 @@ for state, chosen, total in (
 ):
     path = ROOT / "design/proposals/audit-revisions" / f"r01-{state}.svg"
     src = path.read_text()
-    ids = [int(x) for x in re.findall(r">p(\\d\d)</text>", src)]
+    ids = [int(x) for x in re.findall(r">p(\d\d)</text>", src)]
     expected = [chosen + delta for delta in (0, 1, 2, -2, -1)
                 if 1 <= chosen + delta <= total]
     assert ids == expected, (state, ids, expected)
