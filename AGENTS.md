@@ -2,7 +2,9 @@
 
 ## Scope and truth
 
-This repository contains **product and implementation plans**, not a built Android application. Never describe a mockup, exported design or future release gate as an achieved build. Start with [current decisions](docs/planning/current-decisions.md), then follow the relevant detailed contract through [docs index](docs/README.md).
+This repository contains **product specifications and an early Android source prototype**. Compilation, APK installation, OS behavior and visual acceptance are separate evidence gates. Never describe a mockup or source commit as an achieved handset result. Start with [current decisions](docs/planning/current-decisions.md), then follow the relevant detailed contract through [docs index](docs/README.md).
+
+Current engineering queue: [implementation queue](docs/planning/implementation-queue.md), [issue #1](https://github.com/gamesbyian/Glimpse/issues/1), and [prediction → observation ledger](docs/quality/first-slice-evidence.md). Keep hypotheses clearly separate from observed human behavior.
 
 ## Feature priorities
 
@@ -20,4 +22,4 @@ First working slice: native photo import → verified local collection → choos
 
 ## Repository
 
-No Android source project, release APK or license is present yet. This repository is public. Public visibility does not itself grant an open-source licence.
+An Android/Gradle source project now exists under [app/](app/README.md); no verified release APK, device acceptance or license is present yet. This repository is public. Public visibility does not itself grant an open-source licence.

@@ -1,12 +1,12 @@
 # Glimpse
 
-**A tactile, local-first Android wallpaper manager, currently in design.**
+**A tactile, local-first Android wallpaper manager, with the first native prototype now under development.**
 
 Glimpse is a native Android wallpaper manager concept built around a large-aperture paper photo reel, purposeful browsing, offline collections, and reliable, understandable wallpaper rotation. It uses the user's photos and supported external sources rather than operating its own cloud library.
 
-> **Status (2026-10-22): Specification and visual research only.** No Android app project, working UI, signed APK, or physical-device acceptance exists yet. Visual prototypes are proposals, not application screenshots.
+> **Status (2026-10-23): A bounded Kotlin/Compose/Room Android source prototype has been committed.** A debug APK and real-device behavior are not verified until native CI and handset checks succeed. The five-window reel currently provides selection semantics, not the approved final motion or visual design.
 
-## The first experience to build
+## First native development slice
 
 Choose several photos with Android Photo Picker (including cloud-backed selections when exposed by the picker), make verified durable offline copies, create a collection, and start shuffled **five-minute active-use** wallpaper rotation. Android's battery restrictions prohibit promising exact wake-from-sleep timing. The app must distinguish *preview*, *eligible to change*, *requested change*, and *successfully applied*.
 
@@ -25,15 +25,15 @@ The wallpaper browser uses a five-wide-window tactile paper reel, a large hero p
 | Reels and comparative evidence | [Reel layout comparison](docs/design/reel-layout-comparison.md), [human expectations](docs/design/human-expectations.md) |
 | Android implementation plan | [Native architecture](docs/architecture/android.md), [behavior contracts](docs/architecture/behavior-contracts.md), [motion/rendering](docs/architecture/reel-motion.md) |
 | Testable UI contracts | [Screen contract](docs/design/screen-contract.json), [reference acceptance](docs/quality/reference-acceptance.md) |
-| Work queue | [Decision queue](docs/planning/decision-queue.md) |
+| Work queue | [Implementation queue](docs/planning/implementation-queue.md), [design decision queue](docs/planning/decision-queue.md) |
 | Design files and asset availability | [Design directory](design/README.md), [asset inventory](docs/assets.md) |
 | Development history | [Conversation record](docs/history/conversation-record-2026-10-22.md) |
 
 A [complete documentation map](docs/README.md) links the supporting matrices and plans.
 
-## Proposed technology
+## Native implementation
 
-Kotlin, Jetpack Compose, Room, Android Photo Picker / Storage Access Framework, WallpaperManager, WorkManager with truthful scheduling semantics, and Glance widgets. App build instructions will be added once a real Gradle/Android project exists.
+An Android/Gradle project now lives in [app/](app/README.md), with Kotlin, Jetpack Compose, Room/KSP, Photo Picker, WallpaperManager and a foreground-only active-use shuffle. WorkManager policies and Glance widgets are future additions, not implemented features. With SDK 37 and JDK 17, run `./gradlew :app:assembleDebug :app:testDebugUnitTest`. See the [implementation queue](docs/planning/implementation-queue.md), [issue #1](https://github.com/gamesbyian/Glimpse/issues/1) and [prediction/evidence ledger](docs/quality/first-slice-evidence.md).
 
 The initial vertical slice is **import → offline collection → preview → apply wallpaper → shuffle**. Advanced rules, visual refinements and provider integrations follow once the basic workflow works. Test real Android capabilities on actual hardware rather than claiming mockups prove implementation.
 
@@ -45,6 +45,7 @@ The initial vertical slice is **import → offline collection → preview → ap
 - `docs/planning/`: current decisions and remaining work
 - `docs/quality/`: acceptance plans
 - `docs/history/`: historical evidence, not current feature authority
+- `app/`: native implementation; build and run instructions in [app/README.md](app/README.md)
 - `design/reference/`: reference drawings (schematic; no blanket pixel-perfect approval)
 - `design/research/`: alternative designs and their generators
 - `design/tokens/`: provisional brand tokens
