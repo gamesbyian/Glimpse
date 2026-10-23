@@ -98,7 +98,20 @@ def start_fixture(count, active=False):
             time.sleep(2.0)  # Compose first layout and image reads
             print("Fixture ready:", result, flush=True)
             clear_system_obstructions()
-            return
+            # Fixture rows are already committed, but Compose's initial
+            # collection watch may not yet have emitted them. Refuse false
+            # "zero photo" screenshots of a seeded 3/22-photo collection.
+            for _ in range(16):
+                try:
+                    snapshot = hierarchy()
+                    if ("Photos: " + str(count)) in snapshot:
+                        return
+                except Exception:
+                    pass
+                time.sleep(0.6)
+            capture_failure("fixture-ui-not-ready-" + str(count),
+                            "database seeded, Compose count not yet visible")
+            raise RuntimeError("Seeded fixture but UI count did not match " + str(count))
     capture_failure("fixture-not-ready-" + str(count), result)
     raise RuntimeError("Fixture never wrote " + marker +
                        "; inspect failure screen and redacted logcat")
