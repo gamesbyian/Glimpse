@@ -10,6 +10,8 @@ on:
       - "docs/design/screen-contract.json"
       - "scripts/validate-visual-spec.py"
       - "scripts/build-visual-proposal-atlas.py"
+      - "scripts/validate-storyboard-coverage.py"
+      - "scripts/render-storyboard-samples.py"
       - ".github/workflows/visual-reference-check.yml"
 permissions:
   contents: read
@@ -19,13 +21,19 @@ concurrency:
 jobs:
   check:
     runs-on: ubuntu-latest
-    timeout-minutes: 6
+    timeout-minutes: 12
     steps:
       - uses: actions/checkout@v4
       - name: Validate SVG XML and spec coverage without browsers
         run: python3 scripts/validate-visual-spec.py
+      - name: Verify all P0 storyboards and scene links
+        run: python3 scripts/validate-storyboard-coverage.py
       - name: Build offline and phone-friendly reference gallery
         run: python3 scripts/build-visual-proposal-atlas.py
+      - name: Install lightweight offline SVG renderer
+        run: python3 -m pip install --disable-pip-version-check --quiet CairoSVG Pillow
+      - name: Render P0 storyboard samples for pixel inspection
+        run: python3 scripts/render-storyboard-samples.py
       - name: Publish visual reference atlas
         uses: actions/upload-artifact@v4
         with:
