@@ -84,3 +84,6 @@ python3 scripts/render-visual-reference-sheets.py --set reel-grid-crop-share --s
 
 
 The eight mechanism-focused refinements (collections, Lock target support and preview, Activity history, nested rules, Photo Detail exclusion and restore conflict) now include representative controls and visual hierarchy, not merely labels. They still require the source-hashed optical and complete action-sequence assessment.
+
+
+**Full baseline optical capture:** The 66 original, 82 P0 and 55 P1 proposal SVGs were all rasterized in [successful one-shot run 40023670567](https://github.com/gamesbyian/Glimpse/actions/runs/40023670567), producing 203 source-hashed native phone crops and complete 12-phone contact page reviews. No baseline phone image was found wholly blank. This is a broad, first-pass optical check, not individual detailed design approval. Subsequent source fixes to X05 final p22 and X08/X10 status chips need one final exact-branch proof; see optical log.
