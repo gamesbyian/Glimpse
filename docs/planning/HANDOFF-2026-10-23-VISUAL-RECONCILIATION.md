@@ -86,3 +86,8 @@ python3 scripts/render-visual-reference-sheets.py --set reel-grid-crop-share --s
 ```
 
 Each native crop is 401×890 and the `index.json` ledger records its source file SHA-256. **Not executed on fresh branch in this session.** Do not count manifest mapping or an emitted PNG as a human optical acceptance.
+
+
+## Visual-mechanism refinement checkpoint
+
+Eight of the new state-specific phone drawings were upgraded beyond generic status cards: actual multiple collection rows, Lock crop clock-safe preview, device capability choices, grouped automation AND/OR conditions, photo exclusion membership, restore conflict radio alternatives, and distinct failed/unknown timeline histories. Source retrieval confirmed expected phone-side evidence and no simple text width overruns, but **no fresh raster or on-device check**. All 34 remain drafts; do not substitute this work for the planned 60-question audit.
