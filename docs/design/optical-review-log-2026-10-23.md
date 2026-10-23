@@ -108,3 +108,8 @@ Inspected the actual PNGs as a 34-state sheet, four larger 3×2 native-montage s
 **Gradient outcome:** The revised `image-editor-blur-extend.svg` from full-corpus run displayed soft colour-derived filling on both left and right edge, with centre photo sharp and distinct controls. This is a visual *reference* demonstration, not actual image-processing algorithm proof. Confirmed using its 401×890 native CI crop, not merely an SVG source match.
 
 **Audit boundary:** this was a full-inventory, contact-sheet-level *pre-audit optical reconnaissance*, NOT the substantive 60-question user-interface audit, pixel-perfect annotated element review, Android test, TalkBack assessment, design freeze, or owner approval. Individual detailed 100%-native optical checks and corresponding design decisions remain open.
+
+
+### VRC-15 | X13 original-versus-edited output composition (recovery correction)
+
+The full P1 native phone crop showed that `x13/01-original.svg` and `x13/02-edited.svg` had identical stripe geometry even though one was labelled source p12 and the other cropped p12c. Edited frame source now clips five original coloured paths and renders them at **150% crop scale** within the original photo bounds, leaving the actual source p12 frame unchanged. Locally reconstructed the patched image and inspected its visible crop difference. Added a semantic source test requiring p12c's SVG crop transform and forbidding it on p12. This patch postdates the 203-image run; source-hashed new CI evidence must still be checked before claiming final-branch rendered acceptance.
