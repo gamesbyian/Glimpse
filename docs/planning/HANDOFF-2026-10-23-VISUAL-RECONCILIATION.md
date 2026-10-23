@@ -103,3 +103,8 @@ Recent fixes not included in that particular 203-crop artifact: X05's final p22 
 ## Latest post-stall recovery
 
 Verified the earlier interrupted semantic-regression write was committed. P1 X13 edited-share p12c now uses clipped 150% path scaling and no longer presents the identical bitmap composition as original p12; the source p12 remains unmodified. Reconstructed and visually inspected the patched local phone crop. New assertion guards distinct edited geometry. One-shot CI rerun requested on the visual PR branch to check 34 semantic/source assertions and the 203 full-corpus phone-image exports. Do not infer a PASS from the workflow dispatch until its evidence ledger reflects the source commit.
+
+
+## Exact post-atlas verification checkpoint
+
+The five source assets modified after the successful 203-frame optical artifact are now enumerated with **exact current GitHub blob SHAs** in [POST-ATLAS-VERIFICATION-2026-10-23.md](../design/POST-ATLAS-VERIFICATION-2026-10-23.md). P0 p22 source identity, three badge widths and P1 p12c's actual crop differ from the first atlas. Source references and regression assertions were checked; the latest full-branch CI artifact is still required for independent image confirmation. The [one-shot CI workflow](../../.github/workflows/glimpse-reference-one-shot.yml) has been opt-in retriggered; do not infer a run succeeded until its proof ledger advances.
