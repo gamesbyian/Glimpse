@@ -5,8 +5,8 @@
 ## Exact changes and evidence classes
 
 - Retained original **66** proposal SVGs, **82** P0 connected frames X01–X12, **55** P1 advanced frames X13–X23. Existing static validation and original handoff describe these files, not optical acceptance.
-- New [`core-state-evidence.v1.json`](../../design/proposals/core-state-evidence.v1.json) maps **each of the original 34 missing named core variant slots** to an exact existing or supplemental SVG path. Evidence: **19 pictured-state, 11 partial-pictured, 4 related-only**; the last 15 require complete same-surface or continuation images. These labels are based on inspection of SVG phone-side contents, NOT independently verified raster pixels or owner signoff.
-- Added **10** targeted, individually editable SVGs in [`design/proposals/state-refinements/`](../../design/proposals/state-refinements/): screenshot import progress/fail, Automation pause/delay, editor blur extension, unsupported Quickstart, insufficient simulator, blocked Quick Settings, first-use no photos and high-contrast settings. They are additive *supplemental refinements*, never reclassified as original 66/P0/P1.
+- New [`core-state-evidence.v1.json`](../../design/proposals/core-state-evidence.v1.json) maps **each of the original 34 missing named core variant slots** to an exact existing or supplemental SVG path. Evidence: **34 structurally pictured-state, 0 partial-pictured, 0 related-only** after 15 dedicated same-surface drawings; full visual/flow sufficiency still requires inspection. These labels are based on inspection of SVG phone-side contents, NOT independently verified raster pixels or owner signoff.
+- Added **25** targeted, individually editable SVGs in [`design/proposals/state-refinements/`](../../design/proposals/state-refinements/): screenshot import progress/fail, Automation pause/delay, editor blur extension, unsupported Quickstart, insufficient simulator, blocked Quick Settings, first-use no photos and high-contrast settings. They are additive *supplemental refinements*, never reclassified as original 66/P0/P1.
 - Reflowed the **X09 200% Home text** phone layout. Increased actual pictured labels/actions and used a two-row navigation example rather than leaving ordinary 13px text under a “200%” caption. This still must be inspected for 420×900 crop, OS insets and real Android font scaling.
 - X11 crop now has a pictured result inset; its Save and Use Now branches display distinct edited `p12c` art/metadata while original `p12` remains. X13 selected edited payload metadata corrected to `p12c`. The Use Now **pre-confirmation** status is unchanged, rather than implying application already started. Wallpaper application always requires an explicit command and Android outcome.
 - All **eight X05** motion frames have `journeyId`, `selectedAssetId`, pose metadata and non-apply status. Seven explicit edges in the [P0 manifest](../../design/proposals/storyboard-coverage.v1.json) record p12→p13 only on snap, maintain p13 on reverse/interruption and treat last-photo jump as an explicit action, not one swipe. Poses remain drawings, not actual touch inertia or Android motion data.
@@ -28,7 +28,8 @@ A [separate source-hashed optical findings log](../design/optical-review-log-202
 python3 scripts/validate-visual-spec.py
 python3 scripts/validate-storyboard-coverage.py
 python3 scripts/validate-core-state-evidence.py
-python3 scripts/validate-storyboard-semantics.py\npython3 scripts/validate-svg-photo-portability.py
+python3 scripts/validate-storyboard-semantics.py
+python3 scripts/validate-svg-photo-portability.py
 python3 -m pip install cairosvg pillow    # local disposable environment only
 python3 scripts/render-visual-reference-sheets.py --output /tmp/glimpse-optical
 python3 scripts/render-visual-reference-sheets.py --output /tmp/glimpse-optical-full --full
@@ -36,11 +37,9 @@ python3 scripts/render-visual-reference-sheets.py --output /tmp/glimpse-optical-
 
 Open the **actual PNGs at 100%**, inspect phone crops plus full annotated originals. Check cutouts, typography and selected-image identity, not only validator output. Use minimal optical fixes with source hashes. If any validator or CI fails, repair before merging; do not infer a pass from script existence.
 
-## Fifteen named state closures still not justified
+## Second-pass dedicated states: illustration complete, optical review still required
 
-**Related-only, must be shown on the correct screen:** `discover.offline` (source-detail only), `activity.failed` (Apply failure only), `photo-detail.excluded` (batch Grid restore only), `diagnostics.failure` (retry card without diagnosis).
-
-**Partial, needs same-surface layout, controls or outcomes:** `collections.large`, `destinations.lock`, `destinations.unsupported`, `activity.uncertain`, `automation-editor.nested`, `source-detail.offline`, `settings.permissions`, `backup-and-restore.restore`, `error-empty-permission.empty`, `error-empty-permission.offline`, `error-empty-permission.storage`. Exact current file references and interpretations are in the manifest; do not create duplicates when a source can legitimately be reused.
+The 15 formerly partial or wrong-surface references now have individual editable phone mockups in `design/proposals/state-refinements/`. This resolves the **surface-evidence reuse** for `collections.large`, `discover.offline`, `destinations.lock`, `destinations.unsupported`, `activity.failed`, `activity.uncertain`, `automation-editor.nested`, `source-detail.offline`, `photo-detail.excluded`, `diagnostics.failure`, `settings.permissions`, `backup-and-restore.restore`, and `error-empty-permission.{empty,offline,storage}`. A manifest declaration of **34 pictured / 0 partial / 0 related-only** means the state, distinguishing text and appropriate action are now visible in the phone region. It does **not** prove complete flow transitions, native UX, full text fitting, input/hit targets or owner acceptance. All remain explicitly draft and optical-untested.
 
 ## High priority next optical checks, not the future 60-question audit
 
@@ -50,14 +49,14 @@ Open the **actual PNGs at 100%**, inspect phone crops plus full annotated origin
 4. Check **X03/X04** explicit target Home vs Lock/Both, pending vs acknowledged vs unknown, safe recovery, active vs paused vs eligibility delayed by Android and no exact five-minute background guarantee.
 5. Inspect **X09/X12** 200% labels, two-row Home bottom navigation and all focus/inset overlays: target sizes, clip, keyboard, high contrast, accessibility labels and Android-owned bar/handoff remain unverified.
 6. Inspect **X11/X13/X14** distinct original p12 / cropped p12c / next p13 / outbound URI result and Home/Lock composition. A source snapshot is never overwritten or sent until explicit action.
-7. Resolve the 15 partial/related-only named states without claiming “34/34 optical completion”, then prepare a *source-hashed owner-review set* without promoting any draft into `design/approved/` until explicit owner approval.
+7. Inspect and refine the 15 newly illustrated same-surface phone states without claiming “34/34 optical completion”, then prepare a *source-hashed owner-review set* without promoting any draft into `design/approved/` until explicit owner approval.
 
 
 ## Recovery continuation after interrupted session
 
 The session recovery independently confirmed that current `main` still points at `4a4f858871d210939679bc9a5ee69550aedda620`. All substantive work remains committed to [draft PR #6](https://github.com/gamesbyian/Glimpse/pull/6) on `agent/visual-state-reconciliation-20261023` (do not imply it is merged). The recovered source artifact is `glimpse-visual-proposals` from run 39939557437. A direct offline ZIP scan of its **121 SVG image nodes** found **24 nonportable references**, confined to X05's eight files. All 24 were already repaired on the branch with self-contained images; full fresh-branch optical validation remains pending.
 
-Inspection of the original critical reel raster sheet also revealed clipping/overlap in `design/proposals/critical-reel/reel-large-text.svg`: the collection subtitle exceeded the phone width and the 32px selected-counter collided with Grid. The branch now has a targeted source change (wrapped subtitle, resized title and counter), but **has not rerendered this specific correction**. See VRC-07 in the optical log. The next action is a fresh branch checkout and opt-in raster plus script checks, not the 60-question UX audit.
+Inspection of the original critical reel raster sheet also revealed clipping/overlap in `design/proposals/critical-reel/reel-large-text.svg`: the collection subtitle exceeded the phone width and the 32px selected-counter collided with Grid. The branch now has a targeted source change (wrapped subtitle, resized title and counter), but **has not rerendered this specific correction**. See VRC-07 in the optical log. The next action is a fresh branch checkout and opt-in raster plus script checks for all 25 targeted refinements, not the 60-question UX audit.
 
 ## Authority and product safeguards
 
