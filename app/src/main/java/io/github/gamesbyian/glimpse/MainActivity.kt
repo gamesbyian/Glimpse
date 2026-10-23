@@ -107,6 +107,7 @@ private fun GlimpseScreen(model: GlimpseModel) {
     val state by model.ui.collectAsStateWithLifecycle()
     val activeCollection by model.activeCollectionId.collectAsStateWithLifecycle()
     var newCollection by remember { mutableStateOf("Rainbows") }
+    var showNewCollection by remember { mutableStateOf(false) }
     val picker = rememberLauncherForActivityResult(
         ActivityResultContracts.PickMultipleVisualMedia(maxItems = 100)
     ) { uris -> model.importSelected(uris) }
@@ -120,24 +121,43 @@ private fun GlimpseScreen(model: GlimpseModel) {
             verticalArrangement = Arrangement.spacedBy(12.dp)
         ) {
             Text("Glimpse", style = MaterialTheme.typography.headlineLarge, fontWeight = FontWeight.Bold)
-            Text("Your photographs, your wallpaper.", style = MaterialTheme.typography.bodyMedium)
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.spacedBy(8.dp)
-            ) {
-                OutlinedTextField(
-                    value = newCollection,
-                    onValueChange = { newCollection = it },
-                    label = { Text("Collection name") },
-                    modifier = Modifier.weight(1f),
-                    singleLine = true
+            if (state.collections.isEmpty() || showNewCollection) {
+                Text(
+                    if (state.collections.isEmpty()) "Start with a collection of photographs."
+                    else "Create a collection",
+                    style = MaterialTheme.typography.bodyMedium
                 )
-                Button(onClick = { model.createCollection(newCollection) }, enabled = !state.busy) {
-                    Text("Create")
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.spacedBy(8.dp)
+                ) {
+                    OutlinedTextField(
+                        value = newCollection,
+                        onValueChange = { newCollection = it },
+                        label = { Text("Collection name") },
+                        modifier = Modifier.weight(1f),
+                        singleLine = true
+                    )
+                    Button(
+                        onClick = {
+                            model.createCollection(newCollection)
+                            showNewCollection = false
+                        },
+                        enabled = !state.busy
+                    ) { Text("Create") }
                 }
             }
             if (state.collections.isNotEmpty()) {
-                Text("Collections", fontWeight = FontWeight.SemiBold)
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.SpaceBetween
+                ) {
+                    Text("Collections", fontWeight = FontWeight.SemiBold)
+                    TextButton(onClick = { showNewCollection = !showNewCollection }) {
+                        Text(if (showNewCollection) "Cancel" else "New collection")
+                    }
+                }
                 LazyRow(
                     horizontalArrangement = Arrangement.spacedBy(8.dp),
                     modifier = Modifier.fillMaxWidth()
@@ -150,7 +170,7 @@ private fun GlimpseScreen(model: GlimpseModel) {
                         )
                     }
                 }
-                Button(
+                OutlinedButton(
                     onClick = {
                         picker.launch(
                             PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly)
@@ -311,39 +331,64 @@ private fun PhotoPreview(photo: PhotoRecord?, modifier: Modifier, label: String)
 @Composable
 private fun RotationPanel(state: GlimpseUiState, model: GlimpseModel) {
     val rotation = state.rotation
+    var expanded by remember { mutableStateOf(false) }
     Card(modifier = Modifier.fillMaxWidth()) {
         Column(
             modifier = Modifier.padding(12.dp),
             verticalArrangement = Arrangement.spacedBy(8.dp)
         ) {
-            Text("Home wallpaper rotation", style = MaterialTheme.typography.titleMedium)
-            Text("Every five minutes while Glimpse is in use. No exact background alarm.")
-            Text("Status: " + (rotation?.outcome ?: "Not started"))
-            Text("Enabled: " + (if (rotation?.active == true) "Yes" else "No"))
-            Text("Last OS acknowledgment: " + displayTime(rotation?.lastAcknowledgedAt))
-            Text("Next eligible: " + displayTime(rotation?.nextEligibleAt))
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+                Text("Home rotation", style = MaterialTheme.typography.titleMedium)
+                TextButton(onClick = { expanded = !expanded }) {
+                    Text(if (expanded) "Less detail" else "Details")
+                }
+            }
+            Text(
+                if (rotation?.active == true) "Shuffling · while Glimpse is in use"
+                else "Rotation is paused or not started",
+                style = MaterialTheme.typography.bodyMedium
+            )
             if (rotation?.pendingPhotoId != null) {
-                Text("Outcome uncertain. Inspect the phone wallpaper before proceeding.")
+                Text("Previous wallpaper attempt is uncertain; automatic changes are paused.")
                 OutlinedButton(onClick = model::resolveUncertain, enabled = !state.busy) {
-                    Text("Acknowledge uncertainty and pause")
+                    Text("Review uncertainty and pause")
                 }
             } else {
-                Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                    Button(
-                        onClick = model::startRotation,
-                        enabled = !state.busy && state.photos.isNotEmpty()
-                    ) { Text("Start shuffle") }
-                    OutlinedButton(
-                        onClick = model::pauseRotation,
-                        enabled = !state.busy && rotation?.active == true
-                    ) { Text("Pause") }
-                }
-                TextButton(
-                    onClick = model::changeWallpaperNow,
-                    enabled = !state.busy && rotation?.collectionId != null
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.spacedBy(8.dp)
                 ) {
-                    Text("Change now from shuffle")
+                    if (rotation?.active == true) {
+                        OutlinedButton(onClick = model::pauseRotation, enabled = !state.busy) {
+                            Text("Pause")
+                        }
+                    } else {
+                        Button(
+                            onClick = model::startRotation,
+                            enabled = !state.busy && state.photos.isNotEmpty()
+                        ) { Text("Start shuffle") }
+                    }
+                    TextButton(
+                        onClick = model::changeWallpaperNow,
+                        enabled = !state.busy && rotation?.collectionId != null
+                    ) {
+                        Text("Change Home now")
+                    }
                 }
+            }
+            if (expanded) {
+                Text(
+                    "Five-minute eligibility is checked while this app is visible. " +
+                        "Android may defer changes when Glimpse is not in use.",
+                    style = MaterialTheme.typography.bodySmall
+                )
+                Text("Outcome: " + (rotation?.outcome ?: "Not started"))
+                Text("Last Android acknowledgment: " + displayTime(rotation?.lastAcknowledgedAt))
+                Text("Next eligible: " + displayTime(rotation?.nextEligibleAt))
             }
         }
     }
