@@ -8,6 +8,14 @@ A real installation successfully imported **22 Google Photos images** through th
 
 **Highest-priority next milestone:** replace the placeholder selector with the proposed large-window continuous tactile offscreen photo reel and working drag/swipe/settle traversal for the entire finite collection. Audit stable ID-to-aperture mapping on 0/1/3/5/22/60-item sets; validate boundary behavior, interrupted gestures, reduced motion, TalkBack/Previous/Next parity and Reel↔Grid selection identity. Do not broaden unrelated backend features first or solicit visual approval of an unimplemented design. Preserve the already-working import/apply/shuffle pathways.
 
+## Native visual-inspection infrastructure
+
+- [x] Debug-only deterministic test datasets feed **real Room and MainActivity**; six fixed artworks gain unique numbered indices.
+- [x] Android screenshot/hierarchy collector produces PNGs, accessibility XML, control-size diagnostics, manifest and offline gallery.
+- [x] Dedicated opt-in emulator workflow, modeled on ROYGBIV's targeted atlas rather than permanent expensive CI.
+- [ ] Independently verify first atlas run and inspect output screenshots against the selected reference geometry; repair tooling failures as needed.
+- [ ] Use atlas whenever the actual circular reel, photo window sizing, navigation and accessibility change; keep independent human-device approval gate.
+
 ## P0: first real debug APK
 
 - [x] Android project scaffold, Kotlin/Compose, Room/KSP, Gradle wrapper.

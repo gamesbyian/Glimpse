@@ -27,7 +27,7 @@
 ## Delivery and evidence
 
 - [Current decisions](planning/current-decisions.md), [decision queue](planning/decision-queue.md)
-- [Reference acceptance plan](quality/reference-acceptance.md)
+- [Reference acceptance plan](quality/reference-acceptance.md), [Android implementation visual atlas](quality/android-visual-inspection.md)
 - [Design assets and availability](assets.md), [editable design sources](../design/README.md)
 - [2026-10-22 conversation record](history/conversation-record-2026-10-22.md): archival, with original verbatim limits disclosed
 
