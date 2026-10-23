@@ -91,6 +91,8 @@ SETS["audit-r01-photo-backed"] = [
         ("R01 photo-backed 18-degree drag", "drag-18"),
         ("R01 photo-backed p13 after snap", "snap-13"),
         ("R01 photo-backed finite p22", "last-22"),
+        ("R01 photo-backed empty collection", "empty-0"),
+        ("R01 photo-backed single image", "single-1"),
     )
 ]
 # Exhaustive galleries are deliberately opt-in, never part of the cheap default.
