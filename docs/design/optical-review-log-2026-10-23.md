@@ -68,3 +68,8 @@ Six X07 source frames revised: `01-reel-focus`, `02-grid-focus`, `03-photo-detai
 ### VRC-10 | Core Source Detail repeated Discover directory (source corrected, optical pending)
 
 The original `design/proposals/plates/source-detail.svg` was a mislabeled multi-provider Discover phone body even though its right annotation described a single source. It now displays one Google Photos source card, explicit selected-item-only Android picker access, a non-user illustrative image, cautious rights/provenance copy, and separate Choose Photos / Back to Discover actions. No online provider integration, attribution validity or picker UI operation was verified; **new layout has not been independently raster-inspected**.
+
+
+### VRC-11 | Prepared source-hashed native optical sheets (not executed)
+
+The optional CairoSVG/Pillow helper now enumerates 34 named states, 25 supplemental drawings, the corrected original/offline Source Detail pair and large-type cross-surface comparisons, in addition to the existing journey groups. `--set` limits expensive bitmap decoding, and `--native` emits exact 401×890 phone crops and a JSON ledger of source SHA-256 hashes, making visual review reproducible. **The new renderer revision and its outputs have not been executed in a fresh branch checkout; still no optical signoff.** Reviewers should use `python3 scripts/render-visual-reference-sheets.py --list-sets` followed by `--set core-34-named-states --set source-detail-paired --native` first.
