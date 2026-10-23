@@ -1,6 +1,6 @@
 name: R01 photographic reference generation | one-shot
 
-# Finite zero/one extension refresh: six photographs/blank-aperture reference states.
+# Source-weight optimization pass: strip unused photo bytes from finite empty and one-image wheel drafts.
 # Generate corrected photographic paper-reel audit sources only on an intentional
 # workflow edit or manual dispatch. Do not launch from every ordinary repo push.
 on:
