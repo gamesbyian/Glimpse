@@ -112,6 +112,12 @@ def generate_edge(slug, single):
     source = re.sub(
         r'<g clip-path="url\(#c([0-4])\)"><use href="#fixture[1-6]" transform="[^"]+"/></g>',
         clear_wedge, source)
+    # Do not ship unused JPEG bytes inside an empty disc; one-photo retains
+    # only its single source fixture. SVG provenance must be honest and lean.
+    source = re.sub(
+        r'<image id="fixture([1-6])"[^>]*href="data:image/jpeg;base64,[^"]+"/>',
+        lambda m: m.group(0) if single and m.group(1) == "1" else "",
+        source)
     # Five small paper labels must disappear unless there is a real item there.
     label = re.compile(
         r'<rect x="[\d.]+" y="[\d.]+" width="39" height="23" rx="7" '
@@ -163,6 +169,7 @@ def generate_edge(slug, single):
         "auditLane": "R01", "auditStatus": "photographic-draft-not-owner-approved",
         "auditFixtureVersion": 2, "auditSource": "01-rest.svg",
         "selectedAssetId": "p01" if single else None,
+        "sourceAssetId": "public-research-fixture/art1.jpg" if single else None,
         "photoTotal": 1 if single else 0,
         "fixtureArtworkByPhotoId": {"p01": "art1"} if single else {},
         "lastConfirmedAppliedAssetId": "p04", "androidProof": "not-collected",
