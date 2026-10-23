@@ -127,6 +127,15 @@ def main():
         payload = (P0 / frame).read_text(encoding="utf-8")
         if chip not in payload or label not in payload:
             ERRORS.append(frame + ": current/confirmed status badge would clip")
+    # Cropped p12c must have a visibly different bitmap composition from
+    # source p12; changing its caption/asset ID alone is insufficient.
+    edited_share = (P1 / "x13/02-edited.svg").read_text(encoding="utf-8")
+    original_share = (P1 / "x13/01-original.svg").read_text(encoding="utf-8")
+    if ('transform="translate(-116 -138) scale(1.5)"' not in edited_share or
+            'clip-path="url(#edited-crop-window)"' not in edited_share or
+            'crop-scale-150-percent' not in edited_share or
+            'transform="translate(-116 -138) scale(1.5)"' in original_share):
+        ERRORS.append("x13 edited p12c does not visually differ from unmodified original")
     # Optical defects discovered in the first current-branch raster sheets.
     # These are protective source assertions, not independent pixel proof.
     optical_fixtures = {
@@ -145,7 +154,7 @@ def main():
     blur = (ROOT / "design/proposals/state-refinements/image-editor-blur-extend.svg").read_text(encoding="utf-8")
     if "feGaussianBlur" in blur:
         ERRORS.append("image-editor-blur-extend: unsupported CairoSVG filter reintroduced")
-    print(json.dumps({"cases": len(expected)+len(scale)+3+len(x07)+len(optical_fixtures)+1+len(badge_fixture),
+    print(json.dumps({"cases": len(expected)+len(scale)+3+len(x07)+len(optical_fixtures)+1+len(badge_fixture)+1,
                       "semanticSourceErrors": ERRORS,
                       "opticalProof": False, "deviceProof": False,
                       "ownerApproval": False}, indent=2))
