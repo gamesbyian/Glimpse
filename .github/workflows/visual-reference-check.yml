@@ -5,9 +5,11 @@ on:
     branches: [main]
     paths:
       - "design/proposals/**"
+      - "design/atlas/**"
       - "design/tokens/brand.json"
       - "docs/design/screen-contract.json"
       - "scripts/validate-visual-spec.py"
+      - "scripts/build-visual-proposal-atlas.py"
       - ".github/workflows/visual-reference-check.yml"
 permissions:
   contents: read
@@ -17,8 +19,16 @@ concurrency:
 jobs:
   check:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 6
     steps:
       - uses: actions/checkout@v4
       - name: Validate SVG XML and spec coverage without browsers
         run: python3 scripts/validate-visual-spec.py
+      - name: Build offline and phone-friendly reference gallery
+        run: python3 scripts/build-visual-proposal-atlas.py
+      - name: Publish visual reference atlas
+        uses: actions/upload-artifact@v4
+        with:
+          name: glimpse-visual-proposals
+          path: artifacts/visual-proposal-atlas/
+          retention-days: 21
