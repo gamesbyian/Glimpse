@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1160 920" width="1160" height="920"><title>X05 / Direction reversal · DRAFT</title><desc>Not a running Android screenshot or approved artwork</desc><defs>
+<clipPath id="wheel-cut"><rect x="15" y="458" width="399" height="281"/></clipPath>
+<image id="fixture1" x="0" y="0" width="480" height="720" href="../../../research/reel-layout/fixtures/source/art1.jpg"/>
+<image id="fixture2" x="0" y="0" width="480" height="720" href="../../../research/reel-layout/fixtures/source/art2.jpg"/>
+<image id="fixture3" x="0" y="0" width="480" height="720" href="../../../research/reel-layout/fixtures/source/art3.jpg"/>
+</defs>
+<rect x="0" y="0" width="1160" height="920" rx="0" fill="#E8E0D5" stroke="none"/>
+<rect x="15" y="14" width="401" height="890" rx="21" fill="#F6F0E6" stroke="#C4B7A4"/>
+<text x="39" y="43" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="650" fill="#153F46">9:41</text>
+<text x="38" y="89" font-family="Arial,Helvetica,sans-serif" font-size="24" font-weight="700" fill="#153F46">Glimpse</text>
+<text x="38" y="126" font-family="Arial,Helvetica,sans-serif" font-size="24" font-weight="700" fill="#153F46">Rainbows</text>
+<text x="38" y="157" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="550" fill="#667975">Photo 13 of 22 · Preview only</text>
+<rect x="40" y="181" width="350" height="220" rx="15" fill="#FFFCF6" stroke="#B6A48D"/>
+<clipPath id="hero"><rect x="43" y="184" width="344" height="214" rx="13"/></clipPath><g clip-path="url(#hero)"><use href="#fixture2" transform="translate(43 184) scale(.7167 .2972)"/></g>
+<rect x="48" y="370" width="184" height="22" rx="12" fill="#FFFCF6" stroke="none"/>
+<text x="58" y="387" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="700" fill="#153F46">SELECTED p13</text>
+<text x="42" y="433" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="700" fill="#153F46">Browse by rotating the paper reel</text>
+<text x="306" y="433" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="600" fill="#1D5960">Grid ↗</text>
+<g clip-path="url(#wheel-cut)"><circle cx="215" cy="686" r="229" fill="#EAD9BD" stroke="#B6A48D" stroke-width="5"/>
+<path d="M131.4,883.0 A214 214 0 0 1 1.8,704.7 L134.3,693.1 A81 81 0 0 0 183.4,760.6Z" fill="#F6F0E6" stroke="#B6A48D" stroke-width="3"/>
+<clipPath id="c0"><path d="M131.4,883.0 A214 214 0 0 1 1.8,704.7 L134.3,693.1 A81 81 0 0 0 183.4,760.6Z"/></clipPath><g clip-path="url(#c0)"><use href="#fixture3" transform="translate(-14 457) scale(.954 .636)"/></g><path d="M131.4,883.0 A214 214 0 0 1 1.8,704.7 L134.3,693.1 A81 81 0 0 0 183.4,760.6Z" fill="none" stroke="#917D65" stroke-width="2"/>
+<rect x="72.2" y="763.9" width="39" height="23" rx="7" fill="#FFFCF6" stroke="none"/>
+<text x="80.2" y="779.9" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="700" fill="#153F46">11</text>
+<path d="M1.8,667.3 A214 214 0 0 1 131.4,489.0 L183.4,611.4 A81 81 0 0 0 134.3,678.9Z" fill="#F6F0E6" stroke="#B6A48D" stroke-width="3"/>
+<clipPath id="c1"><path d="M1.8,667.3 A214 214 0 0 1 131.4,489.0 L183.4,611.4 A81 81 0 0 0 134.3,678.9Z"/></clipPath><g clip-path="url(#c1)"><use href="#fixture1" transform="translate(-14 457) scale(.954 .636)"/></g><path d="M1.8,667.3 A214 214 0 0 1 131.4,489.0 L183.4,611.4 A81 81 0 0 0 134.3,678.9Z" fill="none" stroke="#917D65" stroke-width="2"/>
+<rect x="72.2" y="584.1" width="39" height="23" rx="7" fill="#FFFCF6" stroke="none"/>
+<text x="80.2" y="600.1" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="700" fill="#153F46">12</text>
+<path d="M166.9,477.5 A214 214 0 0 1 376.5,545.6 L276.1,632.9 A81 81 0 0 0 196.8,607.1Z" fill="#F6F0E6" stroke="#B6A48D" stroke-width="3"/>
+<clipPath id="c2"><path d="M166.9,477.5 A214 214 0 0 1 376.5,545.6 L276.1,632.9 A81 81 0 0 0 196.8,607.1Z"/></clipPath><g clip-path="url(#c2)"><use href="#fixture2" transform="translate(-14 457) scale(.954 .636)"/></g><path d="M166.9,477.5 A214 214 0 0 1 376.5,545.6 L276.1,632.9 A81 81 0 0 0 196.8,607.1Z" fill="none" stroke="#1D5960" stroke-width="5"/>
+<rect x="243.3" y="528.5" width="39" height="23" rx="7" fill="#FFFCF6" stroke="none"/>
+<text x="251.3" y="544.5" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="700" fill="#153F46">13</text>
+<path d="M398.4,575.8 A214 214 0 0 1 398.4,796.2 L284.4,727.7 A81 81 0 0 0 284.4,644.3Z" fill="#F6F0E6" stroke="#B6A48D" stroke-width="3"/>
+<clipPath id="c3"><path d="M398.4,575.8 A214 214 0 0 1 398.4,796.2 L284.4,727.7 A81 81 0 0 0 284.4,644.3Z"/></clipPath><g clip-path="url(#c3)"><use href="#fixture3" transform="translate(-14 457) scale(.954 .636)"/></g><path d="M398.4,575.8 A214 214 0 0 1 398.4,796.2 L284.4,727.7 A81 81 0 0 0 284.4,644.3Z" fill="none" stroke="#917D65" stroke-width="2"/>
+<rect x="349" y="674" width="39" height="23" rx="7" fill="#FFFCF6" stroke="none"/>
+<text x="357" y="690" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="700" fill="#153F46">14</text>
+<path d="M376.5,826.4 A214 214 0 0 1 166.9,894.5 L196.8,764.9 A81 81 0 0 0 276.1,739.1Z" fill="#F6F0E6" stroke="#B6A48D" stroke-width="3"/>
+<clipPath id="c4"><path d="M376.5,826.4 A214 214 0 0 1 166.9,894.5 L196.8,764.9 A81 81 0 0 0 276.1,739.1Z"/></clipPath><g clip-path="url(#c4)"><use href="#fixture1" transform="translate(-14 457) scale(.954 .636)"/></g><path d="M376.5,826.4 A214 214 0 0 1 166.9,894.5 L196.8,764.9 A81 81 0 0 0 276.1,739.1Z" fill="none" stroke="#917D65" stroke-width="2"/>
+<rect x="243.3" y="819.5" width="39" height="23" rx="7" fill="#FFFCF6" stroke="none"/>
+<text x="251.3" y="835.5" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="700" fill="#153F46">15</text>
+<circle cx="215" cy="686" r="82" fill="#EAD9BD" stroke="#B6A48D" stroke-width="5"/><circle cx="215" cy="686" r="48" fill="#F6F0E6"/></g>
+<path d="M201 452 L229 452 L215 472 Z" fill="#E8876C"/>
+<circle cx="323" cy="523" r="24" fill="#F2D7AF" fill-opacity=".75" stroke="#885C3A" stroke-width="2"/>
+<rect x="41" y="755" width="163" height="48" rx="18" fill="#FFFCF6" stroke="#C4B7A4"/>
+<rect x="214" y="755" width="177" height="48" rx="18" fill="#FFFCF6" stroke="#C4B7A4"/>
+<text x="57" y="786" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="650" fill="#153F46">Previous photo</text>
+<text x="226" y="786" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="650" fill="#153F46">Next photo</text>
+<text x="43" y="852" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="500" fill="#667975">Home       Discover       Collections       Automation</text>
+<text x="43" y="896" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="700" fill="#667975">PROPOSAL · NOT APPROVED</text>
+<rect x="438" y="14" width="707" height="890" rx="18" fill="#FCF9F3" stroke="#C4B7A4"/>
+<text x="463" y="50" font-family="Arial,Helvetica,sans-serif" font-size="22" font-weight="700" fill="#153F46">X05 · PHYSICAL REEL INTERACTION STORYBOARD</text>
+<text x="463" y="86" font-family="Arial,Helvetica,sans-serif" font-size="19" font-weight="700" fill="#1D5960">Frame 6 / 8: Direction reversal</text>
+<text x="463" y="128" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="500" fill="#153F46">A reverse drag is reversible until the snap; p13 remains selected</text>
+<text x="463" y="197" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="700" fill="#1D5960">SELECTION CONTRACT</text>
+<text x="463" y="239" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="550" fill="#153F46">Current selectedAssetId: p13</text>
+<text x="463" y="266" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="550" fill="#153F46">Previously applied Home wallpaper: p04</text>
+<text x="463" y="293" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="550" fill="#153F46">Current reel angle relative to settled frame: 18°</text>
+<text x="463" y="320" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="550" fill="#153F46">Reel has five apertures; the collection has 22 real images.</text>
+<text x="463" y="390" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="700" fill="#1D5960">TRANSITION MEANING</text>
+<text x="463" y="430" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="400" fill="#153F46">The drag has not yet committed an item ID.</text>
+<text x="463" y="455" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="400" fill="#153F46">The pointer stays fixed; the disc and images move together.</text>
+<text x="463" y="480" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="400" fill="#153F46">Browsing never applies wallpaper or consumes rotation state.</text>
+<text x="463" y="533" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="700" fill="#1D5960">NEXT FRAMES</text>
+<text x="463" y="572" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="400" fill="#153F46">interrupted</text>
+<text x="463" y="643" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="700" fill="#1D5960">SOURCE FIELDS</text>
+<text x="463" y="675" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="400" fill="#153F46">sourceAssetId: p13</text>
+<text x="463" y="697" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="400" fill="#153F46">selectedAssetId: p13</text>
+<text x="463" y="720" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="400" fill="#153F46">appliedAssetId: p04 | target: Home (not changed)</text>
+<text x="463" y="756" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="400" fill="#667975">Viewport: 420×900 design dp | insets: 24/24</text>
+<text x="463" y="780" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="400" fill="#667975">Text scale: 1.0 | motion: proposed, not measured</text>
+<text x="463" y="853" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="700" fill="#944B3E">UNAPPROVED STORYBOARD. NOT RUNTIME EVIDENCE.</text>
+</svg>
