@@ -1,8 +1,8 @@
 {
   "schemaVersion": 2,
-  "status": "PREIMPLEMENTATION_DESIGN_REQUIREMENTS_AND_DUAL_REEL_HYPOTHESES",
+  "status": "NORMATIVE_SEMANTIC_CONTRACT_WITH_DRAFT_VISUAL_PROPOSALS",
   "brand": "Glimpse",
-  "reference": "GLIMPSE-REFERENCE-ACCEPTANCE-PLAN.md",
+  "reference": "docs/quality/reference-acceptance.md",
   "destinations": [
     "Home",
     "Discover",
@@ -630,6 +630,7 @@
       "reason": "Paper-photo windows do not communicate labels, value scales, prerequisites or reversibility well"
     }
   ],
-  "implementationStatus": "NONE",
-  "referenceAcceptance": "PROPOSED_NOT_APPROVED_OR_TESTED"
+  "implementationStatus": "NATIVE_FIRST_SLICE_EXISTS; 24_SURFACE_COVERAGE_OPEN",
+  "referenceAcceptance": "UNAPPROVED_ANNOTATED_SCREEN_FAMILY_SCHEMATICS",
+  "visualProposalManifest": "design/proposals/visual-coverage.v1.json"
 }
