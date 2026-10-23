@@ -51,7 +51,7 @@
         "applicable Android screenshot/hierarchy fixture or marked unverified",
         "audit finding closure verification"
       ],
-      "disposition": "four photo-backed paper-wedge candidates generated with distinct visible adjacent photo identities; old six circular-chip boards retained as finite-data geometry studies only; updated source-hashed optical proof pending",
+      "disposition": "Six source-editable paper-wedge photographs/finite zero-one states now committed. Older circular-chip geometry retained for comparison only. Independent latest six PNG raster/Android/owner proof pending.",
       "initialSourceDrafts": [
         "design/proposals/audit-revisions/r01-idle-22.svg",
         "design/proposals/audit-revisions/r01-drag-18.svg",
@@ -64,10 +64,13 @@
         "design/proposals/audit-revisions/r01-photo-rest-22.svg",
         "design/proposals/audit-revisions/r01-photo-drag-18.svg",
         "design/proposals/audit-revisions/r01-photo-snap-13.svg",
-        "design/proposals/audit-revisions/r01-photo-last-22.svg"
+        "design/proposals/audit-revisions/r01-photo-last-22.svg",
+        "design/proposals/audit-revisions/r01-photo-empty-0.svg",
+        "design/proposals/audit-revisions/r01-photo-single-1.svg"
       ],
       "photographicSourceGenerator": "scripts/build-audit-r01-photo-variants.py",
-      "photoFixturePolicy": "six checked-in JPEGs; visible neighbouring photo IDs have distinct bytes, not proof of all 22 unique real collection items"
+      "photoFixturePolicy": "six checked-in JPEGs; visible neighbouring photo IDs have distinct bytes, not proof of all 22 unique real collection items",
+      "photoRevisionExplanation": "X05 source reel wedge geometry + original checked-in six photo fixtures; zero and single retain empty paper apertures"
     },
     {
       "id": "R02",
