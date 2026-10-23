@@ -92,8 +92,12 @@
         "applicable Android screenshot/hierarchy fixture or marked unverified",
         "audit finding closure verification"
       ],
-      "disposition": "Eight cross-journey source steps traced; R02 new before/after proposals and native evidence still pending",
-      "connectedSourceManifest": "design/proposals/audit-revisions/r02-identity-chain.v1.json"
+      "disposition": "Eight existing source steps traced plus paired unsaved/saved-copy candidates, raster and native proof pending",
+      "connectedSourceManifest": "design/proposals/audit-revisions/r02-identity-chain.v1.json",
+      "initialSourceDrafts": [
+        "design/proposals/audit-revisions/r02-crop-pending.svg",
+        "design/proposals/audit-revisions/r02-copy-saved.svg"
+      ]
     },
     {
       "id": "R03",
