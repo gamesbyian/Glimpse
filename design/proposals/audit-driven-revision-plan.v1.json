@@ -51,7 +51,15 @@
         "applicable Android screenshot/hierarchy fixture or marked unverified",
         "audit finding closure verification"
       ],
-      "disposition": "queued-from-audit-not-yet-rendered"
+      "disposition": "Six first-pass geometry and finite-identity sources present; source raster and native equivalence pending. Not yet full scenario inventory.",
+      "initialSourceDrafts": [
+        "design/proposals/audit-revisions/r01-idle-22.svg",
+        "design/proposals/audit-revisions/r01-drag-18.svg",
+        "design/proposals/audit-revisions/r01-settled-snap.svg",
+        "design/proposals/audit-revisions/r01-last-22.svg",
+        "design/proposals/audit-revisions/r01-empty-0.svg",
+        "design/proposals/audit-revisions/r01-single-1.svg"
+      ]
     },
     {
       "id": "R02",
