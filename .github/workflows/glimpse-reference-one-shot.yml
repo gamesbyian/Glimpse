@@ -2,7 +2,7 @@ name: Glimpse visual references | one-shot branch validation
 
 # One-time push trigger: this workflow file being introduced/changed on the
 # dedicated visual PR branch. No triggers on ordinary source/docs pushes.
-# Audit-evidence one-shot: validate question matrix, full source corpus and two fresh R03 candidates.
+# Audit source-proof expansion: six R01 finite reel visual candidates and the R03 truth pair.
 # Keep opt-in dispatch for a future intentional fresh visual review.
 on:
   push:
@@ -51,6 +51,7 @@ jobs:
           python3 scripts/render-visual-reference-sheets.py --set core-34-named-states --set source-detail-paired --native --output /tmp/glimpse-visual-phone
           python3 scripts/render-visual-reference-sheets.py --set reel-grid-crop-share --set critical-type-comparison --native --output /tmp/glimpse-visual-journeys
           python3 scripts/render-visual-reference-sheets.py --set audit-r03-truth-candidates --native --output /tmp/glimpse-visual-audit-r03
+          python3 scripts/render-visual-reference-sheets.py --set audit-r01-finite-motion --native --output /tmp/glimpse-visual-audit-r01
       - name: Render entire proposal inventory once (66 + 82 + 55)
         run: |
           set -euo pipefail
@@ -62,6 +63,7 @@ jobs:
           cp -a /tmp/glimpse-visual-phone /tmp/glimpse-visual-evidence/phone 2>/dev/null || true
           cp -a /tmp/glimpse-visual-journeys /tmp/glimpse-visual-evidence/journeys 2>/dev/null || true
           cp -a /tmp/glimpse-visual-audit-r03 /tmp/glimpse-visual-evidence/audit-r03 2>/dev/null || true
+          cp -a /tmp/glimpse-visual-audit-r01 /tmp/glimpse-visual-evidence/audit-r01 2>/dev/null || true
           cp -a /tmp/glimpse-visual-complete /tmp/glimpse-visual-evidence/complete 2>/dev/null || true
           printf '%s\n' "${GITHUB_SHA}" > /tmp/glimpse-visual-evidence/head-sha.txt
           printf '%s\n' "Draft optical reference only; no human/device/owner pass claimed" > /tmp/glimpse-visual-evidence/NO-OPTICAL-SIGNOFF.txt
@@ -98,7 +100,7 @@ jobs:
             echo
             echo "## Rendered evidence"
             echo
-            for index in /tmp/glimpse-visual-phone/index.json /tmp/glimpse-visual-journeys/index.json /tmp/glimpse-visual-complete/index.json /tmp/glimpse-visual-audit-r03/index.json; do
+            for index in /tmp/glimpse-visual-phone/index.json /tmp/glimpse-visual-journeys/index.json /tmp/glimpse-visual-complete/index.json /tmp/glimpse-visual-audit-r03/index.json /tmp/glimpse-visual-audit-r01/index.json; do
               if [[ -f "${index}" ]]; then
                 echo "- Raster ledger: ${index}"
                 python3 -c 'import json,sys; d=json.load(open(sys.argv[1])); print("  - Groups: "+", ".join(x["name"] for x in d.get("sheets",[]))); print("  - Native PNG crops: "+str(len(d.get("nativePhoneFiles",[]))))' "${index}"
