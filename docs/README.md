@@ -20,6 +20,11 @@
 - [Bidirectional reference gap audit](design/reference-gap-audit.md) and [unified proposed images](../design/proposals/README.md)
 - [UI surface inventory](design/ui-surface-inventory.md) and [machine-readable screen contract](design/screen-contract.json)
 
+## External mobile UX research and future proposal audit
+
+- [Multilingual mobile UX principle inventory](research/mobile-ux-weighted-principles-2026-10-23.md): 174 generalized checks, individually weighted 0–5 for Glimpse with source register (research only)
+- [Refined 60-question UI/UX proposal audit instrument](quality/mobile-ux-proposal-audit-instrument-2026-10-23.md): prepared future audit criteria, **no proposals assessed yet**
+
 ## Engineering
 
 - [Android architecture](architecture/android.md)
