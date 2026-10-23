@@ -18,6 +18,7 @@
 - [Reel layout comparison](design/reel-layout-comparison.md): experimental design variants
 - [Human expectations walkthroughs](design/human-expectations.md)
 - [Bidirectional reference gap audit](design/reference-gap-audit.md) and [unified proposed images](../design/proposals/README.md)
+- [Current-generation proposal mockup coverage gap register](design/proposal-mockup-coverage-gaps-2026-10-23.md): 34 missing named state variants plus separately tracked storyboard/platform/stress-image gaps; inventory only, no design scoring
 - [UI surface inventory](design/ui-surface-inventory.md) and [machine-readable screen contract](design/screen-contract.json)
 
 ## External mobile UX research and future proposal audit

@@ -1,0 +1,131 @@
+# Glimpse: current-generation mockup coverage gap register (2026-10-23)
+
+**Scope:** Repository and proposal-asset inventory for the upcoming UI/UX audit. **This is a coverage audit only.** No judgment of aesthetic quality, control suitability or usability pass/fail; no mockup changed or approved. Baseline checked: `gamesbyian/Glimpse`, `main` at commit `8045064279e0dc1d70cb21192c7bf34ecbee588e` (2026-10-23 08:43 UTC); verify current `main` before producing new art.
+
+## Reconciliation and evidence
+
+- GitHub PRs **#2, #3 and #4 are merged**, with **no open PRs** at inspection. PR #4 brought [174 weighted principles](../research/mobile-ux-weighted-principles-2026-10-23.md) and a [60-question future audit instrument](../quality/mobile-ux-proposal-audit-instrument-2026-10-23.md). Issue [#1](https://github.com/gamesbyian/Glimpse/issues/1) remains open for human/Android evidence.
+- Canonical **current-generation proposal family**: [24 original core phone boards](../../design/proposals/plates), [eight critical paper-reel states](../../design/proposals/critical-reel), [34 support-feature state plates](../../design/proposals/support-plates) = **66 SVGs**. The [66-reference offline browsing atlas](../../design/atlas/README.md) is an index of those exact files, **not 66 independently completed interaction flows**.
+- Scope authority: [current decisions](../planning/current-decisions.md), [core visual coverage manifest](../../design/proposals/visual-coverage.v1.json), [support coverage manifest](../../design/proposals/support-coverage.v1.json), [24-screen contract](screen-contract.json), [73 original workflow scenarios](../product/feature-audit.md), [S01–S16 support cases](../product/everyday-app-experience.md), [existing visual gap audit](reference-gap-audit.md).
+- **63 named original core variants** declared in the main manifest. Crediting one *inferred* state per each of 24 core phone boards and the five other distinct declared reel variants shown in special plates yields **29 represented baseline/exception configurations**, **34 additional named core variant slots without dedicated matching mockups**. The two extra reel plates (large text, interrupted) are real additions outside those 63. This is an **optimistic count**, not a claim that the 29 are fully drawn. Baseline assignments must be verified visually; the default storyboard may not actually prove a named variant.
+- The 34 support plates cover **all 34 state labels** declared for S01–S16. That is stronger *named-state* coverage, but does **not** prove a complete action, keyboard/focus, real Android handoff or actual technical payload. Several support plates have placeholder descriptions where an eventual state transition or real data contents must be drawn.
+- The core 24 SVGs have the phone on the left and **required, conditional and forbidden *annotation text*** on the right. Existing [gap audit](reference-gap-audit.md) reports 127 required and 59 conditional elements text-traced, **not all illustrated**. Those pages are **schematic**, often with diagrammatic image blocks (no SVG `<image>` elements in the sampled core files). Treat filling in already-listed controls on existing pages as **completion/refinement**, not an additional named screen. Separately track it from wholly missing plates.
+- Native source on `main` now includes `CircularPhotoReel.kt` and a compiled circular swipe/tap prototype; it does **not** yet deliver animated physical wheel motion, every proposed screen or accepted tactile references. First native capture [39924384542](https://github.com/gamesbyian/Glimpse/actions/runs/39924384542) was compromised by a **system Pixel Launcher ANR dialog** and transient fixture count; [inspection](../quality/native-atlas-first-inspection.md) separates invalid captures from app facts. Do not use emulator screenshots as unapproved target artwork.
+
+### Counting rules
+
+1. **Do not call 34 the number of missing image files required to finish.** It is the number of **named, currently undeveloped core state slots** after optimistic baseline credit. Several slots require more than one frame and some can share a frame or be fully satisfied by existing support art plus a continuity storyboard.
+2. **Do not add the eight reel plates to 63** as new requirements: six overlap named reel variants; two add large-text and interrupted illustrations.
+3. A static plate with 'Pause' or 'Retry' as a caption does not show the **before/during/after** consequences. Storyboard gaps below are additional and can reuse variants instead of creating duplicates.
+4. Do not demand custom pixel-perfect mockups for Android-owned UI (Photo Picker, Sharesheet, permissions, launcher/Quick Settings). Use version/capability-labelled screenshots or annotated handoff contracts. OS appearance varies.
+5. No historical Waltz gallery, alternate dual-reel study, real emulator capture or proposed reference becomes an approved Glimpse final mockup merely by existing.
+
+## A. Named core-state mockups still missing
+
+**Priority:** P0 = audit-critical central user journey or potential misleading state; P1 = important intended/advanced capability; P2 = future/channel or secondary. The priority class applies to **mockup-production order**, not implementation commitments.
+
+| Screen family | Baseline credited from core SVG | Additional named variants without a distinct matching plate | Priority | Critical distinction |
+|---|---|---|---|---|
+| [home](../../design/proposals/plates/home.svg) | active (inferred) | **paused, uncertain** (2) | P0 | Current active image/status shown; require full paused layout and an uncertain/failed apply presentation tied to safe recovery. |
+| [collections](../../design/proposals/plates/collections.svg) | three (inferred) | **empty, large** (2) | P0 | Existing board shows three named collections, not empty or very large-library management; differentiate blank and density/scale. |
+| [grid](../../design/proposals/plates/grid.svg) | selected (inferred) | **multi-select** (1) | P0 | Default nine-tile grid is single-selection; add explicit checked-tile multi-select, action scope and cancel. |
+| [quick-import](../../design/proposals/plates/quick-import.svg) | screenshot (inferred) | **failed, progress** (2) | P0 | Screenshot intake is drawn, but progress/partial-failure/copy completion and retry states are not separately drawn. |
+| [share](../../design/proposals/plates/share.svg) | original (inferred) | **edited, unavailable** (2) | P1 | Default board displays Original and Edited labels together; it does not show each actual selected outbound payload or absent-handler result. Fallback support plates are reusable. |
+| [automation](../../design/proposals/plates/automation.svg) | running (inferred) | **paused, delayed** (2) | P0 | Running interval and pinned override are drawn; full paused and delayed/eligibility states need separate status hierarchy. |
+| [discover](../../design/proposals/plates/discover.svg) | sources (inferred) | **offline** (1) | P1 | Provider directory is represented; offline/no-source rights/availability must be visible rather than explained only. |
+| [destinations](../../design/proposals/plates/destinations.svg) | home (inferred) | **lock, unsupported** (2) | P0 | Home tab displayed, but Lock preview and device-unsupported target need comparable complete states. |
+| [image-editor](../../design/proposals/plates/image-editor.svg) | home (inferred) | **lock, blur-extend** (2) | P0 | Home crop shown schematically; Lock crop and blur-extension controls/results need dedicated visual states. |
+| [activity](../../design/proposals/plates/activity.svg) | acknowledged (inferred) | **failed, uncertain** (2) | P0 | Acknowledged item list visible; failure and uncertain-operation history need full-screen details/retry vs reapply. |
+| [automation-editor](../../design/proposals/plates/automation-editor.svg) | simple (inferred) | **conflict, nested** (2) | P1 | Simple weekday rule represented; actual precedence conflict and nested condition composition not visualized. |
+| [source-detail](../../design/proposals/plates/source-detail.svg) | online (inferred) | **offline** (1) | P1 | The phone drawing visually repeats the Discover provider directory instead of a provider-specific detail layout; both online detail and offline variant need specific redraw. |
+| [photo-detail](../../design/proposals/plates/photo-detail.svg) | details (inferred) | **excluded** (1) | P1 | Shows selected photo and actions; excluded/restorable state and relevant membership consequence are missing. |
+| [quickstart](../../design/proposals/plates/quickstart.svg) | ready (inferred) | **unsupported** (1) | P0 | Ready flow represented; unsupported device/target and availability limitation response absent. |
+| [schedule-simulator](../../design/proposals/plates/schedule-simulator.svg) | forecast (inferred) | **insufficient** (1) | P1 | Example forecast represented; insufficient-input/no source/no result variant absent. |
+| [diagnostics](../../design/proposals/plates/diagnostics.svg) | all-clear (inferred) | **failure** (1) | P1 | Acknowledged/all-clear sample represented; real failure investigation and safe retry hierarchy absent. |
+| [widgets](../../design/proposals/plates/widgets.svg) | preview (inferred) | **unavailable** (1) | P1 | Only an in-app preview panel; unavailable-device state and the real launcher-hosted widget surface also require references. |
+| [quick-settings-and-shortcuts](../../design/proposals/plates/quick-settings-and-shortcuts.svg) | available (inferred) | **blocked** (1) | P1 | In-app preview only; blocked state and actual OS tile/shortcut surfaces are not depicted. |
+| [settings](../../design/proposals/plates/settings.svg) | general (inferred) | **permissions** (1) | P1 | General menu represented; separate support permissions/capabilities plate exists, but an integrated Settings route/state needs explicit continuity proof. |
+| [backup-and-restore](../../design/proposals/plates/backup-and-restore.svg) | export (inferred) | **restore** (1) | P1 | Export controls shown; restore review, missing-source remap, conflict, cancellation and completion remain separate. |
+| [onboarding](../../design/proposals/plates/onboarding.svg) | welcome (inferred) | **no-photos** (1) | P0 | Welcome and Add photos are visible; no-photos/resume branch and multi-step onboarding choices aren't. |
+| [error-empty-permission](../../design/proposals/plates/error-empty-permission.svg) | permission (inferred) | **empty, offline, storage** (3) | P0 | Current board depicts permission unavailable. Empty/offline/storage alternatives need contextual frames; cross-cover exists in reel-empty and Storage low-space only. |
+| [accessibility-preferences](../../design/proposals/plates/accessibility-preferences.svg) | standard (inferred) | **high-contrast** (1) | P0 | Preference panel exists; high-contrast variant must demonstrate the altered app palette, not merely state a toggle. |
+
+
+**Reel exception:** Six named reel variants `middle-22`, `three`, `one`, `empty`, `last`, `reduced-motion` have their own critical-state plates, plus **`large-text` and `interrupted`**. Nevertheless, no current-generation **animated/pose sequence** proves physical rotation, finger interaction, direction/reversal, first position, exactly five images or 60+ image scale. See X05–X07.
+
+## B. Material missing *scenario/storyboard* mockups not counted in the 34
+
+These fill omissions in the 63-variant schema and bridge screens whose isolated artwork cannot establish meaningful action. Each item may call for multiple connected frames; they are **requirements for the audit pack**, not commitments to implement everything now.
+
+| Tier | ID | Additional mockup/storyboard needed | Concrete scenes to show | Future audit questions |
+|---|---|---|---|---|
+| P0 | X01 | **Photo Picker → durable multi-photo import** | Collections + picker entry → OS-owned Photo Picker example → cloud-backed selection pending → verified offline copy → result counts → recovery/cancel. The `quick-import` SVG is screenshot intake, not this bulk path. | Q17 Q18 Q29 Q49 Q50 |
+| P0 | X02 | **Collection creation and management operations** | New collection name/edit dialog; choose destination; collection after adding; rename/duplicate/mix, removal/hide confirmation, active-set consequences, last-image removed. | Q04 Q22 Q23 Q28 Q31 |
+| P0 | X03 | **Wallpaper apply transaction** | From hero/selected photo → Home/Lock/Both target picker as supported → pending → acknowledged vs unconfirmed vs failed → next action, with applied ID visually separate. | Q02 Q03 Q19 Q20 Q24 Q25 |
+| P0 | X04 | **One complete start/pause/resume/change/stop journey** | Collection ready → choose active-use interval/no repeats → Start → active → paused → resumed → stopped. Display next eligible/last applied, and possible deferral. | Q17 Q24 Q26 Q27 Q28 |
+| P0 | X05 | **Reel rotation keyframe sequence** | Actual disc and photo identity at start, quarter notch, half notch, snap, reverse and interrupted settle. Include 0/18/36/54/72-degree reference angles as appropriate, left/right swipe and tap-to-select. | Q08 Q09 Q11 Q43 Q44 |
+| P0 | X06 | **Finite reel edge/scale set** | Show first photo, one, three, exactly five, 22, and 60+ with true total, blank unused apertures and non-loop ends; existing empty/one/three/22/last cover part of this but not first/5/60 or continuous traversal. | Q09 Q10 Q15 Q23 |
+| P0 | X07 | **Reel ↔ Grid ↔ detail continuity storyboard** | Same selected stable ID before transition, in Grid, on return to Reel, across collection switch and Android Back. Illustrate grid multi-selection with visibly selected tiles. | Q06 Q12 Q13 Q23 Q59 |
+| P0 | X08 | **Home and collection information hierarchy on compact handset** | Paired coherent Home/Collections/Reel/Grid compositions using actual representative photographs, measured insets, one-hand actions, long collection labels and non-generic brand treatment. Current core plates are schematic. | Q01 Q07 Q14 Q41 Q42 Q45 |
+| P0 | X09 | **Large text / high contrast / reduced-motion cross-surface set** | 200% font and higher contrast examples for Home, Collections, Reel, Grid, import, target picker, error, key support dialog; reduced-motion route and non-gesture equivalents. Currently only reel has specialized large-text/reduced-motion plates. | Q32 Q33 Q34 Q35 Q36 Q38 Q40 Q46 |
+| P0 | X10 | **Error and interruption rescue loop** | Cloud import interrupted, OS apply unconfirmed, no storage, source URI revoked, no images, permissions unavailable, rotation delayed. Each shows retained safe state and clear recovery. | Q25 Q28 Q29 Q30 Q31 |
+| P0 | X11 | **Crop/rotation screenshot intake storyboard** | Inbound share or screenshot → exact original preview → rotate/crop editing → Save only vs Show next vs Use now → chosen collection and next resulting state; demonstrate Back/Discard without destroying source. | Q02 Q19 Q20 Q21 Q31 |
+| P0 | X12 | **Touch, screen inset and focus anatomy** | Annotated phone frames of reel and primary actions at actual target dp, system gesture bounds, clipped disc hit regions, keyboard/IME, bottom nav and screen-reader focus order. These are *measurement overlays*, not decorative screens. | Q16 Q32 Q33 Q37 Q39 Q42 |
+| P1 | X13 | **Real share-to-system flow** | Original selected vs cropped selected (not side-by-side only) → Android Sharesheet example → cancel/no handler → return with unchanged wallpaper, plus external image share into Glimpse. | Q02 Q19 Q21 Q52 |
+| P1 | X14 | **Per-target Home/Lock editing and capability branch** | Target tabs, differing aspect previews, same versus independent crops, supported vs unavailable Lock/Both; avoid pretending all OEM devices support identical operations. | Q20 Q25 Q30 |
+| P1 | X15 | **Collection curation at scale** | Search, filtering, sort, grid range/multi-selection, hide/exclude/restore, batch outcome, duplicate and exhausted-cycle behavior with thousands of images. | Q07 Q22 Q23 |
+| P1 | X16 | **Automation rule conflict and invalid setup** | Two colliding rules, priority resolution, nested conditions, missing source, disabled rules and save/validate/simulate without applying. Include clear English explanation. | Q02 Q24 Q28 Q55 |
+| P1 | X17 | **Sources, licensing and network consequences** | Real provider-detail anatomy instead of repeated Discover listing; licence/image-level conditions, no network, attribution, remote fail and cancel/partial import. | Q18 Q29 Q49 Q50 |
+| P1 | X18 | **Activity → diagnosis → correction** | Specific event detail for applied/skipped/pending/unknown/failed → Why → safe retry/previous wallpaper reapply, with no fake acknowledgment. | Q24 Q25 Q28 Q30 |
+| P1 | X19 | **Backup/restore integrity storyboard** | Select export scope and excluded photo bytes; confirmation with contents; restore preview, duplicate/conflicting IDs, missing-provider remap, fail and safe rollback. | Q28 Q29 Q31 Q53 |
+| P1 | X20 | **Actual Android-hosted integration surfaces** | Launcher widget at real sizes, add widget/resize states, Quick Settings tile collapsed/expanded, launcher shortcuts, notifications if shipped. Current proposals depict these as cards inside Glimpse. | Q03 Q32 Q41 Q52 |
+| P1 | X21 | **Settings/help/support route continuity** | From primary Home → overflow/settings → specific Help/About/Storage/Permissions → error/report → Back to original selected photo and active rotation. Support feature sheets exist individually but not as route storyboards. | Q04 Q05 Q06 Q53 Q56 |
+| P1 | X22 | **Exact diagnostic outgoing-data inspection** | Show representative actual sanitized technical fields, opt-in toggles, Copy/Save/Share preview, handler absent and cancel. Current support plate says what data might be shown without a complete actual report example. | Q28 Q51 Q52 |
+| P1 | X23 | **Adverse and asynchronous input states** | Skeleton/loading/error photo tile, offline cloud placeholder, extremely long filenames, duplicated collection names, import progress, dense library counts, no premature success. | Q18 Q29 Q35 Q40 Q47 |
+| P2 | X24 | **Play vs sideload distribution continuation** | Play-only review/update handoff vs sideload unavailable/link, Store missing and no-browser fallback, optional What's New entry. Core support states exist but transitions/external recipient context need conditional references. | Q52 Q54 |
+| P2 | X25 | **Optional desktop-class/foldable/landscape design constraints** | Represent only officially supported alternative sizes/postures; do not require tablet/hinge work for initial handset if out of scope. | Q46 Q48 |
+| P2 | X26 | **Localization and larger-content stress atlas** | Long German-like strings, accented names, bidirectional/RTL preview and plural counts, if localization is targeted; synthetic strings are stress fixtures, not translated final copy. | Q35 Q40 Q46 |
+| P2 | X27 | **Future optional visual variants without accidental approval** | Dark appearance, alternative reel/toggle experiments, source-specific network sync, historical UI: reserve only as explicitly labelled proposals when contract authorizes; never treat historical dual reels as current-generation work. | Q45 Q56 Q57 |
+
+## C. Existing art that should be finished or revised, not miscounted as 'missing files'
+
+1. **Core Home, Collections, Reel and Grid are not high-fidelity final photographic screens.** They need actual coherent photo/crop geometry, intentional visual hierarchy and safe-area/target sizes. The paper reel special plates offer photo-backed direction. Review paired frames together, not as independent posters.
+2. **Source detail:** `plates/source-detail.svg` presently repeats the provider directory from Discover inside its phone area. A real provider-specific screen layout is needed for the online *baseline* even though a filename exists.
+3. **Grid:** `plates/grid.svg` has a search/multi-select text affordance and nine numbered tiles, but its main state does not demonstrate multi-selection badges, set scope or cancel. Also no authentic large-library density example.
+4. **Share:** `plates/share.svg` depicts Original and Edited blocks side by side plus a Sharesheet explanation, but not the **selected payload → Android Sharesheet → cancel/return** progression.
+5. **Automation editor:** `plates/automation-editor.svg` names conflict handling but shows only a simple rule. No actual conflict or nested-rule editor imagery.
+6. **Quick import vs multi-import:** `plates/quick-import.svg` is titled **Save this screenshot**. Do not infer it illustrates Google Photos multi-selection/copy/progress by merely routing W01 to other screens.
+7. **Destinations and image editor:** their baseline phones are skeletal cropped-preview cards; need actual Home/Lock composition comparison, safe overlays and semantic Apply/Save effects.
+8. **Backup/restore and support:** restore preview and precise storage deletion list/diagnostic field bytes should be visually real (redacted demonstration data), not merely explanatory copy.
+9. **Widgets/Shortcuts:** show actual launcher-widget or Quick Settings formats separately from an in-app card describing them.
+10. **All 24 core boards:** audit the *phone drawing*, never check off a required control because it appears in the right-side REQUIRED panel. Use [screen-contract.json](screen-contract.json) element identifiers as the truth.
+
+## D. Support-state completeness: zero missing filenames, important interaction supplements
+
+The S01–S16 catalogue has distinct states for About (sideload/Play), Help (topics/article), Contact (available/no handler), Report (draft/diagnostics), Crash (suspected/normal), diagnostic preview (minimal/expanded), What's New (notes/no notes), Updates (sideload/Play/offline), Review (not available/Play), Privacy (local/opt-in), Storage (overview/delete-confirm/low-storage), Permissions (available/restricted), Credits (components/rights warning), Beta feedback (invitation/share preview), Notifications (not implemented/available), and external handler fallback (email missing/chooser cancelled).
+
+What may still require additional **transition or content-specific visuals**: full actual sanitized report preview, storage delete scope and active-rotation consequences, crashing/reopening with restored selection, separate GitHub public vs copy/private feedback handoffs, restore after cancel, offline Help topic content, handler-absent paths at point of origin, accessible focus return, channel-bound prompts, and the native system destinations. Do not generate new duplicate About/Help layouts just to raise the number of plates.
+
+## E. Minimum integrated audit-image package
+
+The next coherent candidate should include these **sets**, not isolated hand-picked illustrations.
+
+- **P0-A, primary experience:** Home active/paused/unknown, Collections populated/empty, Reel first/middle/last/few/5/22/60, moving disc keyframes, Grid selected/multi, photo detail, safe Back/Grid return.
+- **P0-B, golden workflow:** initial/skip onboarding, create collection, Android Photo Picker handoff, cloud pending/partial import outcome, collection ready, quick start, explicit target Apply, pending/success/fail, Start/Pause/Resume/next eligibility.
+- **P0-C, image integrity:** screenshot intake, crop-rotate Home/Lock safe area, Just Save vs Show Next vs Use Now, outbound original vs edited, chooser/cancel where available.
+- **P0-D, ergonomic truth:** compact real screen + safe insets, 200% text, long strings, high contrast, reduced motion, non-gesture controls, TalkBack/focus-order overlays for selected critical flows.
+- **P1-A, deeper features:** Discover + genuine source detail, source rights/offline; rules simple/conflict/nested, schedule simulator forecast/insufficient; history and diagnostics; collection scale and batch editing.
+- **P1-B, platform/accountless utility:** storage/reset, backup restore, permissions/capabilities, About/Help, report/redact/export, Widgets and Quick Settings **as external Android UI**.
+- **P2:** future Play/third-party-store variants, alternative form factors and localization stress, conditional on product scope. Already-drawn support plates may be reused with storyboard annotations.
+
+A future 60-question audit may begin by marking unrepresented states **UNDRAWN** or **RUNTIME/HUMAN**; it must not turn absence into a fabricated PASS. For a **comprehensive proposal audit**, however, the P0 image/storyboard sets must be available first and P1 coverage must be explicitly conditional or supplied.
+
+## F. Traceability / artwork-production contract
+
+Create each new image or linked storyboard with `surfaceId`, `stateId`, `journeyId`, exact `sourceAssetId` and `selectedAssetId` where relevant, wallpaper target and applied-status fields where relevant, `viewportDp`, system-bar and gesture insets, text-scale, motion preference, proposal status and source SHA. Keep keyboard/focus/hit-region overlays separate but traceable. Number movement frames with actual before/after semantics.
+
+Before announcing coverage complete: update `design/proposals/visual-coverage.v1.json` with **explicit per-state asset paths** rather than relying on a declared `variants` list; account for overlays/storyboards without double-counting; update the mobile atlas generator; run the structural check and **inspect rasterized pixels**; and preserve explicit owner approval as a later independent step. Avoid all 66 current boards being automatically promoted.
+
+### Follow-up boundary
+
+**This report identifies missing mockups.** It does not begin the substantive audit of placement, affordances, usability, visual quality or interaction correctness requested for a later stage. It may inform agents making the missing mockups, but there are **no PASS/ISSUE evaluations of current designs** here.

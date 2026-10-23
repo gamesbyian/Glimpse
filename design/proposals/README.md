@@ -16,6 +16,10 @@
 | Root identity/reference photographic five-window disc | [paper reel](../reference/reel-wide-apertures.png) | User-approved direction of form and materials, **not** final phone layout |
 | Alternative dual-wheel studies | [research experiments](../research/reel-layout/) | **Unapproved mutually exclusive comparisons only** |
 
+## Audit coverage gaps (current inventory)
+
+The [2026-10-23 current-generation mockup gap register](../../docs/design/proposal-mockup-coverage-gaps-2026-10-23.md) distinguishes 34 missing dedicated named core state variants from 27 additional scenario/storyboard/platform and stress-visual needs. It also warns against treating schematic annotation text or the 34 support-state filenames as proof of complete interactions. **This is mockup coverage preparation, not a quality audit or user approval.**
+
 ## Initial review set
 
 These images should be judged **together** as the earliest coherent proposed family:
