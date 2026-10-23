@@ -79,6 +79,8 @@ SETS["audit-r01-finite-motion"] = [
 SETS["audit-r02-copy-transition"] = [
     ("Unsaved crop, p12", "design/proposals/audit-revisions/r02-crop-pending.svg"),
     ("Saved edited copy, p12c", "design/proposals/audit-revisions/r02-copy-saved.svg"),
+    ("Share choose original or edited", "design/proposals/audit-revisions/r02-share-choice.svg"),
+    ("Return from sharesheet", "design/proposals/audit-revisions/r02-return-dismiss.svg"),
 ]
 # Exhaustive galleries are deliberately opt-in, never part of the cheap default.
 SETS["entire-original-66"] = [
