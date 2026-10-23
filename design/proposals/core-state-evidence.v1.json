@@ -2,18 +2,18 @@
   "schemaVersion": 1,
   "asOf": "2026-10-23",
   "sourceHeadAtReconciliation": "4a4f858871d210939679bc9a5ee69550aedda620",
-  "scope": "34 original unpictured named core-state slots (excludes original 66, P0 82, P1 55); supplemental state refinements indexed separately",
+  "scope": "34 originally missing named core states, now each mapped to a same-surface phone illustration; original 66/P0 82/P1 55 unchanged, supplemental state refinements counted separately",
   "requiredStates": 34,
   "sourceCounts": {
     "originalCurrentGenerationSvg": 66,
     "p0Storyboards": 82,
     "p1AdvancedStoryboards": 55,
-    "newTargetedRefinements": 10
+    "newTargetedRefinements": 25
   },
   "evidenceCounts": {
-    "pictured-state": 19,
-    "partial-pictured": 11,
-    "related-only": 4
+    "pictured-state": 34,
+    "partial-pictured": 0,
+    "related-only": 0
   },
   "evidenceDefinitions": {
     "pictured-state": "Phone drawing contains named state and distinguishable relevant control/consequence; still not fully optically or runtime verified",
@@ -25,7 +25,8 @@
     "An exact path is provenance, not a claim that a state is visually sufficient.",
     "Reuse source assets; never increase baseline original/P0/P1 counts.",
     "All assets are draft, unapproved and require raster inspection.",
-    "Native Android-owned handoffs are illustrative only."
+    "Native Android-owned handoffs are illustrative only.",
+    "Pictured-state is structural phone-side evidence only: never infer visual fit, accessibility, flow completeness, Android runtime or approval."
   ],
   "states": [
     {
@@ -72,13 +73,14 @@
     {
       "surfaceId": "collections",
       "stateId": "large",
-      "assetPath": "design/proposals/advanced-storyboards/x15/01-library.svg",
-      "evidenceLevel": "partial-pictured",
+      "assetPath": "design/proposals/state-refinements/collections-large.svg",
+      "evidenceLevel": "pictured-state",
       "phoneEvidenceLabels": [
-        "1,284 offline photographs",
-        "Search"
+        "1,284 saved photos · 36 collections",
+        "Rainbows",
+        "Search collections"
       ],
-      "interpretation": "Large grid shown, but many-collection management is not pictured.",
+      "interpretation": "Dedicated collections draft illustrates large status, local context and user-controlled action on the phone; not independently optically or device verified.",
       "opticalStatus": "needs-raster-and-human-review",
       "approvalStatus": "draft-not-owner-approved"
     },
@@ -180,39 +182,42 @@
     {
       "surfaceId": "discover",
       "stateId": "offline",
-      "assetPath": "design/proposals/advanced-storyboards/x17/04-offline.svg",
-      "evidenceLevel": "related-only",
+      "assetPath": "design/proposals/state-refinements/discover-offline.svg",
+      "evidenceLevel": "pictured-state",
       "phoneEvidenceLabels": [
-        "Source offline",
-        "Use saved copies"
+        "Google Photos connection unavailable",
+        "Google Photos",
+        "Browse device photos"
       ],
-      "interpretation": "Drawn as source-specific error, not full Discover source directory offline.",
+      "interpretation": "Dedicated discover draft illustrates offline status, local context and user-controlled action on the phone; not independently optically or device verified.",
       "opticalStatus": "needs-raster-and-human-review",
       "approvalStatus": "draft-not-owner-approved"
     },
     {
       "surfaceId": "destinations",
       "stateId": "lock",
-      "assetPath": "design/proposals/advanced-storyboards/x14/02-lock.svg",
-      "evidenceLevel": "partial-pictured",
+      "assetPath": "design/proposals/state-refinements/destinations-lock.svg",
+      "evidenceLevel": "pictured-state",
       "phoneEvidenceLabels": [
-        "LOCK / p12",
+        "Preview p12 · NOT applied",
+        "Home · available",
         "Adjust Lock crop"
       ],
-      "interpretation": "Lock composition pictured, but not full Destinations selection/Apply screen.",
+      "interpretation": "Dedicated destinations draft illustrates lock status, local context and user-controlled action on the phone; not independently optically or device verified.",
       "opticalStatus": "needs-raster-and-human-review",
       "approvalStatus": "draft-not-owner-approved"
     },
     {
       "surfaceId": "destinations",
       "stateId": "unsupported",
-      "assetPath": "design/proposals/advanced-storyboards/x14/04-unsupported.svg",
-      "evidenceLevel": "partial-pictured",
+      "assetPath": "design/proposals/state-refinements/destinations-unsupported.svg",
+      "evidenceLevel": "pictured-state",
       "phoneEvidenceLabels": [
         "Lock target unavailable",
+        "Home · available",
         "Choose Home"
       ],
-      "interpretation": "Target unsupported; full target management is not shown.",
+      "interpretation": "Dedicated destinations draft illustrates unsupported status, local context and user-controlled action on the phone; not independently optically or device verified.",
       "opticalStatus": "needs-raster-and-human-review",
       "approvalStatus": "draft-not-owner-approved"
     },
@@ -246,26 +251,28 @@
     {
       "surfaceId": "activity",
       "stateId": "failed",
-      "assetPath": "design/proposals/storyboards/x03/06-failed.svg",
-      "evidenceLevel": "related-only",
+      "assetPath": "design/proposals/state-refinements/activity-failed.svg",
+      "evidenceLevel": "pictured-state",
       "phoneEvidenceLabels": [
-        "Apply failed",
-        "Retry safely"
+        "Latest event · Apply failed",
+        "23 Oct · 09:41 · Home · p12",
+        "Inspect failed attempt"
       ],
-      "interpretation": "Apply transaction error shown; no dated Activity event/detail list.",
+      "interpretation": "Dedicated activity draft illustrates failed status, local context and user-controlled action on the phone; not independently optically or device verified.",
       "opticalStatus": "needs-raster-and-human-review",
       "approvalStatus": "draft-not-owner-approved"
     },
     {
       "surfaceId": "activity",
       "stateId": "uncertain",
-      "assetPath": "design/proposals/advanced-storyboards/x18/02-unknown.svg",
-      "evidenceLevel": "partial-pictured",
+      "assetPath": "design/proposals/state-refinements/activity-uncertain.svg",
+      "evidenceLevel": "pictured-state",
       "phoneEvidenceLabels": [
-        "p12 · Home · unknown",
+        "Latest event · Result unknown",
+        "23 Oct · 09:41 · Home · p12",
         "Inspect wallpaper"
       ],
-      "interpretation": "Unconfirmed event; history context not established.",
+      "interpretation": "Dedicated activity draft illustrates uncertain status, local context and user-controlled action on the phone; not independently optically or device verified.",
       "opticalStatus": "needs-raster-and-human-review",
       "approvalStatus": "draft-not-owner-approved"
     },
@@ -286,39 +293,42 @@
     {
       "surfaceId": "automation-editor",
       "stateId": "nested",
-      "assetPath": "design/proposals/advanced-storyboards/x16/04-nested.svg",
-      "evidenceLevel": "partial-pictured",
+      "assetPath": "design/proposals/state-refinements/automation-editor-nested.svg",
+      "evidenceLevel": "pictured-state",
       "phoneEvidenceLabels": [
-        "Condition group: AND",
-        "Weekday + Charging + Not sleeping"
+        "Rule: Evening when ready",
+        "ALL of these (AND)",
+        "Add nested condition"
       ],
-      "interpretation": "Nested condition outcome named; grouping/editor mechanics incompletely drawn.",
+      "interpretation": "Dedicated automation-editor draft illustrates nested status, local context and user-controlled action on the phone; not independently optically or device verified.",
       "opticalStatus": "needs-raster-and-human-review",
       "approvalStatus": "draft-not-owner-approved"
     },
     {
       "surfaceId": "source-detail",
       "stateId": "offline",
-      "assetPath": "design/proposals/advanced-storyboards/x17/04-offline.svg",
-      "evidenceLevel": "partial-pictured",
+      "assetPath": "design/proposals/state-refinements/source-detail-offline.svg",
+      "evidenceLevel": "pictured-state",
       "phoneEvidenceLabels": [
-        "Network unavailable",
+        "Offline · source unavailable",
+        "Google Photos · cloud source",
         "Use saved copies"
       ],
-      "interpretation": "Offline notice drawn; provider-specific provenance/details missing.",
+      "interpretation": "Dedicated source-detail draft illustrates offline status, local context and user-controlled action on the phone; not independently optically or device verified.",
       "opticalStatus": "needs-raster-and-human-review",
       "approvalStatus": "draft-not-owner-approved"
     },
     {
       "surfaceId": "photo-detail",
       "stateId": "excluded",
-      "assetPath": "design/proposals/advanced-storyboards/x15/05-restore.svg",
-      "evidenceLevel": "related-only",
+      "assetPath": "design/proposals/state-refinements/photo-detail-excluded.svg",
+      "evidenceLevel": "pictured-state",
       "phoneEvidenceLabels": [
-        "12 excluded, reversible",
-        "Restore selected"
+        "Excluded from Home rotation",
+        "p12 · locally saved photo",
+        "Include in rotation"
       ],
-      "interpretation": "Batch library restore, not excluded photo-detail membership.",
+      "interpretation": "Dedicated photo-detail draft illustrates excluded status, local context and user-controlled action on the phone; not independently optically or device verified.",
       "opticalStatus": "needs-raster-and-human-review",
       "approvalStatus": "draft-not-owner-approved"
     },
@@ -353,13 +363,14 @@
     {
       "surfaceId": "diagnostics",
       "stateId": "failure",
-      "assetPath": "design/proposals/advanced-storyboards/x18/04-retry.svg",
-      "evidenceLevel": "related-only",
+      "assetPath": "design/proposals/state-refinements/diagnostics-failure.svg",
+      "evidenceLevel": "pictured-state",
       "phoneEvidenceLabels": [
-        "Retry can repeat effect",
-        "Retry explicitly"
+        "HOME APPLY · FAILURE DETAILS",
+        "Attempt 23 Oct · 09:41 · p12",
+        "Review wallpaper access"
       ],
-      "interpretation": "Retry action shown; not failure diagnosis/detail screen.",
+      "interpretation": "Dedicated diagnostics draft illustrates failure status, local context and user-controlled action on the phone; not independently optically or device verified.",
       "opticalStatus": "needs-raster-and-human-review",
       "approvalStatus": "draft-not-owner-approved"
     },
@@ -393,27 +404,28 @@
     {
       "surfaceId": "settings",
       "stateId": "permissions",
-      "assetPath": "design/proposals/advanced-storyboards/x21/03-permissions.svg",
-      "evidenceLevel": "partial-pictured",
+      "assetPath": "design/proposals/state-refinements/settings-permissions.svg",
+      "evidenceLevel": "pictured-state",
       "phoneEvidenceLabels": [
-        "Permissions and capabilities",
+        "Permissions & capabilities",
+        "Photos · selected items only",
         "Read explanation"
       ],
-      "interpretation": "Permissions help page, not full integrated Settings route.",
+      "interpretation": "Dedicated settings draft illustrates permissions status, local context and user-controlled action on the phone; not independently optically or device verified.",
       "opticalStatus": "needs-raster-and-human-review",
       "approvalStatus": "draft-not-owner-approved"
     },
     {
       "surfaceId": "backup-and-restore",
       "stateId": "restore",
-      "assetPath": "design/proposals/advanced-storyboards/x19/03-restore-review.svg",
-      "evidenceLevel": "partial-pictured",
+      "assetPath": "design/proposals/state-refinements/backup-and-restore-restore.svg",
+      "evidenceLevel": "pictured-state",
       "phoneEvidenceLabels": [
-        "Restore preview",
-        "4 missing cloud providers",
+        "Preview · 28 collections in backup",
+        "24 collections can be mapped",
         "Review conflicts"
       ],
-      "interpretation": "Restore review exists; remap/commit/rollback branches require further image inspection.",
+      "interpretation": "Dedicated backup-and-restore draft illustrates restore status, local context and user-controlled action on the phone; not independently optically or device verified.",
       "opticalStatus": "needs-raster-and-human-review",
       "approvalStatus": "draft-not-owner-approved"
     },
@@ -434,39 +446,42 @@
     {
       "surfaceId": "error-empty-permission",
       "stateId": "empty",
-      "assetPath": "design/proposals/storyboards/x10/05-no-photos.svg",
-      "evidenceLevel": "partial-pictured",
+      "assetPath": "design/proposals/state-refinements/error-empty-permission-empty.svg",
+      "evidenceLevel": "pictured-state",
       "phoneEvidenceLabels": [
-        "No eligible photographs",
+        "Rainbows has nothing to rotate",
+        "0 photos currently eligible",
         "Open collection"
       ],
-      "interpretation": "No-photo state drawn in Collections, not shared error-family sheet.",
+      "interpretation": "Dedicated error-empty-permission draft illustrates empty status, local context and user-controlled action on the phone; not independently optically or device verified.",
       "opticalStatus": "needs-raster-and-human-review",
       "approvalStatus": "draft-not-owner-approved"
     },
     {
       "surfaceId": "error-empty-permission",
       "stateId": "offline",
-      "assetPath": "design/proposals/advanced-storyboards/x17/04-offline.svg",
-      "evidenceLevel": "partial-pictured",
+      "assetPath": "design/proposals/state-refinements/error-empty-permission-offline.svg",
+      "evidenceLevel": "pictured-state",
       "phoneEvidenceLabels": [
-        "Internet unavailable",
+        "Internet connection unavailable",
+        "Cloud source cannot be reached",
         "Use saved copies"
       ],
-      "interpretation": "Offline state drawn; no cross-surface uniform treatment.",
+      "interpretation": "Dedicated error-empty-permission draft illustrates offline status, local context and user-controlled action on the phone; not independently optically or device verified.",
       "opticalStatus": "needs-raster-and-human-review",
       "approvalStatus": "draft-not-owner-approved"
     },
     {
       "surfaceId": "error-empty-permission",
       "stateId": "storage",
-      "assetPath": "design/proposals/storyboards/x10/04-storage-full.svg",
-      "evidenceLevel": "partial-pictured",
+      "assetPath": "design/proposals/state-refinements/error-empty-permission-storage.svg",
+      "evidenceLevel": "pictured-state",
       "phoneEvidenceLabels": [
-        "Insufficient storage",
+        "Not enough room to finish import",
+        "8 photos verified and safely saved",
         "Manage local storage"
       ],
-      "interpretation": "Storage error and retained verified partial import drawn.",
+      "interpretation": "Dedicated error-empty-permission draft illustrates storage status, local context and user-controlled action on the phone; not independently optically or device verified.",
       "opticalStatus": "needs-raster-and-human-review",
       "approvalStatus": "draft-not-owner-approved"
     },
