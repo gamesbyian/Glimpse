@@ -68,3 +68,16 @@ Source-backed proposals are versioned; optional screenshot/atlas artifacts live 
 
 
 **X07 identity repair (draft source):** The Reel→Grid→Detail→Reel journey now shares p12's embedded public photograph across selected hero, Grid tile, detail and return frames. The three X07 reel plates reuse X05's actual five-aperture disc drawing; selected p12 is no longer depicted as a different synthetic stripe artwork on each surface. The other Grid tiles and X06 remain schematic. See the optical log and source-level validator; no fresh-branch raster or device signoff yet.
+
+
+### Targeted, source-hashed optical export (pending execution)
+
+The optional `scripts/render-visual-reference-sheets.py` now includes `core-34-named-states`, `state-refinements-25`, `source-detail-paired` and `critical-type-comparison` groups as well as the older six representative flow groups. Render selectively to avoid expensive repeated JPEG decoding:
+
+```sh
+python3 scripts/render-visual-reference-sheets.py --list-sets
+python3 scripts/render-visual-reference-sheets.py --set core-34-named-states --set source-detail-paired --native --output /tmp/glimpse-new-states
+python3 scripts/render-visual-reference-sheets.py --set reel-grid-crop-share --set critical-type-comparison --native --output /tmp/glimpse-photo-type
+```
+
+`--native` writes original 401×890 phone crops, indexed by exact source SHA-256 in `index.json`. Neither script invocation nor the generated sheets claim an optical PASS until someone opens and inspects the actual PNGs. Requires disposable Python CairoSVG and Pillow installation.
