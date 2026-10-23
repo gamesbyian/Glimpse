@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1160" height="920" viewBox="0 0 1160 920" role="img" aria-label="Proposed Glimpse source-detail annotated layout, default state, not yet approved"><rect width="1160" height="920" fill="#E9E3D9"/>
+<rect x="15" y="14" width="401" height="890" rx="22" fill="#F6F0E6" stroke="#C4B7A4" stroke-width="2"/>
+<text x="40" y="44" fill="#153F46" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="650" text-anchor="start">9:41</text>
+<text x="391" y="44" fill="#667975" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="400" text-anchor="end">● ▰ ▴</text>
+<path d="M31 56 L400 56" stroke="#C8B7A1" stroke-width="1" fill="none"/>
+<text x="36" y="99" fill="#153F46" font-family="Arial,Helvetica,sans-serif" font-size="32" font-weight="700" text-anchor="start">Source details</text>
+<text x="38" y="125" fill="#667975" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="400" text-anchor="start">Provenance and rights</text>
+<rect x="41" y="155" width="346" height="49" rx="14" fill="#FFFCF6" stroke="#C8B7A1" stroke-width="1"/>
+<text x="56" y="185" fill="#667975" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="400" text-anchor="start">Search photos or providers</text>
+<rect x="41" y="222" width="334" height="105" rx="13" fill="#FFFCF6" stroke="#C8B7A1" stroke-width="1"/>
+<text x="55" y="248" fill="#153F46" font-family="Arial,Helvetica,sans-serif" font-size="17" font-weight="650" text-anchor="start">Curated public archive</text>
+<text x="55" y="270" fill="#667975" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="400" text-anchor="start">Source · rights and creator visible</text>
+<text x="55" y="310" fill="#1D5960" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="650" text-anchor="start">View provider</text>
+<rect x="41" y="342" width="334" height="105" rx="13" fill="#FFFCF6" stroke="#C8B7A1" stroke-width="1"/>
+<text x="55" y="368" fill="#153F46" font-family="Arial,Helvetica,sans-serif" font-size="17" font-weight="650" text-anchor="start">NASA image of the day</text>
+<text x="55" y="390" fill="#667975" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="400" text-anchor="start">Rights vary by source image</text>
+<text x="55" y="430" fill="#1D5960" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="650" text-anchor="start">Inspect image</text>
+<rect x="41" y="462" width="334" height="105" rx="13" fill="#FFFCF6" stroke="#C8B7A1" stroke-width="1"/>
+<text x="55" y="488" fill="#153F46" font-family="Arial,Helvetica,sans-serif" font-size="17" font-weight="650" text-anchor="start">Wikimedia Commons</text>
+<text x="55" y="510" fill="#667975" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="400" text-anchor="start">Attribution and licence required</text>
+<text x="55" y="550" fill="#1D5960" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="650" text-anchor="start">Browse source</text>
+<rect x="44" y="636" width="340" height="42" rx="18" fill="#1D5960" stroke="#1D5960" stroke-width="1"/>
+<text x="214" y="663" fill="#FFFFFF" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="650" text-anchor="middle">Add selected to collection</text>
+<rect x="24" y="823" width="384" height="56" rx="0" fill="#FFFCF6" stroke="none" stroke-width="1"/>
+<path d="M24 823 L408 823" stroke="#CEBC9F" stroke-width="1" fill="none"/>
+<text x="71" y="857" fill="#667975" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="600" text-anchor="middle">Home</text>
+<text x="167" y="857" fill="#667975" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="600" text-anchor="middle">Discover</text>
+<text x="263" y="857" fill="#667975" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="600" text-anchor="middle">Collections</text>
+<text x="359" y="857" fill="#667975" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="600" text-anchor="middle">Automation</text>
+<text x="35" y="897" fill="#667975" font-family="Arial,Helvetica,sans-serif" font-size="11" font-weight="650" text-anchor="start">PROPOSAL / NOT APPROVED</text>
+<rect x="439" y="14" width="707" height="890" rx="17" fill="#FCF9F3" stroke="#C4B7A4" stroke-width="2"/>
+<text x="462" y="47" fill="#153F46" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="700" text-anchor="start">VISUAL COVERAGE PLATE</text>
+<text x="462" y="78" fill="#1D5960" font-family="Arial,Helvetica,sans-serif" font-size="22" font-weight="700" text-anchor="start">SOURCE-DETAIL · default</text>
+<text x="462" y="106" fill="#667975" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="400" text-anchor="start">Coherent screen-family schematic; not a user-approved screenshot</text>
+<path d="M453 124 L1130 124" stroke="#C8B7A1" stroke-width="1" fill="none"/>
+<text x="463" y="151" fill="#1D5960" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="700" text-anchor="start">REQUIRED ON THIS SURFACE</text>
+<text x="463" y="177" fill="#153F46" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="400" text-anchor="start">• provider- name</text>
+<text x="463" y="199" fill="#153F46" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="400" text-anchor="start">• source- licence- provenance</text>
+<text x="463" y="221" fill="#153F46" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="400" text-anchor="start">• import- permission- or- eligibility</text>
+<text x="463" y="243" fill="#153F46" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="400" text-anchor="start">• image- preview</text>
+<text x="463" y="265" fill="#153F46" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="400" text-anchor="start">• source- website- or- credit</text>
+<text x="825" y="151" fill="#E8876C" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="700" text-anchor="start">FORBIDDEN STATES / ERRORS</text>
+<text x="825" y="177" fill="#153F46" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="400" text-anchor="start">• implied- verified- rights-</text>
+<text x="836" y="194" fill="#153F46" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="400" text-anchor="start">without- evidence</text>
+<text x="825" y="216" fill="#153F46" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="400" text-anchor="start">• unscoped- auto- download</text>
+<path d="M453 568 L1130 568" stroke="#C8B7A1" stroke-width="1" fill="none"/>
+<text x="463" y="590" fill="#1D5960" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="700" text-anchor="start">CONDITIONAL STATES</text>
+<text x="463" y="616" fill="#153F46" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="400" text-anchor="start">• related- image- reel</text>
+<text x="463" y="638" fill="#153F46" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="400" text-anchor="start">• provider- offline- warning</text>
+<text x="463" y="660" fill="#153F46" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="400" text-anchor="start">• network- policy</text>
+<text x="825" y="590" fill="#1D5960" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="700" text-anchor="start">FEATURE COVERAGE</text>
+<text x="825" y="619" fill="#153F46" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="400" text-anchor="start">W31 · W32 · W33 · W34 · W37 · W38 ·</text>
+<text x="825" y="637" fill="#153F46" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="400" text-anchor="start">W39 · W40</text>
+<text x="825" y="832" fill="#667975" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="400" text-anchor="start">Main reference: visual-coverage.v1.json</text>
+<text x="825" y="854" fill="#E8876C" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="700" text-anchor="start">Reference tier: PROPOSAL ONLY</text>
+</svg>

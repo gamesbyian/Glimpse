@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1160" height="920" viewBox="0 0 1160 920" role="img" aria-label="Proposed Glimpse quick-settings-and-shortcuts annotated layout, default state, not yet approved"><rect width="1160" height="920" fill="#E9E3D9"/>
+<rect x="15" y="14" width="401" height="890" rx="22" fill="#F6F0E6" stroke="#C4B7A4" stroke-width="2"/>
+<text x="40" y="44" fill="#153F46" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="650" text-anchor="start">9:41</text>
+<text x="391" y="44" fill="#667975" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="400" text-anchor="end">● ▰ ▴</text>
+<path d="M31 56 L400 56" stroke="#C8B7A1" stroke-width="1" fill="none"/>
+<text x="36" y="99" fill="#153F46" font-family="Arial,Helvetica,sans-serif" font-size="32" font-weight="700" text-anchor="start">Shortcuts</text>
+<text x="38" y="125" fill="#667975" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="400" text-anchor="start">Home and Lock actions</text>
+<rect x="46" y="159" width="340" height="202" rx="22" fill="#E9E0F5" stroke="#C8B7A1" stroke-width="1"/>
+<text x="73" y="196" fill="#153F46" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="650" text-anchor="start">Quick Settings tile preview</text>
+<rect x="68" y="220" width="124" height="110" rx="13" fill="#DFB087" stroke="none" stroke-width="1"/>
+<clipPath id="photo-68-220"><rect x="68" y="220" width="124" height="110" rx="13"/></clipPath><g clip-path="url(#photo-68-220)"><rect x="68" y="220" width="124" height="110" fill="#EDB783"/><circle cx="163.48000000000002" cy="250.8" r="17.6" fill="#F8DEAA"/><path d="M68 303.6 Q96.52 244.2 130 297 T192 275 L192 330 H68Z" fill="#447983"/><path d="M68 321.2 Q95.28 279.4 130 315.7 T192 298.1 L192 330 H68Z" fill="#254D62"/></g>
+<rect x="77" y="302" width="106" height="21" rx="7" fill="#FFFCF6" stroke="none" stroke-width="1"/>
+<text x="86" y="317" fill="#153F46" font-family="Arial,Helvetica,sans-serif" font-size="11" font-weight="600" text-anchor="start">HOME</text>
+<rect x="210" y="264" width="152" height="42" rx="18" fill="#1D5960" stroke="#1D5960" stroke-width="1"/>
+<text x="286" y="291" fill="#FFFFFF" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="650" text-anchor="middle">Change Home</text>
+<rect x="41" y="394" width="334" height="105" rx="13" fill="#FFFCF6" stroke="#C8B7A1" stroke-width="1"/>
+<text x="55" y="420" fill="#153F46" font-family="Arial,Helvetica,sans-serif" font-size="17" font-weight="650" text-anchor="start">Action targets Home</text>
+<text x="55" y="442" fill="#667975" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="400" text-anchor="start">Actual wallpaper command; no wheel.</text>
+<text x="55" y="482" fill="#1D5960" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="650" text-anchor="start">Status / capability</text>
+<rect x="44" y="648" width="338" height="42" rx="18" fill="#1D5960" stroke="#1D5960" stroke-width="1"/>
+<text x="213" y="675" fill="#FFFFFF" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="650" text-anchor="middle">Add Home shortcut</text>
+<rect x="24" y="823" width="384" height="56" rx="0" fill="#FFFCF6" stroke="none" stroke-width="1"/>
+<path d="M24 823 L408 823" stroke="#CEBC9F" stroke-width="1" fill="none"/>
+<text x="71" y="857" fill="#667975" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="600" text-anchor="middle">Home</text>
+<text x="167" y="857" fill="#667975" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="600" text-anchor="middle">Discover</text>
+<text x="263" y="857" fill="#667975" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="600" text-anchor="middle">Collections</text>
+<text x="359" y="857" fill="#667975" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="600" text-anchor="middle">Automation</text>
+<text x="35" y="897" fill="#667975" font-family="Arial,Helvetica,sans-serif" font-size="11" font-weight="650" text-anchor="start">PROPOSAL / NOT APPROVED</text>
+<rect x="439" y="14" width="707" height="890" rx="17" fill="#FCF9F3" stroke="#C4B7A4" stroke-width="2"/>
+<text x="462" y="47" fill="#153F46" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="700" text-anchor="start">VISUAL COVERAGE PLATE</text>
+<text x="462" y="78" fill="#1D5960" font-family="Arial,Helvetica,sans-serif" font-size="22" font-weight="700" text-anchor="start">QUICK-SETTINGS-AND-SHORTCUTS · default</text>
+<text x="462" y="106" fill="#667975" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="400" text-anchor="start">Coherent screen-family schematic; not a user-approved screenshot</text>
+<path d="M453 124 L1130 124" stroke="#C8B7A1" stroke-width="1" fill="none"/>
+<text x="463" y="151" fill="#1D5960" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="700" text-anchor="start">REQUIRED ON THIS SURFACE</text>
+<text x="463" y="177" fill="#153F46" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="400" text-anchor="start">• destination- scoped- action</text>
+<text x="463" y="199" fill="#153F46" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="400" text-anchor="start">• status- state</text>
+<text x="463" y="221" fill="#153F46" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="400" text-anchor="start">• capability- fallback</text>
+<text x="825" y="151" fill="#E8876C" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="700" text-anchor="start">FORBIDDEN STATES / ERRORS</text>
+<text x="825" y="177" fill="#153F46" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="400" text-anchor="start">• ambiguous- untargeted- next</text>
+<text x="825" y="199" fill="#153F46" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="400" text-anchor="start">• implied- persistent- service</text>
+<path d="M453 568 L1130 568" stroke="#C8B7A1" stroke-width="1" fill="none"/>
+<text x="463" y="590" fill="#1D5960" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="700" text-anchor="start">CONDITIONAL STATES</text>
+<text x="463" y="616" fill="#153F46" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="400" text-anchor="start">• launch- app- for- repair</text>
+<text x="825" y="590" fill="#1D5960" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="700" text-anchor="start">FEATURE COVERAGE</text>
+<text x="825" y="619" fill="#153F46" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="400" text-anchor="start">W62 · W63 · W66</text>
+<text x="825" y="832" fill="#667975" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="400" text-anchor="start">Main reference: visual-coverage.v1.json</text>
+<text x="825" y="854" fill="#E8876C" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="700" text-anchor="start">Reference tier: PROPOSAL ONLY</text>
+</svg>

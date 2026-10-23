@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1160" height="920" viewBox="0 0 1160 920" role="img" aria-label="Proposed Glimpse reel annotated layout, default state, not yet approved"><rect width="1160" height="920" fill="#E9E3D9"/>
+<rect x="15" y="14" width="401" height="890" rx="22" fill="#F6F0E6" stroke="#C4B7A4" stroke-width="2"/>
+<text x="40" y="44" fill="#153F46" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="650" text-anchor="start">9:41</text>
+<text x="391" y="44" fill="#667975" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="400" text-anchor="end">● ▰ ▴</text>
+<path d="M31 56 L400 56" stroke="#C8B7A1" stroke-width="1" fill="none"/>
+<text x="36" y="99" fill="#153F46" font-family="Arial,Helvetica,sans-serif" font-size="32" font-weight="700" text-anchor="start">Rainbows</text>
+<text x="38" y="125" fill="#667975" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="400" text-anchor="start">Browse photographs</text>
+<text x="40" y="164" fill="#153F46" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="600" text-anchor="start">Previewing 3 of 22</text>
+<rect x="40" y="178" width="349" height="206" rx="13" fill="#DFB087" stroke="none" stroke-width="1"/>
+<clipPath id="photo-40-178"><rect x="40" y="178" width="349" height="206" rx="13"/></clipPath><g clip-path="url(#photo-40-178)"><rect x="40" y="178" width="349" height="206" fill="#EDB783"/><circle cx="308.73" cy="235.68" r="32.96" fill="#F8DEAA"/><path d="M40 334.56 Q120.27000000000001 223.32 214.5 322.2 T389 281 L389 384 H40Z" fill="#447983"/><path d="M40 367.52 Q116.78 289.24 214.5 357.22 T389 324.26 L389 384 H40Z" fill="#254D62"/></g>
+<rect x="49" y="356" width="150" height="21" rx="7" fill="#FFFCF6" stroke="none" stroke-width="1"/>
+<text x="58" y="371" fill="#153F46" font-family="Arial,Helvetica,sans-serif" font-size="11" font-weight="600" text-anchor="start">PREVIEW · NOT APPLIED</text>
+<text x="40" y="410" fill="#153F46" font-family="Arial,Helvetica,sans-serif" font-size="16" font-weight="650" text-anchor="start">Browse by rotating the reel</text>
+<text x="387" y="410" fill="#1D5960" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="650" text-anchor="end">Grid ↗</text>
+<clipPath id="discclip"><rect x="16" y="432" width="398" height="310"/></clipPath><g clip-path="url(#discclip)">
+<circle cx="210" cy="680" r="240" fill="#9F907C" opacity=".2"/><circle cx="210" cy="675" r="237" fill="#EAD9BD" stroke="#BBA589" stroke-width="5"/>
+<path d="M92.89,487.58 A221 221 0 0 1 327.11,487.58 L248.93,612.69 A73.47 73.47 0 0 0 171.07,612.69Z" fill="#D59173" stroke="#75634F" stroke-width="2"/>
+<path d="M109.06,485.17 A215 215 0 0 1 314.23,486.96 L261.7,581.72 A106.65 106.65 0 0 0 159.93,580.83Z" fill="white" opacity=".16"/>
+<path d="M352.06,505.7 A221 221 0 0 1 424.44,728.46 L281.29,692.77 A73.47 73.47 0 0 0 257.23,618.72Z" fill="#82ADA2" stroke="#75634F" stroke-width="2"/>
+<path d="M359.35,520.34 A215 215 0 0 1 421.05,716.02 L314.69,695.35 A106.65 106.65 0 0 0 284.09,598.28Z" fill="white" opacity=".16"/>
+<path d="M414.91,757.79 A221 221 0 0 1 225.42,895.46 L215.13,748.29 A73.47 73.47 0 0 0 278.12,702.52Z" fill="#80A1B0" stroke="#75634F" stroke-width="2"/>
+<path d="M403.24,769.25 A215 215 0 0 1 236.2,888.4 L223,780.86 A106.65 106.65 0 0 0 305.86,721.75Z" fill="white" opacity=".16"/>
+<path d="M194.58,895.46 A221 221 0 0 1 5.09,757.79 L141.88,702.52 A73.47 73.47 0 0 0 204.87,748.29Z" fill="#E3B66B" stroke="#75634F" stroke-width="2"/>
+<path d="M180.08,887.91 A215 215 0 0 1 15.14,765.86 L113.34,720.07 A106.65 106.65 0 0 0 195.16,780.61Z" fill="white" opacity=".16"/>
+<path d="M-4.44,728.46 A221 221 0 0 1 67.94,505.7 L162.77,618.72 A73.47 73.47 0 0 0 138.71,692.77Z" fill="#BA94A7" stroke="#75634F" stroke-width="2"/>
+<path d="M-1.73,712.33 A215 215 0 0 1 63.37,517.76 L137.26,597 A106.65 106.65 0 0 0 104.97,693.52Z" fill="white" opacity=".16"/>
+<circle cx="210" cy="675" r="68.72999999999999" fill="#D8C4AB" stroke="#A9967C" stroke-width="5"/><circle cx="210" cy="675" r="30.810000000000002" fill="#F6F0E6" stroke="#FDF7EC" stroke-width="5"/>
+<path d="M198 419L222 419L210 439Z" fill="#E8876C"/>
+</g>
+<rect x="35" y="739" width="365" height="66" rx="14" fill="#F6F0E6" stroke="none" stroke-width="1"/>
+<rect x="43" y="750" width="133" height="42" rx="18" fill="#FFFCF6" stroke="#C8B7A1" stroke-width="1"/>
+<text x="109.5" y="777" fill="#153F46" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="650" text-anchor="middle">Previous photo</text>
+<rect x="226" y="750" width="160" height="42" rx="18" fill="#FFFCF6" stroke="#C8B7A1" stroke-width="1"/>
+<text x="306" y="777" fill="#153F46" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="650" text-anchor="middle">Next photo</text>
+<rect x="24" y="823" width="384" height="56" rx="0" fill="#FFFCF6" stroke="none" stroke-width="1"/>
+<path d="M24 823 L408 823" stroke="#CEBC9F" stroke-width="1" fill="none"/>
+<text x="71" y="857" fill="#667975" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="600" text-anchor="middle">Home</text>
+<text x="167" y="857" fill="#667975" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="600" text-anchor="middle">Discover</text>
+<text x="263" y="857" fill="#1D5960" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="600" text-anchor="middle">Collections</text>
+<text x="359" y="857" fill="#667975" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="600" text-anchor="middle">Automation</text>
+<text x="35" y="897" fill="#667975" font-family="Arial,Helvetica,sans-serif" font-size="11" font-weight="650" text-anchor="start">PROPOSAL / NOT APPROVED</text>
+<rect x="439" y="14" width="707" height="890" rx="17" fill="#FCF9F3" stroke="#C4B7A4" stroke-width="2"/>
+<text x="462" y="47" fill="#153F46" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="700" text-anchor="start">VISUAL COVERAGE PLATE</text>
+<text x="462" y="78" fill="#1D5960" font-family="Arial,Helvetica,sans-serif" font-size="22" font-weight="700" text-anchor="start">REEL · default</text>
+<text x="462" y="106" fill="#667975" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="400" text-anchor="start">Coherent screen-family schematic; not a user-approved screenshot</text>
+<path d="M453 124 L1130 124" stroke="#C8B7A1" stroke-width="1" fill="none"/>
+<text x="463" y="151" fill="#1D5960" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="700" text-anchor="start">REQUIRED ON THIS SURFACE</text>
+<text x="463" y="177" fill="#153F46" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="400" text-anchor="start">• hero</text>
+<text x="463" y="199" fill="#153F46" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="400" text-anchor="start">• selected- asset- index- and- total</text>
+<text x="463" y="221" fill="#153F46" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="400" text-anchor="start">• five- window- paper- reel- geometry</text>
+<text x="463" y="243" fill="#153F46" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="400" text-anchor="start">• partial- offscreen- crop</text>
+<text x="463" y="265" fill="#153F46" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="400" text-anchor="start">• next- photo</text>
+<text x="463" y="287" fill="#153F46" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="400" text-anchor="start">• previous- photo</text>
+<text x="463" y="309" fill="#153F46" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="400" text-anchor="start">• view- all</text>
+<text x="463" y="331" fill="#153F46" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="400" text-anchor="start">• set- as- wallpaper</text>
+<text x="463" y="353" fill="#153F46" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="400" text-anchor="start">• previous- photo- fixed- control</text>
+<text x="463" y="375" fill="#153F46" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="400" text-anchor="start">• next- photo- label- not- just- next</text>
+<text x="463" y="397" fill="#153F46" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="400" text-anchor="start">• selected- photo- distinct- from-</text>
+<text x="474" y="414" fill="#153F46" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="400" text-anchor="start">applied- wallpaper</text>
+<text x="463" y="436" fill="#153F46" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="400" text-anchor="start">• one- pointer- per- interactive- reel</text>
+<text x="825" y="151" fill="#E8876C" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="700" text-anchor="start">FORBIDDEN STATES / ERRORS</text>
+<text x="825" y="177" fill="#153F46" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="400" text-anchor="start">• browse- rotation- applies-</text>
+<text x="836" y="194" fill="#153F46" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="400" text-anchor="start">device- wallpaper</text>
+<text x="825" y="216" fill="#153F46" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="400" text-anchor="start">• reel- claims- unbounded-</text>
+<text x="836" y="233" fill="#153F46" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="400" text-anchor="start">collection</text>
+<text x="825" y="255" fill="#153F46" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="400" text-anchor="start">• offscreen- reel- blocks- system-</text>
+<text x="836" y="272" fill="#153F46" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="400" text-anchor="start">navigation</text>
+<text x="825" y="294" fill="#153F46" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="400" text-anchor="start">• only- gesture- access</text>
+<text x="825" y="316" fill="#153F46" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="400" text-anchor="start">• set- now- without- destination-</text>
+<text x="836" y="333" fill="#153F46" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="400" text-anchor="start">or- continuation- policy</text>
+<text x="825" y="355" fill="#153F46" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="400" text-anchor="start">• reel- hit- target- beneath-</text>
+<text x="836" y="372" fill="#153F46" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="400" text-anchor="start">bottom- nav</text>
+<text x="825" y="394" fill="#153F46" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="400" text-anchor="start">• inferred- whole- album-</text>
+<text x="836" y="411" fill="#153F46" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="400" text-anchor="start">synchronization</text>
+<path d="M453 568 L1130 568" stroke="#C8B7A1" stroke-width="1" fill="none"/>
+<text x="463" y="590" fill="#1D5960" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="700" text-anchor="start">CONDITIONAL STATES</text>
+<text x="463" y="616" fill="#153F46" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="400" text-anchor="start">• loaded- image- slots</text>
+<text x="463" y="638" fill="#153F46" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="400" text-anchor="start">• placeholder- slots</text>
+<text x="463" y="660" fill="#153F46" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="400" text-anchor="start">• last- item- indicator</text>
+<text x="463" y="682" fill="#153F46" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="400" text-anchor="start">• browse- loop- indicator</text>
+<text x="825" y="590" fill="#1D5960" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="700" text-anchor="start">FEATURE COVERAGE</text>
+<text x="825" y="619" fill="#153F46" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="400" text-anchor="start">W01 · W04 · W09 · W43 · W44 · W55 ·</text>
+<text x="825" y="637" fill="#153F46" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="400" text-anchor="start">W67</text>
+<text x="825" y="832" fill="#667975" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="400" text-anchor="start">Main reference: visual-coverage.v1.json</text>
+<text x="825" y="854" fill="#E8876C" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="700" text-anchor="start">Reference tier: PROPOSAL ONLY</text>
+</svg>
