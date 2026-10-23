@@ -2,14 +2,14 @@
 
 **Automated tool result only. No visual, native, accessibility, or owner approval.**
 
-- Workflow source commit: `76829b700f1f952b94ce8e490b5aed5a406e15e5`
-- Workflow run ID: `40023670567`
-- Workflow run URL: https://github.com/gamesbyian/Glimpse/actions/runs/40023670567
+- Workflow source commit: `eeb82ebb4aac84de9266faeb3c6fa0be3e0b47b7`
+- Workflow run ID: `40030545600`
+- Workflow run URL: https://github.com/gamesbyian/Glimpse/actions/runs/40030545600
 - Run attempt: `1`
 - Workflow result before publishing: `success`
 - Branch: `agent/visual-state-reconciliation-20261023`
 - Review sets: 34 states, Source Detail, reel/grid/crop/share, large text, complete original 66 + P0 82 + P1 55
-- CI artifact name: `glimpse-reference-draft-76829b700f1f952b94ce8e490b5aed5a406e15e5`
+- CI artifact name: `glimpse-reference-draft-eeb82ebb4aac84de9266faeb3c6fa0be3e0b47b7`
 
 ## Structural script outputs
 
@@ -48,14 +48,27 @@
   "optical": "NOT TESTED; inspect browser-rendered contact sheets"
 }
 {
-  "cases": 29,
+  "cases": 34,
   "semanticSourceErrors": [],
   "opticalProof": false,
   "deviceProof": false,
   "ownerApproval": false
 }
-Scanned 228 proposal SVGs, 133 image nodes, 133 decoded embedded rasters.
+Scanned 230 proposal SVGs, 134 image nodes, 134 decoded embedded rasters.
 Source-level SVG/photo portability PASS (not optical, device or owner PASS).
+{
+  "questions": 60,
+  "categories": 6,
+  "revisionLanes": 8,
+  "scenarioTargets": 56,
+  "results": {
+    "PASS": 18,
+    "ISSUE": 8,
+    "UNVERIFIED": 34,
+    "NOT_APPLICABLE": 0
+  },
+  "type": "document_trace_validation_only"
+}
 ~~~
 
 ## Rendered evidence
@@ -69,5 +82,8 @@ Source-level SVG/photo portability PASS (not optical, device or owner PASS).
 - Raster ledger: /tmp/glimpse-visual-complete/index.json
   - Groups: entire-original-66, entire-p0-82, entire-p1-55
   - Native PNG crops: 203
+- Raster ledger: /tmp/glimpse-visual-audit-r03/index.json
+  - Groups: audit-r03-truth-candidates
+  - Native PNG crops: 2
 
 **Status describes automatic structural/render execution, NOT whether humans saw/read or accepted the PNG files.**
