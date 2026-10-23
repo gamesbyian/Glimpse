@@ -67,6 +67,11 @@ SETS["critical-type-comparison"] = [
     ("X09 Reel 200%", PO["x09"]["03-reel-200-text"]),
     ("X09 Import 200%", PO["x09"]["05-import-200-text"]),
 ]
+# New audit-driven candidates are a separate class, never included in 66/82/55.
+SETS["audit-r03-truth-candidates"] = [
+    ("Preview p12 not applied", "design/proposals/audit-revisions/r03-preview-not-applied.svg"),
+    ("p12 request outcome unknown", "design/proposals/audit-revisions/r03-unknown-after-request.svg"),
+]
 # Exhaustive galleries are deliberately opt-in, never part of the cheap default.
 SETS["entire-original-66"] = [
     (p.stem, str(p.relative_to(ROOT)))
