@@ -26,7 +26,8 @@ A real installation successfully imported **22 Google Photos images** through th
 - [x] Map exact SVG source paths for all [34 originally missing named core state variants](../../design/proposals/core-state-evidence.v1.json), distinguishing 19 phone-pictured, 11 partial and 4 related-only, with ten targeted supplemental refinements and a [visual contact sheet](../../design/atlas/core-state-contact-sheet.html). This is **source evidence only**, not 34 optical acceptances.
 - [ ] Resolve the 15 partial/related-only named-state evidence gaps, especially surface misidentification and action-outcome proof; independently inspect browser/raster output.
 - [ ] Confirm each of the [34 named state variants](../../design/proposals/core-state-evidence.v1.json) is **visually sufficient** after direct raster inspection, including the 15 partial/related-only states; evidence-path assignment alone is already done and is not a signoff.
-- [ ] Produce/verify the 11 P1 storyboard groups X13–X23 (external shares, crops, large libraries, rules, rights, diagnostics, restore, Android integrations, Help, exact outgoing bytes and adverse input) before a truly comprehensive product-proposal audit.
+- [x] Produce the 11 P1 storyboard groups X13–X23: **55 source-editable draft frames** covering external shares, crops, large libraries, rules, rights, diagnostics, restore, Android integrations, Help, outgoing data and adverse input. Not optically approved.
+- [ ] Inspect all 55 P1 phone drawings and Android-owned handoffs, correct contradictions and prove flow outcomes before any comprehensive product-proposal audit.
 - [ ] Preserve four conditional P2 scenario families as future/explicitly gated.
 - [ ] Freeze explicit owner-approved whole-set hashes (V2) before full application visual conformity testing (V3).
 
