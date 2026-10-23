@@ -94,7 +94,7 @@ def main():
     embedded = (ROOT / "design/atlas/storyboards.html").read_text(
         encoding="utf-8"
     )
-    match = re.search(r"const DATA=(\\[.*?\\]);\\s*let selected", embedded, re.DOTALL)
+    match = re.search(r"const DATA=(\[.*?\]);\s*let selected", embedded, re.DOTALL)
     assert match, "Storyboard gallery has no embedded registry"
     gallery_groups = json.loads(match.group(1))
     assert [
