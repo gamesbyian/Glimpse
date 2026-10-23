@@ -1,29 +1,31 @@
 {
-  "version": "concept-2026-10",
+  "version": "visual-proposal-2026-10-23",
+  "status": "CONSISTENT_DRAFT_NOT_APPROVED",
   "colors": {
-    "paper": "#F7F4EE",
-    "surface": "#FFFDF9",
-    "ink": "#223630",
-    "tidalTeal": "#196E6A",
-    "apricot": "#F17961",
-    "butter": "#FFD779",
-    "lavender": "#D7CAFA",
-    "focus": "#223630"
+    "paper": "#F6F0E6",
+    "surface": "#FFFCF6",
+    "ink": "#153F46",
+    "muted": "#667975",
+    "tidalTeal": "#1D5960",
+    "apricotAccent": "#E8876C",
+    "discPaper": "#EAD9BD",
+    "lavenderSelected": "#E9E0F5"
   },
   "typography": {
-    "android": "Inter/system fallback",
+    "android": "System sans for all controls",
+    "display": "Editorial serif may be used for nonfunctional headings only",
     "minimumTargetDp": 48,
     "textScalable": true
   },
   "navigation": [
-    "Today",
-    "Explore",
+    "Home",
+    "Discover",
     "Collections",
-    "Rules"
+    "Automation"
   ],
   "motion": {
     "respectSystemReducedMotion": true,
     "wallpaperAnimationsOptIn": true
   },
-  "note": "Concept tokens only; validate contrast and font licensing before code."
+  "note": "Supersedes the obsolete Today / Explore / Collections / Rules concept labels. These are proposed plate tokens, not owner-approved final pixel values. Coral is an accent, not small body text."
 }
