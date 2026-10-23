@@ -10,6 +10,7 @@ Open every generated sheet at 100% and the linked SVGs at native resolution.
 import argparse
 import io
 import json
+import hashlib
 import math
 from pathlib import Path
 
@@ -17,6 +18,7 @@ ROOT = Path(__file__).resolve().parents[1]
 SVG = ROOT / "design/proposals"
 P0 = json.loads((SVG / "storyboard-coverage.v1.json").read_text())
 P1 = json.loads((SVG / "advanced-storyboard-coverage.v1.json").read_text())
+CORE = json.loads((SVG / "core-state-evidence.v1.json").read_text())
 PO = {g["id"]: {f["id"]: f["path"] for f in g["frames"]}
       for g in P0["groups"] + P1["groups"]}
 SETS = {
@@ -44,20 +46,50 @@ SETS = {
         (f["id"], f["path"]) for key in ("x09", "x10", "x12")
         for f in next(g for g in P0["groups"] if g["id"] == key)["frames"]],
 }
+# These source-specific review groups were missing from the first optical helper.
+# Drawing/structure inventory is not accessibility or owner signoff.
+SETS["core-34-named-states"] = [
+    (s["surfaceId"] + "." + s["stateId"], s["assetPath"])
+    for s in CORE["states"]
+]
+SETS["state-refinements-25"] = [
+    (p.stem, "design/proposals/state-refinements/" + p.name)
+    for p in sorted((SVG / "state-refinements").glob("*.svg"))
+]
+SETS["source-detail-paired"] = [
+    ("Discover baseline", "design/proposals/plates/discover.svg"),
+    ("Source detail baseline", "design/proposals/plates/source-detail.svg"),
+    ("Source detail offline", "design/proposals/state-refinements/source-detail-offline.svg"),
+]
+SETS["critical-type-comparison"] = [
+    ("Large-text critical reel", "design/proposals/critical-reel/reel-large-text.svg"),
+    ("X09 Home 200%", PO["x09"]["01-home-200-text"]),
+    ("X09 Reel 200%", PO["x09"]["03-reel-200-text"]),
+    ("X09 Import 200%", PO["x09"]["05-import-200-text"]),
+]
 # A complete archive class is never inferred from the representative subset.
-ASSERTED_CLASSES = {"original": 66, "P0": 82, "P1": 55, "new": 10}
+ASSERTED_CLASSES = {"original": 66, "P0": 82, "P1": 55, "new": 25}
 
-def run(out, full=False):
+def run(out, full=False, selected=None, native=False):
     try:
         import cairosvg
         from PIL import Image, ImageDraw, ImageFont
     except ImportError as exc:
         raise SystemExit("Install cairosvg and Pillow in a disposable environment") from exc
     out.mkdir(parents=True, exist_ok=True)
+    if len(SETS["state-refinements-25"]) != 25 or len(SETS["core-34-named-states"]) != 34:
+        raise SystemExit("Optical inventory drift: expected 25 supplementary and 34 named states")
+    selected = list(SETS) if not selected else selected
+    native_dir = out / "native-phone-source-hashed"
+    if native:
+        native_dir.mkdir(parents=True, exist_ok=True)
+    native_done = {}
     summary = {"source": "draft SVG source, not Android runtime",
                "opticalSignoff": False, "ownerApproved": False,
-               "inventoryClasses": ASSERTED_CLASSES, "sheets": []}
-    for name, files in SETS.items():
+               "inventoryClasses": ASSERTED_CLASSES, "sheets": [],
+               "nativePhoneFiles": []}
+    for name in selected:
+        files = SETS[name]
         cols, panel_w, panel_h, pad, caption_h = 4, 210, 455, 18, 54
         rows = math.ceil(len(files) / cols)
         sheet = Image.new("RGB", (cols * (panel_w + pad) + pad,
@@ -68,11 +100,22 @@ def run(out, full=False):
             source = ROOT / relpath
             if not source.is_file():
                 raise FileNotFoundError(relpath)
+            # Fingerprint exact source bytes, not merely a screenshot name.
+            source_sha256 = hashlib.sha256(source.read_bytes()).hexdigest()
             # Rasterize the actual SVG, including fonts and clip paths.
             data = cairosvg.svg2png(url=str(source), output_width=1160, output_height=920)
             with Image.open(io.BytesIO(data)) as result:
                 # Left phone crop only; SVG canvas and right-hand notes excluded.
-                region = result.convert("RGB").crop((15, 14, 416, 904))
+                full_resolution_phone = result.convert("RGB").crop((15, 14, 416, 904))
+                if native and source_sha256 not in native_done:
+                    native_target = native_dir / (source.stem + "-" + source_sha256[:12] + ".png")
+                    full_resolution_phone.save(native_target, optimize=True)
+                    native_done[source_sha256] = str(native_target)
+                    summary["nativePhoneFiles"].append({"path": str(native_target),
+                        "sourcePath": relpath, "sourceSha256": source_sha256,
+                        "phoneCrop": [15, 14, 416, 904],
+                        "rasterPixels": [full_resolution_phone.width, full_resolution_phone.height]})
+                region = full_resolution_phone
                 region.thumbnail((panel_w, panel_h), Image.Resampling.LANCZOS)
                 if full:
                     region = result.convert("RGB")
@@ -95,5 +138,15 @@ if __name__ == "__main__":
     parser.add_argument("--output", type=Path, default=Path("/tmp/glimpse-optical"))
     parser.add_argument("--full", action="store_true",
                         help="show whole storyboard plus annotation, instead of phone crop")
+    parser.add_argument("--set", dest="selected_sets", action="append",
+                        choices=sorted(SETS), help="render just this review group; repeat for more")
+    parser.add_argument("--native", action="store_true",
+                        help="also emit 401x890 native phone crops with SHA-256 source provenance")
+    parser.add_argument("--list-sets", action="store_true",
+                        help="print available optical group IDs and exit")
     args = parser.parse_args()
-    run(args.output, args.full)
+    if args.list_sets:
+        for name, files in SETS.items():
+            print(f"{name}: {len(files)} source entries")
+    else:
+        run(args.output, args.full, args.selected_sets, args.native)
