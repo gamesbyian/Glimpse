@@ -26,6 +26,12 @@ The [**mobile storyboard gallery**](../atlas/storyboards.html) contains **82 add
 
 The [2026-10-23 current-generation mockup gap register](../../docs/design/proposal-mockup-coverage-gaps-2026-10-23.md) distinguishes 34 missing dedicated named core state variants from 27 additional scenario/storyboard/platform and stress-visual needs. It also warns against treating schematic annotation text or the 34 support-state filenames as proof of complete interactions. **This is mockup coverage preparation, not a quality audit or user approval.**
 
+## Explicit reconciliation of 34 core state gaps (2026-10-23)
+
+The [machine-readable per-state evidence map](core-state-evidence.v1.json) enumerates all 34 original unpictured named core variants, links each to an exact existing or new SVG, and labels whether the phone drawing is **pictured**, **partially pictured** or **only topically related**. Current source inspection: **19 pictured, 11 partial, 4 related-only**. This is not raster signoff, owner approval or native device acceptance. The [34-state browser contact sheet](../atlas/core-state-contact-sheet.html) renders phone regions of those exact files for optical review. Ten additional [state-specific source drawings](state-refinements/) fill false-positive reuse cases; they do **not** increase the original 66, P0 82 or P1 55 inventory totals. The 200%-text Home storyboard has also been reflowed, while its neighboring large-type pages still need visual scrutiny.
+
+Before an optical signoff, inspect the whole SVG including the right annotation, check the phone controls independently and compare neighboring transition frames. The validator `python3 scripts/validate-core-state-evidence.py` confirms exact paths, statuses and some visibly pictured phone labels only. It cannot detect clipped glyphs, aesthetic mismatch or runtime behavior.
+
 ## Initial review set
 
 These images should be judged **together** as the earliest coherent proposed family:
