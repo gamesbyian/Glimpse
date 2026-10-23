@@ -2,7 +2,7 @@ name: Glimpse visual references | one-shot branch validation
 
 # One-time push trigger: this workflow file being introduced/changed on the
 # dedicated visual PR branch. No triggers on ordinary source/docs pushes.
-# One-shot final optical proof after switching blur side-fill to CairoSVG-compatible gradients.
+# One-shot exhaustive 203-SVG pre-audit optical capture plus independently clipped blur sides.
 # Keep opt-in dispatch for a future intentional fresh visual review.
 on:
   push:
@@ -22,7 +22,7 @@ concurrency:
 jobs:
   reference-proof:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 25
     steps:
       - uses: actions/checkout@v4
         with:
@@ -49,12 +49,17 @@ jobs:
           set -euo pipefail
           python3 scripts/render-visual-reference-sheets.py --set core-34-named-states --set source-detail-paired --native --output /tmp/glimpse-visual-phone
           python3 scripts/render-visual-reference-sheets.py --set reel-grid-crop-share --set critical-type-comparison --native --output /tmp/glimpse-visual-journeys
+      - name: Render entire proposal inventory once (66 + 82 + 55)
+        run: |
+          set -euo pipefail
+          python3 scripts/render-visual-reference-sheets.py --set entire-original-66 --set entire-p0-82 --set entire-p1-55 --native --output /tmp/glimpse-visual-complete
       - name: Package immutable review evidence
         if: always()
         run: |
           mkdir -p /tmp/glimpse-visual-evidence
           cp -a /tmp/glimpse-visual-phone /tmp/glimpse-visual-evidence/phone 2>/dev/null || true
           cp -a /tmp/glimpse-visual-journeys /tmp/glimpse-visual-evidence/journeys 2>/dev/null || true
+          cp -a /tmp/glimpse-visual-complete /tmp/glimpse-visual-evidence/complete 2>/dev/null || true
           printf '%s\n' "${GITHUB_SHA}" > /tmp/glimpse-visual-evidence/head-sha.txt
           printf '%s\n' "Draft optical reference only; no human/device/owner pass claimed" > /tmp/glimpse-visual-evidence/NO-OPTICAL-SIGNOFF.txt
       - name: Write source-hashed validation proof to PR branch
@@ -75,7 +80,7 @@ jobs:
             echo "- Run attempt: \`${GITHUB_RUN_ATTEMPT}\`"
             echo "- Workflow result before publishing: \`${PROOF_STATUS}\`"
             echo "- Branch: \`${GITHUB_REF_NAME}\`"
-            echo "- Review sets: named 34, source detail, reel/grid/crop/share and large text"
+            echo "- Review sets: 34 states, Source Detail, reel/grid/crop/share, large text, complete original 66 + P0 82 + P1 55"
             echo "- CI artifact name: \`glimpse-reference-draft-${GITHUB_SHA}\`"
             echo
             echo "## Structural script outputs"
@@ -90,7 +95,7 @@ jobs:
             echo
             echo "## Rendered evidence"
             echo
-            for index in /tmp/glimpse-visual-phone/index.json /tmp/glimpse-visual-journeys/index.json; do
+            for index in /tmp/glimpse-visual-phone/index.json /tmp/glimpse-visual-journeys/index.json /tmp/glimpse-visual-complete/index.json; do
               if [[ -f "${index}" ]]; then
                 echo "- Raster ledger: ${index}"
                 python3 -c 'import json,sys; d=json.load(open(sys.argv[1])); print("  - Groups: "+", ".join(x["name"] for x in d.get("sheets",[]))); print("  - Native PNG crops: "+str(len(d.get("nativePhoneFiles",[]))))' "${index}"
