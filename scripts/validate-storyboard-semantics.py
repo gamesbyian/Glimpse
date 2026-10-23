@@ -79,7 +79,30 @@ def main():
     # not currently encode wallpaper outcomes, hence applied=None.
     check(P1 / "x13/02-edited.svg", "p12c",
           ("CROPPED COPY p12c", "Share edited copy"), applied=None, group="x13")
-    print(json.dumps({"cases": len(expected)+len(scale)+3,
+    # X07 p12 persists across reel -> grid -> detail -> reel. Compare the
+    # actual JPEG data URI with X05, not a text caption or a file name.
+    x05root = ET.parse(P0 / "x05/01-rest.svg").getroot()
+    x05fixture = next((e.get("href") for e in x05root.iter()
+                      if e.get("id") == "fixture1"), None)
+    if not x05fixture or not x05fixture.startswith("data:image/jpeg;base64,"):
+        ERRORS.append("x05.01-rest: original p12 embedded photo missing")
+    x07 = [
+        ("01-reel-focus", "Photo 12 of 22"),
+        ("02-grid-focus", "Selected p12 of 22"),
+        ("03-photo-detail", "Local photo p12"),
+        ("04-back-reel", "Photo 12 of 22"),
+        ("06-return-original", "Photo 12 of 22"),
+        ("07-multi-select", "3 selected"),
+    ]
+    for frame, label in x07:
+        path = P0 / "x07" / (frame + ".svg")
+        check(path, "p12", (label,), group="x07")
+        root = ET.parse(path).getroot()
+        matching = [e.get("href") for e in root.iter()
+                    if e.get("id") == "fixture1"]
+        if matching != [x05fixture]:
+            ERRORS.append("x07." + frame + ": p12 photographic pixels diverge from X05")
+    print(json.dumps({"cases": len(expected)+len(scale)+3+len(x07),
                       "semanticSourceErrors": ERRORS,
                       "opticalProof": False, "deviceProof": False,
                       "ownerApproval": False}, indent=2))
