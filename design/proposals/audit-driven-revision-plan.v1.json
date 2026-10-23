@@ -92,7 +92,8 @@
         "applicable Android screenshot/hierarchy fixture or marked unverified",
         "audit finding closure verification"
       ],
-      "disposition": "queued-from-audit-not-yet-rendered"
+      "disposition": "Eight cross-journey source steps traced; R02 new before/after proposals and native evidence still pending",
+      "connectedSourceManifest": "design/proposals/audit-revisions/r02-identity-chain.v1.json"
     },
     {
       "id": "R03",
