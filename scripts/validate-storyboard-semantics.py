@@ -4,6 +4,7 @@
 This checks XML/phone-side text/metadata consistency, never pixel layout,
 visibility behind clip paths, Android functionality, or owner acceptance.
 """
+import base64
 import html
 import json
 import re
@@ -102,6 +103,19 @@ def main():
                     if e.get("id") == "fixture1"]
         if matching != [x05fixture]:
             ERRORS.append("x07." + frame + ": p12 photographic pixels diverge from X05")
+    # Finite p22 must be a different real photographic asset from the p13
+    # snowy fixture, and both its hero and selected disc wedge use it.
+    final_root = ET.parse(P0 / "x05/08-last.svg").getroot()
+    final_img = next((n.get("href") for n in final_root.iter(SVG + "image")
+                      if n.get("id") == "fixture4"), None)
+    original_p22 = (ROOT / "design/research/reel-layout/fixtures/source/art4.jpg").read_bytes()
+    if not final_img or not final_img.startswith("data:image/jpeg;base64,"):
+        ERRORS.append("x05.08-last: distinct photographic fixture4 for p22 missing")
+    elif base64.b64decode(final_img.split(",", 1)[1]) != original_p22:
+        ERRORS.append("x05.08-last: selected p22 JPEG differs from public art4 fixture")
+    final_uses = [n.get("href") for n in final_root.iter(SVG + "use")]
+    if len(final_uses) < 4 or final_uses[0] != "#fixture4" or final_uses[3] != "#fixture4":
+        ERRORS.append("x05.08-last: p22 hero and selected aperture disagree")
     # Optical defects discovered in the first current-branch raster sheets.
     # These are protective source assertions, not independent pixel proof.
     optical_fixtures = {
@@ -120,7 +134,7 @@ def main():
     blur = (ROOT / "design/proposals/state-refinements/image-editor-blur-extend.svg").read_text(encoding="utf-8")
     if "feGaussianBlur" in blur:
         ERRORS.append("image-editor-blur-extend: unsupported CairoSVG filter reintroduced")
-    print(json.dumps({"cases": len(expected)+len(scale)+3+len(x07)+len(optical_fixtures),
+    print(json.dumps({"cases": len(expected)+len(scale)+3+len(x07)+len(optical_fixtures)+1,
                       "semanticSourceErrors": ERRORS,
                       "opticalProof": False, "deviceProof": False,
                       "ownerApproval": False}, indent=2))
