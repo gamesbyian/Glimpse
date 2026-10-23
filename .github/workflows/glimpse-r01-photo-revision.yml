@@ -84,7 +84,7 @@ jobs:
             "",
             "No runtime screenshots, visual approval, accessibility verification or user acceptance.",
           ]
-          Path("docs/design/r01-photo-generator-evidence.md").write_text("\\n".join(lines)+"\\n")
+          Path("docs/design/r01-photo-generator-evidence.md").write_text("\n".join(lines)+"\n")
           PY
           git add docs/design/r01-photo-generator-evidence.md
           if ! git diff --cached --quiet; then
