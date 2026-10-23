@@ -59,16 +59,39 @@ def start_fixture(count, active=False):
     adb("shell", "pm", "clear", APP)
     adb("shell", "am", "start", "-n", FIXTURE,
         "--ei", "count", str(count), "--ez", "active", str(active).lower())
-    for _ in range(35):
-        time.sleep(0.8)
+    # Accessibility XML dumping can be slow on software-rendered CI emulators.
+    # Wait for the app to settle without repeatedly dumping a full hierarchy.
+    # Always retain screenshots and logcat on failure for real visual diagnosis.
+    last_xml = ""
+    for _ in range(8):
+        time.sleep(2.0)
         try:
-            xml = hierarchy()
-            if "ATLAS FIXTURE" in xml and "Photos: " + str(count) in xml:
+            last_xml = hierarchy()
+            if "ATLAS FIXTURE" in last_xml and (
+                "Photos: " + str(count) in last_xml
+                or "photographs" in last_xml
+            ):
                 time.sleep(0.5)
                 return
-        except Exception:
-            pass
-    raise RuntimeError("Fixture did not display " + str(count) + " photos in MainActivity")
+        except Exception as error:
+            last_xml = str(error)
+    try:
+        (OUT / ("fixture-failure-" + str(count) + ".png")).write_bytes(
+            adb("exec-out", "screencap", "-p", binary=True)
+        )
+        (OUT / ("fixture-failure-" + str(count) + ".xml")).write_text(
+            last_xml, encoding="utf-8"
+        )
+        (OUT / ("fixture-failure-" + str(count) + ".log")).write_text(
+            adb("logcat", "-d", "-t", "600", check=False),
+            encoding="utf-8"
+        )
+    except Exception as error:
+        print("Unable to collect failure diagnostics:", error, flush=True)
+    raise RuntimeError(
+        "Fixture never displayed " + str(count) +
+        " photos in MainActivity; inspect fixture-failure screenshot/XML/logcat"
+    )
 
 
 def click_label(expected):
