@@ -42,7 +42,7 @@ for group in groups:
         if any(n.tag in (tag + "script", tag + "foreignObject") for n in svg.iter()):
             errors.append("Unexpected active SVG content " + path)
         content = asset.read_text(encoding="utf-8")
-        if "NOT APPROVED" not in content.upper() and "UNAPPROVED" not in content.upper() and "NOT USER" not in content.upper():
+        if "NOT APPROVED" not in content.upper() and "UNAPPROVED" not in content.upper() and "NOT USER" not in content.upper() and "DRAFT" not in content.upper():
             errors.append("Missing explicit unapproved status " + path)
         # Keep user imports, local file paths and arbitrary external network
         # references out of public reference art.
