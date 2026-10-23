@@ -77,6 +77,28 @@ for state in ("share-choice", "return-dismiss"):
     svg = (ROOT / "design/proposals/audit-revisions" / f"r02-{state}.svg").read_text()
     assert '"shareRecipientConfirmed":false' in svg
     assert "p12c" in svg and "p12" in svg
+# The R02 revision now uses the exact portable photographic p12 fixture from
+# the established X07 Grid, not a new rainbow placeholder with the same label.
+import base64
+x07 = (ROOT / "design/proposals/storyboards/x07/02-grid-focus.svg").read_text()
+match = re.search(r'<image id="fixture1"[^>]*href="data:image/jpeg;base64,([^"]+)"', x07)
+assert match, "X07 must have original p12 photo data"
+photo = base64.b64decode(match.group(1))
+for state in ("crop-pending", "copy-saved", "share-choice", "return-dismiss"):
+    svg = (ROOT / "design/proposals/audit-revisions" / f"r02-{state}.svg").read_text()
+    frames = re.findall(r'href="data:image/jpeg;base64,([^"]+)"', svg)
+    assert frames and all(base64.b64decode(p) == photo for p in frames), state
+    assert '"sourcePhotoFixture":"x07/p12/art1.jpg"' in svg, state
+    assert 'transform="translate(-116 -138) scale(1.5)"' in svg, state
+    assert '"lastConfirmedAppliedAssetId":"p04"' in svg, state
+assert len(re.findall(r'href="data:image/jpeg;base64,',
+       (ROOT / "design/proposals/audit-revisions/r02-share-choice.svg").read_text())) == 3
+# R01 photographic upgrades are generated deterministically from the six
+# checked-in research photos; verify them without changing the source files.
+if (ROOT / "design/proposals/audit-revisions/r01-photo-rest-22.svg").exists():
+    from subprocess import run
+    assert run(["python3", str(ROOT / "scripts/build-audit-r01-photo-variants.py")],
+               cwd=ROOT, check=False).returncode == 0
 counts = {x: sum(v["status"] == x for v in cycle["results"])
           for x in ("PASS", "ISSUE", "UNVERIFIED", "NOT_APPLICABLE")}
 assert counts == cycle["summary"]["counts"]
