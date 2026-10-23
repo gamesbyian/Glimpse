@@ -34,7 +34,7 @@ jobs:
       - uses: gradle/actions/setup-gradle@v4
       - name: Install Android 37 SDK
         run: |
-          yes | "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" "platforms;android-37" "build-tools;36.0.0"
+          printf "y\\n" | "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" "platforms;android-37" "build-tools;36.0.0"
       - name: Compile and test
         run: ./gradlew --no-daemon :app:assembleDebug :app:testDebugUnitTest
       - uses: actions/upload-artifact@v4
