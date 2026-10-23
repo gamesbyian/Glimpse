@@ -1,5 +1,6 @@
 name: R01 photographic reference generation | one-shot
 
+# Finite zero/one extension refresh: six photographs/blank-aperture reference states.
 # Generate corrected photographic paper-reel audit sources only on an intentional
 # workflow edit or manual dispatch. Do not launch from every ordinary repo push.
 on:
@@ -28,7 +29,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Generate four real-photo paper-reel SVGs deterministically
+      - name: Generate six real-photo paper-reel SVGs deterministically
         run: |
           set -euo pipefail
           python3 scripts/build-audit-r01-photo-variants.py --write
@@ -44,8 +45,8 @@ jobs:
           import json
           from pathlib import Path
           d=json.loads(Path("/tmp/glimpse-r01-photo-reference/index.json").read_text())
-          assert len(d["nativePhoneFiles"]) == 4, len(d["nativePhoneFiles"])
-          print("Four photo-backed R01 native reference crops rendered; optical review pending")
+          assert len(d["nativePhoneFiles"]) == 6, len(d["nativePhoneFiles"])
+          print("Six photo-backed R01 native reference crops rendered; optical review pending")
           PY
       - name: Commit generated source images to the visual PR branch
         run: |
@@ -58,7 +59,7 @@ jobs:
             git push origin "HEAD:${GITHUB_REF_NAME}"
           fi
           python3 scripts/build-audit-r01-photo-variants.py
-      - name: Upload four draft images and source hash ledger
+      - name: Upload six draft images and source hash ledger
         uses: actions/upload-artifact@v4
         with:
           name: glimpse-r01-real-photography-${{ github.sha }}
