@@ -49,6 +49,8 @@ for svg in sorted(ROOT.rglob("*.svg")):
                 image_nodes += 1
                 if e.get("id", "").startswith("fixture"):
                     fixture_count += 1
+                    if rel in EXPECTED_FIXTURES and e.get("preserveAspectRatio") != "xMidYMid slice":
+                        BAD.append(f"{rel}: fixture must use crop-to-fill xMidYMid slice; default meet letterboxes the hero/reel")
             if not href:
                 BAD.append(f"{rel}: {local} node has no href")
             elif href.startswith("#"):
