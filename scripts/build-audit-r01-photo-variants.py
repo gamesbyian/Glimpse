@@ -121,7 +121,7 @@ def generate_edge(slug, single):
     # Five small paper labels must disappear unless there is a real item there.
     label = re.compile(
         r'<rect x="[\d.]+" y="[\d.]+" width="39" height="23" rx="7" '
-        r'fill="#FFFCF6" stroke="none"/><text x="[\d.]+" y="[\d.]+" '
+        r'fill="#FFFCF6" stroke="none"/>\s*<text x="[\d.]+" y="[\d.]+" '
         r'font-family="Arial,Helvetica,sans-serif" font-size="13" '
         r'font-weight="700" fill="#153F46">(\d+)</text>')
     def clear_label(m):
@@ -180,6 +180,8 @@ def generate_edge(slug, single):
                             "R01 · PHOTOGRAPHIC REEL COMPARISON")
     source = source.replace("<title>X05 /", "<title>R01 photographic /")
     assert source.count("<use href=") == (2 if single else 0), (slug, "ghost images")
+    labels = re.findall(r'<text[^>]*>(\d\d)</text>', source)
+    assert labels == (["01"] if single else []), (slug, "ghost photo indices", labels)
     return source
 
 def main():
