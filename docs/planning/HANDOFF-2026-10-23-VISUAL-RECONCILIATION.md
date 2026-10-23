@@ -68,3 +68,8 @@ Read [`AGENTS.md`](../../AGENTS.md), [previous P0 handoff](HANDOFF-2026-10-23-VI
 ## Latest X07 continuation checkpoint
 
 Six X07 frames now share X05's embedded p12 image fixture; three reel frames additionally reuse the five physical photographic aperture paths. X07 Grid thumbnails other than selected p12 are still schematic, and X06 is still a distinct schematic presentation. The transient invalid definitions from the first assembly pass were replaced with fresh 90–276KB valid-fixture source commits from main originals. The portable-SVG validator now checks XML, local use/clip targets, fixture counts and JPEG decoding. The semantic validator checks p12 fixture byte identity across X05/X07. **Neither revised script nor the six SVGs has been executed/raster inspected in a fresh PR checkout, and there is no Android acceptance.** Inspect and run validators before reviewing or merging.
+
+
+## Original Source Detail baseline correction
+
+`design/proposals/plates/source-detail.svg` has been reauthored from the erroneous duplicate Discover directory into a single-source Google Photos detail page with scoped permissions, illustrative preview, rights/provenance uncertainty and explicit picker/Back actions. It remains one of the **original 66** proposal plates, not a new screen in the baseline inventory. This correction is source-inspected but not freshly raster or Android verified. Confirm the phone drawing in the optical pass alongside `state-refinements/source-detail-offline.svg`.
