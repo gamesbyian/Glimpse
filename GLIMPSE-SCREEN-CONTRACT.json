@@ -1,0 +1,635 @@
+{
+  "schemaVersion": 2,
+  "status": "PREIMPLEMENTATION_DESIGN_REQUIREMENTS_AND_DUAL_REEL_HYPOTHESES",
+  "brand": "Glimpse",
+  "reference": "GLIMPSE-REFERENCE-ACCEPTANCE-PLAN.md",
+  "destinations": [
+    "Home",
+    "Discover",
+    "Collections",
+    "Automation"
+  ],
+  "distinctStates": [
+    "browse.selectedImageId",
+    "wallpaper.appliedImageId",
+    "rotation.nextEligibleAt",
+    "collection.membership",
+    "export.variant"
+  ],
+  "screens": [
+    {
+      "id": "home",
+      "required": [
+        "current-wallpaper-hero",
+        "applied-status",
+        "active-collection-name",
+        "change-now",
+        "pause",
+        "share",
+        "explicit-target-and-last-applied-confidence",
+        "change-wallpaper-labelled-action"
+      ],
+      "conditional": [
+        "next-eligible-time",
+        "reel-crescent",
+        "error-retry",
+        "open-active-collection-from-reel-crescent"
+      ],
+      "forbidden": [
+        "selected-preview-presented-as-applied",
+        "exact-background-five-minute-guarantee",
+        "unlabeled-tiny-reel-pretends-to-be-draggable"
+      ]
+    },
+    {
+      "id": "collections",
+      "required": [
+        "collection-titles",
+        "true-item-counts",
+        "add-photos",
+        "enter-collection"
+      ],
+      "conditional": [
+        "paper-reel-covers",
+        "empty-collection-action"
+      ],
+      "forbidden": [
+        "faked-image-copies-to-fill-five-windows"
+      ]
+    },
+    {
+      "id": "reel",
+      "required": [
+        "hero",
+        "selected-asset-index-and-total",
+        "five-window-paper-reel-geometry",
+        "partial-offscreen-crop",
+        "next-photo",
+        "previous-photo",
+        "view-all",
+        "set-as-wallpaper",
+        "previous-photo-fixed-control",
+        "next-photo-label-not-just-next",
+        "selected-photo-distinct-from-applied-wallpaper",
+        "one-pointer-per-interactive-reel"
+      ],
+      "conditional": [
+        "loaded-image-slots",
+        "placeholder-slots",
+        "last-item-indicator",
+        "browse-loop-indicator"
+      ],
+      "forbidden": [
+        "browse-rotation-applies-device-wallpaper",
+        "reel-claims-unbounded-collection",
+        "offscreen-reel-blocks-system-navigation",
+        "only-gesture-access",
+        "set-now-without-destination-or-continuation-policy",
+        "reel-hit-target-beneath-bottom-nav",
+        "inferred-whole-album-synchronization"
+      ]
+    },
+    {
+      "id": "grid",
+      "required": [
+        "same-selected-asset-id",
+        "real-image-thumbnails",
+        "return-to-reel",
+        "share",
+        "collection-identity",
+        "visible-selection-state-for-selected-items",
+        "selection-meaning-explained",
+        "search-filter-or-position-jump"
+      ],
+      "conditional": [
+        "multi-select",
+        "search",
+        "loading-placeholder"
+      ],
+      "forbidden": [
+        "reset-selection-on-switch",
+        "render-all-10000-fullres-images",
+        "add-to-rotation-without-explaining-target-queue-effect"
+      ]
+    },
+    {
+      "id": "quick-import",
+      "required": [
+        "source-preview",
+        "rotate",
+        "crop",
+        "target-collection",
+        "use-now",
+        "show-next",
+        "just-save"
+      ],
+      "conditional": [
+        "source-missing-fallback",
+        "import-retry",
+        "original-recipe"
+      ],
+      "forbidden": [
+        "save-silently-applies-wallpaper",
+        "destroy-original-during-crop"
+      ]
+    },
+    {
+      "id": "share",
+      "required": [
+        "share-action",
+        "original-or-crop-label",
+        "android-sharesheet-handoff"
+      ],
+      "conditional": [
+        "metadata-removal",
+        "batch-share",
+        "handler-unavailable-fallback"
+      ],
+      "forbidden": [
+        "share-changes-rotation",
+        "assume-lens-or-chatgpt-intent-always-exists"
+      ]
+    },
+    {
+      "id": "automation",
+      "required": [
+        "rotation-status",
+        "interval-policy",
+        "paused-state",
+        "human-readable-constraints"
+      ],
+      "conditional": [
+        "overrides",
+        "why-this-image",
+        "rule-editor",
+        "source-failure"
+      ],
+      "forbidden": [
+        "eligibility-displayed-as-successful-apply"
+      ]
+    },
+    {
+      "id": "discover",
+      "required": [
+        "source-or-image-type-label",
+        "provider-provenance",
+        "search-or-filter",
+        "image-rights-explanation",
+        "add-to-collection-action"
+      ],
+      "conditional": [
+        "finite-curated-image-reel",
+        "rights-insufficient-warning"
+      ],
+      "forbidden": [
+        "three-unlabelled-photos-posed-as-complete-source-directory",
+        "unexplained-new-collection-primary-cta"
+      ]
+    },
+    {
+      "id": "destinations",
+      "required": [
+        "home-and-lock-labels",
+        "target-specific-preview",
+        "apply-specific-outcome",
+        "capability-status"
+      ],
+      "conditional": [
+        "paired-reel-hypothesis",
+        "single-reel-plus-destination-tabs",
+        "same-source-linked-crops"
+      ],
+      "forbidden": [
+        "applying-lock-silently-mutates-home",
+        "two-large-reels-cramp-phone-controls"
+      ]
+    },
+    {
+      "id": "image-editor",
+      "required": [
+        "source-preserved",
+        "crop-destination",
+        "reversible-recipe",
+        "explicit-save-result",
+        "gesture-alternative"
+      ],
+      "conditional": [
+        "variant-reel-hypothesis",
+        "safe-area-preview",
+        "blur-extension"
+      ],
+      "forbidden": [
+        "rotation-reel-used-as-numeric-precision-crop-dial"
+      ]
+    },
+    {
+      "id": "activity",
+      "required": [
+        "applied-versus-eligible-distinction",
+        "operation-time-and-target",
+        "error-recovery",
+        "rollback-or-reapply"
+      ],
+      "conditional": [
+        "recent-photo-reel-hypothesis"
+      ],
+      "forbidden": [
+        "fake-success-after-failed-wallpaper-call"
+      ]
+    },
+    {
+      "id": "automation-editor",
+      "required": [
+        "typed-trigger",
+        "target",
+        "collection-source",
+        "priority",
+        "condition",
+        "natural-language-preview",
+        "conflict-and-failure-explanation"
+      ],
+      "conditional": [
+        "simulator",
+        "nested-sources"
+      ],
+      "forbidden": [
+        "rule-settings-changed-by-photo-reel",
+        "silent-apply-on-preview"
+      ]
+    },
+    {
+      "id": "source-detail",
+      "required": [
+        "provider-name",
+        "source-licence-provenance",
+        "import-permission-or-eligibility",
+        "image-preview",
+        "source-website-or-credit"
+      ],
+      "conditional": [
+        "related-image-reel",
+        "provider-offline-warning",
+        "network-policy"
+      ],
+      "forbidden": [
+        "implied-verified-rights-without-evidence",
+        "unscoped-auto-download"
+      ]
+    },
+    {
+      "id": "photo-detail",
+      "required": [
+        "image-identity",
+        "source-provenance",
+        "set-wallpaper-explicit-target",
+        "share",
+        "edit",
+        "collection-membership"
+      ],
+      "conditional": [
+        "home-and-lock-crops",
+        "hide-or-restore"
+      ],
+      "forbidden": [
+        "silent-apply-on-open"
+      ]
+    },
+    {
+      "id": "quickstart",
+      "required": [
+        "named-source-collection",
+        "destination-choice",
+        "shuffle-policy",
+        "cadence-and-platform-limits",
+        "start-or-cancel"
+      ],
+      "conditional": [
+        "collection-cover",
+        "cloud-import-warning"
+      ],
+      "forbidden": [
+        "exact-five-minute-background-promise",
+        "rules-editor-mandatory"
+      ]
+    },
+    {
+      "id": "schedule-simulator",
+      "required": [
+        "simulated-label",
+        "future-context",
+        "hypothetical-outcome",
+        "explanation"
+      ],
+      "conditional": [
+        "simulated-filmstrip",
+        "source-shortfall"
+      ],
+      "forbidden": [
+        "wallpaper-apply",
+        "real-queue-consumption",
+        "simulated-outcome-declared-actual"
+      ]
+    },
+    {
+      "id": "diagnostics",
+      "required": [
+        "operation-history",
+        "target",
+        "eligible-versus-attempted-versus-applied",
+        "failure-reason",
+        "retry-or-repair"
+      ],
+      "conditional": [
+        "source-health",
+        "permission-state",
+        "redacted-report"
+      ],
+      "forbidden": [
+        "wallpaper-preview-reused-as-success-proof"
+      ]
+    },
+    {
+      "id": "widgets",
+      "required": [
+        "action-identity",
+        "actual-command-target",
+        "accessible-name"
+      ],
+      "conditional": [
+        "small-static-reel-icon",
+        "current-or-next-preview",
+        "pause"
+      ],
+      "forbidden": [
+        "gesture-wheel-required",
+        "widget-launch-silently-applies-wrong-target"
+      ]
+    },
+    {
+      "id": "quick-settings-and-shortcuts",
+      "required": [
+        "destination-scoped-action",
+        "status-state",
+        "capability-fallback"
+      ],
+      "conditional": [
+        "launch-app-for-repair"
+      ],
+      "forbidden": [
+        "ambiguous-untargeted-next",
+        "implied-persistent-service"
+      ]
+    },
+    {
+      "id": "settings",
+      "required": [
+        "motion-preferences",
+        "theme",
+        "storage",
+        "network-policy",
+        "privacy",
+        "permissions-and-capabilities",
+        "backup-entry"
+      ],
+      "conditional": [
+        "advanced-sources",
+        "local-diagnostics"
+      ],
+      "forbidden": [
+        "paper-reel-as-a-toggle-control",
+        "unnecessary-intrusive-permissions"
+      ]
+    },
+    {
+      "id": "backup-and-restore",
+      "required": [
+        "export-scope",
+        "image-inclusion-off-by-default",
+        "version",
+        "restore-preview",
+        "missing-source-remap"
+      ],
+      "conditional": [
+        "encrypted-export",
+        "wrong-passphrase-recovery"
+      ],
+      "forbidden": [
+        "default-include-all-private-photo-bytes",
+        "silent-credential-restore"
+      ]
+    },
+    {
+      "id": "onboarding",
+      "required": [
+        "add-photos-path",
+        "privacy-explanation",
+        "destination",
+        "cadence",
+        "start",
+        "skip"
+      ],
+      "conditional": [
+        "one-time-reel-demonstration"
+      ],
+      "forbidden": [
+        "mandatory-rules-editor",
+        "forced-large-initial-upload"
+      ]
+    },
+    {
+      "id": "error-empty-permission",
+      "required": [
+        "cause-or-condition",
+        "next-action",
+        "preserved-existing-content-statement"
+      ],
+      "conditional": [
+        "empty-reel-illustration",
+        "retry",
+        "picker-or-permission-route"
+      ],
+      "forbidden": [
+        "invented-photo-content",
+        "generic-success-after-OS-failure"
+      ]
+    },
+    {
+      "id": "accessibility-preferences",
+      "required": [
+        "reduced-motion",
+        "high-contrast",
+        "font-scaling-system-compliance",
+        "gesture-alternative-information"
+      ],
+      "conditional": [
+        "shortcut-help"
+      ],
+      "forbidden": [
+        "required-circular-gesture",
+        "flashing-visual-feedback-only"
+      ]
+    }
+  ],
+  "criticalTransitions": [
+    {
+      "from": "reel.next-photo",
+      "changes": [
+        "browse.selectedImageId"
+      ],
+      "mustNotChange": [
+        "wallpaper.appliedImageId",
+        "rotation.nextEligibleAt"
+      ]
+    },
+    {
+      "from": "reel.set-as-wallpaper",
+      "changes": [
+        "wallpaper.applyIntent"
+      ],
+      "feedback": "attempted/applied/error"
+    },
+    {
+      "from": "quick-import.just-save",
+      "changes": [
+        "collection.membership"
+      ],
+      "mustNotChange": [
+        "wallpaper.appliedImageId"
+      ]
+    },
+    {
+      "from": "quick-import.show-next",
+      "changes": [
+        "collection.membership",
+        "rotation.queue"
+      ],
+      "mustNotChange": [
+        "wallpaper.appliedImageId"
+      ]
+    },
+    {
+      "from": "share.export",
+      "changes": [
+        "export.variant"
+      ],
+      "mustNotChange": [
+        "wallpaper.appliedImageId",
+        "rotation.queue"
+      ]
+    },
+    {
+      "from": "reduce-motion",
+      "changes": [
+        "presentation.motion"
+      ],
+      "mustNotChange": [
+        "browse.selectedImageId",
+        "wallpaper.appliedImageId"
+      ]
+    },
+    {
+      "from": "reel.select-collection",
+      "changes": [
+        "browse.collectionId",
+        "browse.selectedImageId"
+      ],
+      "mustNotChange": [
+        "wallpaper.appliedImageId",
+        "rotation.activeCollectionId"
+      ]
+    },
+    {
+      "from": "destinations.preview-lock",
+      "changes": [
+        "browse.lockPreviewId"
+      ],
+      "mustNotChange": [
+        "wallpaper.appliedHomeId",
+        "wallpaper.appliedLockId"
+      ]
+    },
+    {
+      "from": "automation.simulate",
+      "changes": [
+        "ephemeral.simulation"
+      ],
+      "mustNotChange": [
+        "rotation.queue",
+        "wallpaper.appliedImageId"
+      ]
+    },
+    {
+      "from": "reel.switch-to-grid",
+      "changes": [
+        "browse.viewMode"
+      ],
+      "preserves": [
+        "browse.selectedImageId",
+        "browse.sortOrder"
+      ]
+    }
+  ],
+  "evidenceLevels": [
+    "approved-reference",
+    "runtime-observed",
+    "physical-device-observed",
+    "human-observed",
+    "agent-hypothesis"
+  ],
+  "uxGuardrails": [
+    "Each interactive reel selects exactly one typed finite set with stable item IDs and a shown consequence.",
+    "An off-screen or decorative paper crescent is noninteractive unless labeled and large enough to touch.",
+    "Reel selection never applies wallpapers or activates an automation without explicit action.",
+    "Return-to-grid preserves selected photo ID and ordering; large collections need search and jumping.",
+    "Multiple reels only when separately typed selections are causally related and screen layout supports both.",
+    "Home versus Lock paired reels are a design hypothesis, not an approved default.",
+    "Any secondary reel collapses to a labeled selector before essential controls or large font text are compromised.",
+    "Accessibility uses named prev/next and items; circular gestures never mandatory.",
+    "Reel photo apertures must contain real image IDs, not filler repetitions implying false collection size."
+  ],
+  "reelRoleCandidates": [
+    {
+      "id": "collection-photo",
+      "status": "PROTOTYPE_COMPARE",
+      "parentType": "CollectionId",
+      "childType": "ImageAssetId",
+      "parentEffect": "changes browser collection, not rotation",
+      "childEffect": "previews photo, not wallpaper apply",
+      "compactFallback": "named collection picker plus one full photo reel",
+      "wideLayout": "small parent upper-right, large child lower-left, no overlapping hit areas",
+      "comparison": "baseline picker+photo-reel versus two-reel"
+    },
+    {
+      "id": "home-lock",
+      "status": "PROTOTYPE_COMPARE",
+      "parentType": "Destination(Home)",
+      "childType": "Destination(Lock)",
+      "parentEffect": "previews home photo",
+      "childEffect": "previews lock photo",
+      "compactFallback": "destination tabs and one active large reel",
+      "wideLayout": "asymmetric paired reel with individually labelled apply outcomes",
+      "comparison": "tabs+single-reel versus paired-reels"
+    },
+    {
+      "id": "photo-variants",
+      "status": "EXPLORATORY",
+      "parentType": "ImageAssetId",
+      "childType": "EditRecipeId",
+      "parentEffect": "select photo only",
+      "childEffect": "preview crop/colour variant only",
+      "compactFallback": "single photo reel and standard crop presets",
+      "wideLayout": "photo reel dominant, small optional variants arc",
+      "comparison": "manual crop+presets versus variant reel"
+    },
+    {
+      "id": "arbitrary-settings",
+      "status": "REJECTED",
+      "parentType": "Setting",
+      "childType": "Value",
+      "compactFallback": "native control for value type",
+      "reason": "Paper-photo windows do not communicate labels, value scales, prerequisites or reversibility well"
+    }
+  ],
+  "implementationStatus": "NONE",
+  "referenceAcceptance": "PROPOSED_NOT_APPROVED_OR_TESTED"
+}
