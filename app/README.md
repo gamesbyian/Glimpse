@@ -1,12 +1,12 @@
 # Native Android prototype
 
-Development began from [issue #1](https://github.com/gamesbyian/Glimpse/issues/1). This is a deliberately bounded Compose/Room implementation, **not a tested APK or finished visual design**.
+Development began from [issue #1](https://github.com/gamesbyian/Glimpse/issues/1). This is a deliberately bounded Compose/Room implementation, **a buildable debug prototype, not an Android-device-validated app or finished visual design**.
 
 With JDK 17 and Android SDK 37 installed:
 
     ./gradlew :app:assembleDebug :app:testDebugUnitTest
 
-If successful, the debug APK is `app/build/outputs/apk/debug/app-debug.apk`. A path-filtered workflow also builds/tests native changes and allows manual dispatch.
+[GitHub Actions run 39904252446](https://github.com/gamesbyian/Glimpse/actions/runs/39904252446) completed successfully with `:app:assembleDebug` and `:app:testDebugUnitTest` and uploaded the **glimpse-debug-test-only** artifact (10.6 MB compressed). The debug APK is `app/build/outputs/apk/debug/app-debug.apk`. A path-filtered workflow also builds/tests native changes and allows manual dispatch.
 
 The early app can create collections, import selected images from Android Photo Picker into verified offline copies, browse with a finite five-window reel or Grid, explicitly set Home wallpaper, and start/pause/advance a no-repeat shuffle while the Activity is visible. The reel geometry is exploratory and has no final paper animation; Android's Doze may stop foreground-only eligibility while the app is not visible.
 

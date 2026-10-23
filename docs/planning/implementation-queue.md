@@ -9,7 +9,7 @@
 - [x] Finite Reel and Grid with preview-only browsing, explicit Home apply.
 - [x] Serialized WallpaperManager gateway, operation pending/uncertain status, active-use no-repeat shuffle.
 - [x] Pure shuffle tests, narrow Android build workflow, pre-observation task ledger.
-- [ ] Run build and tests, repair failures, publish verified debug artifact.
+- [x] Android SDK 37.0 package workaround, compiled debug APK, passed JVM test task, and uploaded [debug artifact](https://github.com/gamesbyian/Glimpse/actions/runs/39904252446). Not a signed release or proof of device behavior.
 - [ ] Test on Android phone, provider handling, process death, airplane mode and font/accessibility.
 - [ ] Record actual uncoached actions, misunderstandings, error recovery and results against [predictions](../quality/first-slice-evidence.md).
 - [ ] Implement the approved large-window paper reel's meaningful gestures/motion, preserving Grid and ordinary buttons.

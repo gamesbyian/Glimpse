@@ -1,12 +1,12 @@
 # Issue #1: first native slice predictions and evidence
 
-**Status: Android source committed; build and device acceptance unverified.** These hypotheses were documented before an uncoached user observation. This is not a simulated usability study.
+**Status: Android source, CI build and JVM unit task verified; handset/human acceptance unverified.** These hypotheses were documented before an uncoached user observation. This is not a simulated usability study.
 
 ## Scope and provenance
 
 Native Android Photo Picker snapshot → local private image copies with SHA-256 verification → Room collections → finite Reel/Grid selector → explicit Home wallpaper application → foreground active-use shuffle. The app checks eligibility while the Activity is STARTED every 15 seconds. It does not promise waking from Doze, an exact five-minute background alarm, automatic whole Google Photos album synchronization, or lock-screen wallpaper support. Reel visuals remain provisional.
 
-No SDK or Android emulator was available in the originating development environment. Pending compilation and APK evidence should be attached with build SHA, Android API level, device, font scale and test method. The source code or a static design drawing is not a successful device test.
+The local development container had no Android SDK. GitHub Actions installed the published Android 37.0 package and built successfully. [Run 39904252446](https://github.com/gamesbyian/Glimpse/actions/runs/39904252446), source SHA `73f09984431de22c31993105d7fc0eef8bd1d3c3`, reports `BUILD SUCCESSFUL`, `:app:compileDebugKotlin`, `:app:assembleDebug`, and `:app:testDebugUnitTest` all succeeded. Artifact `glimpse-debug-test-only`, ID `12480286986`, approximately 10.6 MB compressed. No Android runtime/emulator/human test has been performed, and an APK building is not proof of feature correctness. The source code or a static design drawing is not a successful device test.
 
 ## Prediction → observation → discrepancy → decision
 
@@ -30,7 +30,7 @@ No SDK or Android emulator was available in the originating development environm
 
 ## Next verification gates
 
-1. Obtain passing Gradle/Android build logs and a real APK artifact. Fix dependency, Kotlin or KSP issues from evidence.
+1. **Completed source-build gate:** Gradle/Android compilation and basic JVM tests passed and produced a debug APK artifact. Next verify install/startup and behavior on a device.
 2. Phone exercise of A001, A003, A004, A008, A011 and A014 (Photo Picker, airplane mode, duplicates, process death, Home-only, accessibility).
 3. Compare reel/grid task completion and preview-versus-applied understanding. Include reduced motion, 200% text, three images and large collections.
 4. Complete F073 Sharesheet and resumable cloud import only after bounded basic path is stable.

@@ -4,7 +4,7 @@
 
 Glimpse is a native Android wallpaper manager concept built around a large-aperture paper photo reel, purposeful browsing, offline collections, and reliable, understandable wallpaper rotation. It uses the user's photos and supported external sources rather than operating its own cloud library.
 
-> **Status (2026-10-23): A bounded Kotlin/Compose/Room Android source prototype has been committed.** A debug APK and real-device behavior are not verified until native CI and handset checks succeed. The five-window reel currently provides selection semantics, not the approved final motion or visual design.
+> **Status (2026-10-23): A bounded Kotlin/Compose/Room Android source prototype has been committed.** [Android CI](https://github.com/gamesbyian/Glimpse/actions/runs/39904252446) has now compiled the prototype and passed the JVM unit-test task, producing a **debug APK artifact**. Handset behavior, accessibility, image-provider compatibility, and user acceptance remain unverified. The five-window reel currently provides selection semantics, not the approved final motion or visual design.
 
 ## First native development slice
 
@@ -33,7 +33,7 @@ A [complete documentation map](docs/README.md) links the supporting matrices and
 
 ## Native implementation
 
-An Android/Gradle project now lives in [app/](app/README.md), with Kotlin, Jetpack Compose, Room/KSP, Photo Picker, WallpaperManager and a foreground-only active-use shuffle. WorkManager policies and Glance widgets are future additions, not implemented features. With SDK 37 and JDK 17, run `./gradlew :app:assembleDebug :app:testDebugUnitTest`. See the [implementation queue](docs/planning/implementation-queue.md), [issue #1](https://github.com/gamesbyian/Glimpse/issues/1) and [prediction/evidence ledger](docs/quality/first-slice-evidence.md).
+An Android/Gradle project now lives in [app/](app/README.md), with Kotlin, Jetpack Compose, Room/KSP, Photo Picker, WallpaperManager and a foreground-only active-use shuffle. WorkManager policies and Glance widgets are future additions, not implemented features. With SDK 37 and JDK 17, run `./gradlew :app:assembleDebug :app:testDebugUnitTest`. A [verified successful Actions run](https://github.com/gamesbyian/Glimpse/actions/runs/39904252446) contains the downloadable **glimpse-debug-test-only** artifact (not a signed release). See the [implementation queue](docs/planning/implementation-queue.md), [issue #1](https://github.com/gamesbyian/Glimpse/issues/1) and [prediction/evidence ledger](docs/quality/first-slice-evidence.md).
 
 The initial vertical slice is **import → offline collection → preview → apply wallpaper → shuffle**. Advanced rules, visual refinements and provider integrations follow once the basic workflow works. Test real Android capabilities on actual hardware rather than claiming mockups prove implementation.
 
