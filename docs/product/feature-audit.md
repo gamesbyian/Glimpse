@@ -1,6 +1,6 @@
 # Glimpse: feature-by-feature specification completeness audit
 
-**Date:** 2026-10-22 · **Status:** normative pre-build contract and risk ledger; **no implementation exists**. Companion to [current decisions](GLIMPSE-CURRENT-DECISIONS.md), [technical contracts](GLIMPSE-TECHNICAL-BEHAVIOR-CONTRACTS.md), [reel critique](GLIMPSE-REEL-UX-CRITICAL-AUDIT.md), [70 human workflows](70-HUMAN-WORKFLOWS.md) and [screenshot/share features](SCREENSHOT-AND-LENS-FEATURES.md).
+**Date:** 2026-10-22 · **Status:** normative pre-build contract and risk ledger; **no implementation exists**. Companion to [current decisions](../planning/current-decisions.md), [technical contracts](../architecture/behavior-contracts.md), [reel critique](../design/reel-ux-audit.md), [70 human workflows](workflows.md) and [screenshot/share features](image-import-sharing.md).
 
 ## Method, forwards and backwards
 
@@ -91,9 +91,9 @@ Every feature needs: preconditions and permissions; user-facing entry; typed aff
 
 ### Critical (P0) gaps exposed by reversing the trace
 
-1. **Naming/authority:** current PRODUCT-SPECIFICATION and NATIVE-ANDROID-ARCHITECTURE still have user-visible **Waltz, Today, Rhythms, Scenes, Rules, Next** while Glimpse uses **Home, Collections, Discover, Automation, Next photo/Change now**. Do not bulk replace domain terms: Scene and Rule remain valid **internal concepts**. Use [current decisions](GLIMPSE-CURRENT-DECISIONS.md) and an explicit glossary.
-2. **First-action state:** one “Next” button cannot cover browse-next, rotate-now, queue-next and simulator-next. Commands and copy must be distinct. See [typed state contract](GLIMPSE-TECHNICAL-BEHAVIOR-CONTRACTS.md).
-3. **Reel scope:** previous designs specified a reel *image browser* but not a selector for collections, destinations or visually previewable variants. [Critical reel audit](GLIMPSE-REEL-UX-CRITICAL-AUDIT.md) now offers candidate types with strong rejects for arbitrary settings.
+1. **Naming/authority:** current PRODUCT-SPECIFICATION and NATIVE-ANDROID-ARCHITECTURE still have user-visible **Waltz, Today, Rhythms, Scenes, Rules, Next** while Glimpse uses **Home, Collections, Discover, Automation, Next photo/Change now**. Do not bulk replace domain terms: Scene and Rule remain valid **internal concepts**. Use [current decisions](../planning/current-decisions.md) and an explicit glossary.
+2. **First-action state:** one “Next” button cannot cover browse-next, rotate-now, queue-next and simulator-next. Commands and copy must be distinct. See [typed state contract](../architecture/behavior-contracts.md).
+3. **Reel scope:** previous designs specified a reel *image browser* but not a selector for collections, destinations or visually previewable variants. [Critical reel audit](../design/reel-ux-audit.md) now offers candidate types with strong rejects for arbitrary settings.
 4. **Native schedule limitation:** WorkManager cannot promise a periodic five-minute wake; background wake/lock/geofence/precise 8pm claims are gated proposals. Sideload status does not relax Android battery rules. Confirm actual hardware/API behavior before advertising automatic results.
 5. **Google Photos auto-sync:** Photo Picker provides user-selected media, not ongoing whole-album sync. W08 must remain explicit stretch feasibility, not a standard supported adapter.
 6. **System-wide dynamic palette:** W29 requests changing OS extracted Material You colours. Glimpse can control its own theme and image content; arbitrary global wallpaper-derived colours may not be exposed to third-party apps. Label unsupported until verified.

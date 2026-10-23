@@ -163,8 +163,8 @@ Purpose: ensure casual flows remain effortless while nuanced, conditional, neste
 - **F071.** “I've just taken a screenshot and I want to paste or share it into Waltz, rotate it and crop out the rubbish, save it into one of my collections, and choose whether it replaces my wallpaper right now or just joins the lineup.”
 - **F072.** “I'm looking at a wallpaper I've saved and I want to send it to Google Lens to find out what I'm looking at, then come straight back without changing anything.”
 
-Detailed contracts, platform limitations and release tests: [SCREENSHOT-AND-LENS-FEATURES.md](SCREENSHOT-AND-LENS-FEATURES.md).
+Detailed contracts, platform limitations and release tests: [SCREENSHOT-AND-LENS-FEATURES.md](image-import-sharing.md).
 
 - **F073.** “I found a picture in my Waltz collection and I want to drop it into my chat with a friend, attach it to an email, ask ChatGPT about it, open it in my editing app, save a copy to Drive, or try Google Lens, without going hunting for the file or changing my wallpaper.”
 
-Universal Android sharing contracts and S073 test cases: [SCREENSHOT-AND-LENS-FEATURES.md](SCREENSHOT-AND-LENS-FEATURES.md).
+Universal Android sharing contracts and S073 test cases: [SCREENSHOT-AND-LENS-FEATURES.md](image-import-sharing.md).

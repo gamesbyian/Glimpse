@@ -1,4 +1,4 @@
-> **2026-10-22 clarification:** This 70-row matrix is historical first-pass accommodation, **not a final implementable contract**. See [all 73 feature decisions, gaps and gates](GLIMPSE-FEATURE-SPEC-COMPLETENESS-AUDIT.md) for W01–W70 and F071–F073 and [technical behavior/side-effect contracts](GLIMPSE-TECHNICAL-BEHAVIOR-CONTRACTS.md). Its legacy screen entry names are not current Glimpse UI labels. “P0–P1” here is historical rough planning; use current M1–M4 ordering. None of these rows is evidence that Android support exists yet.
+> **2026-10-22 clarification:** This 70-row matrix is historical first-pass accommodation, **not a final implementable contract**. See [all 73 feature decisions, gaps and gates](feature-audit.md) for W01–W70 and F071–F073 and [technical behavior/side-effect contracts](../architecture/behavior-contracts.md). Its legacy screen entry names are not current Glimpse UI labels. “P0–P1” here is historical rough planning; use current M1–M4 ordering. None of these rows is evidence that Android support exists yet.
 
 # Waltz — 70 workflow accommodation matrix
 

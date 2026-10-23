@@ -32,7 +32,7 @@ For each, record target device window dimensions and safe insets; don't hardcode
 
 ## Machine-readable starter contract
 
-The sibling [GLIMPSE-SCREEN-CONTRACT.json](GLIMPSE-SCREEN-CONTRACT.json) encodes the initial *design contract*, not a passing test result. It contains root navigation, five state distinctions, 12 critical screen conditions and forbidden assumptions. A future native harness should bind each entry to actual Compose semantics nodes and state repositories. Do not invent source selectors before code exists.
+The sibling [GLIMPSE-SCREEN-CONTRACT.json](../design/screen-contract.json) encodes the initial *design contract*, not a passing test result. It contains root navigation, five state distinctions, 12 critical screen conditions and forbidden assumptions. A future native harness should bind each entry to actual Compose semantics nodes and state repositories. Do not invent source selectors before code exists.
 
 ## Visual comparison rules
 
@@ -65,4 +65,4 @@ Normal screen/Compose changes: small set of semantic and visual checks for touch
 - `G16` Discover source provenance and rights labels; no unlabeled imagery confused for bundled wallpaper.
 - `G17` Home decorative crescent either has a defined action with usable bounds or is unambiguously passive.
 
-All are future *proposed fixture identifiers*, **not approved reference screenshots or automated tests already executed**. The [v4 source art critique](GLIMPSE-UI-SURFACE-CENSUS.md) lists visible omissions. No new native implementation is asserted.
+All are future *proposed fixture identifiers*, **not approved reference screenshots or automated tests already executed**. The [v4 source art critique](../design/ui-surface-inventory.md) lists visible omissions. No new native implementation is asserted.
