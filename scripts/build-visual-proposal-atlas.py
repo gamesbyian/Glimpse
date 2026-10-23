@@ -56,7 +56,7 @@ def main():
     if OUTPUT.exists():
         shutil.rmtree(OUTPUT)
     (OUTPUT / "design/atlas").mkdir(parents=True)
-    for filename in ("index.html", "storyboards.html", "README.md"):
+    for filename in ("index.html", "storyboards.html", "advanced-storyboards.html", "README.md"):
         shutil.copy2(ROOT / "design/atlas" / filename,
                      OUTPUT / "design/atlas" / filename)
     manifest = []
@@ -121,19 +121,56 @@ def main():
         dst = OUTPUT / jpg.relative_to(ROOT)
         dst.parent.mkdir(parents=True, exist_ok=True)
         shutil.copy2(jpg, dst)
+    # Eleven independently routed P1 groups share the same source-of-truth
+    # and clean-room privacy rules; they are additional storyboard frames,
+    # never additional canonical core screen families.
+    advanced = json.loads(
+        (ROOT / "design/proposals/advanced-storyboard-coverage.v1.json")
+        .read_text(encoding="utf-8")
+    )
+    advanced_groups = advanced["groups"]
+    assert [g["id"] for g in advanced_groups] == [
+        "x%02d" % i for i in range(13, 24)
+    ], "P1 storyboard grouping drift"
+    advanced_frames = [f for g in advanced_groups for f in g["frames"]]
+    assert len(advanced_frames) == 55
+    advanced_html = (ROOT / "design/atlas/advanced-storyboards.html").read_text(
+        encoding="utf-8"
+    )
+    match = re.search(r"const DATA=(\\[.*?\\]);\\s*let selected", advanced_html, re.DOTALL)
+    assert match, "P1 gallery data missing"
+    assert [(g["id"], [f["path"] for f in g["frames"]]) for g in
+            json.loads(match.group(1))] == [
+        (g["id"], [f["path"] for f in g["frames"]])
+        for g in advanced_groups
+    ], "P1 gallery registry differs from manifest"
+    advanced_manifest = []
+    for f in advanced_frames:
+        src = ROOT / f["path"]
+        assert src.is_file(), f["path"]
+        dst = OUTPUT / f["path"]
+        dst.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copy2(src, dst)
+        advanced_manifest.append({
+            "id": f["id"], "path": f["path"],
+            "sha256": hashlib.sha256(src.read_bytes()).hexdigest(),
+            "classification": "supplementary_P1_storyboard_draft",
+        })
     (OUTPUT / "manifest.json").write_text(
         json.dumps({
             "type": "Glimpse coherent reference proposals",
             "status": "not user approved and not Android runtime screenshots",
             "count": len(manifest),
             "storyboardCount": len(storyboard_manifest),
+            "advancedStoryboardCount": len(advanced_manifest),
+            "advancedStoryboardItems": advanced_manifest,
             "storyboardItems": storyboard_manifest,
             "items": manifest,
         }, indent=2) + "\n",
         encoding="utf-8"
     )
     print("Packaged", len(manifest), "original SVG references and",
-          len(storyboard_manifest), "storyboard frames. Open design/atlas/index.html or design/atlas/storyboards.html")
+          len(storyboard_manifest), "P0 and", len(advanced_manifest), "P1 frames. Open any design/atlas/*.html")
 
 
 if __name__ == "__main__":

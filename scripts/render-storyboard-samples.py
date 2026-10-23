@@ -18,6 +18,7 @@ except ImportError:
 ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / "artifacts/visual-proposal-atlas/storyboard-contact-sheet.png"
 groups = json.loads((ROOT / "design/proposals/storyboard-coverage.v1.json").read_text())["groups"]
+groups += json.loads((ROOT / "design/proposals/advanced-storyboard-coverage.v1.json").read_text())["groups"]
 width, image_h, label_h = 346, 276, 44
 sheet = Image.new("RGB",(3*width, len(groups)*(image_h+label_h)), "#f6f0e6")
 draw = ImageDraw.Draw(sheet)
