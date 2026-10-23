@@ -12,6 +12,8 @@ Date: 2026-10-22. **Planning only.** Translates Ring Road and ROYGBIV practice i
 
 Agent-created approximations must not be automatically promoted to reference baselines, and a beautiful fixed photograph may not conceal disconnected actions.
 
+**2026-10-23 correction:** The 24 original screen families and 16 new support families now have [consistent annotated source-editable proposals](../../design/proposals/README.md), not fully approved final screens. [Audit](../design/reference-gap-audit.md): 73 original workflows routed, 127 required and 59 conditional elements traced in text; 63 core state variants require full visual resolution. Eight high-priority reel boundary states and 34 support variants have additional plates. XML/traceability tests pass independently, but content completeness, exact pixel fidelity, physical device interactions and owner approval are **still open**. The old screen contract is not limited to 12 states; it contains **24** named surfaces.
+
 ## Minimum reference frames (baseline to curate with approved pixels)
 
 | ID | View / state | Invariant |
