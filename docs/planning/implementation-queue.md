@@ -2,6 +2,12 @@
 
 **Issue [#1](https://github.com/gamesbyian/Glimpse/issues/1) begins native development.** Historical Waltz specifications remain evidence, and [current decisions](current-decisions.md) retain authority.
 
+## Priority update: real owner testing, 2026-10-23
+
+A real installation successfully imported **22 Google Photos images** through the standard Android picker, set Home wallpaper and activated/observed five-minute shuffle with accurate visible status, with no reported crashes or sizing issues. Owner explicitly called the app generic and its present horizontal slot-strip **not a genuine Glimpse reel**. The natural attempt to **swipe through all 22 images** failed; reel image coverage/population looked incomplete. See [actual owner observation](../quality/first-slice-evidence.md).
+
+**Highest-priority next milestone:** replace the placeholder selector with the proposed large-window continuous tactile offscreen photo reel and working drag/swipe/settle traversal for the entire finite collection. Audit stable ID-to-aperture mapping on 0/1/3/5/22/60-item sets; validate boundary behavior, interrupted gestures, reduced motion, TalkBack/Previous/Next parity and Reel↔Grid selection identity. Do not broaden unrelated backend features first or solicit visual approval of an unimplemented design. Preserve the already-working import/apply/shuffle pathways.
+
 ## P0: first real debug APK
 
 - [x] Android project scaffold, Kotlin/Compose, Room/KSP, Gradle wrapper.
