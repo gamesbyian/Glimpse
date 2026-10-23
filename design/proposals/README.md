@@ -34,6 +34,8 @@ Before an optical signoff, inspect the whole SVG including the right annotation,
 
 The companion [six representative flow sheets](../atlas/representative-flows.html) groups 60 connected draft frames to judge reel boundaries/poses, Google Photos import, OS apply and rotation outcomes, editing/share payloads and accessibility/errors together. X05 frames now carry explicit selection/pose metadata and motion transitions; X11 and X13 distinguish source `p12` from edited `p12c` in visible results and metadata. Run `python3 scripts/validate-storyboard-semantics.py` for small semantic assertions. The optional `scripts/render-visual-reference-sheets.py` makes real raster sheet PNGs for **subsequent** visual inspection.
 
+**Optical reconnaissance:** [the 2026-10-23 actual raster review log](../../docs/design/optical-review-log-2026-10-23.md) documents eight X05 broken photo scenes (repaired with embedded data URIs), a falsely unrotated X11 preview (repaired), improved X09 large-type reflow, and still-open X07 reel-fidelity differences. The `scripts/validate-svg-photo-portability.py` check prevents unbundled image links. The optical evidence comes from the prior main artifact plus individually inspected local patches; the full updated PR remains optically **unverified**.
+
 ## Initial review set
 
 These images should be judged **together** as the earliest coherent proposed family:
