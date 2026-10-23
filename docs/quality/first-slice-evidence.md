@@ -31,15 +31,17 @@ Native Android Photo Picker snapshot → local private image copies with SHA-256
 
 The local development container had no Android SDK. GitHub Actions installed the published Android 37.0 package and built successfully. [Run 39904252446](https://github.com/gamesbyian/Glimpse/actions/runs/39904252446), source SHA `73f09984431de22c31993105d7fc0eef8bd1d3c3`, reports `BUILD SUCCESSFUL`, `:app:compileDebugKotlin`, `:app:assembleDebug`, and `:app:testDebugUnitTest` all succeeded. Artifact `glimpse-debug-test-only`, ID `12480286986`, approximately 10.6 MB compressed. No Android runtime/emulator/human test has been performed, and an APK building is not proof of feature correctness. The source code or a static design drawing is not a successful device test.
 
+**Workflow-ID correction:** W01 defines the full import-and-shuffle journey; W57 defines simulation; W60 defines pin/hold expiry. An earlier ledger used these IDs incorrectly for generic navigation. The corrected rows below use screen/command labels and do not redefine those workflows.
+
 ## Prediction → observation → discrepancy → decision
 
 | Journey | Anticipated first action and result | Observed human/device behavior | Discrepancy / decision |
 |---|---|---|---|
-| W01: switch collection | Tap named collection chip; preview content changes, wallpaper remains unchanged | Pending uncoached owner | Pending |
-| W57: browse known photo | Tap reel slot or Previous/Next; stable selected photo and finite position indicator | Pending uncoached owner | Pending |
+| Reel collection switch (screen contract) | Tap named collection chip; preview content changes, wallpaper remains unchanged | Pending uncoached owner | Pending |
+| Reel browse (screen contract) | Tap reel slot or Previous/Next; stable selected photo and finite position indicator | Pending uncoached owner | Pending |
 | F071: import screenshot | Tap Add photos; native picker; photo appears as private offline snapshot without changing original | Pending real device | Pending |
 | F073: share original/crop | User expects Android Sharesheet; not yet implemented in initial slice | Not testable in current prototype | Schedule after first slice |
-| W60: immediate/set vs rotate | Distinguish Set Home wallpaper now from Start shuffle; no implicit apply on browse | Pending uncoached owner | Pending |
+| Preview vs immediate apply vs rotation (state contract) | Distinguish Set Home wallpaper now from Start shuffle; no implicit apply on browse | Pending uncoached owner | Pending |
 | Reel vs Grid, 3/60 photos | Grid preserves selected photo; 3-item reel has blank end slots rather than fabricated photos | Pending real device and owner | Pending |
 | Interruption and uncertainty | OS unacknowledged/pending apply never advances shuffle bag automatically | Pending fault injection | Pending |
 | TalkBack / 200% text | Conventional buttons expose browse/apply without gestures; no clipping or focus traps | Pending accessibility device test | Pending |
