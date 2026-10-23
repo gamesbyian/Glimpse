@@ -54,6 +54,30 @@ def screen_geometry():
     return w, h, dpi
 
 
+def clear_system_obstructions():
+    """A valid atlas image must never be obscured by an Android ANR dialog."""
+    for _ in range(3):
+        try:
+            xml = hierarchy()
+        except Exception:
+            return
+        if "isn't responding" not in xml and "is not responding" not in xml:
+            return
+        root = ET.fromstring(xml)
+        wait = next((n for n in root.iter("node")
+                     if n.attrib.get("text") == "Wait"), None)
+        if wait is None:
+            raise RuntimeError("System ANR obscures Glimpse; no safe Wait control")
+        bounds = re.findall(r"\\d+", wait.attrib.get("bounds", ""))
+        if len(bounds) != 4:
+            raise RuntimeError("System ANR has no tappable Wait bounds")
+        a,b,c,d = map(int, bounds)
+        adb("shell", "input", "tap", str((a+c)//2), str((b+d)//2))
+        time.sleep(2.0)
+    xml = hierarchy()
+    if "isn't responding" in xml or "is not responding" in xml:
+        raise RuntimeError("System ANR still obscures Glimpse after Wait")
+
 def start_fixture(count, active=False):
     """Seed debug Room and confirm completion via a local marker, not UI text."""
     # ONLY use on a disposable emulator/test device; destroys Glimpse data.
@@ -73,6 +97,7 @@ def start_fixture(count, active=False):
         if result.startswith(marker):
             time.sleep(2.0)  # Compose first layout and image reads
             print("Fixture ready:", result, flush=True)
+            clear_system_obstructions()
             return
     capture_failure("fixture-not-ready-" + str(count), result)
     raise RuntimeError("Fixture never wrote " + marker +
@@ -103,6 +128,7 @@ def capture_failure(slug, detail):
 
 
 def click_label(expected):
+    clear_system_obstructions()
     xml = hierarchy()
     root = ET.fromstring(xml)
     for node in root.iter("node"):
@@ -151,6 +177,7 @@ def inspect_controls(xml, dpi):
 
 
 def capture(slug, explanation):
+    clear_system_obstructions()
     w, h, dpi = screen_geometry()
     raw = adb("exec-out", "screencap", "-p", binary=True)
     if not raw.startswith(b"\x89PNG\r\n\x1a\n") or len(raw) < 15000:
