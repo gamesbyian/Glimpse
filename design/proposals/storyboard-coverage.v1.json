@@ -1,0 +1,924 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-10-23",
+  "status": "DRAFT_NOT_APPROVED",
+  "source": "docs/design/proposal-mockup-coverage-gaps-2026-10-23.md",
+  "counts": {
+    "originalCurrentGenerationSvg": 66,
+    "P0PackagesPlanned": 12,
+    "P0PackagesWithStoryboardFrames": 12,
+    "additionalStoryboardSvg": 82,
+    "remainingP1Packages": 11,
+    "remainingP2Packages": 4
+  },
+  "authority": "Storyboard frames are supplementary; never count as original 66 core/support plates or physical-device acceptance.",
+  "rules": [
+    "Reference selectedAssetId and target consistently where depicted; do not infer it from filenames.",
+    "OS picker/chooser art is illustrative and owned by Android, not exact OEM UI.",
+    "No before/after storyboard proves latency, gestures, OS acknowledgement or correct real-world behavior.",
+    "Sequence links are semantic requirements, not implemented navigation.",
+    "External image fixtures are public research artwork only. No personal images."
+  ],
+  "groups": [
+    {
+      "id": "x01",
+      "title": "Bulk Google Photos import",
+      "priority": "P0",
+      "flowType": "linear",
+      "invariant": "Photo Picker is external Android-owned UI; cloud item selection is not a completed offline copy",
+      "originalWorkflows": [
+        "W01",
+        "F071"
+      ],
+      "frames": [
+        {
+          "id": "01-collection-entry",
+          "path": "design/proposals/storyboards/x01/01-collection-entry.svg",
+          "caption": "Collection Entry",
+          "ordinal": 1,
+          "status": "draft-not-owner-approved",
+          "sourceAssetId": "public-research-photo-embedded"
+        },
+        {
+          "id": "02-system-picker",
+          "path": "design/proposals/storyboards/x01/02-system-picker.svg",
+          "caption": "System Picker",
+          "ordinal": 2,
+          "status": "draft-not-owner-approved",
+          "sourceAssetId": "public-research-photo-embedded"
+        },
+        {
+          "id": "03-cloud-pending",
+          "path": "design/proposals/storyboards/x01/03-cloud-pending.svg",
+          "caption": "Cloud Pending",
+          "ordinal": 3,
+          "status": "draft-not-owner-approved",
+          "sourceAssetId": "public-research-photo-embedded"
+        },
+        {
+          "id": "04-copy-progress",
+          "path": "design/proposals/storyboards/x01/04-copy-progress.svg",
+          "caption": "Copy Progress",
+          "ordinal": 4,
+          "status": "draft-not-owner-approved",
+          "sourceAssetId": "public-research-photo-embedded"
+        },
+        {
+          "id": "05-partial-recovery",
+          "path": "design/proposals/storyboards/x01/05-partial-recovery.svg",
+          "caption": "Partial Recovery",
+          "ordinal": 5,
+          "status": "draft-not-owner-approved",
+          "sourceAssetId": "public-research-photo-embedded"
+        },
+        {
+          "id": "06-import-result",
+          "path": "design/proposals/storyboards/x01/06-import-result.svg",
+          "caption": "Import Result",
+          "ordinal": 6,
+          "status": "draft-not-owner-approved",
+          "sourceAssetId": "public-research-photo-embedded"
+        },
+        {
+          "id": "07-offline-ready",
+          "path": "design/proposals/storyboards/x01/07-offline-ready.svg",
+          "caption": "Offline Ready",
+          "ordinal": 7,
+          "status": "draft-not-owner-approved",
+          "sourceAssetId": "public-research-photo-embedded"
+        }
+      ],
+      "transitions": [
+        {
+          "from": "01-collection-entry",
+          "to": "02-system-picker",
+          "requires": "explicit user or OS outcome as described by scene",
+          "claimsRuntimeProof": false
+        },
+        {
+          "from": "02-system-picker",
+          "to": "03-cloud-pending",
+          "requires": "explicit user or OS outcome as described by scene",
+          "claimsRuntimeProof": false
+        },
+        {
+          "from": "03-cloud-pending",
+          "to": "04-copy-progress",
+          "requires": "explicit user or OS outcome as described by scene",
+          "claimsRuntimeProof": false
+        },
+        {
+          "from": "04-copy-progress",
+          "to": "05-partial-recovery",
+          "requires": "explicit user or OS outcome as described by scene",
+          "claimsRuntimeProof": false
+        },
+        {
+          "from": "05-partial-recovery",
+          "to": "06-import-result",
+          "requires": "explicit user or OS outcome as described by scene",
+          "claimsRuntimeProof": false
+        },
+        {
+          "from": "06-import-result",
+          "to": "07-offline-ready",
+          "requires": "explicit user or OS outcome as described by scene",
+          "claimsRuntimeProof": false
+        }
+      ]
+    },
+    {
+      "id": "x02",
+      "title": "Collection creation and management",
+      "priority": "P0",
+      "flowType": "branching",
+      "invariant": "Every mutation requires explicit scope; changes never mutate Google Photos originals",
+      "originalWorkflows": [
+        "W01",
+        "W03",
+        "W05"
+      ],
+      "frames": [
+        {
+          "id": "01-collection-list",
+          "path": "design/proposals/storyboards/x02/01-collection-list.svg",
+          "caption": "Collection List",
+          "ordinal": 1,
+          "status": "draft-not-owner-approved",
+          "sourceAssetId": "synthetic-rainbow-photo-illustration"
+        },
+        {
+          "id": "02-create-sheet",
+          "path": "design/proposals/storyboards/x02/02-create-sheet.svg",
+          "caption": "Create Sheet",
+          "ordinal": 2,
+          "status": "draft-not-owner-approved",
+          "sourceAssetId": "synthetic-rainbow-photo-illustration"
+        },
+        {
+          "id": "03-import-target",
+          "path": "design/proposals/storyboards/x02/03-import-target.svg",
+          "caption": "Import Target",
+          "ordinal": 3,
+          "status": "draft-not-owner-approved",
+          "sourceAssetId": "synthetic-rainbow-photo-illustration"
+        },
+        {
+          "id": "04-rename",
+          "path": "design/proposals/storyboards/x02/04-rename.svg",
+          "caption": "Rename",
+          "ordinal": 4,
+          "status": "draft-not-owner-approved",
+          "sourceAssetId": "synthetic-rainbow-photo-illustration"
+        },
+        {
+          "id": "05-delete-confirm",
+          "path": "design/proposals/storyboards/x02/05-delete-confirm.svg",
+          "caption": "Delete Confirm",
+          "ordinal": 5,
+          "status": "draft-not-owner-approved",
+          "sourceAssetId": "synthetic-rainbow-photo-illustration"
+        },
+        {
+          "id": "06-empty-after-removal",
+          "path": "design/proposals/storyboards/x02/06-empty-after-removal.svg",
+          "caption": "Empty After Removal",
+          "ordinal": 6,
+          "status": "draft-not-owner-approved",
+          "sourceAssetId": "synthetic-rainbow-photo-illustration"
+        }
+      ],
+      "transitions": []
+    },
+    {
+      "id": "x03",
+      "title": "Wallpaper application transaction",
+      "priority": "P0",
+      "flowType": "branching",
+      "invariant": "Do not claim applied when Android outcome is uncertain; target-specific result",
+      "originalWorkflows": [
+        "W21",
+        "W54"
+      ],
+      "frames": [
+        {
+          "id": "01-preview",
+          "path": "design/proposals/storyboards/x03/01-preview.svg",
+          "caption": "Preview",
+          "ordinal": 1,
+          "status": "draft-not-owner-approved",
+          "sourceAssetId": "public-research-photo-embedded"
+        },
+        {
+          "id": "02-choose-target",
+          "path": "design/proposals/storyboards/x03/02-choose-target.svg",
+          "caption": "Choose Target",
+          "ordinal": 2,
+          "status": "draft-not-owner-approved",
+          "sourceAssetId": "public-research-photo-embedded"
+        },
+        {
+          "id": "03-pending",
+          "path": "design/proposals/storyboards/x03/03-pending.svg",
+          "caption": "Pending",
+          "ordinal": 3,
+          "status": "draft-not-owner-approved",
+          "sourceAssetId": "public-research-photo-embedded"
+        },
+        {
+          "id": "04-acknowledged",
+          "path": "design/proposals/storyboards/x03/04-acknowledged.svg",
+          "caption": "Acknowledged",
+          "ordinal": 4,
+          "status": "draft-not-owner-approved",
+          "sourceAssetId": "public-research-photo-embedded"
+        },
+        {
+          "id": "05-uncertain",
+          "path": "design/proposals/storyboards/x03/05-uncertain.svg",
+          "caption": "Uncertain",
+          "ordinal": 5,
+          "status": "draft-not-owner-approved",
+          "sourceAssetId": "public-research-photo-embedded"
+        },
+        {
+          "id": "06-failed",
+          "path": "design/proposals/storyboards/x03/06-failed.svg",
+          "caption": "Failed",
+          "ordinal": 6,
+          "status": "draft-not-owner-approved",
+          "sourceAssetId": "public-research-photo-embedded"
+        },
+        {
+          "id": "07-unsupported",
+          "path": "design/proposals/storyboards/x03/07-unsupported.svg",
+          "caption": "Unsupported",
+          "ordinal": 7,
+          "status": "draft-not-owner-approved",
+          "sourceAssetId": "public-research-photo-embedded"
+        }
+      ],
+      "transitions": []
+    },
+    {
+      "id": "x04",
+      "title": "Active-use shuffle lifecycle",
+      "priority": "P0",
+      "flowType": "linear",
+      "invariant": "Five-minute eligibility while in use is not an OS wake guarantee",
+      "originalWorkflows": [
+        "W01",
+        "W17",
+        "W60"
+      ],
+      "frames": [
+        {
+          "id": "01-ready",
+          "path": "design/proposals/storyboards/x04/01-ready.svg",
+          "caption": "Ready",
+          "ordinal": 1,
+          "status": "draft-not-owner-approved",
+          "sourceAssetId": "public-research-photo-embedded"
+        },
+        {
+          "id": "02-start",
+          "path": "design/proposals/storyboards/x04/02-start.svg",
+          "caption": "Start",
+          "ordinal": 2,
+          "status": "draft-not-owner-approved",
+          "sourceAssetId": "public-research-photo-embedded"
+        },
+        {
+          "id": "03-active",
+          "path": "design/proposals/storyboards/x04/03-active.svg",
+          "caption": "Active",
+          "ordinal": 3,
+          "status": "draft-not-owner-approved",
+          "sourceAssetId": "public-research-photo-embedded"
+        },
+        {
+          "id": "04-delayed",
+          "path": "design/proposals/storyboards/x04/04-delayed.svg",
+          "caption": "Delayed",
+          "ordinal": 4,
+          "status": "draft-not-owner-approved",
+          "sourceAssetId": "public-research-photo-embedded"
+        },
+        {
+          "id": "05-paused",
+          "path": "design/proposals/storyboards/x04/05-paused.svg",
+          "caption": "Paused",
+          "ordinal": 5,
+          "status": "draft-not-owner-approved",
+          "sourceAssetId": "public-research-photo-embedded"
+        },
+        {
+          "id": "06-resumed",
+          "path": "design/proposals/storyboards/x04/06-resumed.svg",
+          "caption": "Resumed",
+          "ordinal": 6,
+          "status": "draft-not-owner-approved",
+          "sourceAssetId": "public-research-photo-embedded"
+        },
+        {
+          "id": "07-stopped",
+          "path": "design/proposals/storyboards/x04/07-stopped.svg",
+          "caption": "Stopped",
+          "ordinal": 7,
+          "status": "draft-not-owner-approved",
+          "sourceAssetId": "public-research-photo-embedded"
+        }
+      ],
+      "transitions": [
+        {
+          "from": "01-ready",
+          "to": "02-start",
+          "requires": "explicit user or OS outcome as described by scene",
+          "claimsRuntimeProof": false
+        },
+        {
+          "from": "02-start",
+          "to": "03-active",
+          "requires": "explicit user or OS outcome as described by scene",
+          "claimsRuntimeProof": false
+        },
+        {
+          "from": "03-active",
+          "to": "04-delayed",
+          "requires": "explicit user or OS outcome as described by scene",
+          "claimsRuntimeProof": false
+        },
+        {
+          "from": "04-delayed",
+          "to": "05-paused",
+          "requires": "explicit user or OS outcome as described by scene",
+          "claimsRuntimeProof": false
+        },
+        {
+          "from": "05-paused",
+          "to": "06-resumed",
+          "requires": "explicit user or OS outcome as described by scene",
+          "claimsRuntimeProof": false
+        },
+        {
+          "from": "06-resumed",
+          "to": "07-stopped",
+          "requires": "explicit user or OS outcome as described by scene",
+          "claimsRuntimeProof": false
+        }
+      ]
+    },
+    {
+      "id": "x05",
+      "title": "Paper-reel physical motion",
+      "priority": "P0",
+      "flowType": "keyframes",
+      "invariant": "Motion frames must keep photo ID mapping, pointer and snap semantics consistent",
+      "originalWorkflows": [
+        "W55",
+        "W67"
+      ],
+      "frames": [
+        {
+          "id": "01-rest",
+          "path": "design/proposals/storyboards/x05/01-rest.svg",
+          "caption": "Rest",
+          "ordinal": 1,
+          "status": "draft-not-owner-approved",
+          "sourceAssetId": "public-research-photos-external"
+        },
+        {
+          "id": "02-touch-down",
+          "path": "design/proposals/storyboards/x05/02-touch-down.svg",
+          "caption": "Touch Down",
+          "ordinal": 2,
+          "status": "draft-not-owner-approved",
+          "sourceAssetId": "public-research-photos-external"
+        },
+        {
+          "id": "03-drag-18",
+          "path": "design/proposals/storyboards/x05/03-drag-18.svg",
+          "caption": "Drag 18",
+          "ordinal": 3,
+          "status": "draft-not-owner-approved",
+          "sourceAssetId": "public-research-photos-external"
+        },
+        {
+          "id": "04-drag-36",
+          "path": "design/proposals/storyboards/x05/04-drag-36.svg",
+          "caption": "Drag 36",
+          "ordinal": 4,
+          "status": "draft-not-owner-approved",
+          "sourceAssetId": "public-research-photos-external"
+        },
+        {
+          "id": "05-snap-72",
+          "path": "design/proposals/storyboards/x05/05-snap-72.svg",
+          "caption": "Snap 72",
+          "ordinal": 5,
+          "status": "draft-not-owner-approved",
+          "sourceAssetId": "public-research-photos-external"
+        },
+        {
+          "id": "06-reverse-18",
+          "path": "design/proposals/storyboards/x05/06-reverse-18.svg",
+          "caption": "Reverse 18",
+          "ordinal": 6,
+          "status": "draft-not-owner-approved",
+          "sourceAssetId": "public-research-photos-external"
+        },
+        {
+          "id": "07-interrupted",
+          "path": "design/proposals/storyboards/x05/07-interrupted.svg",
+          "caption": "Interrupted",
+          "ordinal": 7,
+          "status": "draft-not-owner-approved",
+          "sourceAssetId": "public-research-photos-external"
+        },
+        {
+          "id": "08-last",
+          "path": "design/proposals/storyboards/x05/08-last.svg",
+          "caption": "Last",
+          "ordinal": 8,
+          "status": "draft-not-owner-approved",
+          "sourceAssetId": "public-research-photos-external"
+        }
+      ],
+      "transitions": []
+    },
+    {
+      "id": "x06",
+      "title": "Finite reel edge and scale",
+      "priority": "P0",
+      "flowType": "comparison",
+      "invariant": "Exactly five apertures regardless of total 0,1,3,5,22,60",
+      "originalWorkflows": [
+        "W55",
+        "W67"
+      ],
+      "frames": [
+        {
+          "id": "01-first",
+          "path": "design/proposals/storyboards/x06/01-first.svg",
+          "caption": "First",
+          "ordinal": 1,
+          "status": "draft-not-owner-approved",
+          "sourceAssetId": "synthetic-rainbow-photo-illustration"
+        },
+        {
+          "id": "02-single",
+          "path": "design/proposals/storyboards/x06/02-single.svg",
+          "caption": "Single",
+          "ordinal": 2,
+          "status": "draft-not-owner-approved",
+          "sourceAssetId": "synthetic-rainbow-photo-illustration"
+        },
+        {
+          "id": "03-three",
+          "path": "design/proposals/storyboards/x06/03-three.svg",
+          "caption": "Three",
+          "ordinal": 3,
+          "status": "draft-not-owner-approved",
+          "sourceAssetId": "synthetic-rainbow-photo-illustration"
+        },
+        {
+          "id": "04-exact-five",
+          "path": "design/proposals/storyboards/x06/04-exact-five.svg",
+          "caption": "Exact Five",
+          "ordinal": 4,
+          "status": "draft-not-owner-approved",
+          "sourceAssetId": "synthetic-rainbow-photo-illustration"
+        },
+        {
+          "id": "05-twenty-two",
+          "path": "design/proposals/storyboards/x06/05-twenty-two.svg",
+          "caption": "Twenty Two",
+          "ordinal": 5,
+          "status": "draft-not-owner-approved",
+          "sourceAssetId": "synthetic-rainbow-photo-illustration"
+        },
+        {
+          "id": "06-sixty",
+          "path": "design/proposals/storyboards/x06/06-sixty.svg",
+          "caption": "Sixty",
+          "ordinal": 6,
+          "status": "draft-not-owner-approved",
+          "sourceAssetId": "synthetic-rainbow-photo-illustration"
+        },
+        {
+          "id": "07-last",
+          "path": "design/proposals/storyboards/x06/07-last.svg",
+          "caption": "Last",
+          "ordinal": 7,
+          "status": "draft-not-owner-approved",
+          "sourceAssetId": "synthetic-rainbow-photo-illustration"
+        }
+      ],
+      "transitions": []
+    },
+    {
+      "id": "x07",
+      "title": "Reel / Grid / photo detail continuity",
+      "priority": "P0",
+      "flowType": "branching",
+      "invariant": "Selection identity persists; browsing does not apply wallpaper",
+      "originalWorkflows": [
+        "W55",
+        "W67"
+      ],
+      "frames": [
+        {
+          "id": "01-reel-focus",
+          "path": "design/proposals/storyboards/x07/01-reel-focus.svg",
+          "caption": "Reel Focus",
+          "ordinal": 1,
+          "status": "draft-not-owner-approved",
+          "sourceAssetId": "synthetic-rainbow-photo-illustration"
+        },
+        {
+          "id": "02-grid-focus",
+          "path": "design/proposals/storyboards/x07/02-grid-focus.svg",
+          "caption": "Grid Focus",
+          "ordinal": 2,
+          "status": "draft-not-owner-approved",
+          "sourceAssetId": "synthetic-rainbow-photo-illustration"
+        },
+        {
+          "id": "03-photo-detail",
+          "path": "design/proposals/storyboards/x07/03-photo-detail.svg",
+          "caption": "Photo Detail",
+          "ordinal": 3,
+          "status": "draft-not-owner-approved",
+          "sourceAssetId": "synthetic-rainbow-photo-illustration"
+        },
+        {
+          "id": "04-back-reel",
+          "path": "design/proposals/storyboards/x07/04-back-reel.svg",
+          "caption": "Back Reel",
+          "ordinal": 4,
+          "status": "draft-not-owner-approved",
+          "sourceAssetId": "synthetic-rainbow-photo-illustration"
+        },
+        {
+          "id": "05-switch-collection",
+          "path": "design/proposals/storyboards/x07/05-switch-collection.svg",
+          "caption": "Switch Collection",
+          "ordinal": 5,
+          "status": "draft-not-owner-approved",
+          "sourceAssetId": "synthetic-rainbow-photo-illustration"
+        },
+        {
+          "id": "06-return-original",
+          "path": "design/proposals/storyboards/x07/06-return-original.svg",
+          "caption": "Return Original",
+          "ordinal": 6,
+          "status": "draft-not-owner-approved",
+          "sourceAssetId": "synthetic-rainbow-photo-illustration"
+        },
+        {
+          "id": "07-multi-select",
+          "path": "design/proposals/storyboards/x07/07-multi-select.svg",
+          "caption": "Multi Select",
+          "ordinal": 7,
+          "status": "draft-not-owner-approved",
+          "sourceAssetId": "synthetic-rainbow-photo-illustration"
+        }
+      ],
+      "transitions": []
+    },
+    {
+      "id": "x08",
+      "title": "Compact handset information hierarchy",
+      "priority": "P0",
+      "flowType": "comparison",
+      "invariant": "Home and collection tasks lead; status/setup not dominant",
+      "originalWorkflows": [
+        "W01",
+        "W04"
+      ],
+      "frames": [
+        {
+          "id": "01-home-active",
+          "path": "design/proposals/storyboards/x08/01-home-active.svg",
+          "caption": "Home Active",
+          "ordinal": 1,
+          "status": "draft-not-owner-approved",
+          "sourceAssetId": "synthetic-rainbow-photo-illustration"
+        },
+        {
+          "id": "02-collections",
+          "path": "design/proposals/storyboards/x08/02-collections.svg",
+          "caption": "Collections",
+          "ordinal": 2,
+          "status": "draft-not-owner-approved",
+          "sourceAssetId": "synthetic-rainbow-photo-illustration"
+        },
+        {
+          "id": "03-reel-hero",
+          "path": "design/proposals/storyboards/x08/03-reel-hero.svg",
+          "caption": "Reel Hero",
+          "ordinal": 3,
+          "status": "draft-not-owner-approved",
+          "sourceAssetId": "synthetic-rainbow-photo-illustration"
+        },
+        {
+          "id": "04-grid-dense",
+          "path": "design/proposals/storyboards/x08/04-grid-dense.svg",
+          "caption": "Grid Dense",
+          "ordinal": 4,
+          "status": "draft-not-owner-approved",
+          "sourceAssetId": "synthetic-rainbow-photo-illustration"
+        },
+        {
+          "id": "05-long-title",
+          "path": "design/proposals/storyboards/x08/05-long-title.svg",
+          "caption": "Long Title",
+          "ordinal": 5,
+          "status": "draft-not-owner-approved",
+          "sourceAssetId": "synthetic-rainbow-photo-illustration"
+        },
+        {
+          "id": "06-status-collapsed",
+          "path": "design/proposals/storyboards/x08/06-status-collapsed.svg",
+          "caption": "Status Collapsed",
+          "ordinal": 6,
+          "status": "draft-not-owner-approved",
+          "sourceAssetId": "synthetic-rainbow-photo-illustration"
+        }
+      ],
+      "transitions": []
+    },
+    {
+      "id": "x09",
+      "title": "Large text, high contrast and motion stress",
+      "priority": "P0",
+      "flowType": "comparison",
+      "invariant": "Reference drawings are not actual TalkBack or Android scaling proof",
+      "originalWorkflows": [
+        "W68"
+      ],
+      "frames": [
+        {
+          "id": "01-home-200-text",
+          "path": "design/proposals/storyboards/x09/01-home-200-text.svg",
+          "caption": "Home 200 Text",
+          "ordinal": 1,
+          "status": "draft-not-owner-approved",
+          "sourceAssetId": "synthetic-rainbow-photo-illustration"
+        },
+        {
+          "id": "02-collections-long-name",
+          "path": "design/proposals/storyboards/x09/02-collections-long-name.svg",
+          "caption": "Collections Long Name",
+          "ordinal": 2,
+          "status": "draft-not-owner-approved",
+          "sourceAssetId": "synthetic-rainbow-photo-illustration"
+        },
+        {
+          "id": "03-reel-200-text",
+          "path": "design/proposals/storyboards/x09/03-reel-200-text.svg",
+          "caption": "Reel 200 Text",
+          "ordinal": 3,
+          "status": "draft-not-owner-approved",
+          "sourceAssetId": "synthetic-rainbow-photo-illustration"
+        },
+        {
+          "id": "04-grid-large-type",
+          "path": "design/proposals/storyboards/x09/04-grid-large-type.svg",
+          "caption": "Grid Large Type",
+          "ordinal": 4,
+          "status": "draft-not-owner-approved",
+          "sourceAssetId": "synthetic-rainbow-photo-illustration"
+        },
+        {
+          "id": "05-import-200-text",
+          "path": "design/proposals/storyboards/x09/05-import-200-text.svg",
+          "caption": "Import 200 Text",
+          "ordinal": 5,
+          "status": "draft-not-owner-approved",
+          "sourceAssetId": "synthetic-rainbow-photo-illustration"
+        },
+        {
+          "id": "06-apply-high-contrast",
+          "path": "design/proposals/storyboards/x09/06-apply-high-contrast.svg",
+          "caption": "Apply High Contrast",
+          "ordinal": 6,
+          "status": "draft-not-owner-approved",
+          "sourceAssetId": "synthetic-rainbow-photo-illustration"
+        },
+        {
+          "id": "07-error-compact",
+          "path": "design/proposals/storyboards/x09/07-error-compact.svg",
+          "caption": "Error Compact",
+          "ordinal": 7,
+          "status": "draft-not-owner-approved",
+          "sourceAssetId": "synthetic-rainbow-photo-illustration"
+        },
+        {
+          "id": "08-help-dialog",
+          "path": "design/proposals/storyboards/x09/08-help-dialog.svg",
+          "caption": "Help Dialog",
+          "ordinal": 8,
+          "status": "draft-not-owner-approved",
+          "sourceAssetId": "synthetic-rainbow-photo-illustration"
+        }
+      ],
+      "transitions": []
+    },
+    {
+      "id": "x10",
+      "title": "Failures and interruption recovery",
+      "priority": "P0",
+      "flowType": "branching",
+      "invariant": "No implicit success; recovered state and safe retry explicit",
+      "originalWorkflows": [
+        "W69",
+        "W70",
+        "F071"
+      ],
+      "frames": [
+        {
+          "id": "01-cloud-pending",
+          "path": "design/proposals/storyboards/x10/01-cloud-pending.svg",
+          "caption": "Cloud Pending",
+          "ordinal": 1,
+          "status": "draft-not-owner-approved",
+          "sourceAssetId": "synthetic-rainbow-photo-illustration"
+        },
+        {
+          "id": "02-uri-revoked",
+          "path": "design/proposals/storyboards/x10/02-uri-revoked.svg",
+          "caption": "Uri Revoked",
+          "ordinal": 2,
+          "status": "draft-not-owner-approved",
+          "sourceAssetId": "synthetic-rainbow-photo-illustration"
+        },
+        {
+          "id": "03-apply-unknown",
+          "path": "design/proposals/storyboards/x10/03-apply-unknown.svg",
+          "caption": "Apply Unknown",
+          "ordinal": 3,
+          "status": "draft-not-owner-approved",
+          "sourceAssetId": "synthetic-rainbow-photo-illustration"
+        },
+        {
+          "id": "04-storage-full",
+          "path": "design/proposals/storyboards/x10/04-storage-full.svg",
+          "caption": "Storage Full",
+          "ordinal": 4,
+          "status": "draft-not-owner-approved",
+          "sourceAssetId": "synthetic-rainbow-photo-illustration"
+        },
+        {
+          "id": "05-no-photos",
+          "path": "design/proposals/storyboards/x10/05-no-photos.svg",
+          "caption": "No Photos",
+          "ordinal": 5,
+          "status": "draft-not-owner-approved",
+          "sourceAssetId": "synthetic-rainbow-photo-illustration"
+        },
+        {
+          "id": "06-rotation-delayed",
+          "path": "design/proposals/storyboards/x10/06-rotation-delayed.svg",
+          "caption": "Rotation Delayed",
+          "ordinal": 6,
+          "status": "draft-not-owner-approved",
+          "sourceAssetId": "synthetic-rainbow-photo-illustration"
+        },
+        {
+          "id": "07-retry-explicit",
+          "path": "design/proposals/storyboards/x10/07-retry-explicit.svg",
+          "caption": "Retry Explicit",
+          "ordinal": 7,
+          "status": "draft-not-owner-approved",
+          "sourceAssetId": "synthetic-rainbow-photo-illustration"
+        }
+      ],
+      "transitions": []
+    },
+    {
+      "id": "x11",
+      "title": "Screenshot intake and editing",
+      "priority": "P0",
+      "flowType": "branching",
+      "invariant": "Immutable original; separately save/show-next/use-now and preserve target",
+      "originalWorkflows": [
+        "F071",
+        "F073"
+      ],
+      "frames": [
+        {
+          "id": "01-inbound-original",
+          "path": "design/proposals/storyboards/x11/01-inbound-original.svg",
+          "caption": "Inbound Original",
+          "ordinal": 1,
+          "status": "draft-not-owner-approved",
+          "sourceAssetId": "synthetic-rainbow-photo-illustration"
+        },
+        {
+          "id": "02-rotate",
+          "path": "design/proposals/storyboards/x11/02-rotate.svg",
+          "caption": "Rotate",
+          "ordinal": 2,
+          "status": "draft-not-owner-approved",
+          "sourceAssetId": "synthetic-rainbow-photo-illustration"
+        },
+        {
+          "id": "03-crop",
+          "path": "design/proposals/storyboards/x11/03-crop.svg",
+          "caption": "Crop",
+          "ordinal": 3,
+          "status": "draft-not-owner-approved",
+          "sourceAssetId": "synthetic-rainbow-photo-illustration"
+        },
+        {
+          "id": "04-save-only",
+          "path": "design/proposals/storyboards/x11/04-save-only.svg",
+          "caption": "Save Only",
+          "ordinal": 4,
+          "status": "draft-not-owner-approved",
+          "sourceAssetId": "synthetic-rainbow-photo-illustration"
+        },
+        {
+          "id": "05-show-next",
+          "path": "design/proposals/storyboards/x11/05-show-next.svg",
+          "caption": "Show Next",
+          "ordinal": 5,
+          "status": "draft-not-owner-approved",
+          "sourceAssetId": "synthetic-rainbow-photo-illustration"
+        },
+        {
+          "id": "06-use-now",
+          "path": "design/proposals/storyboards/x11/06-use-now.svg",
+          "caption": "Use Now",
+          "ordinal": 6,
+          "status": "draft-not-owner-approved",
+          "sourceAssetId": "synthetic-rainbow-photo-illustration"
+        },
+        {
+          "id": "07-cancel-undo",
+          "path": "design/proposals/storyboards/x11/07-cancel-undo.svg",
+          "caption": "Cancel Undo",
+          "ordinal": 7,
+          "status": "draft-not-owner-approved",
+          "sourceAssetId": "synthetic-rainbow-photo-illustration"
+        }
+      ],
+      "transitions": []
+    },
+    {
+      "id": "x12",
+      "title": "Touch, inset and accessible focus anatomy",
+      "priority": "P0",
+      "flowType": "comparison",
+      "invariant": "Measurement overlays only; actual touch/focus requires executable evidence",
+      "originalWorkflows": [
+        "W67",
+        "W68"
+      ],
+      "frames": [
+        {
+          "id": "01-reel-touch-regions",
+          "path": "design/proposals/storyboards/x12/01-reel-touch-regions.svg",
+          "caption": "Reel Touch Regions",
+          "ordinal": 1,
+          "status": "draft-not-owner-approved",
+          "sourceAssetId": "synthetic-rainbow-photo-illustration"
+        },
+        {
+          "id": "02-safe-area-navigation",
+          "path": "design/proposals/storyboards/x12/02-safe-area-navigation.svg",
+          "caption": "Safe Area Navigation",
+          "ordinal": 2,
+          "status": "draft-not-owner-approved",
+          "sourceAssetId": "synthetic-rainbow-photo-illustration"
+        },
+        {
+          "id": "03-keyboard-compose",
+          "path": "design/proposals/storyboards/x12/03-keyboard-compose.svg",
+          "caption": "Keyboard Compose",
+          "ordinal": 3,
+          "status": "draft-not-owner-approved",
+          "sourceAssetId": "synthetic-rainbow-photo-illustration"
+        },
+        {
+          "id": "04-talkback-focus",
+          "path": "design/proposals/storyboards/x12/04-talkback-focus.svg",
+          "caption": "Talkback Focus",
+          "ordinal": 4,
+          "status": "draft-not-owner-approved",
+          "sourceAssetId": "synthetic-rainbow-photo-illustration"
+        },
+        {
+          "id": "05-error-dialog-focus",
+          "path": "design/proposals/storyboards/x12/05-error-dialog-focus.svg",
+          "caption": "Error Dialog Focus",
+          "ordinal": 5,
+          "status": "draft-not-owner-approved",
+          "sourceAssetId": "synthetic-rainbow-photo-illustration"
+        }
+      ],
+      "transitions": []
+    }
+  ]
+}
