@@ -1,72 +1,56 @@
 # Glimpse
 
-**A tactile, local-first Android wallpaper manager.**
+**A tactile, local-first Android wallpaper manager, currently in design.**
 
-Glimpse is a planned native Android app for organizing, browsing, sharing, and automatically rotating wallpapers drawn from your own images and supported external sources. Its defining visual idea is a warm paper photo reel with five generous image windows, a continuous-feeling browse interaction, and a conventional grid alternative.
+Glimpse is a native Android wallpaper manager concept built around a large-aperture paper photo reel, purposeful browsing, offline collections, and reliable, understandable wallpaper rotation. It uses the user's photos and supported external sources rather than operating its own cloud library.
 
-> **Project status (22 October 2026): Design and engineering specification.** No functioning Android app, installable APK, or verified device implementation exists yet. Screens and deck artwork are proposals and references, not screenshots of running software.
+> **Status (2026-10-22): Specification and visual research only.** No Android app project, working UI, signed APK, or physical-device acceptance exists yet. Visual prototypes are proposals, not application screenshots.
 
-## The first useful experience
+## The first experience to build
 
-Import selected photos through the Android Photo Picker (including supported cloud-backed selections), save durable offline copies into a collection, and activate shuffled wallpaper rotation with a five-minute *active-use eligibility* interval. See the [Rainbow quickstart acceptance contract](RAINBOW-QUICKSTART-CONTRACT.md).
+Choose several photos with Android Photo Picker (including cloud-backed selections when exposed by the picker), make verified durable offline copies, create a collection, and start shuffled **five-minute active-use** wallpaper rotation. Android's battery restrictions prohibit promising exact wake-from-sleep timing. The app must distinguish *preview*, *eligible to change*, *requested change*, and *successfully applied*.
 
-Android may defer background work during sleep, Doze, or manufacturer power restrictions. Glimpse must show last successful change and next eligibility honestly instead of promising exact five-minute timing.
+The wallpaper browser uses a five-wide-window tactile paper reel, a large hero preview, honest finite photo counts, and an always-available Grid / View all alternative. Simply browsing a reel must never apply a wallpaper.
 
-## What Glimpse is designed to do
+## Documentation
 
-- **Browse with purpose.** A tactile, finite paper reel selects and previews photographs; rotating the reel never silently changes the applied wallpaper. Grid / View all provides equal access.
-- **Import and organize.** Use native Photo Picker, Android Sharesheet and document-provider integrations; maintain local collections and verified offline copies, with duplicates and failures explained.
-- **Apply and rotate.** Select home or lock destinations where supported, shuffle without replacement, manually advance or undo, pause and inspect scheduling outcomes.
-- **Edit and share.** Preview, rotate and crop screenshots or photos, save compositions, and share an original or edited copy to compatible Android apps through the system Sharesheet.
-- **Expand deliberately.** Add sources, widgets, Quick Settings actions, contextual schedules and explainable rules when useful without forcing advanced setup into the basic workflow.
-- **Stay private and accessible.** No Glimpse-hosted photo library, mandatory account, ad platform, or covert telemetry; preserve reduced-motion, TalkBack, keyboard, and large-text alternatives.
+**Start with [the current decisions](docs/planning/current-decisions.md).** More recent specific decisions take precedence over older working-title documents.
 
-Features above are **requirements and plans**, not implemented features.
-
-## Current design direction
-
-The selected aesthetic is a broad-aperture photographic **paper reel**, deliberately cropped at the screen edge and paired with a stationary, full-size hero image. The number of photos is real and finite. Specific dual-reel arrangements, control positions, and many deck mockups remain hypotheses rather than approved solutions.
-
-Start with the [current decisions](GLIMPSE-CURRENT-DECISIONS.md), [reel design](GLIMPSE-CONTINUOUS-REEL-DESIGN.md), [critical UX audit](GLIMPSE-REEL-UX-CRITICAL-AUDIT.md), [layout comparison](GLIMPSE-REEL-LAYOUT-COMPARISON-2026-10-22.md), and [motion/rendering plan](GLIMPSE-MOTION-RENDERING-ARCHITECTURE.md).
-
-## Documentation map
-
-| Need | Reference |
+| Topic | Start here |
 | --- | --- |
-| What is approved, provisional or blocked? | [Current decisions](GLIMPSE-CURRENT-DECISIONS.md) |
-| Complete product scope and historical context | [Product specification](PRODUCT-SPECIFICATION.md) |
-| Natural-language journeys | [70 workflows](70-HUMAN-WORKFLOWS.md), [screenshot and sharing requirements](SCREENSHOT-AND-LENS-FEATURES.md) |
-| Requirement completeness | [73-scenario feature audit](GLIMPSE-FEATURE-SPEC-COMPLETENESS-AUDIT.md) |
-| Command and state semantics | [Technical behavior contracts](GLIMPSE-TECHNICAL-BEHAVIOR-CONTRACTS.md), [screen contract](GLIMPSE-SCREEN-CONTRACT.json) |
-| Proposed Android stack | [Native Android architecture](NATIVE-ANDROID-ARCHITECTURE.md) |
-| Screen and interaction inventory | [UI surface census](GLIMPSE-UI-SURFACE-CENSUS.md), [human expectations walkthroughs](GLIMPSE-HUMAN-EXPECTATIONS-WALKTHROUGHS.md) |
-| Acceptance and next decisions | [Reference acceptance plan](GLIMPSE-REFERENCE-ACCEPTANCE-PLAN.md), [decision queue](GLIMPSE-SPEC-AUDIT-DECISION-QUEUE.md) |
-| Design references and provenance | [Design directory](design/), [asset inventory](ASSET-INVENTORY.md), [publication plan](GLIMPSE-ASSET-PUBLICATION-PLAN.md) |
-| Project conversation evidence | [Production diary](production-diary/2026-10-22-conversation-record.md) |
+| Product requirements | [Product specification](docs/product/product-specification.md), [73-scenario audit](docs/product/feature-audit.md) |
+| Primary acceptance journey | [Rainbow quickstart](docs/product/rainbow-quickstart.md), [user workflows](docs/product/workflows.md) |
+| Images, screenshots and sharesheet | [Import and sharing requirements](docs/product/image-import-sharing.md) |
+| UX and navigation | [Reel interaction](docs/design/reel-interaction.md), [critical UX audit](docs/design/reel-ux-audit.md), [surface inventory](docs/design/ui-surface-inventory.md) |
+| Reels and comparative evidence | [Reel layout comparison](docs/design/reel-layout-comparison.md), [human expectations](docs/design/human-expectations.md) |
+| Android implementation plan | [Native architecture](docs/architecture/android.md), [behavior contracts](docs/architecture/behavior-contracts.md), [motion/rendering](docs/architecture/reel-motion.md) |
+| Testable UI contracts | [Screen contract](docs/design/screen-contract.json), [reference acceptance](docs/quality/reference-acceptance.md) |
+| Work queue | [Decision queue](docs/planning/decision-queue.md) |
+| Design files and asset availability | [Design directory](design/README.md), [asset inventory](docs/assets.md) |
+| Development history | [Conversation record](docs/history/conversation-record-2026-10-22.md) |
 
-The long-form product specification was originally developed under the working title **Waltz**. Where older text disagrees with the current contracts, consult [current decisions](GLIMPSE-CURRENT-DECISIONS.md) before implementing.
+A [complete documentation map](docs/README.md) links the supporting matrices and plans.
 
-## Proposed implementation
+## Proposed technology
 
-The architecture currently favors **Kotlin**, **Jetpack Compose**, **Room**, Android's **Photo Picker / Storage Access Framework**, **WallpaperManager**, **WorkManager** with appropriately qualified timing guarantees, and **Glance** for widgets. The proposed deliverable is a native sideloadable Android APK. Nothing in this repository should be described as buildable until an Android project is actually present.
+Kotlin, Jetpack Compose, Room, Android Photo Picker / Storage Access Framework, WallpaperManager, WorkManager with truthful scheduling semantics, and Glance widgets. App build instructions will be added once a real Gradle/Android project exists.
 
-Initial engineering milestones:
+The initial vertical slice is **import → offline collection → preview → apply wallpaper → shuffle**. Advanced rules, visual refinements and provider integrations follow once the basic workflow works. Test real Android capabilities on actual hardware rather than claiming mockups prove implementation.
 
-1. Establish Android project, image storage, import pipeline and accessible navigation.
-2. Complete the Rainbow import → verified local collection → preview → home wallpaper → shuffled active-use rotation path.
-3. Prototype real reel semantics and animations, compare against Grid, and test on physical hardware.
-4. Add sharing, composition, diagnostics, widgets and deeper rules incrementally, with focused acceptance tests.
+## Repository conventions
 
-## Repository migration and assets
+- `docs/product/`: what the app should do and users expect
+- `docs/design/`: layout, behavior, screen semantics and human-expectations research
+- `docs/architecture/`: engineering design and platform constraints
+- `docs/planning/`: current decisions and remaining work
+- `docs/quality/`: acceptance plans
+- `docs/history/`: historical evidence, not current feature authority
+- `design/reference/`: reference drawings (schematic; no blanket pixel-perfect approval)
+- `design/research/`: alternative designs and their generators
+- `design/tokens/`: provisional brand tokens
 
-This repository was separated from `gamesbyian/general-purpose/Glimpse` on **22 October 2026**. Text specifications, vector design sketches, and source scripts were transferred directly. **Some large binary files and reference images may still reside only in the original directory**. The [asset inventory](ASSET-INVENTORY.md) records the original publication history; check the [source directory](https://github.com/gamesbyian/general-purpose/tree/main/Glimpse) before assuming a linked binary is present here. Do not delete the source folder until a complete inventory and hash comparison are verified. Some historical documents also link to issue numbers in the old repository.
+## Migration and provenance
 
-## Principles
+The planning material originated in the **private** `gamesbyian/general-purpose/Glimpse` directory and was separated into this repository on 2026-10-22. The source archive has been retained. Old Waltz slide decks, 16 superseded screen sketches, and temporary binary-transfer chunks are intentionally excluded. [Asset status and preservation notes](docs/assets.md) distinguish transferred materials from assets still in the private archive. The new repository is public, so image and font licensing must be confirmed before publishing additional fixture binaries.
 
-- Build the simple workflow first; make advanced controls discoverable rather than compulsory.
-- Treat preview, eligibility, requested application, and verified wallpaper application as separate states.
-- Design for Android permission, provider, and scheduling realities; disclose capability gaps.
-- Use the reel only when it meaningfully improves selection, orientation or navigation.
-- Preserve originals, provenance, reversibility, accessibility and user agency.
-
-**License:** No license has been established in the migrated repository. A license file should be chosen explicitly before claiming an open-source grant.
+No licence file has been selected. Until then, the repository's public visibility alone does not grant an open-source licence.

@@ -1,5 +1,10 @@
-# Waltz editable vector sketches
+# Design sources
 
-These sixteen SVGs are **new simplified vector design previews** produced to put some self-contained, GitHub-viewable visuals beside the written plan. They are not the original sixteen detailed PNG mockups, not physical-device screenshots, and not a replacement for the 34-slide binary deck. The complete original visual package is in the session's Waltz_Complete_Design_Archive.zip; see ../ASSET-INVENTORY.md.
+These files are **design-stage references**, not screenshots of a running Glimpse app.
 
-Design tokens are in brand-tokens.json. Each schematic is editable SVG with a self-contained palette and no font binaries or copyrighted third-party wallpaper photographs. Every screen follows the conceptual four-tab navigation and friendly rounded/paper aesthetic.
+- [Reference five-window paper reel](reference/five-window-reel.svg)
+- [Reference off-screen reel browser](reference/reel-browser-concept.svg)
+- [Provisional colors](tokens/brand.json)
+- [Controlled reel layout research](research/reel-layout/README.md)
+
+The source archive includes older Waltz-era 16-screen sketches and superseded decks, intentionally excluded here. For the current product direction and the limits of each mockup, start with [current decisions](../docs/planning/current-decisions.md) and [asset inventory](../docs/assets.md). Geometry/labels in mockups are hypotheses; the paper-reel aesthetic and spacious photographic windows are the accepted direction.
