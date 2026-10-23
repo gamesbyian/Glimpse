@@ -2,7 +2,7 @@ name: Glimpse visual references | one-shot branch validation
 
 # One-time push trigger: this workflow file being introduced/changed on the
 # dedicated visual PR branch. No triggers on ordinary source/docs pushes.
-# Rerun after fixing CI-discovered core evidence assertions and JPEG optical crops.
+# One-time rerun to include browser-openable exact workflow run/artifact provenance.
 # Keep opt-in dispatch for a future intentional fresh visual review.
 on:
   push:
@@ -70,6 +70,9 @@ jobs:
             echo "**Automated tool result only. No visual, native, accessibility, or owner approval.**"
             echo
             echo "- Workflow source commit: \`${GITHUB_SHA}\`"
+            echo "- Workflow run ID: \`${GITHUB_RUN_ID}\`"
+            echo "- Workflow run URL: https://github.com/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
+            echo "- Run attempt: \`${GITHUB_RUN_ATTEMPT}\`"
             echo "- Workflow result before publishing: \`${PROOF_STATUS}\`"
             echo "- Branch: \`${GITHUB_REF_NAME}\`"
             echo "- Review sets: named 34, source detail, reel/grid/crop/share and large text"
