@@ -102,7 +102,25 @@ def main():
                     if e.get("id") == "fixture1"]
         if matching != [x05fixture]:
             ERRORS.append("x07." + frame + ": p12 photographic pixels diverge from X05")
-    print(json.dumps({"cases": len(expected)+len(scale)+3+len(x07),
+    # Optical defects discovered in the first current-branch raster sheets.
+    # These are protective source assertions, not independent pixel proof.
+    optical_fixtures = {
+        "accessibility-high-contrast": ("High contrast   ON", "M320 272 L326 279 L341 261"),
+        "automation-paused": ("p12 · confirmed", 'x="110" y="466" width="145"'),
+        "automation-delayed": ("p12 · confirmed", 'x="115" y="485" width="145"'),
+        "quick-import-progress": ("Continue disabled until 100% verified", 'fill="#D9DEDA"'),
+        "image-editor-blur-extend": ('radialGradient id="extension-red"', 'radialGradient id="extension-blue"'),
+    }
+    for name, terms in optical_fixtures.items():
+        path = ROOT / "design/proposals/state-refinements" / (name + ".svg")
+        body = path.read_text(encoding="utf-8")
+        for term in terms:
+            if term not in body:
+                ERRORS.append(name + ": lost optical source invariant " + term)
+    blur = (ROOT / "design/proposals/state-refinements/image-editor-blur-extend.svg").read_text(encoding="utf-8")
+    if "feGaussianBlur" in blur:
+        ERRORS.append("image-editor-blur-extend: unsupported CairoSVG filter reintroduced")
+    print(json.dumps({"cases": len(expected)+len(scale)+3+len(x07)+len(optical_fixtures),
                       "semanticSourceErrors": ERRORS,
                       "opticalProof": False, "deviceProof": False,
                       "ownerApproval": False}, indent=2))
