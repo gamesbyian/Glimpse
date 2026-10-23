@@ -91,3 +91,10 @@ Each native crop is 401×890 and the `index.json` ledger records its source file
 ## Visual-mechanism refinement checkpoint
 
 Eight of the new state-specific phone drawings were upgraded beyond generic status cards: actual multiple collection rows, Lock crop clock-safe preview, device capability choices, grouped automation AND/OR conditions, photo exclusion membership, restore conflict radio alternatives, and distinct failed/unknown timeline histories. Source retrieval confirmed expected phone-side evidence and no simple text width overruns, but **no fresh raster or on-device check**. All 34 remain drafts; do not substitute this work for the planned 60-question audit.
+
+
+## Complete baseline optical sweep and last fixes
+
+The entire **66 original + 82 P0 + 55 P1 = 203** baseline proposal images were rendered to 203 exact-source-hashed native phone PNG crops in [successful Actions run 40023670567](https://github.com/gamesbyian/Glimpse/actions/runs/40023670567). An 18-page contact atlas containing all 203 was optically inspected, finding no completely blank reference phones. This is **full corpus presence / first-pass optical defect reconnaissance only**, NOT individual pixel-perfect signoff or the separately planned 60-question audit. See VRC-14 in the optical findings log.
+
+Recent fixes not included in that particular 203-crop artifact: X05's final p22 used the same snowy photo as p13 and was fixed to embedded architecture `art4.jpg` with matching hero and aperture; X08 Home current status text exceeded the selected tag, and X10 delayed status exceeded a chip. Corrected all three chip scenes. Strict source assertions now require distinct p22 fixture bytes and status chip width. A source-hashed recheck was requested through the branch one-shot workflow; its exact resulting status must be verified from `docs/design/visual-one-shot-evidence.md`, not assumed.
