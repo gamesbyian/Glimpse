@@ -92,3 +92,5 @@ Only adopt secondary reels when uncoached evidence demonstrates added usefulness
 - [ ] Confirm final p22 and status chip changes in fresh CI PNG and inspect new source-hashed native crops.
 
 - [x] Visually differentiate cropped share p12c from unedited source p12 in X13's phone image geometry; assert the transform in storyboard-semantic regression checks. Final branch rerasterization requested.
+
+- [ ] Close the five precise post-atlas asset verification gaps listed in [POST-ATLAS-VERIFICATION-2026-10-23.md](../design/POST-ATLAS-VERIFICATION-2026-10-23.md) using source-sha-matched native phone PNGs. Do not substitute the earlier 203-render success.
