@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1160 920" width="1160" height="920" role="img" aria-label="Report a problem draft unapproved Glimpse visual reference"><rect width="1160" height="920" fill="#E9E3D9"/>
+<rect x="15" y="14" width="401" height="890" rx="22" fill="#F6F0E6" stroke="#C4B7A4" stroke-width="2"/>
+<text x="39" y="45" font-family="Arial,Helvetica,sans-serif" fill="#153F46" font-size="14" font-weight="600">9:41</text>
+<text x="364" y="45" font-family="Arial,Helvetica,sans-serif" fill="#667975" font-size="13" font-weight="400">●  ▰  ▴</text>
+<path d="M32 55h368" stroke="#C8B7A1"/>
+<text x="35" y="88" font-family="Arial,Helvetica,sans-serif" fill="#1D5960" font-size="16" font-weight="650">‹ Back</text>
+<text x="37" y="129" font-family="Arial,Helvetica,sans-serif" fill="#153F46" font-size="28" font-weight="700">Report a problem</text>
+<text x="38" y="155" font-family="Arial,Helvetica,sans-serif" fill="#667975" font-size="15" font-weight="400">Describe what happened</text>
+<rect x="40" y="171" width="348" height="32" rx="8" fill="#E9E0F5" stroke="none" stroke-width="1"/>
+<text x="52" y="193" font-family="Arial,Helvetica,sans-serif" fill="#153F46" font-size="13" font-weight="650">PROPOSAL • draft</text>
+<text x="47" y="247" font-family="Arial,Helvetica,sans-serif" fill="#153F46" font-size="17" font-weight="650">What were you doing?</text>
+<rect x="43" y="266" width="337" height="83" rx="13" fill="#FFFCF6" stroke="#C8B7A1" stroke-width="1"/>
+<text x="57" y="294" font-family="Arial,Helvetica,sans-serif" fill="#667975" font-size="14" font-weight="400">Describe the issue…</text>
+<text x="45" y="379" font-family="Arial,Helvetica,sans-serif" fill="#153F46" font-size="16" font-weight="650">What did you expect to happen?</text>
+<rect x="43" y="397" width="337" height="74" rx="12" fill="#FFFCF6" stroke="#C8B7A1" stroke-width="1"/>
+<text x="56" y="427" font-family="Arial,Helvetica,sans-serif" fill="#667975" font-size="14" font-weight="400">Optional steps to reproduce</text>
+<rect x="40" y="502" width="348" height="69" rx="12" fill="#FFFCF6" stroke="#C8B7A1" stroke-width="1"/>
+<text x="53" y="527" font-family="Arial,Helvetica,sans-serif" fill="#153F46" font-size="16" font-weight="650">Include diagnostics</text>
+<text x="53" y="549" font-family="Arial,Helvetica,sans-serif" fill="#667975" font-size="12" font-weight="400">Off by default, inspect before sharing</text>
+<rect x="328" y="521" width="45" height="25" rx="15" fill="#C8B7A1" stroke="none" stroke-width="1"/>
+<circle cx="344" cy="533.5" r="10" fill="#FFFCF6"/>
+<rect x="40" y="589" width="348" height="100" rx="13" fill="#FFFCF6" stroke="#C8B7A1" stroke-width="1"/>
+<text x="53" y="615" font-family="Arial,Helvetica,sans-serif" fill="#153F46" font-size="17" font-weight="650">Nothing is sent automatically</text>
+<text x="53" y="638" font-family="Arial,Helvetica,sans-serif" fill="#667975" font-size="14" font-weight="400">Preview and redact before Android sharing</text>
+<text x="53" y="677" font-family="Arial,Helvetica,sans-serif" fill="#1D5960" font-size="13" font-weight="650">Review outgoing report</text>
+<rect x="44" y="720" width="335" height="42" rx="20" fill="#1D5960" stroke="#1D5960" stroke-width="1"/>
+<text x="59" y="747" font-family="Arial,Helvetica,sans-serif" fill="#FFFFFF" font-size="14" font-weight="650">Review report</text>
+<path d="M29 817h373" stroke="#C8B7A1"/>
+<text x="45" y="851" font-family="Arial,Helvetica,sans-serif" fill="#667975" font-size="13" font-weight="500">Home</text>
+<text x="141" y="851" font-family="Arial,Helvetica,sans-serif" fill="#667975" font-size="13" font-weight="500">Discover</text>
+<text x="237" y="851" font-family="Arial,Helvetica,sans-serif" fill="#667975" font-size="13" font-weight="500">Collections</text>
+<text x="333" y="851" font-family="Arial,Helvetica,sans-serif" fill="#667975" font-size="13" font-weight="500">Automation</text>
+<text x="39" y="895" font-family="Arial,Helvetica,sans-serif" fill="#667975" font-size="11" font-weight="650">SCREEN PROPOSAL • NOT USER-APPROVED</text>
+<rect x="440" y="14" width="705" height="890" rx="16" fill="#FCF9F3" stroke="#C4B7A4" stroke-width="2"/>
+<text x="464" y="49" font-family="Arial,Helvetica,sans-serif" fill="#153F46" font-size="18" font-weight="700">UNIFIED GLIMPSE REFERENCE SYSTEM</text>
+<text x="465" y="80" font-family="Arial,Helvetica,sans-serif" fill="#1D5960" font-size="19" font-weight="650">REPORT-PROBLEM  /  draft</text>
+<text x="464" y="110" font-family="Arial,Helvetica,sans-serif" fill="#667975" font-size="14" font-weight="400">Help / Report problem  •  M1</text>
+<path d="M457 130h670" stroke="#C8B7A1"/>
+<text x="465" y="166" font-family="Arial,Helvetica,sans-serif" fill="#1D5960" font-size="18" font-weight="700">REQUIRED ELEMENTS</text>
+<text x="822" y="166" font-family="Arial,Helvetica,sans-serif" fill="#E8876C" font-size="18" font-weight="700">FORBIDDEN BEHAVIOUR</text>
+<text x="465" y="205" font-family="Arial,Helvetica,sans-serif" fill="#153F46" font-size="14" font-weight="400">• Problem category</text>
+<text x="465" y="233" font-family="Arial,Helvetica,sans-serif" fill="#153F46" font-size="14" font-weight="400">• Description and optional steps</text>
+<text x="465" y="261" font-family="Arial,Helvetica,sans-serif" fill="#153F46" font-size="14" font-weight="400">• Diagnostics opt-in</text>
+<text x="465" y="289" font-family="Arial,Helvetica,sans-serif" fill="#153F46" font-size="14" font-weight="400">• Preview before leaving phone</text>
+<text x="822" y="205" font-family="Arial,Helvetica,sans-serif" fill="#153F46" font-size="14" font-weight="400">• Automatic report upload</text>
+<text x="822" y="233" font-family="Arial,Helvetica,sans-serif" fill="#153F46" font-size="14" font-weight="400">• Private photo or URI attachment</text>
+<text x="822" y="261" font-family="Arial,Helvetica,sans-serif" fill="#153F46" font-size="14" font-weight="400">• Claim that chooser means submitted</text>
+<path d="M459 557h667" stroke="#C8B7A1"/>
+<text x="465" y="598" font-family="Arial,Helvetica,sans-serif" fill="#1D5960" font-size="18" font-weight="700">STATUS AND SIDE-EFFECT SAFETY</text>
+<text x="465" y="628" font-family="Arial,Helvetica,sans-serif" fill="#667975" font-size="14" font-weight="400">No action is implemented by this SVG.</text>
+<text x="465" y="654" font-family="Arial,Helvetica,sans-serif" fill="#667975" font-size="14" font-weight="400">An OS handoff is not proof the operation completed.</text>
+<text x="465" y="680" font-family="Arial,Helvetica,sans-serif" fill="#667975" font-size="14" font-weight="400">No user photographs or crash details leave this drawing.</text>
+<text x="465" y="741" font-family="Arial,Helvetica,sans-serif" fill="#153F46" font-size="14" font-weight="650">Consistent tokens: design/tokens/brand.json</text>
+<text x="465" y="775" font-family="Arial,Helvetica,sans-serif" fill="#667975" font-size="14" font-weight="400">Source: design/proposals/support-coverage.v1.json</text>
+<text x="465" y="848" font-family="Arial,Helvetica,sans-serif" fill="#E8876C" font-size="14" font-weight="700">AUTHORITATIVE SEMANTICS; VISUAL PROPOSAL ONLY</text>
+</svg>
