@@ -65,3 +65,6 @@ All images currently use the same paper/teal design proposal, system sans typogr
 5. When the owner explicitly approves a whole compatible set, freeze exact source hashes in a new `design/approved/` manifest. **Do not infer approval merely from these files existing.**
 
 Source-backed proposals are versioned; optional screenshot/atlas artifacts live in Actions and do not replace source or a separate runtime evidence ledger.
+
+
+**X07 identity repair (draft source):** The Reel→Grid→Detail→Reel journey now shares p12's embedded public photograph across selected hero, Grid tile, detail and return frames. The three X07 reel plates reuse X05's actual five-aperture disc drawing; selected p12 is no longer depicted as a different synthetic stripe artwork on each surface. The other Grid tiles and X06 remain schematic. See the optical log and source-level validator; no fresh-branch raster or device signoff yet.
