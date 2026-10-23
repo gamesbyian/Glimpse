@@ -62,6 +62,17 @@ for step in chain["steps"]:
 assert [x["expectedSelectedAssetId"] for x in chain["steps"][:6]] == ["p12"] * 6
 assert chain["steps"][6]["expectedSelectedAssetId"] == "p12"
 assert chain["steps"][7]["expectedSelectedAssetId"] == "p12c"
+# Two first-pass R02 drawings must visibly name the save transaction,
+# never claim the p12c derivative exists before a save is acknowledged.
+for state, source_id, derivative, acknowledged in (
+    ("crop-pending", "p12", "null", "false"),
+    ("copy-saved", "p12", '"p12c"', "true"),
+):
+    svg = (ROOT / "design/proposals/audit-revisions" / f"r02-{state}.svg").read_text()
+    assert f'"sourceAssetId":"{source_id}"' in svg, state
+    assert f'"derivedAssetId":{derivative}' in svg, state
+    assert f'"saveAcknowledged":{acknowledged}' in svg, state
+    assert '"lastConfirmedAppliedAssetId":"p04"' in svg, state
 counts = {x: sum(v["status"] == x for v in cycle["results"])
           for x in ("PASS", "ISSUE", "UNVERIFIED", "NOT_APPLICABLE")}
 assert counts == cycle["summary"]["counts"]
