@@ -137,7 +137,7 @@ def main():
     advanced_html = (ROOT / "design/atlas/advanced-storyboards.html").read_text(
         encoding="utf-8"
     )
-    match = re.search(r"const DATA=(\\[.*?\\]);\\s*let selected", advanced_html, re.DOTALL)
+    match = re.search(r"const DATA=(\[.*?\]);\s*let selected", advanced_html, re.DOTALL)
     assert match, "P1 gallery data missing"
     assert [(g["id"], [f["path"] for f in g["frames"]]) for g in
             json.loads(match.group(1))] == [
