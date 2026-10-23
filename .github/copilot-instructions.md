@@ -1,0 +1,1 @@
+Follow `../AGENTS.md` as the canonical Glimpse agent guide. Start at current decisions, implementation queue and first-slice evidence before coding. Reuse Kotlin/Room/Photo Picker/wallpaper gateway state, preserve local photo originals, and distinguish source/build verification from Android-device and human acceptance.
