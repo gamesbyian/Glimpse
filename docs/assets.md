@@ -1,42 +1,40 @@
-# Asset inventory and migration policy
+# Glimpse design assets: current inventory
 
-Updated 2026-10-22 for **gamesbyian/Glimpse**. This file replaces two stale asset/publication documents from the earlier `general-purpose` directory. It records *actual repository presence* rather than earlier intentions.
+**Updated 2026-10-22.** This inventory describes the actual contents of `gamesbyian/Glimpse`. The old private source folder was preserved, but is not the destination for future work.
 
-## Verified in this repository
+## Verified files in this repository
 
-- [Brand tokens](../design/tokens/brand.json): exploratory visual values
-- [Five-window reel drawing](../design/reference/five-window-reel.svg): editable simplified schematic
-- [Reel browser concept drawing](../design/reference/reel-browser-concept.svg): editable simplified schematic
-- [Reel comparison manifest](../design/research/reel-layout/manifest.json) and [generator](../design/research/reel-layout/build.py): research and build source; generator requires photo fixtures and additional Python dependencies to operate
-- [Screen contract](design/screen-contract.json): machine-readable planned UI semantics
-- All current specification and decision Markdown listed in [docs index](README.md)
+**Tactile reel reference**
+- [Five-window paper reel (vector)](../design/reference/five-window-reel.svg)
+- [Offscreen browser concept (vector)](../design/reference/reel-browser-concept.svg)
+- [Wide-aperture visual exploration (PNG)](../design/reference/reel-wide-apertures.png)
+- [Provisional brand tokens](../design/tokens/brand.json)
 
-The design reference SVGs are **not approved exact UI screenshots**, and none demonstrate a working Android application.
+**Reel layout experiment**
+- [Study and verdict](design/reel-layout-comparison.md)
+- [Six editable SVG variants and exact photo fixtures](../design/research/reel-layout/README.md)
+- [Reproducible generator](../design/research/reel-layout/build.py), [variant/fixture SHA-256 manifest](../design/research/reel-layout/manifest.json)
+- [Eight-page comparison review PDF](../design/research/reel-layout/comparison-review.pdf)
 
-## Approved direction versus unapproved alternatives
+**Motion study, not accepted implementation**
+- [Virtualization example](../design/research/motion/virtualization.png)
+- [Next-frame example](../design/research/motion/next-frame.png)
+- [Last-frame example](../design/research/motion/last-frame.png)
 
-Accepted directional guidance: tactile warm paper material, five **large** photo windows, cropped reel extending offscreen, a full-size stationary image preview, real finite counts and a Grid alternative. A single photo reel is the *recommended* baseline. Two-reel designs and specific placements remain comparison hypotheses.
+The **six SVGs, six fixture JPGs, four PNG reference images and PDF were migrated with exact Git blob SHA parity** to the original files in the private `general-purpose/Glimpse` directory. These files are visual research, not screenshots from an implemented Android app. The wide-aperture and paper aesthetic are accepted direction; exact geometry, copy and all dual-reel variants remain provisional.
 
-## Source retained elsewhere
+## Only one shortlisted asset still outside Glimpse
 
-The private archive [`gamesbyian/general-purpose/Glimpse`](https://github.com/gamesbyian/general-purpose/tree/main/Glimpse) is the original preservation copy. This public repository deliberately excludes:
-- Fifteen `.transfer/v4` upload chunks.
-- Older Waltz mockup SVGs, obsolete v4 generator and superseded deck outline.
-- 57-slide v4 pitch deck, earlier exploratory PDFs, archive parts, and other publication-era binaries whose current authority is superseded or redundant.
+The tactile identity board is preserved at [`general-purpose/Glimpse/artifacts/glimpse_tactile_wallpaper_identity_board.png`](https://github.com/gamesbyian/general-purpose/blob/main/Glimpse/artifacts/glimpse_tactile_wallpaper_identity_board.png) (the archive is **private**). Git blob SHA `0a53b73ef54fe54815f9ff63bce521dbeef91fd2`, 2,066,345 bytes. The available file reader returned empty content for this larger binary, so it has **not** been published to the new repo. Do not create an empty or synthetic substitute. Earlier visual direction can still be studied using the preserved smaller reference PNG and editable schematics.
 
-**Do not copy wholesale** from the archive. Verify file provenance, authorship, image rights, usefulness and SHA before bringing in additional binary assets.
+## Deliberately excluded historical artifacts
 
-## Remaining useful reference candidates
+The source archive holds older Waltz v2/v3 decks, the v4 57-slide deck, old screen mockups and exploratory PDFs, 15 transfer chunks, an orphaned deck generator and split ZIP files. Those are **not current design authority**. Do not import them wholesale.
 
-These were selected for eventual migration, but are **not to be described as present until their paths actually exist**:
-- Six photographic test fixtures `design/reel-comparison/fixtures/source/art1.jpg` to `art6.jpg` (rights review first).
-- Six comparison SVGs `A_single_photo_reel.svg`, `B_asymmetric_collection_photo.svg`, `B_compact_fallback.svg`, `C_destinations_compact.svg`, `C_destinations_tabs_baseline.svg`, and `D_destinations_wide_dual.svg`.
-- The tactile identity board `artifacts/glimpse_tactile_wallpaper_identity_board.png`.
-- Compact reel layout comparison PDF `artifacts/Glimpse_Reel_Layout_Comparison_Review.pdf`.
-- Four motion/still-frame reference images in `design/v4-source/`: five-wide-windows, virtualization-sequence, next-frame, last-frame-derived.
+The redundant `Glimpse_Reel_Comparison_Reproducible_Source.zip` is unnecessary because the generator, fixtures and outputs are now tracked individually.
 
-Do not embed JPEGs or other nonfree or unverified imagery merely to make an attractive repository README. Keep the current reference drawings and acceptance text authoritative for build decisions until source assets have been properly approved.
+## Image provenance and publication
 
-## Canonicalization requirements
+The six small photo fixtures originated with the initial Glimpse design work; the project record identifies them by SHA-256 in [the manifest](../design/research/reel-layout/manifest.json). No explicit standalone image-use licence has been established. Verify their provenance and licensing before redistribution or making an open-source licence grant over the artwork. Public repository visibility does not itself settle third-party image rights.
 
-For any transferred file: list source repo and path, SHA-256, usage and license, whether a user approved *the specific asset* versus its general direction, and a stable URL. Resolve remaining stale links to original private files as **archive references**, not local new-repo assets. Once a prototype is accepted, maintain a small `design/reference/` set and retain research under `design/research/`.
+For future assets, record source, SHA-256, usage, approval level and license. **Accepted style direction is not approval of every mockup pixel.** Keep production-approved references in `design/reference/`, experiments in `design/research/`, and link them through this page.

@@ -1,10 +1,14 @@
-# Design sources
+# Glimpse design
 
-These files are **design-stage references**, not screenshots of a running Glimpse app.
+**Reference direction (not pixel-approved screenshots)**
 
-- [Reference five-window paper reel](reference/five-window-reel.svg)
-- [Reference off-screen reel browser](reference/reel-browser-concept.svg)
-- [Provisional colors](tokens/brand.json)
-- [Controlled reel layout research](research/reel-layout/README.md)
+- [Five-window reel SVG](reference/five-window-reel.svg) and [offscreen reel browser SVG](reference/reel-browser-concept.svg)
+- [Large-window paper reel PNG](reference/reel-wide-apertures.png)
+- [Design tokens](tokens/brand.json)
 
-The source archive includes older Waltz-era 16-screen sketches and superseded decks, intentionally excluded here. For the current product direction and the limits of each mockup, start with [current decisions](../docs/planning/current-decisions.md) and [asset inventory](../docs/assets.md). Geometry/labels in mockups are hypotheses; the paper-reel aesthetic and spacious photographic windows are the accepted direction.
+**Experiments**
+
+- [Six reel layout alternatives, generator, fixtures and PDF](research/reel-layout/README.md)
+- [Three reel motion/virtualization frames](research/motion/README.md)
+
+[Current product decisions](../docs/planning/current-decisions.md) outrank historical Waltz mockups. The [asset inventory](../docs/assets.md) tracks which source assets were actually migrated. Exact layout labels and placements remain open to validation.

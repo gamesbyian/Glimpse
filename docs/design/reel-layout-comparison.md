@@ -6,12 +6,12 @@
 
 ## Open the actual artifacts (verified in GitHub)
 
-- [Eight-page compact review PDF](https://github.com/gamesbyian/general-purpose/blob/main/Glimpse/artifacts/Glimpse_Reel_Layout_Comparison_Review.pdf) (rendered, deliberately smaller review export)
-- [Complete reproducible source ZIP](https://github.com/gamesbyian/general-purpose/blob/main/Glimpse/artifacts/Glimpse_Reel_Comparison_Reproducible_Source.zip) (generator + six actual photo fixtures + manifest)
+- [Eight-page compact review PDF](../../design/research/reel-layout/comparison-review.pdf) (rendered, deliberately smaller review export)
+- [Complete editable experiment source](../../design/research/reel-layout/README.md) (six SVG variants, generator, original six JPEG fixtures, and manifest)
 - [Editable mockup source directory](../../design/research/reel-layout/README.md) and [fixture identities/SHA-256](../../design/research/reel-layout/manifest.json)
 - The larger, sharper, text-selectable eight-page PDF is preserved in ChatGPT Library at `/Glimpse/Comparison/Glimpse_Reel_Layout_Comparison_v1.pdf`; this is a different export of the same study, not a separate design.
 
-**Technical proof of Git publication:** Both repo binaries were committed as real `100644` Git blobs, and SVG reference files and six original JPEGs are also Git-tracked. Do not confuse these with the larger *earlier v4* source archive, which still has its own unresolved publication inventory.
+**Publication verification:** All six experiment SVGs, the original JPEG fixtures and the compact PDF are now independently preserved in this repository, with Git blob SHA parity to the private source. The original ZIP is archived externally because the individual source files are available here.
 
 ## Controlled experiment design
 
@@ -25,12 +25,12 @@
 
 | Variant | What its paper reel(s) actually select | Decision | Main trade-off |
 |---|---|---|---|
-| [A: one Photo reel](https://github.com/gamesbyian/general-purpose/blob/main/Glimpse/design/reel-comparison/A_single_photo_reel.svg) | One selected `ImageAssetId` in Golden Hour; only the preview changes | **Recommended compact baseline** | Largest hero and simplest mental model; collection switching uses ordinary navigation |
-| [B: asymmetric Collection → Photo](https://github.com/gamesbyian/general-purpose/blob/main/Glimpse/design/reel-comparison/B_asymmetric_collection_photo.svg) | Parent `CollectionId` changes child source set; child `ImageAssetId` changes preview | **Prototype candidate** | Fun and meaningful nested selection, but shrinks hero and crowds controls; only worthwhile when switching collections frequently |
-| [B compact fallback](https://github.com/gamesbyian/general-purpose/blob/main/Glimpse/design/reel-comparison/B_compact_fallback.svg) | Labeled collection picker + one Photo reel, same typed transitions as B | **Required responsive fallback if B explored** | Functional preservation at lower visual density, avoids two tiny drag targets |
-| [C0: Home/Lock tabs](https://github.com/gamesbyian/general-purpose/blob/main/Glimpse/design/reel-comparison/C_destinations_tabs_baseline.svg) | Selected destination and photo, one active reel | **Recommended compact target-selection baseline** | Clear destination ownership and full hero |
-| [C1: compact paired preview](https://github.com/gamesbyian/general-purpose/blob/main/Glimpse/design/reel-comparison/C_destinations_compact.svg) | Main Home photo reel + smaller explicit Lock preview/Edit Lock action | **Prototype candidate** | Maintains second destination context without pretending a small arc is a precision wheel |
-| [D: wide Home/Lock dual](https://github.com/gamesbyian/general-purpose/blob/main/Glimpse/design/reel-comparison/D_destinations_wide_dual.svg) | Two independent `ImageAssetId` previews, separately applied to Home/Lock | **Wide-layout candidate** | Wider panes permit two real touch-controlled reels; must still validate visible hit surface and no accidental cross-target apply |
+| [A: one Photo reel](../../design/research/reel-layout/A_single_photo_reel.svg) | One selected `ImageAssetId` in Golden Hour; only the preview changes | **Recommended compact baseline** | Largest hero and simplest mental model; collection switching uses ordinary navigation |
+| [B: asymmetric Collection → Photo](../../design/research/reel-layout/B_asymmetric_collection_photo.svg) | Parent `CollectionId` changes child source set; child `ImageAssetId` changes preview | **Prototype candidate** | Fun and meaningful nested selection, but shrinks hero and crowds controls; only worthwhile when switching collections frequently |
+| [B compact fallback](../../design/research/reel-layout/B_compact_fallback.svg) | Labeled collection picker + one Photo reel, same typed transitions as B | **Required responsive fallback if B explored** | Functional preservation at lower visual density, avoids two tiny drag targets |
+| [C0: Home/Lock tabs](../../design/research/reel-layout/C_destinations_tabs_baseline.svg) | Selected destination and photo, one active reel | **Recommended compact target-selection baseline** | Clear destination ownership and full hero |
+| [C1: compact paired preview](../../design/research/reel-layout/C_destinations_compact.svg) | Main Home photo reel + smaller explicit Lock preview/Edit Lock action | **Prototype candidate** | Maintains second destination context without pretending a small arc is a precision wheel |
+| [D: wide Home/Lock dual](../../design/research/reel-layout/D_destinations_wide_dual.svg) | Two independent `ImageAssetId` previews, separately applied to Home/Lock | **Wide-layout candidate** | Wider panes permit two real touch-controlled reels; must still validate visible hit surface and no accidental cross-target apply |
 
 ### What the pictures themselves reveal
 
