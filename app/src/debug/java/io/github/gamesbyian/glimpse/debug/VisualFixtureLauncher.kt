@@ -97,5 +97,11 @@ class VisualFixtureLauncher : ComponentActivity() {
                 outcome = "VISUAL FIXTURE ONLY; no OS wallpaper was changed"
             ))
         }
+        // The atlas harness reads this file via run-as, which is available
+        // only for debug builds. It proves that all database writes ended,
+        // unlike screen-text heuristics and slow uiautomator polling.
+        File(filesDir, "visual-atlas-ready.txt").writeText(
+            "READY:" + count + ":" + collectionId
+        )
     }
 }

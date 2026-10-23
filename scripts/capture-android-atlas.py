@@ -20,12 +20,13 @@ OUT = None
 RESULTS = []
 
 
-def adb(*args, check=True, binary=False):
+def adb(*args, check=True, binary=False, timeout=35):
     result = subprocess.run(
         ["adb", *args],
         stdout=subprocess.PIPE,
         stderr=subprocess.PIPE,
         check=False,
+        timeout=timeout,
     )
     if check and result.returncode:
         raise RuntimeError("adb " + " ".join(args) + ": " +
@@ -34,9 +35,9 @@ def adb(*args, check=True, binary=False):
 
 
 def hierarchy():
-    result = adb("shell", "uiautomator", "dump", "/sdcard/glimpse-atlas.xml", check=False)
-    raw = adb("exec-out", "cat", "/sdcard/glimpse-atlas.xml", check=False)
-    if not raw.startswith("<?xml"):
+    result = adb("shell", "uiautomator", "dump", "/sdcard/glimpse-atlas.xml", check=False, timeout=25)
+    raw = adb("exec-out", "cat", "/sdcard/glimpse-atlas.xml", check=False, timeout=15)
+    if not raw.lstrip().startswith("<?xml"):
         raise RuntimeError("Cannot obtain the Android accessibility hierarchy: " + result + raw[:150])
     return raw
 
@@ -54,44 +55,51 @@ def screen_geometry():
 
 
 def start_fixture(count, active=False):
-    # ONLY use on a disposable emulator/test device; this destroys Glimpse data.
+    """Seed debug Room and confirm completion via a local marker, not UI text."""
+    # ONLY use on a disposable emulator/test device; destroys Glimpse data.
     adb("shell", "am", "force-stop", APP, check=False)
     adb("shell", "pm", "clear", APP)
-    adb("shell", "am", "start", "-n", FIXTURE,
-        "--ei", "count", str(count), "--ez", "active", str(active).lower())
-    # Accessibility XML dumping can be slow on software-rendered CI emulators.
-    # Wait for the app to settle without repeatedly dumping a full hierarchy.
-    # Always retain screenshots and logcat on failure for real visual diagnosis.
-    last_xml = ""
-    for _ in range(8):
-        time.sleep(2.0)
-        try:
-            last_xml = hierarchy()
-            if "ATLAS FIXTURE" in last_xml and (
-                "Photos: " + str(count) in last_xml
-                or "photographs" in last_xml
-            ):
-                time.sleep(0.5)
-                return
-        except Exception as error:
-            last_xml = str(error)
+    launch = adb("shell", "am", "start", "-n", FIXTURE,
+                 "--ei", "count", str(count),
+                 "--ez", "active", str(active).lower(), check=False)
+    print("Fixture launcher:", launch[:240], flush=True)
+    marker = "READY:" + str(count) + ":"
+    result = ""
+    for _ in range(45):
+        time.sleep(1.0)
+        result = adb("shell", "run-as", APP, "cat",
+                     "files/visual-atlas-ready.txt", check=False,
+                     timeout=15)
+        if result.startswith(marker):
+            time.sleep(2.0)  # Compose first layout and image reads
+            print("Fixture ready:", result, flush=True)
+            return
+    capture_failure("fixture-not-ready-" + str(count), result)
+    raise RuntimeError("Fixture never wrote " + marker +
+                       "; inspect failure screen and redacted logcat")
+
+
+def capture_failure(slug, detail):
+    """Retain failure evidence even if UIAutomator is entirely unavailable."""
     try:
-        (OUT / ("fixture-failure-" + str(count) + ".png")).write_bytes(
-            adb("exec-out", "screencap", "-p", binary=True)
+        raw = adb("exec-out", "screencap", "-p", binary=True, timeout=40)
+        if raw.startswith(b"\\x89PNG\\r\\n\\x1a\\n"):
+            (OUT / (slug + ".png")).write_bytes(raw)
+        (OUT / (slug + ".txt")).write_text(
+            detail[:1200], encoding="utf-8")
+        log = adb("logcat", "-d", "-t", "400", check=False, timeout=40)
+        # CI contains only published fixtures, but avoid leaking unrelated
+        # emulator accounts/URIs and keep artifacts small.
+        safe = "\\n".join(
+            line for line in log.splitlines()
+            if any(tag in line for tag in ("glimpse", "Glimpse",
+                                          "AndroidRuntime", "FATAL EXCEPTION",
+                                          "ActivityTaskManager"))
         )
-        (OUT / ("fixture-failure-" + str(count) + ".xml")).write_text(
-            last_xml, encoding="utf-8"
-        )
-        (OUT / ("fixture-failure-" + str(count) + ".log")).write_text(
-            adb("logcat", "-d", "-t", "600", check=False),
-            encoding="utf-8"
-        )
+        (OUT / (slug + ".log")).write_text(safe[-40000:],
+                                             encoding="utf-8")
     except Exception as error:
-        print("Unable to collect failure diagnostics:", error, flush=True)
-    raise RuntimeError(
-        "Fixture never displayed " + str(count) +
-        " photos in MainActivity; inspect fixture-failure screenshot/XML/logcat"
-    )
+        print("Could not collect all failure evidence:", error, flush=True)
 
 
 def click_label(expected):
@@ -148,13 +156,21 @@ def capture(slug, explanation):
     if not raw.startswith(b"\x89PNG\r\n\x1a\n") or len(raw) < 15000:
         raise RuntimeError("Android did not return a plausible screenshot: " + slug)
     (OUT / (slug + ".png")).write_bytes(raw)
-    xml = hierarchy()
-    (OUT / (slug + ".xml")).write_text(xml, encoding="utf-8")
-    controls = inspect_controls(xml, dpi)
+    xml = ""
+    controls = []
+    try:
+        xml = hierarchy()
+        (OUT / (slug + ".xml")).write_text(xml, encoding="utf-8")
+        controls = inspect_controls(xml, dpi)
+    except Exception as exc:
+        (OUT / (slug + ".xml-error.txt")).write_text(
+            str(exc)[:800], encoding="utf-8"
+        )
+        print("Accessibility unavailable for", slug, str(exc)[:180], flush=True)
     RESULTS.append({
         "id": slug,
         "image": slug + ".png",
-        "hierarchy": slug + ".xml",
+        "hierarchy": slug + ".xml" if xml else None,
         "reason": explanation,
         "widthPx": w, "heightPx": h, "densityDpi": dpi,
         "clickableCount": len(controls),
@@ -231,6 +247,7 @@ def main():
     except Exception as error:
         failures.append(str(error))
         print("Atlas failed:", error, flush=True)
+        capture_failure("atlas-unexpected-error", str(error))
     finally:
         if original_scale not in ("", "null"):
             adb("shell", "settings", "put", "system", "font_scale", original_scale, check=False)
