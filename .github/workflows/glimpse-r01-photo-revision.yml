@@ -1,6 +1,6 @@
 name: R01 photographic reference generation | one-shot
 
-# Source-weight optimization pass: strip unused photo bytes from finite empty and one-image wheel drafts.
+# Targeted optical regression: empty has no indexes, singleton only 01, proven six-frame PNG run.
 # Generate corrected photographic paper-reel audit sources only on an intentional
 # workflow edit or manual dispatch. Do not launch from every ordinary repo push.
 on:
@@ -59,6 +59,45 @@ jobs:
             git push origin "HEAD:${GITHUB_REF_NAME}"
           fi
           python3 scripts/build-audit-r01-photo-variants.py
+      - name: Record exact six-frame draft source proof
+        if: success()
+        run: |
+          set -euo pipefail
+          mkdir -p docs/design
+          python3 - <<'PY'
+          import json, os
+          from pathlib import Path
+          idx=json.loads(Path("/tmp/glimpse-r01-photo-reference/index.json").read_text())
+          files=idx["nativePhoneFiles"]
+          assert len(files)==6, len(files)
+          lines=[
+            "# R01 six-frame photo reference source proof",
+            "",
+            "**Automatic SVG source and native-sized PNG render only. Not optical/device/owner approval.**",
+            "",
+            "- Run ID: `"+os.environ["GITHUB_RUN_ID"]+"`",
+            "- Run URL: https://github.com/"+os.environ["GITHUB_REPOSITORY"]+"/actions/runs/"+os.environ["GITHUB_RUN_ID"],
+            "- Workflow source SHA: `"+os.environ["GITHUB_SHA"]+"`",
+            "- All six exact source-editable SVGs regenerated and checked deterministically",
+            "- Six corresponding 401×890 phone PNGs: generated successfully",
+            "- Artifact name: `glimpse-r01-real-photography-"+os.environ["GITHUB_SHA"]+"`",
+            "",
+            "No runtime screenshots, visual approval, accessibility verification or user acceptance.",
+          ]
+          Path("docs/design/r01-photo-generator-evidence.md").write_text("\\n".join(lines)+"\\n")
+          PY
+          git add docs/design/r01-photo-generator-evidence.md
+          if ! git diff --cached --quiet; then
+            git commit -m "ci: record exact R01 paper wheel 6-frame source and render proof"
+            for attempt in 1 2 3; do
+              git fetch origin "+refs/heads/${GITHUB_REF_NAME}:refs/remotes/origin/${GITHUB_REF_NAME}"
+              git rebase "origin/${GITHUB_REF_NAME}"
+              if git push origin "HEAD:${GITHUB_REF_NAME}"; then
+                break
+              fi
+              if [[ "${attempt}" = 3 ]]; then exit 1; fi
+            done
+          fi
       - name: Upload six draft images and source hash ledger
         uses: actions/upload-artifact@v4
         with:
