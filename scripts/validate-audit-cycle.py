@@ -27,6 +27,25 @@ for lane in plan["lanes"]:
     assert all(x in ids for x in lane["questions"])
     for path in lane.get("initialSourceDrafts", []):
         assert (ROOT / path).exists(), path
+# Verify the illustrative finite disc does not fake photographs or change the
+# selected stable ID while an 18-degree drag is still in progress.
+import re
+for state, chosen, total in (
+    ("idle-22", 12, 22), ("drag-18", 12, 22),
+    ("settled-snap", 13, 22), ("last-22", 22, 22),
+    ("empty-0", 0, 0), ("single-1", 1, 1),
+):
+    path = ROOT / "design/proposals/audit-revisions" / f"r01-{state}.svg"
+    src = path.read_text()
+    ids = [int(x) for x in re.findall(r">p(\\d\d)</text>", src)]
+    expected = [chosen + delta for delta in (0, 1, 2, -2, -1)
+                if 1 <= chosen + delta <= total]
+    assert ids == expected, (state, ids, expected)
+    assert f'"photoTotal":{total}' in src, state
+    assert (f'"selectedAssetId":"p{chosen:02d}"' if chosen else
+            '"selectedAssetId":null') in src, state
+    assert "lastConfirmedAppliedAssetId" in src
+assert "Glimpse" in (ROOT / "design/proposals/audit-revisions/r01-idle-22.svg").read_text()
 counts = {x: sum(v["status"] == x for v in cycle["results"])
           for x in ("PASS", "ISSUE", "UNVERIFIED", "NOT_APPLICABLE")}
 assert counts == cycle["summary"]["counts"]
