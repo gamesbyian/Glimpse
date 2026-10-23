@@ -73,3 +73,16 @@ Six X07 frames now share X05's embedded p12 image fixture; three reel frames add
 ## Original Source Detail baseline correction
 
 `design/proposals/plates/source-detail.svg` has been reauthored from the erroneous duplicate Discover directory into a single-source Google Photos detail page with scoped permissions, illustrative preview, rights/provenance uncertainty and explicit picker/Back actions. It remains one of the **original 66** proposal plates, not a new screen in the baseline inventory. This correction is source-inspected but not freshly raster or Android verified. Confirm the phone drawing in the optical pass alongside `state-refinements/source-detail-offline.svg`.
+
+
+## Source-hashed optional optical export
+
+`scripts/render-visual-reference-sheets.py` now has ten groups, including all 34 named phone states, all 25 new refinements, the original/offline Source Detail comparison and critical large-text cases. To bound work, inspect relevant PNGs from:
+
+```sh
+python3 scripts/render-visual-reference-sheets.py --list-sets
+python3 scripts/render-visual-reference-sheets.py --set core-34-named-states --set source-detail-paired --native --output /tmp/glimpse-review
+python3 scripts/render-visual-reference-sheets.py --set reel-grid-crop-share --set critical-type-comparison --native --output /tmp/glimpse-reel-review
+```
+
+Each native crop is 401×890 and the `index.json` ledger records its source file SHA-256. **Not executed on fresh branch in this session.** Do not count manifest mapping or an emitted PNG as a human optical acceptance.
