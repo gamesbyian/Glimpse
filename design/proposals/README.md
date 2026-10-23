@@ -87,3 +87,13 @@ The eight mechanism-focused refinements (collections, Lock target support and pr
 
 
 **Full baseline optical capture:** The 66 original, 82 P0 and 55 P1 proposal SVGs were all rasterized in [successful one-shot run 40023670567](https://github.com/gamesbyian/Glimpse/actions/runs/40023670567), producing 203 source-hashed native phone crops and complete 12-phone contact page reviews. No baseline phone image was found wholly blank. This is a broad, first-pass optical check, not individual detailed design approval. Subsequent source fixes to X05 final p22 and X08/X10 status chips need one final exact-branch proof; see optical log.
+
+
+## Audit-cycle A: photographic R01 / R02 review entry point (current draft branch)
+
+- **[Mobile side-by-side before/after atlas](../atlas/audit-visual-comparisons.html)** includes six finite paper-reel pairs, four photo edit/share pairs, and two wallpaper outcome pairs. Only the 401×890 phone pixels are displayed, with direct links to complete editable SVGs. All remain *draft/unapproved*.
+- The first six circle-chip R01 SVGs were retained as **finite-index diagrams**, not promoted as visual targets. The [photographic revision source contract](audit-revisions/R01-PHOTOGRAPHIC-CONTINUITY.md) now defines six photo-backed X05-style paper-reel variants using actual art1–art6 research JPEGs, including empty and single-item states. No two simultaneously visible neighbouring photo IDs share source bytes.
+- R02's [four crop/save/share/return proposal sources](audit-revisions/) now share the **exact original p12 JPEG** from X07 Grid. A saved p12c is a visibly cropped *derived* image, not a silently renamed original; OS delivery and native save failure behaviour are not evidenced by reference SVGs.
+- [Native QA evidence matrix](../../docs/design/R01-R02-NATIVE-EVIDENCE-MATRIX.md) specifies the missing screenshots, accessibility hierarchy, 0/1/3/5/22/60 actual index tests and sharing outcomes. [Initial audit scoring](../../docs/design/glimpse-ux-audit-cycle-a.v1.json) remains 18 source-level PASS, 8 ISSUE and 34 UNVERIFIED until scored against valid new evidence.
+
+These photographic updates **do not change** the 66/82/55 original/P0/P1 asset counts. The new atlas's browser rendering, source validation, Android implementation and owner approval must be reviewed separately.
