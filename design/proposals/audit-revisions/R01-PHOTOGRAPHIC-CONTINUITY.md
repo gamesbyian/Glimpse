@@ -11,6 +11,8 @@
 | [Photo snap 13](r01-photo-snap-13.svg) | X05 settle | p13, art4 | p11 art3, p12 art1, p13 art4, p14 art5, p15 art6 |
 | [Photo final p22](r01-photo-last-22.svg) | X05 last item | p22, art6 | p20 art2, p21 art3, p22 art6, no invented p23/p24 |
 
+**Fixture media clarification:** The six public JPEG assets include landscape artwork, scenic imagery, flowers, architecture, botanical illustration and a starfield illustration. They are *real embedded image files*, not six photographic captures, not 22 unique user originals and not evidence of a Google Photos provider import. The source-identity comparison is about different visual pixels and verified asset bytes, not photographic provenance.
+
 The deterministic [photo source generator](../../../scripts/build-audit-r01-photo-variants.py) reads the six first-party checked-in JPEGs in `design/research/reel-layout/fixtures/source/art1.jpg` through `art6.jpg`. It embeds actual JPEG bytes into portable SVGs and records per-photo SHA-256, so adjacent labels no longer disguise identical rainbow placeholders. **The images represent a curated six-photo fixture set, NOT 22 individually witnessed actual user photos.** Distant photo IDs may reuse a test fixture, but no two simultaneously visible neighbours do.
 
 ## Empty and one-photo extension
