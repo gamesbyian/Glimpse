@@ -1,0 +1,1041 @@
+{
+  "schemaVersion": 1,
+  "authoringStage": "COHERENT_BUT_UNAPPROVED_LAYOUT_PROPOSALS",
+  "baseline": "2026-10-23",
+  "status": "SCREEN_SCHEMATICS_NOT_FINAL_PIXEL_REFERENCE",
+  "authority": "docs/planning/current-decisions.md; docs/design/screen-contract.json",
+  "identity": "Five-window tactile paper disc for photographs only, stationary hero, 4 primary tabs, Grid fallback",
+  "rules": [
+    "Never show previewed/selected photo as applied wallpaper.",
+    "Never use a reel for settings, Boolean toggles, clock intervals, permissions or a generic command.",
+    "Never add a second reel without a user-approved comparison decision.",
+    "A five-window disc virtualizes a finite collection; never equate 5 apertures with 5 photos.",
+    "Show clear destination on wallpaper apply actions; no silent apply on browse.",
+    "Show offline, error, permission, low storage and unsupported capabilities with next action.",
+    "Expose accessible buttons, talkback descriptions and reduced-motion equivalent.",
+    "No exact five-minute Android background guarantee.",
+    "No destructive import/crop/share of originals.",
+    "No proposal image is automatically an approved target; physical-device evidence separate."
+  ],
+  "tokens": {
+    "paper": "#F6F0E6",
+    "surface": "#FFFCF6",
+    "ink": "#153F46",
+    "secondary": "#667975",
+    "accent": "#E8876C",
+    "disc": "#EAD9BD",
+    "selected": "#1D5960",
+    "lavender": "#E9E0F5",
+    "tabs": [
+      "Home",
+      "Discover",
+      "Collections",
+      "Automation"
+    ],
+    "viewportDp": [
+      420,
+      900
+    ],
+    "typeface": "system sans for controls, optional serif only for decorative headlines; never depend on remote fonts"
+  },
+  "screens": [
+    {
+      "id": "home",
+      "title": "Home",
+      "lead": "Your wallpaper",
+      "kind": "home",
+      "primary": "Change Home wallpaper",
+      "secondary": "Open collection",
+      "variants": [
+        "active",
+        "paused",
+        "uncertain"
+      ],
+      "workflows": [
+        "W01",
+        "W18",
+        "W54",
+        "W60",
+        "W70"
+      ],
+      "required": [
+        "current-wallpaper-hero",
+        "applied-status",
+        "active-collection-name",
+        "change-now",
+        "pause",
+        "share",
+        "explicit-target-and-last-applied-confidence",
+        "change-wallpaper-labelled-action"
+      ],
+      "conditional": [
+        "next-eligible-time",
+        "reel-crescent",
+        "error-retry",
+        "open-active-collection-from-reel-crescent"
+      ],
+      "forbidden": [
+        "selected-preview-presented-as-applied",
+        "exact-background-five-minute-guarantee",
+        "unlabeled-tiny-reel-pretends-to-be-draggable"
+      ]
+    },
+    {
+      "id": "collections",
+      "title": "Collections",
+      "lead": "Your photographs",
+      "kind": "collections",
+      "primary": "Add photos",
+      "secondary": "New collection",
+      "variants": [
+        "three",
+        "empty",
+        "large"
+      ],
+      "workflows": [
+        "W01",
+        "W03",
+        "W05",
+        "W06",
+        "W07",
+        "W08",
+        "W09",
+        "W10",
+        "W42",
+        "W55"
+      ],
+      "required": [
+        "collection-titles",
+        "true-item-counts",
+        "add-photos",
+        "enter-collection"
+      ],
+      "conditional": [
+        "paper-reel-covers",
+        "empty-collection-action"
+      ],
+      "forbidden": [
+        "faked-image-copies-to-fill-five-windows"
+      ]
+    },
+    {
+      "id": "reel",
+      "title": "Rainbows",
+      "lead": "Browse photographs",
+      "kind": "reel",
+      "primary": "Set Home wallpaper",
+      "secondary": "View all",
+      "variants": [
+        "middle-22",
+        "three",
+        "one",
+        "empty",
+        "last",
+        "reduced-motion"
+      ],
+      "workflows": [
+        "W01",
+        "W04",
+        "W09",
+        "W43",
+        "W44",
+        "W55",
+        "W67"
+      ],
+      "required": [
+        "hero",
+        "selected-asset-index-and-total",
+        "five-window-paper-reel-geometry",
+        "partial-offscreen-crop",
+        "next-photo",
+        "previous-photo",
+        "view-all",
+        "set-as-wallpaper",
+        "previous-photo-fixed-control",
+        "next-photo-label-not-just-next",
+        "selected-photo-distinct-from-applied-wallpaper",
+        "one-pointer-per-interactive-reel"
+      ],
+      "conditional": [
+        "loaded-image-slots",
+        "placeholder-slots",
+        "last-item-indicator",
+        "browse-loop-indicator"
+      ],
+      "forbidden": [
+        "browse-rotation-applies-device-wallpaper",
+        "reel-claims-unbounded-collection",
+        "offscreen-reel-blocks-system-navigation",
+        "only-gesture-access",
+        "set-now-without-destination-or-continuation-policy",
+        "reel-hit-target-beneath-bottom-nav",
+        "inferred-whole-album-synchronization"
+      ]
+    },
+    {
+      "id": "grid",
+      "title": "Rainbows",
+      "lead": "View all photographs",
+      "kind": "grid",
+      "primary": "Preview selected",
+      "secondary": "Back to reel",
+      "variants": [
+        "selected",
+        "multi-select"
+      ],
+      "workflows": [
+        "W06",
+        "W07",
+        "W09",
+        "W43",
+        "W44",
+        "W55",
+        "W67"
+      ],
+      "required": [
+        "same-selected-asset-id",
+        "real-image-thumbnails",
+        "return-to-reel",
+        "share",
+        "collection-identity",
+        "visible-selection-state-for-selected-items",
+        "selection-meaning-explained",
+        "search-filter-or-position-jump"
+      ],
+      "conditional": [
+        "multi-select",
+        "search",
+        "loading-placeholder"
+      ],
+      "forbidden": [
+        "reset-selection-on-switch",
+        "render-all-10000-fullres-images",
+        "add-to-rotation-without-explaining-target-queue-effect"
+      ]
+    },
+    {
+      "id": "quick-import",
+      "title": "Quick import",
+      "lead": "Save this screenshot",
+      "kind": "import",
+      "primary": "Just save",
+      "secondary": "Use now / Show next",
+      "variants": [
+        "screenshot",
+        "failed",
+        "progress"
+      ],
+      "workflows": [
+        "W02",
+        "W04",
+        "F071"
+      ],
+      "required": [
+        "source-preview",
+        "rotate",
+        "crop",
+        "target-collection",
+        "use-now",
+        "show-next",
+        "just-save"
+      ],
+      "conditional": [
+        "source-missing-fallback",
+        "import-retry",
+        "original-recipe"
+      ],
+      "forbidden": [
+        "save-silently-applies-wallpaper",
+        "destroy-original-during-crop"
+      ]
+    },
+    {
+      "id": "share",
+      "title": "Share photograph",
+      "lead": "Choose a version",
+      "kind": "share",
+      "primary": "Share with Android",
+      "secondary": "Original / crop",
+      "variants": [
+        "original",
+        "edited",
+        "unavailable"
+      ],
+      "workflows": [
+        "F072",
+        "F073"
+      ],
+      "required": [
+        "share-action",
+        "original-or-crop-label",
+        "android-sharesheet-handoff"
+      ],
+      "conditional": [
+        "metadata-removal",
+        "batch-share",
+        "handler-unavailable-fallback"
+      ],
+      "forbidden": [
+        "share-changes-rotation",
+        "assume-lens-or-chatgpt-intent-always-exists"
+      ]
+    },
+    {
+      "id": "automation",
+      "title": "Automation",
+      "lead": "Wallpaper rhythm",
+      "kind": "automation",
+      "primary": "Pause rotation",
+      "secondary": "View schedule",
+      "variants": [
+        "running",
+        "paused",
+        "delayed"
+      ],
+      "workflows": [
+        "W01",
+        "W12",
+        "W17",
+        "W18",
+        "W19",
+        "W20",
+        "W34",
+        "W60",
+        "W70"
+      ],
+      "required": [
+        "rotation-status",
+        "interval-policy",
+        "paused-state",
+        "human-readable-constraints"
+      ],
+      "conditional": [
+        "overrides",
+        "why-this-image",
+        "rule-editor",
+        "source-failure"
+      ],
+      "forbidden": [
+        "eligibility-displayed-as-successful-apply"
+      ]
+    },
+    {
+      "id": "discover",
+      "title": "Discover",
+      "lead": "Find photos and sources",
+      "kind": "discover",
+      "primary": "Browse sources",
+      "secondary": "Search / filter",
+      "variants": [
+        "sources",
+        "offline"
+      ],
+      "workflows": [
+        "W31",
+        "W32",
+        "W33",
+        "W35",
+        "W36",
+        "W37",
+        "W38",
+        "W39",
+        "W40"
+      ],
+      "required": [
+        "source-or-image-type-label",
+        "provider-provenance",
+        "search-or-filter",
+        "image-rights-explanation",
+        "add-to-collection-action"
+      ],
+      "conditional": [
+        "finite-curated-image-reel",
+        "rights-insufficient-warning"
+      ],
+      "forbidden": [
+        "three-unlabelled-photos-posed-as-complete-source-directory",
+        "unexplained-new-collection-primary-cta"
+      ]
+    },
+    {
+      "id": "destinations",
+      "title": "Destinations",
+      "lead": "Home and Lock screen",
+      "kind": "destinations",
+      "primary": "Apply to Home",
+      "secondary": "Switch to Lock",
+      "variants": [
+        "home",
+        "lock",
+        "unsupported"
+      ],
+      "workflows": [
+        "W21",
+        "W22",
+        "W23",
+        "W24",
+        "W25",
+        "W26",
+        "W27",
+        "W28",
+        "W29",
+        "W58",
+        "W62"
+      ],
+      "required": [
+        "home-and-lock-labels",
+        "target-specific-preview",
+        "apply-specific-outcome",
+        "capability-status"
+      ],
+      "conditional": [
+        "paired-reel-hypothesis",
+        "single-reel-plus-destination-tabs",
+        "same-source-linked-crops"
+      ],
+      "forbidden": [
+        "applying-lock-silently-mutates-home",
+        "two-large-reels-cramp-phone-controls"
+      ]
+    },
+    {
+      "id": "image-editor",
+      "title": "Edit composition",
+      "lead": "Original stays unchanged",
+      "kind": "editor",
+      "primary": "Save crop",
+      "secondary": "Home / Lock",
+      "variants": [
+        "home",
+        "lock",
+        "blur-extend"
+      ],
+      "workflows": [
+        "W21",
+        "W25",
+        "W26",
+        "W28",
+        "W29",
+        "W51",
+        "W52",
+        "W53",
+        "W56",
+        "W58",
+        "W59",
+        "F071",
+        "F073"
+      ],
+      "required": [
+        "source-preserved",
+        "crop-destination",
+        "reversible-recipe",
+        "explicit-save-result",
+        "gesture-alternative"
+      ],
+      "conditional": [
+        "variant-reel-hypothesis",
+        "safe-area-preview",
+        "blur-extension"
+      ],
+      "forbidden": [
+        "rotation-reel-used-as-numeric-precision-crop-dial"
+      ]
+    },
+    {
+      "id": "activity",
+      "title": "Activity",
+      "lead": "What actually happened",
+      "kind": "activity",
+      "primary": "Reapply previous",
+      "secondary": "View details",
+      "variants": [
+        "acknowledged",
+        "failed",
+        "uncertain"
+      ],
+      "workflows": [
+        "W49",
+        "W54",
+        "W70"
+      ],
+      "required": [
+        "applied-versus-eligible-distinction",
+        "operation-time-and-target",
+        "error-recovery",
+        "rollback-or-reapply"
+      ],
+      "conditional": [
+        "recent-photo-reel-hypothesis"
+      ],
+      "forbidden": [
+        "fake-success-after-failed-wallpaper-call"
+      ]
+    },
+    {
+      "id": "automation-editor",
+      "title": "Rule editor",
+      "lead": "Choose when and what",
+      "kind": "rule",
+      "primary": "Save rule",
+      "secondary": "Simulate (preview only)",
+      "variants": [
+        "simple",
+        "conflict",
+        "nested"
+      ],
+      "workflows": [
+        "W11",
+        "W12",
+        "W13",
+        "W14",
+        "W15",
+        "W16",
+        "W17",
+        "W18",
+        "W19",
+        "W20",
+        "W35",
+        "W36",
+        "W41",
+        "W42",
+        "W43",
+        "W44",
+        "W45",
+        "W46",
+        "W47",
+        "W48",
+        "W49",
+        "W50"
+      ],
+      "required": [
+        "typed-trigger",
+        "target",
+        "collection-source",
+        "priority",
+        "condition",
+        "natural-language-preview",
+        "conflict-and-failure-explanation"
+      ],
+      "conditional": [
+        "simulator",
+        "nested-sources"
+      ],
+      "forbidden": [
+        "rule-settings-changed-by-photo-reel",
+        "silent-apply-on-preview"
+      ]
+    },
+    {
+      "id": "source-detail",
+      "title": "Source details",
+      "lead": "Provenance and rights",
+      "kind": "source",
+      "primary": "Add selected photos",
+      "secondary": "View licence",
+      "variants": [
+        "online",
+        "offline"
+      ],
+      "workflows": [
+        "W31",
+        "W32",
+        "W33",
+        "W34",
+        "W37",
+        "W38",
+        "W39",
+        "W40"
+      ],
+      "required": [
+        "provider-name",
+        "source-licence-provenance",
+        "import-permission-or-eligibility",
+        "image-preview",
+        "source-website-or-credit"
+      ],
+      "conditional": [
+        "related-image-reel",
+        "provider-offline-warning",
+        "network-policy"
+      ],
+      "forbidden": [
+        "implied-verified-rights-without-evidence",
+        "unscoped-auto-download"
+      ]
+    },
+    {
+      "id": "photo-detail",
+      "title": "Photograph",
+      "lead": "Details and actions",
+      "kind": "photo",
+      "primary": "Set wallpaper…",
+      "secondary": "Share / Edit",
+      "variants": [
+        "details",
+        "excluded"
+      ],
+      "workflows": [
+        "W06",
+        "W39",
+        "W51",
+        "W53",
+        "W55",
+        "W58",
+        "W59"
+      ],
+      "required": [
+        "image-identity",
+        "source-provenance",
+        "set-wallpaper-explicit-target",
+        "share",
+        "edit",
+        "collection-membership"
+      ],
+      "conditional": [
+        "home-and-lock-crops",
+        "hide-or-restore"
+      ],
+      "forbidden": [
+        "silent-apply-on-open"
+      ]
+    },
+    {
+      "id": "quickstart",
+      "title": "Start shuffle",
+      "lead": "Rainbows · 22 photos",
+      "kind": "quickstart",
+      "primary": "Start rotation",
+      "secondary": "Cancel",
+      "variants": [
+        "ready",
+        "unsupported"
+      ],
+      "workflows": [
+        "W01",
+        "W04",
+        "W08",
+        "W30",
+        "W60",
+        "W67"
+      ],
+      "required": [
+        "named-source-collection",
+        "destination-choice",
+        "shuffle-policy",
+        "cadence-and-platform-limits",
+        "start-or-cancel"
+      ],
+      "conditional": [
+        "collection-cover",
+        "cloud-import-warning"
+      ],
+      "forbidden": [
+        "exact-five-minute-background-promise",
+        "rules-editor-mandatory"
+      ]
+    },
+    {
+      "id": "schedule-simulator",
+      "title": "Schedule preview",
+      "lead": "SIMULATION · no device change",
+      "kind": "simulation",
+      "primary": "Simulate",
+      "secondary": "Edit context",
+      "variants": [
+        "forecast",
+        "insufficient"
+      ],
+      "workflows": [
+        "W12",
+        "W13",
+        "W16",
+        "W20",
+        "W41",
+        "W43",
+        "W45",
+        "W47",
+        "W50",
+        "W57"
+      ],
+      "required": [
+        "simulated-label",
+        "future-context",
+        "hypothetical-outcome",
+        "explanation"
+      ],
+      "conditional": [
+        "simulated-filmstrip",
+        "source-shortfall"
+      ],
+      "forbidden": [
+        "wallpaper-apply",
+        "real-queue-consumption",
+        "simulated-outcome-declared-actual"
+      ]
+    },
+    {
+      "id": "diagnostics",
+      "title": "Diagnostics",
+      "lead": "Understand and repair",
+      "kind": "diagnostics",
+      "primary": "Retry safely",
+      "secondary": "View activity",
+      "variants": [
+        "all-clear",
+        "failure"
+      ],
+      "workflows": [
+        "W34",
+        "W38",
+        "W40",
+        "W69",
+        "W70"
+      ],
+      "required": [
+        "operation-history",
+        "target",
+        "eligible-versus-attempted-versus-applied",
+        "failure-reason",
+        "retry-or-repair"
+      ],
+      "conditional": [
+        "source-health",
+        "permission-state",
+        "redacted-report"
+      ],
+      "forbidden": [
+        "wallpaper-preview-reused-as-success-proof"
+      ]
+    },
+    {
+      "id": "widgets",
+      "title": "Widgets",
+      "lead": "Accessible quick actions",
+      "kind": "widgets",
+      "primary": "Add widget",
+      "secondary": "Choose target",
+      "variants": [
+        "preview",
+        "unavailable"
+      ],
+      "workflows": [
+        "W61",
+        "W66",
+        "W67"
+      ],
+      "required": [
+        "action-identity",
+        "actual-command-target",
+        "accessible-name"
+      ],
+      "conditional": [
+        "small-static-reel-icon",
+        "current-or-next-preview",
+        "pause"
+      ],
+      "forbidden": [
+        "gesture-wheel-required",
+        "widget-launch-silently-applies-wrong-target"
+      ]
+    },
+    {
+      "id": "quick-settings-and-shortcuts",
+      "title": "Shortcuts",
+      "lead": "Home and Lock actions",
+      "kind": "shortcuts",
+      "primary": "Add Home shortcut",
+      "secondary": "Choose action",
+      "variants": [
+        "available",
+        "blocked"
+      ],
+      "workflows": [
+        "W62",
+        "W63",
+        "W66"
+      ],
+      "required": [
+        "destination-scoped-action",
+        "status-state",
+        "capability-fallback"
+      ],
+      "conditional": [
+        "launch-app-for-repair"
+      ],
+      "forbidden": [
+        "ambiguous-untargeted-next",
+        "implied-persistent-service"
+      ]
+    },
+    {
+      "id": "settings",
+      "title": "Settings",
+      "lead": "Personalize Glimpse",
+      "kind": "settings",
+      "primary": "Storage / permissions",
+      "secondary": "Privacy",
+      "variants": [
+        "general",
+        "permissions"
+      ],
+      "workflows": [
+        "W03",
+        "W08",
+        "W15",
+        "W27",
+        "W29",
+        "W30",
+        "W33",
+        "W38",
+        "W63",
+        "W64",
+        "W65",
+        "W69"
+      ],
+      "required": [
+        "motion-preferences",
+        "theme",
+        "storage",
+        "network-policy",
+        "privacy",
+        "permissions-and-capabilities",
+        "backup-entry"
+      ],
+      "conditional": [
+        "advanced-sources",
+        "local-diagnostics"
+      ],
+      "forbidden": [
+        "paper-reel-as-a-toggle-control",
+        "unnecessary-intrusive-permissions"
+      ]
+    },
+    {
+      "id": "backup-and-restore",
+      "title": "Backup and restore",
+      "lead": "Choose exactly what leaves",
+      "kind": "backup",
+      "primary": "Export backup",
+      "secondary": "Preview restore",
+      "variants": [
+        "export",
+        "restore"
+      ],
+      "workflows": [
+        "W64",
+        "W65"
+      ],
+      "required": [
+        "export-scope",
+        "image-inclusion-off-by-default",
+        "version",
+        "restore-preview",
+        "missing-source-remap"
+      ],
+      "conditional": [
+        "encrypted-export",
+        "wrong-passphrase-recovery"
+      ],
+      "forbidden": [
+        "default-include-all-private-photo-bytes",
+        "silent-credential-restore"
+      ]
+    },
+    {
+      "id": "onboarding",
+      "title": "Welcome to Glimpse",
+      "lead": "Your photographs stay yours",
+      "kind": "onboarding",
+      "primary": "Add photographs",
+      "secondary": "Skip for now",
+      "variants": [
+        "welcome",
+        "no-photos"
+      ],
+      "workflows": [
+        "W01",
+        "W02",
+        "W04",
+        "W08",
+        "W30",
+        "W67",
+        "F071"
+      ],
+      "required": [
+        "add-photos-path",
+        "privacy-explanation",
+        "destination",
+        "cadence",
+        "start",
+        "skip"
+      ],
+      "conditional": [
+        "one-time-reel-demonstration"
+      ],
+      "forbidden": [
+        "mandatory-rules-editor",
+        "forced-large-initial-upload"
+      ]
+    },
+    {
+      "id": "error-empty-permission",
+      "title": "Needs attention",
+      "lead": "What happened and why",
+      "kind": "error",
+      "primary": "Try again",
+      "secondary": "Keep existing photos",
+      "variants": [
+        "empty",
+        "permission",
+        "offline",
+        "storage"
+      ],
+      "workflows": [
+        "W02",
+        "W03",
+        "W04",
+        "W08",
+        "W15",
+        "W31",
+        "W34",
+        "W38",
+        "W40",
+        "W55",
+        "W59",
+        "W69",
+        "W70",
+        "F071",
+        "F073"
+      ],
+      "required": [
+        "cause-or-condition",
+        "next-action",
+        "preserved-existing-content-statement"
+      ],
+      "conditional": [
+        "empty-reel-illustration",
+        "retry",
+        "picker-or-permission-route"
+      ],
+      "forbidden": [
+        "invented-photo-content",
+        "generic-success-after-OS-failure"
+      ]
+    },
+    {
+      "id": "accessibility-preferences",
+      "title": "Accessibility",
+      "lead": "Equal access without gestures",
+      "kind": "accessibility",
+      "primary": "Save preferences",
+      "secondary": "Preview reduced motion",
+      "variants": [
+        "standard",
+        "high-contrast"
+      ],
+      "workflows": [
+        "W30",
+        "W66",
+        "W67",
+        "W68"
+      ],
+      "required": [
+        "reduced-motion",
+        "high-contrast",
+        "font-scaling-system-compliance",
+        "gesture-alternative-information"
+      ],
+      "conditional": [
+        "shortcut-help"
+      ],
+      "forbidden": [
+        "required-circular-gesture",
+        "flashing-visual-feedback-only"
+      ]
+    }
+  ],
+  "workflowIds": [
+    "W01",
+    "W02",
+    "W03",
+    "W04",
+    "W05",
+    "W06",
+    "W07",
+    "W08",
+    "W09",
+    "W10",
+    "W11",
+    "W12",
+    "W13",
+    "W14",
+    "W15",
+    "W16",
+    "W17",
+    "W18",
+    "W19",
+    "W20",
+    "W21",
+    "W22",
+    "W23",
+    "W24",
+    "W25",
+    "W26",
+    "W27",
+    "W28",
+    "W29",
+    "W30",
+    "W31",
+    "W32",
+    "W33",
+    "W34",
+    "W35",
+    "W36",
+    "W37",
+    "W38",
+    "W39",
+    "W40",
+    "W41",
+    "W42",
+    "W43",
+    "W44",
+    "W45",
+    "W46",
+    "W47",
+    "W48",
+    "W49",
+    "W50",
+    "W51",
+    "W52",
+    "W53",
+    "W54",
+    "W55",
+    "W56",
+    "W57",
+    "W58",
+    "W59",
+    "W60",
+    "W61",
+    "W62",
+    "W63",
+    "W64",
+    "W65",
+    "W66",
+    "W67",
+    "W68",
+    "W69",
+    "W70",
+    "F071",
+    "F072",
+    "F073"
+  ],
+  "uncovered": [],
+  "plannedStatePlateCount": 63,
+  "existingArtworkClassification": {
+    "design/reference/five-window-reel.svg": "directional form only; standalone schematic",
+    "design/reference/reel-wide-apertures.png": "strong visual identity but isolated full disc, not complete screen",
+    "design/reference/reel-browser-concept.svg": "pre-audit schematic, missing Previous and target-qualified apply; do not implement literal labels",
+    "design/research/reel-layout/*.svg": "mutually exclusive comparison variants; never mix layouts or promote dual reels",
+    "design/research/motion/*.png": "motion-study evidence, not stable accepted screen state"
+  }
+}
