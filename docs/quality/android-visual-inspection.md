@@ -8,11 +8,13 @@ GitHub Actions → [Glimpse native visual atlas](https://github.com/gamesbyian/G
 
 Download the **glimpse-android-visual-atlas** workflow artifact, unzip it and open **index.html**. The contact sheet links the raw PNG screenshots, UIAutomator accessibility XML for each state and **manifest.json** with source SHA, emulator dimensions, scenario labels and clickable-control geometry warnings (under 44dp). Screenshots are native captures of the actual debug APK's MainActivity, not recreated sketches or browser approximations.
 
+**2026-10-23 reliability note:** The first capture run compiled but failed while waiting for the old UIAutomator-based fixture check. The second capture run could not pass the emulator runner's post-boot initialization: its Ubuntu user lacked permission for `/dev/kvm`, forcing a 13-minute unaccelerated startup before Android settings commands failed. The workflow now grants temporary KVM access, uses a smaller emulator boot profile, and waits for an explicit debug fixture marker. **Until a complete run succeeds, no native screenshot gallery is verified.** Screenshot assertions remain separate from real handset acceptance.
+
 ## Truth and privacy boundaries
 
 - The debug-only VisualFixtureLauncher seeds real Room records for 0, 3, 22 or 60 images, then launches the **same production Compose screen**. It decorates the six already published source art images with distinct numeric IDs. These are *fixture derivatives*, never your imported personal photographs.
 - The launcher is excluded from release APKs. The script resets **all Glimpse app data** to build a clean scenario, and adjusts screen size/density/font scale. **Run it only on a disposable emulator or dedicated test device, never on your personal phone**.
-- CI uses an emulator configured to Pixel 6 Pro-like 1440 × 3120 / 560 dpi with Android API 35 and an app compiled against SDK 37. Emulator appearance is actual software execution, **not physical Pixel hardware performance or user acceptance**.
+- CI uses an emulator configured to Pixel 6 Pro-like 1440 × 3120 / 560 dpi with an Android API 34 emulator on a smaller boot profile and an app compiled against SDK 37. Emulator appearance is actual software execution, **not physical Pixel hardware performance or user acceptance**.
 - The screenshots provided by the owner on October 23 remain in the conversation. We have not republished them or personal image thumbnails in this public repository.
 - Screenshots are **implementation evidence**. [Approved design references](../../design/reference/five-window-reel.svg), [critical interaction audit](../design/reel-ux-audit.md), and [human/device observations](first-slice-evidence.md) remain separate evidence types. Do not pretend a screenshot passes a human study or a static picture proves drag/interrupt gestures.
 

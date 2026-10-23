@@ -2,6 +2,8 @@
 
 Glimpse is a **native Android wallpaper manager** with a tactile paper-reel interaction. The repository has an implemented *first-slice prototype* and a GitHub Actions-built debug APK; installed-device behavior, OS reliability, human usability, and a signed release are **not yet accepted**. The source, mockups, a successful JVM/Gradle job and a working handset are four different evidence classes.
 
+All draft visual references can be browsed through the [66-image mobile atlas](design/atlas/README.md); the [source-validated packaging workflow](https://github.com/gamesbyian/Glimpse/actions/runs/39922564218) supplies a self-contained offline review artifact. The current **circular photo reel is provisional code**; [native CI](https://github.com/gamesbyian/Glimpse/actions/runs/39924084187) does not imply geometry, motion or owner approval. First native screenshot evidence is still unresolved; inspect the GHA emulator logs before claiming visual acceptance.
+
 Visual design work must begin with [the two-way visual gap audit](docs/design/reference-gap-audit.md), [the unified draft reference family](design/proposals/README.md) and [the everyday support specification](docs/product/everyday-app-experience.md). **Proposed SVGs are not user-approved full-fidelity reference images.** The static validator checks structure and traceability, not appearance, transitions or approval. Keep one coherent whole-set vocabulary; no cherry-picking obsolete dual-reel proposals.
 
 ## Start and choose work

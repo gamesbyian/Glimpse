@@ -6,7 +6,7 @@
 
 A real installation successfully imported **22 Google Photos images** through the standard Android picker, set Home wallpaper and activated/observed five-minute shuffle with accurate visible status, with no reported crashes or sizing issues. Owner explicitly called the app generic and its present horizontal slot-strip **not a genuine Glimpse reel**. The owner expected to swipe across all 22 images, but the current selector is a **rounded rectangle with no circular edge**, exposes only five slots, and appears not to fill its visible space correctly until first interaction. Do not assume an observed preference for circular-edge dragging. See [actual owner observation](../quality/first-slice-evidence.md).
 
-**Highest-priority next milestone:** replace the placeholder selector with the proposed large-window continuous tactile offscreen photo reel and working drag/swipe/settle traversal for the entire finite collection. Audit stable ID-to-aperture mapping on 0/1/3/5/22/60-item sets; validate boundary behavior, interrupted gestures, reduced motion, TalkBack/Previous/Next parity and Reel↔Grid selection identity. Do not broaden unrelated backend features first or solicit visual approval of an unimplemented design. Preserve the already-working import/apply/shuffle pathways.
+**Highest-priority next milestone:** validate/refine the **newly compiled** circular native reel prototype against the entire five-window design family. It already supports swipe/tap and a finite 22-photo identity mapping, but animated rotation, initial-render, tap ergonomics, reduced-motion behavior and on-device inspection remain unverified. Audit stable ID-to-aperture mapping on 0/1/3/5/22/60-item sets; validate boundary behavior, interrupted gestures, reduced motion, TalkBack/Previous/Next parity and Reel↔Grid selection identity. Do not broaden unrelated backend features first or solicit visual approval of an unimplemented design. Preserve the already-working import/apply/shuffle pathways.
 
 ## Native visual-inspection infrastructure
 
@@ -21,6 +21,7 @@ A real installation successfully imported **22 Google Photos images** through th
 - [x] [Two-way reference audit](../design/reference-gap-audit.md): original 73 workflows, 24 surfaces, 127 mandatory and 59 conditional elements, 16 added everyday-app surfaces, classified conflicts.
 - [x] [Unified draft proposal family](../../design/proposals/README.md): 24 screen families, 34 support-state plates and eight real-image reel boundary references with consistent navigation/tokens.
 - [x] [Fast static validation](../../scripts/validate-visual-spec.py): XML/contract/palette completeness, distinct from visual or user signoff.
+- [x] [Mobile review atlas](../../design/atlas/README.md): 66 SVG proposals searchable with precise copyable references; packaged as an offline CI artifact (run [39922564218](https://github.com/gamesbyian/Glimpse/actions/runs/39922564218)).
 - [ ] **V1:** complete and visually inspect a high-fidelity coherent Home/Collections/Reel/Grid/Import/Apply/Paused/Error core family, including legitimate state transitions and 200% font layout.
 - [ ] **V2:** obtain an owner-reviewed exact approved *set*, not single disconnected images; freeze hashes and prohibit contradictory targets.
 - [ ] **V3:** compare against actual Android screenshots, native semantics and physically tested swipe/settle/interrupt behavior.
@@ -44,7 +45,9 @@ A real installation successfully imported **22 Google Photos images** through th
 - [x] Android SDK 37.0 package workaround, compiled debug APK, passed JVM test task, and uploaded [debug artifact](https://github.com/gamesbyian/Glimpse/actions/runs/39904252446). Not a signed release or proof of device behavior.
 - [ ] Test on Android phone, provider handling, process death, airplane mode and font/accessibility.
 - [ ] Record actual uncoached actions, misunderstandings, error recovery and results against [predictions](../quality/first-slice-evidence.md).
-- [ ] Implement the approved large-window paper reel's meaningful gestures/motion, preserving Grid and ordinary buttons.
+- [x] First real circular paper disc with 5 wedges, true photo IDs across 0/1/3/22 cases, swipe/tap selection, stationary hero, grid fallback and unit tests. **Visual acceptance and animated wheel motion remain open.**
+- [ ] Improve circular reel response: actually rotate/snap/reverse the disc with interruption and accessibility parity rather than instantaneous rebinding.
+- [ ] Confirm native capture + physically inspect first-fill, small/large photo collections, type scaling, safe insets and zoom/cropping.
 
 ## P1: daily use beyond the bounded slice
 
