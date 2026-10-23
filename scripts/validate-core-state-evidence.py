@@ -99,7 +99,7 @@ def main():
             warnings.append(key + " is NOT covered (related surface only)")
         if level == "partial-pictured":
             warnings.append(key + " requires additional complete surface/transition evidence")
-    if dict(counted) != data["evidenceCounts"]:
+    if {name: counted.get(name, 0) for name in LEVELS} != data["evidenceCounts"]:
         errors.append("Evidence-level totals differ from records")
     actual_new = set(str(p.relative_to(ROOT)) for p in
                      (ROOT / PREFIX / "state-refinements").glob("*.svg"))
