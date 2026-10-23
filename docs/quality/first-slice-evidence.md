@@ -2,6 +2,29 @@
 
 **Status: Android source, CI build and JVM unit task verified; handset/human acceptance unverified.** These hypotheses were documented before an uncoached user observation. This is not a simulated usability study.
 
+## First real owner test: 22 imported Google Photos images (2026-10-23)
+
+**Evidence type:** firsthand owner report, not instrumented or independently reproduced. Android handset was used; no build SHA, logs, exact rotation timestamps or screenshot were recorded with this report.
+
+| Area | Owner observation | Disposition |
+|---|---|---|
+| First impression | Looked like a generic application, not Glimpse: no genuine reel | **Major design gap** |
+| Initial friction | UI itself clearly missing; other missing features did not stand out | Focus interface |
+| Phone fit | Fit normally | Positive owner observation, not formal accessibility proof |
+| Import | Imported **22 photographs** through standard Android picker from **Google Photos**, as desired | Basic real-world provider journey succeeded |
+| Reel and Grid | The reel appears to be a horizontal pane; not fully/correctly populated. Its limited controls worked | **Major functional/navigation defect**; verify exact dataset coverage and focus |
+| Wallpaper apply | Worked on device | First owner-reported successful Home apply |
+| Five-minute shuffle | Activated; owner observed change and considered status accurate | Positive limited live report, not a Doze/background guarantee |
+| Crashes and responsiveness | No problems reported | Encouraging, not full reliability coverage |
+| Spontaneous attempted action | Tried to **swipe through the reel to traverse the entire collection**; not supported | Highest-priority missing gesture and design behavior |
+| Layout/design critique | Cannot meaningfully evaluate placement/mockup fidelity until the proposed Glimpse UI exists | **Defer cosmetic/usability signoff** |
+
+**Interpretation:** Fundamental data pipeline succeeded for this 22-image case. The owner explicitly does **not** approve the current placeholder horizontal strip as a Glimpse reel. Do not turn provisional “reel worked” into visual acceptance. A proposed functional solution must support finite continuous traversal by natural swipe/drag, preserve stable photo ID and hero selection, show all 22 images without invented duplicates, retain Grid, and keep preview separate from wallpaper application. Afterwards obtain a fresh uncoached evaluation of the actual reel.
+
+**Next actions:** implement visual/motion fidelity of the approved five-large-window tactile offscreen reel; reproduce the underpopulation/focus bug using a 22-item fixture and audit slot indexing; support drag with snapping, interruption, edge behavior, buttons/TalkBack parity and reduced motion. Compare to [reel motion contract](../architecture/reel-motion.md) and [reference](../design/reel-interaction.md). Keep existing photo import, explicit apply and foreground shuffle intact.
+
+---
+
 ## Scope and provenance
 
 Native Android Photo Picker snapshot → local private image copies with SHA-256 verification → Room collections → finite Reel/Grid selector → explicit Home wallpaper application → foreground active-use shuffle. The app checks eligibility while the Activity is STARTED every 15 seconds. It does not promise waking from Doze, an exact five-minute background alarm, automatic whole Google Photos album synchronization, or lock-screen wallpaper support. Reel visuals remain provisional.
