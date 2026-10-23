@@ -1,6 +1,6 @@
 # Glimpse visual-reference completion and reconciliation handoff · 2026-10-23
 
-**Work lane:** Visual Reference Completion and Reconciliation. **Branch:** [`agent/visual-state-reconciliation-20261023`](https://github.com/gamesbyian/Glimpse/tree/agent/visual-state-reconciliation-20261023). **Start main SHA:** `4a4f858871d210939679bc9a5ee69550aedda620`. Main was rechecked against the live connector and remained at that SHA before PR creation. Recheck HEAD and all active PRs before subsequent edits.
+**Pull request:** [#6 (draft)](https://github.com/gamesbyian/Glimpse/pull/6); do not promote until structural and optical review. **Work lane:** Visual Reference Completion and Reconciliation. **Branch:** [`agent/visual-state-reconciliation-20261023`](https://github.com/gamesbyian/Glimpse/tree/agent/visual-state-reconciliation-20261023). **Start main SHA:** `4a4f858871d210939679bc9a5ee69550aedda620`. Main was rechecked against the live connector and remained at that SHA before PR creation. Recheck HEAD and all active PRs before subsequent edits.
 
 ## Exact changes and evidence classes
 
