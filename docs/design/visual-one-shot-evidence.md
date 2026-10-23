@@ -2,14 +2,14 @@
 
 **Automated tool result only. No visual, native, accessibility, or owner approval.**
 
-- Workflow source commit: `c7fc5556f53e4a8b66a9dccdd0e150bfae96e2e8`
-- Workflow run ID: `40032396530`
-- Workflow run URL: https://github.com/gamesbyian/Glimpse/actions/runs/40032396530
+- Workflow source commit: `d41d9ef7d51cff370e5d1d339a1f6caab78ec81e`
+- Workflow run ID: `40033741630`
+- Workflow run URL: https://github.com/gamesbyian/Glimpse/actions/runs/40033741630
 - Run attempt: `1`
-- Workflow result before publishing: `failure`
+- Workflow result before publishing: `success`
 - Branch: `agent/visual-state-reconciliation-20261023`
 - Review sets: 34 states, Source Detail, reel/grid/crop/share, large text, complete original 66 + P0 82 + P1 55
-- CI artifact name: `glimpse-reference-draft-c7fc5556f53e4a8b66a9dccdd0e150bfae96e2e8`
+- CI artifact name: `glimpse-reference-draft-d41d9ef7d51cff370e5d1d339a1f6caab78ec81e`
 
 ## Structural script outputs
 
@@ -54,21 +54,42 @@
   "deviceProof": false,
   "ownerApproval": false
 }
-Scanned 236 proposal SVGs, 134 image nodes, 134 decoded embedded rasters.
+Scanned 238 proposal SVGs, 134 image nodes, 134 decoded embedded rasters.
 Source-level SVG/photo portability PASS (not optical, device or owner PASS).
-Traceback (most recent call last):
-  File "/home/runner/work/Glimpse/Glimpse/scripts/validate-audit-cycle.py", line 43, in <module>
-    assert ids == expected, (state, ids, expected)
-           ^^^^^^^^^^^^^^^
-AssertionError: ('idle-22', [], [12, 13, 14, 10, 11])
+{
+  "questions": 60,
+  "categories": 6,
+  "revisionLanes": 8,
+  "scenarioTargets": 56,
+  "results": {
+    "PASS": 18,
+    "ISSUE": 8,
+    "UNVERIFIED": 34,
+    "NOT_APPLICABLE": 0
+  },
+  "type": "document_trace_validation_only"
+}
 ~~~
 
 ## Rendered evidence
 
-- Missing: /tmp/glimpse-visual-phone/index.json
-- Missing: /tmp/glimpse-visual-journeys/index.json
-- Missing: /tmp/glimpse-visual-complete/index.json
-- Missing: /tmp/glimpse-visual-audit-r03/index.json
-- Missing: /tmp/glimpse-visual-audit-r01/index.json
+- Raster ledger: /tmp/glimpse-visual-phone/index.json
+  - Groups: core-34-named-states, source-detail-paired
+  - Native PNG crops: 36
+- Raster ledger: /tmp/glimpse-visual-journeys/index.json
+  - Groups: reel-grid-crop-share, critical-type-comparison
+  - Native PNG crops: 23
+- Raster ledger: /tmp/glimpse-visual-complete/index.json
+  - Groups: entire-original-66, entire-p0-82, entire-p1-55
+  - Native PNG crops: 203
+- Raster ledger: /tmp/glimpse-visual-audit-r03/index.json
+  - Groups: audit-r03-truth-candidates
+  - Native PNG crops: 2
+- Raster ledger: /tmp/glimpse-visual-audit-r01/index.json
+  - Groups: audit-r01-finite-motion
+  - Native PNG crops: 6
+- Raster ledger: /tmp/glimpse-visual-audit-r02/index.json
+  - Groups: audit-r02-copy-transition
+  - Native PNG crops: 2
 
 **Status describes automatic structural/render execution, NOT whether humans saw/read or accepted the PNG files.**
