@@ -2,6 +2,7 @@ name: Glimpse visual references | one-shot branch validation
 
 # One-time push trigger: this workflow file being introduced/changed on the
 # dedicated visual PR branch. No triggers on ordinary source/docs pushes.
+# Rerun after fixing CI-discovered core evidence assertions and JPEG optical crops.
 # Keep opt-in dispatch for a future intentional fresh visual review.
 on:
   push:
