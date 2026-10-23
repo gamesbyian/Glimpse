@@ -46,6 +46,22 @@ for state, chosen, total in (
             '"selectedAssetId":null') in src, state
     assert "lastConfirmedAppliedAssetId" in src
 assert "Glimpse" in (ROOT / "design/proposals/audit-revisions/r01-idle-22.svg").read_text()
+# R02 trace: crossing storyboard families must preserve the selected ID,
+# while the crop editor keeps the source ID until an explicit saved copy exists.
+import html
+import re
+chain = json.loads((ROOT / "design/proposals/audit-revisions/r02-identity-chain.v1.json").read_text())
+assert len(chain["steps"]) == 8
+for step in chain["steps"]:
+    src = (ROOT / step["path"]).read_text()
+    metadata = re.search(r"<metadata>(.*?)</metadata>", src, re.S)
+    assert metadata, step["path"]
+    state = json.loads(html.unescape(metadata.group(1)))
+    assert state["selectedAssetId"] == step["expectedSelectedAssetId"], (step["id"], state["selectedAssetId"])
+    assert state.get("proposalStatus", state.get("status", "")).startswith("draft"), step["id"]
+assert [x["expectedSelectedAssetId"] for x in chain["steps"][:6]] == ["p12"] * 6
+assert chain["steps"][6]["expectedSelectedAssetId"] == "p12"
+assert chain["steps"][7]["expectedSelectedAssetId"] == "p12c"
 counts = {x: sum(v["status"] == x for v in cycle["results"])
           for x in ("PASS", "ISSUE", "UNVERIFIED", "NOT_APPLICABLE")}
 assert counts == cycle["summary"]["counts"]
