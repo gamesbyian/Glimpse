@@ -12,19 +12,15 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.grid.GridCells
@@ -124,7 +120,7 @@ private fun GlimpseScreen(model: GlimpseModel) {
             verticalArrangement = Arrangement.spacedBy(12.dp)
         ) {
             Text("Glimpse", style = MaterialTheme.typography.headlineLarge, fontWeight = FontWeight.Bold)
-            Text("Your photographs. Your wallpaper. No cloud account required.")
+            Text("Your photographs, your wallpaper.", style = MaterialTheme.typography.bodyMedium)
             Row(
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.spacedBy(8.dp)
@@ -191,12 +187,6 @@ private fun GlimpseScreen(model: GlimpseModel) {
                             selectedId = state.current?.id,
                             onSelect = model::browsePhoto
                         )
-                    } else {
-                        PaperReel(
-                            records = state.photos,
-                            selectedId = state.current?.id,
-                            onSelect = model::browsePhoto
-                        )
                     }
                     val selected = state.current
                     val selectedIndex = state.photos.indexOfFirst { it.id == selected?.id }
@@ -210,6 +200,13 @@ private fun GlimpseScreen(model: GlimpseModel) {
                         modifier = Modifier.fillMaxWidth().height(220.dp),
                         label = "Selected photo preview"
                     )
+                    if (!state.grid) {
+                        CircularPhotoReel(
+                            records = state.photos,
+                            selectedId = selected?.id,
+                            onSelect = model::browsePhoto
+                        )
+                    }
                     Row(
                         horizontalArrangement = Arrangement.spacedBy(8.dp),
                         modifier = Modifier.fillMaxWidth()
@@ -238,46 +235,6 @@ private fun GlimpseScreen(model: GlimpseModel) {
                 "Prototype: the paper reel geometry and Android device behavior are still under evaluation.",
                 style = MaterialTheme.typography.bodySmall
             )
-        }
-    }
-}
-
-@Composable
-private fun PaperReel(
-    records: List<PhotoRecord>,
-    selectedId: String?,
-    onSelect: (String) -> Unit
-) {
-    val focused = records.indexOfFirst { it.id == selectedId }.coerceAtLeast(0)
-    Column(verticalArrangement = Arrangement.spacedBy(5.dp)) {
-        Text("Paper reel · choose a photo", fontWeight = FontWeight.SemiBold)
-        Row(
-            modifier = Modifier.fillMaxWidth().horizontalScroll(rememberScrollState())
-                .background(Color(0xFFEAD9BD), RoundedCornerShape(20.dp))
-                .padding(10.dp),
-            horizontalArrangement = Arrangement.spacedBy(8.dp)
-        ) {
-            for (offset in -2..2) {
-                val photo = records.getOrNull(focused + offset)
-                val selected = offset == 0 && photo != null
-                Box(
-                    modifier = Modifier.size(width = 82.dp, height = 105.dp)
-                        .border(
-                            width = if (selected) 3.dp else 1.dp,
-                            color = if (selected) Color(0xFF1D5960) else Color(0xFF967E67),
-                            shape = RoundedCornerShape(12.dp)
-                        ).background(Color(0xFFFFFCF6), RoundedCornerShape(12.dp))
-                        .then(if (photo != null) Modifier.clickable { onSelect(photo.id) } else Modifier),
-                    contentAlignment = Alignment.Center
-                ) {
-                    if (photo == null) Text("Empty", style = MaterialTheme.typography.labelSmall)
-                    else PhotoPreview(
-                        photo,
-                        modifier = Modifier.fillMaxSize().padding(4.dp),
-                        label = "Preview photograph " + (focused + offset + 1)
-                    )
-                }
-            }
         }
     }
 }
