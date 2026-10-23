@@ -1,55 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1160" height="920" viewBox="0 0 1160 920" role="img" aria-label="Reel ↔ Grid ↔ detail 07-multi-select Glimpse proposal"><title>Reel ↔ Grid ↔ detail / 07-multi-select</title><desc>Source-editable DRAFT storyboard frame, not a captured application screen.</desc><metadata>{&quot;journeyId&quot;:&quot;x07&quot;,&quot;stateId&quot;:&quot;07-multi-select&quot;,&quot;surfaceId&quot;:&quot;multi&quot;,&quot;sourceAssetId&quot;:&quot;illustrative-vector-rainbow&quot;,&quot;selectedAssetId&quot;:&quot;p12&quot;,&quot;wallpaperTarget&quot;:null,&quot;appliedStatus&quot;:&quot;unchanged&quot;,&quot;viewportDp&quot;:[420,900],&quot;insetsDp&quot;:{&quot;status&quot;:24,&quot;bottom&quot;:24},&quot;motion&quot;:&quot;system&quot;,&quot;proposalStatus&quot;:&quot;draft-unapproved&quot;}</metadata>
-<rect x="0" y="0" width="1160" height="920" rx="0" fill="#E9E2D6" stroke="none"/>
-<rect x="15" y="14" width="401" height="890" rx="22" fill="#F6F0E6" stroke="#C4B7A4"/>
-<text x="38" y="43" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="600" fill="#153F46">9:41</text>
-<text x="354" y="43" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="500" fill="#667975">●  ▰</text>
-<path d="M33 56 H396" stroke="#C4B7A4"/>
-<text x="37" y="94" font-family="Arial,Helvetica,sans-serif" font-size="29" font-weight="700" fill="#153F46">Rainbows</text>
-<text x="39" y="122" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="500" fill="#667975">Three selected in Grid</text>
-<text x="40" y="182" font-family="Arial,Helvetica,sans-serif" font-size="16" font-weight="650" fill="#153F46">3 selected · cancel any time</text>
-<rect x="38" y="216" width="80" height="99" rx="12" fill="#21323B" stroke="none"/>
-<path d="M44.4 237.78 Q76.4 217.98 110 239.76" stroke="#E8876C" stroke-width="5.445" fill="none" stroke-linecap="round"/>
-<path d="M44.4 256.59000000000003 Q76.4 232.82999999999998 110 260.55" stroke="#ECC85E" stroke-width="5.445" fill="none" stroke-linecap="round"/>
-<path d="M44.4 275.4 Q76.4 247.68 110 281.34" stroke="#64B890" stroke-width="5.445" fill="none" stroke-linecap="round"/>
-<rect x="45" y="289" width="66" height="20" rx="7" fill="#FFFCF6" stroke="none"/>
-<text x="52" y="304" font-family="Arial,Helvetica,sans-serif" font-size="11" font-weight="700" fill="#153F46">p06</text>
-<rect x="126" y="216" width="80" height="99" rx="12" fill="#12213A" stroke="none"/>
-<path d="M132.4 237.78 Q164.4 217.98 198 239.76" stroke="#EAC753" stroke-width="5.445" fill="none" stroke-linecap="round"/>
-<path d="M132.4 256.59000000000003 Q164.4 232.82999999999998 198 260.55" stroke="#327EBD" stroke-width="5.445" fill="none" stroke-linecap="round"/>
-<path d="M132.4 275.4 Q164.4 247.68 198 281.34" stroke="#9053BB" stroke-width="5.445" fill="none" stroke-linecap="round"/>
-<rect x="133" y="289" width="66" height="20" rx="7" fill="#FFFCF6" stroke="none"/>
-<text x="140" y="304" font-family="Arial,Helvetica,sans-serif" font-size="11" font-weight="700" fill="#153F46">p07</text>
-<rect x="214" y="216" width="80" height="99" rx="12" fill="#11131D" stroke="none"/>
-<path d="M220.4 237.78 Q252.4 217.98 286 239.76" stroke="#23A86A" stroke-width="5.445" fill="none" stroke-linecap="round"/>
-<path d="M220.4 256.59000000000003 Q252.4 232.82999999999998 286 260.55" stroke="#D83F69" stroke-width="5.445" fill="none" stroke-linecap="round"/>
-<path d="M220.4 275.4 Q252.4 247.68 286 281.34" stroke="#4673CE" stroke-width="5.445" fill="none" stroke-linecap="round"/>
-<rect x="221" y="289" width="66" height="20" rx="7" fill="#FFFCF6" stroke="none"/>
-<text x="228" y="304" font-family="Arial,Helvetica,sans-serif" font-size="11" font-weight="700" fill="#153F46">p08</text>
-<rect x="215" y="217" width="78" height="97" rx="11" fill="none" stroke="#1D5960"/>
-<circle cx="279" cy="233" r="10" fill="#1D5960"/>
-<text x="273" y="239" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="700" fill="white">✓</text>
-<rect x="302" y="216" width="80" height="99" rx="12" fill="#21323B" stroke="none"/>
-<path d="M308.4 237.78 Q340.4 217.98 374 239.76" stroke="#E8876C" stroke-width="5.445" fill="none" stroke-linecap="round"/>
-<path d="M308.4 256.59000000000003 Q340.4 232.82999999999998 374 260.55" stroke="#ECC85E" stroke-width="5.445" fill="none" stroke-linecap="round"/>
-<path d="M308.4 275.4 Q340.4 247.68 374 281.34" stroke="#64B890" stroke-width="5.445" fill="none" stroke-linecap="round"/>
-<rect x="309" y="289" width="66" height="20" rx="7" fill="#FFFCF6" stroke="none"/>
-<text x="316" y="304" font-family="Arial,Helvetica,sans-serif" font-size="11" font-weight="700" fill="#153F46">p09</text>
-<rect x="38" y="325" width="80" height="99" rx="12" fill="#12213A" stroke="none"/>
-<path d="M44.4 346.78 Q76.4 326.98 110 348.76" stroke="#EAC753" stroke-width="5.445" fill="none" stroke-linecap="round"/>
-<path d="M44.4 365.59000000000003 Q76.4 341.83 110 369.55" stroke="#327EBD" stroke-width="5.445" fill="none" stroke-linecap="round"/>
-<path d="M44.4 384.4 Q76.4 356.68 110 390.34" stroke="#9053BB" stroke-width="5.445" fill="none" stroke-linecap="round"/>
-<rect x="45" y="398" width="66" height="20" rx="7" fill="#FFFCF6" stroke="none"/>
-<text x="52" y="413" font-family="Arial,Helvetica,sans-serif" font-size="11" font-weight="700" fill="#153F46">p10</text>
-<rect x="126" y="325" width="80" height="99" rx="12" fill="#11131D" stroke="none"/>
-<path d="M132.4 346.78 Q164.4 326.98 198 348.76" stroke="#23A86A" stroke-width="5.445" fill="none" stroke-linecap="round"/>
-<path d="M132.4 365.59000000000003 Q164.4 341.83 198 369.55" stroke="#D83F69" stroke-width="5.445" fill="none" stroke-linecap="round"/>
-<path d="M132.4 384.4 Q164.4 356.68 198 390.34" stroke="#4673CE" stroke-width="5.445" fill="none" stroke-linecap="round"/>
-<rect x="133" y="398" width="66" height="20" rx="7" fill="#FFFCF6" stroke="none"/>
-<text x="140" y="413" font-family="Arial,Helvetica,sans-serif" font-size="11" font-weight="700" fill="#153F46">p11</text>
-<rect x="214" y="325" width="80" height="99" rx="12" fill="#21323B" stroke="none"/>
-<path d="M220.4 346.78 Q252.4 326.98 286 348.76" stroke="#E8876C" stroke-width="5.445" fill="none" stroke-linecap="round"/>
-<path d="M220.4 365.59000000000003 Q252.4 341.83 286 369.55" stroke="#ECC85E" stroke-width="5.445" fill="none" stroke-linecap="round"/>
-<path d="M220.4 384.4 Q252.4 356.68 286 390.34" stroke="#64B890" stroke-width="5.445" fill="none" stroke-linecap="round"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="1160" height="920" viewBox="0 0 1160 920" role="img" aria-label="Reel ↔ Grid ↔ detail 07-multi-select Glimpse proposal"><title>Reel ↔ Grid ↔ detail / 07-multi-select</title><desc>Source-editable DRAFT storyboard frame, not a captured application screen.</desc><metadata>{&quot;journeyId&quot;:&quot;x07&quot;,&quot;stateId&quot;:&quot;07-multi-select&quot;,&quot;surfaceId&quot;:&quot;multi&quot;,&quot;sourceAssetId&quot;:&quot;public-research-fixture-for-p12&quot;,&quot;selectedAssetId&quot;:&quot;p12&quot;,&quot;wallpaperTarget&quot;:null,&quot;appliedStatus&quot;:&quot;unchanged&quot;,&quot;viewportDp&quot;:[420,900],&quot;insetsDp&quot;:{&quot;status&quot;:24,&quot;bottom&quot;:24},&quot;motion&quot;:&quot;system&quot;,&quot;proposalStatus&quot;:&quot;draft-unapproved&quot;}</metadata><defs><clipPath id="p12fixtureclip"><rect x="214" y="325" width="80" height="99" rx="12" fill="#FFFCF6"/><g clip-path="url(#p12fixtureclip)"><use href="#fixture1" transform="translate(214 325) scale(.1667 .1375)"/></g>
 <rect x="221" y="398" width="66" height="20" rx="7" fill="#FFFCF6" stroke="none"/>
 <text x="228" y="413" font-family="Arial,Helvetica,sans-serif" font-size="11" font-weight="700" fill="#153F46">p12</text>
 <rect x="215" y="326" width="78" height="97" rx="11" fill="none" stroke="#1D5960"/>
@@ -120,6 +69,6 @@
 <text x="664" y="644" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="600" fill="#153F46">unchanged</text>
 <text x="468" y="687" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="650" fill="#667975">audit status</text>
 <text x="664" y="687" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="600" fill="#153F46">DRAFT · not user approved</text>
-<text x="463" y="812" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="450" fill="#667975">Illustrated sample photographs are synthetic vector placeholders.</text>
+<text x="463" y="812" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="450" fill="#667975">Selected p12 uses one public research photo fixture; other tiles are schematic.</text>
 <text x="463" y="844" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="650" fill="#E8876C">Never treat this proposal as an Android screenshot.</text>
 </svg>
