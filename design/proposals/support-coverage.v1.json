@@ -1,0 +1,362 @@
+{
+  "schemaVersion": 1,
+  "status": "PROPOSED_COMMON_APP_SURFACES_NOT_IMPLEMENTED_OR_OWNER_APPROVED",
+  "source": "docs/product/everyday-app-experience.md",
+  "basedOn": "design/proposals/visual-coverage.v1.json",
+  "globalTabs": [
+    "Home",
+    "Discover",
+    "Collections",
+    "Automation"
+  ],
+  "reelPolicy": "Reel only browses image sets; none of these support surfaces gets an interactive photo wheel.",
+  "screens": [
+    {
+      "id": "about",
+      "title": "About Glimpse",
+      "sub": "An app with a point of view",
+      "route": "Settings / About",
+      "required": [
+        "Version and build provenance",
+        "Release channel / installed variant",
+        "Privacy and credits links",
+        "Help and contact links"
+      ],
+      "forbidden": [
+        "Unverified contact address",
+        "Claimed licence without selection",
+        "Implied cloud account"
+      ],
+      "tier": "M1",
+      "states": [
+        "sideload",
+        "play-release"
+      ]
+    },
+    {
+      "id": "help",
+      "title": "Help",
+      "sub": "How Glimpse works",
+      "route": "Settings / Help",
+      "required": [
+        "Find task-specific help",
+        "Import, preview, apply, shuffle",
+        "Troubleshoot wallpaper timing",
+        "Offline readable basics"
+      ],
+      "forbidden": [
+        "Forced tutorial",
+        "Reel used as FAQ scroller"
+      ],
+      "tier": "M1",
+      "states": [
+        "topics",
+        "article"
+      ]
+    },
+    {
+      "id": "contact-feedback",
+      "title": "Contact",
+      "sub": "Choose how to reach out",
+      "route": "Help / Contact",
+      "required": [
+        "Report issue and suggest feature",
+        "Android share or copy",
+        "GitHub public-account warning",
+        "No-handler fallback"
+      ],
+      "forbidden": [
+        "Made-up email address",
+        "Promise of support reply",
+        "Automatic publishing"
+      ],
+      "tier": "M1",
+      "states": [
+        "available",
+        "no-handler"
+      ]
+    },
+    {
+      "id": "report-problem",
+      "title": "Report a problem",
+      "sub": "Describe what happened",
+      "route": "Help / Report problem",
+      "required": [
+        "Problem category",
+        "Description and optional steps",
+        "Diagnostics opt-in",
+        "Preview before leaving phone"
+      ],
+      "forbidden": [
+        "Automatic report upload",
+        "Private photo or URI attachment",
+        "Claim that chooser means submitted"
+      ],
+      "tier": "M1",
+      "states": [
+        "draft",
+        "with-diagnostics"
+      ]
+    },
+    {
+      "id": "crash-recovery",
+      "title": "Welcome back",
+      "sub": "Glimpse may have closed unexpectedly",
+      "route": "Contextual / next launch",
+      "required": [
+        "Accurate exit classification",
+        "Resume normal use",
+        "Details and report option",
+        "Dismiss / do not remind"
+      ],
+      "forbidden": [
+        "False crash claim on normal exit",
+        "Forced diagnostic upload",
+        "Blocking the wallpaper workflow"
+      ],
+      "tier": "M1",
+      "states": [
+        "suspected-crash",
+        "normal-exit"
+      ]
+    },
+    {
+      "id": "diagnostic-preview",
+      "title": "Report preview",
+      "sub": "Only send what you approve",
+      "route": "Diagnostics / Prepare report",
+      "required": [
+        "Exact outgoing report content",
+        "Redaction and inclusion controls",
+        "Copy / Save / Share options",
+        "Cancel and local deletion"
+      ],
+      "forbidden": [
+        "Silent remote upload",
+        "Full private file paths",
+        "Photos or provider tokens"
+      ],
+      "tier": "M1",
+      "states": [
+        "minimal",
+        "expanded"
+      ]
+    },
+    {
+      "id": "whats-new",
+      "title": "What's new",
+      "sub": "Updates you can understand",
+      "route": "About / What's new",
+      "required": [
+        "Installed version",
+        "Readable release notes",
+        "Dismiss / Return to app"
+      ],
+      "forbidden": [
+        "Obstructive launch blocking",
+        "Claim features not shipped"
+      ],
+      "tier": "M2",
+      "states": [
+        "latest",
+        "no-notes"
+      ]
+    },
+    {
+      "id": "updates",
+      "title": "App updates",
+      "sub": "Choose your release channel",
+      "route": "About / Updates",
+      "required": [
+        "Installed version and channel",
+        "Source-specific update pathway",
+        "Unavailable / offline state",
+        "Explicit user-controlled install"
+      ],
+      "forbidden": [
+        "Phantom update available",
+        "Play update in sideload build",
+        "Automatic APK installation"
+      ],
+      "tier": "M1",
+      "states": [
+        "sideload",
+        "play-eligible",
+        "offline"
+      ]
+    },
+    {
+      "id": "rate-review",
+      "title": "Review Glimpse",
+      "sub": "Share a public review if you choose",
+      "route": "About / Rate app (Play only)",
+      "required": [
+        "Real verified Play listing",
+        "User-initiated link to store",
+        "No-Play absent state"
+      ],
+      "forbidden": [
+        "Forced stars before feedback",
+        "Button calling quota-limited in-app dialog",
+        "Rating interruption in sideload builds"
+      ],
+      "tier": "M3",
+      "states": [
+        "not-available",
+        "play-listing"
+      ]
+    },
+    {
+      "id": "privacy",
+      "title": "Privacy",
+      "sub": "Your photos belong to you",
+      "route": "Settings / Privacy",
+      "required": [
+        "Local data summary",
+        "External Android share consequences",
+        "Diagnostics default off",
+        "Privacy policy location"
+      ],
+      "forbidden": [
+        "Undeclared analytics claims",
+        "Vague data safety promise",
+        "Mandatory account"
+      ],
+      "tier": "M1",
+      "states": [
+        "local-only",
+        "diagnostics-opt-in"
+      ]
+    },
+    {
+      "id": "storage-management",
+      "title": "Storage",
+      "sub": "Your collection and its space",
+      "route": "Settings / Storage",
+      "required": [
+        "Local photo count and bytes",
+        "Cache removal distinct from data deletion",
+        "Precise delete consequence",
+        "Backup and confirmation"
+      ],
+      "forbidden": [
+        "One-click destructive reset",
+        "Removing source originals",
+        "Rotation still using deleted path"
+      ],
+      "tier": "M1",
+      "states": [
+        "overview",
+        "delete-confirm",
+        "low-storage"
+      ]
+    },
+    {
+      "id": "permissions-capabilities",
+      "title": "Device capabilities",
+      "sub": "What Android can and cannot do",
+      "route": "Settings / Permissions",
+      "required": [
+        "Photo Picker availability",
+        "Home and Lock target support",
+        "Background timing limitations",
+        "Targeted remediation route"
+      ],
+      "forbidden": [
+        "Request impossible permission",
+        "Conflate OS policy and denied grant",
+        "Exact five-minute background guarantee"
+      ],
+      "tier": "M1",
+      "states": [
+        "available",
+        "restricted"
+      ]
+    },
+    {
+      "id": "credits-licences",
+      "title": "Credits & licences",
+      "sub": "Where things come from",
+      "route": "About / Credits",
+      "required": [
+        "App licence or unchosen status",
+        "Open-source component licences",
+        "Image/author attribution",
+        "Source links with fallback"
+      ],
+      "forbidden": [
+        "Invented licence grant",
+        "Unverified third-party rights"
+      ],
+      "tier": "M2",
+      "states": [
+        "components",
+        "rights-warning"
+      ]
+    },
+    {
+      "id": "beta-feedback",
+      "title": "Help improve Glimpse",
+      "sub": "Your observations, your choice",
+      "route": "About / Preview feedback",
+      "required": [
+        "Opt-in feedback action",
+        "Optional image or screenshot attachment",
+        "Report privacy review",
+        "Private versus public destination"
+      ],
+      "forbidden": [
+        "Hidden interaction recorder",
+        "Automatic screenshots",
+        "Nudges after every export"
+      ],
+      "tier": "M2",
+      "states": [
+        "invitation",
+        "share-preview"
+      ]
+    },
+    {
+      "id": "notification-preferences",
+      "title": "Notifications",
+      "sub": "Only the alerts you request",
+      "route": "Settings / Notifications",
+      "required": [
+        "Explicit per-type preference",
+        "Platform permission explanation",
+        "Quiet, useful status alternative"
+      ],
+      "forbidden": [
+        "Default frequent alerts",
+        "Request before feature exists"
+      ],
+      "tier": "M2",
+      "states": [
+        "not-implemented",
+        "available"
+      ]
+    },
+    {
+      "id": "external-handler-fallback",
+      "title": "Can't open that action",
+      "sub": "Your information is still here",
+      "route": "Contextual / external app absent",
+      "required": [
+        "Precise unavailable cause",
+        "Copy details or save locally",
+        "Return without state loss",
+        "Installed-app handler choice"
+      ],
+      "forbidden": [
+        "Pretend message sent",
+        "Erase user feedback draft",
+        "Force installation of Gmail/GitHub"
+      ],
+      "tier": "M1",
+      "states": [
+        "email-missing",
+        "chooser-cancelled"
+      ]
+    }
+  ]
+}
