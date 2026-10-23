@@ -110,19 +110,19 @@ def generate_edge(slug, single):
             return m.group(0)
         return ""
     source = re.sub(
-        r'<g clip-path="url\\(#c([0-4])\\)"><use href="#fixture[1-6]" transform="[^"]+"/></g>',
+        r'<g clip-path="url\(#c([0-4])\)"><use href="#fixture[1-6]" transform="[^"]+"/></g>',
         clear_wedge, source)
     # Five small paper labels must disappear unless there is a real item there.
     label = re.compile(
-        r'<rect x="[\\d.]+" y="[\\d.]+" width="39" height="23" rx="7" '
-        r'fill="#FFFCF6" stroke="none"/><text x="[\\d.]+" y="[\\d.]+" '
+        r'<rect x="[\d.]+" y="[\d.]+" width="39" height="23" rx="7" '
+        r'fill="#FFFCF6" stroke="none"/><text x="[\d.]+" y="[\d.]+" '
         r'font-family="Arial,Helvetica,sans-serif" font-size="13" '
-        r'font-weight="700" fill="#153F46">(\\d+)</text>')
+        r'font-weight="700" fill="#153F46">(\d+)</text>')
     def clear_label(m):
         return m.group(0).replace(">12</text>", ">01</text>") if single and m.group(1) == "12" else ""
     source = label.sub(clear_label, source)
     if not single:
-        source = re.sub(r'<g clip-path="url\\(#hero\\)"><use href="#fixture1" '
+        source = re.sub(r'<g clip-path="url\(#hero\)"><use href="#fixture1" '
                         r'transform="[^"]+"/></g>',
                         '<text x="85" y="296" font-family="Arial,sans-serif" '
                         'font-size="21" fill="#153F46">Add photos to begin</text>', source)
