@@ -50,14 +50,25 @@ jobs:
           fi
       - name: Build actual Glimpse debug APK
         run: ./gradlew --no-daemon :app:assembleDebug
+      - name: Enable KVM for emulator acceleration on ephemeral runner
+        shell: bash
+        run: |
+          if [ -e /dev/kvm ]; then
+            sudo chmod a+rw /dev/kvm
+            ls -l /dev/kvm
+          else
+            echo "::warning::No /dev/kvm available; emulator may be slow"
+          fi
       - name: Capture native running screen states
         uses: reactivecircus/android-emulator-runner@v2
         with:
-          api-level: 35
+          api-level: 34
           target: google_apis
           arch: x86_64
-          profile: pixel_6_pro
-          emulator-boot-timeout: 600
+          profile: pixel_5
+          cores: 2
+          ram-size: 3072
+          emulator-boot-timeout: 360
           disable-animations: true
           emulator-options: -no-window -gpu swiftshader_indirect -no-snapshot -noaudio -no-boot-anim
           script: |
