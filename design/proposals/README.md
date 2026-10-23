@@ -81,3 +81,6 @@ python3 scripts/render-visual-reference-sheets.py --set reel-grid-crop-share --s
 ```
 
 `--native` writes original 401×890 phone crops, indexed by exact source SHA-256 in `index.json`. Neither script invocation nor the generated sheets claim an optical PASS until someone opens and inspects the actual PNGs. Requires disposable Python CairoSVG and Pillow installation.
+
+
+The eight mechanism-focused refinements (collections, Lock target support and preview, Activity history, nested rules, Photo Detail exclusion and restore conflict) now include representative controls and visual hierarchy, not merely labels. They still require the source-hashed optical and complete action-sequence assessment.
