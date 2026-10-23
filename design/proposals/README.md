@@ -16,6 +16,12 @@
 | Root identity/reference photographic five-window disc | [paper reel](../reference/reel-wide-apertures.png) | User-approved direction of form and materials, **not** final phone layout |
 | Alternative dual-wheel studies | [research experiments](../research/reel-layout/) | **Unapproved mutually exclusive comparisons only** |
 
+## Connected P0 interactions added after the baseline inventory
+
+The [**mobile storyboard gallery**](../atlas/storyboards.html) contains **82 additional frames**, in **12 P0 packages X01–X12**. Use the [frame-level manifest](storyboard-coverage.v1.json) for ordered images, workflow traceability and invariant notes. Unlike the original 66 isolated proposed screens, these drawings depict user/system transitions, photos, status and failure outcomes. Their quality and exact action completeness still require whole-set review. Do not count them as 82 new core screen families or as accepted artwork.
+
+[Offline CI package and rasterized contact sheet](https://github.com/gamesbyian/Glimpse/actions/runs/39938085295). Visual XML and sampled pixel rendering pass; animation physics, actual platform screens, screen reader focus and owner preference cannot pass based on these mockups alone.
+
 ## Audit coverage gaps (current inventory)
 
 The [2026-10-23 current-generation mockup gap register](../../docs/design/proposal-mockup-coverage-gaps-2026-10-23.md) distinguishes 34 missing dedicated named core state variants from 27 additional scenario/storyboard/platform and stress-visual needs. It also warns against treating schematic annotation text or the 34 support-state filenames as proof of complete interactions. **This is mockup coverage preparation, not a quality audit or user approval.**

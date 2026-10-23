@@ -4,6 +4,8 @@ Glimpse is a **native Android wallpaper manager** with a tactile paper-reel inte
 
 All draft visual references can be browsed through the [66-image mobile atlas](design/atlas/README.md); the [source-validated packaging workflow](https://github.com/gamesbyian/Glimpse/actions/runs/39922564218) supplies a self-contained offline review artifact. The current **circular photo reel is provisional code**; [native CI](https://github.com/gamesbyian/Glimpse/actions/runs/39924084187) does not imply geometry, motion or owner approval. First native screenshot evidence is still unresolved; inspect the GHA emulator logs before claiming visual acceptance.
 
+The [P0 storyboard gallery](design/atlas/storyboards.html) and [source-traced manifest](design/proposals/storyboard-coverage.v1.json) now show **82 additional frames across X01–X12**. Distinguish the 66 original boards, 82 supplementary P0 frames, the unillustrated/missing dedicated 34 variant slots, and native emulator captures in every completion claim. P0 art is rendered structurally, **not owner-approved or full UX-audited**. Do not reimplement X01–X12 blindly. Audit individual requirements and transition quality, then fill P1 gaps X13–X23.
+
 Visual design work must begin with [the two-way visual gap audit](docs/design/reference-gap-audit.md), [the unified draft reference family](design/proposals/README.md) and [the everyday support specification](docs/product/everyday-app-experience.md). **Proposed SVGs are not user-approved full-fidelity reference images.** The static validator checks structure and traceability, not appearance, transitions or approval. Keep one coherent whole-set vocabulary; no cherry-picking obsolete dual-reel proposals.
 
 ## Start and choose work

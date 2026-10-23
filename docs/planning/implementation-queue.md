@@ -16,6 +16,17 @@ A real installation successfully imported **22 Google Photos images** through th
 - [ ] Independently verify first atlas run and inspect output screenshots against the selected reference geometry; repair tooling failures as needed.
 - [ ] Use atlas whenever the actual circular reel, photo window sizing, navigation and accessibility change; keep independent human-device approval gate.
 
+## Connected visual journey production (2026-10-23)
+
+- [x] The [12 P0 packages X01–X12](../design/proposal-mockup-coverage-gaps-2026-10-23.md) now have **82 connected supplementary SVG frames**, separate from the 66 original proposals. See [storyboard source index](../../design/proposals/storyboard-coverage.v1.json).
+- [x] [Searchable mobile P0 storyboard atlas](../../design/atlas/storyboards.html) with frame progression, photo/state identity, source paths and offline packaging.
+- [x] [Run 39938085295](https://github.com/gamesbyian/Glimpse/actions/runs/39938085295): 82-frame XML integrity, complete manifest mapping, offline packaging, 36 representative PNG renders and artifact upload passed.
+- [ ] Inspect the full **visual content** of X01–X12 against every required control, especially native Android picker/chooser fidelity, hero/wheel physical consistency, editable crop outcomes and 200% type reflow. Rendered SVGs are not an approved design.
+- [ ] Map each of the [34 missing declared core state variants](../design/proposal-mockup-coverage-gaps-2026-10-23.md) to a *visually sufficient* storyboard frame or create targeted dedicated state art where reuse is inadequate. Do not close by filename matching.
+- [ ] Produce/verify the 11 P1 storyboard groups X13–X23 (external shares, crops, large libraries, rules, rights, diagnostics, restore, Android integrations, Help, exact outgoing bytes and adverse input) before a truly comprehensive product-proposal audit.
+- [ ] Preserve four conditional P2 scenario families as future/explicitly gated.
+- [ ] Freeze explicit owner-approved whole-set hashes (V2) before full application visual conformity testing (V3).
+
 ## Visual release dependencies
 
 - [x] [Two-way reference audit](../design/reference-gap-audit.md): original 73 workflows, 24 surfaces, 127 mandatory and 59 conditional elements, 16 added everyday-app surfaces, classified conflicts.
