@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1160" height="920" viewBox="0 0 1160 920" role="img" aria-label="Reel ↔ Grid ↔ detail 01-reel-focus Glimpse proposal"><title>Reel ↔ Grid ↔ detail / 01-reel-focus</title><desc>Source-editable DRAFT storyboard frame, not a captured application screen.</desc><metadata>{&quot;journeyId&quot;:&quot;x07&quot;,&quot;stateId&quot;:&quot;01-reel-focus&quot;,&quot;surfaceId&quot;:&quot;reel&quot;,&quot;sourceAssetId&quot;:&quot;illustrative-vector-rainbow&quot;,&quot;selectedAssetId&quot;:&quot;p12&quot;,&quot;wallpaperTarget&quot;:null,&quot;appliedStatus&quot;:&quot;unchanged&quot;,&quot;viewportDp&quot;:[420,900],&quot;insetsDp&quot;:{&quot;status&quot;:24,&quot;bottom&quot;:24},&quot;motion&quot;:&quot;system&quot;,&quot;proposalStatus&quot;:&quot;draft-unapproved&quot;}</metadata>
+<rect x="0" y="0" width="1160" height="920" rx="0" fill="#E9E2D6" stroke="none"/>
+<rect x="15" y="14" width="401" height="890" rx="22" fill="#F6F0E6" stroke="#C4B7A4"/>
+<text x="38" y="43" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="600" fill="#153F46">9:41</text>
+<text x="354" y="43" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="500" fill="#667975">●  ▰</text>
+<path d="M33 56 H396" stroke="#C4B7A4"/>
+<text x="37" y="94" font-family="Arial,Helvetica,sans-serif" font-size="29" font-weight="700" fill="#153F46">Rainbows</text>
+<text x="39" y="122" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="500" fill="#667975">Reel focus p12</text>
+<rect x="40" y="154" width="348" height="241" rx="12" fill="#21323B" stroke="none"/>
+<path d="M67.84 207.02 Q207.04 158.82 353.2 211.84" stroke="#E8876C" stroke-width="13.255" fill="none" stroke-linecap="round"/>
+<path d="M67.84 252.81 Q207.04 194.97 353.2 262.45" stroke="#ECC85E" stroke-width="13.255" fill="none" stroke-linecap="round"/>
+<path d="M67.84 298.6 Q207.04 231.12 353.2 313.05999999999995" stroke="#64B890" stroke-width="13.255" fill="none" stroke-linecap="round"/>
+<rect x="47" y="369" width="80" height="20" rx="7" fill="#FFFCF6" stroke="none"/>
+<text x="54" y="384" font-family="Arial,Helvetica,sans-serif" font-size="11" font-weight="700" fill="#153F46">p12</text>
+<text x="40" y="442" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="650" fill="#153F46">Photo 12 of 22 · Preview only</text>
+<clipPath id="reelclip"><rect x="17" y="493" width="395" height="248"/></clipPath><g clip-path="url(#reelclip)"><circle cx="213" cy="694" r="220" fill="#EAD9BD" stroke="#BBA58C" stroke-width="5"/>
+<rect x="93.53449417446882" y="751.8804132012425" width="72" height="106" rx="12" fill="#A9C4B5" stroke="#C4B7A4"/>
+<rect x="41.94997468608821" y="593.1195867987575" width="72" height="106" rx="12" fill="#D3B4A6" stroke="#C4B7A4"/>
+<rect x="177" y="495" width="72" height="106" rx="12" fill="#21323B" stroke="none"/>
+<path d="M182.76 518.32 Q211.56 497.12 241.8 520.44" stroke="#E8876C" stroke-width="5.83" fill="none" stroke-linecap="round"/>
+<path d="M182.76 538.46 Q211.56 513.02 241.8 542.7" stroke="#ECC85E" stroke-width="5.83" fill="none" stroke-linecap="round"/>
+<path d="M182.76 558.6 Q211.56 528.92 241.8 564.96" stroke="#64B890" stroke-width="5.83" fill="none" stroke-linecap="round"/>
+<rect x="184" y="575" width="58" height="20" rx="7" fill="#FFFCF6" stroke="none"/>
+<text x="191" y="590" font-family="Arial,Helvetica,sans-serif" font-size="11" font-weight="700" fill="#153F46">p12</text>
+<rect x="312.05002531391176" y="593.1195867987575" width="72" height="106" rx="12" fill="#A6C0CC" stroke="#C4B7A4"/>
+<rect x="260.4655058255312" y="751.8804132012425" width="72" height="106" rx="12" fill="#A9C4B5" stroke="#C4B7A4"/>
+<circle cx="213" cy="694" r="66" fill="#EAD9BD" stroke="#AD967A" stroke-width="8"/><circle cx="213" cy="694" r="29" fill="#FFFCF6"/></g>
+<text x="202" y="474" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="700" fill="#E8876C">▼</text>
+<rect x="42" y="756" width="154" height="43" rx="18" fill="#FFFCF6" stroke="#C4B7A4"/>
+<text x="56" y="783" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="650" fill="#153F46">Previous</text>
+<rect x="206" y="756" width="178" height="43" rx="18" fill="#FFFCF6" stroke="#C4B7A4"/>
+<text x="220" y="783" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="650" fill="#153F46">Next photo</text>
+<path d="M25 823 H406" stroke="#C4B7A4"/>
+<text x="42" y="853" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="500" fill="#667975">Home</text>
+<text x="136" y="853" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="500" fill="#667975">Discover</text>
+<text x="230" y="853" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="500" fill="#667975">Collections</text>
+<text x="324" y="853" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="500" fill="#667975">Automation</text>
+<text x="37" y="899" font-family="Arial,Helvetica,sans-serif" font-size="11" font-weight="700" fill="#667975">DRAFT · NOT APPROVED</text>
+<rect x="442" y="14" width="704" height="890" rx="18" fill="#FFFCF6" stroke="#C4B7A4"/>
+<text x="464" y="55" font-family="Arial,Helvetica,sans-serif" font-size="22" font-weight="700" fill="#153F46">X07 / Reel ↔ Grid ↔ detail</text>
+<text x="465" y="91" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="700" fill="#1D5960">01-REEL-FOCUS</text>
+<path d="M458 115 H1127" stroke="#C4B7A4"/>
+<text x="463" y="153" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="700" fill="#153F46">ACTION AND VISIBLE CONSEQUENCE</text>
+<text x="465" y="193" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="400" fill="#153F46">Selected asset p12, 12/22, not applied to wallpaper</text>
+<rect x="467" y="298" width="643" height="132" rx="14" fill="#E9E0F5" stroke="none"/>
+<text x="484" y="328" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="700" fill="#1D5960">TRIGGER</text>
+<text x="484" y="360" font-family="Arial,Helvetica,sans-serif" font-size="20" font-weight="700" fill="#153F46">View all / Grid</text>
+<text x="484" y="396" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="450" fill="#667975">Frame 1/7 · next step has explicit scope</text>
+<text x="466" y="475" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="700" fill="#153F46">CROSS-FRAME IDENTITY</text>
+<text x="468" y="515" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="650" fill="#667975">journey</text>
+<text x="664" y="515" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="600" fill="#153F46">X07</text>
+<text x="468" y="558" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="650" fill="#667975">surface</text>
+<text x="664" y="558" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="600" fill="#153F46">reel</text>
+<text x="468" y="601" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="650" fill="#667975">selection</text>
+<text x="664" y="601" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="600" fill="#153F46">p12</text>
+<text x="468" y="644" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="650" fill="#667975">wallpaper outcome</text>
+<text x="664" y="644" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="600" fill="#153F46">unchanged</text>
+<text x="468" y="687" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="650" fill="#667975">audit status</text>
+<text x="664" y="687" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="600" fill="#153F46">DRAFT · not user approved</text>
+<text x="463" y="812" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="450" fill="#667975">Illustrated sample photographs are synthetic vector placeholders.</text>
+<text x="463" y="844" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="650" fill="#E8876C">Never treat this proposal as an Android screenshot.</text>
+</svg>

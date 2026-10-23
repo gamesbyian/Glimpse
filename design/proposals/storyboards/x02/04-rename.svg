@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1160" height="920" viewBox="0 0 1160 920" role="img" aria-label="Collection management 04-rename Glimpse proposal"><title>Collection management / 04-rename</title><desc>Source-editable DRAFT storyboard frame, not a captured application screen.</desc><metadata>{&quot;journeyId&quot;:&quot;x02&quot;,&quot;stateId&quot;:&quot;04-rename&quot;,&quot;surfaceId&quot;:&quot;rename&quot;,&quot;sourceAssetId&quot;:&quot;illustrative-vector-rainbow&quot;,&quot;selectedAssetId&quot;:null,&quot;wallpaperTarget&quot;:null,&quot;appliedStatus&quot;:&quot;unchanged&quot;,&quot;viewportDp&quot;:[420,900],&quot;insetsDp&quot;:{&quot;status&quot;:24,&quot;bottom&quot;:24},&quot;motion&quot;:&quot;system&quot;,&quot;proposalStatus&quot;:&quot;draft-unapproved&quot;}</metadata>
+<rect x="0" y="0" width="1160" height="920" rx="0" fill="#E9E2D6" stroke="none"/>
+<rect x="15" y="14" width="401" height="890" rx="22" fill="#F6F0E6" stroke="#C4B7A4"/>
+<text x="38" y="43" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="600" fill="#153F46">9:41</text>
+<text x="354" y="43" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="500" fill="#667975">●  ▰</text>
+<path d="M33 56 H396" stroke="#C4B7A4"/>
+<text x="37" y="94" font-family="Arial,Helvetica,sans-serif" font-size="29" font-weight="700" fill="#153F46">Rainbows</text>
+<text x="39" y="122" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="500" fill="#667975">Rename collection</text>
+<rect x="34" y="188" width="360" height="400" rx="18" fill="#FFFCF6" stroke="#C4B7A4"/>
+<text x="55" y="230" font-family="Arial,Helvetica,sans-serif" font-size="22" font-weight="700" fill="#153F46">Rename collection</text>
+<rect x="56" y="264" width="315" height="66" rx="12" fill="#F6F0E6" stroke="#C4B7A4"/>
+<text x="72" y="305" font-family="Arial,Helvetica,sans-serif" font-size="20" font-weight="400" fill="#153F46">Rainbows</text>
+<text x="57" y="359" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="500" fill="#667975">No imported photographs are modified</text>
+<rect x="55" y="486" width="130" height="43" rx="18" fill="#FFFCF6" stroke="#C4B7A4"/>
+<text x="69" y="513" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="650" fill="#153F46">Cancel</text>
+<rect x="202" y="486" width="171" height="43" rx="18" fill="#1D5960" stroke="#1D5960"/>
+<text x="216" y="513" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="650" fill="white">Save new name</text>
+<path d="M25 823 H406" stroke="#C4B7A4"/>
+<text x="42" y="853" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="500" fill="#667975">Home</text>
+<text x="136" y="853" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="500" fill="#667975">Discover</text>
+<text x="230" y="853" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="500" fill="#667975">Collections</text>
+<text x="324" y="853" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="500" fill="#667975">Automation</text>
+<text x="37" y="899" font-family="Arial,Helvetica,sans-serif" font-size="11" font-weight="700" fill="#667975">DRAFT · NOT APPROVED</text>
+<rect x="442" y="14" width="704" height="890" rx="18" fill="#FFFCF6" stroke="#C4B7A4"/>
+<text x="464" y="55" font-family="Arial,Helvetica,sans-serif" font-size="22" font-weight="700" fill="#153F46">X02 / Collection management</text>
+<text x="465" y="91" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="700" fill="#1D5960">04-RENAME</text>
+<path d="M458 115 H1127" stroke="#C4B7A4"/>
+<text x="463" y="153" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="700" fill="#153F46">ACTION AND VISIBLE CONSEQUENCE</text>
+<text x="465" y="193" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="400" fill="#153F46">Existing 22 photo identities and shuffle assignment preserved</text>
+<rect x="467" y="298" width="643" height="132" rx="14" fill="#E9E0F5" stroke="none"/>
+<text x="484" y="328" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="700" fill="#1D5960">TRIGGER</text>
+<text x="484" y="360" font-family="Arial,Helvetica,sans-serif" font-size="20" font-weight="700" fill="#153F46">Save new name</text>
+<text x="484" y="396" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="450" fill="#667975">Frame 4/6 · next step has explicit scope</text>
+<text x="466" y="475" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="700" fill="#153F46">CROSS-FRAME IDENTITY</text>
+<text x="468" y="515" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="650" fill="#667975">journey</text>
+<text x="664" y="515" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="600" fill="#153F46">X02</text>
+<text x="468" y="558" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="650" fill="#667975">surface</text>
+<text x="664" y="558" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="600" fill="#153F46">rename</text>
+<text x="468" y="601" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="650" fill="#667975">selection</text>
+<text x="664" y="601" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="600" fill="#153F46">none</text>
+<text x="468" y="644" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="650" fill="#667975">wallpaper outcome</text>
+<text x="664" y="644" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="600" fill="#153F46">unchanged</text>
+<text x="468" y="687" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="650" fill="#667975">audit status</text>
+<text x="664" y="687" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="600" fill="#153F46">DRAFT · not user approved</text>
+<text x="463" y="812" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="450" fill="#667975">Illustrated sample photographs are synthetic vector placeholders.</text>
+<text x="463" y="844" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="650" fill="#E8876C">Never treat this proposal as an Android screenshot.</text>
+</svg>
