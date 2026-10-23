@@ -52,7 +52,7 @@ def main():
         errors.append("Expected exactly 34 unique state records")
     if data["sourceCounts"] != {
         "originalCurrentGenerationSvg": 66, "p0Storyboards": 82,
-        "p1AdvancedStoryboards": 55, "newTargetedRefinements": 10
+        "p1AdvancedStoryboards": 55, "newTargetedRefinements": 25
     }:
         errors.append("Asset provenance count labels drifted; reconcile, do not inflate baselines")
     counted = Counter()
@@ -103,8 +103,8 @@ def main():
         errors.append("Evidence-level totals differ from records")
     actual_new = set(str(p.relative_to(ROOT)) for p in
                      (ROOT / PREFIX / "state-refinements").glob("*.svg"))
-    if new_paths != actual_new or len(actual_new) != 10:
-        errors.append("The 10 supplemental refinements have an incomplete manifest registry")
+    if new_paths != actual_new or len(actual_new) != data['sourceCounts']['newTargetedRefinements']:
+        errors.append("The supplemental refinements have an incomplete manifest registry")
     print(json.dumps({"declaredStates": len(slots), "baselineCredited": len(accounted),
                       "unpicturedOriginalSlots": len(expected), "evidenceLevels": counted,
                       "newRefinements": len(new_paths), "warnings": warnings,
