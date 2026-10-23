@@ -32,6 +32,8 @@ The [machine-readable per-state evidence map](core-state-evidence.v1.json) enume
 
 Before an optical signoff, inspect the whole SVG including the right annotation, check the phone controls independently and compare neighboring transition frames. The validator `python3 scripts/validate-core-state-evidence.py` confirms exact paths, statuses and some visibly pictured phone labels only. It cannot detect clipped glyphs, aesthetic mismatch or runtime behavior.
 
+The companion [six representative flow sheets](../atlas/representative-flows.html) groups 60 connected draft frames to judge reel boundaries/poses, Google Photos import, OS apply and rotation outcomes, editing/share payloads and accessibility/errors together. X05 frames now carry explicit selection/pose metadata and motion transitions; X11 and X13 distinguish source `p12` from edited `p12c` in visible results and metadata. Run `python3 scripts/validate-storyboard-semantics.py` for small semantic assertions. The optional `scripts/render-visual-reference-sheets.py` makes real raster sheet PNGs for **subsequent** visual inspection.
+
 ## Initial review set
 
 These images should be judged **together** as the earliest coherent proposed family:
