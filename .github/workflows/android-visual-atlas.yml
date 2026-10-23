@@ -1,0 +1,70 @@
+name: Glimpse native visual atlas
+
+# Targeted optical inspection, independent of the lean standard build workflow.
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "Small smoke or full Reel/Grid/text-scale gallery"
+        required: true
+        default: full
+        type: choice
+        options: [smoke, full]
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/android-visual-atlas.yml
+
+permissions:
+  contents: read
+
+concurrency:
+  group: glimpse-visual-atlas-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  capture:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      ATLAS_MODE: ${{ github.event_name == 'workflow_dispatch' && inputs.mode || 'full' }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+      - uses: gradle/actions/setup-gradle@v4
+      - name: Verify capture script syntax
+        run: python3 -m py_compile scripts/capture-android-atlas.py
+      - name: Install Android SDK 37.0
+        shell: bash
+        run: |
+          set -e
+          printf 'y\n' | "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --channel=3 "platforms;android-37.0" "build-tools;36.0.0"
+          test -d "$ANDROID_HOME/platforms/android-37.0"
+          if [ ! -e "$ANDROID_HOME/platforms/android-37" ]; then
+            ln -s "$ANDROID_HOME/platforms/android-37.0" "$ANDROID_HOME/platforms/android-37"
+          fi
+      - name: Build actual Glimpse debug APK
+        run: ./gradlew --no-daemon :app:assembleDebug
+      - name: Capture native running screen states
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 35
+          target: google_apis
+          arch: x86_64
+          profile: pixel_6_pro
+          disable-animations: true
+          emulator-options: -no-window -gpu swiftshader_indirect -no-snapshot -noaudio -no-boot-anim
+          script: |
+            adb install -r app/build/outputs/apk/debug/app-debug.apk
+            python3 scripts/capture-android-atlas.py --mode "$ATLAS_MODE" --out artifacts/android-visual-atlas
+      - name: Upload screenshot gallery and accessibility evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: glimpse-android-visual-atlas
+          path: artifacts/android-visual-atlas/
+          retention-days: 14
+          if-no-files-found: warn
