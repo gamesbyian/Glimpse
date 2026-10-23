@@ -2,14 +2,14 @@
 
 **Automated tool result only. No visual, native, accessibility, or owner approval.**
 
-- Workflow source commit: `9a67c7d2543a6e603a6d9c4fd6a3b0c4f25ca3d3`
-- Workflow run ID: `40022471345`
-- Workflow run URL: https://github.com/gamesbyian/Glimpse/actions/runs/40022471345
+- Workflow source commit: `8a11f8de2cf9b1e192b0a259fea94a48bc401b18`
+- Workflow run ID: `40023141357`
+- Workflow run URL: https://github.com/gamesbyian/Glimpse/actions/runs/40023141357
 - Run attempt: `1`
 - Workflow result before publishing: `success`
 - Branch: `agent/visual-state-reconciliation-20261023`
 - Review sets: named 34, source detail, reel/grid/crop/share and large text
-- CI artifact name: `glimpse-reference-draft-9a67c7d2543a6e603a6d9c4fd6a3b0c4f25ca3d3`
+- CI artifact name: `glimpse-reference-draft-8a11f8de2cf9b1e192b0a259fea94a48bc401b18`
 
 ## Structural script outputs
 
