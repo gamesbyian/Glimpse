@@ -1,6 +1,6 @@
 # Glimpse technical and behavior contracts: preimplementation specification
 
-**Date 2026-10-22.** Normative cross-feature decisions, supplemented by [feature coverage audit](GLIMPSE-FEATURE-SPEC-COMPLETENESS-AUDIT.md), [native architecture](NATIVE-ANDROID-ARCHITECTURE.md), [reel UX critique](GLIMPSE-REEL-UX-CRITICAL-AUDIT.md), [current decisions](GLIMPSE-CURRENT-DECISIONS.md) and [motion architecture](GLIMPSE-MOTION-RENDERING-ARCHITECTURE.md). **No code/APK developed by this document.** This resolves reasonable semantics; OS/vendor or artistic decisions remain explicitly gated.
+**Date 2026-10-22.** Normative cross-feature decisions, supplemented by [feature coverage audit](../product/feature-audit.md), [native architecture](android.md), [reel UX critique](../design/reel-ux-audit.md), [current decisions](../planning/current-decisions.md) and [motion architecture](reel-motion.md). **No code/APK developed by this document.** This resolves reasonable semantics; OS/vendor or artistic decisions remain explicitly gated.
 
 ## 1. Vocabulary and provenance: stop the old/new naming collision
 
@@ -150,7 +150,7 @@ Do not over-modularize. Existing native architecture proposal ~11 Gradle modules
 | Dual Collection→Photo | Change parent while child wheel is settling → inspect/choose photo | Child cancels/rebinds by IDs, no phantom current image, no OS apply |
 | Dual Home/Lock | Preview different photos in each → Apply Lock only → unsupported mode | Home unaffected, lock result independently reported, unavailable action disabled |
 
-**No claim that these traces have run.** First implementation must supply actual source refs and physical-device evidence, using [visual acceptance procedure](GLIMPSE-REFERENCE-ACCEPTANCE-PLAN.md). For every feature, work is accepted only when there's a verified action, data effect, failure/rollback policy, accessible alternative and UI location.
+**No claim that these traces have run.** First implementation must supply actual source refs and physical-device evidence, using [visual acceptance procedure](../quality/reference-acceptance.md). For every feature, work is accepted only when there's a verified action, data effect, failure/rollback policy, accessible alternative and UI location.
 
 ## 11. Known unsolved and intentionally nonpromised capabilities
 
@@ -165,6 +165,6 @@ Do not over-modularize. Existing native architecture proposal ~11 Gradle modules
 - Guaranteed receiver app share completion.
 - Five huge reels at once on a compact phone with 200% text and Android system navigation.
 
-These requests remain in the [feature register](GLIMPSE-FEATURE-SPEC-COMPLETENESS-AUDIT.md) with a gate. **Do not silently drop, fake, or claim them implemented.**
+These requests remain in the [feature register](../product/feature-audit.md) with a gate. **Do not silently drop, fake, or claim them implemented.**
 
 **Research:** [Android WallpaperManager API](https://developer.android.com/reference/android/app/WallpaperManager), [Compose semantics](https://developer.android.com/develop/ui/compose/accessibility/semantics), [WorkManager periodic minimum](https://developer.android.com/develop/background-work/background-tasks/persistent/getting-started/define-work), [Android Photo Picker](https://developer.android.com/training/data-storage/shared/photopicker), [NN/g mobile carousel limitations](https://www.nngroup.com/articles/mobile-carousels/).

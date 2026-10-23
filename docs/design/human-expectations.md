@@ -4,7 +4,7 @@
 **Status:** pre-implementation hypotheses and acceptance protocol; **not a human usability study or a revision of approved paper-reel artwork**.  
 **Source:** [ROYGBIV → Glimpse research handoff #29](https://github.com/gamesbyian/general-purpose/issues/29), [merged ROYGBIV PR #446](https://github.com/gamesbyian/wallgen/pull/446), [agent field guide](https://github.com/gamesbyian/wallgen/blob/main/docs/AGENT-HUMAN-EXPECTATIONS-AND-CREATIVE-COMPOSITION.md), [applied IA assessment](https://github.com/gamesbyian/wallgen/blob/main/docs/IA-RESEARCH-APPLIED-ASSESSMENT-2026-10-22.md), and [control atlas](https://github.com/gamesbyian/wallgen/blob/main/docs/HUMAN-CENTRED-NAVIGATION-MAP-2026-10-22.md).
 
-Read with [paper-reel UX contract](GLIMPSE-CONTINUOUS-REEL-DESIGN.md), [motion architecture](GLIMPSE-MOTION-RENDERING-ARCHITECTURE.md), [73 workflow scenarios](70-HUMAN-WORKFLOWS.md), [product specification](PRODUCT-SPECIFICATION.md), and [Rainbow golden path](RAINBOW-QUICKSTART-CONTRACT.md). Keep Glimpse's native Compose/API constraints binding.
+Read with [paper-reel UX contract](reel-interaction.md), [motion architecture](../architecture/reel-motion.md), [73 workflow scenarios](../product/workflows.md), [product specification](../product/product-specification.md), and [Rainbow golden path](../product/rainbow-quickstart.md). Keep Glimpse's native Compose/API constraints binding.
 
 ## 1. The operating principle
 
@@ -144,8 +144,8 @@ Research links:
 
 ## New release-acceptance companions (2026-10-22)
 
-Treat [GLIMPSE-SCREEN-CONTRACT.json](GLIMPSE-SCREEN-CONTRACT.json) as a proposed executable semantics inventory and [GLIMPSE-REFERENCE-ACCEPTANCE-PLAN.md](GLIMPSE-REFERENCE-ACCEPTANCE-PLAN.md) as the bounded source-vs-runtime validation procedure. Neither proves the owner has tried the app. First review the [current decisions](GLIMPSE-CURRENT-DECISIONS.md) to avoid applying historical Waltz UI labels to the active Glimpse identity.
+Treat [GLIMPSE-SCREEN-CONTRACT.json](screen-contract.json) as a proposed executable semantics inventory and [GLIMPSE-REFERENCE-ACCEPTANCE-PLAN.md](../quality/reference-acceptance.md) as the bounded source-vs-runtime validation procedure. Neither proves the owner has tried the app. First review the [current decisions](../planning/current-decisions.md) to avoid applying historical Waltz UI labels to the active Glimpse identity.
 
 ## 2026-10-22 two-reel meaning test
 
-Use the [purpose-led reel critique](GLIMPSE-REEL-UX-CRITICAL-AUDIT.md). Before displaying labels or explaining the concept, ask what the smaller reel controls and what the larger one controls; then have the owner change collections, choose a photo, return to applied wallpaper, set Lock only and find a known photo in Grid. Compare the same task with a labeled standard collection picker + one reel and Home/Lock tabs + one reel. Collect actual first-click predictions, wrong state assumptions and intervention needs. **Do not report agent guesses as human success rates**; avoid adding exhaustive synthetic personas.
+Use the [purpose-led reel critique](reel-ux-audit.md). Before displaying labels or explaining the concept, ask what the smaller reel controls and what the larger one controls; then have the owner change collections, choose a photo, return to applied wallpaper, set Lock only and find a known photo in Grid. Compare the same task with a labeled standard collection picker + one reel and Home/Lock tabs + one reel. Collect actual first-click predictions, wrong state assumptions and intervention needs. **Do not report agent guesses as human success rates**; avoid adding exhaustive synthetic personas.

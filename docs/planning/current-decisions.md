@@ -4,21 +4,21 @@
 
 ## 2026-10-22 two-way audit status
 
-- **Completed on paper:** [All 73 feature contracts](GLIMPSE-FEATURE-SPEC-COMPLETENESS-AUDIT.md), [technical behavior and typed command semantics](GLIMPSE-TECHNICAL-BEHAVIOR-CONTRACTS.md), [critical reel alternatives](GLIMPSE-REEL-UX-CRITICAL-AUDIT.md), [complete UI surface census](GLIMPSE-UI-SURFACE-CENSUS.md), and expanded [screen contract](GLIMPSE-SCREEN-CONTRACT.json).
+- **Completed on paper:** [All 73 feature contracts](../product/feature-audit.md), [technical behavior and typed command semantics](../architecture/behavior-contracts.md), [critical reel alternatives](../design/reel-ux-audit.md), [complete UI surface census](../design/ui-surface-inventory.md), and expanded [screen contract](../design/screen-contract.json).
 - **Confirmed direction:** paper reel with broad photographic windows, honest finite collection indexing, primary large photo reel and Grid alternative.
 - **Unapproved hypotheses:** dual collection/photo reels, dual Home/Lock reels, variant/history reels, specific asymmetric placements and screenshots that were not expressly approved. Compare with conventional controls before implementation.
 - **Outstanding empirical decisions:** human first-click and meaning tests, genuine Android capability results, device motion/size measurements, exact approved asset bundle.
 - **No app implementation performed** in this audit.
 
-**Execution/status queue:** [GLIMPSE-SPEC-AUDIT-DECISION-QUEUE.md](GLIMPSE-SPEC-AUDIT-DECISION-QUEUE.md) is the prioritized non-building plan for specification repair, dual-reel design comparisons, technical proof gates and reference upload.
+**Execution/status queue:** [GLIMPSE-SPEC-AUDIT-DECISION-QUEUE.md](decision-queue.md) is the prioritized non-building plan for specification repair, dual-reel design comparisons, technical proof gates and reference upload.
 
 ## Current priorities and precedence
 
-1. **User-approved experience:** Glimpse, warm tactile paper reel, five **large** photographic apertures, deliberately cropped off-screen, a stationary full-sized hero photo, real finite counts, and a permanent conventional Grid / View all alternative. [Visual spec](GLIMPSE-CONTINUOUS-REEL-DESIGN.md).
-2. **Expected results, not component names:** [human expectations and cognitive walkthroughs](GLIMPSE-HUMAN-EXPECTATIONS-WALKTHROUGHS.md) derived from [research handoff #29](https://github.com/gamesbyian/general-purpose/issues/29). Agent hypotheses are not evidence of human observation.
-3. **Render and motion fidelity:** Compose/HWUI paper reel, stable asset identity independent of angle, bounded image textures, interruptible drag/snap, clear reduced-motion alternative, physical Pixel proof. [Motion contract](GLIMPSE-MOTION-RENDERING-ARCHITECTURE.md).
-4. **Android implementation:** Kotlin/Compose/Room/command journal/WallpaperManager/Glance; sideloadable signed APK; no hosted service. [Native architecture](NATIVE-ANDROID-ARCHITECTURE.md).
-5. **Feature behaviors:** 73 natural-language workflows, with golden Rainbows import-to-shuffle path, screenshot crop/rotation, original-or-crop sharing to compatible Android targets, and truthful five-minute scheduling. [Workflows](70-HUMAN-WORKFLOWS.md), [Rainbow contract](RAINBOW-QUICKSTART-CONTRACT.md), [sharing](SCREENSHOT-AND-LENS-FEATURES.md).
+1. **User-approved experience:** Glimpse, warm tactile paper reel, five **large** photographic apertures, deliberately cropped off-screen, a stationary full-sized hero photo, real finite counts, and a permanent conventional Grid / View all alternative. [Visual spec](../design/reel-interaction.md).
+2. **Expected results, not component names:** [human expectations and cognitive walkthroughs](../design/human-expectations.md) derived from [research handoff #29](https://github.com/gamesbyian/general-purpose/issues/29). Agent hypotheses are not evidence of human observation.
+3. **Render and motion fidelity:** Compose/HWUI paper reel, stable asset identity independent of angle, bounded image textures, interruptible drag/snap, clear reduced-motion alternative, physical Pixel proof. [Motion contract](../architecture/reel-motion.md).
+4. **Android implementation:** Kotlin/Compose/Room/command journal/WallpaperManager/Glance; sideloadable signed APK; no hosted service. [Native architecture](../architecture/android.md).
+5. **Feature behaviors:** 73 natural-language workflows, with golden Rainbows import-to-shuffle path, screenshot crop/rotation, original-or-crop sharing to compatible Android targets, and truthful five-minute scheduling. [Workflows](../product/workflows.md), [Rainbow contract](../product/rainbow-quickstart.md), [sharing](../product/image-import-sharing.md).
 
 Where text conflicts, the more recent *specific* user decision takes precedence; flag unresolved technical contradictions via this document, **not ad hoc code shortcuts**. Do not promote visual mockups or old status commentary into normative authority.
 
@@ -43,8 +43,8 @@ Where text conflicts, the more recent *specific* user decision takes precedence;
 ## Missing pre-build documents / decisions (ordered)
 
 **P0 before first implementation PR**
-- **Canonical visual source of truth**: actual editable and raster reference assets in repo, with provenance/approved-vs-exploratory flags, hashes, and viewport/pose naming. Present **blocked by binary upload**; see [publication manifest](GLIMPSE-ASSET-PUBLICATION-PLAN.md) and [#28](https://github.com/gamesbyian/general-purpose/issues/28).
-- **Screen state and semantics contracts**: machine-readable required/conditional/forbidden elements, real data state distinctions, component ownership and semantic-action assertions, adapted from wallgen without reproducing an overlarge test factory. See [acceptance plan](GLIMPSE-REFERENCE-ACCEPTANCE-PLAN.md).
+- **Canonical visual source of truth**: actual editable and raster reference assets in repo, with provenance/approved-vs-exploratory flags, hashes, and viewport/pose naming. Present **blocked by binary upload**; see [publication manifest](../assets.md) and [#28](https://github.com/gamesbyian/general-purpose/issues/28).
+- **Screen state and semantics contracts**: machine-readable required/conditional/forbidden elements, real data state distinctions, component ownership and semantic-action assertions, adapted from wallgen without reproducing an overlarge test factory. See [acceptance plan](../quality/reference-acceptance.md).
 - **Owner review:** confirm five-window aesthetic at launcher sizes and giant cropped viewport, and whether visual `Next photo` is understandable as *preview* rather than *applied wallpaper*. This is pending, not silently approved.
 - **Project location/package ID/signing key custody**: decide before distributing an APK; recommend a dedicated source repo once application building is requested. Don't use general-purpose credentials or create code now.
 

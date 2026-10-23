@@ -1,6 +1,6 @@
 # Glimpse UI surface census and reverse-navigation audit
 
-**2026-10-22 | Planning-only, adversarial inspection.** References: `Glimpse_v4_Editable_Source_Archive.zip` current image files (concept screenshots), old Waltz 16-screen gallery (historical), [feature completeness](GLIMPSE-FEATURE-SPEC-COMPLETENESS-AUDIT.md), [reel critique](GLIMPSE-REEL-UX-CRITICAL-AUDIT.md), [human expectations](GLIMPSE-HUMAN-EXPECTATIONS-WALKTHROUGHS.md).
+**2026-10-22 | Planning-only, adversarial inspection.** References: `Glimpse_v4_Editable_Source_Archive.zip` current image files (concept screenshots), old Waltz 16-screen gallery (historical), [feature completeness](../product/feature-audit.md), [reel critique](reel-ux-audit.md), [human expectations](human-expectations.md).
 
 ## Navigation is not the same as action ownership
 

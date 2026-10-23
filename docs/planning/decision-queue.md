@@ -1,6 +1,6 @@
 # Glimpse: specification audit decisions and next-work queue
 
-**Current: 2026-10-22. Owner: Glimpse design/engineering planning.** All status statements reflect document/source inspection only; **no Android app or new prototype has been built**. Keep this short queue alongside [current decisions](GLIMPSE-CURRENT-DECISIONS.md). This queue is the operational action list for the two full audits and is not a second full product spec.
+**Current: 2026-10-22. Owner: Glimpse design/engineering planning.** All status statements reflect document/source inspection only; **no Android app or new prototype has been built**. Keep this short queue alongside [current decisions](current-decisions.md). This queue is the operational action list for the two full audits and is not a second full product spec.
 
 ## Resolution statuses
 
@@ -14,13 +14,13 @@
 
 | ID | State | Decision / deliverable | Acceptance / handoff |
 |---|---|---|---|
-| S01 | **Specified** | Glimpse brand, current file authority, legacy Waltz meaning and UI glossary | [Current decisions](GLIMPSE-CURRENT-DECISIONS.md) and [technical contracts](GLIMPSE-TECHNICAL-BEHAVIOR-CONTRACTS.md) linked from README |
-| S02 | **Specified** | All **W01–W70 and F071–F073** categorized with concrete feature approach, UI result and proof limitations | [73-row register](GLIMPSE-FEATURE-SPEC-COMPLETENESS-AUDIT.md); no gaps/duplicates |
+| S01 | **Specified** | Glimpse brand, current file authority, legacy Waltz meaning and UI glossary | [Current decisions](current-decisions.md) and [technical contracts](../architecture/behavior-contracts.md) linked from README |
+| S02 | **Specified** | All **W01–W70 and F071–F073** categorized with concrete feature approach, UI result and proof limitations | [73-row register](../product/feature-audit.md); no gaps/duplicates |
 | S03 | **Specified** | Selected browse photo, queued photo, applied/acknowledged wallpaper, eligible schedule and share variant are independent | Typed command side-effect matrix; JSON screen contract |
-| S04 | **Specified** | A reel must select a finite, typed set; five paper apertures are a **view**, not fake content count | [Reel critical audit](GLIMPSE-REEL-UX-CRITICAL-AUDIT.md) |
-| S05 | **Specified** | Complete screen inventory and human-job rationale from Home through sharing/settings | [UI census](GLIMPSE-UI-SURFACE-CENSUS.md) |
+| S04 | **Specified** | A reel must select a finite, typed set; five paper apertures are a **view**, not fake content count | [Reel critical audit](../design/reel-ux-audit.md) |
+| S05 | **Specified** | Complete screen inventory and human-job rationale from Home through sharing/settings | [UI census](../design/ui-surface-inventory.md) |
 | S06 | **Specified** | Motion from **first native reel** rather than M4 afterthought | Native architecture note reconciled with motion contract |
-| S07 | **Asset-gated** | Publish full v4 *editable source ZIP*, deck PPTX and corresponding PDFs on GitHub with validated Git blobs | [Asset plan](GLIMPSE-ASSET-PUBLICATION-PLAN.md) and [issue #28](https://github.com/gamesbyian/general-purpose/issues/28); tactile board PNG **already verified** |
+| S07 | **Asset-gated** | Publish full v4 *editable source ZIP*, deck PPTX and corresponding PDFs on GitHub with validated Git blobs | [Asset plan](../assets.md) and [issue #28](https://github.com/gamesbyian/general-purpose/issues/28); tactile board PNG **already verified** |
 | S08 | **Proposed** | Give *exact* visual approval to icon/hero/reel reference art, not entire mock screen | Record chosen source SHA(s), role and viewport; mark untouched old art historical |
 | S09 | **Proposed** | Remake v4 Collection screen: Previous/Next photo, Set as wallpaper destination, Grid and non-overlapping reel | Prototype three edge states and 200%-font case before new deck is asserted |
 | S10 | **Proposed** | Define explicit action or passive identity for Home reel crescent | Test discoverability and choose open-active-collection or noninteractive illustration |
