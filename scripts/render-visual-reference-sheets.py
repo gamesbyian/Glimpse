@@ -67,6 +67,20 @@ SETS["critical-type-comparison"] = [
     ("X09 Reel 200%", PO["x09"]["03-reel-200-text"]),
     ("X09 Import 200%", PO["x09"]["05-import-200-text"]),
 ]
+# Exhaustive galleries are deliberately opt-in, never part of the cheap default.
+SETS["entire-original-66"] = [
+    (p.stem, str(p.relative_to(ROOT)))
+    for folder in ("plates", "critical-reel", "support-plates")
+    for p in sorted((SVG / folder).glob("*.svg"))
+]
+SETS["entire-p0-82"] = [
+    (g["id"] + "/" + f["id"], f["path"])
+    for g in P0["groups"] for f in g["frames"]
+]
+SETS["entire-p1-55"] = [
+    (g["id"] + "/" + f["id"], f["path"])
+    for g in P1["groups"] for f in g["frames"]
+]
 # A complete archive class is never inferred from the representative subset.
 ASSERTED_CLASSES = {"original": 66, "P0": 82, "P1": 55, "new": 25}
 
@@ -79,7 +93,10 @@ def run(out, full=False, selected=None, native=False):
     out.mkdir(parents=True, exist_ok=True)
     if len(SETS["state-refinements-25"]) != 25 or len(SETS["core-34-named-states"]) != 34:
         raise SystemExit("Optical inventory drift: expected 25 supplementary and 34 named states")
-    selected = list(SETS) if not selected else selected
+    for key, expected in (("entire-original-66", 66), ("entire-p0-82", 82), ("entire-p1-55", 55)):
+        if len(SETS[key]) != expected:
+            raise SystemExit(f"Exhaustive review inventory drift: {key} expected {expected}, found {len(SETS[key])}")
+    selected = [key for key in SETS if not key.startswith("entire-")] if not selected else selected
     native_dir = out / "native-phone-source-hashed"
     if native:
         native_dir.mkdir(parents=True, exist_ok=True)
