@@ -73,6 +73,10 @@ for state, source_id, derivative, acknowledged in (
     assert f'"derivedAssetId":{derivative}' in svg, state
     assert f'"saveAcknowledged":{acknowledged}' in svg, state
     assert '"lastConfirmedAppliedAssetId":"p04"' in svg, state
+for state in ("share-choice", "return-dismiss"):
+    svg = (ROOT / "design/proposals/audit-revisions" / f"r02-{state}.svg").read_text()
+    assert '"shareRecipientConfirmed":false' in svg
+    assert "p12c" in svg and "p12" in svg
 counts = {x: sum(v["status"] == x for v in cycle["results"])
           for x in ("PASS", "ISSUE", "UNVERIFIED", "NOT_APPLICABLE")}
 assert counts == cycle["summary"]["counts"]
