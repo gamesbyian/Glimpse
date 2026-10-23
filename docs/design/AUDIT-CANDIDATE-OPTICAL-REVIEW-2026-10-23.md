@@ -48,3 +48,10 @@ No GUX result is upgraded by render success or clearer proposals alone. Preserve
 **R02:** The four image-backed states rendered actual X07 p12 artwork and a clearly enlarged crop. Share choice visibly shows two thumbnails and distinguishable labels, and Return does not imply receipt. These are coherent source proposals, but touch target sizing, 200% text, true save transaction, Android Sharesheet completion, and physical device confidence remain unverified. The tiny footer/secondary captions are still a documented design concern; no user acceptance claimed.
 
 **Source fixture integrity:** Six tested JPEG files include photography and generated/digital artwork. Their distinct bytes and visual compositions help verify state identity; they do not evidence an imported real user's 22-image Google Photos album.
+
+
+## Ghost finite-index closure: source-sha-matched targeted optical evidence
+
+The six paper-reel images were regenerated and deterministically source-checked in [successful targeted Actions run 40041436182](https://github.com/gamesbyian/Glimpse/actions/runs/40041436182), workflow source `6e69bd2aa0a8275a7977216640cb0fb6229f3651`. The six 401×890 PNGs and contact sheet were downloaded and **visually inspected at actual rendered resolution**. The former N=0 p10–p14 badge leak is gone: empty disc shows **no numerical photo ID**. N=1 now shows only **01** on the single genuine central image, with the other four apertures empty and Previous/Next unavailable. Source generator explicitly asserts those exact labels; the zero-image SVG embeds no JPEG and singleton embeds one shared image source.
+
+**Disposition: R01 zero/one ghost-label reference defect RESOLVED at source-hashed draft optical level.** Do not extend this to Android finite-index correctness, TalkBack, 200% scaling, one-handed tapping or owner approval. R01 photographic concept is visually stronger than the earlier round chips but still a proposal pending actual native side-by-side and user judgment. No 60-question audit score changed.
