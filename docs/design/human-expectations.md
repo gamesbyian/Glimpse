@@ -6,6 +6,8 @@
 
 Read with [paper-reel UX contract](reel-interaction.md), [motion architecture](../architecture/reel-motion.md), [73 workflow scenarios](../product/workflows.md), [product specification](../product/product-specification.md), and [Rainbow golden path](../product/rainbow-quickstart.md). Keep Glimpse's native Compose/API constraints binding.
 
+**Workflow reference correction (2026-10-23):** W57 means schedule simulation and W54 means prior-wallpaper history/reapplication. Neither is an identifier for ordinary reel browsing. W60 means a time-bounded hold, not ordinary rotation startup. Those behaviors remain separate domain contracts.
+
 ## 1. The operating principle
 
 **Design for what a person thinks will happen, then verify what the software actually changes.** UI module boundaries, command names and source-code files are not evidence of human expectation.
@@ -39,7 +41,7 @@ Do **not** mark “yes” based only on attractive screenshots or AI assumptions
 
 ## 3. Five high-value Glimpse walkthroughs
 
-### A. “I want to browse another image, not change my current wallpaper.” (W57, W54)
+### A. “I want to browse another image, not change my current wallpaper.” (Reel/Grid preview command)
 
 - **Likely expectation:** rotating the paper reel changes the large preview only.
 - **Potential ambiguity:** real View-Master-like advancing can suggest advancing the installed wallpaper lineup. “Next” without a qualifier can mean *preview*, *active wallpaper*, or *scheduled successor*.
