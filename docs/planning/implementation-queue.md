@@ -90,3 +90,5 @@ Only adopt secondary reels when uncoached evidence demonstrates added usefulness
 - [x] Render and contact-inspect **all 203 baseline SVG phone previews** (66 original, 82 P0, 55 P1) using source SHA-256 provenance in Actions run 40023670567. No wholesale blank layouts, but not individual native DPI or 60-question UX audit signoff.
 - [x] Repair final-reel p22 photograph duplicate (distinct public architectural fixture4 in hero and selected aperture) and three small X08/X10 status chip overflow defects; add specific source/identity regressions.
 - [ ] Confirm final p22 and status chip changes in fresh CI PNG and inspect new source-hashed native crops.
+
+- [x] Visually differentiate cropped share p12c from unedited source p12 in X13's phone image geometry; assert the transform in storyboard-semantic regression checks. Final branch rerasterization requested.
