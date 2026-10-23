@@ -72,6 +72,10 @@ SETS["audit-r03-truth-candidates"] = [
     ("Preview p12 not applied", "design/proposals/audit-revisions/r03-preview-not-applied.svg"),
     ("p12 request outcome unknown", "design/proposals/audit-revisions/r03-unknown-after-request.svg"),
 ]
+SETS["audit-r01-finite-motion"] = [
+    (name, "design/proposals/audit-revisions/r01-" + name + ".svg")
+    for name in ("idle-22", "drag-18", "settled-snap", "last-22", "empty-0", "single-1")
+]
 # Exhaustive galleries are deliberately opt-in, never part of the cheap default.
 SETS["entire-original-66"] = [
     (p.stem, str(p.relative_to(ROOT)))
