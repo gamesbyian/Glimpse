@@ -48,6 +48,11 @@ Direct inspection of recovered `critical-reel-optic.png` showed `reel-large-text
 1. Run `python3 scripts/validate-svg-photo-portability.py` and the original plus new structural/semantic validators in a checkout.
 2. Generate fresh PNG contact sheets directly from PR #6 HEAD (not the older `74b5f23` archive); review **all** new ten state-refinement SVGs, corrected X05/X09/X11/X13, and source-hashed critical X01/X03/X04/X06/X07 families.
 3. Establish exact bitwise image identity or deliberately different fixture sources when a photo ID appears in different storyboard families. Reel art and hero photo should agree within each journey.
-4. Resolve the remaining **15** partial/related-only core named-state slots, all 200% and high-contrast/focus/inset scenarios, and OS handoffs. Do not promote drafts or call the 60-question UI/UX audit complete.
+4. Check the **15 newly dedicated same-surface drawings** plus 200% text, contrast, focus/insets and OS handoffs. The manifest's 34/34 'pictured' claim is structural, not optical proof. Do not promote drafts or call the 60-question UI/UX audit complete.
 
 **Evidence status:** partial baseline optical reconnaissance + corrected local X05/X09/X11 illustrations, **not** independent end-to-end optical verification of the PR branch; no images approved.
+
+
+### VRC-08 | Fifteen supplemental state drawings produced; NOT optical pass
+
+Fifteen dedicated source-editable SVGs were added for the former 11 partial and four related-only core variants; the total supplemental count is now 25. Each illustrates its own phone screen and recovery action instead of borrowing notes from another surface. The structural manifest reads 34 pictured / 0 partial / 0 related-only. **The new 15 SVGs have NOT been independently reviewed at native raster resolution**, and the existing 10 plus originals are not comprehensively reviewed on this branch. Next check on-device text wrap, Android-owned controls, action boundaries and the complete optical corpus.
