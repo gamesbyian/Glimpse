@@ -94,7 +94,7 @@ These fill omissions in the 63-variant schema and bridge screens whose isolated 
 ## C. Existing art that should be finished or revised, not miscounted as 'missing files'
 
 1. **Core Home, Collections, Reel and Grid are not high-fidelity final photographic screens.** They need actual coherent photo/crop geometry, intentional visual hierarchy and safe-area/target sizes. The paper reel special plates offer photo-backed direction. Review paired frames together, not as independent posters.
-2. **Source detail:** `plates/source-detail.svg` presently repeats the provider directory from Discover inside its phone area. A real provider-specific screen layout is needed for the online *baseline* even though a filename exists.
+2. **Source detail (source correction applied):** `plates/source-detail.svg` originally repeated the Discover provider directory inside its phone area. The draft baseline phone now presents Google Photos-specific source scope, provenance, an illustrative preview, rights caveat and explicit picker/Back actions. Full source-provider data accuracy, optical suitability and native handoff are not verified.
 3. **Grid:** `plates/grid.svg` has a search/multi-select text affordance and nine numbered tiles, but its main state does not demonstrate multi-selection badges, set scope or cancel. Also no authentic large-library density example.
 4. **Share:** `plates/share.svg` depicts Original and Edited blocks side by side plus a Sharesheet explanation, but not the **selected payload → Android Sharesheet → cancel/return** progression.
 5. **Automation editor:** `plates/automation-editor.svg` names conflict handling but shows only a simple rule. No actual conflict or nested-rule editor imagery.
