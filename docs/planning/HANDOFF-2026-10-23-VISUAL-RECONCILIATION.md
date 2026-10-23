@@ -52,6 +52,13 @@ Open the **actual PNGs at 100%**, inspect phone crops plus full annotated origin
 6. Inspect **X11/X13/X14** distinct original p12 / cropped p12c / next p13 / outbound URI result and Home/Lock composition. A source snapshot is never overwritten or sent until explicit action.
 7. Resolve the 15 partial/related-only named states without claiming “34/34 optical completion”, then prepare a *source-hashed owner-review set* without promoting any draft into `design/approved/` until explicit owner approval.
 
+
+## Recovery continuation after interrupted session
+
+The session recovery independently confirmed that current `main` still points at `4a4f858871d210939679bc9a5ee69550aedda620`. All substantive work remains committed to [draft PR #6](https://github.com/gamesbyian/Glimpse/pull/6) on `agent/visual-state-reconciliation-20261023` (do not imply it is merged). The recovered source artifact is `glimpse-visual-proposals` from run 39939557437. A direct offline ZIP scan of its **121 SVG image nodes** found **24 nonportable references**, confined to X05's eight files. All 24 were already repaired on the branch with self-contained images; full fresh-branch optical validation remains pending.
+
+Inspection of the original critical reel raster sheet also revealed clipping/overlap in `design/proposals/critical-reel/reel-large-text.svg`: the collection subtitle exceeded the phone width and the 32px selected-counter collided with Grid. The branch now has a targeted source change (wrapped subtitle, resized title and counter), but **has not rerendered this specific correction**. See VRC-07 in the optical log. The next action is a fresh branch checkout and opt-in raster plus script checks, not the 60-question UX audit.
+
 ## Authority and product safeguards
 
 Read [`AGENTS.md`](../../AGENTS.md), [previous P0 handoff](HANDOFF-2026-10-23-VISUAL-STORYBOARDS.md), [coverage gaps](../design/proposal-mockup-coverage-gaps-2026-10-23.md), [reference audit](../design/reference-gap-audit.md), [current decisions](current-decisions.md) and [implementation queue](implementation-queue.md) before further work. Keep **originals immutable**, **browse/select distinct from apply**, Photo Picker import narrow and durable, five-window finite meaningful reel with Grid parity, no cloud library of our own and OS result status honest. Native import/apply/shuffle has real first-slice device observations: preserve it.
