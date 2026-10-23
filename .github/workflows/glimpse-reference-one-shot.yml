@@ -2,7 +2,7 @@ name: Glimpse visual references | one-shot branch validation
 
 # One-time push trigger: this workflow file being introduced/changed on the
 # dedicated visual PR branch. No triggers on ordinary source/docs pushes.
-# Retry after fixing escaped finite reel photo ID validation pattern.
+# Consolidated recovery proof: corrected R01 ID parsing and R02 cross-journey identity trace.
 # Keep opt-in dispatch for a future intentional fresh visual review.
 on:
   push:
