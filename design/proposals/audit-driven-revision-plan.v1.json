@@ -117,7 +117,11 @@
         "applicable Android screenshot/hierarchy fixture or marked unverified",
         "audit finding closure verification"
       ],
-      "disposition": "queued-from-audit-not-yet-rendered"
+      "disposition": "2 initial draft states illustrated; remaining requested comparison frames pending",
+      "initialSourceDrafts": [
+        "design/proposals/audit-revisions/r03-preview-not-applied.svg",
+        "design/proposals/audit-revisions/r03-unknown-after-request.svg"
+      ]
     },
     {
       "id": "R04",
