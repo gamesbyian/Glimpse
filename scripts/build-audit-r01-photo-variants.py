@@ -52,7 +52,7 @@ def generate(slug, details):
     assets = {}
     for n in range(1, 7):
         data = (SOURCES / f"art{n}.jpg").read_bytes()
-        assert data[:3] == b"\xff\\xd8\xff", n
+        assert data[:3] == b"\xff\xd8\xff", n
         assets[f"art{n}"] = hashlib.sha256(data).hexdigest()
         if f'id="fixture{n}"' not in source:
             img = (f'<image id="fixture{n}" x="0" y="0" width="480" height="720" '
