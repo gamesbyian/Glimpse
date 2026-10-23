@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1160" height="920" viewBox="0 0 1160 920" role="img" aria-label="x09 01-home-200-text annotated proposal"><title>200% text • Home</title><desc>Sequential Glimpse UX storyboard proposal, not accepted artwork or a native screenshot.</desc><metadata>{&quot;journeyId&quot;:&quot;x09&quot;,&quot;stateId&quot;:&quot;01-home-200-text&quot;,&quot;surfaceId&quot;:&quot;home&quot;,&quot;sourceAssetId&quot;:&quot;vector-photo-example&quot;,&quot;selectedAssetId&quot;:&quot;p12&quot;,&quot;wallpaperTarget&quot;:null,&quot;appliedStatus&quot;:&quot;unchanged&quot;,&quot;viewportDp&quot;:[420,900],&quot;textScale&quot;:2,&quot;insetsDp&quot;:{&quot;status&quot;:24,&quot;gesture&quot;:24},&quot;motionPreference&quot;:&quot;no implicit animation&quot;,&quot;proposalStatus&quot;:&quot;draft-unapproved&quot;}</metadata>
+<rect x="0" y="0" width="1160" height="920" rx="0" fill="#E9E2D6" stroke="none" stroke-width="1"/>
+<rect x="15" y="14" width="401" height="890" rx="22" fill="#F6F0E6" stroke="#C4B7A4" stroke-width="1"/>
+<text x="39" y="43" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="700" fill="#153F46">9:41</text>
+<text x="348" y="43" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="550" fill="#667975">● ▰</text>
+<path d="M31 57 H400" stroke="#C4B7A4"/>
+<text x="37" y="95" font-family="Arial,Helvetica,sans-serif" font-size="23" font-weight="700" fill="#153F46">Glimpse</text>
+<text x="39" y="130" font-family="Arial,Helvetica,sans-serif" font-size="17" font-weight="550" fill="#667975">200% text • Home</text>
+<rect x="41" y="174" width="344" height="330" rx="12" fill="#161A27" stroke="none" stroke-width="1"/>
+<path d="M54.76 213.6 Q199.24 177.3 371.24 240" stroke="#EE4640" stroke-width="15.51" fill="none" stroke-linecap="round"/>
+<path d="M54.76 266.4 Q199.24 233.4 371.24 289.5" stroke="#F0AF38" stroke-width="15.51" fill="none" stroke-linecap="round"/>
+<path d="M54.76 319.2 Q199.24 289.5 371.24 339" stroke="#D2D451" stroke-width="15.51" fill="none" stroke-linecap="round"/>
+<path d="M54.76 372 Q199.24 345.6 371.24 388.5" stroke="#55B78D" stroke-width="15.51" fill="none" stroke-linecap="round"/>
+<path d="M54.76 424.8 Q199.24 401.70000000000005 371.24 438" stroke="#4C70C4" stroke-width="15.51" fill="none" stroke-linecap="round"/>
+<rect x="48" y="478" width="84" height="20" rx="6" fill="#FFFCF6" stroke="none" stroke-width="1"/>
+<text x="54" y="493" font-family="Arial,Helvetica,sans-serif" font-size="11" font-weight="700" fill="#153F46">HOME</text>
+<rect x="39" y="532" width="348" height="103" rx="15" fill="#FFFCF6" stroke="#C4B7A4" stroke-width="1"/>
+<text x="53" y="562" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="700" fill="#153F46">Rotation active</text>
+<text x="53" y="585" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="440" fill="#667975">Next eligible ~00:16; OS may delay.</text>
+<rect x="40" y="656" width="338" height="43" rx="17" fill="#1D5960" stroke="#1D5960" stroke-width="1"/>
+<text x="53" y="683" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="650" fill="white">Change Home now</text>
+<path d="M30 823 H402" stroke="#C4B7A4"/>
+<text x="39" y="851" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="500" fill="#667975">Home</text>
+<text x="134" y="851" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="500" fill="#667975">Discover</text>
+<text x="229" y="851" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="500" fill="#667975">Collections</text>
+<text x="324" y="851" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="500" fill="#667975">Automation</text>
+<rect x="182" y="874" width="70" height="5" rx="4" fill="#153F46" stroke="none" stroke-width="1"/>
+<rect x="439" y="14" width="706" height="890" rx="18" fill="#FFFCF6" stroke="#C4B7A4" stroke-width="1"/>
+<text x="463" y="54" font-family="Arial,Helvetica,sans-serif" font-size="22" font-weight="700" fill="#153F46">X09 / Accessibility and environment stress</text>
+<text x="463" y="91" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="700" fill="#1D5960">01-HOME-200-TEXT</text>
+<path d="M457 119 H1129" stroke="#C4B7A4"/>
+<text x="464" y="158" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="700" fill="#153F46">WHAT THIS FRAME MUST PROVE</text>
+<text x="466" y="196" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="450" fill="#153F46">Home hero remains dominant at large system text; status reflows</text>
+<rect x="466" y="295" width="647" height="134" rx="14" fill="#E9E0F5" stroke="none" stroke-width="1"/>
+<text x="481" y="328" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="700" fill="#1D5960">OBSERVABLE STATE</text>
+<text x="482" y="364" font-family="Arial,Helvetica,sans-serif" font-size="20" font-weight="700" fill="#153F46">200% text • Home</text>
+<text x="482" y="397" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="500" fill="#667975">Frame 1 of 8 · 22 collection members</text>
+<text x="466" y="469" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="700" fill="#153F46">TRACEABILITY AND SAFETY</text>
+<text x="470" y="509" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="650" fill="#667975">journey</text>
+<text x="673" y="509" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="600" fill="#153F46">x09</text>
+<text x="470" y="550" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="650" fill="#667975">screen</text>
+<text x="673" y="550" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="600" fill="#153F46">home</text>
+<text x="470" y="591" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="650" fill="#667975">selected asset</text>
+<text x="673" y="591" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="600" fill="#153F46">p12</text>
+<text x="470" y="632" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="650" fill="#667975">wallpaper effect</text>
+<text x="673" y="632" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="600" fill="#153F46">unchanged</text>
+<text x="470" y="673" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="650" fill="#667975">text scale</text>
+<text x="673" y="673" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="600" fill="#153F46">2 × reference</text>
+<text x="470" y="714" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="650" fill="#667975">status</text>
+<text x="673" y="714" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="600" fill="#153F46">DRAFT · NOT APPROVED</text>
+<path d="M458 786 H1128" stroke="#C4B7A4"/>
+<text x="465" y="820" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="500" fill="#667975">Illustrative geometry only: device tests must validate touch, TalkBack, and insets.</text>
+<text x="465" y="853" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="700" fill="#E8876C">No captured Android UI and no owner visual signoff.</text>
+</svg>

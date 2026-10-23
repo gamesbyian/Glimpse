@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1160" height="920" viewBox="0 0 1160 920" role="img" aria-label="x10 05-no-photos annotated proposal"><title>No eligible photos</title><desc>Sequential Glimpse UX storyboard proposal, not accepted artwork or a native screenshot.</desc><metadata>{&quot;journeyId&quot;:&quot;x10&quot;,&quot;stateId&quot;:&quot;05-no-photos&quot;,&quot;surfaceId&quot;:&quot;empty&quot;,&quot;sourceAssetId&quot;:&quot;vector-photo-example&quot;,&quot;selectedAssetId&quot;:null,&quot;wallpaperTarget&quot;:null,&quot;appliedStatus&quot;:&quot;unchanged&quot;,&quot;viewportDp&quot;:[420,900],&quot;textScale&quot;:1,&quot;insetsDp&quot;:{&quot;status&quot;:24,&quot;gesture&quot;:24},&quot;motionPreference&quot;:&quot;no implicit animation&quot;,&quot;proposalStatus&quot;:&quot;draft-unapproved&quot;}</metadata>
+<rect x="0" y="0" width="1160" height="920" rx="0" fill="#E9E2D6" stroke="none" stroke-width="1"/>
+<rect x="15" y="14" width="401" height="890" rx="22" fill="#F6F0E6" stroke="#C4B7A4" stroke-width="1"/>
+<text x="39" y="43" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="700" fill="#153F46">9:41</text>
+<text x="348" y="43" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="550" fill="#667975">● ▰</text>
+<path d="M31 57 H400" stroke="#C4B7A4"/>
+<text x="37" y="95" font-family="Arial,Helvetica,sans-serif" font-size="28" font-weight="700" fill="#153F46">Collections</text>
+<text x="39" y="130" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="550" fill="#667975">No eligible photos</text>
+<rect x="39" y="186" width="348" height="188" rx="15" fill="#FFFCF6" stroke="#C4B7A4" stroke-width="1"/>
+<text x="53" y="216" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="700" fill="#153F46">No eligible photographs</text>
+<text x="53" y="239" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="440" fill="#667975">Rotation paused. Add photos or restore an</text>
+<text x="53" y="257" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="440" fill="#667975">excluded image.</text>
+<rect x="43" y="653" width="337" height="43" rx="17" fill="#1D5960" stroke="#1D5960" stroke-width="1"/>
+<text x="56" y="680" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="650" fill="white">Open collection</text>
+<path d="M30 823 H402" stroke="#C4B7A4"/>
+<text x="39" y="851" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="500" fill="#667975">Home</text>
+<text x="134" y="851" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="500" fill="#667975">Discover</text>
+<text x="229" y="851" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="500" fill="#667975">Collections</text>
+<text x="324" y="851" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="500" fill="#667975">Automation</text>
+<rect x="182" y="874" width="70" height="5" rx="4" fill="#153F46" stroke="none" stroke-width="1"/>
+<rect x="439" y="14" width="706" height="890" rx="18" fill="#FFFCF6" stroke="#C4B7A4" stroke-width="1"/>
+<text x="463" y="54" font-family="Arial,Helvetica,sans-serif" font-size="22" font-weight="700" fill="#153F46">X10 / Error and interruption rescue</text>
+<text x="463" y="91" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="700" fill="#1D5960">05-NO-PHOTOS</text>
+<path d="M457 119 H1129" stroke="#C4B7A4"/>
+<text x="464" y="158" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="700" fill="#153F46">WHAT THIS FRAME MUST PROVE</text>
+<text x="466" y="196" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="450" fill="#153F46">Pause rotation and explain how to recover</text>
+<rect x="466" y="295" width="647" height="134" rx="14" fill="#E9E0F5" stroke="none" stroke-width="1"/>
+<text x="481" y="328" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="700" fill="#1D5960">OBSERVABLE STATE</text>
+<text x="482" y="364" font-family="Arial,Helvetica,sans-serif" font-size="20" font-weight="700" fill="#153F46">No eligible photos</text>
+<text x="482" y="397" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="500" fill="#667975">Frame 5 of 7 · 0 collection members</text>
+<text x="466" y="469" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="700" fill="#153F46">TRACEABILITY AND SAFETY</text>
+<text x="470" y="509" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="650" fill="#667975">journey</text>
+<text x="673" y="509" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="600" fill="#153F46">x10</text>
+<text x="470" y="550" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="650" fill="#667975">screen</text>
+<text x="673" y="550" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="600" fill="#153F46">empty</text>
+<text x="470" y="591" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="650" fill="#667975">selected asset</text>
+<text x="673" y="591" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="600" fill="#153F46">none</text>
+<text x="470" y="632" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="650" fill="#667975">wallpaper effect</text>
+<text x="673" y="632" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="600" fill="#153F46">unchanged</text>
+<text x="470" y="673" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="650" fill="#667975">text scale</text>
+<text x="673" y="673" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="600" fill="#153F46">1 × reference</text>
+<text x="470" y="714" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="650" fill="#667975">status</text>
+<text x="673" y="714" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="600" fill="#153F46">DRAFT · NOT APPROVED</text>
+<path d="M458 786 H1128" stroke="#C4B7A4"/>
+<text x="465" y="820" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="500" fill="#667975">Illustrative geometry only: device tests must validate touch, TalkBack, and insets.</text>
+<text x="465" y="853" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="700" fill="#E8876C">No captured Android UI and no owner visual signoff.</text>
+</svg>

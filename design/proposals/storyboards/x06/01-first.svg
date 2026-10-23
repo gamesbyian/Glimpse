@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1160" height="920" viewBox="0 0 1160 920" role="img" aria-label="x06 01-first annotated proposal"><title>Photo 1 of 22</title><desc>Sequential Glimpse UX storyboard proposal, not accepted artwork or a native screenshot.</desc><metadata>{&quot;journeyId&quot;:&quot;x06&quot;,&quot;stateId&quot;:&quot;01-first&quot;,&quot;surfaceId&quot;:&quot;first&quot;,&quot;sourceAssetId&quot;:&quot;vector-photo-example&quot;,&quot;selectedAssetId&quot;:&quot;p01&quot;,&quot;wallpaperTarget&quot;:null,&quot;appliedStatus&quot;:&quot;unchanged&quot;,&quot;viewportDp&quot;:[420,900],&quot;textScale&quot;:1,&quot;insetsDp&quot;:{&quot;status&quot;:24,&quot;gesture&quot;:24},&quot;motionPreference&quot;:&quot;no implicit animation&quot;,&quot;proposalStatus&quot;:&quot;draft-unapproved&quot;}</metadata>
+<rect x="0" y="0" width="1160" height="920" rx="0" fill="#E9E2D6" stroke="none" stroke-width="1"/>
+<rect x="15" y="14" width="401" height="890" rx="22" fill="#F6F0E6" stroke="#C4B7A4" stroke-width="1"/>
+<text x="39" y="43" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="700" fill="#153F46">9:41</text>
+<text x="348" y="43" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="550" fill="#667975">● ▰</text>
+<path d="M31 57 H400" stroke="#C4B7A4"/>
+<text x="37" y="95" font-family="Arial,Helvetica,sans-serif" font-size="28" font-weight="700" fill="#153F46">Rainbows</text>
+<text x="39" y="130" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="550" fill="#667975">Photo 1 of 22</text>
+<rect x="40" y="155" width="346" height="222" rx="12" fill="#161A27" stroke="none" stroke-width="1"/>
+<path d="M53.84 181.64 Q199.16 157.22 372.15999999999997 199.4" stroke="#EE4640" stroke-width="10.434" fill="none" stroke-linecap="round"/>
+<path d="M53.84 217.16 Q199.16 194.96 372.15999999999997 232.7" stroke="#F0AF38" stroke-width="10.434" fill="none" stroke-linecap="round"/>
+<path d="M53.84 252.68 Q199.16 232.7 372.15999999999997 266" stroke="#D2D451" stroke-width="10.434" fill="none" stroke-linecap="round"/>
+<path d="M53.84 288.2 Q199.16 270.44 372.15999999999997 299.29999999999995" stroke="#55B78D" stroke-width="10.434" fill="none" stroke-linecap="round"/>
+<path d="M53.84 323.72 Q199.16 308.18 372.15999999999997 332.6" stroke="#4C70C4" stroke-width="10.434" fill="none" stroke-linecap="round"/>
+<rect x="47" y="351" width="84" height="20" rx="6" fill="#FFFCF6" stroke="none" stroke-width="1"/>
+<text x="53" y="366" font-family="Arial,Helvetica,sans-serif" font-size="11" font-weight="700" fill="#153F46">p01</text>
+<text x="39" y="424" font-family="Arial,Helvetica,sans-serif" font-size="16" font-weight="700" fill="#153F46">Photo 1 of 22 · Preview only</text>
+<clipPath id="wheel"><rect x="15" y="485" width="399" height="265"/></clipPath><g clip-path="url(#wheel)"><circle cx="215" cy="704" r="226" fill="#EAD9BD" stroke="#B6A48D" stroke-width="5"/>
+<rect x="98.71006467905374" y="767.2623792124926" width="68" height="101" rx="10" fill="#F6F0E6" stroke="#C4B7A4" stroke-width="1"/>
+<rect x="47.85208771867852" y="610.7376207875074" width="68" height="101" rx="10" fill="#F6F0E6" stroke="#C4B7A4" stroke-width="1"/>
+<rect x="181" y="514" width="68" height="101" rx="12" fill="#161A27" stroke="none" stroke-width="1"/>
+<path d="M183.72 526.12 Q212.28 515.01 246.28 534.2" stroke="#EE4640" stroke-width="4.747" fill="none" stroke-linecap="round"/>
+<path d="M183.72 542.28 Q212.28 532.18 246.28 549.35" stroke="#F0AF38" stroke-width="4.747" fill="none" stroke-linecap="round"/>
+<path d="M183.72 558.44 Q212.28 549.35 246.28 564.5" stroke="#D2D451" stroke-width="4.747" fill="none" stroke-linecap="round"/>
+<path d="M183.72 574.6 Q212.28 566.52 246.28 579.65" stroke="#55B78D" stroke-width="4.747" fill="none" stroke-linecap="round"/>
+<path d="M183.72 590.76 Q212.28 583.69 246.28 594.8" stroke="#4C70C4" stroke-width="4.747" fill="none" stroke-linecap="round"/>
+<rect x="188" y="589" width="55" height="20" rx="6" fill="#FFFCF6" stroke="none" stroke-width="1"/>
+<text x="194" y="604" font-family="Arial,Helvetica,sans-serif" font-size="11" font-weight="700" fill="#153F46">p01</text>
+<rect x="178" y="511" width="74" height="107" rx="11" fill="none" stroke="#1D5960" stroke-width="4"/>
+<rect x="314.1479122813215" y="610.7376207875074" width="68" height="101" rx="12" fill="#161A27" stroke="none" stroke-width="1"/>
+<path d="M316.86791228132154 622.8576207875074 Q345.4279122813215 611.7476207875073 379.4279122813215 630.9376207875074" stroke="#EE4640" stroke-width="4.747" fill="none" stroke-linecap="round"/>
+<path d="M316.86791228132154 639.0176207875073 Q345.4279122813215 628.9176207875073 379.4279122813215 646.0876207875074" stroke="#F0AF38" stroke-width="4.747" fill="none" stroke-linecap="round"/>
+<path d="M316.86791228132154 655.1776207875073 Q345.4279122813215 646.0876207875074 379.4279122813215 661.2376207875074" stroke="#D2D451" stroke-width="4.747" fill="none" stroke-linecap="round"/>
+<path d="M316.86791228132154 671.3376207875074 Q345.4279122813215 663.2576207875073 379.4279122813215 676.3876207875073" stroke="#55B78D" stroke-width="4.747" fill="none" stroke-linecap="round"/>
+<path d="M316.86791228132154 687.4976207875073 Q345.4279122813215 680.4276207875074 379.4279122813215 691.5376207875074" stroke="#4C70C4" stroke-width="4.747" fill="none" stroke-linecap="round"/>
+<rect x="321.1479122813215" y="685.7376207875074" width="55" height="20" rx="6" fill="#FFFCF6" stroke="none" stroke-width="1"/>
+<text x="327.1479122813215" y="700.7376207875074" font-family="Arial,Helvetica,sans-serif" font-size="11" font-weight="700" fill="#153F46">p02</text>
+<rect x="263.28993532094626" y="767.2623792124926" width="68" height="101" rx="12" fill="#161A27" stroke="none" stroke-width="1"/>
+<path d="M266.0099353209463 779.3823792124927 Q294.56993532094623 768.2723792124926 328.56993532094623 787.4623792124927" stroke="#EE4640" stroke-width="4.747" fill="none" stroke-linecap="round"/>
+<path d="M266.0099353209463 795.5423792124926 Q294.56993532094623 785.4423792124926 328.56993532094623 802.6123792124927" stroke="#F0AF38" stroke-width="4.747" fill="none" stroke-linecap="round"/>
+<path d="M266.0099353209463 811.7023792124926 Q294.56993532094623 802.6123792124927 328.56993532094623 817.7623792124926" stroke="#D2D451" stroke-width="4.747" fill="none" stroke-linecap="round"/>
+<path d="M266.0099353209463 827.8623792124927 Q294.56993532094623 819.7823792124926 328.56993532094623 832.9123792124926" stroke="#55B78D" stroke-width="4.747" fill="none" stroke-linecap="round"/>
+<path d="M266.0099353209463 844.0223792124926 Q294.56993532094623 836.9523792124927 328.56993532094623 848.0623792124927" stroke="#4C70C4" stroke-width="4.747" fill="none" stroke-linecap="round"/>
+<rect x="270.28993532094626" y="842.2623792124926" width="55" height="20" rx="6" fill="#FFFCF6" stroke="none" stroke-width="1"/>
+<text x="276.28993532094626" y="857.2623792124926" font-family="Arial,Helvetica,sans-serif" font-size="11" font-weight="700" fill="#153F46">p03</text>
+<circle cx="215" cy="704" r="63" fill="#DCC7AD" stroke="#9F8B70" stroke-width="8"/><circle cx="215" cy="704" r="29" fill="#FFFCF6"/></g>
+<text x="205" y="473" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="750" fill="#E8876C">▼</text>
+<rect x="42" y="756" width="150" height="43" rx="17" fill="#FFFCF6" stroke="#C4B7A4" stroke-width="1"/>
+<text x="55" y="783" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="650" fill="#153F46">Previous</text>
+<rect x="204" y="756" width="181" height="43" rx="17" fill="#1D5960" stroke="#1D5960" stroke-width="1"/>
+<text x="217" y="783" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="650" fill="white">Next photo</text>
+<path d="M30 823 H402" stroke="#C4B7A4"/>
+<text x="39" y="851" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="500" fill="#667975">Home</text>
+<text x="134" y="851" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="500" fill="#667975">Discover</text>
+<text x="229" y="851" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="500" fill="#667975">Collections</text>
+<text x="324" y="851" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="500" fill="#667975">Automation</text>
+<rect x="182" y="874" width="70" height="5" rx="4" fill="#153F46" stroke="none" stroke-width="1"/>
+<rect x="439" y="14" width="706" height="890" rx="18" fill="#FFFCF6" stroke="#C4B7A4" stroke-width="1"/>
+<text x="463" y="54" font-family="Arial,Helvetica,sans-serif" font-size="22" font-weight="700" fill="#153F46">X06 / Finite reel limits and scale</text>
+<text x="463" y="91" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="700" fill="#1D5960">01-FIRST</text>
+<path d="M457 119 H1129" stroke="#C4B7A4"/>
+<text x="464" y="158" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="700" fill="#153F46">WHAT THIS FRAME MUST PROVE</text>
+<text x="466" y="196" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="450" fill="#153F46">At first item: no negative ID, Previous disabled, blank outer</text>
+<text x="466" y="224" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="450" fill="#153F46">apertures</text>
+<rect x="466" y="295" width="647" height="134" rx="14" fill="#E9E0F5" stroke="none" stroke-width="1"/>
+<text x="481" y="328" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="700" fill="#1D5960">OBSERVABLE STATE</text>
+<text x="482" y="364" font-family="Arial,Helvetica,sans-serif" font-size="20" font-weight="700" fill="#153F46">Photo 1 of 22</text>
+<text x="482" y="397" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="500" fill="#667975">Frame 1 of 7 · 22 collection members</text>
+<text x="466" y="469" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="700" fill="#153F46">TRACEABILITY AND SAFETY</text>
+<text x="470" y="509" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="650" fill="#667975">journey</text>
+<text x="673" y="509" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="600" fill="#153F46">x06</text>
+<text x="470" y="550" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="650" fill="#667975">screen</text>
+<text x="673" y="550" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="600" fill="#153F46">first</text>
+<text x="470" y="591" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="650" fill="#667975">selected asset</text>
+<text x="673" y="591" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="600" fill="#153F46">p01</text>
+<text x="470" y="632" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="650" fill="#667975">wallpaper effect</text>
+<text x="673" y="632" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="600" fill="#153F46">unchanged</text>
+<text x="470" y="673" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="650" fill="#667975">text scale</text>
+<text x="673" y="673" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="600" fill="#153F46">1 × reference</text>
+<text x="470" y="714" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="650" fill="#667975">status</text>
+<text x="673" y="714" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="600" fill="#153F46">DRAFT · NOT APPROVED</text>
+<path d="M458 786 H1128" stroke="#C4B7A4"/>
+<text x="465" y="820" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="500" fill="#667975">Illustrative geometry only: device tests must validate touch, TalkBack, and insets.</text>
+<text x="465" y="853" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="700" fill="#E8876C">No captured Android UI and no owner visual signoff.</text>
+</svg>
