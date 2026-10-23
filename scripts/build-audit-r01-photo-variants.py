@@ -100,13 +100,81 @@ def generate(slug, details):
     assert [m for m in re.findall(r'<use href="#(fixture\d+)"', source)] == refs, slug
     return source
 
+def generate_edge(slug, single):
+    """Keep the actual X05 paper wheel, but leave unoccupied wedges empty."""
+    source = (P0 / "01-rest.svg").read_text(encoding="utf-8")
+    # Blank wedge cutouts are intentionally paper, not copies of art1.
+    def clear_wedge(m):
+        sector = int(m.group(1))
+        if single and sector == 2:
+            return m.group(0)
+        return ""
+    source = re.sub(
+        r'<g clip-path="url\\(#c([0-4])\\)"><use href="#fixture[1-6]" transform="[^"]+"/></g>',
+        clear_wedge, source)
+    # Five small paper labels must disappear unless there is a real item there.
+    label = re.compile(
+        r'<rect x="[\\d.]+" y="[\\d.]+" width="39" height="23" rx="7" '
+        r'fill="#FFFCF6" stroke="none"/><text x="[\\d.]+" y="[\\d.]+" '
+        r'font-family="Arial,Helvetica,sans-serif" font-size="13" '
+        r'font-weight="700" fill="#153F46">(\\d+)</text>')
+    def clear_label(m):
+        return m.group(0).replace(">12</text>", ">01</text>") if single and m.group(1) == "12" else ""
+    source = label.sub(clear_label, source)
+    if not single:
+        source = re.sub(r'<g clip-path="url\\(#hero\\)"><use href="#fixture1" '
+                        r'transform="[^"]+"/></g>',
+                        '<text x="85" y="296" font-family="Arial,sans-serif" '
+                        'font-size="21" fill="#153F46">Add photos to begin</text>', source)
+    source = source.replace("Photo 12 of 22 · Preview only",
+                            "Photo 1 of 1 · Preview only" if single else "No photos yet")
+    source = source.replace("SELECTED p12", "SELECTED p01" if single else "COLLECTION EMPTY")
+    source = source.replace("Browse by rotating the paper reel",
+                            "One photo in your reel" if single else "Add photos to start your reel")
+    source = source.replace("Previous photo", "Previous disabled" if single else "Add photos")
+    source = source.replace("Next photo", "Next disabled")
+    source = source.replace('x="214" y="755" width="177" height="48" rx="18" fill="#FFFCF6"',
+                            'x="214" y="755" width="177" height="48" rx="18" fill="#D9DEDA"')
+    if single:
+        source = source.replace('x="41" y="755" width="163" height="48" rx="18" fill="#FFFCF6"',
+                                'x="41" y="755" width="163" height="48" rx="18" fill="#D9DEDA"')
+    source = source.replace("Fixed pointer aligned with item 12; selected preview is p12",
+                            "The only selected photo is p01" if single else "No selected photo exists")
+    source = source.replace("Current selectedAssetId: p12",
+                            "Current selectedAssetId: p01" if single else "No selectedAssetId")
+    source = source.replace("Reel has five apertures; the collection has 22 real images.",
+                            "Five apertures; 1 real image only." if single else
+                            "Five unfilled paper apertures; collection is empty.")
+    source = source.replace("sourceAssetId: p12",
+                            "sourceAssetId: p01" if single else "sourceAssetId: none")
+    source = source.replace("selectedAssetId: p12",
+                            "selectedAssetId: p01" if single else "selectedAssetId: none")
+    match = re.search(r"<metadata>(.*?)</metadata>", source)
+    assert match, slug
+    meta = json.loads(html.unescape(match.group(1)))
+    meta.update({
+        "auditLane": "R01", "auditStatus": "photographic-draft-not-owner-approved",
+        "auditFixtureVersion": 2, "auditSource": "01-rest.svg",
+        "selectedAssetId": "p01" if single else None,
+        "photoTotal": 1 if single else 0,
+        "fixtureArtworkByPhotoId": {"p01": "art1"} if single else {},
+        "lastConfirmedAppliedAssetId": "p04", "androidProof": "not-collected",
+    })
+    source = source[:match.start(1)] + html.escape(json.dumps(meta, separators=(",", ":")),
+                                                  quote=True) + source[match.end(1):]
+    source = source.replace("X05 · PHYSICAL REEL INTERACTION STORYBOARD",
+                            "R01 · PHOTOGRAPHIC REEL COMPARISON")
+    source = source.replace("<title>X05 /", "<title>R01 photographic /")
+    assert source.count("<use href=") == (2 if single else 0), (slug, "ghost images")
+    return source
+
 def main():
     p = argparse.ArgumentParser()
     p.add_argument("--write", action="store_true")
     args = p.parse_args()
-    for slug, details in FRAMES.items():
+    for slug in list(FRAMES) + ["photo-empty-0", "photo-single-1"]:
         target = OUT / f"r01-{slug}.svg"
-        src = generate(slug, details)
+        src = (generate_edge(slug, slug == "photo-single-1") if slug.startswith("photo-empty") or slug.startswith("photo-single") else generate(slug, FRAMES[slug]))
         if args.write:
             target.parent.mkdir(parents=True, exist_ok=True)
             target.write_text(src, encoding="utf-8")
