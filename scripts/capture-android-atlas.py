@@ -83,14 +83,14 @@ def capture_failure(slug, detail):
     """Retain failure evidence even if UIAutomator is entirely unavailable."""
     try:
         raw = adb("exec-out", "screencap", "-p", binary=True, timeout=40)
-        if raw.startswith(b"\\x89PNG\\r\\n\\x1a\\n"):
+        if raw.startswith(b"\x89PNG\r\n\x1a\n"):
             (OUT / (slug + ".png")).write_bytes(raw)
         (OUT / (slug + ".txt")).write_text(
             detail[:1200], encoding="utf-8")
         log = adb("logcat", "-d", "-t", "400", check=False, timeout=40)
         # CI contains only published fixtures, but avoid leaking unrelated
         # emulator accounts/URIs and keep artifacts small.
-        safe = "\\n".join(
+        safe = "\n".join(
             line for line in log.splitlines()
             if any(tag in line for tag in ("glimpse", "Glimpse",
                                           "AndroidRuntime", "FATAL EXCEPTION",
