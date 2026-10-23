@@ -76,6 +76,10 @@ SETS["audit-r01-finite-motion"] = [
     (name, "design/proposals/audit-revisions/r01-" + name + ".svg")
     for name in ("idle-22", "drag-18", "settled-snap", "last-22", "empty-0", "single-1")
 ]
+SETS["audit-r02-copy-transition"] = [
+    ("Unsaved crop, p12", "design/proposals/audit-revisions/r02-crop-pending.svg"),
+    ("Saved edited copy, p12c", "design/proposals/audit-revisions/r02-copy-saved.svg"),
+]
 # Exhaustive galleries are deliberately opt-in, never part of the cheap default.
 SETS["entire-original-66"] = [
     (p.stem, str(p.relative_to(ROOT)))
