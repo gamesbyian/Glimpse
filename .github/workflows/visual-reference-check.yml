@@ -1,0 +1,24 @@
+name: Validate Glimpse proposal-reference structure
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "design/proposals/**"
+      - "design/tokens/brand.json"
+      - "docs/design/screen-contract.json"
+      - "scripts/validate-visual-spec.py"
+      - ".github/workflows/visual-reference-check.yml"
+permissions:
+  contents: read
+concurrency:
+  group: glimpse-reference-check
+  cancel-in-progress: true
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate SVG XML and spec coverage without browsers
+        run: python3 scripts/validate-visual-spec.py
