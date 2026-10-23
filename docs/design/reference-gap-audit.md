@@ -2,7 +2,7 @@
 
 **Audited:** 2026-10-23. **Result:** comprehensive *traceable proposals*, **not** a complete owner-approved or pixel-locked reference set. The source of truth is [current decisions](../planning/current-decisions.md) plus [24 original semantic screen contracts](screen-contract.json), [73 original workflows](../product/feature-audit.md), and [16 new support-feature contracts](../../design/proposals/support-coverage.v1.json). A single annotated plate can describe missing elements without depicting them, so the existence of a plate is **not sufficient** for an approved UI.
 
-> **Follow-up to the original coverage audit:** the [exact 34-slot evidence manifest](../../design/proposals/core-state-evidence.v1.json) records 19 phone-pictured, 11 partly pictured and 4 related-only cases. This is a deliberately weaker claim than visual completeness: all require raster/owner review and the 15 partial/related slots require further refinement. See the [browser contact sheet](../../design/atlas/core-state-contact-sheet.html). Supplemental SVGs are a separate class, not added to the 66 baseline.
+> **Follow-up to the original coverage audit:** the [exact 34-slot evidence manifest](../../design/proposals/core-state-evidence.v1.json) records 34 structurally phone-pictured, 0 partial and 0 related-only cases after a second same-surface illustration pass. This is a deliberately weaker claim than visual completeness: all require raster/owner review and the 15 formerly partial/related slots still require independent optical and whole-flow sufficiency inspection. See the [browser contact sheet](../../design/atlas/core-state-contact-sheet.html). Supplemental SVGs are a separate class, not added to the 66 baseline.
 
 ## Exact coverage counts
 
