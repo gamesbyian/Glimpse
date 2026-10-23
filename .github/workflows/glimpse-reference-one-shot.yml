@@ -2,7 +2,7 @@ name: Glimpse visual references | one-shot branch validation
 
 # One-time push trigger: this workflow file being introduced/changed on the
 # dedicated visual PR branch. No triggers on ordinary source/docs pushes.
-# Full current-source recheck: six photo-backed paper wheels and four real-photo R02 states.
+# Final audit photo comparison proof: verify 12-pair browser atlas plus full source corpus.
 # Keep opt-in dispatch for a future intentional fresh visual review.
 on:
   push:
@@ -41,6 +41,7 @@ jobs:
           python3 scripts/validate-storyboard-semantics.py
           python3 scripts/validate-svg-photo-portability.py
           python3 scripts/validate-audit-cycle.py
+          python3 scripts/validate-audit-visual-comparisons.py
           } 2>&1 | tee /tmp/glimpse-visual-evidence/structural.log
       - name: Install disposable raster dependencies
         run: |
@@ -120,7 +121,23 @@ jobs:
           git add docs/design/visual-one-shot-evidence.md
           if ! git diff --cached --quiet; then
             git commit -m "ci: record source-hashed draft visual validation result"
-            git push origin "HEAD:${GITHUB_REF_NAME}"
+            # Other agents may update the draft branch during the one-shot render.
+            # Rebase only the evidence commit: GITHUB_SHA remains the immutable
+            # source that was actually rendered and is printed in the ledger.
+            published=0
+            for attempt in 1 2 3; do
+              git fetch origin "+refs/heads/${GITHUB_REF_NAME}:refs/remotes/origin/${GITHUB_REF_NAME}"
+              git rebase "origin/${GITHUB_REF_NAME}"
+              if git push origin "HEAD:${GITHUB_REF_NAME}"; then
+                published=1
+                break
+              fi
+              echo "Branch advanced during evidence publication, retry ${attempt}/3"
+            done
+            if [[ "${published}" -ne 1 ]]; then
+              echo "Source-hashed evidence artifact remains available; branch proof publication failed" >&2
+              exit 1
+            fi
           fi
       - name: Upload draft visual evidence
         if: always()
