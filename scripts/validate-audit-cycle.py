@@ -93,6 +93,9 @@ for state in ("crop-pending", "copy-saved", "share-choice", "return-dismiss"):
     assert '"lastConfirmedAppliedAssetId":"p04"' in svg, state
 assert len(re.findall(r'href="data:image/jpeg;base64,',
        (ROOT / "design/proposals/audit-revisions/r02-share-choice.svg").read_text())) == 3
+assert 'transform="translate(-139.5 -276.75) scale(1.5)"' in (
+    ROOT / "design/proposals/audit-revisions/r02-share-choice.svg").read_text()
+
 # R01 photographic upgrades are generated deterministically from the six
 # checked-in research photos; verify them without changing the source files.
 if (ROOT / "design/proposals/audit-revisions/r01-photo-rest-22.svg").exists():
