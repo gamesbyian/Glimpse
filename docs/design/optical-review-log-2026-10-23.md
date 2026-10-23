@@ -38,6 +38,11 @@ The reviewed X06 first/one/three/exact five/22/60/last frames show appropriate c
 
 Rendered X01 conveys 22 chosen, 7 verified/15 pending and 20 verified with one duplicate/one skipped without claiming provider-ready cloud items are already local. X03 distinguishes explicit Home request from pending, acknowledged, unknown, failed and Lock-unsupported branches; X04 active/paused/delayed/stopped distinct captions. However Android Photo Picker in X01, OS wallpaper apply, chooser/widget/Quick Settings and exact five-minute schedule remain **illustrations**, not captured host-owned results. They require native acceptance and accessible fallback design checks. The sampled P1 images show compact card controls, often far below 200% text, and many permission/support claims are represented only by short labels.
 
+
+### VRC-07 | Original critical reel large-text reference clips content (high, source repair pending fresh raster)
+
+Direct inspection of recovered `critical-reel-optic.png` showed `reel-large-text.svg` rendered the 28px collection subtitle beyond the 401px phone width and overlapped a 32px “Selected 12 of 22” caption with the adjacent Grid link. The revised source splits the subtitle into “22 photographs · Offline” and “collection”, reduces the oversized title and reduces the selected counter to 24px. This **source fix is committed but has not yet been raster verified from current PR HEAD**. Do not mark large-text accessibility as approved.
+
 ## Follow-up gates
 
 1. Run `python3 scripts/validate-svg-photo-portability.py` and the original plus new structural/semantic validators in a checkout.
