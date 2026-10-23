@@ -6,6 +6,11 @@
 - [Large-window paper reel PNG](reference/reel-wide-apertures.png)
 - [Design tokens](tokens/brand.json)
 
+**Coherent but not yet approved visual proposals**
+
+- [24 core screen families, 34 support states, eight critical reel states](proposals/README.md)
+- [Two-way audit and decisions still requiring final artwork](../docs/design/reference-gap-audit.md)
+
 **Experiments**
 
 - [Six reel layout alternatives, generator, fixtures and PDF](research/reel-layout/README.md)

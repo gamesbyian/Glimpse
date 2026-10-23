@@ -9,6 +9,7 @@
 - [70 natural-language workflows](product/workflows.md): core user journeys
 - [Rainbow quickstart](product/rainbow-quickstart.md): first valuable end-to-end path
 - [Screenshot importing and outbound sharing](product/image-import-sharing.md)
+- [Everyday app experience](product/everyday-app-experience.md): About, support, reviews, diagnostics, privacy and updates
 - [Workflow design response](product/workflow-design.md) and [coverage matrix](product/workflow-coverage.md)
 
 ## UX and design
@@ -16,6 +17,7 @@
 - [Paper-reel browsing](design/reel-interaction.md) and [critical functional UX audit](design/reel-ux-audit.md)
 - [Reel layout comparison](design/reel-layout-comparison.md): experimental design variants
 - [Human expectations walkthroughs](design/human-expectations.md)
+- [Bidirectional reference gap audit](design/reference-gap-audit.md) and [unified proposed images](../design/proposals/README.md)
 - [UI surface inventory](design/ui-surface-inventory.md) and [machine-readable screen contract](design/screen-contract.json)
 
 ## Engineering
