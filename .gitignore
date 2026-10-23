@@ -1,0 +1,13 @@
+# Generated build products and local machine configuration
+.gradle/
+**/build/
+local.properties
+.idea/
+*.iml
+.DS_Store
+captures/
+*.apk
+*.aab
+*.keystore
+*.jks
+signing.properties
