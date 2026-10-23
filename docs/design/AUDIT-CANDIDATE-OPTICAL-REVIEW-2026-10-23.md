@@ -23,7 +23,7 @@
 
 ## R03 status
 
-Two R03 native-sized PNGs were produced in the same successful workflow. They require a separate close optical comparison and Android state-trace verification. Do not interpret this run as wallpaper-status truth acceptance.
+Both R03 phone crops were inspected in the same source-hashed output. The preview p12 versus last-confirmed Home p04 separation is legible, and the unknown request uses a different warning presentation and an Inspect system wallpaper action. The difference is semantically clear, but the same stylized rainbow image is used in both candidates; tiny explanatory microcopy and compact bottom navigation need 200% text/device review. No OS readback or wallpaper-state trace was observed. **Source-level visual distinction present; native result truth and owner comprehension remain unverified.**
 
 ## Audit scoring
 
