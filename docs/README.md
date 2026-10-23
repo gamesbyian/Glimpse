@@ -36,6 +36,7 @@
 - [Current decisions](planning/current-decisions.md), [decision queue](planning/decision-queue.md)
 - [Reference acceptance plan](quality/reference-acceptance.md), [Android implementation visual atlas](quality/android-visual-inspection.md)
 - [Design assets and availability](assets.md), [editable design sources](../design/README.md)
-- [2026-10-22 conversation record](history/conversation-record-2026-10-22.md): archival, with original verbatim limits disclosed
+- [2026-10-22 conversation record](history/conversation-record-2026-10-22.md)
+- [2026-10-23 development conversation: available verbatim user messages and marked assistant summaries](history/glimpse-development-conversation-2026-10-23.md): archival, with original verbatim limits disclosed
 
 **Important:** There is now an initial [native app source tree](../app/README.md), but no completed device acceptance or verified release artifact. Follow the [implementation queue](planning/implementation-queue.md) and [evidence ledger](quality/first-slice-evidence.md).
