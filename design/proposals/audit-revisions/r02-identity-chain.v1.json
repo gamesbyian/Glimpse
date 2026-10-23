@@ -1,0 +1,94 @@
+{
+  "schemaVersion": 1,
+  "stage": "R02_EXACT_ASSET_CHAIN_DRAFT",
+  "date": "2026-10-23",
+  "audits": [
+    "GUX-04",
+    "GUX-08",
+    "GUX-15",
+    "GUX-17",
+    "GUX-53"
+  ],
+  "assertions": [
+    "Selected p12 persists Reel/Grid/Detail/Reel without applying wallpaper",
+    "Original p12 remains byte-identical in share-original branch",
+    "Derived p12c has explicit crop transform and cannot be mistaken for original p12",
+    "No OS share recipient acceptance is inferred from sharing handoff",
+    "Existing X11 crop state needs independent crop pixel proof before being asserted equivalent to X13 p12c"
+  ],
+  "lastConfirmedAppliedAssetId": "p04",
+  "steps": [
+    {
+      "id": "reel-selected",
+      "path": "design/proposals/storyboards/x07/01-reel-focus.svg",
+      "expectedSelectedAssetId": "p12",
+      "identityClass": "source",
+      "surface": "reel",
+      "visualProof": "source-only-pending-cross-journey-raster",
+      "nativeProof": "unverified"
+    },
+    {
+      "id": "grid-preserved",
+      "path": "design/proposals/storyboards/x07/02-grid-focus.svg",
+      "expectedSelectedAssetId": "p12",
+      "identityClass": "source",
+      "surface": "grid",
+      "visualProof": "source-only-pending-cross-journey-raster",
+      "nativeProof": "unverified"
+    },
+    {
+      "id": "detail-preserved",
+      "path": "design/proposals/storyboards/x07/03-photo-detail.svg",
+      "expectedSelectedAssetId": "p12",
+      "identityClass": "source",
+      "surface": "detail",
+      "visualProof": "source-only-pending-cross-journey-raster",
+      "nativeProof": "unverified"
+    },
+    {
+      "id": "return-to-reel",
+      "path": "design/proposals/storyboards/x07/04-back-reel.svg",
+      "expectedSelectedAssetId": "p12",
+      "identityClass": "source",
+      "surface": "reel",
+      "visualProof": "source-only-pending-cross-journey-raster",
+      "nativeProof": "unverified"
+    },
+    {
+      "id": "edit-original",
+      "path": "design/proposals/storyboards/x11/01-inbound-original.svg",
+      "expectedSelectedAssetId": "p12",
+      "identityClass": "source",
+      "surface": "editor",
+      "visualProof": "source-only-pending-cross-journey-raster",
+      "nativeProof": "unverified"
+    },
+    {
+      "id": "crop-transform",
+      "path": "design/proposals/storyboards/x11/03-crop.svg",
+      "expectedSelectedAssetId": "p12c",
+      "identityClass": "proposed-derived-copy",
+      "surface": "editor",
+      "visualProof": "source-only-pending-cross-journey-raster",
+      "nativeProof": "unverified"
+    },
+    {
+      "id": "share-original",
+      "path": "design/proposals/advanced-storyboards/x13/01-original.svg",
+      "expectedSelectedAssetId": "p12",
+      "identityClass": "source",
+      "surface": "share",
+      "visualProof": "source-only-pending-cross-journey-raster",
+      "nativeProof": "unverified"
+    },
+    {
+      "id": "share-edited",
+      "path": "design/proposals/advanced-storyboards/x13/02-edited.svg",
+      "expectedSelectedAssetId": "p12c",
+      "identityClass": "derived-copy",
+      "surface": "share",
+      "visualProof": "source-only-pending-cross-journey-raster",
+      "nativeProof": "unverified"
+    }
+  ]
+}
