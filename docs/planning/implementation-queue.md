@@ -94,3 +94,13 @@ Only adopt secondary reels when uncoached evidence demonstrates added usefulness
 - [x] Visually differentiate cropped share p12c from unedited source p12 in X13's phone image geometry; assert the transform in storyboard-semantic regression checks. Final branch rerasterization requested.
 
 - [ ] Close the five precise post-atlas asset verification gaps listed in [POST-ATLAS-VERIFICATION-2026-10-23.md](../design/POST-ATLAS-VERIFICATION-2026-10-23.md) using source-sha-matched native phone PNGs. Do not substitute the earlier 203-render success.
+
+
+## Audit-driven next wave (owner authorized)
+
+- [x] Author [60-question instrument](../design/glimpse-ux-audit-60.v1.json), perform honest [cycle-A source-level grading](../design/glimpse-ux-audit-cycle-a.v1.json) and document [findings](../design/GLIMPSE-AUDIT-CYCLE-A-REPORT.md). 18 draft source PASS / 8 ISSUE / 34 UNVERIFIED, no native acceptance inferred.
+- [x] Draft [finite-reel and wallpaper state-truth candidate A1](AUDIT-CANDIDATE-A1-REEL-AND-STATE-TRUTH.md).
+- [x] Specify [R01–R08 exact mockup revision and proof packet](../../design/proposals/audit-driven-revision-plan.v1.json) with 56 named scenarios.
+- [ ] Capture/verify post-atlas five updated source images, native reel screenshots, 200%-text and focus hierarchy evidence before promoting unresolved questions.
+- [ ] Implement and raster-inspect next-round R01–R08 comparison mockups in separate unapproved source category; attach before/after and source hash.
+- [ ] Rerun all 60 audit questions on matching updated sources/native traces, document changed scores and unresolved gaps, request owner approval separately.
