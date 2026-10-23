@@ -2,14 +2,14 @@
 
 **Automated tool result only. No visual, native, accessibility, or owner approval.**
 
-- Workflow source commit: `8a11f8de2cf9b1e192b0a259fea94a48bc401b18`
-- Workflow run ID: `40023141357`
-- Workflow run URL: https://github.com/gamesbyian/Glimpse/actions/runs/40023141357
+- Workflow source commit: `97d82df2ee98cdb461cb3acbe23b6284fa587924`
+- Workflow run ID: `40023342954`
+- Workflow run URL: https://github.com/gamesbyian/Glimpse/actions/runs/40023342954
 - Run attempt: `1`
 - Workflow result before publishing: `success`
 - Branch: `agent/visual-state-reconciliation-20261023`
 - Review sets: named 34, source detail, reel/grid/crop/share and large text
-- CI artifact name: `glimpse-reference-draft-8a11f8de2cf9b1e192b0a259fea94a48bc401b18`
+- CI artifact name: `glimpse-reference-draft-97d82df2ee98cdb461cb3acbe23b6284fa587924`
 
 ## Structural script outputs
 
@@ -48,7 +48,7 @@
   "optical": "NOT TESTED; inspect browser-rendered contact sheets"
 }
 {
-  "cases": 24,
+  "cases": 29,
   "semanticSourceErrors": [],
   "opticalProof": false,
   "deviceProof": false,
