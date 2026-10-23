@@ -19,7 +19,7 @@ object ReelWindow {
         val outer = width * .84f
         if (radius < outer * .31f || radius > outer * .95f) return null
         val angle = Math.toDegrees(kotlin.math.atan2(dy, dx).toDouble()).toFloat()
-        val relative = (angle + 90f + 540f) % 360f - 180f
+        val relative = (angle + 90f + 180f + 360f) % 360f - 180f
         val offset = kotlin.math.round(relative / 72f).toInt()
         return offset.takeIf { it in -2..2 && kotlin.math.abs(relative - it * 72f) <= 31f }
     }
