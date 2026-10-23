@@ -28,6 +28,8 @@ A real installation successfully imported **22 Google Photos images** through th
 - [ ] Optically inspect the 25 supplemental state drawings at native scale and judge their action outcomes, fit and distinctness.
 - [ ] Confirm each of the [34 named state variants](../../design/proposals/core-state-evidence.v1.json) is **visually sufficient** after direct raster inspection, including 15 newly illustrated formerly partial/related-only states; evidence-path assignment alone is already done and is not a signoff.
 - [x] Produce the 11 P1 storyboard groups X13–X23: **55 source-editable draft frames** covering external shares, crops, large libraries, rules, rights, diagnostics, restore, Android integrations, Help, outgoing data and adverse input. Not optically approved.
+- [x] Replace X07's mismatched p12 reel/hero/detail reference with the same public photograph and five-window X05 disc geometry (source correction, optical pending).
+- [ ] Raster-check revised X07, X06 photo/window continuity and run the new source-level fixture integrity checks.
 - [ ] Inspect all 55 P1 phone drawings and Android-owned handoffs, correct contradictions and prove flow outcomes before any comprehensive product-proposal audit.
 - [ ] Preserve four conditional P2 scenario families as future/explicitly gated.
 - [ ] Freeze explicit owner-approved whole-set hashes (V2) before full application visual conformity testing (V3).
