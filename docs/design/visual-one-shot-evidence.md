@@ -2,11 +2,11 @@
 
 **Automated tool result only. No visual, native, accessibility, or owner approval.**
 
-- Workflow source commit: `29038a10f21ef34c5e2948d69e0343532d76922d`
-- Workflow result before publishing: `failure`
+- Workflow source commit: `b79e24a9a4af2ef8301341def7fbbca9a31934b2`
+- Workflow result before publishing: `success`
 - Branch: `agent/visual-state-reconciliation-20261023`
 - Review sets: named 34, source detail, reel/grid/crop/share and large text
-- CI artifact name: `glimpse-reference-draft-29038a10f21ef34c5e2948d69e0343532d76922d`
+- CI artifact name: `glimpse-reference-draft-b79e24a9a4af2ef8301341def7fbbca9a31934b2`
 
 ## Structural script outputs
 
@@ -40,19 +40,28 @@
   },
   "newRefinements": 25,
   "warnings": [],
-  "errors": [
-    "home.paused: missing trace metadata",
-    "home.uncertain: missing trace metadata",
-    "Evidence-level totals differ from records"
-  ],
+  "errors": [],
   "approval": "NONE",
   "optical": "NOT TESTED; inspect browser-rendered contact sheets"
 }
+{
+  "cases": 24,
+  "semanticSourceErrors": [],
+  "opticalProof": false,
+  "deviceProof": false,
+  "ownerApproval": false
+}
+Scanned 228 proposal SVGs, 133 image nodes, 133 decoded embedded rasters.
+Source-level SVG/photo portability PASS (not optical, device or owner PASS).
 ~~~
 
 ## Rendered evidence
 
-- Missing: /tmp/glimpse-visual-phone/index.json
-- Missing: /tmp/glimpse-visual-journeys/index.json
+- Raster ledger: /tmp/glimpse-visual-phone/index.json
+  - Groups: core-34-named-states, source-detail-paired
+  - Native PNG crops: 36
+- Raster ledger: /tmp/glimpse-visual-journeys/index.json
+  - Groups: reel-grid-crop-share, critical-type-comparison
+  - Native PNG crops: 23
 
 **Status describes automatic structural/render execution, NOT whether humans saw/read or accepted the PNG files.**
