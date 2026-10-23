@@ -20,7 +20,7 @@
 <text x="55" y="510" fill="#667975" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="400" text-anchor="start">Attribution and licence required</text>
 <text x="55" y="550" fill="#1D5960" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="650" text-anchor="start">Browse source</text>
 <rect x="44" y="636" width="340" height="42" rx="18" fill="#1D5960" stroke="#1D5960" stroke-width="1"/>
-<text x="214" y="663" fill="#FFFFFF" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="650" text-anchor="middle">Add selected to collection</text>
+<text x="214" y="663" fill="#FFFFFF" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="650" text-anchor="middle">Choose images to add</text>
 <rect x="24" y="823" width="384" height="56" rx="0" fill="#FFFCF6" stroke="none" stroke-width="1"/>
 <path d="M24 823 L408 823" stroke="#CEBC9F" stroke-width="1" fill="none"/>
 <text x="71" y="857" fill="#667975" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="600" text-anchor="middle">Home</text>

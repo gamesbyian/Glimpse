@@ -21,8 +21,8 @@
 <text x="55" y="606" fill="#1D5960" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="650" text-anchor="start">Change collection</text>
 <rect x="44" y="670" width="140" height="42" rx="18" fill="#1D5960" stroke="#1D5960" stroke-width="1"/>
 <text x="114" y="697" fill="#FFFFFF" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="650" text-anchor="middle">Just save</text>
-<rect x="192" y="670" width="190" height="42" rx="18" fill="#FFFCF6" stroke="#C8B7A1" stroke-width="1"/>
-<text x="287" y="697" fill="#153F46" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="650" text-anchor="middle">Use now / Show next</text>
+<rect x="187" y="670" width="93" height="42" rx="16" fill="#FFFCF6" stroke="#C8B7A1"/><rect x="287" y="670" width="96" height="42" rx="16" fill="#FFFCF6" stroke="#C8B7A1"/>
+<text x="198" y="696" fill="#153F46" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="650">Show next</text><text x="299" y="696" fill="#153F46" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="650">Use now</text>
 <rect x="24" y="823" width="384" height="56" rx="0" fill="#FFFCF6" stroke="none" stroke-width="1"/>
 <path d="M24 823 L408 823" stroke="#CEBC9F" stroke-width="1" fill="none"/>
 <text x="71" y="857" fill="#667975" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="600" text-anchor="middle">Home</text>

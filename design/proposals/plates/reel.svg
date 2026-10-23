@@ -10,8 +10,8 @@
 <clipPath id="photo-40-178"><rect x="40" y="178" width="349" height="206" rx="13"/></clipPath><g clip-path="url(#photo-40-178)"><rect x="40" y="178" width="349" height="206" fill="#EDB783"/><circle cx="308.73" cy="235.68" r="32.96" fill="#F8DEAA"/><path d="M40 334.56 Q120.27000000000001 223.32 214.5 322.2 T389 281 L389 384 H40Z" fill="#447983"/><path d="M40 367.52 Q116.78 289.24 214.5 357.22 T389 324.26 L389 384 H40Z" fill="#254D62"/></g>
 <rect x="49" y="356" width="150" height="21" rx="7" fill="#FFFCF6" stroke="none" stroke-width="1"/>
 <text x="58" y="371" fill="#153F46" font-family="Arial,Helvetica,sans-serif" font-size="11" font-weight="600" text-anchor="start">PREVIEW · NOT APPLIED</text>
-<text x="40" y="410" fill="#153F46" font-family="Arial,Helvetica,sans-serif" font-size="16" font-weight="650" text-anchor="start">Browse by rotating the reel</text>
-<text x="387" y="410" fill="#1D5960" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="650" text-anchor="end">Grid ↗</text>
+<rect x="40" y="391" width="197" height="40" rx="16" fill="#1D5960"/><text x="52" y="417" fill="#FFFFFF" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="650">Set Home wallpaper</text>
+<rect x="248" y="391" width="140" height="40" rx="16" fill="#FFFCF6" stroke="#C8B7A1"/><text x="277" y="417" fill="#153F46" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="650">View all / Grid</text>
 <clipPath id="discclip"><rect x="16" y="432" width="398" height="310"/></clipPath><g clip-path="url(#discclip)">
 <circle cx="210" cy="680" r="240" fill="#9F907C" opacity=".2"/><circle cx="210" cy="675" r="237" fill="#EAD9BD" stroke="#BBA589" stroke-width="5"/>
 <path d="M92.89,487.58 A221 221 0 0 1 327.11,487.58 L248.93,612.69 A73.47 73.47 0 0 0 171.07,612.69Z" fill="#D59173" stroke="#75634F" stroke-width="2"/>
