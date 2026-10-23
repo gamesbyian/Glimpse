@@ -96,3 +96,6 @@ Continuing implementation before V1 is complete is possible for nonvisual data w
 - [Reference acceptance](../quality/reference-acceptance.md)
 - [UX surface inventory](ui-surface-inventory.md)
 - [The support spec and M1–M4 staging](../product/everyday-app-experience.md)
+
+
+**Second-pass baseline source-detail correction:** `design/proposals/plates/source-detail.svg` no longer copies Discover's multi-provider listing. It now illustrates one Google Photos source with picker-scoped access, conditional rights, source preview, and explicit navigation. This fixes a concrete drawing-identity defect only; provider/API feasibility, source attribution and real Android Photo Picker behaviour remain unverified.
