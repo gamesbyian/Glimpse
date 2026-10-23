@@ -2,7 +2,7 @@ name: Glimpse visual references | one-shot branch validation
 
 # One-time push trigger: this workflow file being introduced/changed on the
 # dedicated visual PR branch. No triggers on ordinary source/docs pushes.
-# Source-hashed rerun after four optically identified visual repairs on phone-state boards.
+# One-shot final optical proof after switching blur side-fill to CairoSVG-compatible gradients.
 # Keep opt-in dispatch for a future intentional fresh visual review.
 on:
   push:
