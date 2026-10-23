@@ -145,6 +145,13 @@ def generate_edge(slug, single):
     source = source.replace("Reel has five apertures; the collection has 22 real images.",
                             "Five apertures; 1 real image only." if single else
                             "Five unfilled paper apertures; collection is empty.")
+    source = source.replace("Frame 1 / 8: At rest",
+                            "One-photo finite reel" if single else "Empty finite reel")
+    source = source.replace("Selection is settled on a real item ID.",
+                            "Single genuine p01 selection." if single else
+                            "No photo selected; Add photos is the only primary action.")
+    source = source.replace(">touch-down</text>",
+                            ">No next item</text>" if single else ">Add photos</text>")
     source = source.replace("sourceAssetId: p12",
                             "sourceAssetId: p01" if single else "sourceAssetId: none")
     source = source.replace("selectedAssetId: p12",
