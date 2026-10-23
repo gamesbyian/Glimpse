@@ -12,7 +12,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 concurrency:
   group: glimpse-visual-reference-once-${{ github.ref }}
@@ -25,20 +25,21 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          persist-credentials: false
+          persist-credentials: true
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-          cache: pip
-          cache-dependency-path: requirements.txt
       - name: Structural contract and identity checks
         run: |
           set -euo pipefail
+          mkdir -p /tmp/glimpse-visual-evidence
+          {
           python3 scripts/validate-visual-spec.py
           python3 scripts/validate-storyboard-coverage.py
           python3 scripts/validate-core-state-evidence.py
           python3 scripts/validate-storyboard-semantics.py
           python3 scripts/validate-svg-photo-portability.py
+          } 2>&1 | tee /tmp/glimpse-visual-evidence/structural.log
       - name: Install disposable raster dependencies
         run: |
           python3 -m pip install --disable-pip-version-check 'cairosvg>=2.7,<3' 'Pillow>=10,<13'
@@ -55,6 +56,54 @@ jobs:
           cp -a /tmp/glimpse-visual-journeys /tmp/glimpse-visual-evidence/journeys 2>/dev/null || true
           printf '%s\n' "${GITHUB_SHA}" > /tmp/glimpse-visual-evidence/head-sha.txt
           printf '%s\n' "Draft optical reference only; no human/device/owner pass claimed" > /tmp/glimpse-visual-evidence/NO-OPTICAL-SIGNOFF.txt
+      - name: Write source-hashed validation proof to PR branch
+        if: always()
+        env:
+          PROOF_STATUS: ${{ job.status }}
+        run: |
+          set -euo pipefail
+          mkdir -p docs/design
+          {
+            echo "# Glimpse one-shot visual reference validation"
+            echo
+            echo "**Automated tool result only. No visual, native, accessibility, or owner approval.**"
+            echo
+            echo "- Workflow source commit: \`${GITHUB_SHA}\`"
+            echo "- Workflow result before publishing: \`${PROOF_STATUS}\`"
+            echo "- Branch: \`${GITHUB_REF_NAME}\`"
+            echo "- Review sets: named 34, source detail, reel/grid/crop/share and large text"
+            echo "- CI artifact name: \`glimpse-reference-draft-${GITHUB_SHA}\`"
+            echo
+            echo "## Structural script outputs"
+            echo
+            if [[ -f /tmp/glimpse-visual-evidence/structural.log ]]; then
+              echo '~~~text'
+              tail -n 100 /tmp/glimpse-visual-evidence/structural.log
+              echo '~~~'
+            else
+              echo "Structural validation log missing; do not infer pass."
+            fi
+            echo
+            echo "## Rendered evidence"
+            echo
+            for index in /tmp/glimpse-visual-phone/index.json /tmp/glimpse-visual-journeys/index.json; do
+              if [[ -f "${index}" ]]; then
+                echo "- Raster ledger: ${index}"
+                python3 -c 'import json,sys; d=json.load(open(sys.argv[1])); print("  - Groups: "+", ".join(x["name"] for x in d.get("sheets",[]))); print("  - Native PNG crops: "+str(len(d.get("nativePhoneFiles",[]))))' "${index}"
+              else
+                echo "- Missing: ${index}"
+              fi
+            done
+            echo
+            echo "**Status describes automatic structural/render execution, NOT whether humans saw/read or accepted the PNG files.**"
+          } > docs/design/visual-one-shot-evidence.md
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/design/visual-one-shot-evidence.md
+          if ! git diff --cached --quiet; then
+            git commit -m "ci: record source-hashed draft visual validation result"
+            git push origin "HEAD:${GITHUB_REF_NAME}"
+          fi
       - name: Upload draft visual evidence
         if: always()
         uses: actions/upload-artifact@v4
