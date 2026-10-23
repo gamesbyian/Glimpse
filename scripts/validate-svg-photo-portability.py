@@ -21,6 +21,7 @@ EXPECTED_FIXTURES = {
     **{f"storyboards/x05/{name}.svg": 3 for name in (
         "01-rest", "02-touch-down", "03-drag-18", "04-drag-36",
         "05-snap-72", "06-reverse-18", "07-interrupted", "08-last")},
+    "storyboards/x05/08-last.svg": 4,  # distinct p22 reference fixture
     **{f"storyboards/x07/{name}.svg": 3 for name in (
         "01-reel-focus", "04-back-reel", "06-return-original")},
     **{f"storyboards/x07/{name}.svg": 1 for name in (
