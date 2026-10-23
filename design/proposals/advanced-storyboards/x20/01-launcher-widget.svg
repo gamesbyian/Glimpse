@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1160 920" width="1160" height="920"><title>External Android-hosted controls · Home screen widget</title><desc>Draft reference, not exact Android interface or approved Glimpse pixels.</desc><metadata>{&quot;journeyId&quot;:&quot;x20&quot;,&quot;stateId&quot;:&quot;01-launcher-widget&quot;,&quot;surfaceId&quot;:&quot;android-hosted&quot;,&quot;selectedAssetId&quot;:null,&quot;sourceAssetId&quot;:&quot;first-party-vector-illustration&quot;,&quot;viewportDp&quot;:[420,900],&quot;proposalStatus&quot;:&quot;unapproved&quot;,&quot;action&quot;:&quot;Change Home&quot;,&quot;assertion&quot;:&quot;This is launcher UI, not an in-app imitation&quot;}</metadata>
+<rect x="0" y="0" width="1160" height="920" fill="#E9E2D6" rx="0" stroke="none"/>
+<rect x="15" y="14" width="401" height="890" fill="#F6F0E6" rx="22" stroke="#C4B7A4"/>
+<text x="38" y="43" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="650" fill="#153F46">9:41</text>
+<text x="352" y="43" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="450" fill="#667975">● ▰ ▴</text>
+<text x="38" y="99" font-family="Arial,Helvetica,sans-serif" font-size="24" font-weight="700" fill="#153F46">Home screen widget</text>
+<text x="39" y="130" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="500" fill="#667975">Android launcher surface</text>
+<rect x="31" y="147" width="371" height="615" fill="#CECEC6" rx="16" stroke="none"/>
+<text x="51" y="186" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="650" fill="#153F46">ANDROID HOME • ILLUSTRATIVE</text>
+<rect x="55" y="225" width="322" height="218" fill="#F6F0E6" rx="22" stroke="#C4B7A4"/>
+<rect x="73" y="243" width="135" height="170" fill="#161926" rx="13" stroke="none"/>
+<path d="M78 256.6 Q140.5 246.4 203 282.1" stroke="#D63E4F" stroke-width="7.31" fill="none"/>
+<path d="M78 287.2 Q140.5 275.3 203 312.7" stroke="#D98F39" stroke-width="7.31" fill="none"/>
+<path d="M78 317.8 Q140.5 304.2 203 343.3" stroke="#E2D04D" stroke-width="7.31" fill="none"/>
+<path d="M78 348.4 Q140.5 333.1 203 373.9" stroke="#4AAE89" stroke-width="7.31" fill="none"/>
+<path d="M78 379 Q140.5 362 203 404.5" stroke="#4571CD" stroke-width="7.31" fill="none"/>
+<rect x="80" y="386" width="121" height="20" fill="#FFFCF6" rx="6" stroke="none"/>
+<text x="88" y="401" font-family="Arial,Helvetica,sans-serif" font-size="11" font-weight="700" fill="#153F46">p12</text>
+<text x="223" y="275" font-family="Arial,Helvetica,sans-serif" font-size="20" font-weight="700" fill="#153F46">Glimpse</text>
+<text x="223" y="304" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="650" fill="#153F46">Change Home</text>
+<text x="74" y="447" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="450" fill="#153F46">Long press → resize</text>
+<rect x="48" y="678" width="325" height="45" fill="#1D5960" rx="18" stroke="#1D5960"/>
+<text x="62" y="706" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="700" fill="white">Change Home</text>
+<text x="37" y="891" font-family="Arial,Helvetica,sans-serif" font-size="11" font-weight="700" fill="#667975">P1 DRAFT · NOT APPROVED</text>
+<rect x="441" y="15" width="705" height="890" fill="#FFFCF6" rx="18" stroke="#C4B7A4"/>
+<text x="465" y="55" font-family="Arial,Helvetica,sans-serif" font-size="22" font-weight="700" fill="#153F46">X20 / External Android-hosted controls</text>
+<text x="465" y="92" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="700" fill="#1D5960">01-LAUNCHER-WIDGET</text>
+<path d="M459 116 H1128" stroke="#C4B7A4"/>
+<text x="465" y="156" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="700" fill="#153F46">ACTION AND REQUIRED CONSEQUENCE</text>
+<text x="466" y="190" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="450" fill="#153F46">This is launcher UI, not an in-app imitation</text>
+<rect x="465" y="288" width="645" height="138" fill="#E9E0F5" rx="14" stroke="none"/>
+<text x="482" y="321" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="700" fill="#1D5960">EXPLICIT ACTION</text>
+<text x="482" y="360" font-family="Arial,Helvetica,sans-serif" font-size="21" font-weight="700" fill="#153F46">Change Home</text>
+<text x="482" y="396" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="470" fill="#667975">Frame 1 / 5 · Android launcher surface</text>
+<text x="467" y="473" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="700" fill="#153F46">STATE AND PLATFORM BOUNDARY</text>
+<text x="469" y="510" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="650" fill="#667975">Journey</text>
+<text x="678" y="510" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="570" fill="#153F46">x20</text>
+<text x="469" y="557" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="650" fill="#667975">Surface</text>
+<text x="678" y="557" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="570" fill="#153F46">android-hosted</text>
+<text x="469" y="604" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="650" fill="#667975">Selected ID</text>
+<text x="678" y="604" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="570" fill="#153F46">not applicable</text>
+<text x="469" y="651" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="650" fill="#667975">External OS UI</text>
+<text x="678" y="651" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="570" fill="#153F46">Yes, launcher-owned</text>
+<text x="469" y="698" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="650" fill="#667975">Status</text>
+<text x="678" y="698" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="570" fill="#153F46">DRAFT · NOT OWNER APPROVED</text>
+<text x="467" y="816" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="460" fill="#667975">Illustrative provider/Android interfaces, not screenshots or guaranteed APIs.</text>
+<text x="466" y="848" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="700" fill="#E8876C">Never infer actual apply, import or consent from illustration.</text>
+</svg>

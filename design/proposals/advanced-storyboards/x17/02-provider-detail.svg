@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1160 920" width="1160" height="920"><title>Source rights and network consequences · Provider details</title><desc>Draft reference, not exact Android interface or approved Glimpse pixels.</desc><metadata>{&quot;journeyId&quot;:&quot;x17&quot;,&quot;stateId&quot;:&quot;02-provider-detail&quot;,&quot;surfaceId&quot;:&quot;glimpse-app&quot;,&quot;selectedAssetId&quot;:null,&quot;sourceAssetId&quot;:&quot;first-party-vector-illustration&quot;,&quot;viewportDp&quot;:[420,900],&quot;proposalStatus&quot;:&quot;unapproved&quot;,&quot;action&quot;:&quot;Inspect image&quot;,&quot;assertion&quot;:&quot;Provider-specific information, not directory repeated&quot;}</metadata>
+<rect x="0" y="0" width="1160" height="920" fill="#E9E2D6" rx="0" stroke="none"/>
+<rect x="15" y="14" width="401" height="890" fill="#F6F0E6" rx="22" stroke="#C4B7A4"/>
+<text x="38" y="43" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="650" fill="#153F46">9:41</text>
+<text x="352" y="43" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="450" fill="#667975">● ▰ ▴</text>
+<text x="38" y="99" font-family="Arial,Helvetica,sans-serif" font-size="24" font-weight="700" fill="#153F46">Provider details</text>
+<text x="39" y="130" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="500" fill="#667975">Wikimedia Commons</text>
+<rect x="42" y="170" width="339" height="324" fill="#161926" rx="13" stroke="none"/>
+<path d="M47 195.92000000000002 Q211.5 176.48 376 244.52" stroke="#D63E4F" stroke-width="13.931999999999999" fill="none"/>
+<path d="M47 254.24 Q211.5 231.56 376 302.84000000000003" stroke="#D98F39" stroke-width="13.931999999999999" fill="none"/>
+<path d="M47 312.56 Q211.5 286.64 376 361.15999999999997" stroke="#E2D04D" stroke-width="13.931999999999999" fill="none"/>
+<path d="M47 370.88 Q211.5 341.72 376 419.48" stroke="#4AAE89" stroke-width="13.931999999999999" fill="none"/>
+<path d="M47 429.2 Q211.5 396.8 376 477.8" stroke="#4571CD" stroke-width="13.931999999999999" fill="none"/>
+<rect x="49" y="467" width="130" height="20" fill="#FFFCF6" rx="6" stroke="none"/>
+<text x="57" y="482" font-family="Arial,Helvetica,sans-serif" font-size="11" font-weight="700" fill="#153F46">PROVIDER p32</text>
+<rect x="40" y="518" width="346" height="93" fill="#FFFCF6" rx="13" stroke="#C4B7A4"/>
+<text x="54" y="547" font-family="Arial,Helvetica,sans-serif" font-size="16" font-weight="700" fill="#153F46">Wikimedia Commons</text>
+<text x="54" y="578" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="450" fill="#667975">Creator, attribution and licence</text>
+<rect x="44" y="661" width="337" height="45" fill="#1D5960" rx="18" stroke="#1D5960"/>
+<text x="58" y="689" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="700" fill="white">Inspect image</text>
+<path d="M30 822 H403" stroke="#C4B7A4"/>
+<text x="40" y="851" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="500" fill="#667975">Home</text>
+<text x="135" y="851" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="500" fill="#667975">Discover</text>
+<text x="230" y="851" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="500" fill="#667975">Collections</text>
+<text x="325" y="851" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="500" fill="#667975">Automation</text>
+<text x="37" y="891" font-family="Arial,Helvetica,sans-serif" font-size="11" font-weight="700" fill="#667975">P1 DRAFT · NOT APPROVED</text>
+<rect x="441" y="15" width="705" height="890" fill="#FFFCF6" rx="18" stroke="#C4B7A4"/>
+<text x="465" y="55" font-family="Arial,Helvetica,sans-serif" font-size="22" font-weight="700" fill="#153F46">X17 / Source rights and network consequences</text>
+<text x="465" y="92" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="700" fill="#1D5960">02-PROVIDER-DETAIL</text>
+<path d="M459 116 H1128" stroke="#C4B7A4"/>
+<text x="465" y="156" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="700" fill="#153F46">ACTION AND REQUIRED CONSEQUENCE</text>
+<text x="466" y="190" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="450" fill="#153F46">Provider-specific information, not directory repeated</text>
+<rect x="465" y="288" width="645" height="138" fill="#E9E0F5" rx="14" stroke="none"/>
+<text x="482" y="321" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="700" fill="#1D5960">EXPLICIT ACTION</text>
+<text x="482" y="360" font-family="Arial,Helvetica,sans-serif" font-size="21" font-weight="700" fill="#153F46">Inspect image</text>
+<text x="482" y="396" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="470" fill="#667975">Frame 2 / 5 · Wikimedia Commons</text>
+<text x="467" y="473" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="700" fill="#153F46">STATE AND PLATFORM BOUNDARY</text>
+<text x="469" y="510" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="650" fill="#667975">Journey</text>
+<text x="678" y="510" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="570" fill="#153F46">x17</text>
+<text x="469" y="557" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="650" fill="#667975">Surface</text>
+<text x="678" y="557" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="570" fill="#153F46">glimpse-app</text>
+<text x="469" y="604" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="650" fill="#667975">Selected ID</text>
+<text x="678" y="604" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="570" fill="#153F46">not applicable</text>
+<text x="469" y="651" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="650" fill="#667975">External OS UI</text>
+<text x="678" y="651" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="570" fill="#153F46">Varies by frame</text>
+<text x="469" y="698" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="650" fill="#667975">Status</text>
+<text x="678" y="698" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="570" fill="#153F46">DRAFT · NOT OWNER APPROVED</text>
+<text x="467" y="816" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="460" fill="#667975">Illustrative provider/Android interfaces, not screenshots or guaranteed APIs.</text>
+<text x="466" y="848" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="700" fill="#E8876C">Never infer actual apply, import or consent from illustration.</text>
+</svg>

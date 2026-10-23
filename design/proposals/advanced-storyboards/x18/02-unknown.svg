@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1160 920" width="1160" height="920"><title>History, diagnosis and reapply · Unconfirmed outcome</title><desc>Draft reference, not exact Android interface or approved Glimpse pixels.</desc><metadata>{&quot;journeyId&quot;:&quot;x18&quot;,&quot;stateId&quot;:&quot;02-unknown&quot;,&quot;surfaceId&quot;:&quot;glimpse-app&quot;,&quot;selectedAssetId&quot;:&quot;p12&quot;,&quot;sourceAssetId&quot;:&quot;first-party-vector-illustration&quot;,&quot;viewportDp&quot;:[420,900],&quot;proposalStatus&quot;:&quot;unapproved&quot;,&quot;action&quot;:&quot;Inspect wallpaper&quot;,&quot;assertion&quot;:&quot;Do not infer successful apply from interrupted process&quot;}</metadata>
+<rect x="0" y="0" width="1160" height="920" fill="#E9E2D6" rx="0" stroke="none"/>
+<rect x="15" y="14" width="401" height="890" fill="#F6F0E6" rx="22" stroke="#C4B7A4"/>
+<text x="38" y="43" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="650" fill="#153F46">9:41</text>
+<text x="352" y="43" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="450" fill="#667975">● ▰ ▴</text>
+<text x="38" y="99" font-family="Arial,Helvetica,sans-serif" font-size="24" font-weight="700" fill="#153F46">Unconfirmed outcome</text>
+<text x="39" y="130" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="500" fill="#667975">p12 · Home · unknown</text>
+<rect x="43" y="166" width="338" height="283" fill="#161926" rx="13" stroke="none"/>
+<path d="M48 188.64 Q212 171.66 376 231.09" stroke="#D63E4F" stroke-width="12.168999999999999" fill="none"/>
+<path d="M48 239.57999999999998 Q212 219.77 376 282.03000000000003" stroke="#D98F39" stroke-width="12.168999999999999" fill="none"/>
+<path d="M48 290.52 Q212 267.88 376 332.97" stroke="#E2D04D" stroke-width="12.168999999999999" fill="none"/>
+<path d="M48 341.46000000000004 Q212 315.99 376 383.90999999999997" stroke="#4AAE89" stroke-width="12.168999999999999" fill="none"/>
+<path d="M48 392.4 Q212 364.1 376 434.84999999999997" stroke="#4571CD" stroke-width="12.168999999999999" fill="none"/>
+<rect x="50" y="422" width="130" height="20" fill="#FFFCF6" rx="6" stroke="none"/>
+<text x="58" y="437" font-family="Arial,Helvetica,sans-serif" font-size="11" font-weight="700" fill="#153F46">p12</text>
+<rect x="40" y="479" width="346" height="93" fill="#FFFCF6" rx="13" stroke="#C4B7A4"/>
+<text x="54" y="508" font-family="Arial,Helvetica,sans-serif" font-size="16" font-weight="700" fill="#153F46">Outcome uncertain</text>
+<text x="54" y="539" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="450" fill="#667975">No cursor advance until resolved</text>
+<rect x="44" y="666" width="337" height="45" fill="#1D5960" rx="18" stroke="#1D5960"/>
+<text x="58" y="694" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="700" fill="white">Inspect wallpaper</text>
+<path d="M30 822 H403" stroke="#C4B7A4"/>
+<text x="40" y="851" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="500" fill="#667975">Home</text>
+<text x="135" y="851" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="500" fill="#667975">Discover</text>
+<text x="230" y="851" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="500" fill="#667975">Collections</text>
+<text x="325" y="851" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="500" fill="#667975">Automation</text>
+<text x="37" y="891" font-family="Arial,Helvetica,sans-serif" font-size="11" font-weight="700" fill="#667975">P1 DRAFT · NOT APPROVED</text>
+<rect x="441" y="15" width="705" height="890" fill="#FFFCF6" rx="18" stroke="#C4B7A4"/>
+<text x="465" y="55" font-family="Arial,Helvetica,sans-serif" font-size="22" font-weight="700" fill="#153F46">X18 / History, diagnosis and reapply</text>
+<text x="465" y="92" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="700" fill="#1D5960">02-UNKNOWN</text>
+<path d="M459 116 H1128" stroke="#C4B7A4"/>
+<text x="465" y="156" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="700" fill="#153F46">ACTION AND REQUIRED CONSEQUENCE</text>
+<text x="466" y="190" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="450" fill="#153F46">Do not infer successful apply from interrupted process</text>
+<rect x="465" y="288" width="645" height="138" fill="#E9E0F5" rx="14" stroke="none"/>
+<text x="482" y="321" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="700" fill="#1D5960">EXPLICIT ACTION</text>
+<text x="482" y="360" font-family="Arial,Helvetica,sans-serif" font-size="21" font-weight="700" fill="#153F46">Inspect wallpaper</text>
+<text x="482" y="396" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="470" fill="#667975">Frame 2 / 5 · p12 · Home · unknown</text>
+<text x="467" y="473" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="700" fill="#153F46">STATE AND PLATFORM BOUNDARY</text>
+<text x="469" y="510" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="650" fill="#667975">Journey</text>
+<text x="678" y="510" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="570" fill="#153F46">x18</text>
+<text x="469" y="557" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="650" fill="#667975">Surface</text>
+<text x="678" y="557" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="570" fill="#153F46">glimpse-app</text>
+<text x="469" y="604" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="650" fill="#667975">Selected ID</text>
+<text x="678" y="604" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="570" fill="#153F46">p12</text>
+<text x="469" y="651" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="650" fill="#667975">External OS UI</text>
+<text x="678" y="651" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="570" fill="#153F46">Varies by frame</text>
+<text x="469" y="698" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="650" fill="#667975">Status</text>
+<text x="678" y="698" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="570" fill="#153F46">DRAFT · NOT OWNER APPROVED</text>
+<text x="467" y="816" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="460" fill="#667975">Illustrative provider/Android interfaces, not screenshots or guaranteed APIs.</text>
+<text x="466" y="848" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="700" fill="#E8876C">Never infer actual apply, import or consent from illustration.</text>
+</svg>

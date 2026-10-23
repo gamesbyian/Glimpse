@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "status": "P1_PARTIAL_DRAFT_NOT_APPROVED",
-  "coverage": "4 of 11 planned P1 work packages (X13, X16, X19, X22)",
+  "status": "ALL_11_P1_PACKAGES_DRAFT_NOT_APPROVED",
+  "coverage": "11 of 11 planned P1 packages X13–X23; 55 source-editable storyboard frames",
   "groups": [
     {
       "id": "x13",
@@ -45,6 +45,98 @@
           "caption": "No compatible handler",
           "action": "Save or copy",
           "invariant": "Recovery independent of installed apps",
+          "ordinal": 5
+        }
+      ]
+    },
+    {
+      "id": "x14",
+      "title": "Target-aware crop and capabilities",
+      "frames": [
+        {
+          "id": "01-home",
+          "path": "design/proposals/advanced-storyboards/x14/01-home.svg",
+          "caption": "Home composition",
+          "action": "Adjust Home crop",
+          "invariant": "Per-target framing saves independently",
+          "ordinal": 1
+        },
+        {
+          "id": "02-lock",
+          "path": "design/proposals/advanced-storyboards/x14/02-lock.svg",
+          "caption": "Lock composition",
+          "action": "Adjust Lock crop",
+          "invariant": "Clock and lock overlays can obscure important content",
+          "ordinal": 2
+        },
+        {
+          "id": "03-side-by-side",
+          "path": "design/proposals/advanced-storyboards/x14/03-side-by-side.svg",
+          "caption": "Separate target previews",
+          "action": "Compare targets",
+          "invariant": "Identical source permits independent crop settings",
+          "ordinal": 3
+        },
+        {
+          "id": "04-unsupported",
+          "path": "design/proposals/advanced-storyboards/x14/04-unsupported.svg",
+          "caption": "Lock unsupported",
+          "action": "Choose Home",
+          "invariant": "Unsupported target must not imply OS success",
+          "ordinal": 4
+        },
+        {
+          "id": "05-apply-both",
+          "path": "design/proposals/advanced-storyboards/x14/05-apply-both.svg",
+          "caption": "Apply both",
+          "action": "Inspect outcome",
+          "invariant": "Report per-target results, including partial acknowledgments",
+          "ordinal": 5
+        }
+      ]
+    },
+    {
+      "id": "x15",
+      "title": "Large library operations",
+      "frames": [
+        {
+          "id": "01-library",
+          "path": "design/proposals/advanced-storyboards/x15/01-library.svg",
+          "caption": "Large library",
+          "action": "Search",
+          "invariant": "Dense library controls must remain responsive and readable",
+          "ordinal": 1
+        },
+        {
+          "id": "02-filter",
+          "path": "design/proposals/advanced-storyboards/x15/02-filter.svg",
+          "caption": "Filter results",
+          "action": "Review selection",
+          "invariant": "Filtered count and original collection count stay distinct",
+          "ordinal": 2
+        },
+        {
+          "id": "03-range-selection",
+          "path": "design/proposals/advanced-storyboards/x15/03-range-selection.svg",
+          "caption": "Select a group",
+          "action": "Exclude selected",
+          "invariant": "Batch identity and scope clear before mutation",
+          "ordinal": 3
+        },
+        {
+          "id": "04-confirm-exclude",
+          "path": "design/proposals/advanced-storyboards/x15/04-confirm-exclude.svg",
+          "caption": "Exclude confirmation",
+          "action": "Confirm exclusion",
+          "invariant": "No destructive delete implied by exclude",
+          "ordinal": 4
+        },
+        {
+          "id": "05-restore",
+          "path": "design/proposals/advanced-storyboards/x15/05-restore.svg",
+          "caption": "Restore eligibility",
+          "action": "Restore selected",
+          "invariant": "Restore reshapes shuffle eligibility without duplicates",
           "ordinal": 5
         }
       ]
@@ -96,6 +188,98 @@
       ]
     },
     {
+      "id": "x17",
+      "title": "Source rights and network consequences",
+      "frames": [
+        {
+          "id": "01-providers",
+          "path": "design/proposals/advanced-storyboards/x17/01-providers.svg",
+          "caption": "Discover sources",
+          "action": "View provider",
+          "invariant": "Provider identity and network status visible",
+          "ordinal": 1
+        },
+        {
+          "id": "02-provider-detail",
+          "path": "design/proposals/advanced-storyboards/x17/02-provider-detail.svg",
+          "caption": "Provider details",
+          "action": "Inspect image",
+          "invariant": "Provider-specific information, not directory repeated",
+          "ordinal": 2
+        },
+        {
+          "id": "03-image-licence",
+          "path": "design/proposals/advanced-storyboards/x17/03-image-licence.svg",
+          "caption": "Image rights",
+          "action": "Review attribution",
+          "invariant": "Rights and attribution are image-specific, not provider-wide",
+          "ordinal": 3
+        },
+        {
+          "id": "04-offline",
+          "path": "design/proposals/advanced-storyboards/x17/04-offline.svg",
+          "caption": "Source offline",
+          "action": "Use saved copies",
+          "invariant": "Local offline assets remain available",
+          "ordinal": 4
+        },
+        {
+          "id": "05-partial-import",
+          "path": "design/proposals/advanced-storyboards/x17/05-partial-import.svg",
+          "caption": "Source import incomplete",
+          "action": "Retry missing",
+          "invariant": "Preserve verified copies; retries are scoped",
+          "ordinal": 5
+        }
+      ]
+    },
+    {
+      "id": "x18",
+      "title": "History, diagnosis and reapply",
+      "frames": [
+        {
+          "id": "01-activity",
+          "path": "design/proposals/advanced-storyboards/x18/01-activity.svg",
+          "caption": "Activity history",
+          "action": "Inspect attempt",
+          "invariant": "Requested, attempted and confirmed are distinct events",
+          "ordinal": 1
+        },
+        {
+          "id": "02-unknown",
+          "path": "design/proposals/advanced-storyboards/x18/02-unknown.svg",
+          "caption": "Unconfirmed outcome",
+          "action": "Inspect wallpaper",
+          "invariant": "Do not infer successful apply from interrupted process",
+          "ordinal": 2
+        },
+        {
+          "id": "03-delayed",
+          "path": "design/proposals/advanced-storyboards/x18/03-delayed.svg",
+          "caption": "Delayed eligibility",
+          "action": "Learn more",
+          "invariant": "Active-use schedule is not exact background alarm",
+          "ordinal": 3
+        },
+        {
+          "id": "04-retry",
+          "path": "design/proposals/advanced-storyboards/x18/04-retry.svg",
+          "caption": "Retry action",
+          "action": "Retry explicitly",
+          "invariant": "A duplicate system effect is possible; warn before retry",
+          "ordinal": 4
+        },
+        {
+          "id": "05-previous",
+          "path": "design/proposals/advanced-storyboards/x18/05-previous.svg",
+          "caption": "Previous wallpaper",
+          "action": "Reapply p11",
+          "invariant": "Reapply creates a new operation, not retroactive success",
+          "ordinal": 5
+        }
+      ]
+    },
+    {
       "id": "x19",
       "title": "Backup and restore integrity",
       "frames": [
@@ -142,6 +326,98 @@
       ]
     },
     {
+      "id": "x20",
+      "title": "External Android-hosted controls",
+      "frames": [
+        {
+          "id": "01-launcher-widget",
+          "path": "design/proposals/advanced-storyboards/x20/01-launcher-widget.svg",
+          "caption": "Home screen widget",
+          "action": "Change Home",
+          "invariant": "This is launcher UI, not an in-app imitation",
+          "ordinal": 1
+        },
+        {
+          "id": "02-widget-resize",
+          "path": "design/proposals/advanced-storyboards/x20/02-widget-resize.svg",
+          "caption": "Resize widget",
+          "action": "Save widget",
+          "invariant": "Text and target remain legible at launcher sizes",
+          "ordinal": 2
+        },
+        {
+          "id": "03-quick-tile",
+          "path": "design/proposals/advanced-storyboards/x20/03-quick-tile.svg",
+          "caption": "Quick Settings tile",
+          "action": "Choose action",
+          "invariant": "No fake status from in-app preview",
+          "ordinal": 3
+        },
+        {
+          "id": "04-shortcut",
+          "path": "design/proposals/advanced-storyboards/x20/04-shortcut.svg",
+          "caption": "App shortcut",
+          "action": "Launch shortcut",
+          "invariant": "Shortcut target is explicit before wallpaper effect",
+          "ordinal": 4
+        },
+        {
+          "id": "05-unavailable",
+          "path": "design/proposals/advanced-storyboards/x20/05-unavailable.svg",
+          "caption": "Unavailable OS integration",
+          "action": "Open Glimpse",
+          "invariant": "Graceful unavailability, no fake install success",
+          "ordinal": 5
+        }
+      ]
+    },
+    {
+      "id": "x21",
+      "title": "Settings, help and return",
+      "frames": [
+        {
+          "id": "01-enter",
+          "path": "design/proposals/advanced-storyboards/x21/01-enter.svg",
+          "caption": "Home overflow",
+          "action": "Open Settings",
+          "invariant": "Support navigation preserves browsing context",
+          "ordinal": 1
+        },
+        {
+          "id": "02-about-help",
+          "path": "design/proposals/advanced-storyboards/x21/02-about-help.svg",
+          "caption": "Help and About",
+          "action": "Open Help",
+          "invariant": "No fifth top-level tab or decorative second reel",
+          "ordinal": 2
+        },
+        {
+          "id": "03-permissions",
+          "path": "design/proposals/advanced-storyboards/x21/03-permissions.svg",
+          "caption": "Capabilities help",
+          "action": "Read explanation",
+          "invariant": "Platform restriction explained without impossible permission",
+          "ordinal": 3
+        },
+        {
+          "id": "04-report",
+          "path": "design/proposals/advanced-storyboards/x21/04-report.svg",
+          "caption": "Report a problem",
+          "action": "Review report",
+          "invariant": "No automatic upload of private data",
+          "ordinal": 4
+        },
+        {
+          "id": "05-return",
+          "path": "design/proposals/advanced-storyboards/x21/05-return.svg",
+          "caption": "Return to Home",
+          "action": "Back to photo",
+          "invariant": "Back restores selection, scroll and rotation status",
+          "ordinal": 5
+        }
+      ]
+    },
+    {
       "id": "x22",
       "title": "Exact diagnostic report handoff",
       "frames": [
@@ -183,6 +459,52 @@
           "caption": "No supported handler",
           "action": "Copy details",
           "invariant": "Retain draft after cancelled/unavailable share",
+          "ordinal": 5
+        }
+      ]
+    },
+    {
+      "id": "x23",
+      "title": "Adverse asynchronous input states",
+      "frames": [
+        {
+          "id": "01-loading",
+          "path": "design/proposals/advanced-storyboards/x23/01-loading.svg",
+          "caption": "Loading imported photo",
+          "action": "Wait or skip",
+          "invariant": "Loading not disguised as empty collection",
+          "ordinal": 1
+        },
+        {
+          "id": "02-cloud-placeholder",
+          "path": "design/proposals/advanced-storyboards/x23/02-cloud-placeholder.svg",
+          "caption": "Cloud item pending",
+          "action": "Review progress",
+          "invariant": "Do not show imported until durable copy verified",
+          "ordinal": 2
+        },
+        {
+          "id": "03-long-names",
+          "path": "design/proposals/advanced-storyboards/x23/03-long-names.svg",
+          "caption": "Long filenames and names",
+          "action": "Rename safely",
+          "invariant": "Ellipsis or multiline must not hide action or count",
+          "ordinal": 3
+        },
+        {
+          "id": "04-duplicates",
+          "path": "design/proposals/advanced-storyboards/x23/04-duplicates.svg",
+          "caption": "Duplicate labels",
+          "action": "Choose by ID",
+          "invariant": "Names may repeat; identities must not be guessed",
+          "ordinal": 4
+        },
+        {
+          "id": "05-batch-error",
+          "path": "design/proposals/advanced-storyboards/x23/05-batch-error.svg",
+          "caption": "Batch partial failure",
+          "action": "Retry failed",
+          "invariant": "No premature all-done badge or lost successful copies",
           "ordinal": 5
         }
       ]

@@ -1,0 +1,168 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1160 920" width="1160" height="920"><title>Large library operations · Large library</title><desc>Draft reference, not exact Android interface or approved Glimpse pixels.</desc><metadata>{&quot;journeyId&quot;:&quot;x15&quot;,&quot;stateId&quot;:&quot;01-library&quot;,&quot;surfaceId&quot;:&quot;glimpse-app&quot;,&quot;selectedAssetId&quot;:null,&quot;sourceAssetId&quot;:&quot;first-party-vector-illustration&quot;,&quot;viewportDp&quot;:[420,900],&quot;proposalStatus&quot;:&quot;unapproved&quot;,&quot;action&quot;:&quot;Search&quot;,&quot;assertion&quot;:&quot;Dense library controls must remain responsive and readable&quot;}</metadata>
+<rect x="0" y="0" width="1160" height="920" fill="#E9E2D6" rx="0" stroke="none"/>
+<rect x="15" y="14" width="401" height="890" fill="#F6F0E6" rx="22" stroke="#C4B7A4"/>
+<text x="38" y="43" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="650" fill="#153F46">9:41</text>
+<text x="352" y="43" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="450" fill="#667975">● ▰ ▴</text>
+<text x="38" y="99" font-family="Arial,Helvetica,sans-serif" font-size="24" font-weight="700" fill="#153F46">Large library</text>
+<text x="39" y="130" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="500" fill="#667975">1,284 offline photographs</text>
+<rect x="39" y="186" width="79" height="95" fill="#161926" rx="13" stroke="none"/>
+<path d="M44 193.6 Q78.5 187.9 113 207.85" stroke="#D63E4F" stroke-width="4.085" fill="none"/>
+<path d="M44 210.7 Q78.5 204.05 113 224.95" stroke="#D98F39" stroke-width="4.085" fill="none"/>
+<path d="M44 227.8 Q78.5 220.2 113 242.05" stroke="#E2D04D" stroke-width="4.085" fill="none"/>
+<path d="M44 244.9 Q78.5 236.35 113 259.15" stroke="#4AAE89" stroke-width="4.085" fill="none"/>
+<path d="M44 262 Q78.5 252.5 113 276.25" stroke="#4571CD" stroke-width="4.085" fill="none"/>
+<rect x="46" y="254" width="65" height="20" fill="#FFFCF6" rx="6" stroke="none"/>
+<text x="54" y="269" font-family="Arial,Helvetica,sans-serif" font-size="11" font-weight="700" fill="#153F46">p01</text>
+<rect x="127" y="186" width="79" height="95" fill="#161926" rx="13" stroke="none"/>
+<path d="M132 193.6 Q166.5 187.9 201 207.85" stroke="#D63E4F" stroke-width="4.085" fill="none"/>
+<path d="M132 210.7 Q166.5 204.05 201 224.95" stroke="#D98F39" stroke-width="4.085" fill="none"/>
+<path d="M132 227.8 Q166.5 220.2 201 242.05" stroke="#E2D04D" stroke-width="4.085" fill="none"/>
+<path d="M132 244.9 Q166.5 236.35 201 259.15" stroke="#4AAE89" stroke-width="4.085" fill="none"/>
+<path d="M132 262 Q166.5 252.5 201 276.25" stroke="#4571CD" stroke-width="4.085" fill="none"/>
+<rect x="134" y="254" width="65" height="20" fill="#FFFCF6" rx="6" stroke="none"/>
+<text x="142" y="269" font-family="Arial,Helvetica,sans-serif" font-size="11" font-weight="700" fill="#153F46">p02</text>
+<rect x="215" y="186" width="79" height="95" fill="#161926" rx="13" stroke="none"/>
+<path d="M220 193.6 Q254.5 187.9 289 207.85" stroke="#D63E4F" stroke-width="4.085" fill="none"/>
+<path d="M220 210.7 Q254.5 204.05 289 224.95" stroke="#D98F39" stroke-width="4.085" fill="none"/>
+<path d="M220 227.8 Q254.5 220.2 289 242.05" stroke="#E2D04D" stroke-width="4.085" fill="none"/>
+<path d="M220 244.9 Q254.5 236.35 289 259.15" stroke="#4AAE89" stroke-width="4.085" fill="none"/>
+<path d="M220 262 Q254.5 252.5 289 276.25" stroke="#4571CD" stroke-width="4.085" fill="none"/>
+<rect x="222" y="254" width="65" height="20" fill="#FFFCF6" rx="6" stroke="none"/>
+<text x="230" y="269" font-family="Arial,Helvetica,sans-serif" font-size="11" font-weight="700" fill="#153F46">p03</text>
+<rect x="303" y="186" width="79" height="95" fill="#161926" rx="13" stroke="none"/>
+<path d="M308 193.6 Q342.5 187.9 377 207.85" stroke="#D63E4F" stroke-width="4.085" fill="none"/>
+<path d="M308 210.7 Q342.5 204.05 377 224.95" stroke="#D98F39" stroke-width="4.085" fill="none"/>
+<path d="M308 227.8 Q342.5 220.2 377 242.05" stroke="#E2D04D" stroke-width="4.085" fill="none"/>
+<path d="M308 244.9 Q342.5 236.35 377 259.15" stroke="#4AAE89" stroke-width="4.085" fill="none"/>
+<path d="M308 262 Q342.5 252.5 377 276.25" stroke="#4571CD" stroke-width="4.085" fill="none"/>
+<rect x="310" y="254" width="65" height="20" fill="#FFFCF6" rx="6" stroke="none"/>
+<text x="318" y="269" font-family="Arial,Helvetica,sans-serif" font-size="11" font-weight="700" fill="#153F46">p04</text>
+<rect x="39" y="288" width="79" height="95" fill="#161926" rx="13" stroke="none"/>
+<path d="M44 295.6 Q78.5 289.9 113 309.85" stroke="#D63E4F" stroke-width="4.085" fill="none"/>
+<path d="M44 312.7 Q78.5 306.05 113 326.95" stroke="#D98F39" stroke-width="4.085" fill="none"/>
+<path d="M44 329.8 Q78.5 322.2 113 344.05" stroke="#E2D04D" stroke-width="4.085" fill="none"/>
+<path d="M44 346.9 Q78.5 338.35 113 361.15" stroke="#4AAE89" stroke-width="4.085" fill="none"/>
+<path d="M44 364 Q78.5 354.5 113 378.25" stroke="#4571CD" stroke-width="4.085" fill="none"/>
+<rect x="46" y="356" width="65" height="20" fill="#FFFCF6" rx="6" stroke="none"/>
+<text x="54" y="371" font-family="Arial,Helvetica,sans-serif" font-size="11" font-weight="700" fill="#153F46">p05</text>
+<rect x="127" y="288" width="79" height="95" fill="#161926" rx="13" stroke="none"/>
+<path d="M132 295.6 Q166.5 289.9 201 309.85" stroke="#D63E4F" stroke-width="4.085" fill="none"/>
+<path d="M132 312.7 Q166.5 306.05 201 326.95" stroke="#D98F39" stroke-width="4.085" fill="none"/>
+<path d="M132 329.8 Q166.5 322.2 201 344.05" stroke="#E2D04D" stroke-width="4.085" fill="none"/>
+<path d="M132 346.9 Q166.5 338.35 201 361.15" stroke="#4AAE89" stroke-width="4.085" fill="none"/>
+<path d="M132 364 Q166.5 354.5 201 378.25" stroke="#4571CD" stroke-width="4.085" fill="none"/>
+<rect x="134" y="356" width="65" height="20" fill="#FFFCF6" rx="6" stroke="none"/>
+<text x="142" y="371" font-family="Arial,Helvetica,sans-serif" font-size="11" font-weight="700" fill="#153F46">p06</text>
+<rect x="215" y="288" width="79" height="95" fill="#161926" rx="13" stroke="none"/>
+<path d="M220 295.6 Q254.5 289.9 289 309.85" stroke="#D63E4F" stroke-width="4.085" fill="none"/>
+<path d="M220 312.7 Q254.5 306.05 289 326.95" stroke="#D98F39" stroke-width="4.085" fill="none"/>
+<path d="M220 329.8 Q254.5 322.2 289 344.05" stroke="#E2D04D" stroke-width="4.085" fill="none"/>
+<path d="M220 346.9 Q254.5 338.35 289 361.15" stroke="#4AAE89" stroke-width="4.085" fill="none"/>
+<path d="M220 364 Q254.5 354.5 289 378.25" stroke="#4571CD" stroke-width="4.085" fill="none"/>
+<rect x="222" y="356" width="65" height="20" fill="#FFFCF6" rx="6" stroke="none"/>
+<text x="230" y="371" font-family="Arial,Helvetica,sans-serif" font-size="11" font-weight="700" fill="#153F46">p07</text>
+<rect x="303" y="288" width="79" height="95" fill="#161926" rx="13" stroke="none"/>
+<path d="M308 295.6 Q342.5 289.9 377 309.85" stroke="#D63E4F" stroke-width="4.085" fill="none"/>
+<path d="M308 312.7 Q342.5 306.05 377 326.95" stroke="#D98F39" stroke-width="4.085" fill="none"/>
+<path d="M308 329.8 Q342.5 322.2 377 344.05" stroke="#E2D04D" stroke-width="4.085" fill="none"/>
+<path d="M308 346.9 Q342.5 338.35 377 361.15" stroke="#4AAE89" stroke-width="4.085" fill="none"/>
+<path d="M308 364 Q342.5 354.5 377 378.25" stroke="#4571CD" stroke-width="4.085" fill="none"/>
+<rect x="310" y="356" width="65" height="20" fill="#FFFCF6" rx="6" stroke="none"/>
+<text x="318" y="371" font-family="Arial,Helvetica,sans-serif" font-size="11" font-weight="700" fill="#153F46">p08</text>
+<rect x="39" y="390" width="79" height="95" fill="#161926" rx="13" stroke="none"/>
+<path d="M44 397.6 Q78.5 391.9 113 411.85" stroke="#D63E4F" stroke-width="4.085" fill="none"/>
+<path d="M44 414.7 Q78.5 408.05 113 428.95" stroke="#D98F39" stroke-width="4.085" fill="none"/>
+<path d="M44 431.8 Q78.5 424.2 113 446.05" stroke="#E2D04D" stroke-width="4.085" fill="none"/>
+<path d="M44 448.9 Q78.5 440.35 113 463.15" stroke="#4AAE89" stroke-width="4.085" fill="none"/>
+<path d="M44 466 Q78.5 456.5 113 480.25" stroke="#4571CD" stroke-width="4.085" fill="none"/>
+<rect x="46" y="458" width="65" height="20" fill="#FFFCF6" rx="6" stroke="none"/>
+<text x="54" y="473" font-family="Arial,Helvetica,sans-serif" font-size="11" font-weight="700" fill="#153F46">p09</text>
+<rect x="127" y="390" width="79" height="95" fill="#161926" rx="13" stroke="none"/>
+<path d="M132 397.6 Q166.5 391.9 201 411.85" stroke="#D63E4F" stroke-width="4.085" fill="none"/>
+<path d="M132 414.7 Q166.5 408.05 201 428.95" stroke="#D98F39" stroke-width="4.085" fill="none"/>
+<path d="M132 431.8 Q166.5 424.2 201 446.05" stroke="#E2D04D" stroke-width="4.085" fill="none"/>
+<path d="M132 448.9 Q166.5 440.35 201 463.15" stroke="#4AAE89" stroke-width="4.085" fill="none"/>
+<path d="M132 466 Q166.5 456.5 201 480.25" stroke="#4571CD" stroke-width="4.085" fill="none"/>
+<rect x="134" y="458" width="65" height="20" fill="#FFFCF6" rx="6" stroke="none"/>
+<text x="142" y="473" font-family="Arial,Helvetica,sans-serif" font-size="11" font-weight="700" fill="#153F46">p10</text>
+<rect x="215" y="390" width="79" height="95" fill="#161926" rx="13" stroke="none"/>
+<path d="M220 397.6 Q254.5 391.9 289 411.85" stroke="#D63E4F" stroke-width="4.085" fill="none"/>
+<path d="M220 414.7 Q254.5 408.05 289 428.95" stroke="#D98F39" stroke-width="4.085" fill="none"/>
+<path d="M220 431.8 Q254.5 424.2 289 446.05" stroke="#E2D04D" stroke-width="4.085" fill="none"/>
+<path d="M220 448.9 Q254.5 440.35 289 463.15" stroke="#4AAE89" stroke-width="4.085" fill="none"/>
+<path d="M220 466 Q254.5 456.5 289 480.25" stroke="#4571CD" stroke-width="4.085" fill="none"/>
+<rect x="222" y="458" width="65" height="20" fill="#FFFCF6" rx="6" stroke="none"/>
+<text x="230" y="473" font-family="Arial,Helvetica,sans-serif" font-size="11" font-weight="700" fill="#153F46">p11</text>
+<rect x="303" y="390" width="79" height="95" fill="#161926" rx="13" stroke="none"/>
+<path d="M308 397.6 Q342.5 391.9 377 411.85" stroke="#D63E4F" stroke-width="4.085" fill="none"/>
+<path d="M308 414.7 Q342.5 408.05 377 428.95" stroke="#D98F39" stroke-width="4.085" fill="none"/>
+<path d="M308 431.8 Q342.5 424.2 377 446.05" stroke="#E2D04D" stroke-width="4.085" fill="none"/>
+<path d="M308 448.9 Q342.5 440.35 377 463.15" stroke="#4AAE89" stroke-width="4.085" fill="none"/>
+<path d="M308 466 Q342.5 456.5 377 480.25" stroke="#4571CD" stroke-width="4.085" fill="none"/>
+<rect x="310" y="458" width="65" height="20" fill="#FFFCF6" rx="6" stroke="none"/>
+<text x="318" y="473" font-family="Arial,Helvetica,sans-serif" font-size="11" font-weight="700" fill="#153F46">p12</text>
+<rect x="39" y="492" width="79" height="95" fill="#161926" rx="13" stroke="none"/>
+<path d="M44 499.6 Q78.5 493.9 113 513.85" stroke="#D63E4F" stroke-width="4.085" fill="none"/>
+<path d="M44 516.7 Q78.5 510.05 113 530.95" stroke="#D98F39" stroke-width="4.085" fill="none"/>
+<path d="M44 533.8 Q78.5 526.2 113 548.05" stroke="#E2D04D" stroke-width="4.085" fill="none"/>
+<path d="M44 550.9 Q78.5 542.35 113 565.15" stroke="#4AAE89" stroke-width="4.085" fill="none"/>
+<path d="M44 568 Q78.5 558.5 113 582.25" stroke="#4571CD" stroke-width="4.085" fill="none"/>
+<rect x="46" y="560" width="65" height="20" fill="#FFFCF6" rx="6" stroke="none"/>
+<text x="54" y="575" font-family="Arial,Helvetica,sans-serif" font-size="11" font-weight="700" fill="#153F46">p13</text>
+<rect x="127" y="492" width="79" height="95" fill="#161926" rx="13" stroke="none"/>
+<path d="M132 499.6 Q166.5 493.9 201 513.85" stroke="#D63E4F" stroke-width="4.085" fill="none"/>
+<path d="M132 516.7 Q166.5 510.05 201 530.95" stroke="#D98F39" stroke-width="4.085" fill="none"/>
+<path d="M132 533.8 Q166.5 526.2 201 548.05" stroke="#E2D04D" stroke-width="4.085" fill="none"/>
+<path d="M132 550.9 Q166.5 542.35 201 565.15" stroke="#4AAE89" stroke-width="4.085" fill="none"/>
+<path d="M132 568 Q166.5 558.5 201 582.25" stroke="#4571CD" stroke-width="4.085" fill="none"/>
+<rect x="134" y="560" width="65" height="20" fill="#FFFCF6" rx="6" stroke="none"/>
+<text x="142" y="575" font-family="Arial,Helvetica,sans-serif" font-size="11" font-weight="700" fill="#153F46">p14</text>
+<rect x="215" y="492" width="79" height="95" fill="#161926" rx="13" stroke="none"/>
+<path d="M220 499.6 Q254.5 493.9 289 513.85" stroke="#D63E4F" stroke-width="4.085" fill="none"/>
+<path d="M220 516.7 Q254.5 510.05 289 530.95" stroke="#D98F39" stroke-width="4.085" fill="none"/>
+<path d="M220 533.8 Q254.5 526.2 289 548.05" stroke="#E2D04D" stroke-width="4.085" fill="none"/>
+<path d="M220 550.9 Q254.5 542.35 289 565.15" stroke="#4AAE89" stroke-width="4.085" fill="none"/>
+<path d="M220 568 Q254.5 558.5 289 582.25" stroke="#4571CD" stroke-width="4.085" fill="none"/>
+<rect x="222" y="560" width="65" height="20" fill="#FFFCF6" rx="6" stroke="none"/>
+<text x="230" y="575" font-family="Arial,Helvetica,sans-serif" font-size="11" font-weight="700" fill="#153F46">p15</text>
+<rect x="303" y="492" width="79" height="95" fill="#161926" rx="13" stroke="none"/>
+<path d="M308 499.6 Q342.5 493.9 377 513.85" stroke="#D63E4F" stroke-width="4.085" fill="none"/>
+<path d="M308 516.7 Q342.5 510.05 377 530.95" stroke="#D98F39" stroke-width="4.085" fill="none"/>
+<path d="M308 533.8 Q342.5 526.2 377 548.05" stroke="#E2D04D" stroke-width="4.085" fill="none"/>
+<path d="M308 550.9 Q342.5 542.35 377 565.15" stroke="#4AAE89" stroke-width="4.085" fill="none"/>
+<path d="M308 568 Q342.5 558.5 377 582.25" stroke="#4571CD" stroke-width="4.085" fill="none"/>
+<rect x="310" y="560" width="65" height="20" fill="#FFFCF6" rx="6" stroke="none"/>
+<text x="318" y="575" font-family="Arial,Helvetica,sans-serif" font-size="11" font-weight="700" fill="#153F46">p16</text>
+<text x="42" y="603" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="650" fill="#153F46">1,284 total · 16 shown</text>
+<rect x="44" y="669" width="336" height="45" fill="#1D5960" rx="18" stroke="#1D5960"/>
+<text x="58" y="697" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="700" fill="white">Search</text>
+<path d="M30 822 H403" stroke="#C4B7A4"/>
+<text x="40" y="851" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="500" fill="#667975">Home</text>
+<text x="135" y="851" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="500" fill="#667975">Discover</text>
+<text x="230" y="851" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="500" fill="#667975">Collections</text>
+<text x="325" y="851" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="500" fill="#667975">Automation</text>
+<text x="37" y="891" font-family="Arial,Helvetica,sans-serif" font-size="11" font-weight="700" fill="#667975">P1 DRAFT · NOT APPROVED</text>
+<rect x="441" y="15" width="705" height="890" fill="#FFFCF6" rx="18" stroke="#C4B7A4"/>
+<text x="465" y="55" font-family="Arial,Helvetica,sans-serif" font-size="22" font-weight="700" fill="#153F46">X15 / Large library operations</text>
+<text x="465" y="92" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="700" fill="#1D5960">01-LIBRARY</text>
+<path d="M459 116 H1128" stroke="#C4B7A4"/>
+<text x="465" y="156" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="700" fill="#153F46">ACTION AND REQUIRED CONSEQUENCE</text>
+<text x="466" y="190" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="450" fill="#153F46">Dense library controls must remain responsive and readable</text>
+<rect x="465" y="288" width="645" height="138" fill="#E9E0F5" rx="14" stroke="none"/>
+<text x="482" y="321" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="700" fill="#1D5960">EXPLICIT ACTION</text>
+<text x="482" y="360" font-family="Arial,Helvetica,sans-serif" font-size="21" font-weight="700" fill="#153F46">Search</text>
+<text x="482" y="396" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="470" fill="#667975">Frame 1 / 5 · 1,284 offline photographs</text>
+<text x="467" y="473" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="700" fill="#153F46">STATE AND PLATFORM BOUNDARY</text>
+<text x="469" y="510" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="650" fill="#667975">Journey</text>
+<text x="678" y="510" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="570" fill="#153F46">x15</text>
+<text x="469" y="557" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="650" fill="#667975">Surface</text>
+<text x="678" y="557" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="570" fill="#153F46">glimpse-app</text>
+<text x="469" y="604" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="650" fill="#667975">Selected ID</text>
+<text x="678" y="604" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="570" fill="#153F46">not applicable</text>
+<text x="469" y="651" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="650" fill="#667975">External OS UI</text>
+<text x="678" y="651" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="570" fill="#153F46">Varies by frame</text>
+<text x="469" y="698" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="650" fill="#667975">Status</text>
+<text x="678" y="698" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="570" fill="#153F46">DRAFT · NOT OWNER APPROVED</text>
+<text x="467" y="816" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="460" fill="#667975">Illustrative provider/Android interfaces, not screenshots or guaranteed APIs.</text>
+<text x="466" y="848" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="700" fill="#E8876C">Never infer actual apply, import or consent from illustration.</text>
+</svg>

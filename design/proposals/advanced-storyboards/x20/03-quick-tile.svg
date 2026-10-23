@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1160 920" width="1160" height="920"><title>External Android-hosted controls · Quick Settings tile</title><desc>Draft reference, not exact Android interface or approved Glimpse pixels.</desc><metadata>{&quot;journeyId&quot;:&quot;x20&quot;,&quot;stateId&quot;:&quot;03-quick-tile&quot;,&quot;surfaceId&quot;:&quot;android-hosted&quot;,&quot;selectedAssetId&quot;:null,&quot;sourceAssetId&quot;:&quot;first-party-vector-illustration&quot;,&quot;viewportDp&quot;:[420,900],&quot;proposalStatus&quot;:&quot;unapproved&quot;,&quot;action&quot;:&quot;Choose action&quot;,&quot;assertion&quot;:&quot;No fake status from in-app preview&quot;}</metadata>
+<rect x="0" y="0" width="1160" height="920" fill="#E9E2D6" rx="0" stroke="none"/>
+<rect x="15" y="14" width="401" height="890" fill="#F6F0E6" rx="22" stroke="#C4B7A4"/>
+<text x="38" y="43" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="650" fill="#153F46">9:41</text>
+<text x="352" y="43" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="450" fill="#667975">● ▰ ▴</text>
+<text x="38" y="99" font-family="Arial,Helvetica,sans-serif" font-size="24" font-weight="700" fill="#153F46">Quick Settings tile</text>
+<text x="39" y="130" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="500" fill="#667975">Collapsed / expanded OS tile</text>
+<rect x="31" y="147" width="371" height="615" fill="#D0D2D2" rx="16" stroke="none"/>
+<text x="55" y="200" font-family="Arial,Helvetica,sans-serif" font-size="17" font-weight="700" fill="#153F46">ANDROID QUICK SETTINGS</text>
+<rect x="57" y="248" width="303" height="100" fill="#1D5960" rx="20" stroke="none"/>
+<text x="75" y="305" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="700" fill="white">Glimpse · Change Home</text>
+<rect x="40" y="428" width="346" height="93" fill="#FFFCF6" rx="13" stroke="#C4B7A4"/>
+<text x="54" y="457" font-family="Arial,Helvetica,sans-serif" font-size="16" font-weight="700" fill="#153F46">Expanded tile example</text>
+<text x="54" y="488" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="450" fill="#667975">Actual OEM presentation varies</text>
+<rect x="48" y="678" width="325" height="45" fill="#1D5960" rx="18" stroke="#1D5960"/>
+<text x="62" y="706" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="700" fill="white">Choose action</text>
+<text x="37" y="891" font-family="Arial,Helvetica,sans-serif" font-size="11" font-weight="700" fill="#667975">P1 DRAFT · NOT APPROVED</text>
+<rect x="441" y="15" width="705" height="890" fill="#FFFCF6" rx="18" stroke="#C4B7A4"/>
+<text x="465" y="55" font-family="Arial,Helvetica,sans-serif" font-size="22" font-weight="700" fill="#153F46">X20 / External Android-hosted controls</text>
+<text x="465" y="92" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="700" fill="#1D5960">03-QUICK-TILE</text>
+<path d="M459 116 H1128" stroke="#C4B7A4"/>
+<text x="465" y="156" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="700" fill="#153F46">ACTION AND REQUIRED CONSEQUENCE</text>
+<text x="466" y="190" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="450" fill="#153F46">No fake status from in-app preview</text>
+<rect x="465" y="288" width="645" height="138" fill="#E9E0F5" rx="14" stroke="none"/>
+<text x="482" y="321" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="700" fill="#1D5960">EXPLICIT ACTION</text>
+<text x="482" y="360" font-family="Arial,Helvetica,sans-serif" font-size="21" font-weight="700" fill="#153F46">Choose action</text>
+<text x="482" y="396" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="470" fill="#667975">Frame 3 / 5 · Collapsed / expanded OS tile</text>
+<text x="467" y="473" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="700" fill="#153F46">STATE AND PLATFORM BOUNDARY</text>
+<text x="469" y="510" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="650" fill="#667975">Journey</text>
+<text x="678" y="510" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="570" fill="#153F46">x20</text>
+<text x="469" y="557" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="650" fill="#667975">Surface</text>
+<text x="678" y="557" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="570" fill="#153F46">android-hosted</text>
+<text x="469" y="604" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="650" fill="#667975">Selected ID</text>
+<text x="678" y="604" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="570" fill="#153F46">not applicable</text>
+<text x="469" y="651" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="650" fill="#667975">External OS UI</text>
+<text x="678" y="651" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="570" fill="#153F46">Yes, launcher-owned</text>
+<text x="469" y="698" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="650" fill="#667975">Status</text>
+<text x="678" y="698" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="570" fill="#153F46">DRAFT · NOT OWNER APPROVED</text>
+<text x="467" y="816" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="460" fill="#667975">Illustrative provider/Android interfaces, not screenshots or guaranteed APIs.</text>
+<text x="466" y="848" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="700" fill="#E8876C">Never infer actual apply, import or consent from illustration.</text>
+</svg>

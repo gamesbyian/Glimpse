@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1160 920" width="1160" height="920"><title>Adverse asynchronous input states · Cloud item pending</title><desc>Draft reference, not exact Android interface or approved Glimpse pixels.</desc><metadata>{&quot;journeyId&quot;:&quot;x23&quot;,&quot;stateId&quot;:&quot;02-cloud-placeholder&quot;,&quot;surfaceId&quot;:&quot;glimpse-app&quot;,&quot;selectedAssetId&quot;:null,&quot;sourceAssetId&quot;:&quot;first-party-vector-illustration&quot;,&quot;viewportDp&quot;:[420,900],&quot;proposalStatus&quot;:&quot;unapproved&quot;,&quot;action&quot;:&quot;Review progress&quot;,&quot;assertion&quot;:&quot;Do not show imported until durable copy verified&quot;}</metadata>
+<rect x="0" y="0" width="1160" height="920" fill="#E9E2D6" rx="0" stroke="none"/>
+<rect x="15" y="14" width="401" height="890" fill="#F6F0E6" rx="22" stroke="#C4B7A4"/>
+<text x="38" y="43" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="650" fill="#153F46">9:41</text>
+<text x="352" y="43" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="450" fill="#667975">● ▰ ▴</text>
+<text x="38" y="99" font-family="Arial,Helvetica,sans-serif" font-size="24" font-weight="700" fill="#153F46">Cloud item pending</text>
+<text x="39" y="130" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="500" fill="#667975">7 of 10 copied offline</text>
+<rect x="41" y="187" width="80" height="100" fill="#DFD5C7" rx="12" stroke="none"/>
+<text x="48" y="241" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="650" fill="#153F46">LOADING</text>
+<rect x="127" y="187" width="80" height="100" fill="#DFD5C7" rx="12" stroke="none"/>
+<text x="134" y="241" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="650" fill="#153F46">LOADING</text>
+<rect x="213" y="187" width="80" height="100" fill="#DFD5C7" rx="12" stroke="none"/>
+<text x="220" y="241" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="650" fill="#153F46">LOADING</text>
+<rect x="299" y="187" width="80" height="100" fill="#AFBEC4" rx="12" stroke="none"/>
+<text x="306" y="241" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="650" fill="#153F46">p3</text>
+<rect x="41" y="297" width="80" height="100" fill="#AFBEC4" rx="12" stroke="none"/>
+<text x="48" y="351" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="650" fill="#153F46">p4</text>
+<rect x="127" y="297" width="80" height="100" fill="#AFBEC4" rx="12" stroke="none"/>
+<text x="134" y="351" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="650" fill="#153F46">p5</text>
+<rect x="213" y="297" width="80" height="100" fill="#AFBEC4" rx="12" stroke="none"/>
+<text x="220" y="351" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="650" fill="#153F46">p6</text>
+<rect x="299" y="297" width="80" height="100" fill="#AFBEC4" rx="12" stroke="none"/>
+<text x="306" y="351" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="650" fill="#153F46">p7</text>
+<rect x="40" y="444" width="346" height="93" fill="#FFFCF6" rx="13" stroke="#C4B7A4"/>
+<text x="54" y="473" font-family="Arial,Helvetica,sans-serif" font-size="16" font-weight="700" fill="#153F46">7 of 10 copied offline</text>
+<text x="54" y="504" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="450" fill="#667975">3 cloud items still pending</text>
+<rect x="43" y="670" width="338" height="45" fill="#1D5960" rx="18" stroke="#1D5960"/>
+<text x="57" y="698" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="700" fill="white">Review progress</text>
+<path d="M30 822 H403" stroke="#C4B7A4"/>
+<text x="40" y="851" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="500" fill="#667975">Home</text>
+<text x="135" y="851" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="500" fill="#667975">Discover</text>
+<text x="230" y="851" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="500" fill="#667975">Collections</text>
+<text x="325" y="851" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="500" fill="#667975">Automation</text>
+<text x="37" y="891" font-family="Arial,Helvetica,sans-serif" font-size="11" font-weight="700" fill="#667975">P1 DRAFT · NOT APPROVED</text>
+<rect x="441" y="15" width="705" height="890" fill="#FFFCF6" rx="18" stroke="#C4B7A4"/>
+<text x="465" y="55" font-family="Arial,Helvetica,sans-serif" font-size="22" font-weight="700" fill="#153F46">X23 / Adverse asynchronous input states</text>
+<text x="465" y="92" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="700" fill="#1D5960">02-CLOUD-PLACEHOLDER</text>
+<path d="M459 116 H1128" stroke="#C4B7A4"/>
+<text x="465" y="156" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="700" fill="#153F46">ACTION AND REQUIRED CONSEQUENCE</text>
+<text x="466" y="190" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="450" fill="#153F46">Do not show imported until durable copy verified</text>
+<rect x="465" y="288" width="645" height="138" fill="#E9E0F5" rx="14" stroke="none"/>
+<text x="482" y="321" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="700" fill="#1D5960">EXPLICIT ACTION</text>
+<text x="482" y="360" font-family="Arial,Helvetica,sans-serif" font-size="21" font-weight="700" fill="#153F46">Review progress</text>
+<text x="482" y="396" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="470" fill="#667975">Frame 2 / 5 · 7 of 10 copied offline</text>
+<text x="467" y="473" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="700" fill="#153F46">STATE AND PLATFORM BOUNDARY</text>
+<text x="469" y="510" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="650" fill="#667975">Journey</text>
+<text x="678" y="510" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="570" fill="#153F46">x23</text>
+<text x="469" y="557" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="650" fill="#667975">Surface</text>
+<text x="678" y="557" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="570" fill="#153F46">glimpse-app</text>
+<text x="469" y="604" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="650" fill="#667975">Selected ID</text>
+<text x="678" y="604" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="570" fill="#153F46">not applicable</text>
+<text x="469" y="651" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="650" fill="#667975">External OS UI</text>
+<text x="678" y="651" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="570" fill="#153F46">Varies by frame</text>
+<text x="469" y="698" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="650" fill="#667975">Status</text>
+<text x="678" y="698" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="570" fill="#153F46">DRAFT · NOT OWNER APPROVED</text>
+<text x="467" y="816" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="460" fill="#667975">Illustrative provider/Android interfaces, not screenshots or guaranteed APIs.</text>
+<text x="466" y="848" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="700" fill="#E8876C">Never infer actual apply, import or consent from illustration.</text>
+</svg>
