@@ -92,11 +92,13 @@
         "applicable Android screenshot/hierarchy fixture or marked unverified",
         "audit finding closure verification"
       ],
-      "disposition": "Eight existing source steps traced plus paired unsaved/saved-copy candidates, raster and native proof pending",
+      "disposition": "Four source-editable linked draft states; independent share recipient outcome unverified; photos currently illustrative",
       "connectedSourceManifest": "design/proposals/audit-revisions/r02-identity-chain.v1.json",
       "initialSourceDrafts": [
         "design/proposals/audit-revisions/r02-crop-pending.svg",
-        "design/proposals/audit-revisions/r02-copy-saved.svg"
+        "design/proposals/audit-revisions/r02-copy-saved.svg",
+        "design/proposals/audit-revisions/r02-share-choice.svg",
+        "design/proposals/audit-revisions/r02-return-dismiss.svg"
       ]
     },
     {
