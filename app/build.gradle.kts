@@ -20,6 +20,11 @@ android {
     buildFeatures {
         compose = true
     }
+
+    // Fixed research artwork in debug APK only, not user photo collections.
+    sourceSets.getByName("debug").assets.srcDir(
+        "../design/research/reel-layout/fixtures/source"
+    )
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
