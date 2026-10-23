@@ -15,7 +15,7 @@
 <rect x="49" y="477" width="84" height="20" rx="6" fill="#FFFCF6" stroke="none" stroke-width="1"/>
 <text x="55" y="492" font-family="Arial,Helvetica,sans-serif" font-size="11" font-weight="700" fill="#153F46">p12</text>
 <rect x="95" y="237" width="230" height="194" fill="none" stroke="white" stroke-width="4" stroke-dasharray="8 8"/><circle cx="95" cy="237" r="10" fill="#1D5960"/><circle cx="325" cy="431" r="10" fill="#1D5960"/>
-<text x="43" y="534" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="700" fill="#153F46">Preview: crop safe area for Home</text>
+<text x="43" y="534" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="700" fill="#153F46">Preview: crop safe area for Home</text><rect x="43" y="556" width="338" height="79" rx="12" fill="#FFFCF6" stroke="#C4B7A4"/><rect x="53" y="565" width="74" height="61" rx="8" fill="#1E2B32"/><path d="M59 582 Q87 569 120 588" stroke="#EE4640" stroke-width="8" fill="none"/><path d="M59 603 Q87 590 120 611" stroke="#4C70C4" stroke-width="8" fill="none"/><text x="143" y="589" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="700" fill="#153F46">Crop result: p12c</text><text x="143" y="613" font-family="Arial,Helvetica,sans-serif" font-size="12" fill="#667975">Original p12 preserved</text>
 <rect x="43" y="651" width="161" height="43" rx="17" fill="#FFFCF6" stroke="#C4B7A4" stroke-width="1"/>
 <text x="56" y="678" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="650" fill="#153F46">Reset crop</text>
 <rect x="217" y="651" width="165" height="43" rx="17" fill="#1D5960" stroke="#1D5960" stroke-width="1"/>
