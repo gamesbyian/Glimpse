@@ -98,7 +98,9 @@
       "title": "Motion-independent equivalent",
       "required": "No dedicated reduced-motion current source; audit must request one and test no animated rotation",
       "nativeStatus": "unverified",
-      "dedicatedReferenceMissing": true
+      "dedicatedReferenceMissing": false,
+      "dedicatedReferencePath": "design/proposals/audit-revisions/r05-reduced-motion.svg",
+      "referenceKind": "illustrative-interaction-route-not-native-evidence"
     },
     {
       "id": "R05-08",
@@ -111,7 +113,9 @@
       "title": "TalkBack sequence",
       "required": "No direct focus-route drawing; obtain UI hierarchy and traversal trace",
       "nativeStatus": "unverified",
-      "dedicatedReferenceMissing": true
+      "dedicatedReferenceMissing": false,
+      "dedicatedReferencePath": "design/proposals/audit-revisions/r05-talkback-route.svg",
+      "referenceKind": "illustrative-interaction-route-not-native-evidence"
     },
     {
       "id": "R05-09",
