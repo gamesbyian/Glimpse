@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "status": "ALL_DRAFT_SOURCE_EVIDENCE_NOT_HUMAN_APPROVED",
-  "sourceCommit": "f24f87a28e6a806de2cedc1308e4532c456084e9",
+  "sourceCommit": "bf5249ed2f4961f3be3b01a3c35d611eea843824",
   "auditCycleA": {
     "PASS_SOURCE_ONLY": 18,
     "ISSUE": 8,
@@ -186,13 +186,13 @@
           "path": "design/proposals/audit-revisions/r03-preview-not-applied.svg",
           "label": "R03 Preview Not Applied",
           "meaning": "Provisional preferred route; not approved",
-          "sourceSHA256": "3f1de2cc975e7e875135ee5eb1534fd526d49fe6887c91386bf6909a87bfd252"
+          "sourceSHA256": "e6917b888dbf40b88941e50ec4db37867b658fe222a74b248bebc41a4d334fe5"
         },
         {
           "path": "design/proposals/audit-revisions/r03-unknown-after-request.svg",
           "label": "R03 Unknown After Request",
           "meaning": "Provisional preferred route; not approved",
-          "sourceSHA256": "6321212650746e9fb1b77b35ebff9824069dcc354762cfba2f4e6da5b7c1974d"
+          "sourceSHA256": "d41326fa6cdd186c25d09e0a8fb809e6c7fe2b75dcf9e3eaf6cfb2162c5fe732"
         },
         {
           "path": "design/proposals/advanced-storyboards/x14/05-apply-both.svg",
@@ -2252,13 +2252,13 @@
           "path": "design/proposals/audit-revisions/r03-preview-not-applied.svg",
           "label": "R03 Preview Not Applied",
           "meaning": "",
-          "sourceSHA256": "3f1de2cc975e7e875135ee5eb1534fd526d49fe6887c91386bf6909a87bfd252"
+          "sourceSHA256": "e6917b888dbf40b88941e50ec4db37867b658fe222a74b248bebc41a4d334fe5"
         },
         {
           "path": "design/proposals/audit-revisions/r03-unknown-after-request.svg",
           "label": "R03 Unknown After Request",
           "meaning": "",
-          "sourceSHA256": "6321212650746e9fb1b77b35ebff9824069dcc354762cfba2f4e6da5b7c1974d"
+          "sourceSHA256": "d41326fa6cdd186c25d09e0a8fb809e6c7fe2b75dcf9e3eaf6cfb2162c5fe732"
         },
         {
           "path": "design/proposals/audit-revisions/r04-import-17-of-22.svg",
