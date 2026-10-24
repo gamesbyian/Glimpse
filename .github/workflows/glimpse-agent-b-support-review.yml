@@ -9,6 +9,7 @@ on:
       - scripts/validate-agent-b-source-raster-integrity.py
       - scripts/render-agent-b-accessibility-probes.py
       - scripts/render-agent-b-journey-pairs.py
+      - scripts/render-agent-b-all-journeys.py
       - scripts/render-agent-b-compact-support-study.py
       - design/proposals/support-plates/**
       - .github/workflows/glimpse-agent-b-support-review.yml
@@ -50,6 +51,7 @@ jobs:
           cp /tmp/agent-b-source-proof.json design/reviews/support-agent-b-2026-10-24/source-journey-a11y-audit.json
           python3 scripts/render-agent-b-accessibility-probes.py
           python3 scripts/render-agent-b-journey-pairs.py
+          python3 scripts/render-agent-b-all-journeys.py
           python3 scripts/render-agent-b-compact-support-study.py
           python3 scripts/validate-agent-b-source-raster-integrity.py
           python3 - <<'PY'
