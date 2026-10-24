@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1160" height="920" viewBox="0 0 1160 920" role="img" aria-label="R04 no photos selected import entry">
+<title>R04 bulk import empty selection and Android Picker entry</title><desc>Glimpse-owned zero-copy placeholder, not an Android Photo Picker screenshot or native testing evidence.</desc>
+<metadata>{"auditLane":"R04","stateId":"import-empty","sourceAssetId":null,"selectedAssetId":null,"photoTotal":0,"verifiedLocalCopies":0,"pendingPhotos":0,"hasFullBatchSuccess":false,"originalsPreserved":true,"wallpaperTarget":null,"lastConfirmedAppliedAssetId":"p04","nativeProof":"unverified","proposalStatus":"draft-not-owner-approved","viewportDp":[420,900]}</metadata>
+<rect width="1160" height="920" fill="#E9E2D6"/>
+<rect x="15" y="14" width="401" height="890" rx="22" fill="#F6F0E6" stroke="#C4B7A4"/>
+<text x="36" y="44" font-family="Arial,sans-serif" font-size="14" fill="#153F46">9:41</text>
+<text x="36" y="96" font-family="Arial,sans-serif" font-size="26" font-weight="700" fill="#153F46">Add photographs</text>
+<text x="37" y="133" font-family="Arial,sans-serif" font-size="14" fill="#667975">An empty collection is ready for photos</text>
+<rect x="39" y="173" width="353" height="270" rx="18" fill="#EFE4D2" stroke="#C4B7A4"/>
+<circle cx="215" cy="299" r="100" fill="#EAD9BD" stroke="#A99579" stroke-width="5"/>
+<circle cx="215" cy="299" r="27" fill="#F6F0E6" stroke="#A99579" stroke-width="4"/>
+<circle cx="215.0" cy="229.0" r="23" fill="#F6F0E6" stroke="#B7A687" stroke-width="2"/><circle cx="281.6" cy="277.4" r="23" fill="#F6F0E6" stroke="#B7A687" stroke-width="2"/><circle cx="256.1" cy="355.6" r="23" fill="#F6F0E6" stroke="#B7A687" stroke-width="2"/><circle cx="173.9" cy="355.6" r="23" fill="#F6F0E6" stroke="#B7A687" stroke-width="2"/><circle cx="148.4" cy="277.4" r="23" fill="#F6F0E6" stroke="#B7A687" stroke-width="2"/>
+<text x="75" y="424" font-family="Arial,sans-serif" font-size="15" font-weight="700" fill="#153F46">No imported photos</text>
+<rect x="39" y="481" width="353" height="106" rx="13" fill="#FFFCF6" stroke="#C4B7A4"/>
+<text x="56" y="515" font-family="Arial,sans-serif" font-size="16" font-weight="700" fill="#153F46">0 selected · 0 saved offline</text>
+<text x="56" y="548" font-family="Arial,sans-serif" font-size="14" fill="#667975">Nothing can enter rotation yet</text>
+<rect x="39" y="633" width="353" height="57" rx="13" fill="#1D5960"/>
+<text x="56" y="669" font-family="Arial,sans-serif" font-size="18" font-weight="700" fill="#FFF">Choose photos</text>
+<rect x="39" y="708" width="353" height="78" rx="13" fill="#FFFCF6" stroke="#C4B7A4"/>
+<text x="55" y="735" font-family="Arial,sans-serif" font-size="13" fill="#153F46">Android Photo Picker opens next</text>
+<text x="55" y="761" font-family="Arial,sans-serif" font-size="12" fill="#667975">Provider originals remain unchanged</text>
+<text x="38" y="854" font-family="Arial,sans-serif" font-size="12" fill="#667975">Home     Discover     Collections     Automation</text>
+<text x="38" y="889" font-family="Arial,sans-serif" font-size="11" fill="#944B3E">DRAFT · NOT NATIVE DEVICE EVIDENCE</text>
+<rect x="439" y="14" width="706" height="890" rx="19" fill="#FFFCF6" stroke="#C4B7A4"/>
+<text x="470" y="68" font-family="Arial,sans-serif" font-size="25" font-weight="700" fill="#153F46">R04 · Empty collection entry</text>
+<text x="470" y="110" font-family="Arial,sans-serif" font-size="15" fill="#944B3E">AUDIT REFERENCE · NOT OWNER APPROVED</text>
+<path d="M465 139 H1118" stroke="#C4B7A4"/>
+<text x="470" y="201" font-family="Arial,sans-serif" font-size="18" font-weight="700" fill="#1D5960">ZERO-COPY STATE INVARIANTS</text>
+<text x="470" y="255" font-family="Arial,sans-serif" font-size="16" fill="#153F46">No cached provider thumbnails are invented as saved items</text>
+<text x="470" y="300" font-family="Arial,sans-serif" font-size="16" fill="#153F46">No source URIs requested or persisted without selection</text>
+<text x="470" y="345" font-family="Arial,sans-serif" font-size="16" fill="#153F46">No wallpaper apply or automatic shuffle activation</text>
+<text x="470" y="390" font-family="Arial,sans-serif" font-size="16" fill="#153F46">Explicit user action launches the OS-owned Photo Picker</text>
+<path d="M465 434 H1118" stroke="#C4B7A4"/>
+<text x="470" y="490" font-family="Arial,sans-serif" font-size="18" font-weight="700" fill="#1D5960">REQUIRED NATIVE TESTS</text>
+<text x="470" y="544" font-family="Arial,sans-serif" font-size="16" fill="#153F46">No-photo screen clarity and source access permissions</text>
+<text x="470" y="588" font-family="Arial,sans-serif" font-size="16" fill="#153F46">Picker cancellation returns without phantom membership</text>
+<text x="470" y="632" font-family="Arial,sans-serif" font-size="16" fill="#153F46">200% text, TalkBack action names and button focus</text>
+<text x="470" y="812" font-family="Arial,sans-serif" font-size="14" fill="#944B3E">DRAFT SCREEN, NOT ACTUAL GOOGLE PHOTOS UI</text>
+</svg>

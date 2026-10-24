@@ -1,0 +1,149 @@
+name: Glimpse visual references | one-shot branch validation
+
+# One-time push trigger: this workflow file being introduced/changed on the
+# dedicated visual PR branch. No triggers on ordinary source/docs pushes.
+# Final audit photo comparison proof: verify 12-pair browser atlas plus full source corpus.
+# Keep opt-in dispatch for a future intentional fresh visual review.
+on:
+  push:
+    branches:
+      - agent/visual-state-reconciliation-20261023
+    paths:
+      - .github/workflows/glimpse-reference-one-shot.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: glimpse-visual-reference-once-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  reference-proof:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Structural contract and identity checks
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/glimpse-visual-evidence
+          {
+          python3 scripts/validate-visual-spec.py
+          python3 scripts/validate-storyboard-coverage.py
+          python3 scripts/validate-core-state-evidence.py
+          python3 scripts/validate-storyboard-semantics.py
+          python3 scripts/validate-svg-photo-portability.py
+          python3 scripts/validate-audit-cycle.py
+          python3 scripts/validate-audit-visual-comparisons.py
+          } 2>&1 | tee /tmp/glimpse-visual-evidence/structural.log
+      - name: Install disposable raster dependencies
+        run: |
+          python3 -m pip install --disable-pip-version-check 'cairosvg>=2.7,<3' 'Pillow>=10,<13'
+      - name: Render source-hashed focus review groups
+        run: |
+          set -euo pipefail
+          python3 scripts/render-visual-reference-sheets.py --set core-34-named-states --set source-detail-paired --native --output /tmp/glimpse-visual-phone
+          python3 scripts/render-visual-reference-sheets.py --set reel-grid-crop-share --set critical-type-comparison --native --output /tmp/glimpse-visual-journeys
+          python3 scripts/render-visual-reference-sheets.py --set audit-r03-truth-candidates --native --output /tmp/glimpse-visual-audit-r03
+          python3 scripts/render-visual-reference-sheets.py --set audit-r01-finite-motion --native --output /tmp/glimpse-visual-audit-r01
+          python3 scripts/render-visual-reference-sheets.py --set audit-r01-photo-backed --native --output /tmp/glimpse-visual-audit-r01-photo
+          python3 scripts/render-visual-reference-sheets.py --set audit-r02-copy-transition --native --output /tmp/glimpse-visual-audit-r02
+      - name: Render entire proposal inventory once (66 + 82 + 55)
+        run: |
+          set -euo pipefail
+          python3 scripts/render-visual-reference-sheets.py --set entire-original-66 --set entire-p0-82 --set entire-p1-55 --native --output /tmp/glimpse-visual-complete
+      - name: Package immutable review evidence
+        if: always()
+        run: |
+          mkdir -p /tmp/glimpse-visual-evidence
+          cp -a /tmp/glimpse-visual-phone /tmp/glimpse-visual-evidence/phone 2>/dev/null || true
+          cp -a /tmp/glimpse-visual-journeys /tmp/glimpse-visual-evidence/journeys 2>/dev/null || true
+          cp -a /tmp/glimpse-visual-audit-r03 /tmp/glimpse-visual-evidence/audit-r03 2>/dev/null || true
+          cp -a /tmp/glimpse-visual-audit-r01 /tmp/glimpse-visual-evidence/audit-r01 2>/dev/null || true
+          cp -a /tmp/glimpse-visual-audit-r01-photo /tmp/glimpse-visual-evidence/audit-r01-photo 2>/dev/null || true
+          cp -a /tmp/glimpse-visual-audit-r02 /tmp/glimpse-visual-evidence/audit-r02 2>/dev/null || true
+          cp -a /tmp/glimpse-visual-complete /tmp/glimpse-visual-evidence/complete 2>/dev/null || true
+          printf '%s\n' "${GITHUB_SHA}" > /tmp/glimpse-visual-evidence/head-sha.txt
+          printf '%s\n' "Draft optical reference only; no human/device/owner pass claimed" > /tmp/glimpse-visual-evidence/NO-OPTICAL-SIGNOFF.txt
+      - name: Write source-hashed validation proof to PR branch
+        if: always()
+        env:
+          PROOF_STATUS: ${{ job.status }}
+        run: |
+          set -euo pipefail
+          mkdir -p docs/design
+          {
+            echo "# Glimpse one-shot visual reference validation"
+            echo
+            echo "**Automated tool result only. No visual, native, accessibility, or owner approval.**"
+            echo
+            echo "- Workflow source commit: \`${GITHUB_SHA}\`"
+            echo "- Workflow run ID: \`${GITHUB_RUN_ID}\`"
+            echo "- Workflow run URL: https://github.com/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
+            echo "- Run attempt: \`${GITHUB_RUN_ATTEMPT}\`"
+            echo "- Workflow result before publishing: \`${PROOF_STATUS}\`"
+            echo "- Branch: \`${GITHUB_REF_NAME}\`"
+            echo "- Review sets: 34 states, Source Detail, reel/grid/crop/share, large text, complete original 66 + P0 82 + P1 55"
+            echo "- CI artifact name: \`glimpse-reference-draft-${GITHUB_SHA}\`"
+            echo
+            echo "## Structural script outputs"
+            echo
+            if [[ -f /tmp/glimpse-visual-evidence/structural.log ]]; then
+              echo '~~~text'
+              tail -n 100 /tmp/glimpse-visual-evidence/structural.log
+              echo '~~~'
+            else
+              echo "Structural validation log missing; do not infer pass."
+            fi
+            echo
+            echo "## Rendered evidence"
+            echo
+            for index in /tmp/glimpse-visual-phone/index.json /tmp/glimpse-visual-journeys/index.json /tmp/glimpse-visual-complete/index.json /tmp/glimpse-visual-audit-r03/index.json /tmp/glimpse-visual-audit-r01/index.json /tmp/glimpse-visual-audit-r01-photo/index.json /tmp/glimpse-visual-audit-r02/index.json; do
+              if [[ -f "${index}" ]]; then
+                echo "- Raster ledger: ${index}"
+                python3 -c 'import json,sys; d=json.load(open(sys.argv[1])); print("  - Groups: "+", ".join(x["name"] for x in d.get("sheets",[]))); print("  - Native PNG crops: "+str(len(d.get("nativePhoneFiles",[]))))' "${index}"
+              else
+                echo "- Missing: ${index}"
+              fi
+            done
+            echo
+            echo "**Status describes automatic structural/render execution, NOT whether humans saw/read or accepted the PNG files.**"
+          } > docs/design/visual-one-shot-evidence.md
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/design/visual-one-shot-evidence.md
+          if ! git diff --cached --quiet; then
+            git commit -m "ci: record source-hashed draft visual validation result"
+            # Other agents may update the draft branch during the one-shot render.
+            # Rebase only the evidence commit: GITHUB_SHA remains the immutable
+            # source that was actually rendered and is printed in the ledger.
+            published=0
+            for attempt in 1 2 3; do
+              git fetch origin "+refs/heads/${GITHUB_REF_NAME}:refs/remotes/origin/${GITHUB_REF_NAME}"
+              git rebase "origin/${GITHUB_REF_NAME}"
+              if git push origin "HEAD:${GITHUB_REF_NAME}"; then
+                published=1
+                break
+              fi
+              echo "Branch advanced during evidence publication, retry ${attempt}/3"
+            done
+            if [[ "${published}" -ne 1 ]]; then
+              echo "Source-hashed evidence artifact remains available; branch proof publication failed" >&2
+              exit 1
+            fi
+          fi
+      - name: Upload draft visual evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: glimpse-reference-draft-${{ github.sha }}
+          path: /tmp/glimpse-visual-evidence
+          retention-days: 14
+          if-no-files-found: warn

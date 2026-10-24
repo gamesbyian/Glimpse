@@ -1,0 +1,577 @@
+{
+  "schemaVersion": 1,
+  "status": "DRAFT_EVIDENCE_TRACE_NOT_VISUAL_OR_NATIVE_ACCEPTANCE",
+  "source": "design/proposals/audit-driven-revision-plan.v1.json",
+  "auditCycleA": {
+    "PASS": 18,
+    "ISSUE": 8,
+    "UNVERIFIED": 34
+  },
+  "definitions": {
+    "PICTURED": "At least one directly relevant phone-side proposal; no optical, native, or owner claim",
+    "PARTIAL": "Relevant reference(s) exist but crucial same-surface or same-fixture transition is missing",
+    "MISSING_SPECIFIC": "No correctly dimensioned/current-generation reference exactly illustrates the named case"
+  },
+  "counts": {
+    "totalRequired": 56,
+    "PARTIAL": 6,
+    "PICTURED": 50,
+    "MISSING_SPECIFIC": 0
+  },
+  "finiteCountExamples": [
+    {
+      "photoTotal": 0,
+      "path": "design/proposals/audit-revisions/r01-photo-empty-0.svg"
+    },
+    {
+      "photoTotal": 1,
+      "path": "design/proposals/audit-revisions/r01-photo-single-1.svg"
+    },
+    {
+      "photoTotal": 3,
+      "path": "design/proposals/audit-revisions/r01-photo-three-3.svg"
+    },
+    {
+      "photoTotal": 5,
+      "path": "design/proposals/audit-revisions/r01-photo-five-5.svg"
+    },
+    {
+      "photoTotal": 22,
+      "path": "design/proposals/audit-revisions/r01-photo-rest-22.svg"
+    },
+    {
+      "photoTotal": 60,
+      "path": "design/proposals/audit-revisions/r01-photo-sixty-60.svg"
+    }
+  ],
+  "scenarios": [
+    {
+      "lane": "R01",
+      "scenario": "disc-full-and-crescent",
+      "evidenceState": "PARTIAL",
+      "sourcePaths": [
+        "design/proposals/audit-revisions/r01-photo-rest-22.svg",
+        "design/proposals/storyboards/x08/01-home-active.svg"
+      ],
+      "nextProof": "No same-framed physical-wheel/Home crescent treatment or human perception check."
+    },
+    {
+      "lane": "R01",
+      "scenario": "tap-to-focus",
+      "evidenceState": "PARTIAL",
+      "sourcePaths": [
+        "design/proposals/storyboards/x05/02-touch-down.svg",
+        "design/proposals/audit-revisions/r01-photo-rest-22.svg"
+      ],
+      "nextProof": "A touch-down pose is not a photographed tap-select-and-settle comparison."
+    },
+    {
+      "lane": "R01",
+      "scenario": "drag-18",
+      "evidenceState": "PICTURED",
+      "sourcePaths": [
+        "design/proposals/audit-revisions/r01-photo-drag-18.svg"
+      ],
+      "nextProof": "Review exact native-sized raster and device behavior; owner selection still absent."
+    },
+    {
+      "lane": "R01",
+      "scenario": "drag-36",
+      "evidenceState": "PARTIAL",
+      "sourcePaths": [
+        "design/proposals/storyboards/x05/04-drag-36.svg",
+        "design/proposals/audit-revisions/r01-photo-drag-18.svg"
+      ],
+      "nextProof": "36-degree pose uses older schematic fixture arrangement; verify five distinct photos and settled identity."
+    },
+    {
+      "lane": "R01",
+      "scenario": "settled-snap",
+      "evidenceState": "PICTURED",
+      "sourcePaths": [
+        "design/proposals/audit-revisions/r01-photo-snap-13.svg"
+      ],
+      "nextProof": "Review exact native-sized raster and device behavior; owner selection still absent."
+    },
+    {
+      "lane": "R01",
+      "scenario": "first-last",
+      "evidenceState": "PICTURED",
+      "sourcePaths": [
+        "design/proposals/audit-revisions/r01-photo-first-22.svg",
+        "design/proposals/audit-revisions/r01-photo-last-22.svg"
+      ],
+      "nextProof": "First p01 and last p22 now have separate source-derived photographic paper wheels, with first Previous disabled and no ghost wedge IDs; exact full-size optical inspection, actual gesture/nav/semantic focus and owner review remain absent."
+    },
+    {
+      "lane": "R01",
+      "scenario": "interrupted",
+      "evidenceState": "PICTURED",
+      "sourcePaths": [
+        "design/proposals/storyboards/x05/07-interrupted.svg"
+      ],
+      "nextProof": "Review exact native-sized raster and device behavior; owner selection still absent."
+    },
+    {
+      "lane": "R01",
+      "scenario": "reduced-motion",
+      "evidenceState": "PICTURED",
+      "sourcePaths": [
+        "design/proposals/audit-revisions/r05-reduced-motion.svg"
+      ],
+      "nextProof": "Review exact native-sized raster and device behavior; owner selection still absent."
+    },
+    {
+      "lane": "R01",
+      "scenario": "large-type",
+      "evidenceState": "PARTIAL",
+      "sourcePaths": [
+        "design/proposals/storyboards/x09/03-reel-200-text.svg",
+        "design/proposals/audit-revisions/r01-photo-rest-22.svg"
+      ],
+      "nextProof": "Render large type over identical photo-backed material and verify no cropped commands."
+    },
+    {
+      "lane": "R02",
+      "scenario": "reel-p12",
+      "evidenceState": "PICTURED",
+      "sourcePaths": [
+        "design/proposals/storyboards/x07/01-reel-focus.svg",
+        "design/proposals/audit-revisions/r01-photo-rest-22.svg"
+      ],
+      "nextProof": "Review exact native-sized raster and device behavior; owner selection still absent."
+    },
+    {
+      "lane": "R02",
+      "scenario": "grid-p12",
+      "evidenceState": "PICTURED",
+      "sourcePaths": [
+        "design/proposals/storyboards/x07/02-grid-focus.svg"
+      ],
+      "nextProof": "Review exact native-sized raster and device behavior; owner selection still absent."
+    },
+    {
+      "lane": "R02",
+      "scenario": "detail-p12",
+      "evidenceState": "PICTURED",
+      "sourcePaths": [
+        "design/proposals/storyboards/x07/03-photo-detail.svg"
+      ],
+      "nextProof": "Review exact native-sized raster and device behavior; owner selection still absent."
+    },
+    {
+      "lane": "R02",
+      "scenario": "crop-p12c",
+      "evidenceState": "PICTURED",
+      "sourcePaths": [
+        "design/proposals/audit-revisions/r02-crop-pending.svg",
+        "design/proposals/audit-revisions/r02-copy-saved.svg"
+      ],
+      "nextProof": "Review exact native-sized raster and device behavior; owner selection still absent."
+    },
+    {
+      "lane": "R02",
+      "scenario": "share-original",
+      "evidenceState": "PICTURED",
+      "sourcePaths": [
+        "design/proposals/advanced-storyboards/x13/01-original.svg",
+        "design/proposals/audit-revisions/r02-share-choice.svg"
+      ],
+      "nextProof": "Review exact native-sized raster and device behavior; owner selection still absent."
+    },
+    {
+      "lane": "R02",
+      "scenario": "share-edited",
+      "evidenceState": "PICTURED",
+      "sourcePaths": [
+        "design/proposals/advanced-storyboards/x13/02-edited.svg",
+        "design/proposals/audit-revisions/r02-share-choice.svg"
+      ],
+      "nextProof": "Review exact native-sized raster and device behavior; owner selection still absent."
+    },
+    {
+      "lane": "R02",
+      "scenario": "return-to-reel",
+      "evidenceState": "PICTURED",
+      "sourcePaths": [
+        "design/proposals/audit-revisions/r02-return-dismiss.svg",
+        "design/proposals/storyboards/x07/04-back-reel.svg"
+      ],
+      "nextProof": "Review exact native-sized raster and device behavior; owner selection still absent."
+    },
+    {
+      "lane": "R03",
+      "scenario": "home-last-confirmed",
+      "evidenceState": "PARTIAL",
+      "sourcePaths": [
+        "design/proposals/storyboards/x08/01-home-active.svg",
+        "design/proposals/audit-revisions/r03-preview-not-applied.svg"
+      ],
+      "nextProof": "Need one Home status panel explicitly labelled last Glimpse acknowledgement versus present wallpaper uncertainty."
+    },
+    {
+      "lane": "R03",
+      "scenario": "preview-not-applied",
+      "evidenceState": "PICTURED",
+      "sourcePaths": [
+        "design/proposals/audit-revisions/r03-preview-not-applied.svg"
+      ],
+      "nextProof": "Review exact native-sized raster and device behavior; owner selection still absent."
+    },
+    {
+      "lane": "R03",
+      "scenario": "apply-pending",
+      "evidenceState": "PICTURED",
+      "sourcePaths": [
+        "design/proposals/storyboards/x03/03-pending.svg"
+      ],
+      "nextProof": "Review exact native-sized raster and device behavior; owner selection still absent."
+    },
+    {
+      "lane": "R03",
+      "scenario": "apply-failed",
+      "evidenceState": "PICTURED",
+      "sourcePaths": [
+        "design/proposals/storyboards/x03/06-failed.svg"
+      ],
+      "nextProof": "Review exact native-sized raster and device behavior; owner selection still absent."
+    },
+    {
+      "lane": "R03",
+      "scenario": "apply-unknown",
+      "evidenceState": "PICTURED",
+      "sourcePaths": [
+        "design/proposals/audit-revisions/r03-unknown-after-request.svg"
+      ],
+      "nextProof": "Review exact native-sized raster and device behavior; owner selection still absent."
+    },
+    {
+      "lane": "R03",
+      "scenario": "lock-unsupported",
+      "evidenceState": "PICTURED",
+      "sourcePaths": [
+        "design/proposals/advanced-storyboards/x14/04-unsupported.svg"
+      ],
+      "nextProof": "Review exact native-sized raster and device behavior; owner selection still absent."
+    },
+    {
+      "lane": "R03",
+      "scenario": "activity-trace",
+      "evidenceState": "PICTURED",
+      "sourcePaths": [
+        "design/proposals/advanced-storyboards/x18/01-activity.svg",
+        "design/proposals/advanced-storyboards/x18/02-unknown.svg"
+      ],
+      "nextProof": "Review exact native-sized raster and device behavior; owner selection still absent."
+    },
+    {
+      "lane": "R04",
+      "scenario": "import-empty",
+      "evidenceState": "PICTURED",
+      "sourcePaths": [
+        "design/proposals/audit-revisions/r04-import-empty.svg"
+      ],
+      "nextProof": "Review exact native-sized raster and device behavior; owner selection still absent."
+    },
+    {
+      "lane": "R04",
+      "scenario": "import-17-of-22-disabled",
+      "evidenceState": "PICTURED",
+      "sourcePaths": [
+        "design/proposals/audit-revisions/r04-import-17-of-22.svg"
+      ],
+      "nextProof": "Review exact native-sized raster and device behavior; owner selection still absent."
+    },
+    {
+      "lane": "R04",
+      "scenario": "import-100-pct",
+      "evidenceState": "PICTURED",
+      "sourcePaths": [
+        "design/proposals/storyboards/x01/06-import-result.svg",
+        "design/proposals/storyboards/x01/07-offline-ready.svg"
+      ],
+      "nextProof": "Review exact native-sized raster and device behavior; owner selection still absent."
+    },
+    {
+      "lane": "R04",
+      "scenario": "import-cancel",
+      "evidenceState": "PICTURED",
+      "sourcePaths": [
+        "design/proposals/audit-revisions/r04-import-cancel.svg"
+      ],
+      "nextProof": "Review exact native-sized raster and device behavior; owner selection still absent."
+    },
+    {
+      "lane": "R04",
+      "scenario": "import-offline",
+      "evidenceState": "PICTURED",
+      "sourcePaths": [
+        "design/proposals/audit-revisions/r04-import-offline-17-of-22.svg",
+        "design/proposals/storyboards/x01/03-cloud-pending.svg"
+      ],
+      "nextProof": "A single new R04 draft now shows source offline after 17 of 22 verified local copies; proof still requires 401x890 optical review plus provider disconnection/resume/permission and Room byte-journal on-device acceptance."
+    },
+    {
+      "lane": "R04",
+      "scenario": "import-no-space",
+      "evidenceState": "PICTURED",
+      "sourcePaths": [
+        "design/proposals/audit-revisions/r04-import-no-space.svg"
+      ],
+      "nextProof": "Review exact native-sized raster and device behavior; owner selection still absent."
+    },
+    {
+      "lane": "R05",
+      "scenario": "standard",
+      "evidenceState": "PICTURED",
+      "sourcePaths": [
+        "design/proposals/audit-revisions/r01-photo-rest-22.svg"
+      ],
+      "nextProof": "Review exact native-sized raster and device behavior; owner selection still absent."
+    },
+    {
+      "lane": "R05",
+      "scenario": "text-200-pct",
+      "evidenceState": "PICTURED",
+      "sourcePaths": [
+        "design/proposals/storyboards/x09/03-reel-200-text.svg",
+        "design/proposals/storyboards/x09/01-home-200-text.svg"
+      ],
+      "nextProof": "Review exact native-sized raster and device behavior; owner selection still absent."
+    },
+    {
+      "lane": "R05",
+      "scenario": "narrow-short",
+      "evidenceState": "PICTURED",
+      "sourcePaths": [
+        "design/proposals/audit-revisions/r05-photo-reel-narrow-short-320.svg",
+        "design/proposals/storyboards/x08/05-long-title.svg",
+        "design/proposals/storyboards/x12/02-safe-area-navigation.svg"
+      ],
+      "nextProof": "Exact source-derived 320x640 SVG has been CI-rasterized; independent visual judgment at full size, 200% font scale, real native layout/insets/hit targets and owner approval remain absent."
+    },
+    {
+      "lane": "R05",
+      "scenario": "high-contrast",
+      "evidenceState": "PICTURED",
+      "sourcePaths": [
+        "design/proposals/state-refinements/accessibility-high-contrast.svg"
+      ],
+      "nextProof": "Review exact native-sized raster and device behavior; owner selection still absent."
+    },
+    {
+      "lane": "R05",
+      "scenario": "reduced-motion",
+      "evidenceState": "PICTURED",
+      "sourcePaths": [
+        "design/proposals/audit-revisions/r05-reduced-motion.svg"
+      ],
+      "nextProof": "Review exact native-sized raster and device behavior; owner selection still absent."
+    },
+    {
+      "lane": "R05",
+      "scenario": "focus-overlay",
+      "evidenceState": "PICTURED",
+      "sourcePaths": [
+        "design/proposals/audit-revisions/r05-photo-reel-focus-overlay.svg"
+      ],
+      "nextProof": "Review exact native-sized raster and device behavior; owner selection still absent."
+    },
+    {
+      "lane": "R05",
+      "scenario": "hit-target-overlay",
+      "evidenceState": "PICTURED",
+      "sourcePaths": [
+        "design/proposals/audit-revisions/r05-photo-reel-focus-overlay.svg"
+      ],
+      "nextProof": "Review exact native-sized raster and device behavior; owner selection still absent."
+    },
+    {
+      "lane": "R06",
+      "scenario": "original-p12",
+      "evidenceState": "PICTURED",
+      "sourcePaths": [
+        "design/proposals/advanced-storyboards/x13/01-original.svg"
+      ],
+      "nextProof": "Review exact native-sized raster and device behavior; owner selection still absent."
+    },
+    {
+      "lane": "R06",
+      "scenario": "edited-p12c",
+      "evidenceState": "PICTURED",
+      "sourcePaths": [
+        "design/proposals/advanced-storyboards/x13/02-edited.svg"
+      ],
+      "nextProof": "Review exact native-sized raster and device behavior; owner selection still absent."
+    },
+    {
+      "lane": "R06",
+      "scenario": "crop-frame",
+      "evidenceState": "PICTURED",
+      "sourcePaths": [
+        "design/proposals/storyboards/x11/03-crop.svg"
+      ],
+      "nextProof": "Review exact native-sized raster and device behavior; owner selection still absent."
+    },
+    {
+      "lane": "R06",
+      "scenario": "share-original",
+      "evidenceState": "PICTURED",
+      "sourcePaths": [
+        "design/proposals/audit-revisions/r02-share-choice.svg",
+        "design/proposals/advanced-storyboards/x13/01-original.svg"
+      ],
+      "nextProof": "Review exact native-sized raster and device behavior; owner selection still absent."
+    },
+    {
+      "lane": "R06",
+      "scenario": "share-edited",
+      "evidenceState": "PICTURED",
+      "sourcePaths": [
+        "design/proposals/audit-revisions/r02-share-choice.svg",
+        "design/proposals/advanced-storyboards/x13/02-edited.svg"
+      ],
+      "nextProof": "Review exact native-sized raster and device behavior; owner selection still absent."
+    },
+    {
+      "lane": "R06",
+      "scenario": "os-share-return",
+      "evidenceState": "PICTURED",
+      "sourcePaths": [
+        "design/proposals/advanced-storyboards/x13/04-cancel.svg"
+      ],
+      "nextProof": "Review exact native-sized raster and device behavior; owner selection still absent."
+    },
+    {
+      "lane": "R06",
+      "scenario": "os-share-dismiss",
+      "evidenceState": "PICTURED",
+      "sourcePaths": [
+        "design/proposals/audit-revisions/r06-share-dismissed.svg"
+      ],
+      "nextProof": "Review exact native-sized raster and device behavior; owner selection still absent."
+    },
+    {
+      "lane": "R07",
+      "scenario": "waiting",
+      "evidenceState": "PICTURED",
+      "sourcePaths": [
+        "design/proposals/storyboards/x04/01-ready.svg"
+      ],
+      "nextProof": "Review exact native-sized raster and device behavior; owner selection still absent."
+    },
+    {
+      "lane": "R07",
+      "scenario": "eligible",
+      "evidenceState": "PICTURED",
+      "sourcePaths": [
+        "design/proposals/storyboards/x04/02-start.svg",
+        "design/proposals/storyboards/x04/03-active.svg"
+      ],
+      "nextProof": "Review exact native-sized raster and device behavior; owner selection still absent."
+    },
+    {
+      "lane": "R07",
+      "scenario": "paused",
+      "evidenceState": "PICTURED",
+      "sourcePaths": [
+        "design/proposals/storyboards/x04/05-paused.svg",
+        "design/proposals/state-refinements/automation-paused.svg"
+      ],
+      "nextProof": "Review exact native-sized raster and device behavior; owner selection still absent."
+    },
+    {
+      "lane": "R07",
+      "scenario": "delayed",
+      "evidenceState": "PICTURED",
+      "sourcePaths": [
+        "design/proposals/storyboards/x04/04-delayed.svg",
+        "design/proposals/state-refinements/automation-delayed.svg"
+      ],
+      "nextProof": "Review exact native-sized raster and device behavior; owner selection still absent."
+    },
+    {
+      "lane": "R07",
+      "scenario": "battery-restricted",
+      "evidenceState": "PICTURED",
+      "sourcePaths": [
+        "design/proposals/audit-revisions/r07-battery-restricted.svg"
+      ],
+      "nextProof": "Review exact native-sized raster and device behavior; owner selection still absent."
+    },
+    {
+      "lane": "R07",
+      "scenario": "resumed",
+      "evidenceState": "PICTURED",
+      "sourcePaths": [
+        "design/proposals/storyboards/x04/06-resumed.svg"
+      ],
+      "nextProof": "Review exact native-sized raster and device behavior; owner selection still absent."
+    },
+    {
+      "lane": "R07",
+      "scenario": "unknown",
+      "evidenceState": "PICTURED",
+      "sourcePaths": [
+        "design/proposals/audit-revisions/r07-unknown-after-attempt.svg"
+      ],
+      "nextProof": "Review exact native-sized raster and device behavior; owner selection still absent."
+    },
+    {
+      "lane": "R08",
+      "scenario": "source-offline",
+      "evidenceState": "PICTURED",
+      "sourcePaths": [
+        "design/proposals/advanced-storyboards/x17/04-offline.svg"
+      ],
+      "nextProof": "Review exact native-sized raster and device behavior; owner selection still absent."
+    },
+    {
+      "lane": "R08",
+      "scenario": "source-revoked",
+      "evidenceState": "PICTURED",
+      "sourcePaths": [
+        "design/proposals/audit-revisions/r08-source-revoked.svg"
+      ],
+      "nextProof": "Review exact native-sized raster and device behavior; owner selection still absent."
+    },
+    {
+      "lane": "R08",
+      "scenario": "storage-full",
+      "evidenceState": "PICTURED",
+      "sourcePaths": [
+        "design/proposals/storyboards/x10/04-storage-full.svg",
+        "design/proposals/audit-revisions/r04-import-no-space.svg"
+      ],
+      "nextProof": "Review exact native-sized raster and device behavior; owner selection still absent."
+    },
+    {
+      "lane": "R08",
+      "scenario": "restore-conflict",
+      "evidenceState": "PICTURED",
+      "sourcePaths": [
+        "design/proposals/audit-revisions/r08-restore-conflict-choice.svg"
+      ],
+      "nextProof": "Review exact native-sized raster and device behavior; owner selection still absent."
+    },
+    {
+      "lane": "R08",
+      "scenario": "wallpaper-unsupported",
+      "evidenceState": "PICTURED",
+      "sourcePaths": [
+        "design/proposals/advanced-storyboards/x14/04-unsupported.svg"
+      ],
+      "nextProof": "Review exact native-sized raster and device behavior; owner selection still absent."
+    },
+    {
+      "lane": "R08",
+      "scenario": "recovery-back",
+      "evidenceState": "PARTIAL",
+      "sourcePaths": [
+        "design/proposals/storyboards/x10/07-retry-explicit.svg",
+        "design/proposals/advanced-storyboards/x19/05-restore-result.svg"
+      ],
+      "nextProof": "No single context-preserving Back/return state after provider/restore adversity."
+    }
+  ]
+}

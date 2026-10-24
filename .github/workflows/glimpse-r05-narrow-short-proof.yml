@@ -1,0 +1,74 @@
+name: Glimpse R05 | compact phone photo-reel draft proof
+# Re-evaluate fixed JPEG magic check in deterministic source generator.
+
+on:
+  push:
+    branches:
+      - agent/visual-state-reconciliation-20261023
+    paths:
+      - .github/workflows/glimpse-r05-narrow-short-proof.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: glimpse-r05-short-optical-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  source-to-compact-pixels:
+    runs-on: ubuntu-latest
+    timeout-minutes: 9
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Generate source-derived 320x640 draft and test deterministic output
+        run: |
+          python3 scripts/build-r05-narrow-short-photo.py --write
+          python3 scripts/build-r05-narrow-short-photo.py
+      - name: Render exactly one source-linked compact phone reference
+        run: |
+          python3 -m pip install --quiet cairosvg pillow
+          python3 - <<'PY'
+          import hashlib,json,os
+          from pathlib import Path
+          from cairosvg import svg2png
+          from PIL import Image
+          src=Path('design/proposals/audit-revisions/r05-photo-reel-narrow-short-320.svg')
+          out=Path('/tmp/glimpse-r05-short')
+          out.mkdir(parents=True,exist_ok=True)
+          svg2png(bytestring=src.read_bytes(),write_to=str(out/'full.png'),
+                  output_width=1160,output_height=920)
+          with Image.open(out/'full.png') as full:
+              im=full.crop((47,114,367,754)).convert('RGB')
+              assert im.size==(320,640), im.size
+              assert len(im.getcolors(320*640) or [])>100,'Flat/missing artwork'
+              im.save(out/'phone-320x640.png')
+          (out/'evidence.json').write_text(json.dumps({
+              'runId':os.environ['GITHUB_RUN_ID'],
+              'inputSourceCommit':os.environ['GITHUB_SHA'],
+              'svgSourceSHA256':hashlib.sha256(src.read_bytes()).hexdigest(),
+              'cropSHA256':hashlib.sha256((out/'phone-320x640.png').read_bytes()).hexdigest(),
+              'renderedPixels':[320,640], 'evidenceType':'svg-only',
+              'independentlyOpticallyReviewed':False,
+              'androidVerified':False,'ownerApproved':False
+          },indent=2)+'\n')
+          print('PASS: exact-source 320x640 draft pixels generated, NOT optical/native approved')
+          PY
+      - name: Commit one editable draft only
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add design/proposals/audit-revisions/r05-photo-reel-narrow-short-320.svg
+          if ! git diff --cached --quiet; then
+            git commit -m "design: add compact 320x640 physical photographic reel draft"
+            git push origin HEAD:"${GITHUB_REF_NAME}"
+          fi
+      - uses: actions/upload-artifact@v4
+        with:
+          name: glimpse-r05-compact-paper-reel-${{ github.sha }}
+          path: /tmp/glimpse-r05-short/
+          retention-days: 14

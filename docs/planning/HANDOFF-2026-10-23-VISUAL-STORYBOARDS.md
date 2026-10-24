@@ -2,6 +2,10 @@
 
 **Handoff prepared from live GitHub `main` at `74b5f23f7d4d9abfa0c92e555f7463a061b769ee`.** Work in progress may advance independently: reread HEAD, issues, workflow results and manifests before editing.
 
+## 2026-10-23 visual-reconciliation continuation (subsequent agent branch)
+
+This addendum is superseded by the [new visual-reconciliation handoff](HANDOFF-2026-10-23-VISUAL-RECONCILIATION.md) for continued work. Work on [agent/visual-state-reconciliation-20261023](https://github.com/gamesbyian/Glimpse/tree/agent/visual-state-reconciliation-20261023), started from `main` commit `4a4f858871d210939679bc9a5ee69550aedda620`, adds [34-slot exact per-state mapping](../../design/proposals/core-state-evidence.v1.json), a [browser-rendered phone contact sheet](../../design/atlas/core-state-contact-sheet.html), 10 explicitly drawn targeted state refinements and a real reflow of the X09 Home 200%-text reference. Classifications: 19 state drawings, 11 partial drawings, 4 related-only nonclosures. Source text inspection is not raster inspection, and no visual or native acceptance is claimed. Validate with `python3 scripts/validate-core-state-evidence.py` and `python3 scripts/validate-storyboard-coverage.py`; inspect actual rendered image outputs before marking any optical gate. The next agent should resolve the **15 partial or related-only** named-state gaps, then review the 66+82+55+10 frames optically in manageable representative sets, and keep owner approval separate. The standalone HTML sheet renders source SVGs in a browser, but its existence does not constitute inspection.
+
 ## Verified repository state at handoff
 
 - **66 original current-generation SVG proposals:** 24 core, 8 reel special states, 34 support alternatives. **Never conflate these with newly authored storyboards.**

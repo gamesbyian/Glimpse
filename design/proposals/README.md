@@ -26,6 +26,16 @@ The [**mobile storyboard gallery**](../atlas/storyboards.html) contains **82 add
 
 The [2026-10-23 current-generation mockup gap register](../../docs/design/proposal-mockup-coverage-gaps-2026-10-23.md) distinguishes 34 missing dedicated named core state variants from 27 additional scenario/storyboard/platform and stress-visual needs. It also warns against treating schematic annotation text or the 34 support-state filenames as proof of complete interactions. **This is mockup coverage preparation, not a quality audit or user approval.**
 
+## Explicit reconciliation of 34 core state gaps (2026-10-23)
+
+The [machine-readable per-state evidence map](core-state-evidence.v1.json) enumerates all 34 original unpictured named core variants, links each to an exact existing or new SVG, and labels whether the phone drawing is **pictured**, **partially pictured** or **only topically related**. Current source inspection: **34 structurally pictured, 0 partial, 0 related-only**. These 34 SVGs now picture dedicated states in the phone region, but are still not raster, owner, accessibility, or Android runtime signoff. The [34-state browser contact sheet](../atlas/core-state-contact-sheet.html) renders phone regions of those exact files for optical review. Twenty-five additional [state-specific source drawings](state-refinements/) fill false-positive reuse cases; they do **not** increase the original 66, P0 82 or P1 55 inventory totals. The 200%-text Home storyboard has also been reflowed, while its neighboring large-type pages still need visual scrutiny.
+
+Before an optical signoff, inspect the whole SVG including the right annotation, check the phone controls independently and compare neighboring transition frames. The validator `python3 scripts/validate-core-state-evidence.py` confirms exact paths, statuses and some visibly pictured phone labels only. It cannot detect clipped glyphs, aesthetic mismatch or runtime behavior.
+
+The companion [six representative flow sheets](../atlas/representative-flows.html) groups 60 connected draft frames to judge reel boundaries/poses, Google Photos import, OS apply and rotation outcomes, editing/share payloads and accessibility/errors together. X05 frames now carry explicit selection/pose metadata and motion transitions; X11 and X13 distinguish source `p12` from edited `p12c` in visible results and metadata. Run `python3 scripts/validate-storyboard-semantics.py` for small semantic assertions. The optional `scripts/render-visual-reference-sheets.py` makes real raster sheet PNGs for **subsequent** visual inspection.
+
+**Optical reconnaissance:** [the 2026-10-23 actual raster review log](../../docs/design/optical-review-log-2026-10-23.md) documents eight X05 broken photo scenes (repaired with embedded data URIs), a falsely unrotated X11 preview (repaired), improved X09 large-type reflow, and still-open X07 reel-fidelity differences. The `scripts/validate-svg-photo-portability.py` check prevents unbundled image links. The optical evidence comes from the prior main artifact plus individually inspected local patches; the full updated PR remains optically **unverified**.
+
 ## Initial review set
 
 These images should be judged **together** as the earliest coherent proposed family:
@@ -55,3 +65,41 @@ All images currently use the same paper/teal design proposal, system sans typogr
 5. When the owner explicitly approves a whole compatible set, freeze exact source hashes in a new `design/approved/` manifest. **Do not infer approval merely from these files existing.**
 
 Source-backed proposals are versioned; optional screenshot/atlas artifacts live in Actions and do not replace source or a separate runtime evidence ledger.
+
+
+**X07 identity repair (draft source):** The Reel→Grid→Detail→Reel journey now shares p12's embedded public photograph across selected hero, Grid tile, detail and return frames. The three X07 reel plates reuse X05's actual five-aperture disc drawing; selected p12 is no longer depicted as a different synthetic stripe artwork on each surface. The other Grid tiles and X06 remain schematic. See the optical log and source-level validator; no fresh-branch raster or device signoff yet.
+
+
+### Targeted, source-hashed optical export (pending execution)
+
+The optional `scripts/render-visual-reference-sheets.py` now includes `core-34-named-states`, `state-refinements-25`, `source-detail-paired` and `critical-type-comparison` groups as well as the older six representative flow groups. Render selectively to avoid expensive repeated JPEG decoding:
+
+```sh
+python3 scripts/render-visual-reference-sheets.py --list-sets
+python3 scripts/render-visual-reference-sheets.py --set core-34-named-states --set source-detail-paired --native --output /tmp/glimpse-new-states
+python3 scripts/render-visual-reference-sheets.py --set reel-grid-crop-share --set critical-type-comparison --native --output /tmp/glimpse-photo-type
+```
+
+`--native` writes original 401×890 phone crops, indexed by exact source SHA-256 in `index.json`. Neither script invocation nor the generated sheets claim an optical PASS until someone opens and inspects the actual PNGs. Requires disposable Python CairoSVG and Pillow installation.
+
+
+The eight mechanism-focused refinements (collections, Lock target support and preview, Activity history, nested rules, Photo Detail exclusion and restore conflict) now include representative controls and visual hierarchy, not merely labels. They still require the source-hashed optical and complete action-sequence assessment.
+
+
+**Full baseline optical capture:** The 66 original, 82 P0 and 55 P1 proposal SVGs were all rasterized in [successful one-shot run 40023670567](https://github.com/gamesbyian/Glimpse/actions/runs/40023670567), producing 203 source-hashed native phone crops and complete 12-phone contact page reviews. No baseline phone image was found wholly blank. This is a broad, first-pass optical check, not individual detailed design approval. Subsequent source fixes to X05 final p22 and X08/X10 status chips need one final exact-branch proof; see optical log.
+
+
+## Audit-cycle A: photographic R01 / R02 review entry point (current draft branch)
+
+- **[Mobile side-by-side before/after atlas](../atlas/audit-visual-comparisons.html)** includes six finite paper-reel pairs, four photo edit/share pairs, and two wallpaper outcome pairs. Only the 401×890 phone pixels are displayed, with direct links to complete editable SVGs. All remain *draft/unapproved*.
+- The first six circle-chip R01 SVGs were retained as **finite-index diagrams**, not promoted as visual targets. The [photographic revision source contract](audit-revisions/R01-PHOTOGRAPHIC-CONTINUITY.md) now defines six photo-backed X05-style paper-reel variants using actual art1–art6 research JPEGs, including empty and single-item states. No two simultaneously visible neighbouring photo IDs share source bytes.
+- R02's [four crop/save/share/return proposal sources](audit-revisions/) now share the **exact original p12 JPEG** from X07 Grid. A saved p12c is a visibly cropped *derived* image, not a silently renamed original; OS delivery and native save failure behaviour are not evidenced by reference SVGs.
+- [Native QA evidence matrix](../../docs/design/R01-R02-NATIVE-EVIDENCE-MATRIX.md) specifies the missing screenshots, accessibility hierarchy, 0/1/3/5/22/60 actual index tests and sharing outcomes. [Initial audit scoring](../../docs/design/glimpse-ux-audit-cycle-a.v1.json) remains 18 source-level PASS, 8 ISSUE and 34 UNVERIFIED until scored against valid new evidence.
+
+These photographic updates **do not change** the 66/82/55 original/P0/P1 asset counts. The new atlas's browser rendering, source validation, Android implementation and owner approval must be reviewed separately.
+
+## Complete draft audit-source appendix · 2026-10-24
+
+The older six photographed R01 sources remain the source-linked core motion sequence, but subsequent **separate** audit studies now also show finite photographic collection sizes **N=3, N=5, N=60**, the honest **N=22 first item p01** (two unfilled leading apertures), and the compact **320×640** paper-reel study. R04 additionally has a same-surface provider-offline **17 verified locally / five pending** recovery proposal. See the [full searchable 264-source atlas](../atlas/whole-set-evidence-atlas.html) and [exact per-SVG SHA ledger](../atlas/whole-set-evidence-index.json); 203 baseline + 25 targeted refinements + 36 R01–R08 alternatives = 264 unique source SVGs. These alternatives are *not* a single mutually compatible 264-screen design.
+
+[56 audit comparison scenarios](audit-scenario-evidence.v1.json) currently trace to **50 pictured / six partial / none without a specific proposed illustration**. Both the full atlas and six-gap trace are **design-source structural evidence only**. The 60-question audit cycle remains **18 source-only PASS, eight ISSUE, 34 UNVERIFIED**. The [historical Android native visual gallery](../../docs/quality/NATIVE-ATLAS-DISCOVERY-2026-10-24.md) documents seven older actual emulator captures but does not prove the current photographic design is implemented. [Latest workflow and handoff](../../docs/planning/HANDOFF-2026-10-24-VISUAL-PACKET-CONTINUATION.md) explain exactly what has and has not been raster-inspected, and owner approval remains outstanding.

@@ -1,0 +1,140 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-23",
+  "stage": "R05_NATIVE_PROOF_REQUEST_NOT_TEST_RESULTS",
+  "rules": [
+    "References are unapproved illustrations, never proof of TalkBack or text-size runtime behaviour",
+    "Record Android build SHA, device/API, density, viewport, fontScale and accessibility settings",
+    "Each interaction logs photo ID before and after, accessibility focus, target bounds px→dp, outcome state",
+    "Dedicated reduced-motion and focus-route diagrams exist; neither is native behavioural evidence"
+  ],
+  "cases": [
+    {
+      "id": "R05-01",
+      "slug": "touch-targets",
+      "referencePath": "design/proposals/audit-revisions/r01-photo-rest-22.svg",
+      "questions": [
+        "GUX-31",
+        "GUX-32"
+      ],
+      "title": "Reel target dimensions",
+      "required": "Measure bounds in dp; demonstrate tapping, Previous/Next, Grid stable ID",
+      "nativeStatus": "unverified",
+      "dedicatedReferenceMissing": false,
+      "photoOverlayReferencePath": "design/proposals/audit-revisions/r05-photo-reel-focus-overlay.svg"
+    },
+    {
+      "id": "R05-02",
+      "slug": "large-home",
+      "referencePath": "design/proposals/storyboards/x09/01-home-200-text.svg",
+      "questions": [
+        "GUX-35",
+        "GUX-36"
+      ],
+      "title": "Home text at 200%",
+      "required": "Native fontScale=2.0 captures with insets and clipped-line detection",
+      "nativeStatus": "unverified",
+      "dedicatedReferenceMissing": false
+    },
+    {
+      "id": "R05-03",
+      "slug": "large-reel",
+      "referencePath": "design/proposals/storyboards/x09/03-reel-200-text.svg",
+      "questions": [
+        "GUX-33",
+        "GUX-35"
+      ],
+      "title": "Reel 200% count",
+      "required": "Selected item index/total and alternatives available at scale",
+      "nativeStatus": "unverified",
+      "dedicatedReferenceMissing": false
+    },
+    {
+      "id": "R05-04",
+      "slug": "large-import",
+      "referencePath": "design/proposals/storyboards/x09/05-import-200-text.svg",
+      "questions": [
+        "GUX-35",
+        "GUX-39"
+      ],
+      "title": "Import progress 200%",
+      "required": "Pending vs disabled actions visible and announced",
+      "nativeStatus": "unverified",
+      "dedicatedReferenceMissing": false
+    },
+    {
+      "id": "R05-05",
+      "slug": "large-grid",
+      "referencePath": "design/proposals/storyboards/x09/04-grid-large-type.svg",
+      "questions": [
+        "GUX-35",
+        "GUX-36"
+      ],
+      "title": "Grid 200%",
+      "required": "Focus/selection preserved with scaled text",
+      "nativeStatus": "unverified",
+      "dedicatedReferenceMissing": false
+    },
+    {
+      "id": "R05-06",
+      "slug": "high-contrast",
+      "referencePath": "design/proposals/state-refinements/accessibility-high-contrast.svg",
+      "questions": [
+        "GUX-38",
+        "GUX-39"
+      ],
+      "title": "High contrast",
+      "required": "Contrast/focus/checked icon tested beyond static SVG",
+      "nativeStatus": "unverified",
+      "dedicatedReferenceMissing": false
+    },
+    {
+      "id": "R05-07",
+      "slug": "reduced-motion",
+      "referencePath": "design/proposals/critical-reel/reel-large-text.svg",
+      "questions": [
+        "GUX-32",
+        "GUX-37"
+      ],
+      "title": "Motion-independent equivalent",
+      "required": "Dedicated draft before/after Next reference exists; require real zero-spin native p12→p13 selection and focus evidence",
+      "nativeStatus": "unverified",
+      "dedicatedReferenceMissing": false,
+      "dedicatedReferencePath": "design/proposals/audit-revisions/r05-reduced-motion.svg",
+      "referenceKind": "illustrative-interaction-route-not-native-evidence",
+      "dedicatedOpticalStatus": "source-sha-matched-phone-crop-independently-viewed"
+    },
+    {
+      "id": "R05-08",
+      "slug": "talkback",
+      "referencePath": "design/proposals/storyboards/x09/03-reel-200-text.svg",
+      "questions": [
+        "GUX-33",
+        "GUX-34"
+      ],
+      "title": "TalkBack sequence",
+      "required": "Dedicated focus-order draft overlay exists; verify actual Android spoken output, focus restoration and 22-item index/total",
+      "nativeStatus": "unverified",
+      "dedicatedReferenceMissing": false,
+      "dedicatedReferencePath": "design/proposals/audit-revisions/r05-talkback-route.svg",
+      "referenceKind": "illustrative-interaction-route-not-native-evidence",
+      "photoOverlayReferencePath": "design/proposals/audit-revisions/r05-photo-reel-focus-overlay.svg",
+      "dedicatedOpticalStatus": "source-sha-matched-phone-crop-independently-viewed"
+    },
+    {
+      "id": "R05-09",
+      "slug": "short-error",
+      "referencePath": "design/proposals/storyboards/x09/07-error-compact.svg",
+      "questions": [
+        "GUX-31",
+        "GUX-36"
+      ],
+      "title": "Narrow/short viewport recovery",
+      "required": "Inset and keyboard bounds, access to retry and back",
+      "nativeStatus": "unverified",
+      "dedicatedReferenceMissing": false
+    }
+  ],
+  "opticalSourceRun": 40049026265,
+  "photoOverlaySourceSha256": "80bef8638ed0c18d6e91e67fb66a5f89336458ff592738bc9ebd5c3922135f07"
+}

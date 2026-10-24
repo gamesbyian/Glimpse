@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+<title>Glimpse · Audit revision visual comparisons</title>
+<style>
+:root{color-scheme:light;--paper:#f6f0e6;--shell:#e9e2d6;--ink:#153f46;--soft:#667975;--accent:#1d5960;--line:#c4b7a4;--white:#fffcf6;}
+*{box-sizing:border-box}html{background:var(--shell);color:var(--ink);font:15px/1.45 system-ui,-apple-system,"Segoe UI",sans-serif}
+body{margin:0;min-height:100vh}button,select{font:inherit;color:inherit;min-height:48px}
+button:focus-visible,select:focus-visible,a:focus-visible{outline:3px solid #e8876c;outline-offset:3px}
+header{padding:22px max(16px,env(safe-area-inset-left)) 12px;background:var(--paper);border-bottom:1px solid var(--line)}
+h1{font-size:clamp(24px,4.7vw,34px);letter-spacing:-.03em;margin:0}h2{font-size:18px;margin:0 0 7px}
+p{margin:7px 0 0;color:var(--soft)}.eyebrow{letter-spacing:.09em;text-transform:uppercase;font-size:11px;font-weight:800;color:var(--accent)}
+main{max-width:1210px;margin:auto;padding:16px max(16px,env(safe-area-inset-left)) 60px}
+.toolbar{display:grid;grid-template-columns:1fr;gap:10px;background:var(--white);padding:14px;border:1px solid var(--line);border-radius:16px}
+label{font-size:13px;font-weight:700}select{display:block;width:100%;border-radius:11px;padding:8px 12px;background:white;border:1px solid var(--line)}
+.nav{display:flex;gap:9px}.nav button{flex:1;background:var(--paper);border:1px solid var(--line);border-radius:11px;cursor:pointer;font-weight:700}
+.nav button:disabled{opacity:.38;cursor:default}.status{font-size:13px;color:var(--soft);margin:12px 2px 16px}
+.compare{display:grid;grid-template-columns:minmax(0,1fr);gap:17px}
+.panel{border:1px solid var(--line);border-radius:16px;background:var(--white);padding:12px;min-width:0}
+.panel h2{font-size:15px}.panel .desc{margin:0 0 12px;font-size:12px}
+.phone{position:relative;width:min(100%,401px);aspect-ratio:401/890;overflow:hidden;border:1px solid #b6a48d;border-radius:20px;background:var(--paper);margin:auto}
+.phone img{position:absolute;left:-3.74%;top:-1.57%;width:289.277%;height:103.37%;max-width:none;object-fit:fill}
+.detail{font-size:13px;margin-top:12px}.detail a{color:var(--accent);font-weight:700;overflow-wrap:anywhere}
+legend,fieldset{border:0;margin:0;padding:0}.footer{border-top:1px solid var(--line);margin-top:22px;padding-top:14px;font-size:13px;color:var(--soft)}
+.warning{color:#944b3e;font-weight:700}.key{font-family:monospace;background:#ebe3d8;padding:2px 4px;border-radius:4px}
+@media(min-width:760px){.toolbar{grid-template-columns:2fr 1fr;align-items:end}.compare{grid-template-columns:repeat(2,minmax(0,1fr))}.phone{width:min(100%,401px)}}
+@media(prefers-reduced-motion:no-preference){button:hover:not(:disabled){background:#e4d8c7}}
+@media(prefers-color-scheme:dark){/* Keep authored paper reference hues stable in this audit viewer. */}
+</style></head><body>
+<header><div class="eyebrow">Glimpse · design research · draft</div><h1>Before / after: phone pixels</h1>
+<p>Connected proposal comparisons. The left image is an earlier reference; the right is the new audit-driven candidate. Neither is an Android screenshot or an approved target.</p></header>
+<main><section class="toolbar" aria-label="Choose an audit comparison">
+ <div><label for="scenario">Review scene</label><select id="scenario"></select></div>
+ <div class="nav"><button type="button" id="prev" aria-label="Previous comparison">← Previous</button><button type="button" id="next" aria-label="Next comparison">Next →</button></div>
+</section><p id="status" class="status" role="status" aria-live="polite"></p>
+<div class="compare">
+ <section class="panel"><h2>Earlier reference</h2><p id="old-caption" class="desc"></p><div class="phone"><img id="old-svg" alt="Earlier source proposal cropped to 401 by 890 phone pixels" loading="eager"/></div><p class="detail"><a id="old-link" href="#">Open complete SVG and annotations ↗</a></p></section>
+ <section class="panel"><h2>Audit revision candidate</h2><p id="new-caption" class="desc"></p><div class="phone"><img id="new-svg" alt="Revised source proposal cropped to 401 by 890 phone pixels" loading="eager"/></div><p class="detail"><a id="new-link" href="#">Open complete SVG and annotations ↗</a></p></section>
+</div>
+<section class="footer"><p class="warning">Visual source evidence ≠ Android runtime or owner signoff.</p>
+<p>R01 uses real checked-in photo fixtures art1–art6 in a paper reel, with finite mapping. R02 reuses X07 p12 photo pixels through a clipped edit. The earlier small circular-chip studies remain archived but should not be confused with the photographic redesign.</p>
+<p>Review with the <a href="../proposals/audit-revisions/R01-PHOTOGRAPHIC-CONTINUITY.md">R01 source identity contract</a>, <a href="../proposals/audit-revisions/R02-CONTINUITY-ACCEPTANCE.md">R02 source chain</a>, and <a href="../../docs/design/R01-R02-NATIVE-EVIDENCE-MATRIX.md">native evidence matrix</a>. SVG display can differ by browser and font; inspect 401×890 source-hashed PNGs in the CI artifact before optical closure.</p></section></main>
+<script>
+"use strict";
+const scenarios=[
+ ["R01 · 22 photos at rest","storyboards/x05/01-rest.svg","audit-revisions/r01-photo-rest-22.svg","Three repeated embedded JPEG slots","Five adjacent IDs with unique photo bytes"],
+ ["R01 · 18° drag","storyboards/x05/03-drag-18.svg","audit-revisions/r01-photo-drag-18.svg","Gesture in X05; p12 still selected","p12 remains source art1 while wheel rotates"],
+ ["R01 · snap to p13","storyboards/x05/05-snap-72.svg","audit-revisions/r01-photo-snap-13.svg","Original settled geometry","p13 art4 remains distinct and stable"],
+ ["R01 · last photo p22","storyboards/x05/08-last.svg","audit-revisions/r01-photo-last-22.svg","Original final p22 photo from art4","Final p22 art6; only three real nearby photos"],
+ ["R01 · empty collection","audit-revisions/r01-empty-0.svg","audit-revisions/r01-photo-empty-0.svg","Circular chip schematic","Blank paper wedge apertures, Add Photos"],
+ ["R01 · one photo","audit-revisions/r01-single-1.svg","audit-revisions/r01-photo-single-1.svg","Circular chip schematic","One real photo in hero and central wedge"],
+ ["R02 · unsaved crop","storyboards/x11/03-crop.svg","audit-revisions/r02-crop-pending.svg","Vector edit preview","Source p12 photo enlarged, no saved copy yet"],
+ ["R02 · saved p12c","advanced-storyboards/x13/02-edited.svg","audit-revisions/r02-copy-saved.svg","Vector share-edit result","p12c uses real p12 source pixels with a crop"],
+ ["R02 · share original or edited","advanced-storyboards/x13/01-original.svg","audit-revisions/r02-share-choice.svg","Original-share source vector","Two real-photo original/cropped choices"],
+ ["R02 · return from share","advanced-storyboards/x13/02-edited.svg","audit-revisions/r02-return-dismiss.svg","Edited vector proposal","Photographic copy retained, no receipt claim"],
+ ["R03 · selected not applied","storyboards/x03/05-uncertain.svg","audit-revisions/r03-preview-not-applied.svg","Earlier outcome state","Preview/last-confirmed separation"],
+ ["R03 · unknown outcome","storyboards/x03/05-uncertain.svg","audit-revisions/r03-unknown-after-request.svg","Earlier uncertain case","Explicit unknown request and system inspection"]
+];
+const byId=id=>document.getElementById(id),sel=byId("scenario");
+scenarios.forEach((s,i)=>{const o=document.createElement("option");o.value=String(i);o.textContent=s[0];sel.appendChild(o)});
+let index=0;
+function refresh(){
+ index=Math.max(0,Math.min(scenarios.length-1,Number(sel.value)||0));
+ const [name,oldPath,newPath,oldCaption,newCaption]=scenarios[index];
+ byId("old-svg").src="../proposals/"+oldPath;
+ byId("new-svg").src="../proposals/"+newPath;
+ byId("old-link").href="../proposals/"+oldPath;
+ byId("new-link").href="../proposals/"+newPath;
+ byId("old-caption").textContent=oldCaption;
+ byId("new-caption").textContent=newCaption;
+ byId("status").textContent=(index+1)+" of "+scenarios.length+" · "+name+" · all images draft / unapproved";
+ byId("prev").disabled=index===0;
+ byId("next").disabled=index===scenarios.length-1;
+}
+sel.addEventListener("change",refresh);
+byId("prev").addEventListener("click",()=>{sel.value=String(index-1);refresh();sel.focus()});
+byId("next").addEventListener("click",()=>{sel.value=String(index+1);refresh();sel.focus()});
+document.addEventListener("keydown",e=>{if(e.altKey&&e.key==="ArrowRight"&&index<scenarios.length-1){e.preventDefault();byId("next").click()}else if(e.altKey&&e.key==="ArrowLeft"&&index>0){e.preventDefault();byId("prev").click()}});
+refresh();
+</script></body></html>

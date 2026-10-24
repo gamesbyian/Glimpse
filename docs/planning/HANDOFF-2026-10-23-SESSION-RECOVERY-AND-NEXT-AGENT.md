@@ -1,0 +1,36 @@
+# Glimpse: recovered stopping point and fresh-agent handoff
+
+**Date:** 2026-10-23 (America/Edmonton). **Status:** safe checkpoint, not visual owner approval. This handoff supersedes older “waiting to render R01/R04/R05” claims, but complements [detailed running handoff](HANDOFF-2026-10-23-VISUAL-RECONCILIATION.md).
+
+## Repository disposition
+
+- Repository: `gamesbyian/Glimpse`. Work branch: `agent/visual-state-reconciliation-20261023`. Review: **[draft PR #6](https://github.com/gamesbyian/Glimpse/pull/6)**. Main remains separate. At recovery, branch was **387 commits ahead, 0 behind** main. Always re-fetch before edits; that number is a snapshot, not a permanent status.
+- The last **full** documented one-shot visual validation is successful [run 40041023803](https://github.com/gamesbyian/Glimpse/actions/runs/40041023803) at source `9eab98d1916b93f26bd1d999ff80e227e79d6fdd`. It rendered 203 baseline proposal crops plus 36 core, 23 journey, 2 R03, 6 schematic R01, 6 photo-backed R01 and 4 R02 crops. See [machine-readable source proof](../design/visual-one-shot-evidence.md). Later targeted source-specific runs matter more than that older source for affected drawings.
+- Later confirmed, individually inspected *targeted* runs: [R01 40048643795](https://github.com/gamesbyian/Glimpse/actions/runs/40048643795) photographic reel Grid control and unique finite images; [R04 40048067960](https://github.com/gamesbyian/Glimpse/actions/runs/40048067960) Cancel/No space; [R05 40049026265](https://github.com/gamesbyian/Glimpse/actions/runs/40049026265) reduced-motion, TalkBack-route illustration and photographic reel with proposed target overlay; [R04 40049428896](https://github.com/gamesbyian/Glimpse/actions/runs/40049428896) empty and 17-of-22 item progress. Earlier R01 0/1 ghost label repair independently inspected in [40041436182](https://github.com/gamesbyian/Glimpse/actions/runs/40041436182).
+- **Do not rerun exhaustive 203-frame CI just to restate this evidence.** Workflow `.github/workflows/glimpse-reference-one-shot.yml` is intentionally opt-in/scoped to edits of itself. Prefer small targeted checks; do not consume the owner's shared GitHub Actions runner capacity unnecessarily.
+
+## Completed work recovered
+
+1. Original proposal corpus: **66** original core/reel/support + **82** P0 connected storyboard + **55** P1 advanced storyboard = **203** baseline SVGs. **25** supplemental state refinements cover the original **34** mismatched named state slots. Neither the 25 nor any audit revision should be silently folded into the baseline count.
+2. First evidence-led **60-question UI/UX audit** is archived in [instrument](../design/glimpse-ux-audit-60.v1.json), [scored cycle A](../design/glimpse-ux-audit-cycle-a.v1.json), and [report](../design/GLIMPSE-AUDIT-CYCLE-A-REPORT.md). Scores **18 draft-source PASS / 8 ISSUE / 34 UNVERIFIED**, **43.1% assessed weighted evidence coverage, not a product readiness percentage**. Nothing in the latest candidate drawings justifies silently promoting unknown native behaviour to PASS.
+3. R01 tactile, photographic finite reel mockups and their exact reference/source-hash optical findings are in [audit revisions](../../design/proposals/audit-revisions/), [optical findings](../design/AUDIT-CANDIDATE-OPTICAL-REVIEW-2026-10-23.md), and the build/validation scripts. Six-photo research fixtures are for illustration only, not the owner's album. Verified no ghost indices for collection N=0 or N=1.
+4. R02 Reel/Grid/Detail/Edit/Share photo-ID continuity and saved p12c derivative, with a genuinely distinct crop and no false recipient-delivery claim. [Source chain](../../design/proposals/audit-revisions/r02-identity-chain.v1.json) and [acceptance contract](../../design/proposals/audit-revisions/R02-CONTINUITY-ACCEPTANCE.md) remain draft-level.
+5. R03 preview versus last-confirmed Home p04 versus unknown wallpaper outcome proposals. Android outcome proof remains missing.
+6. R04 import states: two existing references plus four new dedicated states including empty and verified item progress, cancellation and low storage; [candidate contract](AUDIT-CANDIDATE-B-IMPORT-RECOVERY.md) and [optical log](../design/R04-IMPORT-OPTICAL-INSPECTION-2026-10-23.md). Correct **17/22 = ~77% item-count**, not 78% unrelated byte-progress. Native import transaction, partial writes and provider expiry still unknown.
+7. R05: [nine-case manifest](../../design/proposals/audit-revisions/r05-accessibility-evidence.v1.json), [native test protocol](../design/R05-ACCESSIBILITY-NATIVE-ACCEPTANCE.md), three new optically verified interaction diagrams including a source-identical photo reel with suggested 48dp Grid target, and [optical log](../design/R05-OPTICAL-INSPECTION-2026-10-23.md). **No actual TalkBack transcript, measured target bounds or 200% font-scale device pass.**
+8. Eight revision lanes / 56 target scenario definitions are tracked in [revision manifest](../../design/proposals/audit-driven-revision-plan.v1.json). R06/R07/R08 are not complete merely because related older storyboards exist.
+
+## Critical remaining next steps, in order
+
+1. **Refresh live GitHub state and read AGENTS.md**, the detailed handoff, current decisions, implementation queue, the 60-question audit and both R04/R05 logs before editing. Never operate from historical PR or run counts.
+2. **Capture genuine native Android evidence**, if available, using the existing emulator screenshot/hierarchy collector and opt-in workflow. Prioritize R01 finite 0/1/3/5/22/60 selection parity, reel visual comparison, focus/target dimensions in dp, R05 reduced motion / TalkBack / 200% font and R04 interrupted imports. Do not invent device tests when tools cannot run them.
+3. Perform a **source-to-native side-by-side review**, logging source SHA, Android build SHA, viewport/insets, state photo ID, feature behavior and independently observed gaps. Separate real OS-owned screens from illustrations.
+4. Resume **audit-driven improvements** on source-backed gaps. Prioritize actual fidelity and interaction over producing extra screens. R06 sharing, R07 rotation timing and R08 recovery need deliberate traceability, but do not create parallel unintegrated specifications.
+5. Only **re-score the 60-question audit when new evidence actually closes a question**. Track change against cycle A, issue severity, source/runner provenance, updated specification and mockup before/after. Keep all proposals draft and PR #6 unmerged until user approval.
+
+## Recovery rules
+
+- No source changes or outstanding stranded edits were discovered in this recovery turn before this handoff. The interruption occurred during read-only reconciliation. This file itself is a new safe checkpoint.
+- `docs/design/visual-one-shot-evidence.md` documents the last *full* run, not necessarily the latest targeted Actions. Always consult individual focused optical logs for newer proofs.
+- The owner authorizes autonomous work but **has not authorized treating simulated artwork as successful native UX**, nor approving/merging the draft visual PR.
+- Whenever a tool/session stalls, first confirm current branch/PR and proven source SHAs, then add one coherent checkpoint. Avoid repeated workflow-triggering comment edits unless the new proof materially closes a known gap.

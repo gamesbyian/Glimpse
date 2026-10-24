@@ -1037,5 +1037,15 @@
     "design/reference/reel-browser-concept.svg": "pre-audit schematic, missing Previous and target-qualified apply; do not implement literal labels",
     "design/research/reel-layout/*.svg": "mutually exclusive comparison variants; never mix layouts or promote dual reels",
     "design/research/motion/*.png": "motion-study evidence, not stable accepted screen state"
+  },
+  "namedStateEvidence": {
+    "manifest": "design/proposals/core-state-evidence.v1.json",
+    "originalNamedMissingStates": 34,
+    "picturedState": 19,
+    "partialPictured": 11,
+    "relatedOnlyUncovered": 4,
+    "additionalDistinctStateSvg": 10,
+    "contactSheet": "design/atlas/core-state-contact-sheet.html",
+    "status": "SOURCE_INSPECTED_REQUIRES_OPTICAL_REVIEW_NOT_OWNER_APPROVED"
   }
 }

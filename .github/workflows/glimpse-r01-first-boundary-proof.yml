@@ -1,0 +1,72 @@
+name: Glimpse R01 | first item photographic finite boundary
+
+on:
+  push:
+    branches:
+      - agent/visual-state-reconciliation-20261023
+    paths:
+      - .github/workflows/glimpse-r01-first-boundary-proof.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: glimpse-r01-first-proof-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  first-item-paper-boundary:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Build exact geometry from existing photo reel
+        run: |
+          python3 scripts/build-r01-first-boundary-photo.py --write
+          python3 scripts/build-r01-first-boundary-photo.py
+      - name: Render full annotated source and one 401x890 phone
+        run: |
+          python3 -m pip install --quiet cairosvg pillow
+          python3 - <<'PY'
+          import hashlib, json, os
+          from pathlib import Path
+          from PIL import Image
+          from cairosvg import svg2png
+          src=Path("design/proposals/audit-revisions/r01-photo-first-22.svg")
+          out=Path("/tmp/glimpse-r01-first")
+          out.mkdir(parents=True,exist_ok=True)
+          svg2png(bytestring=src.read_bytes(),write_to=str(out/"full.png"),output_width=1160,output_height=920)
+          with Image.open(out/"full.png") as im:
+              phone=im.crop((15,14,416,904)).convert("RGB")
+              assert phone.size==(401,890)
+              assert len(phone.getcolors(401*890) or [])>100
+              phone.save(out/"phone-401x890.png")
+          (out/"evidence.json").write_text(json.dumps({
+              "sourceInputCommit":os.environ["GITHUB_SHA"],
+              "runId":os.environ["GITHUB_RUN_ID"],
+              "svgSHA256":hashlib.sha256(src.read_bytes()).hexdigest(),
+              "phoneSHA256":hashlib.sha256((out/"phone-401x890.png").read_bytes()).hexdigest(),
+              "realPhotoSlots":3,"blankSlots":2,"photoTotal":22,"selectedAssetId":"p01",
+              "independentOpticalReview":False,"nativeAndroidVerified":False,
+              "ownerApproved":False
+          },indent=2)+"\n")
+          print("PASS: 401x890 first-item source photo raster produced; not optical or native approved")
+          PY
+      - name: Commit one source SVG
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add design/proposals/audit-revisions/r01-photo-first-22.svg
+          if ! git diff --cached --quiet; then
+            git commit -m "design: add photographed p01 first boundary without ghost images"
+            git push origin HEAD:"${GITHUB_REF_NAME}"
+          fi
+      - uses: actions/upload-artifact@v4
+        with:
+          name: glimpse-r01-first-photo-boundary-${{ github.sha }}
+          path: /tmp/glimpse-r01-first/
+          retention-days: 14

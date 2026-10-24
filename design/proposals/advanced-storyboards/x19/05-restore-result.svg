@@ -7,13 +7,13 @@
 <text x="40" y="132" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="500" fill="#667975">No silent source deletion</text>
 <rect x="41" y="184" width="344" height="93" rx="13" fill="#FFFCF6" stroke="#C4B7A4"/>
 <text x="55" y="214" font-family="Arial,Helvetica,sans-serif" font-size="17" font-weight="650" fill="#153F46">Restore summary</text>
-<text x="55" y="246" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="440" fill="#667975">No existing data modified before confirm</text>
+<text x="55" y="246" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="440" fill="#667975">Only approved restore choices committed</text>
 <rect x="41" y="298" width="344" height="93" rx="13" fill="#FFFCF6" stroke="#C4B7A4"/>
 <text x="55" y="328" font-family="Arial,Helvetica,sans-serif" font-size="17" font-weight="650" fill="#153F46">1,284 entries restored</text>
 <text x="55" y="360" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="440" fill="#667975">On-device backup details</text>
 <rect x="41" y="412" width="344" height="93" rx="13" fill="#FFFCF6" stroke="#C4B7A4"/>
 <text x="55" y="442" font-family="Arial,Helvetica,sans-serif" font-size="17" font-weight="650" fill="#153F46">2 skipped · review log</text>
-<text x="55" y="474" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="440" fill="#667975">No action committed yet</text>
+<text x="55" y="474" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="440" fill="#667975">Restore committed · review log</text>
 <rect x="43" y="653" width="338" height="44" rx="16" fill="#1D5960" stroke="#1D5960"/>
 <text x="57" y="682" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="700" fill="white">Return to Collections</text>
 <path d="M31 820 H402" stroke="#C4B7A4"/>

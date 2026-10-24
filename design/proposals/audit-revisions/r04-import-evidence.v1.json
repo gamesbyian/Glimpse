@@ -1,0 +1,89 @@
+{
+  "schemaVersion": 1,
+  "stage": "R04_EXACT_CASE_AND_EVIDENCE_RECONCILIATION",
+  "date": "2026-10-23",
+  "audits": [
+    "GUX-12",
+    "GUX-13",
+    "GUX-14",
+    "GUX-25"
+  ],
+  "priority": "P1",
+  "rules": [
+    "Never treat a related quick screenshot as proof of multi-item bulk import",
+    "Original provider photos and user source ownership are unchanged",
+    "Only acknowledge bytes verified in durable private storage and membership records",
+    "Canceled or failed work cannot mark pending photos saved; explicit partial retention must remain possible",
+    "No Android Photo Picker UI is authored as a Glimpse-owned screen",
+    "No real Google Photos provider screenshot or native application is asserted from vector art"
+  ],
+  "cases": [
+    {
+      "id": "import-empty",
+      "currentPath": "design/proposals/storyboards/x01/01-collection-entry.svg",
+      "evidenceClass": "related-entry-only",
+      "acceptance": "Zero imported photos with an explicit Picker action, zero false existing thumbnails",
+      "disposition": "dedicated-draft-optically-reviewed-native-unverified",
+      "nativeEvidence": "unverified",
+      "ownerApproval": "not-requested",
+      "dedicatedReferencePath": "design/proposals/audit-revisions/r04-import-empty.svg",
+      "opticalStatus": "source-sha-matched-phone-crop-independently-viewed",
+      "sourceSha256": "888df0a1777f3bbbf43f8062e8c74dc170979c7a4f4eb0250e88e3f5b3cadf46"
+    },
+    {
+      "id": "import-17-of-22-disabled",
+      "currentPath": "design/proposals/state-refinements/quick-import-progress.svg",
+      "evidenceClass": "related-quick-screenshot-only",
+      "acceptance": "Bulk 22-photo copying: 17/22 verified by item count (~77%), five pending, Continue disabled and Stop/Review explicit; do not reuse screenshot-specific 78% bytes progress",
+      "disposition": "dedicated-draft-optically-reviewed-native-unverified",
+      "nativeEvidence": "unverified",
+      "ownerApproval": "not-requested",
+      "dedicatedReferencePath": "design/proposals/audit-revisions/r04-import-17-of-22.svg",
+      "opticalStatus": "source-sha-matched-phone-crop-independently-viewed",
+      "sourceSha256": "cff3bd1d864515df906e3ea69c7d8e9659241a82e1e5dc2478276dc75841964e"
+    },
+    {
+      "id": "import-100-pct",
+      "currentPath": "design/proposals/storyboards/x01/06-import-result.svg",
+      "evidenceClass": "partial-accounted-completion",
+      "acceptance": "Distinguish reconciled 22 selected from 20 saved/1 duplicate/1 skipped, enable Browse only for saved photos",
+      "disposition": "source-backed-optical-review-required",
+      "nativeEvidence": "unverified",
+      "ownerApproval": "not-requested"
+    },
+    {
+      "id": "import-cancel",
+      "currentPath": "design/proposals/storyboards/x01/04-copy-progress.svg",
+      "evidenceClass": "related-progress-only",
+      "acceptance": "Explicit Stop and retain verified copies vs continue, no claim unverified copies survive",
+      "disposition": "dedicated-draft-optically-reviewed-native-unverified",
+      "nativeEvidence": "unverified",
+      "ownerApproval": "not-requested",
+      "dedicatedReferencePath": "design/proposals/audit-revisions/r04-import-cancel.svg",
+      "opticalStatus": "source-sha-matched-phone-crop-independently-viewed",
+      "sourceSha256": "262eba90a66b4b38f7fed6efb13bb83716e5712ae2599c4f5d06460e28123c88"
+    },
+    {
+      "id": "import-offline",
+      "currentPath": "design/proposals/storyboards/x01/03-cloud-pending.svg",
+      "evidenceClass": "partial-cloud-pending",
+      "acceptance": "No unverified cloud source presented as offline; Retry when available / keep verified copies",
+      "disposition": "source-backed-optical-review-required",
+      "nativeEvidence": "unverified",
+      "ownerApproval": "not-requested"
+    },
+    {
+      "id": "import-no-space",
+      "currentPath": "design/proposals/storyboards/x01/05-partial-recovery.svg",
+      "evidenceClass": "related-partial-failure-only",
+      "acceptance": "Out-of-space with 17/22 verified, accessible Keep verified and Free space / retry actions",
+      "disposition": "dedicated-draft-optically-reviewed-native-unverified",
+      "nativeEvidence": "unverified",
+      "ownerApproval": "not-requested",
+      "dedicatedReferencePath": "design/proposals/audit-revisions/r04-import-no-space.svg",
+      "opticalStatus": "source-sha-matched-phone-crop-independently-viewed",
+      "sourceSha256": "acd6d5cff270dc015051875a14f8152fa5b61c18ac18a22fb098644c7c418d4a"
+    }
+  ],
+  "opticalSourceRun": 40049428896
+}

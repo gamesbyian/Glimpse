@@ -1,0 +1,607 @@
+{
+  "schemaVersion": 1,
+  "title": "Glimpse 60-question evidence-led UI/UX audit",
+  "date": "2026-10-23",
+  "stage": "AUDIT_INSTRUMENT_PREPARED_NOT_ALL_PASSED",
+  "categories": [
+    {
+      "name": "Identity & navigation",
+      "questionIds": [
+        "GUX-01",
+        "GUX-02",
+        "GUX-03",
+        "GUX-04",
+        "GUX-05",
+        "GUX-06",
+        "GUX-07",
+        "GUX-08",
+        "GUX-09",
+        "GUX-10"
+      ]
+    },
+    {
+      "name": "Import, editing & sharing",
+      "questionIds": [
+        "GUX-11",
+        "GUX-12",
+        "GUX-13",
+        "GUX-14",
+        "GUX-15",
+        "GUX-16",
+        "GUX-17",
+        "GUX-18",
+        "GUX-19",
+        "GUX-20"
+      ]
+    },
+    {
+      "name": "Wallpaper outcomes & automation",
+      "questionIds": [
+        "GUX-21",
+        "GUX-22",
+        "GUX-23",
+        "GUX-24",
+        "GUX-25",
+        "GUX-26",
+        "GUX-27",
+        "GUX-28",
+        "GUX-29",
+        "GUX-30"
+      ]
+    },
+    {
+      "name": "Accessibility & ergonomics",
+      "questionIds": [
+        "GUX-31",
+        "GUX-32",
+        "GUX-33",
+        "GUX-34",
+        "GUX-35",
+        "GUX-36",
+        "GUX-37",
+        "GUX-38",
+        "GUX-39",
+        "GUX-40"
+      ]
+    },
+    {
+      "name": "System trust, storage & recovery",
+      "questionIds": [
+        "GUX-41",
+        "GUX-42",
+        "GUX-43",
+        "GUX-44",
+        "GUX-45",
+        "GUX-46",
+        "GUX-47",
+        "GUX-48",
+        "GUX-49",
+        "GUX-50"
+      ]
+    },
+    {
+      "name": "Design system & evidence quality",
+      "questionIds": [
+        "GUX-51",
+        "GUX-52",
+        "GUX-53",
+        "GUX-54",
+        "GUX-55",
+        "GUX-56",
+        "GUX-57",
+        "GUX-58",
+        "GUX-59",
+        "GUX-60"
+      ]
+    }
+  ],
+  "scoring": {
+    "PASS": "Visible/reference-level question answered with direct, source-identified evidence and no material contradiction; never infer native proof",
+    "ISSUE": "Observed defect or normative contradiction supported by an explicit source/owner observation",
+    "UNVERIFIED": "No sufficient source, image, interaction trace, on-device evidence or independent reproduction to decide",
+    "NOT_APPLICABLE": "Not in documented product scope; must explain why",
+    "weightedCoverage": "sum of PASS and ISSUE weights / sum of applicable weights; not a quality score",
+    "quality": "Pass-weight / (Pass-weight + Issue-weight) among assessed only; always report assessed coverage alongside"
+  },
+  "gates": {
+    "prep": [
+      "exact current main and PR branch head",
+      "66/82/55 and 25 supplemental source/provenance inventory",
+      "34 named-state links",
+      "mapping 73 workflows to screens",
+      "source-sha native raster contact pack",
+      "owner runtime evidence and contradictions",
+      "explicit missing-evidence ledger"
+    ],
+    "formal": [
+      "review all 60 with source citations per question",
+      "allow UNVERIFIED not invented PASS",
+      "tier issue severity and evidence provenance",
+      "link findings to spec and proposal revisions",
+      "reraster changed mockups and record before/after",
+      "do not self-approve design or claim native acceptance"
+    ]
+  },
+  "questions": [
+    {
+      "id": "GUX-01",
+      "category": "Identity & navigation",
+      "question": "Does Home immediately communicate what Glimpse does and its current actual wallpaper?",
+      "weight": 5,
+      "review": "visual-source plus normative spec; native proof separately if required",
+      "state": "not-yet-scored"
+    },
+    {
+      "id": "GUX-02",
+      "category": "Identity & navigation",
+      "question": "Does the five-window photo reel read as a genuinely circular, tangible object rather than a horizontal thumbnail strip?",
+      "weight": 5,
+      "review": "visual-source plus normative spec; native proof separately if required",
+      "state": "not-yet-scored"
+    },
+    {
+      "id": "GUX-03",
+      "category": "Identity & navigation",
+      "question": "Can every photo in a 22-item or 60-item collection be reached despite only five physical apertures?",
+      "weight": 5,
+      "review": "visual-source plus normative spec; native proof separately if required",
+      "state": "not-yet-scored"
+    },
+    {
+      "id": "GUX-04",
+      "category": "Identity & navigation",
+      "question": "Are selected photo, current wallpaper and next eligible rotation unambiguously separate?",
+      "weight": 5,
+      "review": "visual-source plus normative spec; native proof separately if required",
+      "state": "not-yet-scored"
+    },
+    {
+      "id": "GUX-05",
+      "category": "Identity & navigation",
+      "question": "Is the reel's stationary hero visually anchored to the focused aperture during movement?",
+      "weight": 5,
+      "review": "visual-source plus normative spec; native proof separately if required",
+      "state": "not-yet-scored"
+    },
+    {
+      "id": "GUX-06",
+      "category": "Identity & navigation",
+      "question": "Do drag, tap, previous and next controls resolve to the same stable asset ID?",
+      "weight": 5,
+      "review": "visual-source plus normative spec; native proof separately if required",
+      "state": "not-yet-scored"
+    },
+    {
+      "id": "GUX-07",
+      "category": "Identity & navigation",
+      "question": "Are the first and last finite items unmistakable without inventing wraparound?",
+      "weight": 5,
+      "review": "visual-source plus normative spec; native proof separately if required",
+      "state": "not-yet-scored"
+    },
+    {
+      "id": "GUX-08",
+      "category": "Identity & navigation",
+      "question": "Does Reel↔Grid↔Detail round-trip preserve exact selection and position?",
+      "weight": 5,
+      "review": "visual-source plus normative spec; native proof separately if required",
+      "state": "not-yet-scored"
+    },
+    {
+      "id": "GUX-09",
+      "category": "Identity & navigation",
+      "question": "Are empty, one-photo, three-photo and full-reel arrangements understandable and nonduplicating?",
+      "weight": 5,
+      "review": "visual-source plus normative spec; native proof separately if required",
+      "state": "not-yet-scored"
+    },
+    {
+      "id": "GUX-10",
+      "category": "Identity & navigation",
+      "question": "Do primary tabs and secondary entry points offer discoverable, predictable navigation?",
+      "weight": 5,
+      "review": "visual-source plus normative spec; native proof separately if required",
+      "state": "not-yet-scored"
+    },
+    {
+      "id": "GUX-11",
+      "category": "Import, editing & sharing",
+      "question": "Is the Android Photo Picker entry distinguishable from the app's own photo collection?",
+      "weight": 4,
+      "review": "visual-source plus normative spec; native proof separately if required",
+      "state": "not-yet-scored"
+    },
+    {
+      "id": "GUX-12",
+      "category": "Import, editing & sharing",
+      "question": "Can an imported Google Photos selection show true progress, copy verification and cancellation?",
+      "weight": 4,
+      "review": "visual-source plus normative spec; native proof separately if required",
+      "state": "not-yet-scored"
+    },
+    {
+      "id": "GUX-13",
+      "category": "Import, editing & sharing",
+      "question": "Are provider offline, revoked access and out-of-space recoveries actionable without pretending success?",
+      "weight": 4,
+      "review": "visual-source plus normative spec; native proof separately if required",
+      "state": "not-yet-scored"
+    },
+    {
+      "id": "GUX-14",
+      "category": "Import, editing & sharing",
+      "question": "Are duplicate photos and partial import outcomes visible and recoverable?",
+      "weight": 4,
+      "review": "visual-source plus normative spec; native proof separately if required",
+      "state": "not-yet-scored"
+    },
+    {
+      "id": "GUX-15",
+      "category": "Import, editing & sharing",
+      "question": "Do edited crops preserve source bytes and show a genuinely transformed preview?",
+      "weight": 4,
+      "review": "visual-source plus normative spec; native proof separately if required",
+      "state": "not-yet-scored"
+    },
+    {
+      "id": "GUX-16",
+      "category": "Import, editing & sharing",
+      "question": "Are crop/rotate, blur-extension and destination framing distinguishable and controllable?",
+      "weight": 4,
+      "review": "visual-source plus normative spec; native proof separately if required",
+      "state": "not-yet-scored"
+    },
+    {
+      "id": "GUX-17",
+      "category": "Import, editing & sharing",
+      "question": "Can users clearly choose original p12 versus independent edited p12c when sharing?",
+      "weight": 4,
+      "review": "visual-source plus normative spec; native proof separately if required",
+      "state": "not-yet-scored"
+    },
+    {
+      "id": "GUX-18",
+      "category": "Import, editing & sharing",
+      "question": "Does the Android Sharesheet return flow avoid implying the recipient accepted the image?",
+      "weight": 4,
+      "review": "visual-source plus normative spec; native proof separately if required",
+      "state": "not-yet-scored"
+    },
+    {
+      "id": "GUX-19",
+      "category": "Import, editing & sharing",
+      "question": "Is a screenshot quick-import path adequately scoped with immediate inspect/crop/save choices?",
+      "weight": 4,
+      "review": "visual-source plus normative spec; native proof separately if required",
+      "state": "not-yet-scored"
+    },
+    {
+      "id": "GUX-20",
+      "category": "Import, editing & sharing",
+      "question": "Do source provenance, retention and deletion labels explain the boundary between provider and saved copy?",
+      "weight": 4,
+      "review": "visual-source plus normative spec; native proof separately if required",
+      "state": "not-yet-scored"
+    },
+    {
+      "id": "GUX-21",
+      "category": "Wallpaper outcomes & automation",
+      "question": "Are Home, Lock and Both choices explicit and capability-dependent?",
+      "weight": 5,
+      "review": "visual-source plus normative spec; native proof separately if required",
+      "state": "not-yet-scored"
+    },
+    {
+      "id": "GUX-22",
+      "category": "Wallpaper outcomes & automation",
+      "question": "Does wallpaper apply distinguish requested, acknowledged, failed and unknown outcomes?",
+      "weight": 5,
+      "review": "visual-source plus normative spec; native proof separately if required",
+      "state": "not-yet-scored"
+    },
+    {
+      "id": "GUX-23",
+      "category": "Wallpaper outcomes & automation",
+      "question": "When current wallpaper cannot be read back, does the UI say last confirmed rather than current?",
+      "weight": 5,
+      "review": "visual-source plus normative spec; native proof separately if required",
+      "state": "not-yet-scored"
+    },
+    {
+      "id": "GUX-24",
+      "category": "Wallpaper outcomes & automation",
+      "question": "Does manual apply avoid accidentally advancing automatic shuffle state?",
+      "weight": 5,
+      "review": "visual-source plus normative spec; native proof separately if required",
+      "state": "not-yet-scored"
+    },
+    {
+      "id": "GUX-25",
+      "category": "Wallpaper outcomes & automation",
+      "question": "Does paused rotation preserve the last acknowledged wallpaper and show Resume?",
+      "weight": 5,
+      "review": "visual-source plus normative spec; native proof separately if required",
+      "state": "not-yet-scored"
+    },
+    {
+      "id": "GUX-26",
+      "category": "Wallpaper outcomes & automation",
+      "question": "Is the five-minute schedule honestly presented as eligibility rather than guaranteed background execution?",
+      "weight": 5,
+      "review": "visual-source plus normative spec; native proof separately if required",
+      "state": "not-yet-scored"
+    },
+    {
+      "id": "GUX-27",
+      "category": "Wallpaper outcomes & automation",
+      "question": "Are delayed and battery-restricted rotation cases explained with a next action?",
+      "weight": 5,
+      "review": "visual-source plus normative spec; native proof separately if required",
+      "state": "not-yet-scored"
+    },
+    {
+      "id": "GUX-28",
+      "category": "Wallpaper outcomes & automation",
+      "question": "Can a stopped, empty or invalid collection never silently enter active rotation?",
+      "weight": 5,
+      "review": "visual-source plus normative spec; native proof separately if required",
+      "state": "not-yet-scored"
+    },
+    {
+      "id": "GUX-29",
+      "category": "Wallpaper outcomes & automation",
+      "question": "Do automation rule editors show actual AND/OR precedence with reversible changes?",
+      "weight": 5,
+      "review": "visual-source plus normative spec; native proof separately if required",
+      "state": "not-yet-scored"
+    },
+    {
+      "id": "GUX-30",
+      "category": "Wallpaper outcomes & automation",
+      "question": "Can users inspect activity history and distinguish failed/unknown events from earlier confirmed wallpaper?",
+      "weight": 5,
+      "review": "visual-source plus normative spec; native proof separately if required",
+      "state": "not-yet-scored"
+    },
+    {
+      "id": "GUX-31",
+      "category": "Accessibility & ergonomics",
+      "question": "Are all tap targets measured and at least the platform-appropriate comfortable minimum?",
+      "weight": 5,
+      "review": "visual-source plus normative spec; native proof separately if required",
+      "state": "not-yet-scored"
+    },
+    {
+      "id": "GUX-32",
+      "category": "Accessibility & ergonomics",
+      "question": "Can the entire reel be browsed without relying on drag gestures?",
+      "weight": 5,
+      "review": "visual-source plus normative spec; native proof separately if required",
+      "state": "not-yet-scored"
+    },
+    {
+      "id": "GUX-33",
+      "category": "Accessibility & ergonomics",
+      "question": "Does TalkBack expose names, selected index, total, explicit next/previous and current applied status?",
+      "weight": 5,
+      "review": "visual-source plus normative spec; native proof separately if required",
+      "state": "not-yet-scored"
+    },
+    {
+      "id": "GUX-34",
+      "category": "Accessibility & ergonomics",
+      "question": "Does logical focus survive mode switches, dialogs, picker return and process recreation?",
+      "weight": 5,
+      "review": "visual-source plus normative spec; native proof separately if required",
+      "state": "not-yet-scored"
+    },
+    {
+      "id": "GUX-35",
+      "category": "Accessibility & ergonomics",
+      "question": "Does the 200% text layout prevent clipping, truncation and destructive overlap?",
+      "weight": 5,
+      "review": "visual-source plus normative spec; native proof separately if required",
+      "state": "not-yet-scored"
+    },
+    {
+      "id": "GUX-36",
+      "category": "Accessibility & ergonomics",
+      "question": "Can portrait layouts survive system insets, keyboard, short height and narrow device widths?",
+      "weight": 5,
+      "review": "visual-source plus normative spec; native proof separately if required",
+      "state": "not-yet-scored"
+    },
+    {
+      "id": "GUX-37",
+      "category": "Accessibility & ergonomics",
+      "question": "Does reduced motion maintain equal function without spinning or inertial scrolling?",
+      "weight": 5,
+      "review": "visual-source plus normative spec; native proof separately if required",
+      "state": "not-yet-scored"
+    },
+    {
+      "id": "GUX-38",
+      "category": "Accessibility & ergonomics",
+      "question": "Does high contrast provide readable labels and controls without relying solely on colour?",
+      "weight": 5,
+      "review": "visual-source plus normative spec; native proof separately if required",
+      "state": "not-yet-scored"
+    },
+    {
+      "id": "GUX-39",
+      "category": "Accessibility & ergonomics",
+      "question": "Do disabled, pending and completed actions look and sound different?",
+      "weight": 5,
+      "review": "visual-source plus normative spec; native proof separately if required",
+      "state": "not-yet-scored"
+    },
+    {
+      "id": "GUX-40",
+      "category": "Accessibility & ergonomics",
+      "question": "Does haptic, animation and colour feedback remain optional and comprehensible without sensory cues?",
+      "weight": 5,
+      "review": "visual-source plus normative spec; native proof separately if required",
+      "state": "not-yet-scored"
+    },
+    {
+      "id": "GUX-41",
+      "category": "System trust, storage & recovery",
+      "question": "Do permission prompts appear contextually with clear alternatives after refusal?",
+      "weight": 4,
+      "review": "visual-source plus normative spec; native proof separately if required",
+      "state": "not-yet-scored"
+    },
+    {
+      "id": "GUX-42",
+      "category": "System trust, storage & recovery",
+      "question": "Can users understand photo access limited to specifically selected Android-owned picker items?",
+      "weight": 4,
+      "review": "visual-source plus normative spec; native proof separately if required",
+      "state": "not-yet-scored"
+    },
+    {
+      "id": "GUX-43",
+      "category": "System trust, storage & recovery",
+      "question": "Are all supported Android destinations and device/OEM limitations disclosed rather than guessed?",
+      "weight": 4,
+      "review": "visual-source plus normative spec; native proof separately if required",
+      "state": "not-yet-scored"
+    },
+    {
+      "id": "GUX-44",
+      "category": "System trust, storage & recovery",
+      "question": "Can users diagnose provider/network/offline failure without implying a cached source is available?",
+      "weight": 4,
+      "review": "visual-source plus normative spec; native proof separately if required",
+      "state": "not-yet-scored"
+    },
+    {
+      "id": "GUX-45",
+      "category": "System trust, storage & recovery",
+      "question": "Are image storage, backup, restore and permission revocation failure states consistent?",
+      "weight": 4,
+      "review": "visual-source plus normative spec; native proof separately if required",
+      "state": "not-yet-scored"
+    },
+    {
+      "id": "GUX-46",
+      "category": "System trust, storage & recovery",
+      "question": "Does backup restoration offer explicit conflict choices with non-destructive defaults?",
+      "weight": 4,
+      "review": "visual-source plus normative spec; native proof separately if required",
+      "state": "not-yet-scored"
+    },
+    {
+      "id": "GUX-47",
+      "category": "System trust, storage & recovery",
+      "question": "Are external editors and share destinations described without guaranteeing return payloads?",
+      "weight": 4,
+      "review": "visual-source plus normative spec; native proof separately if required",
+      "state": "not-yet-scored"
+    },
+    {
+      "id": "GUX-48",
+      "category": "System trust, storage & recovery",
+      "question": "Do privacy and rights labels avoid overstating Google Photos/provider guarantees?",
+      "weight": 4,
+      "review": "visual-source plus normative spec; native proof separately if required",
+      "state": "not-yet-scored"
+    },
+    {
+      "id": "GUX-49",
+      "category": "System trust, storage & recovery",
+      "question": "Can users recover from low storage, interrupted writes and partial migration without losing originals?",
+      "weight": 4,
+      "review": "visual-source plus normative spec; native proof separately if required",
+      "state": "not-yet-scored"
+    },
+    {
+      "id": "GUX-50",
+      "category": "System trust, storage & recovery",
+      "question": "Do error surfaces retain a clear path back to a stable app screen and avoid dead-end loops?",
+      "weight": 4,
+      "review": "visual-source plus normative spec; native proof separately if required",
+      "state": "not-yet-scored"
+    },
+    {
+      "id": "GUX-51",
+      "category": "Design system & evidence quality",
+      "question": "Do all 24 original screen families use consistent titles, hierarchy, control syntax and tokens?",
+      "weight": 3,
+      "review": "visual-source plus normative spec; native proof separately if required",
+      "state": "not-yet-scored"
+    },
+    {
+      "id": "GUX-52",
+      "category": "Design system & evidence quality",
+      "question": "Are support feature states visually distinct from their parent index screens?",
+      "weight": 3,
+      "review": "visual-source plus normative spec; native proof separately if required",
+      "state": "not-yet-scored"
+    },
+    {
+      "id": "GUX-53",
+      "category": "Design system & evidence quality",
+      "question": "Are Reel, Grid and Detail image identities coherent across adjacent storyboard frames?",
+      "weight": 3,
+      "review": "visual-source plus normative spec; native proof separately if required",
+      "state": "not-yet-scored"
+    },
+    {
+      "id": "GUX-54",
+      "category": "Design system & evidence quality",
+      "question": "Do typography, status badges and affordances stay within their actual rendered bounds?",
+      "weight": 3,
+      "review": "visual-source plus normative spec; native proof separately if required",
+      "state": "not-yet-scored"
+    },
+    {
+      "id": "GUX-55",
+      "category": "Design system & evidence quality",
+      "question": "Are annotations separated from phone pixels so they cannot falsely satisfy screen requirements?",
+      "weight": 3,
+      "review": "visual-source plus normative spec; native proof separately if required",
+      "state": "not-yet-scored"
+    },
+    {
+      "id": "GUX-56",
+      "category": "Design system & evidence quality",
+      "question": "Are screen and interaction specifications reversible from depicted affordances to actual commands?",
+      "weight": 3,
+      "review": "visual-source plus normative spec; native proof separately if required",
+      "state": "not-yet-scored"
+    },
+    {
+      "id": "GUX-57",
+      "category": "Design system & evidence quality",
+      "question": "Are source-sha-matched native phone rasters available for every original/P0/P1 visual proposal?",
+      "weight": 3,
+      "review": "visual-source plus normative spec; native proof separately if required",
+      "state": "not-yet-scored"
+    },
+    {
+      "id": "GUX-58",
+      "category": "Design system & evidence quality",
+      "question": "Are the 34 named alternate-state assets uniquely linked with exact state identity and proof status?",
+      "weight": 3,
+      "review": "visual-source plus normative spec; native proof separately if required",
+      "state": "not-yet-scored"
+    },
+    {
+      "id": "GUX-59",
+      "category": "Design system & evidence quality",
+      "question": "Are owner-tested native app observations explicitly distinguished from draft SVG/reference claims?",
+      "weight": 3,
+      "review": "visual-source plus normative spec; native proof separately if required",
+      "state": "not-yet-scored"
+    },
+    {
+      "id": "GUX-60",
+      "category": "Design system & evidence quality",
+      "question": "Can every proposed high-impact change be tied to a finding, acceptance criterion and new screenshot pair?",
+      "weight": 3,
+      "review": "visual-source plus normative spec; native proof separately if required",
+      "state": "not-yet-scored"
+    }
+  ]
+}

@@ -1,16 +1,17 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1160" height="920" viewBox="0 0 1160 920"><title>Android sharing and return Edited copy chosen</title><desc>Unapproved connected Glimpse interface proposal, not an actual Android screenshot.</desc><metadata>{&quot;journeyId&quot;:&quot;x13&quot;,&quot;stateId&quot;:&quot;02-edited&quot;,&quot;sourceAssetId&quot;:&quot;illustrative-vector-p12&quot;,&quot;selectedAssetId&quot;:&quot;p12&quot;,&quot;viewportDp&quot;:[420,900],&quot;status&quot;:&quot;draft-not-approved&quot;,&quot;action&quot;:&quot;Share edited copy&quot;,&quot;assertion&quot;:&quot;Select only the edited file, preserve original&quot;}</metadata>
+<svg xmlns="http://www.w3.org/2000/svg" width="1160" height="920" viewBox="0 0 1160 920"><title>Android sharing and return Edited copy chosen</title><desc>Unapproved connected Glimpse interface proposal, not an actual Android screenshot.</desc><metadata>{&quot;journeyId&quot;:&quot;x13&quot;,&quot;stateId&quot;:&quot;02-edited&quot;,&quot;sourceAssetId&quot;:&quot;illustrative-vector-p12&quot;,&quot;selectedAssetId&quot;:&quot;p12c&quot;,&quot;editTransform&quot;:&quot;crop-scale-150-percent&quot;,&quot;viewportDp&quot;:[420,900],&quot;status&quot;:&quot;draft-not-approved&quot;,&quot;action&quot;:&quot;Share edited copy&quot;,&quot;assertion&quot;:&quot;Select only the edited file, preserve original&quot;}</metadata>
 <rect x="0" y="0" width="1160" height="920" rx="0" fill="#E9E2D6" stroke="none"/>
 <rect x="15" y="14" width="401" height="890" rx="22" fill="#F6F0E6" stroke="#C4B7A4"/>
 <text x="38" y="44" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="650" fill="#153F46">9:41</text>
 <text x="356" y="44" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="450" fill="#667975">● ▰</text>
 <text x="39" y="100" font-family="Arial,Helvetica,sans-serif" font-size="25" font-weight="750" fill="#153F46">Edited copy chosen</text>
 <text x="40" y="132" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="500" fill="#667975">CROPPED COPY p12c</text>
-<rect x="44" y="168" width="338" height="333" rx="12" fill="#101627" stroke="none"/>
-<path d="M49 211.29 Q179.20000000000002 171.33 377 247.92000000000002" stroke="#D63C53" stroke-width="14.985" fill="none"/>
+<defs><clipPath id="edited-crop-window"><rect x="44" y="168" width="338" height="333" rx="12"/></clipPath></defs><rect x="44" y="168" width="338" height="333" rx="12" fill="#101627" stroke="none"/>
+<g clip-path="url(#edited-crop-window)"><g transform="translate(-116 -138) scale(1.5)"><path d="M49 211.29 Q179.20000000000002 171.33 377 247.92000000000002" stroke="#D63C53" stroke-width="14.985" fill="none"/>
 <path d="M49 262.90500000000003 Q179.20000000000002 224.61 377 296.20500000000004" stroke="#D99136" stroke-width="14.985" fill="none"/>
 <path d="M49 314.52 Q179.20000000000002 277.89 377 344.49" stroke="#DFCA48" stroke-width="14.985" fill="none"/>
 <path d="M49 366.135 Q179.20000000000002 331.16999999999996 377 392.775" stroke="#45B98A" stroke-width="14.985" fill="none"/>
 <path d="M49 417.75 Q179.20000000000002 384.45000000000005 377 441.06" stroke="#4975D4" stroke-width="14.985" fill="none"/>
+</g></g>
 <rect x="52" y="472" width="148" height="21" rx="7" fill="#FFFCF6" stroke="none"/>
 <text x="60" y="487" font-family="Arial,Helvetica,sans-serif" font-size="11" font-weight="700" fill="#153F46">CROPPED p12c</text>
 <rect x="41" y="522" width="344" height="93" rx="13" fill="#FFFCF6" stroke="#C4B7A4"/>
