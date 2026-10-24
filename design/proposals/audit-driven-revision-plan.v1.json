@@ -222,9 +222,13 @@
         "applicable Android screenshot/hierarchy fixture or marked unverified",
         "audit finding closure verification"
       ],
-      "disposition": "Nine existing-source test cases traced; reduced-motion and TalkBack dedicated mockup gaps open, no native tests performed",
+      "disposition": "Nine evidence routes mapped; two dedicated diagrams source-hashed and rendered in targeted CI, native and 200% text unverified",
       "evidenceManifest": "design/proposals/audit-revisions/r05-accessibility-evidence.v1.json",
-      "nativeProofProtocol": "docs/design/R05-ACCESSIBILITY-NATIVE-ACCEPTANCE.md"
+      "nativeProofProtocol": "docs/design/R05-ACCESSIBILITY-NATIVE-ACCEPTANCE.md",
+      "initialSourceDrafts": [
+        "design/proposals/audit-revisions/r05-reduced-motion.svg",
+        "design/proposals/audit-revisions/r05-talkback-route.svg"
+      ]
     },
     {
       "id": "R06",
