@@ -1,0 +1,77 @@
+name: Glimpse | primary photographic Reel apply entry proof
+
+on:
+  push:
+    branches: [agent/visual-state-reconciliation-20261023]
+    paths:
+      - .github/workflows/glimpse-r01-primary-reel-action.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: glimpse-primary-reel-action-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  reference:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Generate and verify deterministic source identity
+        run: |
+          python3 scripts/build-r01-primary-reel-action.py --write
+          python3 scripts/build-r01-primary-reel-action.py
+      - name: Native-resolution source raster and independently testable evidence
+        run: |
+          python3 -m pip install --quiet cairosvg pillow
+          python3 - <<'PY'
+          from pathlib import Path
+          import hashlib, json, os, xml.etree.ElementTree as ET
+          from cairosvg import svg2png
+          from PIL import Image, ImageStat
+          p=Path('design/proposals/audit-revisions/r01-photo-primary-wallpaper-action.svg')
+          out=Path('/tmp/glimpse-r01-primary-action')
+          out.mkdir(parents=True,exist_ok=True)
+          root=ET.parse(p).getroot()
+          metadata=json.loads(root.find('{http://www.w3.org/2000/svg}metadata').text)
+          assert metadata['wallpaperTarget'] is None
+          assert metadata['requestedAssetId'] is None
+          assert metadata['appliedStatus']=='unchanged'
+          assert metadata['selectedAssetId']=='p12'
+          assert metadata['visibleButtons']==['View all','Set wallpaper…','Previous photo','Next photo']
+          svg2png(bytestring=p.read_bytes(),write_to=str(out/'full-1160x920.png'),output_width=1160,output_height=920)
+          with Image.open(out/'full-1160x920.png') as im:
+              phone=im.crop((15,14,416,904)).convert('RGB')
+              assert phone.size==(401,890)
+              assert sum(ImageStat.Stat(phone).stddev)>45
+              phone.save(out/'phone-401x890.png')
+          (out/'evidence.json').write_text(json.dumps({
+              'commit':os.environ['GITHUB_SHA'],'run':os.environ['GITHUB_RUN_ID'],
+              'sourceSHA256':hashlib.sha256(p.read_bytes()).hexdigest(),
+              'phonePNG_SHA256':hashlib.sha256((out/'phone-401x890.png').read_bytes()).hexdigest(),
+              'action': 'explicit target chooser entry only',
+              'phoneRasterGenerated':True,'independentlyOpticallyInspected':False,
+              'nativeImplemented':False,'ownerApproved':False
+          },indent=2)+'\n')
+          print('PASS: unapproved, 401x890 source-hashed Reel with explicit Set wallpaper entry')
+          PY
+      - name: Commit editable draft drawing only
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add design/proposals/audit-revisions/r01-photo-primary-wallpaper-action.svg
+          if ! git diff --cached --quiet; then
+            git commit -m "design: add explicit target entry to primary photographic Reel draft"
+            git push origin HEAD:"${GITHUB_REF_NAME}"
+          fi
+      - uses: actions/upload-artifact@v4
+        with:
+          name: glimpse-r01-primary-apply-entry-${{ github.sha }}
+          path: /tmp/glimpse-r01-primary-action/
+          retention-days: 14
