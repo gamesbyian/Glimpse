@@ -4,7 +4,7 @@
         <provider
             android:name="io.github.gamesbyian.glimpse.data.EphemeralPhotoTestProvider"
             android:authorities="io.github.gamesbyian.glimpse.test.ephemeral"
-            android:exported="true"
+            android:exported="false"
             android:grantUriPermissions="true" />
     </application>
 </manifest>
