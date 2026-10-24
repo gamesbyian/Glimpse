@@ -1,0 +1,96 @@
+name: Glimpse | exact-source Home Reel Detail reviewer trio
+
+on:
+  push:
+    branches: [agent/visual-state-reconciliation-20261023]
+    paths:
+      - .github/workflows/glimpse-primary-action-trio.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: glimpse-primary-action-trio-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  generate-primary-review:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Generate source-linked Home and validate three default task screens
+        run: |
+          python3 scripts/build-r03-home-primary-actions.py --write
+          python3 scripts/build-r03-home-primary-actions.py
+          python3 scripts/build-r01-primary-reel-action.py
+          python3 scripts/build-r02-photo-detail-actions.py
+      - name: Make one actual 401x890 three-phone contact for independent review
+        run: |
+          python3 -m pip install --quiet cairosvg pillow
+          python3 - <<'PY'
+          import hashlib,json,io,os
+          from pathlib import Path
+          from PIL import Image,ImageDraw,ImageFont
+          from cairosvg import svg2png
+          items=[
+            ('Home / last Glimpse ack',
+             Path('design/proposals/audit-revisions/r03-home-primary-actions-p04.svg')),
+            ('Reel / selected p12',
+             Path('design/proposals/audit-revisions/r01-photo-primary-wallpaper-action.svg')),
+            ('Photo Detail / p12',
+             Path('design/proposals/audit-revisions/r02-photo-detail-actions-p12.svg')),
+          ]
+          root=Path('design/reviews/primary-actions-2026-10-24')
+          root.mkdir(parents=True,exist_ok=True)
+          pad=15; top=58
+          sheet=Image.new('RGB',(3*401+4*pad,890+top+pad),'#ede7db')
+          d=ImageDraw.Draw(sheet)
+          try:font=ImageFont.truetype('/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf',17)
+          except OSError:font=ImageFont.load_default()
+          records=[]
+          for i,(title,source) in enumerate(items):
+              png=svg2png(bytestring=source.read_bytes(),output_width=1160,output_height=920)
+              with Image.open(io.BytesIO(png)) as image:
+                  cropped=image.crop((15,14,416,904)).convert('RGB')
+              assert cropped.size==(401,890)
+              x=pad+(401+pad)*i
+              sheet.paste(cropped,(x,top))
+              d.text((x,17),title,fill='#153f46',font=font)
+              records.append({
+                'source':str(source),'sourceSHA256':hashlib.sha256(source.read_bytes()).hexdigest(),
+                'phoneViewportPixels':[401,890],
+                'reviewStatus':'SOURCE_RENDERED_WAITING_FOR_INDEPENDENT_OPTICAL_INSPECTION',
+                'nativeAndroidVerified':False,'ownerApproved':False})
+          jpg=root/'home-reel-detail.jpg'
+          sheet.save(jpg,format='JPEG',quality=92,optimize=True)
+          (root/'source-ledger.json').write_text(json.dumps({
+             'workflowSourceCommit':os.environ['GITHUB_SHA'],
+             'runId':os.environ['GITHUB_RUN_ID'],
+             'renderer':'CairoSVG/Pillow on ubuntu-latest',
+             'contactSHA256':hashlib.sha256(jpg.read_bytes()).hexdigest(),
+             'evidenceClass':'current-source-referenced-svg-pixels-not-native',
+             'sources':records
+          },indent=2)+'\n')
+          print('PASS: three actual source-matched 401x890 draft phone images; no optical approval inferred')
+          PY
+      - name: Commit source and evidence images, never acceptance
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add design/proposals/audit-revisions/r03-home-primary-actions-p04.svg
+          git add design/reviews/primary-actions-2026-10-24/home-reel-detail.jpg
+          git add design/reviews/primary-actions-2026-10-24/source-ledger.json
+          if ! git diff --cached --quiet; then
+            git commit -m "design: preserve three current task-action phone renders for optical review"
+            git push origin HEAD:"${GITHUB_REF_NAME}"
+          fi
+      - uses: actions/upload-artifact@v4
+        with:
+          name: glimpse-primary-three-draft-phone-review-${{ github.sha }}
+          path: design/reviews/primary-actions-2026-10-24/
+          retention-days: 14
