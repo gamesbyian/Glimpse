@@ -370,7 +370,7 @@
       "title": "Active-use shuffle lifecycle",
       "count": 7,
       "contact": "x04-all-07-phones.jpg",
-      "contactSHA256": "7c546b7222955b37f5362942d47145946ceb1a24eeeb4f2180bfe0f7cca48137",
+      "contactSHA256": "a957023eecb78093d98dba3aae9ca4b4c0815f1eae143d5b746c41f438215715",
       "frames": [
         {
           "ordinal": 1,
@@ -440,7 +440,7 @@
           "ordinal": 5,
           "id": "05-paused",
           "source": "design/proposals/storyboards/x04/05-paused.svg",
-          "sha256": "869513368b9023e14563ca7a1d32cdd90db06df2027cbb888d8e05e7e3980b47",
+          "sha256": "47a7e730af6da976bbfade46bafd5669f07f55bf0556f440e381f9f03cea2e07",
           "crop": [
             15,
             14,
@@ -472,7 +472,7 @@
           "ordinal": 7,
           "id": "07-stopped",
           "source": "design/proposals/storyboards/x04/07-stopped.svg",
-          "sha256": "560f7841e053edef917a0b4fc44adb1d46f8529b76dbb493c95253366df6b93e",
+          "sha256": "b7dedb8ab76588f1fd02c6aaa37750b683159c68eb046293702c351cb2a96643",
           "crop": [
             15,
             14,
@@ -636,13 +636,13 @@
       "title": "Finite reel edge and scale",
       "count": 7,
       "contact": "x06-all-07-phones.jpg",
-      "contactSHA256": "eb058aba3c376fc1bc7a082b55f6fe66422f71eeba6b951a6e9f6fa47c3aa534",
+      "contactSHA256": "a212a0647afe3651d4f0f330f2023a6ab48e4d5b9d8d0f073065e60b1ef44cb0",
       "frames": [
         {
           "ordinal": 1,
           "id": "01-first",
           "source": "design/proposals/storyboards/x06/01-first.svg",
-          "sha256": "05474fafdb2ee823752a5ceeaf9a91f7be7a4c064168875a9f90064dc96c1dc4",
+          "sha256": "43813c7457c86678bd9f317b173a262cbaa322d256f15b9b2f54d52e51dad7c1",
           "crop": [
             15,
             14,
@@ -658,7 +658,7 @@
           "ordinal": 2,
           "id": "02-single",
           "source": "design/proposals/storyboards/x06/02-single.svg",
-          "sha256": "9f2042d169a35f0e69c19ecb1b0585366a8247a4a3e9d4fc5e5f0c4a4daae4de",
+          "sha256": "60cd26178d1a44958fc127030e9dc1143a33ad59b1e0081fa91490f789702550",
           "crop": [
             15,
             14,
@@ -738,7 +738,7 @@
           "ordinal": 7,
           "id": "07-last",
           "source": "design/proposals/storyboards/x06/07-last.svg",
-          "sha256": "1995276183ae70610aada23f63f7871e0d928b04d451f58fec4ff819fcaa310e",
+          "sha256": "c970a80944c8b038d7e3b4d8643b8219b5c89c53125b34814c4b71305aa63863",
           "crop": [
             15,
             14,

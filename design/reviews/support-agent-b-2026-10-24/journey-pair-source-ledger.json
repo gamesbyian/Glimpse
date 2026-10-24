@@ -147,7 +147,7 @@
         {
           "frameId": "05-paused",
           "path": "design/proposals/storyboards/x04/05-paused.svg",
-          "sha256": "869513368b9023e14563ca7a1d32cdd90db06df2027cbb888d8e05e7e3980b47",
+          "sha256": "47a7e730af6da976bbfade46bafd5669f07f55bf0556f440e381f9f03cea2e07",
           "crop": [
             15,
             14,
@@ -928,7 +928,7 @@
   "contacts": [
     {
       "name": "journey-pair-contact-01.jpg",
-      "sha256": "e408a1e5a0d1fd929fe6f1c5d69cd2547a2c44dc9fb737d72b27afe11c61af31",
+      "sha256": "eea1afc3e1e153764b428d0f886f22b2e5613c3963d3a7fda0426aae79ca6ae9",
       "pairs": 4
     },
     {
