@@ -74,7 +74,7 @@
 <rect x="40" y="182" width="350" height="217" rx="15"/>
 <rect x="41" y="757" width="165" height="50" rx="13"/>
 <rect x="213" y="757" width="177" height="50" rx="13"/>
-<rect x="302" y="408" width="82" height="36" rx="6"/>
+<rect x="299" y="400" width="93" height="48" rx="6"/>
 </g>
 <g id="r05-non-native-number-overlay" pointer-events="none">
 <circle cx="52" cy="197" r="12" fill="#9E355B" stroke="#FFF" stroke-width="2"/><text x="52" y="202" fill="#FFF" font-family="Arial,sans-serif" font-size="13" font-weight="700" text-anchor="middle">1</text>
@@ -83,5 +83,5 @@
 <circle cx="378" cy="415" r="12" fill="#9E355B" stroke="#FFF" stroke-width="2"/><text x="378" y="420" fill="#FFF" font-family="Arial,sans-serif" font-size="13" font-weight="700" text-anchor="middle">4</text>
 </g><rect x="458" y="873" width="680" height="34" rx="8" fill="#FFFCF6"/>
 <text x="465" y="895" font-family="Arial,sans-serif" font-size="14" font-weight="700" fill="#9E355B">R05 FOCUS ROUTE OVERLAY · NUMBERS ARE NOT NATIVE BUTTON LABELS</text>
-<metadata>{"auditLane":"R05","stateId":"photo-reel-focus-route","sourceR01":"design/proposals/audit-revisions/r01-photo-rest-22.svg","referenceKind":"audit-focus-route-overlay-on-photographic-reel","selectedAssetId":"p12","lastConfirmedAppliedAssetId":"p04","nativeProof":"unverified","proposalStatus":"draft-not-owner-approved","focusOrder":[{"item":"selected-photo","assetId":"p12"},{"item":"previous-photo"},{"item":"next-photo"},{"item":"view-grid"}],"viewportDp":[420,900]}</metadata>
+<metadata>{"auditLane":"R05","stateId":"photo-reel-focus-route","sourceR01":"design/proposals/audit-revisions/r01-photo-rest-22.svg","referenceKind":"audit-focus-route-overlay-on-photographic-reel","targetBoundsProposedNotMeasured":true,"minimumProposedGridTargetHeightDp":48,"selectedAssetId":"p12","lastConfirmedAppliedAssetId":"p04","nativeProof":"unverified","proposalStatus":"draft-not-owner-approved","focusOrder":[{"item":"selected-photo","assetId":"p12"},{"item":"previous-photo"},{"item":"next-photo"},{"item":"view-grid"}],"viewportDp":[420,900]}</metadata>
 </svg>
