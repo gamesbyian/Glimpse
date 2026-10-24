@@ -6,6 +6,7 @@ on:
     paths:
       - scripts/agent-b-modernize-support.py
       - scripts/validate-agent-b-support-journeys.py
+      - scripts/validate-agent-b-source-raster-integrity.py
       - scripts/render-agent-b-accessibility-probes.py
       - scripts/render-agent-b-journey-pairs.py
       - scripts/render-agent-b-compact-support-study.py
@@ -50,6 +51,7 @@ jobs:
           python3 scripts/render-agent-b-accessibility-probes.py
           python3 scripts/render-agent-b-journey-pairs.py
           python3 scripts/render-agent-b-compact-support-study.py
+          python3 scripts/validate-agent-b-source-raster-integrity.py
           python3 - <<'PY'
           import json, pathlib
           out=pathlib.Path('design/reviews/support-agent-b-2026-10-24')
