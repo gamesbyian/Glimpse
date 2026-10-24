@@ -162,7 +162,7 @@ frame_truth={
  "design/proposals/storyboards/x04/07-stopped.svg": (
    ["No new wallpaper change requested by Glimpse"], ["The Home wallpaper remains unchanged"]),
  "design/proposals/storyboards/x08/01-home-active.svg": (
-   ["Last Glimpse-acknowledged Home", "LAST GLIMPSE"], ["Current Home wallpaper","CURRENT HOME"]),
+   ["Last Glimpse-acknowledged Home", "LAST ACK."], ["Current Home wallpaper","CURRENT HOME"]),
  "design/proposals/storyboards/x08/05-long-title.svg": (
    ["Our favourite holiday…", 'aria-label="Our favourite holiday photographs and travels"'],
    [">Our favourite holiday photographs...</text>"]),
