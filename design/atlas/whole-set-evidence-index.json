@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "status": "ALL_DRAFT_SOURCE_EVIDENCE_NOT_HUMAN_APPROVED",
-  "sourceCommit": "5a6f59f5f414abe2605faf4c0f7dba30e7089090",
+  "sourceCommit": "31f7d4efc1d995fb1d0813a46e0556872656c809",
   "auditCycleA": {
     "PASS_SOURCE_ONLY": 18,
     "ISSUE": 8,
@@ -15,9 +15,9 @@
     "P0": 82,
     "P1": 55,
     "supplemental": 25,
-    "auditRevisionAlternatives": 41,
+    "auditRevisionAlternatives": 43,
     "preferredRoute": 39,
-    "uniqueEvidenceSources": 269,
+    "uniqueEvidenceSources": 271,
     "namedStateSlots": 34
   },
   "scenarioCoverage": {
@@ -2151,7 +2151,7 @@
           "path": "design/proposals/audit-revisions/r01-photo-drag-36.svg",
           "label": "R01 Photo Drag 36",
           "meaning": "",
-          "sourceSHA256": "54915a75bb0fba19821c2762bcc5576bac4b19a1d31d8810c24d2b9bbf2f7ce5"
+          "sourceSHA256": "ab9b4a70ebf5c2918c3f80e47def02c19f8a2a13a78dc883f394ae6aa364daa5"
         },
         {
           "path": "design/proposals/audit-revisions/r01-photo-empty-0.svg",
@@ -2170,6 +2170,18 @@
           "label": "R01 Photo Five 5",
           "meaning": "",
           "sourceSHA256": "328a467b48aad4d58e73ac23ff41de70bda0c8d7aa9156d5e034ce9054a1040c"
+        },
+        {
+          "path": "design/proposals/audit-revisions/r01-photo-home-crescent.svg",
+          "label": "R01 Photo Home Crescent",
+          "meaning": "",
+          "sourceSHA256": "0a65ac6b0b1725dbf0d147b9bc01e21b099cff1bbc72d1c9209ff4c0a754e146"
+        },
+        {
+          "path": "design/proposals/audit-revisions/r01-photo-large-type.svg",
+          "label": "R01 Photo Large Type",
+          "meaning": "",
+          "sourceSHA256": "d56a5dd94bd2b13197b54391cd3e110536376ea5dea73a763142c3a3e55736bd"
         },
         {
           "path": "design/proposals/audit-revisions/r01-photo-last-22.svg",
@@ -2205,7 +2217,7 @@
           "path": "design/proposals/audit-revisions/r01-photo-tap-p13-pressed.svg",
           "label": "R01 Photo Tap P13 Pressed",
           "meaning": "",
-          "sourceSHA256": "e261e56ae31c78511a614401a26e32a08c127689c2b2f093c597103aebe72acb"
+          "sourceSHA256": "3a2b4137fdf093f06b47b93207a59108c6426a104a50572b55616e038e71f99a"
         },
         {
           "path": "design/proposals/audit-revisions/r01-photo-tap-p13-settled.svg",
