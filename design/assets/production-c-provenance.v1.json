@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "generatedOn": "2026-10-24",
-  "evidenceLevel": "source-bytes-only; no Android or human acceptance",
+  "evidenceLevel": "source-bytes-only; CC0 fixture rights page observed; no Android or human acceptance",
   "photoIdRule": "IDs are semantic identities. Reusing source fixture bytes for distinct simultaneous photo IDs is forbidden; derived copies receive new IDs.",
   "priorFixtureSet": {
     "basePath": "design/research/reel-layout/fixtures/source",
@@ -69,15 +69,24 @@
   "requestedIndependentPhotos": [
     {
       "photoId": "p04",
-      "sourceStatus": "blocked",
-      "rightsStatus": "unverified",
-      "assetPath": null,
-      "sourceUrl": null,
-      "creator": null,
-      "license": null,
-      "verifiedAt": null,
-      "sha256": null,
-      "visualFallback": "illustrative non-photographic design only"
+      "sourceStatus": "available-not-integrated",
+      "rightsStatus": "verified",
+      "assetPath": "design/assets/cc0/p04-philsacor-landscape-900w.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Random_landscape_photo_I_took.jpg",
+      "creator": "Philsacor",
+      "license": "CC0 1.0 Universal",
+      "verifiedAt": "2026-10-24",
+      "sha256": "20d6a8dab7e5eed0fbbbb0d98de799487512264aa7d0cf7ced701944683e2bd0",
+      "visualFallback": "Current PR #6 Home still contains schematic p04 illustration; integration by A pending",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "originalSHA256": "65d727e89ee6aae0ae1ce9e1b79429495c3a7b993cc53333fffb76e176ffecf8",
+      "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f0/Random_landscape_photo_I_took.jpg",
+      "originalBytes": 2383594,
+      "derivativeBytes": 68374,
+      "derivativeDimensions": [
+        900,
+        675
+      ]
     },
     {
       "photoId": "p06",
@@ -161,10 +170,12 @@
       "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
       "sourceType": "uploader-labeled own-work photograph",
       "checkedOn": "2026-10-24",
-      "verificationStatus": "license-page-inspected; original bytes not obtained or hashed; not incorporated",
-      "assetPath": null,
-      "sha256": null,
-      "note": "Page is a candidate only. Preserve attribution and original source URL. Acquire bytes, hash, verify embedded exact match, and verify the photo's suitability and rights before insertion."
+      "verificationStatus": "source-CC0-page-observed-and-actual-file-bytes-hashed; primary Home drawing NOT updated",
+      "assetPath": "design/assets/cc0/p04-philsacor-landscape-900w.jpg",
+      "sha256": "20d6a8dab7e5eed0fbbbb0d98de799487512264aa7d0cf7ced701944683e2bd0",
+      "note": "CC0 source authored by Philsacor. Original source and derived fixture SHA recorded. Derived JPEG strips metadata including location EXIF. Illustration on selected Home plate remains unchanged until A integrates true p04 image.",
+      "originalSHA256": "65d727e89ee6aae0ae1ce9e1b79429495c3a7b993cc53333fffb76e176ffecf8",
+      "verifiedBytesOn": "2026-10-24"
     }
   ],
   "crossSurfaceProofTarget": {
