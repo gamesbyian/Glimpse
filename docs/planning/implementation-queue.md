@@ -197,3 +197,11 @@ The newer [whole-product handoff](HANDOFF-2026-10-24-WHOLE-PRODUCT-REVIEW.md) is
 - [ ] Ask human to choose **one exact-source-hashed coherent 24-primary/34-support/23-journey set**, or revise; do not promote to `design/approved/` before explicit decision.
 
 All selected references remain editorial candidates: **276 editable proposals**, **56/56 pictured scenarios**, **18 source PASS / 8 ISSUE / 34 UNVERIFIED** in independent scored cycle A.
+
+## Direct 24-primary optical pass and action fixes · October 24
+
+- [x] Generate source-hashed contact corpus for all **24 selected primary** candidates ([four original and latest source JPEG sheets](../../design/reviews/primary-2026-10-24/)); independently open **all four** and record an exact path + SHA-256 observation for each ([review report](../design/PRIMARY-24-OPTICAL-REVIEW-2026-10-24.md)).
+- [x] Correct actual source defects in five selected primaries: Quick Import editing hit-height/sample provenance/explicit wallpaper choice, compressed Share footer, Automation foreground eligibility and separate actions, Activity acknowledgement/review-before-reapply, Accessibility 200% claim. Source-truth validator and [focused successful CI #40128549862](https://github.com/gamesbyian/Glimpse/actions/runs/40128549862); re-open changed source contact sheets **01/02/04**.
+- [x] Require generated human reviewer to show per-card current source SHA-256, not only a link to separate machine snapshot. Keep all editorial choices null/unapproved.
+- [ ] Reconcile earlier-generation schematics against photographic Home/Reel/Grid/Detail visual language and readable/scalable typography. Direct 401px inspection did not test 320dp, native TalkBack focus, touch hitboxes or composited system windows.
+- [ ] Source rights-cleared independently identified p04 and p06–09/p16–17 images. Prove current Android wallpaper and best-effort 5-minute delivery, not just requested/app-acknowledged state.

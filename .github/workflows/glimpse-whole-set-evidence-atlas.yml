@@ -70,6 +70,13 @@ jobs:
             --emit design/atlas/whole-product-review-snapshot.v1.json
           python3 scripts/build-whole-product-review-viewer.py
           python3 scripts/build-whole-product-review-viewer.py --check
+          python3 - <<'PY'
+          from pathlib import Path
+          html=Path("design/atlas/whole-product-review-selection.html").read_text()
+          assert html.count("Source SHA-256:")>=58
+          assert 'NOT USER-APPROVED' in html or 'no owner approval' in html
+          print("PASS: per-source SHA-256 shown with all 58 primary/support draft phone candidates")
+          PY
       - name: Verify generated browser links and category counts
         run: |
           python3 - <<'PY'

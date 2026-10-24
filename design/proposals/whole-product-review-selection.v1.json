@@ -171,7 +171,8 @@
       ],
       "candidateState": "UNAPPROVED_PARTIAL_PAPER_AND_PIXEL_PROPOSAL",
       "ownerChoice": null,
-      "exactOwnerApprovalSHA256": null
+      "exactOwnerApprovalSHA256": null,
+      "reviewWarning": "Optical corrective pass: 44px Rotate/Crop/Original, explicit save-without-apply, Apply… requires a separate system-target decision. Source preview is vector sample, not real screenshot."
     },
     {
       "surfaceId": "share",
@@ -191,7 +192,8 @@
       ],
       "candidateState": "UNAPPROVED_PARTIAL_PAPER_AND_PIXEL_PROPOSAL",
       "ownerChoice": null,
-      "exactOwnerApprovalSHA256": null
+      "exactOwnerApprovalSHA256": null,
+      "reviewWarning": "Optical corrective pass: split four footer destinations into individual labels. p12/p12c are distinct share selections; recipient and Android return unverified."
     },
     {
       "surfaceId": "automation",
@@ -211,7 +213,8 @@
       ],
       "candidateState": "UNAPPROVED_PARTIAL_PAPER_AND_PIXEL_PROPOSAL",
       "ownerChoice": null,
-      "exactOwnerApprovalSHA256": null
+      "exactOwnerApprovalSHA256": null,
+      "reviewWarning": "Optical corrective pass: active-use eligibility, no exact clock promise, separate Change and Pause actions. Scheduling is OS-dependent and not verified."
     },
     {
       "surfaceId": "discover",
@@ -230,7 +233,8 @@
       ],
       "candidateState": "UNAPPROVED_PARTIAL_PAPER_AND_PIXEL_PROPOSAL",
       "ownerChoice": null,
-      "exactOwnerApprovalSHA256": null
+      "exactOwnerApprovalSHA256": null,
+      "reviewWarning": "Archive/NASA/Wikimedia entrypoints are illustrative source categories; availability, rights, network and recipient app behavior must be validated."
     },
     {
       "surfaceId": "destinations",
@@ -288,7 +292,8 @@
       ],
       "candidateState": "UNAPPROVED_PARTIAL_PAPER_AND_PIXEL_PROPOSAL",
       "ownerChoice": null,
-      "exactOwnerApprovalSHA256": null
+      "exactOwnerApprovalSHA256": null,
+      "reviewWarning": "Optical corrective pass: Glimpse action log vs actual Android current wallpaper distinguished; review last Home choice before any new apply."
     },
     {
       "surfaceId": "automation-editor",
@@ -328,7 +333,8 @@
       ],
       "candidateState": "UNAPPROVED_PARTIAL_PAPER_AND_PIXEL_PROPOSAL",
       "ownerChoice": null,
-      "exactOwnerApprovalSHA256": null
+      "exactOwnerApprovalSHA256": null,
+      "reviewWarning": "Illustrative source sample, never verified third-party Google Photos photo; permission and licensing facts must bind at runtime."
     },
     {
       "surfaceId": "photo-detail",
@@ -425,7 +431,8 @@
       ],
       "candidateState": "UNAPPROVED_PARTIAL_PAPER_AND_PIXEL_PROPOSAL",
       "ownerChoice": null,
-      "exactOwnerApprovalSHA256": null
+      "exactOwnerApprovalSHA256": null,
+      "reviewWarning": "Static preview only, Android app widget creation, layout and intent dispatch unverified."
     },
     {
       "surfaceId": "quick-settings-and-shortcuts",
@@ -442,7 +449,8 @@
       ],
       "candidateState": "UNAPPROVED_PARTIAL_PAPER_AND_PIXEL_PROPOSAL",
       "ownerChoice": null,
-      "exactOwnerApprovalSHA256": null
+      "exactOwnerApprovalSHA256": null,
+      "reviewWarning": "OS Quick Settings tile and shortcuts are hypothetical until native behavior verified."
     },
     {
       "surfaceId": "settings",
@@ -463,7 +471,8 @@
       ],
       "candidateState": "UNAPPROVED_PARTIAL_PAPER_AND_PIXEL_PROPOSAL",
       "ownerChoice": null,
-      "exactOwnerApprovalSHA256": null
+      "exactOwnerApprovalSHA256": null,
+      "reviewWarning": "Earlier schematic card vocabulary and large empty gaps require design-system typography/spacing pass and native tests."
     },
     {
       "surfaceId": "backup-and-restore",
@@ -485,7 +494,8 @@
       ],
       "candidateState": "UNAPPROVED_PARTIAL_PAPER_AND_PIXEL_PROPOSAL",
       "ownerChoice": null,
-      "exactOwnerApprovalSHA256": null
+      "exactOwnerApprovalSHA256": null,
+      "reviewWarning": "Exact bytes, restore conflict count, provenance, and atomic rollback need native and integration evidence."
     },
     {
       "surfaceId": "onboarding",
@@ -522,7 +532,8 @@
       ],
       "candidateState": "UNAPPROVED_PARTIAL_PAPER_AND_PIXEL_PROPOSAL",
       "ownerChoice": null,
-      "exactOwnerApprovalSHA256": null
+      "exactOwnerApprovalSHA256": null,
+      "reviewWarning": "Generic permission failure illustration conflates empty, revoked, unsupported source; error-specific task recovery is pending."
     },
     {
       "surfaceId": "accessibility-preferences",
@@ -540,7 +551,8 @@
       ],
       "candidateState": "UNAPPROVED_PARTIAL_PAPER_AND_PIXEL_PROPOSAL",
       "ownerChoice": null,
-      "exactOwnerApprovalSHA256": null
+      "exactOwnerApprovalSHA256": null,
+      "reviewWarning": "200% is a design/test target, not validated support. Native font scale, TalkBack and action dimensions remain unverified."
     }
   ],
   "supportSurfaces": [

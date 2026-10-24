@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Build an offline, searchable, never-owner-approved Glimpse review candidate UI."""
 from __future__ import annotations
-import argparse,html,json
+import argparse,html,json,hashlib
 from pathlib import Path
 
 ROOT=Path(__file__).resolve().parents[1]
@@ -16,10 +16,11 @@ def phone(rel,label,path):
     return (f'<a href="{attr(target)}" target="_blank" rel="noopener" title="Open annotated editable SVG">'
             f'<div class="phone"><img loading="lazy" width="1160" height="920" src="{attr(target)}" alt="{attr(alt)}"></div></a>')
 def card(label,path,extra="",note=""):
+    digest=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
     altlinks=" ".join(f'<a href="{attr(url(x))}" target="_blank" rel="noopener">{title(Path(x).stem.replace("-"," "))}</a>' for x in extra)
     return (f'<article class="item" data-filter="{attr((label+" "+path+" "+" ".join(extra)).lower())}">'
             f'<h3>{title(label)}</h3>{phone(url(path),label,path)}'
-            f'<p class="path">{title(path)}</p>'
+            f'<p class="path">{title(path)}</p><p class="path">Source SHA-256: <code>{digest}</code></p>'
             f'<p class="flag">Draft reference · no owner approval</p>'
             +(f'<p class="note">{title(note)}</p>' if note else '')
             +(f'<div class="alternates"><b>Also compare:</b> {altlinks}</div>' if extra else '')+'</article>')

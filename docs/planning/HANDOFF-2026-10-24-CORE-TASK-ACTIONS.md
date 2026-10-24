@@ -61,3 +61,12 @@ python3 scripts/validate-whole-product-review-selection.py
 ```
 
 **Branch and PR remain draft-only**. Do not mutate `design/approved/`, claim OS support, or merge without human review.
+
+## Direct whole-product primary inspection + corrective pass · later October 24
+
+- Four [24-primary contact sheets](../../design/reviews/primary-2026-10-24/) now render **all 24 exact currently selected sources**; [current per-plate SHA and detailed direct optical finding report](../design/PRIMARY-24-OPTICAL-REVIEW-2026-10-24.md). All 4 sheets directly opened; after real fixes to five primary SVGs, changed sheets 01/02/04 reopened. [Focused CI #40128549862](https://github.com/gamesbyian/Glimpse/actions/runs/40128549862) passed including conservative action-truth validator.
+- Quick Import now has taller Rotate/Crop/Original controls, calls its image a sample, and explicitly separates saving from applying. Share has non-overlapping four-tab footer. Automation separates Change vs Pause, foreground-only eligibility and unknown OS timing. Activity distinguishes logged acknowledgement from current wallpaper and offers review-before-reapply. Accessibility no longer asserts untested 200% support.
+- The 24-primary + 34-support selection now has **58/58 directly inspected static source-reference slots**, after source corrections to **five primary and fifteen support variants**. This is *screen raster optical coverage*, not 58 accepted screens; none has confirmed Android, a11y or owner proof. Source count remains **276** (no new proposals added).
+- Selected reviewer is expected to surface SHA-256 adjacent to each source card, and machine snapshot separately records all exact source hashes. Latest source and image ledgers must be kept in sync by the two focused contact/atlas CI workflows.
+
+**Remaining true bottleneck:** coherent overall visual styling and 320dp/200% controls across older 19 primary cards/19 support source plates, real independent photo fixtures and rights, complete native transaction/target/URI/background/accessibility proofs, scored audit issue resolution and explicit human choice. PR #6 remains draft and must not be merged before that.
