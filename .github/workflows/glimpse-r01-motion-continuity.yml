@@ -1,0 +1,92 @@
+name: Glimpse R01 | photographic tap and 36-degree motion proof
+on:
+  push:
+    branches: [agent/visual-state-reconciliation-20261023]
+    paths: [.github/workflows/glimpse-r01-motion-continuity.yml]
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: glimpse-r01-motion-proof-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  motion-source-proof:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Regenerate physical-wheel 36-degree and tap press/settle sources
+        run: |
+          python3 scripts/build-r01-photo-motion-continuity.py --write
+          python3 scripts/build-r01-photo-motion-continuity.py
+      - name: Raster and validate same-fixture continuity
+        run: |
+          python3 -m pip install --quiet cairosvg pillow
+          python3 - <<'PY'
+          import hashlib,html,json,os,re
+          from pathlib import Path
+          from xml.etree import ElementTree as ET
+          from cairosvg import svg2png
+          from PIL import Image,ImageChops
+          root=Path("design/proposals/audit-revisions")
+          out=Path("/tmp/glimpse-r01-tap-drag");out.mkdir(parents=True,exist_ok=True)
+          names=["r01-photo-rest-22","r01-photo-tap-p13-pressed","r01-photo-tap-p13-settled","r01-photo-drag-18","r01-photo-drag-36"]
+          stats=[]
+          metas={}
+          phones=[]
+          for name in names:
+            src=root/(name+".svg")
+            full=out/(name+"-full.png"); crop=out/(name+"-phone.png")
+            s=src.read_bytes()
+            xml=ET.fromstring(s)
+            meta=json.loads(xml.find('{http://www.w3.org/2000/svg}metadata').text)
+            metas[name]=meta
+            assert len(re.findall(rb'<use href="#fixture[1-6]"',s))==6,name
+            svg2png(bytestring=s,write_to=str(full),output_width=1160,output_height=920)
+            with Image.open(full) as pic:
+              p=pic.crop((15,14,416,904)).convert('RGB')
+              assert p.size==(401,890)
+              assert len(p.getcolors(401*890) or [])>100
+              p.save(crop)
+              phones.append(p)
+            stats.append({"name":name,"sourceSHA256":hashlib.sha256(s).hexdigest(),
+              "pngSHA256":hashlib.sha256(crop.read_bytes()).hexdigest(),
+              "photoTotal":meta["photoTotal"],
+              "selectedAssetId":meta["selectedAssetId"],
+              "lastConfirmedAppliedAssetId":meta["lastConfirmedAppliedAssetId"],
+              "committed":meta["positionCommitted"]})
+          assert [m["selectedAssetId"] for m in (metas[n] for n in names)]==["p12","p12","p13","p12","p12"]
+          assert all(m["lastConfirmedAppliedAssetId"]=="p04" for m in metas.values())
+          for name in names:
+            m=metas[name]
+            assert m.get("fixtureArtworkByPhotoId"),name
+            assert len(set(m["photoFixtureSHA256"].values()))==5,name
+          assert metas["r01-photo-tap-p13-settled"]["motionPhase"]=="tap-settled"
+          assert metas["r01-photo-drag-36"]["gestureDeltaDegrees"]==36
+          assert ImageChops.difference(phones[1],phones[2]).getbbox() is not None
+          assert ImageChops.difference(phones[3],phones[4]).getbbox() is not None
+          (out/"index.json").write_text(json.dumps({
+            "sourceWorkflowSHA":os.environ["GITHUB_SHA"],"runId":os.environ["GITHUB_RUN_ID"],
+            "proofClass":"generated-source-matched-401x890-svg-raster",
+            "independentlyViewed":False,"nativeVerified":False,"ownerApproved":False,
+            "frames":stats
+          },indent=2)+"\n")
+          print("PASS: source and pixels distinct, preview p12 retained until tap commits p13, applied p04 unchanged")
+          PY
+      - name: Commit only new editable SVG drafts
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add design/proposals/audit-revisions/r01-photo-drag-36.svg design/proposals/audit-revisions/r01-photo-tap-p13-pressed.svg design/proposals/audit-revisions/r01-photo-tap-p13-settled.svg
+          if ! git diff --cached --quiet; then
+            git commit -m "design: add photographic 36-degree and tap-settle R01 sequence"
+            git push origin HEAD:"${GITHUB_REF_NAME}"
+          fi
+      - uses: actions/upload-artifact@v4
+        with:
+          name: glimpse-r01-photographic-gesture-proof-${{ github.sha }}
+          path: /tmp/glimpse-r01-tap-drag/
+          retention-days: 14
