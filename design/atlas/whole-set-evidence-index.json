@@ -1,0 +1,2271 @@
+{
+  "schemaVersion": 1,
+  "status": "ALL_DRAFT_SOURCE_EVIDENCE_NOT_HUMAN_APPROVED",
+  "sourceCommit": "8132c6354a4e96d2424c10386799455df5f38471",
+  "auditCycleA": {
+    "PASS_SOURCE_ONLY": 18,
+    "ISSUE": 8,
+    "UNVERIFIED": 34
+  },
+  "counts": {
+    "baseline": 203,
+    "core": 24,
+    "criticalReel": 8,
+    "support": 34,
+    "P0": 82,
+    "P1": 55,
+    "supplemental": 25,
+    "auditRevisionAlternatives": 30,
+    "preferredRoute": 39,
+    "uniqueEvidenceSources": 258,
+    "namedStateSlots": 34
+  },
+  "readme": "Preferred is a proposed review sequence, not selected/approved native UX. Appendix may contain superseded alternatives. Every SHA-256 hashes SVG source bytes, not rendered pixels.",
+  "chapters": [
+    {
+      "name": "Preferred route / Home and first use",
+      "class": "preliminary-choice",
+      "tier": "PREFERRED_DRAFT",
+      "items": [
+        {
+          "path": "design/proposals/plates/home.svg",
+          "label": "Home",
+          "meaning": "Provisional preferred route; not approved",
+          "sourceSHA256": "18bd1f1d66a5e7e57afc74f3d9e9787fa3eea6d75acc202af25110f62d6c8573"
+        },
+        {
+          "path": "design/proposals/plates/collections.svg",
+          "label": "Collections",
+          "meaning": "Provisional preferred route; not approved",
+          "sourceSHA256": "cccbbc168af04e4037f13a7bf833c1cb71ba9a3e1eaba57fa72d9c3e62652e24"
+        },
+        {
+          "path": "design/proposals/plates/quick-import.svg",
+          "label": "Quick Import",
+          "meaning": "Provisional preferred route; not approved",
+          "sourceSHA256": "2f6ee1845550017ab2505ef167a6c66630f33b9da6d5fcc0390a70ef0a054531"
+        }
+      ]
+    },
+    {
+      "name": "Preferred route / Finite photographic reel",
+      "class": "preliminary-choice",
+      "tier": "PREFERRED_DRAFT",
+      "items": [
+        {
+          "path": "design/proposals/audit-revisions/r01-photo-empty-0.svg",
+          "label": "R01 Photo Empty 0",
+          "meaning": "Provisional preferred route; not approved",
+          "sourceSHA256": "8b6ac1f65e6f86514c4cfc40b945f51b38578c1a1ac4277736617d8e1d544657"
+        },
+        {
+          "path": "design/proposals/audit-revisions/r01-photo-single-1.svg",
+          "label": "R01 Photo Single 1",
+          "meaning": "Provisional preferred route; not approved",
+          "sourceSHA256": "e5f25f357b234c7bee3947b01d63e4d5b0c120b7e1aa13ecbf1618d7b6119dae"
+        },
+        {
+          "path": "design/proposals/audit-revisions/r01-photo-rest-22.svg",
+          "label": "R01 Photo Rest 22",
+          "meaning": "Provisional preferred route; not approved",
+          "sourceSHA256": "3123329da461994bea8535aaf4e82ab74208a565cdee5360af2e5e16a983110c"
+        },
+        {
+          "path": "design/proposals/audit-revisions/r01-photo-drag-18.svg",
+          "label": "R01 Photo Drag 18",
+          "meaning": "Provisional preferred route; not approved",
+          "sourceSHA256": "6a47bc256ad7b0417fad42929ce07199c48fd0ca621ba69ae21ca22d943fa2c4"
+        },
+        {
+          "path": "design/proposals/audit-revisions/r01-photo-snap-13.svg",
+          "label": "R01 Photo Snap 13",
+          "meaning": "Provisional preferred route; not approved",
+          "sourceSHA256": "61df0f03de62a5a820ad9444a859cad2076b0910007196ce89d40b34904e3a9a"
+        },
+        {
+          "path": "design/proposals/audit-revisions/r01-photo-last-22.svg",
+          "label": "R01 Photo Last 22",
+          "meaning": "Provisional preferred route; not approved",
+          "sourceSHA256": "e0b1911f247b4218ad8d1e959964400e0b93ae535ed962fee0ab4bf9c3a5aa5f"
+        }
+      ]
+    },
+    {
+      "name": "Preferred route / Grid, edit and share",
+      "class": "preliminary-choice",
+      "tier": "PREFERRED_DRAFT",
+      "items": [
+        {
+          "path": "design/proposals/storyboards/x07/02-grid-focus.svg",
+          "label": "02 Grid Focus",
+          "meaning": "Provisional preferred route; not approved",
+          "sourceSHA256": "ca7a7e7134d86f13e82231f32ac1dbab6581accd4734417ace85c23e690272d5"
+        },
+        {
+          "path": "design/proposals/storyboards/x07/03-photo-detail.svg",
+          "label": "03 Photo Detail",
+          "meaning": "Provisional preferred route; not approved",
+          "sourceSHA256": "8ec5b507e9690fc9c03e5eb1af4dc2692248fc9f715ee60c4acae1ed022c98e4"
+        },
+        {
+          "path": "design/proposals/audit-revisions/r02-crop-pending.svg",
+          "label": "R02 Crop Pending",
+          "meaning": "Provisional preferred route; not approved",
+          "sourceSHA256": "5592eb02deb39792216c90287681d19f56ffaa0e4638cb3621ef4cb1a597162a"
+        },
+        {
+          "path": "design/proposals/audit-revisions/r02-copy-saved.svg",
+          "label": "R02 Copy Saved",
+          "meaning": "Provisional preferred route; not approved",
+          "sourceSHA256": "6dce37d10d2b136e346c4f956c1744cdb32db63f32a6d3ff7145ea8e88acacf6"
+        },
+        {
+          "path": "design/proposals/audit-revisions/r02-share-choice.svg",
+          "label": "R02 Share Choice",
+          "meaning": "Provisional preferred route; not approved",
+          "sourceSHA256": "6efd92d69e6a895a208f911176fb598e58035c71c53de23039b4d12cb73f1c33"
+        },
+        {
+          "path": "design/proposals/audit-revisions/r06-share-dismissed.svg",
+          "label": "R06 Share Dismissed",
+          "meaning": "Provisional preferred route; not approved",
+          "sourceSHA256": "ff4b900b877c7136edd6746fbfbd1dd9dad314b66bc122b67efb4082b7a282e4"
+        },
+        {
+          "path": "design/proposals/advanced-storyboards/x13/04-cancel.svg",
+          "label": "04 Cancel",
+          "meaning": "Provisional preferred route; not approved",
+          "sourceSHA256": "2d6564fc9f9cbb94d70c96700841ff6a10b0245b0ab179dc860ddd41280f4dab"
+        }
+      ]
+    },
+    {
+      "name": "Preferred route / Import trust",
+      "class": "preliminary-choice",
+      "tier": "PREFERRED_DRAFT",
+      "items": [
+        {
+          "path": "design/proposals/audit-revisions/r04-import-empty.svg",
+          "label": "R04 Import Empty",
+          "meaning": "Provisional preferred route; not approved",
+          "sourceSHA256": "888df0a1777f3bbbf43f8062e8c74dc170979c7a4f4eb0250e88e3f5b3cadf46"
+        },
+        {
+          "path": "design/proposals/audit-revisions/r04-import-17-of-22.svg",
+          "label": "R04 Import 17 Of 22",
+          "meaning": "Provisional preferred route; not approved",
+          "sourceSHA256": "cff3bd1d864515df906e3ea69c7d8e9659241a82e1e5dc2478276dc75841964e"
+        },
+        {
+          "path": "design/proposals/audit-revisions/r04-import-cancel.svg",
+          "label": "R04 Import Cancel",
+          "meaning": "Provisional preferred route; not approved",
+          "sourceSHA256": "262eba90a66b4b38f7fed6efb13bb83716e5712ae2599c4f5d06460e28123c88"
+        },
+        {
+          "path": "design/proposals/audit-revisions/r04-import-no-space.svg",
+          "label": "R04 Import No Space",
+          "meaning": "Provisional preferred route; not approved",
+          "sourceSHA256": "acd6d5cff270dc015051875a14f8152fa5b61c18ac18a22fb098644c7c418d4a"
+        }
+      ]
+    },
+    {
+      "name": "Preferred route / Wallpaper truth",
+      "class": "preliminary-choice",
+      "tier": "PREFERRED_DRAFT",
+      "items": [
+        {
+          "path": "design/proposals/audit-revisions/r03-preview-not-applied.svg",
+          "label": "R03 Preview Not Applied",
+          "meaning": "Provisional preferred route; not approved",
+          "sourceSHA256": "3f1de2cc975e7e875135ee5eb1534fd526d49fe6887c91386bf6909a87bfd252"
+        },
+        {
+          "path": "design/proposals/audit-revisions/r03-unknown-after-request.svg",
+          "label": "R03 Unknown After Request",
+          "meaning": "Provisional preferred route; not approved",
+          "sourceSHA256": "9b0bcda300d25320e769725543b296a4b7509f15e93557147434fd4da547668c"
+        },
+        {
+          "path": "design/proposals/advanced-storyboards/x14/05-apply-both.svg",
+          "label": "05 Apply Both",
+          "meaning": "Provisional preferred route; not approved",
+          "sourceSHA256": "0074519312ffc6242d7548a464185e991f15762de565bb47f233ebba1fc9e7e0"
+        }
+      ]
+    },
+    {
+      "name": "Preferred route / Rotation",
+      "class": "preliminary-choice",
+      "tier": "PREFERRED_DRAFT",
+      "items": [
+        {
+          "path": "design/proposals/storyboards/x04/03-active.svg",
+          "label": "03 Active",
+          "meaning": "Provisional preferred route; not approved",
+          "sourceSHA256": "bf65aae58c3ecc06cbb1a9a4f63ba1443ebdbb944f1667441142609ec2b6f970"
+        },
+        {
+          "path": "design/proposals/storyboards/x04/05-paused.svg",
+          "label": "05 Paused",
+          "meaning": "Provisional preferred route; not approved",
+          "sourceSHA256": "869513368b9023e14563ca7a1d32cdd90db06df2027cbb888d8e05e7e3980b47"
+        },
+        {
+          "path": "design/proposals/state-refinements/automation-delayed.svg",
+          "label": "Automation Delayed",
+          "meaning": "Provisional preferred route; not approved",
+          "sourceSHA256": "d039a9f87d973187df67a5e837e0b5b7abf9d12663a3626f80875397c228f731"
+        },
+        {
+          "path": "design/proposals/audit-revisions/r07-battery-restricted.svg",
+          "label": "R07 Battery Restricted",
+          "meaning": "Provisional preferred route; not approved",
+          "sourceSHA256": "203cd7a5ab8938fea15c5f2e53db755a00c4ba9a49af1fd3fc74fdcd6cc4856a"
+        },
+        {
+          "path": "design/proposals/audit-revisions/r07-unknown-after-attempt.svg",
+          "label": "R07 Unknown After Attempt",
+          "meaning": "Provisional preferred route; not approved",
+          "sourceSHA256": "8eae212323629804960cf6ab753d46781830f6debdafe45f9d20b620691e4ad7"
+        },
+        {
+          "path": "design/proposals/storyboards/x04/06-resumed.svg",
+          "label": "06 Resumed",
+          "meaning": "Provisional preferred route; not approved",
+          "sourceSHA256": "ef123c5f5e31a0bacfc745915fcfc062593433263cf77bd713e9f27fc29da13a"
+        }
+      ]
+    },
+    {
+      "name": "Preferred route / Provider, storage and restore",
+      "class": "preliminary-choice",
+      "tier": "PREFERRED_DRAFT",
+      "items": [
+        {
+          "path": "design/proposals/advanced-storyboards/x17/04-offline.svg",
+          "label": "04 Offline",
+          "meaning": "Provisional preferred route; not approved",
+          "sourceSHA256": "d6eec7631868935ffd3b942046ca21238a32b0b839f17d1b45b53bfb088bb3d7"
+        },
+        {
+          "path": "design/proposals/audit-revisions/r08-source-revoked.svg",
+          "label": "R08 Source Revoked",
+          "meaning": "Provisional preferred route; not approved",
+          "sourceSHA256": "fbc6cf0bcf52d5d5889cc951545ff776fcd630ce8b3284cc118819dcb4498fc8"
+        },
+        {
+          "path": "design/proposals/state-refinements/destinations-unsupported.svg",
+          "label": "Destinations Unsupported",
+          "meaning": "Provisional preferred route; not approved",
+          "sourceSHA256": "6f79ca2b2d51b424384e6e5e0b430c39254863b89e89fac0372b4b30c311fe42"
+        },
+        {
+          "path": "design/proposals/audit-revisions/r08-restore-conflict-choice.svg",
+          "label": "R08 Restore Conflict Choice",
+          "meaning": "Provisional preferred route; not approved",
+          "sourceSHA256": "8be4e307620c0129ee402976f1af19b0284c830dad7dd433be6f956d18d9f438"
+        },
+        {
+          "path": "design/proposals/advanced-storyboards/x19/05-restore-result.svg",
+          "label": "05 Restore Result",
+          "meaning": "Provisional preferred route; not approved",
+          "sourceSHA256": "6bd12f9ac5886b542510cadc1ae0ae61233f4d9bf48385c5d089e4349c11dd52"
+        }
+      ]
+    },
+    {
+      "name": "Preferred route / Accessible routes",
+      "class": "preliminary-choice",
+      "tier": "PREFERRED_DRAFT",
+      "items": [
+        {
+          "path": "design/proposals/audit-revisions/r05-photo-reel-focus-overlay.svg",
+          "label": "R05 Photo Reel Focus Overlay",
+          "meaning": "Provisional preferred route; not approved",
+          "sourceSHA256": "80bef8638ed0c18d6e91e67fb66a5f89336458ff592738bc9ebd5c3922135f07"
+        },
+        {
+          "path": "design/proposals/audit-revisions/r05-reduced-motion.svg",
+          "label": "R05 Reduced Motion",
+          "meaning": "Provisional preferred route; not approved",
+          "sourceSHA256": "1d031b2ea995915bb951231fa3bc95a0fe8aa37d50e324cd224a7891d8c9dc87"
+        },
+        {
+          "path": "design/proposals/audit-revisions/r05-talkback-route.svg",
+          "label": "R05 Talkback Route",
+          "meaning": "Provisional preferred route; not approved",
+          "sourceSHA256": "7165688761aa02cff0d1192b04a3f587001680b2cf70b6a040a05e82adc5f7be"
+        },
+        {
+          "path": "design/proposals/critical-reel/reel-large-text.svg",
+          "label": "Reel Large Text",
+          "meaning": "Provisional preferred route; not approved",
+          "sourceSHA256": "531d0a6fbf57491bdfdac36b167943dc88703ef6bd8d813409323a900e94d293"
+        },
+        {
+          "path": "design/proposals/state-refinements/accessibility-high-contrast.svg",
+          "label": "Accessibility High Contrast",
+          "meaning": "Provisional preferred route; not approved",
+          "sourceSHA256": "f63421dad70c9bd1732b0eb95c93ea936b0e84eaeb295c59f499890ad3c71df6"
+        }
+      ]
+    },
+    {
+      "name": "Every contracted core surface (24)",
+      "class": "original-core",
+      "tier": "APPENDIX",
+      "items": [
+        {
+          "path": "design/proposals/plates/home.svg",
+          "label": "Home",
+          "meaning": "",
+          "sourceSHA256": "18bd1f1d66a5e7e57afc74f3d9e9787fa3eea6d75acc202af25110f62d6c8573"
+        },
+        {
+          "path": "design/proposals/plates/collections.svg",
+          "label": "Collections",
+          "meaning": "",
+          "sourceSHA256": "cccbbc168af04e4037f13a7bf833c1cb71ba9a3e1eaba57fa72d9c3e62652e24"
+        },
+        {
+          "path": "design/proposals/plates/reel.svg",
+          "label": "Reel",
+          "meaning": "",
+          "sourceSHA256": "9a290c6ca8ed29c1e2612900f502698bed3a69c6f1ea0f0337a756d21e995ed7"
+        },
+        {
+          "path": "design/proposals/plates/grid.svg",
+          "label": "Grid",
+          "meaning": "",
+          "sourceSHA256": "0fa6ddf37ab798dfd9adda067f818df97410d9863eb9a5f909c9b5c89762ef70"
+        },
+        {
+          "path": "design/proposals/plates/quick-import.svg",
+          "label": "Quick Import",
+          "meaning": "",
+          "sourceSHA256": "2f6ee1845550017ab2505ef167a6c66630f33b9da6d5fcc0390a70ef0a054531"
+        },
+        {
+          "path": "design/proposals/plates/share.svg",
+          "label": "Share",
+          "meaning": "",
+          "sourceSHA256": "6f932cc589ac8b1795f1af70088da7304c49174193961dd902a84423412b4ed8"
+        },
+        {
+          "path": "design/proposals/plates/automation.svg",
+          "label": "Automation",
+          "meaning": "",
+          "sourceSHA256": "14df28e3f6d80768002b46d7cdd611909c8d4308cfdc14f49dcac71801d56dfd"
+        },
+        {
+          "path": "design/proposals/plates/discover.svg",
+          "label": "Discover",
+          "meaning": "",
+          "sourceSHA256": "76c0e0e2d189006289410d481694f3fbc5d33bf628caff797159e4c25d0620b4"
+        },
+        {
+          "path": "design/proposals/plates/destinations.svg",
+          "label": "Destinations",
+          "meaning": "",
+          "sourceSHA256": "8c4c55cc3a07120cf00f507f4d59f1e62dcc45cc1c48aa952c95942a7a6063e9"
+        },
+        {
+          "path": "design/proposals/plates/image-editor.svg",
+          "label": "Image Editor",
+          "meaning": "",
+          "sourceSHA256": "3ccbbbcedfc9bbe300c49c7f919af141930d94c08d0f686c3a47cea45eec857b"
+        },
+        {
+          "path": "design/proposals/plates/activity.svg",
+          "label": "Activity",
+          "meaning": "",
+          "sourceSHA256": "c2062c2bda729c5f681c71a5c13176050715b990c89084c32b351eab72e305fd"
+        },
+        {
+          "path": "design/proposals/plates/automation-editor.svg",
+          "label": "Automation Editor",
+          "meaning": "",
+          "sourceSHA256": "05b4eea9e5e90e1cfa69fb566919d9796b2ba4fde95989b2f49d18268ce2ebbe"
+        },
+        {
+          "path": "design/proposals/plates/source-detail.svg",
+          "label": "Source Detail",
+          "meaning": "",
+          "sourceSHA256": "9275d0bd9d005ec984f85e56282ef699ce08e8779a1821ac38b44cfd1628d0b7"
+        },
+        {
+          "path": "design/proposals/plates/photo-detail.svg",
+          "label": "Photo Detail",
+          "meaning": "",
+          "sourceSHA256": "7251c96fa3a52feded4e2d89c53fe8172cd15db780d5cbb457c0c10a31403dfe"
+        },
+        {
+          "path": "design/proposals/plates/quickstart.svg",
+          "label": "Quickstart",
+          "meaning": "",
+          "sourceSHA256": "f7c78b2cc92cbd8e7bdb62b4df4aa2b5ca95c120bc6a7d4da775807c9c95ee2e"
+        },
+        {
+          "path": "design/proposals/plates/schedule-simulator.svg",
+          "label": "Schedule Simulator",
+          "meaning": "",
+          "sourceSHA256": "0b68b9881e5181ce5816d432b3fd59074c9f371abdf6c13957566dfc6d32273f"
+        },
+        {
+          "path": "design/proposals/plates/diagnostics.svg",
+          "label": "Diagnostics",
+          "meaning": "",
+          "sourceSHA256": "3d8b55067210797045e0e09712f271e019442d73c8c430bf43f636c2d7795f7d"
+        },
+        {
+          "path": "design/proposals/plates/widgets.svg",
+          "label": "Widgets",
+          "meaning": "",
+          "sourceSHA256": "25985c9af96a9eb664cac431fa392c45e9e80386052d1fb42b9c6e1fe237fb99"
+        },
+        {
+          "path": "design/proposals/plates/quick-settings-and-shortcuts.svg",
+          "label": "Quick Settings And Shortcuts",
+          "meaning": "",
+          "sourceSHA256": "92af1265003045df41ae71c78d197e9a8a04ed94fce71b6e8acc91c005f0fc60"
+        },
+        {
+          "path": "design/proposals/plates/settings.svg",
+          "label": "Settings",
+          "meaning": "",
+          "sourceSHA256": "9bcc580eacf16532d354032360f1d38b610a89fa10c14be4b637afd027e97fae"
+        },
+        {
+          "path": "design/proposals/plates/backup-and-restore.svg",
+          "label": "Backup And Restore",
+          "meaning": "",
+          "sourceSHA256": "7719a88b242ba9e4ef536fc8f098ff3080f70aa557fd9fe9c7ac20e1e2ff2436"
+        },
+        {
+          "path": "design/proposals/plates/onboarding.svg",
+          "label": "Onboarding",
+          "meaning": "",
+          "sourceSHA256": "74fd6a003c792d986bed4c31adf194568429703414ccbed6caf7518ea1f0cb0a"
+        },
+        {
+          "path": "design/proposals/plates/error-empty-permission.svg",
+          "label": "Error Empty Permission",
+          "meaning": "",
+          "sourceSHA256": "a7307d0aa39be029063e5b3f9c57b9e7329d15f6c45069e28f0fe07394a53962"
+        },
+        {
+          "path": "design/proposals/plates/accessibility-preferences.svg",
+          "label": "Accessibility Preferences",
+          "meaning": "",
+          "sourceSHA256": "ab18877822b973dfb60fb81a8aa3c8770e7b522821271b818c813b1099398d61"
+        }
+      ]
+    },
+    {
+      "name": "Original critical reel studies (8)",
+      "class": "original-reel",
+      "tier": "APPENDIX",
+      "items": [
+        {
+          "path": "design/proposals/critical-reel/reel-empty.svg",
+          "label": "Reel Empty",
+          "meaning": "",
+          "sourceSHA256": "80a880576da367a14faf68e26575f4126b669c67de7c5d952ea745296414a2f2"
+        },
+        {
+          "path": "design/proposals/critical-reel/reel-interrupted.svg",
+          "label": "Reel Interrupted",
+          "meaning": "",
+          "sourceSHA256": "e574584441f6a8c245edf901b12255c4d35872ff0fa879fc91a7b3a9c0904432"
+        },
+        {
+          "path": "design/proposals/critical-reel/reel-large-text.svg",
+          "label": "Reel Large Text",
+          "meaning": "",
+          "sourceSHA256": "531d0a6fbf57491bdfdac36b167943dc88703ef6bd8d813409323a900e94d293"
+        },
+        {
+          "path": "design/proposals/critical-reel/reel-last.svg",
+          "label": "Reel Last",
+          "meaning": "",
+          "sourceSHA256": "373d63f9621a510b14ac1af722f55905fbf185a4f26389ab956a8074478bddc6"
+        },
+        {
+          "path": "design/proposals/critical-reel/reel-one.svg",
+          "label": "Reel One",
+          "meaning": "",
+          "sourceSHA256": "f5040d7b919162adda99383c99e3c9d37f3f8c073bb61dd9c5a3fb556f08f212"
+        },
+        {
+          "path": "design/proposals/critical-reel/reel-reduced-motion.svg",
+          "label": "Reel Reduced Motion",
+          "meaning": "",
+          "sourceSHA256": "bfab224b5c8ab714a2148e7b375c2681e32ff65fed653956ac59b5dedf105f2c"
+        },
+        {
+          "path": "design/proposals/critical-reel/reel-three.svg",
+          "label": "Reel Three",
+          "meaning": "",
+          "sourceSHA256": "d1da32dea9f633d353dd4f69e04b159d96231e0249bb9f52745feb0b1a466837"
+        },
+        {
+          "path": "design/proposals/critical-reel/reel-twenty-two.svg",
+          "label": "Reel Twenty Two",
+          "meaning": "",
+          "sourceSHA256": "53af22358a08a06935532831f884305e6cba7ff3cae9a4cf5f1848df0e89844d"
+        }
+      ]
+    },
+    {
+      "name": "Every original support variant (34)",
+      "class": "original-support",
+      "tier": "APPENDIX",
+      "items": [
+        {
+          "path": "design/proposals/support-plates/about--sideload.svg",
+          "label": "About / Sideload",
+          "meaning": "",
+          "sourceSHA256": "5fafa0adb49e6e943101712729c0a6c2243068c4e7336bb9961caacce7c222ef"
+        },
+        {
+          "path": "design/proposals/support-plates/about--play-release.svg",
+          "label": "About / Play Release",
+          "meaning": "",
+          "sourceSHA256": "35484d4d28704ae33a1751e7cfe4f1281a7e3c4b23e196ab9f1efcb397f806bd"
+        },
+        {
+          "path": "design/proposals/support-plates/help--topics.svg",
+          "label": "Help / Topics",
+          "meaning": "",
+          "sourceSHA256": "e02a723264ae11f6947e40b3139a3ea569dfd7a4f6b3e6b8807e2b4aed46256f"
+        },
+        {
+          "path": "design/proposals/support-plates/help--article.svg",
+          "label": "Help / Article",
+          "meaning": "",
+          "sourceSHA256": "3966dccbfeeb053cbc03296da53a5710fb198c0bd5110baf3df51bd7e7b9cda5"
+        },
+        {
+          "path": "design/proposals/support-plates/contact-feedback--available.svg",
+          "label": "Contact Feedback / Available",
+          "meaning": "",
+          "sourceSHA256": "ca222c54b339e5a83dd2184a53908efc000f6ced00079e85d019e3b97ae8b01b"
+        },
+        {
+          "path": "design/proposals/support-plates/contact-feedback--no-handler.svg",
+          "label": "Contact Feedback / No Handler",
+          "meaning": "",
+          "sourceSHA256": "ca21a46da124b765fdcee595876bbe73ec6170c25a58924924af093a68edee5c"
+        },
+        {
+          "path": "design/proposals/support-plates/report-problem--draft.svg",
+          "label": "Report Problem / Draft",
+          "meaning": "",
+          "sourceSHA256": "79dc0c704169b2abf3de69f1ad761a89aa8eb852e9edc65ba45afc2b20e1ae0c"
+        },
+        {
+          "path": "design/proposals/support-plates/report-problem--with-diagnostics.svg",
+          "label": "Report Problem / With Diagnostics",
+          "meaning": "",
+          "sourceSHA256": "6f37c7fb63ae8af036d3c337193c23ddf29efc5c460b4b10310ff54da210a58e"
+        },
+        {
+          "path": "design/proposals/support-plates/crash-recovery--suspected-crash.svg",
+          "label": "Crash Recovery / Suspected Crash",
+          "meaning": "",
+          "sourceSHA256": "3c229b078893a9f1519c9f700e11f827cb609785749a6f66b41d20dbbabe444c"
+        },
+        {
+          "path": "design/proposals/support-plates/crash-recovery--normal-exit.svg",
+          "label": "Crash Recovery / Normal Exit",
+          "meaning": "",
+          "sourceSHA256": "03cf49d18676e0761f221d3b3c6823c82d52441fa663aeedc21066c958fee761"
+        },
+        {
+          "path": "design/proposals/support-plates/diagnostic-preview--minimal.svg",
+          "label": "Diagnostic Preview / Minimal",
+          "meaning": "",
+          "sourceSHA256": "b9852abb8ed5eab6e9a160f2d5e350691bf10854a67b4675f025785079b2e6f8"
+        },
+        {
+          "path": "design/proposals/support-plates/diagnostic-preview--expanded.svg",
+          "label": "Diagnostic Preview / Expanded",
+          "meaning": "",
+          "sourceSHA256": "6e24dde244c8b10feff53b53501bad634001fbd6dafc6a5dee9631160329ff1b"
+        },
+        {
+          "path": "design/proposals/support-plates/whats-new--latest.svg",
+          "label": "Whats New / Latest",
+          "meaning": "",
+          "sourceSHA256": "fea98fa566d05de960ad731ee4e4dc1059da6e6550156c456f167cc958c72efb"
+        },
+        {
+          "path": "design/proposals/support-plates/whats-new--no-notes.svg",
+          "label": "Whats New / No Notes",
+          "meaning": "",
+          "sourceSHA256": "56bb3c36e3ec0b5939132592f6e8bb26f41d149bcccee930a4f5e3b900f8ac3a"
+        },
+        {
+          "path": "design/proposals/support-plates/updates--sideload.svg",
+          "label": "Updates / Sideload",
+          "meaning": "",
+          "sourceSHA256": "8758586037b5390c2c7d7b77b92d6fe7bd64a47da770423608967abadd2b90ee"
+        },
+        {
+          "path": "design/proposals/support-plates/updates--play-eligible.svg",
+          "label": "Updates / Play Eligible",
+          "meaning": "",
+          "sourceSHA256": "c891964c103cda4a64db65e77df282056cd063a6c9ea77c197fa03b770dcbdf8"
+        },
+        {
+          "path": "design/proposals/support-plates/updates--offline.svg",
+          "label": "Updates / Offline",
+          "meaning": "",
+          "sourceSHA256": "7d807841073a22585fc3b4ecaef027fd1abf31b1baea32caa25907e5d17c4823"
+        },
+        {
+          "path": "design/proposals/support-plates/rate-review--not-available.svg",
+          "label": "Rate Review / Not Available",
+          "meaning": "",
+          "sourceSHA256": "a17ea885b4a735ffd5b1eaaf625f83fdb05a9d873c90bde331bdd79e16af323c"
+        },
+        {
+          "path": "design/proposals/support-plates/rate-review--play-listing.svg",
+          "label": "Rate Review / Play Listing",
+          "meaning": "",
+          "sourceSHA256": "4069f6690c729ea5a1df873b7036de8086b48978ec1125837469f7be0379e43e"
+        },
+        {
+          "path": "design/proposals/support-plates/privacy--local-only.svg",
+          "label": "Privacy / Local Only",
+          "meaning": "",
+          "sourceSHA256": "0dd9503d5a1d8c938b133b6a34ab7ee81018ac1b1e9a1f711f5347d27db1b616"
+        },
+        {
+          "path": "design/proposals/support-plates/privacy--diagnostics-opt-in.svg",
+          "label": "Privacy / Diagnostics Opt In",
+          "meaning": "",
+          "sourceSHA256": "d4e77ee3b98cda9d01eb52664f564aad6bd70c6a0dd9aeb45b083486f876c882"
+        },
+        {
+          "path": "design/proposals/support-plates/storage-management--overview.svg",
+          "label": "Storage Management / Overview",
+          "meaning": "",
+          "sourceSHA256": "d3628b5edd43ccd439eacfb7479e98deafe50d1ca1aa9ea9923d1eca8a2cbdcf"
+        },
+        {
+          "path": "design/proposals/support-plates/storage-management--delete-confirm.svg",
+          "label": "Storage Management / Delete Confirm",
+          "meaning": "",
+          "sourceSHA256": "7bd661ff9804f56ce5690b4bf1ffe9c45b58a6310f1ce5e8f22dc0f2f6793977"
+        },
+        {
+          "path": "design/proposals/support-plates/storage-management--low-storage.svg",
+          "label": "Storage Management / Low Storage",
+          "meaning": "",
+          "sourceSHA256": "becd03c11220b82a604a5f778a1982fa63d76a98f1a4564df1877e08c33406bc"
+        },
+        {
+          "path": "design/proposals/support-plates/permissions-capabilities--available.svg",
+          "label": "Permissions Capabilities / Available",
+          "meaning": "",
+          "sourceSHA256": "495b88bef4bd8efc325e766b1a6feeabff4b1b1a83f7ecfb67e574ed86da1b74"
+        },
+        {
+          "path": "design/proposals/support-plates/permissions-capabilities--restricted.svg",
+          "label": "Permissions Capabilities / Restricted",
+          "meaning": "",
+          "sourceSHA256": "305270c9d873a004f23b8a03aac68fc6b0fb79435a3417339db5c24bcf9ef08e"
+        },
+        {
+          "path": "design/proposals/support-plates/credits-licences--components.svg",
+          "label": "Credits Licences / Components",
+          "meaning": "",
+          "sourceSHA256": "b805242d6bfe55914b2c0af36851f07d23b5bbbcd55f7e48b5621b38bcb4bf1e"
+        },
+        {
+          "path": "design/proposals/support-plates/credits-licences--rights-warning.svg",
+          "label": "Credits Licences / Rights Warning",
+          "meaning": "",
+          "sourceSHA256": "dc0aabf0707dec6c01b2afabce11f558fa854ba39422efcc07aed1127aabac24"
+        },
+        {
+          "path": "design/proposals/support-plates/beta-feedback--invitation.svg",
+          "label": "Beta Feedback / Invitation",
+          "meaning": "",
+          "sourceSHA256": "73e9121ed6edd751e0f12c47e4f788327154f4ff5c6a8b6aa2ab94b2d02a574d"
+        },
+        {
+          "path": "design/proposals/support-plates/beta-feedback--share-preview.svg",
+          "label": "Beta Feedback / Share Preview",
+          "meaning": "",
+          "sourceSHA256": "69745e30ac958a4da78e5c393594448de6f4b9ebe0daebbde9b5011588b71801"
+        },
+        {
+          "path": "design/proposals/support-plates/notification-preferences--not-implemented.svg",
+          "label": "Notification Preferences / Not Implemented",
+          "meaning": "",
+          "sourceSHA256": "9832b19b21b9ccd575e598401d13e1cde444723281ef2402519a01f3660bcd56"
+        },
+        {
+          "path": "design/proposals/support-plates/notification-preferences--available.svg",
+          "label": "Notification Preferences / Available",
+          "meaning": "",
+          "sourceSHA256": "13bc7d9388f79927ce75ca535df24335823c5a7aed4c3a0468d1187a30dd8e5d"
+        },
+        {
+          "path": "design/proposals/support-plates/external-handler-fallback--email-missing.svg",
+          "label": "External Handler Fallback / Email Missing",
+          "meaning": "",
+          "sourceSHA256": "c947e15c8047448baf5420d97039ee8acb137c55fbb0173808102883a71c9072"
+        },
+        {
+          "path": "design/proposals/support-plates/external-handler-fallback--chooser-cancelled.svg",
+          "label": "External Handler Fallback / Chooser Cancelled",
+          "meaning": "",
+          "sourceSHA256": "e3e6ef094e1789aa6c2151668072b98e553fc11824af275ba95a62734f359ce8"
+        }
+      ]
+    },
+    {
+      "name": "34 required named state illustrations",
+      "class": "named-state-evidence",
+      "tier": "APPENDIX",
+      "items": [
+        {
+          "path": "design/proposals/storyboards/x04/05-paused.svg",
+          "label": "home / paused",
+          "meaning": "Home paused status, unchanged last-applied image.",
+          "sourceSHA256": "869513368b9023e14563ca7a1d32cdd90db06df2027cbb888d8e05e7e3980b47"
+        },
+        {
+          "path": "design/proposals/storyboards/x03/05-uncertain.svg",
+          "label": "home / uncertain",
+          "meaning": "Unknown must not render as applied.",
+          "sourceSHA256": "2c84d05c9bf4a1f39635840b07a7e2ac22a9ff854212d5ef3082d71b7be1d44d"
+        },
+        {
+          "path": "design/proposals/storyboards/x02/06-empty-after-removal.svg",
+          "label": "collections / empty",
+          "meaning": "Empty collection after removal, cloud originals retained.",
+          "sourceSHA256": "4a3a5c75efb8228d2aca44232286821eaf003151733cbabb9ee26a173dbac2a8"
+        },
+        {
+          "path": "design/proposals/state-refinements/collections-large.svg",
+          "label": "collections / large",
+          "meaning": "Dedicated collections draft illustrates large status, local context and user-controlled action on the phone; not independently optically or device verified.",
+          "sourceSHA256": "5c8d3bbf277ba8a2bec6852185e8b5a988f27dc124c89797dadf2dfe704b4d5b"
+        },
+        {
+          "path": "design/proposals/storyboards/x07/07-multi-select.svg",
+          "label": "grid / multi-select",
+          "meaning": "Three checked tiles and cancellation in phone.",
+          "sourceSHA256": "069fda834c31303ebce379b2da66913085976573926592d4c0a63d9048a67ca3"
+        },
+        {
+          "path": "design/proposals/state-refinements/quick-import-failed.svg",
+          "label": "quick-import / failed",
+          "meaning": "Single screenshot URI failure, not batch-import error.",
+          "sourceSHA256": "ead6569cf8f6e8934b3aa494db39794622e1385d3e46092329ce24e031664d6f"
+        },
+        {
+          "path": "design/proposals/state-refinements/quick-import-progress.svg",
+          "label": "quick-import / progress",
+          "meaning": "Screenshot copy progress; no premature save/apply.",
+          "sourceSHA256": "ccfba4588a6a1449368bbed3d1173733a5b9d03861ad35b229cee3109a2047b3"
+        },
+        {
+          "path": "design/proposals/advanced-storyboards/x13/02-edited.svg",
+          "label": "share / edited",
+          "meaning": "Separate edited payload, not merely two option labels.",
+          "sourceSHA256": "afa5556e0c205034e95d488112c99f6159b0bbbdcf50d140575e571f4359c8bd"
+        },
+        {
+          "path": "design/proposals/advanced-storyboards/x13/05-unavailable.svg",
+          "label": "share / unavailable",
+          "meaning": "No-handler fallback.",
+          "sourceSHA256": "2c4ba6a823043b60c68eae318a75f9aa4b5ebf903181148ec2852712eb8426af"
+        },
+        {
+          "path": "design/proposals/state-refinements/automation-paused.svg",
+          "label": "automation / paused",
+          "meaning": "Dedicated Automation surface; Home stays unchanged.",
+          "sourceSHA256": "43fa330adb208a50317171e0a663a3005fc9036e90357750684db93bdc34cb05"
+        },
+        {
+          "path": "design/proposals/state-refinements/automation-delayed.svg",
+          "label": "automation / delayed",
+          "meaning": "Eligibility vs OS confirmation kept separate.",
+          "sourceSHA256": "d039a9f87d973187df67a5e837e0b5b7abf9d12663a3626f80875397c228f731"
+        },
+        {
+          "path": "design/proposals/state-refinements/discover-offline.svg",
+          "label": "discover / offline",
+          "meaning": "Dedicated discover draft illustrates offline status, local context and user-controlled action on the phone; not independently optically or device verified.",
+          "sourceSHA256": "ae5eea5807816a132478d53b511c30daeb84ad235928c54155653023e7e22b58"
+        },
+        {
+          "path": "design/proposals/state-refinements/destinations-lock.svg",
+          "label": "destinations / lock",
+          "meaning": "Dedicated destinations draft illustrates lock status, local context and user-controlled action on the phone; not independently optically or device verified.",
+          "sourceSHA256": "a79c15138b57065be02a3f25f27523c30c2c0522e0116cbb3e4850a5795b6d55"
+        },
+        {
+          "path": "design/proposals/state-refinements/destinations-unsupported.svg",
+          "label": "destinations / unsupported",
+          "meaning": "Dedicated destinations draft illustrates unsupported status, local context and user-controlled action on the phone; not independently optically or device verified.",
+          "sourceSHA256": "6f79ca2b2d51b424384e6e5e0b430c39254863b89e89fac0372b4b30c311fe42"
+        },
+        {
+          "path": "design/proposals/advanced-storyboards/x14/02-lock.svg",
+          "label": "image-editor / lock",
+          "meaning": "Target-specific editing preview, not apply.",
+          "sourceSHA256": "c81cf29115e27bb88db47f3d050e85687e240fa0ad6d770cd61fcd137ce8455f"
+        },
+        {
+          "path": "design/proposals/state-refinements/image-editor-blur-extend.svg",
+          "label": "image-editor / blur-extend",
+          "meaning": "Explicit extended side fill and source-preserving edited output.",
+          "sourceSHA256": "f81eac0d4df29d4796053d9384f16bf3205d88463d4202bb0fc223e0edfdad70"
+        },
+        {
+          "path": "design/proposals/state-refinements/activity-failed.svg",
+          "label": "activity / failed",
+          "meaning": "Dedicated activity draft illustrates failed status, local context and user-controlled action on the phone; not independently optically or device verified.",
+          "sourceSHA256": "d76a99f6e4f38f259ebfea6217d5e0026d98196e8433720a6cf74f5f5edc008c"
+        },
+        {
+          "path": "design/proposals/state-refinements/activity-uncertain.svg",
+          "label": "activity / uncertain",
+          "meaning": "Dedicated activity draft illustrates uncertain status, local context and user-controlled action on the phone; not independently optically or device verified.",
+          "sourceSHA256": "e36eb44ce4336286ac478fbd505701838d3b2a129d0840f72964a754c513227c"
+        },
+        {
+          "path": "design/proposals/advanced-storyboards/x16/02-conflict.svg",
+          "label": "automation-editor / conflict",
+          "meaning": "Two visible competing rule cards.",
+          "sourceSHA256": "9acd2741697d643b9a4b25abbed85a71b739c92906b9f12a0c87388b1e5ec719"
+        },
+        {
+          "path": "design/proposals/state-refinements/automation-editor-nested.svg",
+          "label": "automation-editor / nested",
+          "meaning": "Dedicated automation-editor draft illustrates nested status, local context and user-controlled action on the phone; not independently optically or device verified.",
+          "sourceSHA256": "49de3e5223281750cc68ab07d01872a3f5bc5980af4ff7f0c16671a18d591fb8"
+        },
+        {
+          "path": "design/proposals/state-refinements/source-detail-offline.svg",
+          "label": "source-detail / offline",
+          "meaning": "Dedicated source-detail draft illustrates offline status, local context and user-controlled action on the phone; not independently optically or device verified.",
+          "sourceSHA256": "d532888e94baecdd129178f7a28d13b68f594d94050a2f741053abf6f6174909"
+        },
+        {
+          "path": "design/proposals/state-refinements/photo-detail-excluded.svg",
+          "label": "photo-detail / excluded",
+          "meaning": "Dedicated photo-detail draft illustrates excluded status, local context and user-controlled action on the phone; not independently optically or device verified.",
+          "sourceSHA256": "97c6fdea5d6715754849eb3263c5c9375aec857a27d072ab8f8a42de277eac04"
+        },
+        {
+          "path": "design/proposals/state-refinements/quickstart-unsupported.svg",
+          "label": "quickstart / unsupported",
+          "meaning": "Quickstart target capability and fallback pictured.",
+          "sourceSHA256": "cbbd9beec85f833942e00fe3b3a12fb42443aba6bec8b80a6a0060a27c812040"
+        },
+        {
+          "path": "design/proposals/state-refinements/schedule-simulator-insufficient.svg",
+          "label": "schedule-simulator / insufficient",
+          "meaning": "Zero input cannot create fabricated scheduled image.",
+          "sourceSHA256": "a74701d4fa19aebadc1b42c2039877a62739a41ced481afcd5d5e5d0e2b8fe9c"
+        },
+        {
+          "path": "design/proposals/state-refinements/diagnostics-failure.svg",
+          "label": "diagnostics / failure",
+          "meaning": "Dedicated diagnostics draft illustrates failure status, local context and user-controlled action on the phone; not independently optically or device verified.",
+          "sourceSHA256": "dcdb6edf155e7e32cdb403c47aa4ff66e48a082f03495288e9ebeabc6d4e99af"
+        },
+        {
+          "path": "design/proposals/advanced-storyboards/x20/05-unavailable.svg",
+          "label": "widgets / unavailable",
+          "meaning": "Host unsupported and app fallback.",
+          "sourceSHA256": "278162f75a6790e9aad2c74efbbac46f988dc8153f26486d5d7750d66e2e8507"
+        },
+        {
+          "path": "design/proposals/state-refinements/shortcuts-blocked.svg",
+          "label": "quick-settings-and-shortcuts / blocked",
+          "meaning": "Blocked tile, separate from widget host error.",
+          "sourceSHA256": "5d69bb0ae95e24f26ca85b67b9127727dea1fc6ad1ca08a8c3129ba84e31dcbb"
+        },
+        {
+          "path": "design/proposals/state-refinements/settings-permissions.svg",
+          "label": "settings / permissions",
+          "meaning": "Dedicated settings draft illustrates permissions status, local context and user-controlled action on the phone; not independently optically or device verified.",
+          "sourceSHA256": "f82fbbf39806dd2a2fe14964278be91866dcd808ddd213ac31dfdd61cf602fa4"
+        },
+        {
+          "path": "design/proposals/state-refinements/backup-and-restore-restore.svg",
+          "label": "backup-and-restore / restore",
+          "meaning": "Dedicated backup-and-restore draft illustrates restore status, local context and user-controlled action on the phone; not independently optically or device verified.",
+          "sourceSHA256": "1dd34f4df1766ac4c308f08eb0aa4cf72e189ae327cbd673ac0feefe0b3951aa"
+        },
+        {
+          "path": "design/proposals/state-refinements/onboarding-no-photos.svg",
+          "label": "onboarding / no-photos",
+          "meaning": "Initial welcome empty branch, not exhausted collection.",
+          "sourceSHA256": "7ae2c5fe39958dd106444cc63100f2a32ad423098d37949b3faf9ce7dfcbe59a"
+        },
+        {
+          "path": "design/proposals/state-refinements/error-empty-permission-empty.svg",
+          "label": "error-empty-permission / empty",
+          "meaning": "Dedicated error-empty-permission draft illustrates empty status, local context and user-controlled action on the phone; not independently optically or device verified.",
+          "sourceSHA256": "0830141273273d4f0bc00a78748060b53cdea699b9f954f6a679bc2d27968d56"
+        },
+        {
+          "path": "design/proposals/state-refinements/error-empty-permission-offline.svg",
+          "label": "error-empty-permission / offline",
+          "meaning": "Dedicated error-empty-permission draft illustrates offline status, local context and user-controlled action on the phone; not independently optically or device verified.",
+          "sourceSHA256": "4827ed126fa2c2e616ab83327d3ffd4fbbf262b54c04383487c8ddf7733a2c17"
+        },
+        {
+          "path": "design/proposals/state-refinements/error-empty-permission-storage.svg",
+          "label": "error-empty-permission / storage",
+          "meaning": "Dedicated error-empty-permission draft illustrates storage status, local context and user-controlled action on the phone; not independently optically or device verified.",
+          "sourceSHA256": "8266df4c37b20ee70285ebebc79733d9ad5cad0fdc40a220338a2488622f77ad"
+        },
+        {
+          "path": "design/proposals/state-refinements/accessibility-high-contrast.svg",
+          "label": "accessibility-preferences / high-contrast",
+          "meaning": "High-contrast palette and controls drawn; native scaling not verified.",
+          "sourceSHA256": "f63421dad70c9bd1732b0eb95c93ea936b0e84eaeb295c59f499890ad3c71df6"
+        }
+      ]
+    },
+    {
+      "name": "Supplemental refinements (25)",
+      "class": "supplemental",
+      "tier": "APPENDIX",
+      "items": [
+        {
+          "path": "design/proposals/state-refinements/accessibility-high-contrast.svg",
+          "label": "Accessibility High Contrast",
+          "meaning": "",
+          "sourceSHA256": "f63421dad70c9bd1732b0eb95c93ea936b0e84eaeb295c59f499890ad3c71df6"
+        },
+        {
+          "path": "design/proposals/state-refinements/activity-failed.svg",
+          "label": "Activity Failed",
+          "meaning": "",
+          "sourceSHA256": "d76a99f6e4f38f259ebfea6217d5e0026d98196e8433720a6cf74f5f5edc008c"
+        },
+        {
+          "path": "design/proposals/state-refinements/activity-uncertain.svg",
+          "label": "Activity Uncertain",
+          "meaning": "",
+          "sourceSHA256": "e36eb44ce4336286ac478fbd505701838d3b2a129d0840f72964a754c513227c"
+        },
+        {
+          "path": "design/proposals/state-refinements/automation-delayed.svg",
+          "label": "Automation Delayed",
+          "meaning": "",
+          "sourceSHA256": "d039a9f87d973187df67a5e837e0b5b7abf9d12663a3626f80875397c228f731"
+        },
+        {
+          "path": "design/proposals/state-refinements/automation-editor-nested.svg",
+          "label": "Automation Editor Nested",
+          "meaning": "",
+          "sourceSHA256": "49de3e5223281750cc68ab07d01872a3f5bc5980af4ff7f0c16671a18d591fb8"
+        },
+        {
+          "path": "design/proposals/state-refinements/automation-paused.svg",
+          "label": "Automation Paused",
+          "meaning": "",
+          "sourceSHA256": "43fa330adb208a50317171e0a663a3005fc9036e90357750684db93bdc34cb05"
+        },
+        {
+          "path": "design/proposals/state-refinements/backup-and-restore-restore.svg",
+          "label": "Backup And Restore Restore",
+          "meaning": "",
+          "sourceSHA256": "1dd34f4df1766ac4c308f08eb0aa4cf72e189ae327cbd673ac0feefe0b3951aa"
+        },
+        {
+          "path": "design/proposals/state-refinements/collections-large.svg",
+          "label": "Collections Large",
+          "meaning": "",
+          "sourceSHA256": "5c8d3bbf277ba8a2bec6852185e8b5a988f27dc124c89797dadf2dfe704b4d5b"
+        },
+        {
+          "path": "design/proposals/state-refinements/destinations-lock.svg",
+          "label": "Destinations Lock",
+          "meaning": "",
+          "sourceSHA256": "a79c15138b57065be02a3f25f27523c30c2c0522e0116cbb3e4850a5795b6d55"
+        },
+        {
+          "path": "design/proposals/state-refinements/destinations-unsupported.svg",
+          "label": "Destinations Unsupported",
+          "meaning": "",
+          "sourceSHA256": "6f79ca2b2d51b424384e6e5e0b430c39254863b89e89fac0372b4b30c311fe42"
+        },
+        {
+          "path": "design/proposals/state-refinements/diagnostics-failure.svg",
+          "label": "Diagnostics Failure",
+          "meaning": "",
+          "sourceSHA256": "dcdb6edf155e7e32cdb403c47aa4ff66e48a082f03495288e9ebeabc6d4e99af"
+        },
+        {
+          "path": "design/proposals/state-refinements/discover-offline.svg",
+          "label": "Discover Offline",
+          "meaning": "",
+          "sourceSHA256": "ae5eea5807816a132478d53b511c30daeb84ad235928c54155653023e7e22b58"
+        },
+        {
+          "path": "design/proposals/state-refinements/error-empty-permission-empty.svg",
+          "label": "Error Empty Permission Empty",
+          "meaning": "",
+          "sourceSHA256": "0830141273273d4f0bc00a78748060b53cdea699b9f954f6a679bc2d27968d56"
+        },
+        {
+          "path": "design/proposals/state-refinements/error-empty-permission-offline.svg",
+          "label": "Error Empty Permission Offline",
+          "meaning": "",
+          "sourceSHA256": "4827ed126fa2c2e616ab83327d3ffd4fbbf262b54c04383487c8ddf7733a2c17"
+        },
+        {
+          "path": "design/proposals/state-refinements/error-empty-permission-storage.svg",
+          "label": "Error Empty Permission Storage",
+          "meaning": "",
+          "sourceSHA256": "8266df4c37b20ee70285ebebc79733d9ad5cad0fdc40a220338a2488622f77ad"
+        },
+        {
+          "path": "design/proposals/state-refinements/image-editor-blur-extend.svg",
+          "label": "Image Editor Blur Extend",
+          "meaning": "",
+          "sourceSHA256": "f81eac0d4df29d4796053d9384f16bf3205d88463d4202bb0fc223e0edfdad70"
+        },
+        {
+          "path": "design/proposals/state-refinements/onboarding-no-photos.svg",
+          "label": "Onboarding No Photos",
+          "meaning": "",
+          "sourceSHA256": "7ae2c5fe39958dd106444cc63100f2a32ad423098d37949b3faf9ce7dfcbe59a"
+        },
+        {
+          "path": "design/proposals/state-refinements/photo-detail-excluded.svg",
+          "label": "Photo Detail Excluded",
+          "meaning": "",
+          "sourceSHA256": "97c6fdea5d6715754849eb3263c5c9375aec857a27d072ab8f8a42de277eac04"
+        },
+        {
+          "path": "design/proposals/state-refinements/quick-import-failed.svg",
+          "label": "Quick Import Failed",
+          "meaning": "",
+          "sourceSHA256": "ead6569cf8f6e8934b3aa494db39794622e1385d3e46092329ce24e031664d6f"
+        },
+        {
+          "path": "design/proposals/state-refinements/quick-import-progress.svg",
+          "label": "Quick Import Progress",
+          "meaning": "",
+          "sourceSHA256": "ccfba4588a6a1449368bbed3d1173733a5b9d03861ad35b229cee3109a2047b3"
+        },
+        {
+          "path": "design/proposals/state-refinements/quickstart-unsupported.svg",
+          "label": "Quickstart Unsupported",
+          "meaning": "",
+          "sourceSHA256": "cbbd9beec85f833942e00fe3b3a12fb42443aba6bec8b80a6a0060a27c812040"
+        },
+        {
+          "path": "design/proposals/state-refinements/schedule-simulator-insufficient.svg",
+          "label": "Schedule Simulator Insufficient",
+          "meaning": "",
+          "sourceSHA256": "a74701d4fa19aebadc1b42c2039877a62739a41ced481afcd5d5e5d0e2b8fe9c"
+        },
+        {
+          "path": "design/proposals/state-refinements/settings-permissions.svg",
+          "label": "Settings Permissions",
+          "meaning": "",
+          "sourceSHA256": "f82fbbf39806dd2a2fe14964278be91866dcd808ddd213ac31dfdd61cf602fa4"
+        },
+        {
+          "path": "design/proposals/state-refinements/shortcuts-blocked.svg",
+          "label": "Shortcuts Blocked",
+          "meaning": "",
+          "sourceSHA256": "5d69bb0ae95e24f26ca85b67b9127727dea1fc6ad1ca08a8c3129ba84e31dcbb"
+        },
+        {
+          "path": "design/proposals/state-refinements/source-detail-offline.svg",
+          "label": "Source Detail Offline",
+          "meaning": "",
+          "sourceSHA256": "d532888e94baecdd129178f7a28d13b68f594d94050a2f741053abf6f6174909"
+        }
+      ]
+    },
+    {
+      "name": "P0 X01 / Bulk Google Photos import",
+      "class": "P0-storyboard",
+      "tier": "APPENDIX",
+      "items": [
+        {
+          "path": "design/proposals/storyboards/x01/01-collection-entry.svg",
+          "label": "Collection Entry",
+          "meaning": "",
+          "sourceSHA256": "a93e6443c1f87f378057993a823c65614c60cfce7353dc8daa0978887c0e21c0"
+        },
+        {
+          "path": "design/proposals/storyboards/x01/02-system-picker.svg",
+          "label": "System Picker",
+          "meaning": "",
+          "sourceSHA256": "861ef64956887499b59f23783dbd146f4961c231c857622ded5ac76f6b088c10"
+        },
+        {
+          "path": "design/proposals/storyboards/x01/03-cloud-pending.svg",
+          "label": "Cloud Pending",
+          "meaning": "",
+          "sourceSHA256": "05de22ea80b84ec82a74f1243dc067fea5384eb751c166aa04d25b6fd9156a44"
+        },
+        {
+          "path": "design/proposals/storyboards/x01/04-copy-progress.svg",
+          "label": "Copy Progress",
+          "meaning": "",
+          "sourceSHA256": "2ed61dacbf1c4318aebc94fd8c23aa69bf48cd4dde395a2e3a3f073b56b09257"
+        },
+        {
+          "path": "design/proposals/storyboards/x01/05-partial-recovery.svg",
+          "label": "Partial Recovery",
+          "meaning": "",
+          "sourceSHA256": "0d3849f9f6263821b66575b5f07d5ecffecc9ac7a62338d69f55e8da801fcfc8"
+        },
+        {
+          "path": "design/proposals/storyboards/x01/06-import-result.svg",
+          "label": "Import Result",
+          "meaning": "",
+          "sourceSHA256": "c5073f036743b82465b92abf281b22e5907d345c6a98800243f1cc8f874f6411"
+        },
+        {
+          "path": "design/proposals/storyboards/x01/07-offline-ready.svg",
+          "label": "Offline Ready",
+          "meaning": "",
+          "sourceSHA256": "165734f0177e81d1495716adc8f39e045b4a3e9a64a274e292385822759aeb8a"
+        }
+      ]
+    },
+    {
+      "name": "P0 X02 / Collection creation and management",
+      "class": "P0-storyboard",
+      "tier": "APPENDIX",
+      "items": [
+        {
+          "path": "design/proposals/storyboards/x02/01-collection-list.svg",
+          "label": "Collection List",
+          "meaning": "",
+          "sourceSHA256": "5dbf0915b951a52b5e3e3a7fa0989dc58001204e80d81f52dcb0b139ab7a4eef"
+        },
+        {
+          "path": "design/proposals/storyboards/x02/02-create-sheet.svg",
+          "label": "Create Sheet",
+          "meaning": "",
+          "sourceSHA256": "0ccea1dd80a8e10e7a327ed976d6590b293803a11372bf529e08812981130847"
+        },
+        {
+          "path": "design/proposals/storyboards/x02/03-import-target.svg",
+          "label": "Import Target",
+          "meaning": "",
+          "sourceSHA256": "2aad904f7ae067695102471aa208aeb7a0b39f9755412aa81cbe7759126eecec"
+        },
+        {
+          "path": "design/proposals/storyboards/x02/04-rename.svg",
+          "label": "Rename",
+          "meaning": "",
+          "sourceSHA256": "b697c39fe06ab5c3f651afe3b40c4130067b97c9492ab22e621538ace7f6a895"
+        },
+        {
+          "path": "design/proposals/storyboards/x02/05-delete-confirm.svg",
+          "label": "Delete Confirm",
+          "meaning": "",
+          "sourceSHA256": "24274777d2942ffec7696f02533deb666c5b089fbd821901f5c6b9550cba72c5"
+        },
+        {
+          "path": "design/proposals/storyboards/x02/06-empty-after-removal.svg",
+          "label": "Empty After Removal",
+          "meaning": "",
+          "sourceSHA256": "4a3a5c75efb8228d2aca44232286821eaf003151733cbabb9ee26a173dbac2a8"
+        }
+      ]
+    },
+    {
+      "name": "P0 X03 / Wallpaper application transaction",
+      "class": "P0-storyboard",
+      "tier": "APPENDIX",
+      "items": [
+        {
+          "path": "design/proposals/storyboards/x03/01-preview.svg",
+          "label": "Preview",
+          "meaning": "",
+          "sourceSHA256": "3ab699ade6c65eb7e55fdff0d54e84653434b1cd3ebfb070c56ba21615031e37"
+        },
+        {
+          "path": "design/proposals/storyboards/x03/02-choose-target.svg",
+          "label": "Choose Target",
+          "meaning": "",
+          "sourceSHA256": "908a3bd2f43e77d84f19094a2d68e4d8a6e1667c6642097ad1965e54f7f8e1cf"
+        },
+        {
+          "path": "design/proposals/storyboards/x03/03-pending.svg",
+          "label": "Pending",
+          "meaning": "",
+          "sourceSHA256": "6821c9207ee901c9a2b3a73cee5bcd538e65f13662b7f5ee555f93d92b5da697"
+        },
+        {
+          "path": "design/proposals/storyboards/x03/04-acknowledged.svg",
+          "label": "Acknowledged",
+          "meaning": "",
+          "sourceSHA256": "2f950df9a3960b2d9626922a62f209972e597505a2bc82226407391316ed4a07"
+        },
+        {
+          "path": "design/proposals/storyboards/x03/05-uncertain.svg",
+          "label": "Uncertain",
+          "meaning": "",
+          "sourceSHA256": "2c84d05c9bf4a1f39635840b07a7e2ac22a9ff854212d5ef3082d71b7be1d44d"
+        },
+        {
+          "path": "design/proposals/storyboards/x03/06-failed.svg",
+          "label": "Failed",
+          "meaning": "",
+          "sourceSHA256": "6e45c50e9598e34c2618b719794a457f1076272b59b58bfaa2075c712ca69225"
+        },
+        {
+          "path": "design/proposals/storyboards/x03/07-unsupported.svg",
+          "label": "Unsupported",
+          "meaning": "",
+          "sourceSHA256": "95c7f579754e75ccbe316c47b7f94b71c639a91b995dcc5e252e14cbbbde3a64"
+        }
+      ]
+    },
+    {
+      "name": "P0 X04 / Active-use shuffle lifecycle",
+      "class": "P0-storyboard",
+      "tier": "APPENDIX",
+      "items": [
+        {
+          "path": "design/proposals/storyboards/x04/01-ready.svg",
+          "label": "Ready",
+          "meaning": "",
+          "sourceSHA256": "c3d29f8227677b1bbc39a22ae41e73b82ec4678886aaa7c40688fdf23012c35b"
+        },
+        {
+          "path": "design/proposals/storyboards/x04/02-start.svg",
+          "label": "Start",
+          "meaning": "",
+          "sourceSHA256": "77750bdd7e0bb9ef22feb9abe5ab92043bc4cb7f26b2c8877e96f9ff2b818051"
+        },
+        {
+          "path": "design/proposals/storyboards/x04/03-active.svg",
+          "label": "Active",
+          "meaning": "",
+          "sourceSHA256": "bf65aae58c3ecc06cbb1a9a4f63ba1443ebdbb944f1667441142609ec2b6f970"
+        },
+        {
+          "path": "design/proposals/storyboards/x04/04-delayed.svg",
+          "label": "Delayed",
+          "meaning": "",
+          "sourceSHA256": "5307fe484ec0a6783b06f50158950374ceba8cbca8acc7030841c9515ea78515"
+        },
+        {
+          "path": "design/proposals/storyboards/x04/05-paused.svg",
+          "label": "Paused",
+          "meaning": "",
+          "sourceSHA256": "869513368b9023e14563ca7a1d32cdd90db06df2027cbb888d8e05e7e3980b47"
+        },
+        {
+          "path": "design/proposals/storyboards/x04/06-resumed.svg",
+          "label": "Resumed",
+          "meaning": "",
+          "sourceSHA256": "ef123c5f5e31a0bacfc745915fcfc062593433263cf77bd713e9f27fc29da13a"
+        },
+        {
+          "path": "design/proposals/storyboards/x04/07-stopped.svg",
+          "label": "Stopped",
+          "meaning": "",
+          "sourceSHA256": "494e6990fceb2eb31736929d34048dc42198e9e4c242ed04a4a15bd682e4865c"
+        }
+      ]
+    },
+    {
+      "name": "P0 X05 / Paper-reel physical motion",
+      "class": "P0-storyboard",
+      "tier": "APPENDIX",
+      "items": [
+        {
+          "path": "design/proposals/storyboards/x05/01-rest.svg",
+          "label": "Rest",
+          "meaning": "",
+          "sourceSHA256": "88c73fb27675c1c6c73b5b9f41171916cfe9172ba160454e4e25ae75970b2324"
+        },
+        {
+          "path": "design/proposals/storyboards/x05/02-touch-down.svg",
+          "label": "Touch Down",
+          "meaning": "",
+          "sourceSHA256": "2ea0ec9a9a9cc4cf35aa31d9ab9bfff11541f8fe58c064069b3344266079d47f"
+        },
+        {
+          "path": "design/proposals/storyboards/x05/03-drag-18.svg",
+          "label": "Drag 18",
+          "meaning": "",
+          "sourceSHA256": "fc2d515bb3fdbb9ca0139602294da1aaf3c5a6afe6fa5505a6353c66d94a1294"
+        },
+        {
+          "path": "design/proposals/storyboards/x05/04-drag-36.svg",
+          "label": "Drag 36",
+          "meaning": "",
+          "sourceSHA256": "48d20da704ee120d92593757a5eebd841c9cbbadfe679cbd59bda819a8c56b2b"
+        },
+        {
+          "path": "design/proposals/storyboards/x05/05-snap-72.svg",
+          "label": "Snap 72",
+          "meaning": "",
+          "sourceSHA256": "b0766456003cc530401aa2f138fb4f50e37dd5c909df3d9e9c4969aaa23e8e50"
+        },
+        {
+          "path": "design/proposals/storyboards/x05/06-reverse-18.svg",
+          "label": "Reverse 18",
+          "meaning": "",
+          "sourceSHA256": "4bd28303f7d683971c096f0cdff0d4cce65be97c488a84d765af9887f42f1272"
+        },
+        {
+          "path": "design/proposals/storyboards/x05/07-interrupted.svg",
+          "label": "Interrupted",
+          "meaning": "",
+          "sourceSHA256": "9c8c5c102c8d4a39c93767e32d9424f3b5c62e6d480f5628ecfd4e6106792eae"
+        },
+        {
+          "path": "design/proposals/storyboards/x05/08-last.svg",
+          "label": "Last",
+          "meaning": "",
+          "sourceSHA256": "d4e9d2940c30ae25e7f3421c2dc811634c99df03ab5f7914675abdc258e532d8"
+        }
+      ]
+    },
+    {
+      "name": "P0 X06 / Finite reel edge and scale",
+      "class": "P0-storyboard",
+      "tier": "APPENDIX",
+      "items": [
+        {
+          "path": "design/proposals/storyboards/x06/01-first.svg",
+          "label": "First",
+          "meaning": "",
+          "sourceSHA256": "05474fafdb2ee823752a5ceeaf9a91f7be7a4c064168875a9f90064dc96c1dc4"
+        },
+        {
+          "path": "design/proposals/storyboards/x06/02-single.svg",
+          "label": "Single",
+          "meaning": "",
+          "sourceSHA256": "9f2042d169a35f0e69c19ecb1b0585366a8247a4a3e9d4fc5e5f0c4a4daae4de"
+        },
+        {
+          "path": "design/proposals/storyboards/x06/03-three.svg",
+          "label": "Three",
+          "meaning": "",
+          "sourceSHA256": "74c1a355df75a296b5e8eead7ecc4ddc51a79714743f0c6ffe562a13e76073c4"
+        },
+        {
+          "path": "design/proposals/storyboards/x06/04-exact-five.svg",
+          "label": "Exact Five",
+          "meaning": "",
+          "sourceSHA256": "6da81791b6f3f06344590439905fe509cc5a46ad2a9670108c3b000666e121e7"
+        },
+        {
+          "path": "design/proposals/storyboards/x06/05-twenty-two.svg",
+          "label": "Twenty Two",
+          "meaning": "",
+          "sourceSHA256": "bdf90c8b41bf266ad731dcaefec3e9ab4b1986d830f37273331d239884b89482"
+        },
+        {
+          "path": "design/proposals/storyboards/x06/06-sixty.svg",
+          "label": "Sixty",
+          "meaning": "",
+          "sourceSHA256": "8e735845aace8f68a9a6d3d9baf16116d43247caed12a27ccbbac5968c72eb5b"
+        },
+        {
+          "path": "design/proposals/storyboards/x06/07-last.svg",
+          "label": "Last",
+          "meaning": "",
+          "sourceSHA256": "1995276183ae70610aada23f63f7871e0d928b04d451f58fec4ff819fcaa310e"
+        }
+      ]
+    },
+    {
+      "name": "P0 X07 / Reel / Grid / photo detail continuity",
+      "class": "P0-storyboard",
+      "tier": "APPENDIX",
+      "items": [
+        {
+          "path": "design/proposals/storyboards/x07/01-reel-focus.svg",
+          "label": "Reel Focus",
+          "meaning": "",
+          "sourceSHA256": "ab547607dd57005ef60c678d68a0ecefa372c75d10dda4bd4ec1439d2f7723d7"
+        },
+        {
+          "path": "design/proposals/storyboards/x07/02-grid-focus.svg",
+          "label": "Grid Focus",
+          "meaning": "",
+          "sourceSHA256": "ca7a7e7134d86f13e82231f32ac1dbab6581accd4734417ace85c23e690272d5"
+        },
+        {
+          "path": "design/proposals/storyboards/x07/03-photo-detail.svg",
+          "label": "Photo Detail",
+          "meaning": "",
+          "sourceSHA256": "8ec5b507e9690fc9c03e5eb1af4dc2692248fc9f715ee60c4acae1ed022c98e4"
+        },
+        {
+          "path": "design/proposals/storyboards/x07/04-back-reel.svg",
+          "label": "Back Reel",
+          "meaning": "",
+          "sourceSHA256": "0d38e1e5bde4c4c6c5b40236ee8d4e14a40c27cd4b86f1e9f946936616ca2991"
+        },
+        {
+          "path": "design/proposals/storyboards/x07/05-switch-collection.svg",
+          "label": "Switch Collection",
+          "meaning": "",
+          "sourceSHA256": "84811132a9c9b6e53474057303fad9aa46f2873cf36f78530ad7eeb38a960dce"
+        },
+        {
+          "path": "design/proposals/storyboards/x07/06-return-original.svg",
+          "label": "Return Original",
+          "meaning": "",
+          "sourceSHA256": "8d869cf595763b774cb5ce6e578a52873f6653715745fba3a2db583dc67fc0a0"
+        },
+        {
+          "path": "design/proposals/storyboards/x07/07-multi-select.svg",
+          "label": "Multi Select",
+          "meaning": "",
+          "sourceSHA256": "069fda834c31303ebce379b2da66913085976573926592d4c0a63d9048a67ca3"
+        }
+      ]
+    },
+    {
+      "name": "P0 X08 / Compact handset information hierarchy",
+      "class": "P0-storyboard",
+      "tier": "APPENDIX",
+      "items": [
+        {
+          "path": "design/proposals/storyboards/x08/01-home-active.svg",
+          "label": "Home Active",
+          "meaning": "",
+          "sourceSHA256": "c1648ff062496adc85f8c29acecbc6ca2905df6ee3a32dc7bc1df75f94a681dd"
+        },
+        {
+          "path": "design/proposals/storyboards/x08/02-collections.svg",
+          "label": "Collections",
+          "meaning": "",
+          "sourceSHA256": "6be4117a0580e87d46dae862941a88a8e6e1604675f6aa3fe07500072748be1c"
+        },
+        {
+          "path": "design/proposals/storyboards/x08/03-reel-hero.svg",
+          "label": "Reel Hero",
+          "meaning": "",
+          "sourceSHA256": "9ac24eea2e51b15dc4a0cd6dd78f94e64946991053afe2aceedf6f52b63503e3"
+        },
+        {
+          "path": "design/proposals/storyboards/x08/04-grid-dense.svg",
+          "label": "Grid Dense",
+          "meaning": "",
+          "sourceSHA256": "62b77181bab2d32b34c59dee2eb01dd19668ecfacf4ab562a4eca79d716662f4"
+        },
+        {
+          "path": "design/proposals/storyboards/x08/05-long-title.svg",
+          "label": "Long Title",
+          "meaning": "",
+          "sourceSHA256": "e03106b3234c54a6d9b1a250af2c22f6ab5a99f08f8606157dd8294d52d205f6"
+        },
+        {
+          "path": "design/proposals/storyboards/x08/06-status-collapsed.svg",
+          "label": "Status Collapsed",
+          "meaning": "",
+          "sourceSHA256": "770d72cdb8d239e39ae4326945ec74d7c1de5f46e0213f373020e5c846335253"
+        }
+      ]
+    },
+    {
+      "name": "P0 X09 / Large text, high contrast and motion stress",
+      "class": "P0-storyboard",
+      "tier": "APPENDIX",
+      "items": [
+        {
+          "path": "design/proposals/storyboards/x09/01-home-200-text.svg",
+          "label": "Home 200 Text",
+          "meaning": "",
+          "sourceSHA256": "fb74f596b10c37ad0ae02cfdd765eb6377f65af7ac23eec0be23a9eefabb048b"
+        },
+        {
+          "path": "design/proposals/storyboards/x09/02-collections-long-name.svg",
+          "label": "Collections Long Name",
+          "meaning": "",
+          "sourceSHA256": "520ffbbaadcdcca7420c7c80481391c82b92290bbc37a29f82c43c3e65468e52"
+        },
+        {
+          "path": "design/proposals/storyboards/x09/03-reel-200-text.svg",
+          "label": "Reel 200 Text",
+          "meaning": "",
+          "sourceSHA256": "f2f3b4db2d0334093097249b89ba6b263fc6b6820b0df3e8848677e553ecddd7"
+        },
+        {
+          "path": "design/proposals/storyboards/x09/04-grid-large-type.svg",
+          "label": "Grid Large Type",
+          "meaning": "",
+          "sourceSHA256": "734715a3821ea7258ffd4629c4699331ed716f49fa061089502289390b593cc0"
+        },
+        {
+          "path": "design/proposals/storyboards/x09/05-import-200-text.svg",
+          "label": "Import 200 Text",
+          "meaning": "",
+          "sourceSHA256": "19824e3e5c32a4d6c67f0f7a84939d3c4cefc13cd8b9ced93bf9de6c7a9af510"
+        },
+        {
+          "path": "design/proposals/storyboards/x09/06-apply-high-contrast.svg",
+          "label": "Apply High Contrast",
+          "meaning": "",
+          "sourceSHA256": "985dce370954ba26479698de6d7012e0c6054cb9ff10091d14eea8596e7e0984"
+        },
+        {
+          "path": "design/proposals/storyboards/x09/07-error-compact.svg",
+          "label": "Error Compact",
+          "meaning": "",
+          "sourceSHA256": "6c48fcf3bc6b756c8a066833ce4f7e5dc3066341d72e87ed117c19d314c48e2b"
+        },
+        {
+          "path": "design/proposals/storyboards/x09/08-help-dialog.svg",
+          "label": "Help Dialog",
+          "meaning": "",
+          "sourceSHA256": "4e29c7d021995cf9c3c7e9099c27ae636a1f72318e3572cb594e9b31e51666da"
+        }
+      ]
+    },
+    {
+      "name": "P0 X10 / Failures and interruption recovery",
+      "class": "P0-storyboard",
+      "tier": "APPENDIX",
+      "items": [
+        {
+          "path": "design/proposals/storyboards/x10/01-cloud-pending.svg",
+          "label": "Cloud Pending",
+          "meaning": "",
+          "sourceSHA256": "62fd4844f438f2a5a3fd06400821ec3563b2d192913dcfc33ba192761f32c35c"
+        },
+        {
+          "path": "design/proposals/storyboards/x10/02-uri-revoked.svg",
+          "label": "Uri Revoked",
+          "meaning": "",
+          "sourceSHA256": "95b299d9045355a890ec23491cabea0e56d48562c93939214158ad5a7b692d1d"
+        },
+        {
+          "path": "design/proposals/storyboards/x10/03-apply-unknown.svg",
+          "label": "Apply Unknown",
+          "meaning": "",
+          "sourceSHA256": "381c0a95119127ebe9c8a70dedf716be7624bba46bf2107ee97dbd16476e6d0a"
+        },
+        {
+          "path": "design/proposals/storyboards/x10/04-storage-full.svg",
+          "label": "Storage Full",
+          "meaning": "",
+          "sourceSHA256": "ddf7d70421b6145751f34aae552fa68af008e907fa9755360bbe23eb33f1923c"
+        },
+        {
+          "path": "design/proposals/storyboards/x10/05-no-photos.svg",
+          "label": "No Photos",
+          "meaning": "",
+          "sourceSHA256": "aee6c9478c9285d2c5efe8f3e3ecf2eddbf8ec97ed6595e39d8eb01c194c82ea"
+        },
+        {
+          "path": "design/proposals/storyboards/x10/06-rotation-delayed.svg",
+          "label": "Rotation Delayed",
+          "meaning": "",
+          "sourceSHA256": "904188332c91fcace61b12cb41461c1242fc517319075bcdbaa5003616f93922"
+        },
+        {
+          "path": "design/proposals/storyboards/x10/07-retry-explicit.svg",
+          "label": "Retry Explicit",
+          "meaning": "",
+          "sourceSHA256": "b0f60a998913fd14399f100b14241f4d700a1af549a10b0c218ede7ce2c63ec7"
+        }
+      ]
+    },
+    {
+      "name": "P0 X11 / Screenshot intake and editing",
+      "class": "P0-storyboard",
+      "tier": "APPENDIX",
+      "items": [
+        {
+          "path": "design/proposals/storyboards/x11/01-inbound-original.svg",
+          "label": "Inbound Original",
+          "meaning": "",
+          "sourceSHA256": "235e27a9d6da0d623fbf13fb5fe2a65adc076ccd060433dd7742522c9be80dc5"
+        },
+        {
+          "path": "design/proposals/storyboards/x11/02-rotate.svg",
+          "label": "Rotate",
+          "meaning": "",
+          "sourceSHA256": "ec61439410c8622092df685dd346bc969886876ba717e82234cad9a99754fd19"
+        },
+        {
+          "path": "design/proposals/storyboards/x11/03-crop.svg",
+          "label": "Crop",
+          "meaning": "",
+          "sourceSHA256": "88aa45e1de7babac1db5ccf60a3dea9fae32ddf21197da5369fd93a0a6a99945"
+        },
+        {
+          "path": "design/proposals/storyboards/x11/04-save-only.svg",
+          "label": "Save Only",
+          "meaning": "",
+          "sourceSHA256": "2d09986e56c914e05348d97b8f1b90d88f123b05079e43fb16a9fc9616ce4e63"
+        },
+        {
+          "path": "design/proposals/storyboards/x11/05-show-next.svg",
+          "label": "Show Next",
+          "meaning": "",
+          "sourceSHA256": "6495671992ecc1c1fb1b72ded2acd3cb944a45ffc02d3441213128445798282d"
+        },
+        {
+          "path": "design/proposals/storyboards/x11/06-use-now.svg",
+          "label": "Use Now",
+          "meaning": "",
+          "sourceSHA256": "0cf85fba0baa3e1a776c5d2051fe34e98bccb9006c6f4a327c0911e7b1b21312"
+        },
+        {
+          "path": "design/proposals/storyboards/x11/07-cancel-undo.svg",
+          "label": "Cancel Undo",
+          "meaning": "",
+          "sourceSHA256": "85fb83eaccfa081089dbbfb192e29c88fe59c647ab7ea2be02c696045ae8f40d"
+        }
+      ]
+    },
+    {
+      "name": "P0 X12 / Touch, inset and accessible focus anatomy",
+      "class": "P0-storyboard",
+      "tier": "APPENDIX",
+      "items": [
+        {
+          "path": "design/proposals/storyboards/x12/01-reel-touch-regions.svg",
+          "label": "Reel Touch Regions",
+          "meaning": "",
+          "sourceSHA256": "3d36c3d99d1ca86cebe08a596ed47740e7bf990d4f4fe62e363396bb421b53fd"
+        },
+        {
+          "path": "design/proposals/storyboards/x12/02-safe-area-navigation.svg",
+          "label": "Safe Area Navigation",
+          "meaning": "",
+          "sourceSHA256": "8485477bdc5cf5b5f34bde157a4b93eac2c1023972133ba7be5fa41d4d5147de"
+        },
+        {
+          "path": "design/proposals/storyboards/x12/03-keyboard-compose.svg",
+          "label": "Keyboard Compose",
+          "meaning": "",
+          "sourceSHA256": "10dc26c8bf216e7dedba676c3570f25efe1812e1c4deccabba6ba72a8d1734f7"
+        },
+        {
+          "path": "design/proposals/storyboards/x12/04-talkback-focus.svg",
+          "label": "Talkback Focus",
+          "meaning": "",
+          "sourceSHA256": "0e02732b04fad9ee4cb0c2792b5767c4d9363b87bd4b3e45875ce4807c60e10e"
+        },
+        {
+          "path": "design/proposals/storyboards/x12/05-error-dialog-focus.svg",
+          "label": "Error Dialog Focus",
+          "meaning": "",
+          "sourceSHA256": "962e51aca70c3ff05c46c8c9852077ad9d86053039376a9a20f452125520740c"
+        }
+      ]
+    },
+    {
+      "name": "P1 X13 / Android sharing and return",
+      "class": "P1-storyboard",
+      "tier": "APPENDIX",
+      "items": [
+        {
+          "path": "design/proposals/advanced-storyboards/x13/01-original.svg",
+          "label": "Original chosen",
+          "meaning": "Show source image as outgoing content",
+          "sourceSHA256": "7233f8e0fd85f990ac885e82f3580d74e5aa93dd5b7a0ea3e98cf18073a04744"
+        },
+        {
+          "path": "design/proposals/advanced-storyboards/x13/02-edited.svg",
+          "label": "Edited copy chosen",
+          "meaning": "Select only the edited file, preserve original",
+          "sourceSHA256": "afa5556e0c205034e95d488112c99f6159b0bbbdcf50d140575e571f4359c8bd"
+        },
+        {
+          "path": "design/proposals/advanced-storyboards/x13/03-chooser.svg",
+          "label": "System Sharesheet",
+          "meaning": "No claim of sending merely because chooser opened",
+          "sourceSHA256": "652010a429b3cd206a00283d2df77da6b15b7750c1fa3241a7342f1883868254"
+        },
+        {
+          "path": "design/proposals/advanced-storyboards/x13/04-cancel.svg",
+          "label": "Sharing cancelled",
+          "meaning": "Preserve selected photo and wallpaper",
+          "sourceSHA256": "2d6564fc9f9cbb94d70c96700841ff6a10b0245b0ab179dc860ddd41280f4dab"
+        },
+        {
+          "path": "design/proposals/advanced-storyboards/x13/05-unavailable.svg",
+          "label": "No compatible handler",
+          "meaning": "Recovery independent of installed apps",
+          "sourceSHA256": "2c4ba6a823043b60c68eae318a75f9aa4b5ebf903181148ec2852712eb8426af"
+        }
+      ]
+    },
+    {
+      "name": "P1 X14 / Target-aware crop and capabilities",
+      "class": "P1-storyboard",
+      "tier": "APPENDIX",
+      "items": [
+        {
+          "path": "design/proposals/advanced-storyboards/x14/01-home.svg",
+          "label": "Home composition",
+          "meaning": "Per-target framing saves independently",
+          "sourceSHA256": "d0a6ece18dc82d719958047e75eecc43d08f8834393099e962eb5646f0efd9aa"
+        },
+        {
+          "path": "design/proposals/advanced-storyboards/x14/02-lock.svg",
+          "label": "Lock composition",
+          "meaning": "Clock and lock overlays can obscure important content",
+          "sourceSHA256": "c81cf29115e27bb88db47f3d050e85687e240fa0ad6d770cd61fcd137ce8455f"
+        },
+        {
+          "path": "design/proposals/advanced-storyboards/x14/03-side-by-side.svg",
+          "label": "Separate target previews",
+          "meaning": "Identical source permits independent crop settings",
+          "sourceSHA256": "d323d8fd461efb9bf18672deea05be8c0b7d0c52b31c66095363f34a7ceeaa87"
+        },
+        {
+          "path": "design/proposals/advanced-storyboards/x14/04-unsupported.svg",
+          "label": "Lock unsupported",
+          "meaning": "Unsupported target must not imply OS success",
+          "sourceSHA256": "43206f7b91e196dcbd6b13ad0263cea92d2b3d6d26203c820d3ff49f76feeb7a"
+        },
+        {
+          "path": "design/proposals/advanced-storyboards/x14/05-apply-both.svg",
+          "label": "Apply both",
+          "meaning": "Report per-target results, including partial acknowledgments",
+          "sourceSHA256": "0074519312ffc6242d7548a464185e991f15762de565bb47f233ebba1fc9e7e0"
+        }
+      ]
+    },
+    {
+      "name": "P1 X15 / Large library operations",
+      "class": "P1-storyboard",
+      "tier": "APPENDIX",
+      "items": [
+        {
+          "path": "design/proposals/advanced-storyboards/x15/01-library.svg",
+          "label": "Large library",
+          "meaning": "Dense library controls must remain responsive and readable",
+          "sourceSHA256": "edff686a3562e4d14f73add09d1e5f41e9c0abeb51d1603d609515f59a4a5235"
+        },
+        {
+          "path": "design/proposals/advanced-storyboards/x15/02-filter.svg",
+          "label": "Filter results",
+          "meaning": "Filtered count and original collection count stay distinct",
+          "sourceSHA256": "0625d28d04448a2f48009000096ad92d67011c83f2e8d1d61bad9aed9adb0e83"
+        },
+        {
+          "path": "design/proposals/advanced-storyboards/x15/03-range-selection.svg",
+          "label": "Select a group",
+          "meaning": "Batch identity and scope clear before mutation",
+          "sourceSHA256": "699fd5228ab560b788bf2767bf18770f212e1b53f43ba1f30c71dae602429374"
+        },
+        {
+          "path": "design/proposals/advanced-storyboards/x15/04-confirm-exclude.svg",
+          "label": "Exclude confirmation",
+          "meaning": "No destructive delete implied by exclude",
+          "sourceSHA256": "23d3e4c316131d60e8545f046c6eabc615908fb44064d8d21b02bba9f2b50be9"
+        },
+        {
+          "path": "design/proposals/advanced-storyboards/x15/05-restore.svg",
+          "label": "Restore eligibility",
+          "meaning": "Restore reshapes shuffle eligibility without duplicates",
+          "sourceSHA256": "36b5a6bb4ac29cdbebe71eb2c81d3161995ff7938a282d181a2c64b598848619"
+        }
+      ]
+    },
+    {
+      "name": "P1 X16 / Rule conflict and simulation",
+      "class": "P1-storyboard",
+      "tier": "APPENDIX",
+      "items": [
+        {
+          "path": "design/proposals/advanced-storyboards/x16/01-rules.svg",
+          "label": "Two enabled rules",
+          "meaning": "Both rules individually valid",
+          "sourceSHA256": "731252f6478b85a587a6769bebdd3019c83e979058c80a21857965ad3030a1e3"
+        },
+        {
+          "path": "design/proposals/advanced-storyboards/x16/02-conflict.svg",
+          "label": "Conflict at 20:00",
+          "meaning": "Explicit collision, not silent resolution",
+          "sourceSHA256": "9acd2741697d643b9a4b25abbed85a71b739c92906b9f12a0c87388b1e5ec719"
+        },
+        {
+          "path": "design/proposals/advanced-storyboards/x16/03-precedence.svg",
+          "label": "Evening rule wins",
+          "meaning": "English explanation and reversible change",
+          "sourceSHA256": "9b34562f0cdca1854b4350434ca113b748983a8afb63c8665c37058a5b21b9ae"
+        },
+        {
+          "path": "design/proposals/advanced-storyboards/x16/04-nested.svg",
+          "label": "Nested conditions",
+          "meaning": "Logical grouping remains visually explicit",
+          "sourceSHA256": "fac67dc96e02fd42d19c9e7f79cbb547b64aaae70877c5fe4c4d0bce3269db24"
+        },
+        {
+          "path": "design/proposals/advanced-storyboards/x16/05-simulate.svg",
+          "label": "Schedule simulation",
+          "meaning": "Simulation cannot apply wallpaper",
+          "sourceSHA256": "18da9ac81abbbd86a92195e55bab70a999d03b5241b8d6a8ca1850c7a226d8c9"
+        }
+      ]
+    },
+    {
+      "name": "P1 X17 / Source rights and network consequences",
+      "class": "P1-storyboard",
+      "tier": "APPENDIX",
+      "items": [
+        {
+          "path": "design/proposals/advanced-storyboards/x17/01-providers.svg",
+          "label": "Discover sources",
+          "meaning": "Provider identity and network status visible",
+          "sourceSHA256": "2c63b6c71b29a0168a1fcb8268a2ec35c8324c630c8f0e67a86f249ba9c29821"
+        },
+        {
+          "path": "design/proposals/advanced-storyboards/x17/02-provider-detail.svg",
+          "label": "Provider details",
+          "meaning": "Provider-specific information, not directory repeated",
+          "sourceSHA256": "4f2bde393e8367c264de997c5cffb86540c1673e3cb28fda435f139ca4ff734c"
+        },
+        {
+          "path": "design/proposals/advanced-storyboards/x17/03-image-licence.svg",
+          "label": "Image rights",
+          "meaning": "Rights and attribution are image-specific, not provider-wide",
+          "sourceSHA256": "f573fa4168ce16e03328179533b88d84174997dd0a5a4437a9044cff6c367b0c"
+        },
+        {
+          "path": "design/proposals/advanced-storyboards/x17/04-offline.svg",
+          "label": "Source offline",
+          "meaning": "Local offline assets remain available",
+          "sourceSHA256": "d6eec7631868935ffd3b942046ca21238a32b0b839f17d1b45b53bfb088bb3d7"
+        },
+        {
+          "path": "design/proposals/advanced-storyboards/x17/05-partial-import.svg",
+          "label": "Source import incomplete",
+          "meaning": "Preserve verified copies; retries are scoped",
+          "sourceSHA256": "d189efe4937031b9bfc6b958250a2c262328e9f025ac867801c3af2619312b95"
+        }
+      ]
+    },
+    {
+      "name": "P1 X18 / History, diagnosis and reapply",
+      "class": "P1-storyboard",
+      "tier": "APPENDIX",
+      "items": [
+        {
+          "path": "design/proposals/advanced-storyboards/x18/01-activity.svg",
+          "label": "Activity history",
+          "meaning": "Requested, attempted and confirmed are distinct events",
+          "sourceSHA256": "502f5e4bee23fdccdcfb6acf8957d730ec3e89ceb56f692fcce800a62661e7c3"
+        },
+        {
+          "path": "design/proposals/advanced-storyboards/x18/02-unknown.svg",
+          "label": "Unconfirmed outcome",
+          "meaning": "Do not infer successful apply from interrupted process",
+          "sourceSHA256": "ac1cdbb7f869bc06d111e5ae0f1c995b4ebbeb8f47195df822a9f1cf69af9dec"
+        },
+        {
+          "path": "design/proposals/advanced-storyboards/x18/03-delayed.svg",
+          "label": "Delayed eligibility",
+          "meaning": "Active-use schedule is not exact background alarm",
+          "sourceSHA256": "48ad43311b943baba5a2378be540183ff66c7ab8edf8e2cff1b6a5fa427c9b33"
+        },
+        {
+          "path": "design/proposals/advanced-storyboards/x18/04-retry.svg",
+          "label": "Retry action",
+          "meaning": "A duplicate system effect is possible; warn before retry",
+          "sourceSHA256": "65e92912619a7f89b5be52deb79695efaba077be6b44a92e93955c924737df59"
+        },
+        {
+          "path": "design/proposals/advanced-storyboards/x18/05-previous.svg",
+          "label": "Previous wallpaper",
+          "meaning": "Reapply creates a new operation, not retroactive success",
+          "sourceSHA256": "5ff4939f552fe11e8636b9d5a2f70796a7ded788f727508fbd6013f1c76dab44"
+        }
+      ]
+    },
+    {
+      "name": "P1 X19 / Backup and restore integrity",
+      "class": "P1-storyboard",
+      "tier": "APPENDIX",
+      "items": [
+        {
+          "path": "design/proposals/advanced-storyboards/x19/01-export-scope.svg",
+          "label": "Export scope",
+          "meaning": "Photo bytes excluded unless explicitly chosen",
+          "sourceSHA256": "8a9cdc62d24f0d85bee43f058a8f89e62b3663618cbf6b4afd6423356e8513b4"
+        },
+        {
+          "path": "design/proposals/advanced-storyboards/x19/02-export-confirm.svg",
+          "label": "Review exported content",
+          "meaning": "Exact scope visible before file is produced",
+          "sourceSHA256": "b0e9a5be500a5d8d7406011f3f4ae4bb55de3f82b01f38688e6deb95134176a9"
+        },
+        {
+          "path": "design/proposals/advanced-storyboards/x19/03-restore-review.svg",
+          "label": "Restore preview",
+          "meaning": "Preview missing providers and ID collisions",
+          "sourceSHA256": "43a82f3e6860679cef2f630817290856c415ec15737b8c0c7192f61155b66fb0"
+        },
+        {
+          "path": "design/proposals/advanced-storyboards/x19/04-restore-conflict.svg",
+          "label": "Resolve conflict",
+          "meaning": "Keep existing user data until chosen",
+          "sourceSHA256": "1a5036f703d0c3ed1f696ba167a263468c30286ae89a10b2fa9cfcf3521510e8"
+        },
+        {
+          "path": "design/proposals/advanced-storyboards/x19/05-restore-result.svg",
+          "label": "Restore completed",
+          "meaning": "Outcome and exclusions auditable",
+          "sourceSHA256": "6bd12f9ac5886b542510cadc1ae0ae61233f4d9bf48385c5d089e4349c11dd52"
+        }
+      ]
+    },
+    {
+      "name": "P1 X20 / External Android-hosted controls",
+      "class": "P1-storyboard",
+      "tier": "APPENDIX",
+      "items": [
+        {
+          "path": "design/proposals/advanced-storyboards/x20/01-launcher-widget.svg",
+          "label": "Home screen widget",
+          "meaning": "This is launcher UI, not an in-app imitation",
+          "sourceSHA256": "ca6f63d281ecccc9f48ef1d1f61b0558e792b778f942405c26408a52e875eb3e"
+        },
+        {
+          "path": "design/proposals/advanced-storyboards/x20/02-widget-resize.svg",
+          "label": "Resize widget",
+          "meaning": "Text and target remain legible at launcher sizes",
+          "sourceSHA256": "e0700f23466847d49d87ff3d0839f78422fc334f4b792d92c5aa8ac0f8caa95b"
+        },
+        {
+          "path": "design/proposals/advanced-storyboards/x20/03-quick-tile.svg",
+          "label": "Quick Settings tile",
+          "meaning": "No fake status from in-app preview",
+          "sourceSHA256": "9933caa71f871908ae088e1b3186cf140518107135ad6716872e4d163b2276dc"
+        },
+        {
+          "path": "design/proposals/advanced-storyboards/x20/04-shortcut.svg",
+          "label": "App shortcut",
+          "meaning": "Shortcut target is explicit before wallpaper effect",
+          "sourceSHA256": "e2bb3b48b685dc5de51adabd828755816b37d3cf92bcf388862c914fd7d39c45"
+        },
+        {
+          "path": "design/proposals/advanced-storyboards/x20/05-unavailable.svg",
+          "label": "Unavailable OS integration",
+          "meaning": "Graceful unavailability, no fake install success",
+          "sourceSHA256": "278162f75a6790e9aad2c74efbbac46f988dc8153f26486d5d7750d66e2e8507"
+        }
+      ]
+    },
+    {
+      "name": "P1 X21 / Settings, help and return",
+      "class": "P1-storyboard",
+      "tier": "APPENDIX",
+      "items": [
+        {
+          "path": "design/proposals/advanced-storyboards/x21/01-enter.svg",
+          "label": "Home overflow",
+          "meaning": "Support navigation preserves browsing context",
+          "sourceSHA256": "14fced3d69f1bec72f1acbc22726fbb6be80b8a3cd8a9457ba3ed53203198c70"
+        },
+        {
+          "path": "design/proposals/advanced-storyboards/x21/02-about-help.svg",
+          "label": "Help and About",
+          "meaning": "No fifth top-level tab or decorative second reel",
+          "sourceSHA256": "d999848c90d140b7e5c049ca7b61235b0600cf3395927857843c85130498761f"
+        },
+        {
+          "path": "design/proposals/advanced-storyboards/x21/03-permissions.svg",
+          "label": "Capabilities help",
+          "meaning": "Platform restriction explained without impossible permission",
+          "sourceSHA256": "142202f408c33b7c8592f603d54c3bda6026ccb07c5353311de20ec6203e51ee"
+        },
+        {
+          "path": "design/proposals/advanced-storyboards/x21/04-report.svg",
+          "label": "Report a problem",
+          "meaning": "No automatic upload of private data",
+          "sourceSHA256": "549440153d6186e7efe7d8f6a0748abb5eed54d9077f0923f519fc10c9de9f9c"
+        },
+        {
+          "path": "design/proposals/advanced-storyboards/x21/05-return.svg",
+          "label": "Return to Home",
+          "meaning": "Back restores selection, scroll and rotation status",
+          "sourceSHA256": "5a5b8c7199fd2cbc0c7c7151afa686d793649e316f56bf3d061599ae672c47a2"
+        }
+      ]
+    },
+    {
+      "name": "P1 X22 / Exact diagnostic report handoff",
+      "class": "P1-storyboard",
+      "tier": "APPENDIX",
+      "items": [
+        {
+          "path": "design/proposals/advanced-storyboards/x22/01-draft.svg",
+          "label": "Describe the problem",
+          "meaning": "Report is local draft, never auto uploaded",
+          "sourceSHA256": "41a77f74631bd7f8f7968b2ec2b1bf3c654038c04da0dca6a8c654872747baac"
+        },
+        {
+          "path": "design/proposals/advanced-storyboards/x22/02-redacted.svg",
+          "label": "Review exact outgoing fields",
+          "meaning": "Exclude image bytes, tokens and private paths",
+          "sourceSHA256": "0494796782a69c8e744cb4846b9ed377421def76f12a739f18b37542c8aee652"
+        },
+        {
+          "path": "design/proposals/advanced-storyboards/x22/03-consent.svg",
+          "label": "Choose report scope",
+          "meaning": "Consent granular and reversible",
+          "sourceSHA256": "2ce9df2896802c9f9792f1a1322698914f4b6ae1816d42d6ae033c6302a81e5d"
+        },
+        {
+          "path": "design/proposals/advanced-storyboards/x22/04-chooser.svg",
+          "label": "Choose destination",
+          "meaning": "Chooser display is not a successful submission",
+          "sourceSHA256": "5d23b14e761a364ef13287ae7a6e8ba591b1070c8f93acc402342d111fd042e7"
+        },
+        {
+          "path": "design/proposals/advanced-storyboards/x22/05-absent.svg",
+          "label": "No supported handler",
+          "meaning": "Retain draft after cancelled/unavailable share",
+          "sourceSHA256": "a992cc22158d0e479ee54aa29159958a6e0daa58aceb5277dd2e9fa0df8a1fb7"
+        }
+      ]
+    },
+    {
+      "name": "P1 X23 / Adverse asynchronous input states",
+      "class": "P1-storyboard",
+      "tier": "APPENDIX",
+      "items": [
+        {
+          "path": "design/proposals/advanced-storyboards/x23/01-loading.svg",
+          "label": "Loading imported photo",
+          "meaning": "Loading not disguised as empty collection",
+          "sourceSHA256": "5ca06144bc1b9b2690549b15627cb03506935d215db1a627f4aa3e5e43ee3d0b"
+        },
+        {
+          "path": "design/proposals/advanced-storyboards/x23/02-cloud-placeholder.svg",
+          "label": "Cloud item pending",
+          "meaning": "Do not show imported until durable copy verified",
+          "sourceSHA256": "4c6160e697ed39583e9fba5c9818afc1f55f01bca3a0a10fe7ae40de7f81104e"
+        },
+        {
+          "path": "design/proposals/advanced-storyboards/x23/03-long-names.svg",
+          "label": "Long filenames and names",
+          "meaning": "Ellipsis or multiline must not hide action or count",
+          "sourceSHA256": "4dc9f6b43052ce34a88ec8a7b125fafe80fb0ac5ac48c844500e217e8de270b5"
+        },
+        {
+          "path": "design/proposals/advanced-storyboards/x23/04-duplicates.svg",
+          "label": "Duplicate labels",
+          "meaning": "Names may repeat; identities must not be guessed",
+          "sourceSHA256": "b8cccccd73d31a852808a58b972445033b5519c3dfa93971b411f21ba3b2b2be"
+        },
+        {
+          "path": "design/proposals/advanced-storyboards/x23/05-batch-error.svg",
+          "label": "Batch partial failure",
+          "meaning": "No premature all-done badge or lost successful copies",
+          "sourceSHA256": "9484a8a3680f3e280c3f04b4f4064edd90aa9a913ab5684c7d21b4771078f028"
+        }
+      ]
+    },
+    {
+      "name": "Audit-driven revision alternatives (R01–R08)",
+      "class": "audit-revision",
+      "tier": "APPENDIX",
+      "items": [
+        {
+          "path": "design/proposals/audit-revisions/r01-drag-18.svg",
+          "label": "R01 Drag 18",
+          "meaning": "",
+          "sourceSHA256": "c9d394c025bb31f6c1c6a3c1b7291dc5a681562310d98d29b5f68c431e5c2642"
+        },
+        {
+          "path": "design/proposals/audit-revisions/r01-empty-0.svg",
+          "label": "R01 Empty 0",
+          "meaning": "",
+          "sourceSHA256": "30fff71d99edc5805611a8bf710eef44b2a225f343aaac67a7d04c2502f3228f"
+        },
+        {
+          "path": "design/proposals/audit-revisions/r01-idle-22.svg",
+          "label": "R01 Idle 22",
+          "meaning": "",
+          "sourceSHA256": "6b212abd8dd7ce0b86586d10ac1340f00d36eeb436235a649aa5796e4d4f3a7d"
+        },
+        {
+          "path": "design/proposals/audit-revisions/r01-last-22.svg",
+          "label": "R01 Last 22",
+          "meaning": "",
+          "sourceSHA256": "069e32d9302e49db8da9cbaabb2045282aaaa03b335b4dc099c5003992e60da1"
+        },
+        {
+          "path": "design/proposals/audit-revisions/r01-photo-drag-18.svg",
+          "label": "R01 Photo Drag 18",
+          "meaning": "",
+          "sourceSHA256": "6a47bc256ad7b0417fad42929ce07199c48fd0ca621ba69ae21ca22d943fa2c4"
+        },
+        {
+          "path": "design/proposals/audit-revisions/r01-photo-empty-0.svg",
+          "label": "R01 Photo Empty 0",
+          "meaning": "",
+          "sourceSHA256": "8b6ac1f65e6f86514c4cfc40b945f51b38578c1a1ac4277736617d8e1d544657"
+        },
+        {
+          "path": "design/proposals/audit-revisions/r01-photo-last-22.svg",
+          "label": "R01 Photo Last 22",
+          "meaning": "",
+          "sourceSHA256": "e0b1911f247b4218ad8d1e959964400e0b93ae535ed962fee0ab4bf9c3a5aa5f"
+        },
+        {
+          "path": "design/proposals/audit-revisions/r01-photo-rest-22.svg",
+          "label": "R01 Photo Rest 22",
+          "meaning": "",
+          "sourceSHA256": "3123329da461994bea8535aaf4e82ab74208a565cdee5360af2e5e16a983110c"
+        },
+        {
+          "path": "design/proposals/audit-revisions/r01-photo-single-1.svg",
+          "label": "R01 Photo Single 1",
+          "meaning": "",
+          "sourceSHA256": "e5f25f357b234c7bee3947b01d63e4d5b0c120b7e1aa13ecbf1618d7b6119dae"
+        },
+        {
+          "path": "design/proposals/audit-revisions/r01-photo-snap-13.svg",
+          "label": "R01 Photo Snap 13",
+          "meaning": "",
+          "sourceSHA256": "61df0f03de62a5a820ad9444a859cad2076b0910007196ce89d40b34904e3a9a"
+        },
+        {
+          "path": "design/proposals/audit-revisions/r01-settled-snap.svg",
+          "label": "R01 Settled Snap",
+          "meaning": "",
+          "sourceSHA256": "5b191659848ce8467221345d10146391422ce6a556cb25c3aaa301ac7bb721c4"
+        },
+        {
+          "path": "design/proposals/audit-revisions/r01-single-1.svg",
+          "label": "R01 Single 1",
+          "meaning": "",
+          "sourceSHA256": "47131c2df445092682d1ae91c79aa97918e8b24e6bf42bb66914ca2f68b88521"
+        },
+        {
+          "path": "design/proposals/audit-revisions/r02-copy-saved.svg",
+          "label": "R02 Copy Saved",
+          "meaning": "",
+          "sourceSHA256": "6dce37d10d2b136e346c4f956c1744cdb32db63f32a6d3ff7145ea8e88acacf6"
+        },
+        {
+          "path": "design/proposals/audit-revisions/r02-crop-pending.svg",
+          "label": "R02 Crop Pending",
+          "meaning": "",
+          "sourceSHA256": "5592eb02deb39792216c90287681d19f56ffaa0e4638cb3621ef4cb1a597162a"
+        },
+        {
+          "path": "design/proposals/audit-revisions/r02-return-dismiss.svg",
+          "label": "R02 Return Dismiss",
+          "meaning": "",
+          "sourceSHA256": "bc07b6cabeb3f6e006f91b3aded72a3c7f0f92784bc49df13f798fb2cf1227fe"
+        },
+        {
+          "path": "design/proposals/audit-revisions/r02-share-choice.svg",
+          "label": "R02 Share Choice",
+          "meaning": "",
+          "sourceSHA256": "6efd92d69e6a895a208f911176fb598e58035c71c53de23039b4d12cb73f1c33"
+        },
+        {
+          "path": "design/proposals/audit-revisions/r03-preview-not-applied.svg",
+          "label": "R03 Preview Not Applied",
+          "meaning": "",
+          "sourceSHA256": "3f1de2cc975e7e875135ee5eb1534fd526d49fe6887c91386bf6909a87bfd252"
+        },
+        {
+          "path": "design/proposals/audit-revisions/r03-unknown-after-request.svg",
+          "label": "R03 Unknown After Request",
+          "meaning": "",
+          "sourceSHA256": "9b0bcda300d25320e769725543b296a4b7509f15e93557147434fd4da547668c"
+        },
+        {
+          "path": "design/proposals/audit-revisions/r04-import-17-of-22.svg",
+          "label": "R04 Import 17 Of 22",
+          "meaning": "",
+          "sourceSHA256": "cff3bd1d864515df906e3ea69c7d8e9659241a82e1e5dc2478276dc75841964e"
+        },
+        {
+          "path": "design/proposals/audit-revisions/r04-import-cancel.svg",
+          "label": "R04 Import Cancel",
+          "meaning": "",
+          "sourceSHA256": "262eba90a66b4b38f7fed6efb13bb83716e5712ae2599c4f5d06460e28123c88"
+        },
+        {
+          "path": "design/proposals/audit-revisions/r04-import-empty.svg",
+          "label": "R04 Import Empty",
+          "meaning": "",
+          "sourceSHA256": "888df0a1777f3bbbf43f8062e8c74dc170979c7a4f4eb0250e88e3f5b3cadf46"
+        },
+        {
+          "path": "design/proposals/audit-revisions/r04-import-no-space.svg",
+          "label": "R04 Import No Space",
+          "meaning": "",
+          "sourceSHA256": "acd6d5cff270dc015051875a14f8152fa5b61c18ac18a22fb098644c7c418d4a"
+        },
+        {
+          "path": "design/proposals/audit-revisions/r05-photo-reel-focus-overlay.svg",
+          "label": "R05 Photo Reel Focus Overlay",
+          "meaning": "",
+          "sourceSHA256": "80bef8638ed0c18d6e91e67fb66a5f89336458ff592738bc9ebd5c3922135f07"
+        },
+        {
+          "path": "design/proposals/audit-revisions/r05-reduced-motion.svg",
+          "label": "R05 Reduced Motion",
+          "meaning": "",
+          "sourceSHA256": "1d031b2ea995915bb951231fa3bc95a0fe8aa37d50e324cd224a7891d8c9dc87"
+        },
+        {
+          "path": "design/proposals/audit-revisions/r05-talkback-route.svg",
+          "label": "R05 Talkback Route",
+          "meaning": "",
+          "sourceSHA256": "7165688761aa02cff0d1192b04a3f587001680b2cf70b6a040a05e82adc5f7be"
+        },
+        {
+          "path": "design/proposals/audit-revisions/r06-share-dismissed.svg",
+          "label": "R06 Share Dismissed",
+          "meaning": "",
+          "sourceSHA256": "ff4b900b877c7136edd6746fbfbd1dd9dad314b66bc122b67efb4082b7a282e4"
+        },
+        {
+          "path": "design/proposals/audit-revisions/r07-battery-restricted.svg",
+          "label": "R07 Battery Restricted",
+          "meaning": "",
+          "sourceSHA256": "203cd7a5ab8938fea15c5f2e53db755a00c4ba9a49af1fd3fc74fdcd6cc4856a"
+        },
+        {
+          "path": "design/proposals/audit-revisions/r07-unknown-after-attempt.svg",
+          "label": "R07 Unknown After Attempt",
+          "meaning": "",
+          "sourceSHA256": "8eae212323629804960cf6ab753d46781830f6debdafe45f9d20b620691e4ad7"
+        },
+        {
+          "path": "design/proposals/audit-revisions/r08-restore-conflict-choice.svg",
+          "label": "R08 Restore Conflict Choice",
+          "meaning": "",
+          "sourceSHA256": "8be4e307620c0129ee402976f1af19b0284c830dad7dd433be6f956d18d9f438"
+        },
+        {
+          "path": "design/proposals/audit-revisions/r08-source-revoked.svg",
+          "label": "R08 Source Revoked",
+          "meaning": "",
+          "sourceSHA256": "fbc6cf0bcf52d5d5889cc951545ff776fcd630ce8b3284cc118819dcb4498fc8"
+        }
+      ]
+    }
+  ]
+}
