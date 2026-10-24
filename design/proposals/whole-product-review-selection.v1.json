@@ -32,8 +32,9 @@
   "primarySurfaces": [
     {
       "surfaceId": "home",
-      "reviewCandidatePath": "design/proposals/audit-revisions/r03-home-last-ack-p04.svg",
+      "reviewCandidatePath": "design/proposals/audit-revisions/r03-home-primary-actions-p04.svg",
       "alternativesToDecide": [
+        "design/proposals/audit-revisions/r03-home-last-ack-p04.svg",
         "design/proposals/audit-revisions/r01-photo-home-crescent.svg",
         "design/proposals/plates/home.svg"
       ],
@@ -52,9 +53,10 @@
         "exact-background-five-minute-guarantee",
         "unlabeled-tiny-reel-pretends-to-be-draggable"
       ],
-      "candidateState": "UNAPPROVED_PARTIAL_PAPER_AND_PIXEL_PROPOSAL",
+      "candidateState": "UNAPPROVED_PHOTOGRAPHIC_TASK_ACTION_RECONCILIATION_NEEDS_ANDROID_AND_OWNER_REVIEW",
       "ownerChoice": null,
-      "exactOwnerApprovalSHA256": null
+      "exactOwnerApprovalSHA256": null,
+      "visualEvidence": "Complete 4-task Home default with last Glimpse p04 acknowledgement vs preview p12, explicit Change Home now (active shuffle), Pause shuffle, Open Rainbows, Share saved p04, and Activity route. p04 hero is illustrative vector, NOT source-verified photo. Real native current wallpaper state remains unknown."
     },
     {
       "surfaceId": "collections",
@@ -119,8 +121,9 @@
     },
     {
       "surfaceId": "grid",
-      "reviewCandidatePath": "design/proposals/storyboards/x07/02-grid-focus.svg",
+      "reviewCandidatePath": "design/proposals/audit-revisions/r02-grid-primary-actions-p12.svg",
       "alternativesToDecide": [
+        "design/proposals/storyboards/x07/02-grid-focus.svg",
         "design/proposals/plates/grid.svg"
       ],
       "requiredSemanticElements": [
@@ -138,9 +141,10 @@
         "render-all-10000-fullres-images",
         "add-to-rotation-without-explaining-target-queue-effect"
       ],
-      "candidateState": "UNAPPROVED_PARTIAL_PAPER_AND_PIXEL_PROPOSAL",
+      "candidateState": "UNAPPROVED_PHOTOGRAPHIC_TASK_ACTION_RECONCILIATION_NEEDS_ANDROID_AND_OWNER_REVIEW",
       "ownerChoice": null,
-      "exactOwnerApprovalSHA256": null
+      "exactOwnerApprovalSHA256": null,
+      "visualEvidence": "Selected p12 JPEG identical to Reel/Detail. Adjacent known IDs p10/p11/p13/p14/p15 reuse exact distinct checked-in R01 JPEG bytes, Search/jump, Share p12 and multi-select have visible separate commands. Remaining p06..p09/p16..p17 are explicitly schematic tiles. No native list scaling or accessibility evidence."
     },
     {
       "surfaceId": "quick-import",
