@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "status": "ALL_DRAFT_SOURCE_EVIDENCE_NOT_HUMAN_APPROVED",
-  "sourceCommit": "efd992097198aee5ffb2c1368c7a979136408426",
+  "sourceCommit": "5baa66eb14afc0e3a588ebd3d355b15a14938f39",
   "auditCycleA": {
     "PASS_SOURCE_ONLY": 18,
     "ISSUE": 8,
@@ -595,13 +595,13 @@
           "path": "design/proposals/support-plates/diagnostic-preview--minimal.svg",
           "label": "Diagnostic Preview / Minimal",
           "meaning": "",
-          "sourceSHA256": "b9852abb8ed5eab6e9a160f2d5e350691bf10854a67b4675f025785079b2e6f8"
+          "sourceSHA256": "ee833f182b312319da22b3f5897f5571503044ab69050984856da003ad3e2030"
         },
         {
           "path": "design/proposals/support-plates/diagnostic-preview--expanded.svg",
           "label": "Diagnostic Preview / Expanded",
           "meaning": "",
-          "sourceSHA256": "6e24dde244c8b10feff53b53501bad634001fbd6dafc6a5dee9631160329ff1b"
+          "sourceSHA256": "b99c1bce7b8838e3d9f7c87460909f004e412d28d39010196fea5912d5e3fa6b"
         },
         {
           "path": "design/proposals/support-plates/whats-new--latest.svg",
