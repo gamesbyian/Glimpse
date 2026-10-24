@@ -15,6 +15,8 @@ on:
       - design/proposals/storyboard-coverage.v1.json
       - docs/design/screen-contract.json
       - design/proposals/audit-scenario-evidence.v1.json
+      - design/proposals/whole-product-review-selection.v1.json
+      - scripts/validate-whole-product-review-selection.py
   workflow_dispatch:
 
 permissions:
@@ -42,6 +44,10 @@ jobs:
           python3 scripts/build-whole-set-evidence-atlas.py --check
       - name: Generate offline browser index and SHA256 evidence manifest
         run: python3 scripts/build-whole-set-evidence-atlas.py
+      - name: Validate and hash the coherent owner-review candidate registry
+        run: |
+          python3 scripts/validate-whole-product-review-selection.py \
+            --emit design/atlas/whole-product-review-snapshot.v1.json
       - name: Verify generated browser links and category counts
         run: |
           python3 - <<'PY'
@@ -60,7 +66,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add design/atlas/whole-set-evidence-atlas.html design/atlas/whole-set-evidence-index.json
+          git add design/atlas/whole-set-evidence-atlas.html design/atlas/whole-set-evidence-index.json design/atlas/whole-product-review-snapshot.v1.json
           if git diff --cached --quiet; then
             echo "No source changes to generated reviewer files"
             exit 0
