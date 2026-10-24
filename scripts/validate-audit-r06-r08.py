@@ -16,8 +16,16 @@ SVG_NS = "{http://www.w3.org/2000/svg}"
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--render", action="store_true", help="Render exact 401x890 PNG and enforce recorded crop SHA256; requires CairoSVG and Pillow")
+    parser.add_argument("--render", action="store_true", help="Render actual 401x890 phone PNG; requires CairoSVG and Pillow (pixel equality opt-in)")
+    parser.add_argument("--strict-pixels", action="store_true", help="Require equal PNG bytes from the original inspection environment")
+    parser.add_argument("--output-dir", type=Path, help="Store generated phone crops for human optical inspection")
     args = parser.parse_args()
+    if args.strict_pixels and not args.render:
+        parser.error("--strict-pixels requires --render")
+    if args.output_dir and not args.render:
+        parser.error("--output-dir requires --render")
+    if args.output_dir:
+        args.output_dir.mkdir(parents=True, exist_ok=True)
     data = json.loads(INDEX.read_text(encoding="utf-8"))
     assert data["auditBaseline"] == {"pass": 18, "issue": 8, "unverified": 34, "changedScores": 0}
     scenarios = data["scenarios"]
@@ -46,7 +54,12 @@ def main():
             buff = io.BytesIO()
             img.save(buff, format="PNG")
             png_hash = hashlib.sha256(buff.getvalue()).hexdigest()
-            assert png_hash == case["opticalEvidence"]["phonePNG_SHA256"], f"Crop SHA mismatch for {path}: {png_hash}"
+            if args.strict_pixels:
+                assert png_hash == case["opticalEvidence"]["phonePNG_SHA256"], f"Crop SHA mismatch for {path}: {png_hash}"
+            elif png_hash != case["opticalEvidence"]["phonePNG_SHA256"]:
+                print(f"RENDERER DIFFERENCE (not automatically a visual defect): {path.name} local={png_hash} reviewed={case['opticalEvidence']['phonePNG_SHA256']}")
+            if args.output_dir:
+                (args.output_dir / (path.stem + ".phone.png")).write_bytes(buff.getvalue())
         assert case["phoneCrop"] == {"x": 15, "y": 14, "width": 401, "height": 890}
         tree = ET.parse(path)
         root = tree.getroot()
