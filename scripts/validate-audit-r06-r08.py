@@ -4,6 +4,9 @@
 Validates source/metadata integrity only. Does not assert optical, native or owner approval.
 """
 import json
+import hashlib
+import io
+import argparse
 from pathlib import Path
 import xml.etree.ElementTree as ET
 
@@ -12,6 +15,9 @@ INDEX = ROOT / "design/proposals/audit-revisions/r06-r08-delta-evidence.v1.json"
 SVG_NS = "{http://www.w3.org/2000/svg}"
 
 def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--render", action="store_true", help="Render exact 401x890 PNG and enforce recorded crop SHA256; requires CairoSVG and Pillow")
+    args = parser.parse_args()
     data = json.loads(INDEX.read_text(encoding="utf-8"))
     assert data["auditBaseline"] == {"pass": 18, "issue": 8, "unverified": 34, "changedScores": 0}
     scenarios = data["scenarios"]
@@ -25,8 +31,22 @@ def main():
         assert str(path) not in seen, f"Duplicated proposal {path}"
         seen.add(str(path))
         assert case["illustratedInDraft"] is True
-        for gate in ("opticallyReviewedFromExactSourceSHA", "verifiedOnAndroid", "ownerApprovedExactSourceSHA"):
+        for gate in ("verifiedOnAndroid", "ownerApprovedExactSourceSHA"):
             assert case[gate] is False, f"Evidence gate {gate} requires a separate observed proof record"
+        if case["opticallyReviewedFromExactSourceSHA"]:
+            proof = case["opticalEvidence"]
+            assert proof["sourceSHA256"] == hashlib.sha256(path.read_bytes()).hexdigest(), f"Stale source optical proof {path}"
+            assert len(proof["phonePNG_SHA256"]) == 64
+            assert proof["outputSize"] == [401, 890]
+        if args.render:
+            import cairosvg
+            from PIL import Image
+            raw = cairosvg.svg2png(bytestring=path.read_bytes(), output_width=1160, output_height=920)
+            img = Image.open(io.BytesIO(raw)).convert("RGB").crop((15, 14, 416, 904))
+            buff = io.BytesIO()
+            img.save(buff, format="PNG")
+            png_hash = hashlib.sha256(buff.getvalue()).hexdigest()
+            assert png_hash == case["opticalEvidence"]["phonePNG_SHA256"], f"Crop SHA mismatch for {path}: {png_hash}"
         assert case["phoneCrop"] == {"x": 15, "y": 14, "width": 401, "height": 890}
         tree = ET.parse(path)
         root = tree.getroot()
@@ -46,7 +66,7 @@ def main():
         assert any("DRAFT" in t for t in texts)
         assert len(texts) >= 20
         print(f"source-only OK: {case['id']} -> {case['source']}")
-    print("PASS: 5 R06–R08 draft source checks; 0 optical/native/owner gates assessed")
+    print("PASS: 5 R06–R08 source/evidence checks" + (" and five pixel-exact crops" if args.render else "") + "; 0 Android/owner gates asserted")
 
 if __name__ == "__main__":
     main()
