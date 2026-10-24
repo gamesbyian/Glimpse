@@ -14,30 +14,30 @@
 <text x="38" y="126" font-family="Arial,Helvetica,sans-serif" font-size="24" font-weight="700" fill="#153F46">Rainbows</text>
 <text x="38" y="157" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="550" fill="#667975">Photo 12 of 22 · Preview only</text>
 <rect x="40" y="181" width="350" height="220" rx="15" fill="#FFFCF6" stroke="#B6A48D"/>
-<clipPath id="hero"><rect x="43" y="184" width="344" height="214" rx="13"/></clipPath><g clip-path="url(#hero)"><use href="#fixture2" transform="translate(43 184) scale(.7167 .2972)"/></g>
+<clipPath id="hero"><rect x="43" y="184" width="344" height="214" rx="13"/></clipPath><g clip-path="url(#hero)"><use href="#fixture1" transform="translate(43 184) scale(.7167 .2972)"/></g>
 <rect x="48" y="370" width="184" height="22" rx="12" fill="#FFFCF6" stroke="none"/>
 <text x="58" y="387" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="700" fill="#153F46">SELECTED p12</text>
 <text x="42" y="433" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="700" fill="#153F46">Browse by rotating the paper reel</text>
 <text x="306" y="433" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="600" fill="#1D5960">Grid</text><path d="M345 433 L359 419 M348 419 H359 V430" fill="none" stroke="#1D5960" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
 <g clip-path="url(#wheel-cut)"><circle cx="215" cy="686" r="229" fill="#EAD9BD" stroke="#B6A48D" stroke-width="5"/>
 <path d="M196.3,899.2 A214 214 0 0 1 18.0,769.6 L140.4,717.6 A81 81 0 0 0 207.9,766.7Z" fill="#F6F0E6" stroke="#B6A48D" stroke-width="3"/>
-<clipPath id="c0"><path d="M196.3,899.2 A214 214 0 0 1 18.0,769.6 L140.4,717.6 A81 81 0 0 0 207.9,766.7Z"/></clipPath><g clip-path="url(#c0)"><use href="#fixture3" transform="translate(-14 457) scale(.954 .636)"/></g><path d="M196.3,899.2 A214 214 0 0 1 18.0,769.6 L140.4,717.6 A81 81 0 0 0 207.9,766.7Z" fill="none" stroke="#917D65" stroke-width="2"/>
+<clipPath id="c0"><path d="M196.3,899.2 A214 214 0 0 1 18.0,769.6 L140.4,717.6 A81 81 0 0 0 207.9,766.7Z"/></clipPath><g clip-path="url(#c0)"><use href="#fixture2" transform="translate(-14 457) scale(.954 .636)"/></g><path d="M196.3,899.2 A214 214 0 0 1 18.0,769.6 L140.4,717.6 A81 81 0 0 0 207.9,766.7Z" fill="none" stroke="#917D65" stroke-width="2"/>
 <rect x="106.1" y="797.8" width="39" height="23" rx="7" fill="#FFFCF6" stroke="none"/>
 <text x="114.1" y="813.8" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="700" fill="#153F46">10</text>
 <path d="M6.5,734.1 A214 214 0 0 1 74.6,524.5 L161.9,624.9 A81 81 0 0 0 136.1,704.2Z" fill="#F6F0E6" stroke="#B6A48D" stroke-width="3"/>
-<clipPath id="c1"><path d="M6.5,734.1 A214 214 0 0 1 74.6,524.5 L161.9,624.9 A81 81 0 0 0 136.1,704.2Z"/></clipPath><g clip-path="url(#c1)"><use href="#fixture1" transform="translate(-14 457) scale(.954 .636)"/></g><path d="M6.5,734.1 A214 214 0 0 1 74.6,524.5 L161.9,624.9 A81 81 0 0 0 136.1,704.2Z" fill="none" stroke="#917D65" stroke-width="2"/>
+<clipPath id="c1"><path d="M6.5,734.1 A214 214 0 0 1 74.6,524.5 L161.9,624.9 A81 81 0 0 0 136.1,704.2Z"/></clipPath><g clip-path="url(#c1)"><use href="#fixture3" transform="translate(-14 457) scale(.954 .636)"/></g><path d="M6.5,734.1 A214 214 0 0 1 74.6,524.5 L161.9,624.9 A81 81 0 0 0 136.1,704.2Z" fill="none" stroke="#917D65" stroke-width="2"/>
 <rect x="50.5" y="626.7" width="39" height="23" rx="7" fill="#FFFCF6" stroke="none"/>
 <text x="58.5" y="642.7" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="700" fill="#153F46">11</text>
 <path d="M104.8,502.6 A214 214 0 0 1 325.2,502.6 L256.7,616.6 A81 81 0 0 0 173.3,616.6Z" fill="#F6F0E6" stroke="#B6A48D" stroke-width="3"/>
-<clipPath id="c2"><path d="M104.8,502.6 A214 214 0 0 1 325.2,502.6 L256.7,616.6 A81 81 0 0 0 173.3,616.6Z"/></clipPath><g clip-path="url(#c2)"><use href="#fixture4" transform="translate(-14 457) scale(.954 .636)"/></g><path d="M104.8,502.6 A214 214 0 0 1 325.2,502.6 L256.7,616.6 A81 81 0 0 0 173.3,616.6Z" fill="none" stroke="#1D5960" stroke-width="5"/>
+<clipPath id="c2"><path d="M104.8,502.6 A214 214 0 0 1 325.2,502.6 L256.7,616.6 A81 81 0 0 0 173.3,616.6Z"/></clipPath><g clip-path="url(#c2)"><use href="#fixture1" transform="translate(-14 457) scale(.954 .636)"/></g><path d="M104.8,502.6 A214 214 0 0 1 325.2,502.6 L256.7,616.6 A81 81 0 0 0 173.3,616.6Z" fill="none" stroke="#1D5960" stroke-width="5"/>
 <rect x="196" y="521" width="39" height="23" rx="7" fill="#FFFCF6" stroke="none"/>
 <text x="204" y="537" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="700" fill="#153F46">12</text>
 <path d="M355.4,524.5 A214 214 0 0 1 423.5,734.1 L293.9,704.2 A81 81 0 0 0 268.1,624.9Z" fill="#F6F0E6" stroke="#B6A48D" stroke-width="3"/>
-<clipPath id="c3"><path d="M355.4,524.5 A214 214 0 0 1 423.5,734.1 L293.9,704.2 A81 81 0 0 0 268.1,624.9Z"/></clipPath><g clip-path="url(#c3)"><use href="#fixture5" transform="translate(-14 457) scale(.954 .636)"/></g><path d="M355.4,524.5 A214 214 0 0 1 423.5,734.1 L293.9,704.2 A81 81 0 0 0 268.1,624.9Z" fill="none" stroke="#917D65" stroke-width="2"/>
+<clipPath id="c3"><path d="M355.4,524.5 A214 214 0 0 1 423.5,734.1 L293.9,704.2 A81 81 0 0 0 268.1,624.9Z"/></clipPath><g clip-path="url(#c3)"><use href="#fixture4" transform="translate(-14 457) scale(.954 .636)"/></g><path d="M355.4,524.5 A214 214 0 0 1 423.5,734.1 L293.9,704.2 A81 81 0 0 0 268.1,624.9Z" fill="none" stroke="#917D65" stroke-width="2"/>
 <rect x="341.5" y="626.7" width="39" height="23" rx="7" fill="#FFFCF6" stroke="none"/>
 <text x="349.5" y="642.7" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="700" fill="#153F46">13</text>
 <path d="M412.0,769.6 A214 214 0 0 1 233.7,899.2 L222.1,766.7 A81 81 0 0 0 289.6,717.6Z" fill="#F6F0E6" stroke="#B6A48D" stroke-width="3"/>
-<clipPath id="c4"><path d="M412.0,769.6 A214 214 0 0 1 233.7,899.2 L222.1,766.7 A81 81 0 0 0 289.6,717.6Z"/></clipPath><g clip-path="url(#c4)"><use href="#fixture1" transform="translate(-14 457) scale(.954 .636)"/></g><path d="M412.0,769.6 A214 214 0 0 1 233.7,899.2 L222.1,766.7 A81 81 0 0 0 289.6,717.6Z" fill="none" stroke="#917D65" stroke-width="2"/>
+<clipPath id="c4"><path d="M412.0,769.6 A214 214 0 0 1 233.7,899.2 L222.1,766.7 A81 81 0 0 0 289.6,717.6Z"/></clipPath><g clip-path="url(#c4)"><use href="#fixture5" transform="translate(-14 457) scale(.954 .636)"/></g><path d="M412.0,769.6 A214 214 0 0 1 233.7,899.2 L222.1,766.7 A81 81 0 0 0 289.6,717.6Z" fill="none" stroke="#917D65" stroke-width="2"/>
 <rect x="285.9" y="797.8" width="39" height="23" rx="7" fill="#FFFCF6" stroke="none"/>
 <text x="293.9" y="813.8" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="700" fill="#153F46">14</text>
 <circle cx="215" cy="686" r="82" fill="#EAD9BD" stroke="#B6A48D" stroke-width="5"/><circle cx="215" cy="686" r="48" fill="#F6F0E6"/></g>
