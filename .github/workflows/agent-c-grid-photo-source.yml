@@ -1,14 +1,24 @@
-name: Agent C acquire six licensed Grid photos
+name: Agent C isolated Commons photo recovery
 on:
+  push:
+    branches: [agent/production-c-photo-recovery-20261024]
+    paths:
+      - .github/workflows/agent-c-grid-photo-source.yml
   workflow_dispatch:
 permissions:
   contents: read
 jobs:
   source-audit:
+    strategy:
+      fail-fast: false
+      matrix:
+        photo_id: [p08, p09, p16, p17]
+    name: Source ${{ matrix.photo_id }}
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 12
     steps:
       - uses: actions/checkout@v4
-      - run: python3 -m pip install --quiet Pillow==11.3.0
-      - name: Verify current Commons file metadata and download actual SHA-matched photo bytes
-        run: python3 scripts/acquire-agent-c-grid-cc0.py
+      - name: Install image decoder
+        run: python3 -m pip install --quiet Pillow==11.3.0
+      - name: Obtain exactly one Commons CC0 original with no retry after 429
+        run: python3 scripts/acquire-agent-c-grid-cc0.py --photo-id ${{ matrix.photo_id }}
