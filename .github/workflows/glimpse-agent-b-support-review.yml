@@ -8,6 +8,7 @@ on:
       - scripts/validate-agent-b-support-journeys.py
       - scripts/render-agent-b-accessibility-probes.py
       - scripts/render-agent-b-journey-pairs.py
+      - scripts/render-agent-b-compact-support-study.py
       - design/proposals/support-plates/**
       - .github/workflows/glimpse-agent-b-support-review.yml
   workflow_dispatch:
@@ -48,6 +49,7 @@ jobs:
           cp /tmp/agent-b-source-proof.json design/reviews/support-agent-b-2026-10-24/source-journey-a11y-audit.json
           python3 scripts/render-agent-b-accessibility-probes.py
           python3 scripts/render-agent-b-journey-pairs.py
+          python3 scripts/render-agent-b-compact-support-study.py
           python3 - <<'PY'
           import json, pathlib
           out=pathlib.Path('design/reviews/support-agent-b-2026-10-24')
@@ -59,6 +61,9 @@ jobs:
           assert json.loads((out/'compact-fontscale-stress.json').read_text())['kind']=='STATIC_RISK_SIMULATION_NOT_NATIVE_ANDROID'
           pairs=json.loads((out/'journey-pair-source-ledger.json').read_text())
           assert pairs['pairs']==23 and pairs['frames']==46 and len(pairs['contacts'])==6
+          compact=json.loads((out/'compact-report-sections.v0.1.json').read_text())
+          assert len(compact['controls'])==12 and not any(c['sourceHitHeight']<54 for c in compact['controls'])
+          assert compact['status']=='STATIC_UNSELECTED_NOT_NATIVE_OR_OWNER_ACCEPTANCE'
           assert sum(p['pairs'] for p in pairs['contacts'])==23
           assert all(not g['androidVerified'] and not g['ownerApproved'] for g in pairs['groups'])
           assert all(not s['independentlyOpticallyReviewed'] and
