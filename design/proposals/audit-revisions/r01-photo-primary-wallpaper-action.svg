@@ -45,7 +45,7 @@
 <rect x="214" y="755" width="177" height="48" rx="18" fill="#FFFCF6" stroke="#C4B7A4"/>
 <text x="57" y="786" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="650" fill="#153F46">Previous photo</text>
 <text x="226" y="786" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="650" fill="#153F46">Next photo</text>
-<text x="43" y="852" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="500" fill="#667975">Home       Discover       Collections       Automation</text>
+<path d="M30 824 H401" stroke="#C4B7A4"/><text x="41" y="853" font-family="Arial,Helvetica,sans-serif" font-size="12" fill="#667975">Home</text><text x="132" y="853" font-family="Arial,Helvetica,sans-serif" font-size="12" fill="#667975">Discover</text><text x="226" y="853" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="700" fill="#1D5960">Collections</text><text x="326" y="853" font-family="Arial,Helvetica,sans-serif" font-size="12" fill="#667975">Automation</text>
 <text x="43" y="896" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="700" fill="#667975">PROPOSAL · NOT APPROVED</text>
 <rect x="438" y="14" width="707" height="890" rx="18" fill="#FCF9F3" stroke="#C4B7A4"/>
 <text x="463" y="50" font-family="Arial,Helvetica,sans-serif" font-size="22" font-weight="700" fill="#153F46">R01 · PRIMARY PHOTO REEL / EXPLICIT APPLY ENTRY</text>
