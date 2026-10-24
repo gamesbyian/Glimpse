@@ -7,7 +7,7 @@
 <text x="40" y="132" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="500" fill="#667975">Delivery not confirmed</text>
 <rect x="41" y="210" width="344" height="93" rx="13" fill="#E9E0F5" stroke="#E8876C"/>
 <text x="55" y="240" font-family="Arial,Helvetica,sans-serif" font-size="17" font-weight="650" fill="#153F46">Sharing closed</text>
-<text x="55" y="272" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="440" fill="#667975">Your wallpaper has not changed</text>
+<text x="55" y="272" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="440" fill="#667975">Glimpse did not apply wallpaper</text>
 <rect x="43" y="621" width="338" height="44" rx="16" fill="#1D5960" stroke="#1D5960"/>
 <text x="57" y="650" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="700" fill="white">Return to photo</text>
 <path d="M31 820 H402" stroke="#C4B7A4"/>
