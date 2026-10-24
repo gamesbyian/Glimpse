@@ -1,6 +1,6 @@
 {
-  "sourceCommit": "d16f4039546f0fa3c9a6a8a3e6e195732eb35716",
-  "runId": "40116392107",
+  "sourceCommit": "9ef7242df78cb7906e9af5ee54ef9ca4940e4515",
+  "runId": "40117200782",
   "scope": "source-derived images, not Android screenshots or owner approvals",
   "pixelReview": "not-yet-independently-viewed",
   "groups": [
@@ -87,7 +87,7 @@
     {
       "id": "motion",
       "image": "motion.jpg",
-      "imageSHA256": "658b3b91dc5b1d0eeb4436148175fb5506fd7a0e63c98fc4ebec05e88843e4d8",
+      "imageSHA256": "84eef6accd6f3ab0a77589bcb14c01d602b849b5e5d80fb0226015737e822da5",
       "phones": [
         {
           "source": "design/proposals/audit-revisions/r01-photo-tap-p13-pressed.svg",
@@ -99,7 +99,7 @@
         },
         {
           "source": "design/proposals/audit-revisions/r01-photo-drag-36.svg",
-          "sourceSHA256": "ab9b4a70ebf5c2918c3f80e47def02c19f8a2a13a78dc883f394ae6aa364daa5"
+          "sourceSHA256": "093ef9b4d0780ed7af8d64664789c1805697af57fdf60d3abab1f06e9115529a"
         }
       ],
       "atNaturalPixelSize": true
