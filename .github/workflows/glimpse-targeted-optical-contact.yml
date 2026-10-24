@@ -9,7 +9,7 @@ on:
 permissions:
   contents: write
 concurrency:
-  group: glimpse-optical-contact-${{ github.ref }}
+  group: glimpse-optical-contact-revised-${{ github.ref }}
   cancel-in-progress: false
 jobs:
   contact:
