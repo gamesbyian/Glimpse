@@ -1,0 +1,961 @@
+{
+  "schemaVersion": 1,
+  "type": "SOURCE_EQUIVALENT_TWO_PHONE_TRANSITION_STUDIES",
+  "pairs": 23,
+  "frames": 46,
+  "groups": [
+    {
+      "group": "x01",
+      "title": "Bulk Google Photos import",
+      "pairKind": "sequential-checkpoint",
+      "frames": [
+        {
+          "frameId": "04-copy-progress",
+          "path": "design/proposals/storyboards/x01/04-copy-progress.svg",
+          "sha256": "2ed61dacbf1c4318aebc94fd8c23aa69bf48cd4dde395a2e3a3f073b56b09257",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        },
+        {
+          "frameId": "06-import-result",
+          "path": "design/proposals/storyboards/x01/06-import-result.svg",
+          "sha256": "c5073f036743b82465b92abf281b22e5907d345c6a98800243f1cc8f874f6411",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        }
+      ],
+      "opticalReviewPerformedByGenerator": false,
+      "androidVerified": false,
+      "ownerApproved": false
+    },
+    {
+      "group": "x02",
+      "title": "Collection creation and management",
+      "pairKind": "sequential-checkpoint",
+      "frames": [
+        {
+          "frameId": "05-delete-confirm",
+          "path": "design/proposals/storyboards/x02/05-delete-confirm.svg",
+          "sha256": "24274777d2942ffec7696f02533deb666c5b089fbd821901f5c6b9550cba72c5",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        },
+        {
+          "frameId": "06-empty-after-removal",
+          "path": "design/proposals/storyboards/x02/06-empty-after-removal.svg",
+          "sha256": "4a3a5c75efb8228d2aca44232286821eaf003151733cbabb9ee26a173dbac2a8",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        }
+      ],
+      "opticalReviewPerformedByGenerator": false,
+      "androidVerified": false,
+      "ownerApproved": false
+    },
+    {
+      "group": "x03",
+      "title": "Wallpaper application transaction",
+      "pairKind": "alternative-outcomes",
+      "frames": [
+        {
+          "frameId": "04-acknowledged",
+          "path": "design/proposals/storyboards/x03/04-acknowledged.svg",
+          "sha256": "2f950df9a3960b2d9626922a62f209972e597505a2bc82226407391316ed4a07",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        },
+        {
+          "frameId": "05-uncertain",
+          "path": "design/proposals/storyboards/x03/05-uncertain.svg",
+          "sha256": "2c84d05c9bf4a1f39635840b07a7e2ac22a9ff854212d5ef3082d71b7be1d44d",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        }
+      ],
+      "opticalReviewPerformedByGenerator": false,
+      "androidVerified": false,
+      "ownerApproved": false
+    },
+    {
+      "group": "x04",
+      "title": "Active-use shuffle lifecycle",
+      "pairKind": "alternative-states",
+      "frames": [
+        {
+          "frameId": "04-delayed",
+          "path": "design/proposals/storyboards/x04/04-delayed.svg",
+          "sha256": "5307fe484ec0a6783b06f50158950374ceba8cbca8acc7030841c9515ea78515",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        },
+        {
+          "frameId": "05-paused",
+          "path": "design/proposals/storyboards/x04/05-paused.svg",
+          "sha256": "869513368b9023e14563ca7a1d32cdd90db06df2027cbb888d8e05e7e3980b47",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        }
+      ],
+      "opticalReviewPerformedByGenerator": false,
+      "androidVerified": false,
+      "ownerApproved": false
+    },
+    {
+      "group": "x05",
+      "title": "Paper-reel physical motion",
+      "pairKind": "distinct-gesture-states",
+      "frames": [
+        {
+          "frameId": "07-interrupted",
+          "path": "design/proposals/storyboards/x05/07-interrupted.svg",
+          "sha256": "9c8c5c102c8d4a39c93767e32d9424f3b5c62e6d480f5628ecfd4e6106792eae",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        },
+        {
+          "frameId": "08-last",
+          "path": "design/proposals/storyboards/x05/08-last.svg",
+          "sha256": "d4e9d2940c30ae25e7f3421c2dc811634c99df03ab5f7914675abdc258e532d8",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        }
+      ],
+      "opticalReviewPerformedByGenerator": false,
+      "androidVerified": false,
+      "ownerApproved": false
+    },
+    {
+      "group": "x06",
+      "title": "Finite reel edge and scale",
+      "pairKind": "different-dataset-sizes",
+      "frames": [
+        {
+          "frameId": "03-three",
+          "path": "design/proposals/storyboards/x06/03-three.svg",
+          "sha256": "74c1a355df75a296b5e8eead7ecc4ddc51a79714743f0c6ffe562a13e76073c4",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        },
+        {
+          "frameId": "05-twenty-two",
+          "path": "design/proposals/storyboards/x06/05-twenty-two.svg",
+          "sha256": "bdf90c8b41bf266ad731dcaefec3e9ab4b1986d830f37273331d239884b89482",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        }
+      ],
+      "opticalReviewPerformedByGenerator": false,
+      "androidVerified": false,
+      "ownerApproved": false
+    },
+    {
+      "group": "x07",
+      "title": "Reel / Grid / photo detail continuity",
+      "pairKind": "same-photo-identity",
+      "frames": [
+        {
+          "frameId": "01-reel-focus",
+          "path": "design/proposals/storyboards/x07/01-reel-focus.svg",
+          "sha256": "ab547607dd57005ef60c678d68a0ecefa372c75d10dda4bd4ec1439d2f7723d7",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        },
+        {
+          "frameId": "03-photo-detail",
+          "path": "design/proposals/storyboards/x07/03-photo-detail.svg",
+          "sha256": "8ec5b507e9690fc9c03e5eb1af4dc2692248fc9f715ee60c4acae1ed022c98e4",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        }
+      ],
+      "opticalReviewPerformedByGenerator": false,
+      "androidVerified": false,
+      "ownerApproved": false
+    },
+    {
+      "group": "x08",
+      "title": "Compact handset information hierarchy",
+      "pairKind": "same-family-variant",
+      "frames": [
+        {
+          "frameId": "01-home-active",
+          "path": "design/proposals/storyboards/x08/01-home-active.svg",
+          "sha256": "c1648ff062496adc85f8c29acecbc6ca2905df6ee3a32dc7bc1df75f94a681dd",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        },
+        {
+          "frameId": "06-status-collapsed",
+          "path": "design/proposals/storyboards/x08/06-status-collapsed.svg",
+          "sha256": "770d72cdb8d239e39ae4326945ec74d7c1de5f46e0213f373020e5c846335253",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        }
+      ],
+      "opticalReviewPerformedByGenerator": false,
+      "androidVerified": false,
+      "ownerApproved": false
+    },
+    {
+      "group": "x09",
+      "title": "Large text, high contrast and motion stress",
+      "pairKind": "large-type-variants",
+      "frames": [
+        {
+          "frameId": "01-home-200-text",
+          "path": "design/proposals/storyboards/x09/01-home-200-text.svg",
+          "sha256": "fb74f596b10c37ad0ae02cfdd765eb6377f65af7ac23eec0be23a9eefabb048b",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        },
+        {
+          "frameId": "07-error-compact",
+          "path": "design/proposals/storyboards/x09/07-error-compact.svg",
+          "sha256": "6c48fcf3bc6b756c8a066833ce4f7e5dc3066341d72e87ed117c19d314c48e2b",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        }
+      ],
+      "opticalReviewPerformedByGenerator": false,
+      "androidVerified": false,
+      "ownerApproved": false
+    },
+    {
+      "group": "x10",
+      "title": "Failures and interruption recovery",
+      "pairKind": "interrupted-import-branch",
+      "frames": [
+        {
+          "frameId": "01-cloud-pending",
+          "path": "design/proposals/storyboards/x10/01-cloud-pending.svg",
+          "sha256": "62fd4844f438f2a5a3fd06400821ec3563b2d192913dcfc33ba192761f32c35c",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        },
+        {
+          "frameId": "02-uri-revoked",
+          "path": "design/proposals/storyboards/x10/02-uri-revoked.svg",
+          "sha256": "95b299d9045355a890ec23491cabea0e56d48562c93939214158ad5a7b692d1d",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        }
+      ],
+      "opticalReviewPerformedByGenerator": false,
+      "androidVerified": false,
+      "ownerApproved": false
+    },
+    {
+      "group": "x11",
+      "title": "Screenshot intake and editing",
+      "pairKind": "edit-does-not-auto-apply",
+      "frames": [
+        {
+          "frameId": "04-save-only",
+          "path": "design/proposals/storyboards/x11/04-save-only.svg",
+          "sha256": "2d09986e56c914e05348d97b8f1b90d88f123b05079e43fb16a9fc9616ce4e63",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        },
+        {
+          "frameId": "06-use-now",
+          "path": "design/proposals/storyboards/x11/06-use-now.svg",
+          "sha256": "0cf85fba0baa3e1a776c5d2051fe34e98bccb9006c6f4a327c0911e7b1b21312",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        }
+      ],
+      "opticalReviewPerformedByGenerator": false,
+      "androidVerified": false,
+      "ownerApproved": false
+    },
+    {
+      "group": "x12",
+      "title": "Touch, inset and accessible focus anatomy",
+      "pairKind": "pointer-vs-focus-studies",
+      "frames": [
+        {
+          "frameId": "01-reel-touch-regions",
+          "path": "design/proposals/storyboards/x12/01-reel-touch-regions.svg",
+          "sha256": "3d36c3d99d1ca86cebe08a596ed47740e7bf990d4f4fe62e363396bb421b53fd",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        },
+        {
+          "frameId": "04-talkback-focus",
+          "path": "design/proposals/storyboards/x12/04-talkback-focus.svg",
+          "sha256": "0e02732b04fad9ee4cb0c2792b5767c4d9363b87bd4b3e45875ce4807c60e10e",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        }
+      ],
+      "opticalReviewPerformedByGenerator": false,
+      "androidVerified": false,
+      "ownerApproved": false
+    },
+    {
+      "group": "x13",
+      "title": "Android sharing and return",
+      "pairKind": "chooser-return-uncertain",
+      "frames": [
+        {
+          "frameId": "03-chooser",
+          "path": "design/proposals/advanced-storyboards/x13/03-chooser.svg",
+          "sha256": "652010a429b3cd206a00283d2df77da6b15b7750c1fa3241a7342f1883868254",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        },
+        {
+          "frameId": "04-cancel",
+          "path": "design/proposals/advanced-storyboards/x13/04-cancel.svg",
+          "sha256": "95776a8fb56f66eb3ae477c6f6393eafb7d834348f7e4adc325641bde4bcfca7",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        }
+      ],
+      "opticalReviewPerformedByGenerator": false,
+      "androidVerified": false,
+      "ownerApproved": false
+    },
+    {
+      "group": "x14",
+      "title": "Target-aware crop and capabilities",
+      "pairKind": "target-capability-branches",
+      "frames": [
+        {
+          "frameId": "02-lock",
+          "path": "design/proposals/advanced-storyboards/x14/02-lock.svg",
+          "sha256": "c81cf29115e27bb88db47f3d050e85687e240fa0ad6d770cd61fcd137ce8455f",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        },
+        {
+          "frameId": "04-unsupported",
+          "path": "design/proposals/advanced-storyboards/x14/04-unsupported.svg",
+          "sha256": "43206f7b91e196dcbd6b13ad0263cea92d2b3d6d26203c820d3ff49f76feeb7a",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        }
+      ],
+      "opticalReviewPerformedByGenerator": false,
+      "androidVerified": false,
+      "ownerApproved": false
+    },
+    {
+      "group": "x15",
+      "title": "Large library operations",
+      "pairKind": "explicit-undo",
+      "frames": [
+        {
+          "frameId": "04-confirm-exclude",
+          "path": "design/proposals/advanced-storyboards/x15/04-confirm-exclude.svg",
+          "sha256": "23d3e4c316131d60e8545f046c6eabc615908fb44064d8d21b02bba9f2b50be9",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        },
+        {
+          "frameId": "05-restore",
+          "path": "design/proposals/advanced-storyboards/x15/05-restore.svg",
+          "sha256": "36b5a6bb4ac29cdbebe71eb2c81d3161995ff7938a282d181a2c64b598848619",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        }
+      ],
+      "opticalReviewPerformedByGenerator": false,
+      "androidVerified": false,
+      "ownerApproved": false
+    },
+    {
+      "group": "x16",
+      "title": "Rule conflict and simulation",
+      "pairKind": "rule-conflict-testing",
+      "frames": [
+        {
+          "frameId": "02-conflict",
+          "path": "design/proposals/advanced-storyboards/x16/02-conflict.svg",
+          "sha256": "9acd2741697d643b9a4b25abbed85a71b739c92906b9f12a0c87388b1e5ec719",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        },
+        {
+          "frameId": "05-simulate",
+          "path": "design/proposals/advanced-storyboards/x16/05-simulate.svg",
+          "sha256": "18da9ac81abbbd86a92195e55bab70a999d03b5241b8d6a8ca1850c7a226d8c9",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        }
+      ],
+      "opticalReviewPerformedByGenerator": false,
+      "androidVerified": false,
+      "ownerApproved": false
+    },
+    {
+      "group": "x17",
+      "title": "Source rights and network consequences",
+      "pairKind": "rights-vs-network-branches",
+      "frames": [
+        {
+          "frameId": "03-image-licence",
+          "path": "design/proposals/advanced-storyboards/x17/03-image-licence.svg",
+          "sha256": "f573fa4168ce16e03328179533b88d84174997dd0a5a4437a9044cff6c367b0c",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        },
+        {
+          "frameId": "04-offline",
+          "path": "design/proposals/advanced-storyboards/x17/04-offline.svg",
+          "sha256": "d6eec7631868935ffd3b942046ca21238a32b0b839f17d1b45b53bfb088bb3d7",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        }
+      ],
+      "opticalReviewPerformedByGenerator": false,
+      "androidVerified": false,
+      "ownerApproved": false
+    },
+    {
+      "group": "x18",
+      "title": "History, diagnosis and reapply",
+      "pairKind": "unknown-outcome-guard",
+      "frames": [
+        {
+          "frameId": "02-unknown",
+          "path": "design/proposals/advanced-storyboards/x18/02-unknown.svg",
+          "sha256": "ac1cdbb7f869bc06d111e5ae0f1c995b4ebbeb8f47195df822a9f1cf69af9dec",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        },
+        {
+          "frameId": "04-retry",
+          "path": "design/proposals/advanced-storyboards/x18/04-retry.svg",
+          "sha256": "65e92912619a7f89b5be52deb79695efaba077be6b44a92e93955c924737df59",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        }
+      ],
+      "opticalReviewPerformedByGenerator": false,
+      "androidVerified": false,
+      "ownerApproved": false
+    },
+    {
+      "group": "x19",
+      "title": "Backup and restore integrity",
+      "pairKind": "MISSING-EXPLICIT-CONFIRM-BEFORE-RESULT",
+      "frames": [
+        {
+          "frameId": "04-restore-conflict",
+          "path": "design/proposals/advanced-storyboards/x19/04-restore-conflict.svg",
+          "sha256": "1a5036f703d0c3ed1f696ba167a263468c30286ae89a10b2fa9cfcf3521510e8",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        },
+        {
+          "frameId": "05-restore-result",
+          "path": "design/proposals/advanced-storyboards/x19/05-restore-result.svg",
+          "sha256": "6bd12f9ac5886b542510cadc1ae0ae61233f4d9bf48385c5d089e4349c11dd52",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        }
+      ],
+      "opticalReviewPerformedByGenerator": false,
+      "androidVerified": false,
+      "ownerApproved": false
+    },
+    {
+      "group": "x20",
+      "title": "External Android-hosted controls",
+      "pairKind": "capability-branches",
+      "frames": [
+        {
+          "frameId": "01-launcher-widget",
+          "path": "design/proposals/advanced-storyboards/x20/01-launcher-widget.svg",
+          "sha256": "ca6f63d281ecccc9f48ef1d1f61b0558e792b778f942405c26408a52e875eb3e",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        },
+        {
+          "frameId": "05-unavailable",
+          "path": "design/proposals/advanced-storyboards/x20/05-unavailable.svg",
+          "sha256": "278162f75a6790e9aad2c74efbbac46f988dc8153f26486d5d7750d66e2e8507",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        }
+      ],
+      "opticalReviewPerformedByGenerator": false,
+      "androidVerified": false,
+      "ownerApproved": false
+    },
+    {
+      "group": "x21",
+      "title": "Settings, help and return",
+      "pairKind": "help-report-return",
+      "frames": [
+        {
+          "frameId": "04-report",
+          "path": "design/proposals/advanced-storyboards/x21/04-report.svg",
+          "sha256": "549440153d6186e7efe7d8f6a0748abb5eed54d9077f0923f519fc10c9de9f9c",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        },
+        {
+          "frameId": "05-return",
+          "path": "design/proposals/advanced-storyboards/x21/05-return.svg",
+          "sha256": "5a5b8c7199fd2cbc0c7c7151afa686d793649e316f56bf3d061599ae672c47a2",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        }
+      ],
+      "opticalReviewPerformedByGenerator": false,
+      "androidVerified": false,
+      "ownerApproved": false
+    },
+    {
+      "group": "x22",
+      "title": "Exact diagnostic report handoff",
+      "pairKind": "MISSING-PAYLOAD-REVIEW-AFTER-CONSENT",
+      "frames": [
+        {
+          "frameId": "03-consent",
+          "path": "design/proposals/advanced-storyboards/x22/03-consent.svg",
+          "sha256": "2ce9df2896802c9f9792f1a1322698914f4b6ae1816d42d6ae033c6302a81e5d",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        },
+        {
+          "frameId": "04-chooser",
+          "path": "design/proposals/advanced-storyboards/x22/04-chooser.svg",
+          "sha256": "5d23b14e761a364ef13287ae7a6e8ba591b1070c8f93acc402342d111fd042e7",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        }
+      ],
+      "opticalReviewPerformedByGenerator": false,
+      "androidVerified": false,
+      "ownerApproved": false
+    },
+    {
+      "group": "x23",
+      "title": "Adverse asynchronous input states",
+      "pairKind": "asynchronous-error-branches",
+      "frames": [
+        {
+          "frameId": "04-duplicates",
+          "path": "design/proposals/advanced-storyboards/x23/04-duplicates.svg",
+          "sha256": "b8cccccd73d31a852808a58b972445033b5519c3dfa93971b411f21ba3b2b2be",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        },
+        {
+          "frameId": "05-batch-error",
+          "path": "design/proposals/advanced-storyboards/x23/05-batch-error.svg",
+          "sha256": "9484a8a3680f3e280c3f04b4f4064edd90aa9a913ab5684c7d21b4771078f028",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        }
+      ],
+      "opticalReviewPerformedByGenerator": false,
+      "androidVerified": false,
+      "ownerApproved": false
+    }
+  ],
+  "contacts": [
+    {
+      "name": "journey-pair-contact-01.jpg",
+      "sha256": "f43e2396326846043fcd1a94afe7060b8fcdb5f6c6ac8200f3d007785afac30b",
+      "pairs": 4
+    },
+    {
+      "name": "journey-pair-contact-02.jpg",
+      "sha256": "5eaad8f55ca6c6780a7d5b1022e18063465f30849e5703ea3b3d5ebfc992121f",
+      "pairs": 4
+    },
+    {
+      "name": "journey-pair-contact-03.jpg",
+      "sha256": "1cb84ff22cfdf4837033ca8a34f29e382907a083915110284becc7095288ff50",
+      "pairs": 4
+    },
+    {
+      "name": "journey-pair-contact-04.jpg",
+      "sha256": "da7f5411f7f9d498e170248d39cda565eeda3df960fa2be97c8fa43c0e6c5d2f",
+      "pairs": 4
+    },
+    {
+      "name": "journey-pair-contact-05.jpg",
+      "sha256": "6d2b236ea879360bcc8bc7bd2d1a8db4df9debacd871ce85a00bf8eacedfaf0c",
+      "pairs": 4
+    },
+    {
+      "name": "journey-pair-contact-06.jpg",
+      "sha256": "575f3f66e5b4094b2cc546be0274f171c8d45e063fc03159a6417d639cee1e36",
+      "pairs": 3
+    }
+  ],
+  "warning": "Branch comparisons are labelled as such, not fictitiously sequential. Optical/native/owner evidence is independent."
+}
