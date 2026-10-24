@@ -18,7 +18,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Render 12 phone-size source-hashed comparison cases
+      - name: Render 18 phone-size source-hashed comparison cases
         run: |
           python3 -m pip install --quiet cairosvg pillow
           python3 - <<'PY'
@@ -34,7 +34,9 @@ jobs:
             ('finite',["r01-photo-three-3","r01-photo-five-5","r01-photo-sixty-60"]),
             ('edge-and-scale',["r01-photo-first-22","r01-photo-home-crescent","r01-photo-large-type"]),
             ('truth-and-return',["r03-home-last-ack-p04","r04-import-offline-17-of-22","r08-skip-return-rainbows"]),
-            ('empty-single-unknown',["r01-photo-empty-0","r01-photo-single-1","r03-unknown-after-request"])
+            ('empty-single-unknown',["r01-photo-empty-0","r01-photo-single-1","r03-unknown-after-request"]),
+            ('motion',["r01-photo-tap-p13-pressed","r01-photo-tap-p13-settled","r01-photo-drag-36"]),
+            ('p12-truth',["r01-photo-rest-22","r03-preview-not-applied","r03-unknown-after-request"])
           ]
           manifest={'sourceCommit':os.environ['GITHUB_SHA'],
                     'runId':os.environ['GITHUB_RUN_ID'],
@@ -65,7 +67,7 @@ jobs:
                 'imageSHA256':hashlib.sha256(jpeg.read_bytes()).hexdigest(),
                 'phones':details,'atNaturalPixelSize':True})
           (output/'source-ledger.json').write_text(json.dumps(manifest,indent=2)+'\n')
-          print('PASS: four comparison sheets, twelve exact 401x890 phone samples')
+          print('PASS: six comparison sheets, eighteen exact 401x890 phone samples')
           PY
       - name: Commit limited-size JPEG review sheets and exact ledger
         run: |
@@ -78,6 +80,6 @@ jobs:
           fi
       - uses: actions/upload-artifact@v4
         with:
-          name: glimpse-twelve-phone-optical-contact-${{ github.sha }}
+          name: glimpse-eighteen-phone-optical-contact-${{ github.sha }}
           path: design/reviews/targeted-2026-10-24/
           retention-days: 14
