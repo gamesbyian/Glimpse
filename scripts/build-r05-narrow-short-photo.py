@@ -36,7 +36,7 @@ def construct():
     image_href=raw_image.group(1)
     import base64
     image_bytes=base64.b64decode(image_href.partition(",")[2])
-    assert image_bytes[:3]==b"\\xff\\xd8\\xff"
+    assert image_bytes[:3]==bytes.fromhex("ffd8ff")
     audit={"auditLane":"R05","stateId":"narrow-short-320",
        "proposalStatus":"draft-not-owner-approved","selectedAssetId":"p12",
        "lastConfirmedAppliedAssetId":"p04","pendingRequestedAssetId":None,
