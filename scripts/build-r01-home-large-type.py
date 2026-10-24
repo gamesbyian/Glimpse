@@ -45,7 +45,7 @@ def frame(title,meta,defs,phone,annotations):
 <path d="M459 118 H1126" stroke="#C4B7A4"/>
 {annotations}
 </svg>'''
-    root=ElementTree.fromstring(xml)
+    root=ET.fromstring(xml)
     assert root.get("viewBox")=="0 0 1160 920"
     return xml
 
