@@ -128,11 +128,17 @@ for case in r04["cases"]:
     if case.get("dedicatedReferencePath"):
         src = (ROOT / case["dedicatedReferencePath"]).read_text()
         assert '"auditLane":"R04"' in src, case["id"]
-        for required in ('"photoTotal":22','"verifiedLocalCopies":17','"pendingPhotos":5',
-                         '"hasFullBatchSuccess":false','"originalsPreserved":true',
-                         '"nativeProof":"unverified"'):
+        state_values = ('"photoTotal":0','"verifiedLocalCopies":0','"pendingPhotos":0') if case["id"] == "import-empty" else ('"photoTotal":22','"verifiedLocalCopies":17','"pendingPhotos":5')
+        for required in state_values + ('"hasFullBatchSuccess":false','"originalsPreserved":true',
+                                        '"nativeProof":"unverified"'):
             assert required in src, (case["id"], required)
-assert len([c for c in r04["cases"] if c.get("dedicatedReferencePath")]) == 2
+        if case["id"] == "import-17-of-22-disabled":
+            assert '"fileCountProgressPercentRounded":77' in src
+            assert 'Continue disabled' in src
+        if case["id"] == "import-empty":
+            assert '"sourceAssetId":null' in src and '"selectedAssetId":null' in src
+            assert 'No imported photos' in src
+assert len([c for c in r04["cases"] if c.get("dedicatedReferencePath")]) == 4
 # R05 photographic overlay is a read-only audit layer on exactly the same
 # source-image pixels as the genuine R01 paper reel. Do not confuse it with a
 # separate or simulated Android TalkBack implementation.
