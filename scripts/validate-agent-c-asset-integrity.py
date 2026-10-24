@@ -202,7 +202,7 @@ def validate(manifest, root):
                     truth["ownerApproved"] is False,
                     f"{record['photoId']}: misleading schematic photo claim")
             git_blob = hashlib.sha1(
-                ("blob " + str(len(raw)) + "\\0").encode() + raw
+                ("blob " + str(len(raw)) + "\0").encode() + raw
             ).hexdigest()
             require(git_blob == record["fallbackGitBlobSha"],
                     f"{record['photoId']}: fallback bytes silently changed")
