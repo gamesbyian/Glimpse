@@ -15,8 +15,8 @@
   "counts": {
     "totalRequired": 56,
     "PARTIAL": 8,
-    "PICTURED": 47,
-    "MISSING_SPECIFIC": 1
+    "PICTURED": 48,
+    "MISSING_SPECIFIC": 0
   },
   "finiteCountExamples": [
     {
@@ -342,12 +342,13 @@
     {
       "lane": "R05",
       "scenario": "narrow-short",
-      "evidenceState": "MISSING_SPECIFIC",
+      "evidenceState": "PICTURED",
       "sourcePaths": [
+        "design/proposals/audit-revisions/r05-photo-reel-narrow-short-320.svg",
         "design/proposals/storyboards/x08/05-long-title.svg",
         "design/proposals/storyboards/x12/02-safe-area-navigation.svg"
       ],
-      "nextProof": "No explicit 320dp-short-screen crop of the current photographic design; Android layout proof also absent."
+      "nextProof": "Exact source-derived 320x640 SVG has been CI-rasterized; independent visual judgment at full size, 200% font scale, real native layout/insets/hit targets and owner approval remain absent."
     },
     {
       "lane": "R05",
