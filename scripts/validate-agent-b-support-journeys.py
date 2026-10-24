@@ -219,6 +219,15 @@ for frame_id in ("01-rest","02-touch-down","03-drag-18","04-drag-36",
     phone=(ROOT/rel).read_text(encoding="utf8").split('<rect x="442"',1)[0]
     if ">View all</text>" not in phone or ">Grid ↗</text>" in phone:
         errors.append(f"{rel}: illegible Grid / View all non-gesture parity")
+# Selected images use painted vector checkmarks. Glyph-based ✓ appears
+# as tofu in CairoSVG and falsely looks like a missing image/selection.
+for state in ("03-range-selection","04-confirm-exclude","05-restore"):
+    path=ROOT/f"design/proposals/advanced-storyboards/x15/{state}.svg"
+    phone=path.read_text(encoding="utf8").split('<rect x="442"',1)[0]
+    if phone.count('aria-label="Selected"')!=3:
+        errors.append(f"{path}: expected three vector selected badges")
+    if ">✓</text>" in phone:
+        errors.append(f"{path}: unsupported text-glyph selection marker")
 ss=scenarios["scenarios"]
 if len(ss)!=56:errors.append("Unexpected audit scenario count")
 for sc in ss:
