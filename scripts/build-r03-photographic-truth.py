@@ -28,6 +28,9 @@ def fixture():
 
 def construct(name):
     original=(DIR/name).read_text(encoding="utf-8")
+    if name == 'r03-preview-not-applied.svg':
+        original=original.replace("Last confirmed Home is photo 04","Last Glimpse acknowledgement: p04")
+        original=original.replace("Selection does not imply a WallpaperManager call","Preview does not change your wallpaper")
     photo,photo_sha=fixture()
     art='''<rect x="45" y="164" width="342" height="316" rx="14" fill="#17232F"/>
 <defs><clipPath id="r03-p12-photo-frame"><rect x="48" y="167" width="336" height="310" rx="12"/></clipPath></defs>
