@@ -266,7 +266,20 @@
         "applicable Android screenshot/hierarchy fixture or marked unverified",
         "audit finding closure verification"
       ],
-      "disposition": "queued-from-audit-not-yet-rendered"
+      "disposition": "Draft reference coverage spans X13/R02 and a source-hash optically inspected return-without-delivery-confirmation screen; native Android share outcomes and owner selection unverified.",
+      "candidateSources": [
+        "design/proposals/advanced-storyboards/x13/01-original.svg",
+        "design/proposals/advanced-storyboards/x13/02-edited.svg",
+        "design/proposals/advanced-storyboards/x13/03-chooser.svg",
+        "design/proposals/advanced-storyboards/x13/04-cancel.svg",
+        "design/proposals/advanced-storyboards/x13/05-unavailable.svg",
+        "design/proposals/audit-revisions/r02-share-choice.svg",
+        "design/proposals/audit-revisions/r06-share-dismissed.svg"
+      ],
+      "evidence": "design/proposals/audit-revisions/r06-r08-delta-evidence.v1.json",
+      "opticalReview": "docs/design/R06-R08-OPTICAL-INSPECTION-2026-10-23.md",
+      "androidProof": "unverified",
+      "ownerDecision": "not-requested"
     },
     {
       "id": "R07",
@@ -300,7 +313,20 @@
         "applicable Android screenshot/hierarchy fixture or marked unverified",
         "audit finding closure verification"
       ],
-      "disposition": "queued-from-audit-not-yet-rendered"
+      "disposition": "X04 and existing delayed/paused frames retained; battery restriction and unknown-attempt candidates source-hash optically inspected. No exact five-minute Android guarantee, native evidence or approval.",
+      "candidateSources": [
+        "design/proposals/storyboards/x04/01-ready.svg",
+        "design/proposals/storyboards/x04/03-active.svg",
+        "design/proposals/storyboards/x04/04-delayed.svg",
+        "design/proposals/storyboards/x04/05-paused.svg",
+        "design/proposals/storyboards/x04/06-resumed.svg",
+        "design/proposals/audit-revisions/r07-battery-restricted.svg",
+        "design/proposals/audit-revisions/r07-unknown-after-attempt.svg"
+      ],
+      "evidence": "design/proposals/audit-revisions/r06-r08-delta-evidence.v1.json",
+      "opticalReview": "docs/design/R06-R08-OPTICAL-INSPECTION-2026-10-23.md",
+      "androidProof": "unverified",
+      "ownerDecision": "not-requested"
     },
     {
       "id": "R08",
@@ -336,7 +362,19 @@
         "applicable Android screenshot/hierarchy fixture or marked unverified",
         "audit finding closure verification"
       ],
-      "disposition": "queued-from-audit-not-yet-rendered"
+      "disposition": "Reuse source-offline/storage/unsupported/restore references. Revoked permission and explicit keep/import/skip restore conflict screens source-hash optically inspected; native recovery and owner decision unverified.",
+      "candidateSources": [
+        "design/proposals/state-refinements/source-detail-offline.svg",
+        "design/proposals/state-refinements/error-empty-permission-storage.svg",
+        "design/proposals/state-refinements/destinations-unsupported.svg",
+        "design/proposals/state-refinements/backup-and-restore-restore.svg",
+        "design/proposals/audit-revisions/r08-source-revoked.svg",
+        "design/proposals/audit-revisions/r08-restore-conflict-choice.svg"
+      ],
+      "evidence": "design/proposals/audit-revisions/r06-r08-delta-evidence.v1.json",
+      "opticalReview": "docs/design/R06-R08-OPTICAL-INSPECTION-2026-10-23.md",
+      "androidProof": "unverified",
+      "ownerDecision": "not-requested"
     }
   ]
 }
