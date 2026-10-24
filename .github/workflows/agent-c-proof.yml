@@ -7,6 +7,8 @@ on:
       - scripts/tests/test_agent_c_asset_integrity.py
       - scripts/capture-agent-c-native.py
       - app/src/test/java/io/github/gamesbyian/glimpse/domain/AgentCFiniteIdentityTest.kt
+      - app/src/androidTest/**
+      - app/build.gradle.kts
       - .github/workflows/agent-c-proof.yml
   workflow_dispatch:
 permissions:
@@ -63,6 +65,7 @@ jobs:
           script: |
             adb install -r app/build/outputs/apk/debug/app-debug.apk
             python3 scripts/capture-agent-c-native.py --out artifacts/agent-c-native
+            ./gradlew --no-daemon :app:connectedDebugAndroidTest
       - name: Preserve real screenshot/hierarchy evidence even on failure
         if: always()
         uses: actions/upload-artifact@v4
