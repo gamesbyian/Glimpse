@@ -28,3 +28,11 @@ The [first pass report](OPTICAL-REVIEW-2026-10-24-TARGETED-12.md) already covers
 This second pass increases verified *visual-source* evidence. It does **not** establish material Android visual conformity, native tap-to-select/drag physics, external picker/chooser fidelity, persistence, 48dp focus order or any human approval. Never convert [cycle-A UX audit](glimpse-ux-audit-cycle-a.v1.json) from its recorded **18 draft-source PASS / 8 ISSUE / 34 UNVERIFIED** without its question-specific proof.
 
 **Follow-up:** confirm refreshed p11/p14 badge suppression at the new SVG SHA in a new 401×890 source-hashed phone raster; review the [24-primary coherent candidate](../../design/atlas/whole-product-review-selection.html) for user-facing consistency rather than proclaiming the 271 draft references complete in visual quality.
+
+## Post-fix closure: 36° lower badge clipping
+
+The corrected draft source is `design/proposals/audit-revisions/r01-photo-drag-36.svg`, source SHA-256 `093ef9b4d0780ed7af8d64664789c1805697af57fdf60d3abab1f06e9115529a`. The [focused geometry proof #40116826508](https://github.com/gamesbyian/Glimpse/actions/runs/40116826508) passed, asserting offscreen p11/p14 **number badges suppressed** while all five photographic wedges persist. The [refreshed optical workflow #40117200782](https://github.com/gamesbyian/Glimpse/actions/runs/40117200782) succeeded; its [source SHA ledger](../../design/reviews/targeted-2026-10-24/source-ledger.json) binds that source to the [new motion contact sheet](../../design/reviews/targeted-2026-10-24/motion.jpg).
+
+**Independent actual-pixel reinspection completed.** Opened the full three-phone contact image at native phone scale, compared the rightmost 36° mid-drag scene against p13 tap pressed and settled. The prior partially visible p11/p14 number chips are now absent; corresponding lower wedge photographs remain, with no fabricated wraparound. p12 is still the hero/selected image, p13 approaches the fixed pointer without a committed selection, and Previous/Next controls remain unobscured. **The specific reference-render clipping defect is closed at this exact SVG source hash.**
+
+This does not establish Android swipe/tap physics, native accessible hit regions, TalkBack, 200%-font layout, human usability or owner approval. Reinspect if the SVG source bytes change.
