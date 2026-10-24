@@ -43,6 +43,19 @@ class ProvenanceContractTest(unittest.TestCase):
         self.assertFalse(module.is_sha("Z" * 64))
         self.assertTrue(module.is_sha("b" * 64))
 
+    def test_cc0_asset_cannot_change_after_license_audit(self):
+        import json
+        manifest = json.loads(
+            (ROOT / "design/assets/production-c-provenance.v1.json").read_text()
+        )
+        p04 = next(x for x in manifest["requestedIndependentPhotos"]
+                   if x["photoId"] == "p04")
+        self.assertEqual("verified", p04["rightsStatus"])
+        self.assertEqual("available-not-integrated", p04["sourceStatus"])
+        actual = ROOT / p04["assetPath"]
+        self.assertTrue(actual.exists())
+        self.assertEqual(p04["sha256"], module.digest(actual.read_bytes()))
+
     def test_embedded_photo_cannot_be_an_http_reference(self):
         import tempfile
         with tempfile.TemporaryDirectory() as temporary:
@@ -61,7 +74,7 @@ class ProvenanceContractTest(unittest.TestCase):
             (ROOT / "design/assets/production-c-provenance.v1.json").read_text()
         )
         blockers, embedded = module.validate(manifest, ROOT)
-        self.assertEqual(7, blockers)
+        self.assertEqual(6, blockers)
         self.assertGreaterEqual(embedded, 6)
 
 
