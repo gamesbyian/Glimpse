@@ -35,3 +35,8 @@ When storage is insufficient, the UI says **17 verified, five still waiting**; i
 At least 0/17/22 verified counts, duplicate/skipped distributions, cancellation during bytes streaming, out-of-space mid-file, lost source permission, provider offline, process death and re-entry, retry after sufficient space, invalid MIME and large-decode rejection, 200% text, accessibility labels and action bounds, with exact persisted Room membership/bytes evidence. Require **screenshots and UI hierarchy from the native build** in addition to state-machine tests. The two current SVG drawings are *visual hypotheses*, not successful transaction proof.
 
 Source-evidence lineage: [R04 targeted run 40048067960](https://github.com/gamesbyian/Glimpse/actions/runs/40048067960) passed structural checks and rendered both new cases at 401×890. The user/Android/device approval gate remains open.
+
+
+## New reference completeness checkpoint
+
+The R04 [case map](../../design/proposals/audit-revisions/r04-import-evidence.v1.json) now includes four dedicated draft SVGs for 0 selected, 17/22 verified, cancellation with 17 retained, and insufficient storage. The two original X01 sources for accounted completion and cloud-provider availability remain linked but require flow review. These four dedicated phone rasters were independently inspected from [successful opt-in Actions #40049428896](https://github.com/gamesbyian/Glimpse/actions/runs/40049428896). Their **structural and optical presence** must never be cited as successful Android storage-recovery or Photo Picker behaviour.
