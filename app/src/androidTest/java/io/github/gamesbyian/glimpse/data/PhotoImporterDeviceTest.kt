@@ -164,6 +164,32 @@ class PhotoImporterDeviceTest {
         }
     }
 
+    @Test fun corruptedPrivateCopyIsAtomicallyRestoredBeforeReusingHashId() =
+        withDatabase { dao ->
+            val source = sourceFixture(55)
+            try {
+                dao.insertCollection(CollectionRecord("repair", "Repair", 1L))
+                val importer = PhotoImporter(context, dao)
+                val originalBytes = source.readBytes()
+                val sha = sha256(source)
+                assertEquals(1, importer.import(listOf(Uri.fromFile(source)), "repair").imported)
+                val photo = dao.photosIn("repair").single()
+                val offline = File(photo.localPath)
+                assertEquals(sha, sha256(offline))
+                offline.writeBytes(byteArrayOf(1, 2, 3, 4, 5)) // synthetic fixture only
+                assertNotEquals(sha, sha256(offline))
+                val retry = importer.import(listOf(Uri.fromFile(source)), "repair")
+                assertEquals(0, retry.imported)
+                assertEquals(1, retry.duplicates) // membership was already present
+                assertEquals(0, retry.failures)
+                assertArrayEquals(originalBytes, offline.readBytes())
+                assertEquals(sha, sha256(offline))
+                assertEquals(1, dao.photosIn("repair").size)
+            } finally {
+                source.delete()
+            }
+        }
+
     @Test fun sameUriWithMutatedPixelsCreatesDifferentImmutableIdentity() =
         withDatabase { dao ->
             val source = sourceFixture(43)
