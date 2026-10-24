@@ -23,18 +23,20 @@
       "currentPath": "design/proposals/storyboards/x01/01-collection-entry.svg",
       "evidenceClass": "related-entry-only",
       "acceptance": "Zero imported photos with an explicit Picker action, zero false existing thumbnails",
-      "disposition": "dedicated-visual-required",
+      "disposition": "draft-source-illustrated-awaiting-raster",
       "nativeEvidence": "unverified",
-      "ownerApproval": "not-requested"
+      "ownerApproval": "not-requested",
+      "dedicatedReferencePath": "design/proposals/audit-revisions/r04-import-empty.svg"
     },
     {
-      "id": "import-78-pct-disabled",
+      "id": "import-17-of-22-disabled",
       "currentPath": "design/proposals/state-refinements/quick-import-progress.svg",
       "evidenceClass": "related-quick-screenshot-only",
-      "acceptance": "Bulk 22-photo import in progress, 17/22 verified, Continue disabled and cancellation described",
-      "disposition": "dedicated-visual-required",
+      "acceptance": "Bulk 22-photo copying: 17/22 verified by item count (~77%), five pending, Continue disabled and Stop/Review explicit; do not reuse screenshot-specific 78% bytes progress",
+      "disposition": "draft-source-illustrated-awaiting-raster",
       "nativeEvidence": "unverified",
-      "ownerApproval": "not-requested"
+      "ownerApproval": "not-requested",
+      "dedicatedReferencePath": "design/proposals/audit-revisions/r04-import-17-of-22.svg"
     },
     {
       "id": "import-100-pct",
