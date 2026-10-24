@@ -43,7 +43,7 @@ jobs:
                               ('r03-unknown-after-request','unknown')):
             file=src/(stem+'.svg')
             raw=file.read_bytes()
-            root=ElementTree.fromstring(raw)
+            root=ET.fromstring(raw)
             data=json.loads(root.find('{http://www.w3.org/2000/svg}metadata').text)
             assert data['selectedPhotoJPEGFixtureSHA256']==actual
             assert data['selectedAssetId']=='p12'
