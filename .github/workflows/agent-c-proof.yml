@@ -7,6 +7,7 @@ on:
       - scripts/tests/test_agent_c_asset_integrity.py
       - scripts/capture-agent-c-native.py
       - scripts/validate-agent-c-android-test-results.py
+      - scripts/run-agent-c-native-evidence.sh
       - app/src/main/**
       - app/src/debug/**
       - app/src/test/java/io/github/gamesbyian/glimpse/domain/AgentCFiniteIdentityTest.kt
@@ -65,20 +66,7 @@ jobs:
           emulator-boot-timeout: 360
           disable-animations: true
           emulator-options: -no-window -gpu swiftshader_indirect -no-snapshot -noaudio -no-boot-anim
-          script: |
-            adb install -r app/build/outputs/apk/debug/app-debug.apk
-            # Execute both independent evidence lanes even when one fails.
-            # A screenshot assertion must not suppress native test results.
-            set +e
-            ./gradlew --no-daemon :app:connectedDebugAndroidTest
-            tests_status=$?
-            python3 scripts/capture-agent-c-native.py --out artifacts/agent-c-native
-            capture_status=$?
-            set -e
-            if test "$tests_status" -ne 0 || test "$capture_status" -ne 0; then
-              echo "Android instrumented tests=$tests_status, capture=$capture_status" >&2
-              exit 1
-            fi
+          script: bash scripts/run-agent-c-native-evidence.sh
       - name: Require complete non-skipped native instrumentation evidence
         if: always()
         run: python3 scripts/validate-agent-c-android-test-results.py
