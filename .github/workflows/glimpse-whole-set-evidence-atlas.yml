@@ -7,6 +7,8 @@ on:
     paths:
       - .github/workflows/glimpse-whole-set-evidence-atlas.yml
       - scripts/build-whole-set-evidence-atlas.py
+      - scripts/validate-audit-scenario-trace.py
+      - design/proposals/audit-revisions/r05-photo-reel-narrow-short-320.svg
       - design/proposals/canonical-review-spine.v1.json
       - design/proposals/core-state-evidence.v1.json
       - design/proposals/advanced-storyboard-coverage.v1.json
