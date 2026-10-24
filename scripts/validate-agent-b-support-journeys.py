@@ -79,6 +79,39 @@ for group in groups:
             if root.get("viewBox")!="0 0 1160 920":errors.append(f"{group['id']}: invalid phone frame {path}")
         frames.append(path)
 if len(frames)!=137 or len(set(frames))!=137: errors.append(f"Expected 82+55 unique frames; got {len(frames)}")
+
+# Production B journey safety redlines: checks present, distinguish no-handler,
+# and require explicit final confirmation. Static text checks only, not OS acts.
+risk={
+ "design/proposals/storyboards/x02/05-delete-confirm.svg":
+   ["Remove Rainbows", "Cancel", "22 memberships removed", "Active shuffle pauses"],
+ "design/proposals/advanced-storyboards/x19/04-restore-conflict.svg":
+   ["Confirm safe merge", "Cancel", "No changes until you confirm",
+    "Keep existing ID and 22 current photos", "4 providers need reconnecting"],
+ "design/proposals/advanced-storyboards/x22/04-chooser.svg":
+   ["Open Android Sharesheet", "Recipient not chosen. Nothing was sent.",
+    "Example fields only; app must show actual bytes.", "Source URIs and tokens: redacted"],
+ "design/proposals/advanced-storyboards/x13/04-cancel.svg":
+   ["Delivery unverified", "Delivery not confirmed"],
+ "design/proposals/advanced-storyboards/x22/05-absent.svg":
+   ["No compatible share target", "No supported handler"]
+}
+for rel, words in risk.items():
+    payload=(ROOT/rel).read_text(encoding="utf8")
+    for phrase in words:
+        if phrase not in payload:errors.append(f"{rel}: missing journey truth {phrase}")
+for rel, keys in (
+    ("design/proposals/advanced-storyboards/x19/04-restore-conflict.svg", ("cancel-restore","confirm-merge")),
+    ("design/proposals/advanced-storyboards/x22/04-chooser.svg", ("open-android-sharesheet",))
+):
+    root=ET.parse(ROOT/rel).getroot()
+    controls={r.get("data-control"):r for r in root.iter(NS+"rect") if r.get("data-control")}
+    for key in keys:
+        shape=controls.get(key)
+        if shape is None:errors.append(f"{rel}: missing visible {key}")
+        elif min(float(shape.get("data-hit-width","0")),float(shape.get("data-hit-height","0")))<48:
+            errors.append(f"{rel}: {key} under 48px static study")
+
 ss=scenarios["scenarios"]
 if len(ss)!=56:errors.append("Unexpected audit scenario count")
 for sc in ss:
