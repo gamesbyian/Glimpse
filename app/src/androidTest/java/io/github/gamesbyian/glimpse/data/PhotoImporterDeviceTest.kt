@@ -174,6 +174,13 @@ class PhotoImporterDeviceTest {
                 testPackage.cacheDir, "fixture-" + UUID.randomUUID() + ".jpg"
             )
             try {
+                // androidTest APK cache is not guaranteed to exist before first
+                // provider access on a freshly provisioned emulator. This
+                // fixture failure must not be confused with URI grant behavior.
+                require(testPackage.cacheDir.isDirectory ||
+                        testPackage.cacheDir.mkdirs()) {
+                    "Cannot create isolated test-provider cache directory"
+                }
                 transientSource.copyTo(externalFixture, overwrite = true)
                 val exact = externalFixture.readBytes()
                 val expectedSha = sha256(externalFixture)
