@@ -40,7 +40,7 @@
 <rect x="285.9" y="797.8" width="39" height="23" rx="7" fill="#FFFCF6" stroke="none"/>
 <text x="293.9" y="813.8" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="700" fill="#153F46">14</text>
 <circle cx="215" cy="686" r="82" fill="#EAD9BD" stroke="#B6A48D" stroke-width="5"/><circle cx="215" cy="686" r="48" fill="#F6F0E6"/></g>
-<path d="M201 452 L229 452 L215 472 Z" fill="#E8876C"/>
+<path d="M201 461 L229 461 L215 482 Z" fill="#E8876C"/>
 <rect x="41" y="755" width="163" height="48" rx="18" fill="#FFFCF6" stroke="#C4B7A4"/>
 <rect x="214" y="755" width="177" height="48" rx="18" fill="#FFFCF6" stroke="#C4B7A4"/>
 <text x="57" y="786" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="650" fill="#153F46">Previous photo</text>

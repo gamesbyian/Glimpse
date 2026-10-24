@@ -1,0 +1,68 @@
+{
+  "sourceCommit": "969b6e3dcaf45156bf87338d490bd39c38db015f",
+  "runId": "40125763537",
+  "contactSHA256": "470172ecd616d6a803163e3a9519f6679aa8bb69dfe467aaef91e7a68893b737",
+  "evidenceClass": "SVG source-equivalent raster (not Android)",
+  "phonePixels": [
+    401,
+    890
+  ],
+  "sources": [
+    {
+      "source": "design/proposals/audit-revisions/r03-home-primary-actions-p04.svg",
+      "SHA256": "77e652b3bb0320f0e6f989770d6f565f602508f7840048a2b6238adc5eba1a5a",
+      "pixelCrop": [
+        15,
+        14,
+        416,
+        904
+      ],
+      "currentSourceRender": true,
+      "independentlyOpticallyInspected": false,
+      "deviceVerified": false,
+      "humanApproved": false
+    },
+    {
+      "source": "design/proposals/audit-revisions/r01-photo-primary-wallpaper-action.svg",
+      "SHA256": "d15465d17622f548c357793d31108261ed97adfcab016a238b5a7f62b965f390",
+      "pixelCrop": [
+        15,
+        14,
+        416,
+        904
+      ],
+      "currentSourceRender": true,
+      "independentlyOpticallyInspected": false,
+      "deviceVerified": false,
+      "humanApproved": false
+    },
+    {
+      "source": "design/proposals/audit-revisions/r02-grid-primary-actions-p12.svg",
+      "SHA256": "c0ab4ade68387a5f80153477c51df5f541345975a5f1b0895e8b1d976eba21b1",
+      "pixelCrop": [
+        15,
+        14,
+        416,
+        904
+      ],
+      "currentSourceRender": true,
+      "independentlyOpticallyInspected": false,
+      "deviceVerified": false,
+      "humanApproved": false
+    },
+    {
+      "source": "design/proposals/audit-revisions/r02-photo-detail-actions-p12.svg",
+      "SHA256": "4d894bd3a70114dd7d23f4cbfc7d935f82810b382f89a4bc458ae1e30ad7173d",
+      "pixelCrop": [
+        15,
+        14,
+        416,
+        904
+      ],
+      "currentSourceRender": true,
+      "independentlyOpticallyInspected": false,
+      "deviceVerified": false,
+      "humanApproved": false
+    }
+  ]
+}
