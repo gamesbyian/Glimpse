@@ -56,7 +56,17 @@ def base_with_fixture(original,state,selected,refs):
 def make_drag():
     # 36° original pose is retained; no premature snap or selected ID change.
     s=base_with_fixture(*INPUTS["r01-photo-drag-36.svg"])
-    s=update_meta(s,{"stateId":"photo-drag-36","auditInteraction":"wheel-drag",
+    # Optical inspection found p11/p14 number chips half-cut at the lower
+    # clipped wheel boundary. Their image wedges remain but the incomplete
+    # badges must not intrude over Previous/Next.
+    for visible_id in ("11","14"):
+        label=(r'<rect x="[\d.]+" y="721\.3" width="39" height="23" rx="7" '
+               r'fill="#FFFCF6" stroke="none"/>\s*<text x="[\d.]+" y="737\.3" '
+               r'font-family="Arial,Helvetica,sans-serif" font-size="13" '
+               r'font-weight="700" fill="#153F46">'+visible_id+r'</text>')
+        s,count=re.subn(label,"",s)
+        assert count==1,(visible_id,count)
+    s=update_meta(s,{"offscreenNumberBadgesSuppressed":["p11","p14"],"stateId":"photo-drag-36","auditInteraction":"wheel-drag",
       "pendingFocusAssetId":"p13","gestureDeltaDegrees":36,
       "positionCommitted":False,"selectedAssetId":"p12",
       "androidProof":"unverified","ownerApproved":False})
