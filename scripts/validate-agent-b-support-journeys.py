@@ -165,6 +165,20 @@ frame_truth={
    ["No new wallpaper change requested by Glimpse"], ["The Home wallpaper remains unchanged"]),
  "design/proposals/storyboards/x08/01-home-active.svg": (
    ["Last Glimpse-acknowledged Home", "LAST ACK."], ["Current Home wallpaper","CURRENT HOME"]),
+ "design/proposals/storyboards/x04/05-paused.svg": (
+   ["No scheduled changes while paused"], ["Next eligible 00:16 · foreground only"]),
+ "design/proposals/storyboards/x04/07-stopped.svg": (
+   ["No scheduled changes while stopped"], ["Next eligible 00:16 · foreground only"]),
+ "design/proposals/storyboards/x06/01-first.svg": (
+   ["No previous", 'data-control="previous-unavailable"', 'aria-disabled="true"'],
+   [">Previous</text>"]),
+ "design/proposals/storyboards/x06/02-single.svg": (
+   ["No previous", "No next", 'data-control="previous-unavailable"',
+    'data-control="next-unavailable"', 'aria-disabled="true"'],
+   [">Previous</text>", ">Next photo</text>"]),
+ "design/proposals/storyboards/x06/07-last.svg": (
+   ["No next", 'data-control="next-unavailable"', 'aria-disabled="true"'],
+   [">Next photo</text>"]),
  "design/proposals/storyboards/x08/06-status-collapsed.svg": (
    ["LAST ACK."], ["CURRENT HOME"]),
  "design/proposals/advanced-storyboards/x16/01-rules.svg": (
