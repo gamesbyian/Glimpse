@@ -14,8 +14,8 @@
   },
   "counts": {
     "totalRequired": 56,
-    "PARTIAL": 6,
-    "PICTURED": 50,
+    "PARTIAL": 4,
+    "PICTURED": 52,
     "MISSING_SPECIFIC": 0
   },
   "finiteCountExamples": [
@@ -202,12 +202,13 @@
     {
       "lane": "R03",
       "scenario": "home-last-confirmed",
-      "evidenceState": "PARTIAL",
+      "evidenceState": "PICTURED",
       "sourcePaths": [
+        "design/proposals/audit-revisions/r03-home-last-ack-p04.svg",
         "design/proposals/storyboards/x08/01-home-active.svg",
         "design/proposals/audit-revisions/r03-preview-not-applied.svg"
       ],
-      "nextProof": "Need one Home status panel explicitly labelled last Glimpse acknowledgement versus present wallpaper uncertainty."
+      "nextProof": "Phone Home candidate now separates p04 last acknowledged, current OS wallpaper not read back, and p12 selected preview; independent 401x890 viewing, native OS uncertainty and semantic focus remain open."
     },
     {
       "lane": "R03",
@@ -566,12 +567,13 @@
     {
       "lane": "R08",
       "scenario": "recovery-back",
-      "evidenceState": "PARTIAL",
+      "evidenceState": "PICTURED",
       "sourcePaths": [
+        "design/proposals/audit-revisions/r08-skip-return-rainbows.svg",
         "design/proposals/storyboards/x10/07-retry-explicit.svg",
         "design/proposals/advanced-storyboards/x19/05-restore-result.svg"
       ],
-      "nextProof": "No single context-preserving Back/return state after provider/restore adversity."
+      "nextProof": "Skipped restore conflict can return to Rainbows with p12 selected, explicit unresolved conflict and zero mutation, without confusing X19 committed-success branch; actual Back stack/persistence/Android evidence remains unverified."
     }
   ]
 }
