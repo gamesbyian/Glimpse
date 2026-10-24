@@ -1,5 +1,8 @@
 # Glimpse whole-product visual review reconciliation · 2026-10-24
 
+> **Newer continuation (2026-10-24):** [CORE-TASK-ACTIONS handoff](HANDOFF-2026-10-24-CORE-TASK-ACTIONS.md) supersedes the 271-file and earlier four-primary-screen candidate summaries below. The draft branch now has **276 SVG reference files**, with four repaired source-linked default phone candidates (Home/Reel/Grid/Photo Detail), direct exact-source raster optical observations, and a primary-task source contract guard. This original handoff remains preserved as chronological evidence. All designs stay draft and unapproved.
+
+
 **Working branch:** `agent/visual-state-reconciliation-20261023`  
 **PR:** [#6 · DRAFT · do not merge without owner approval](https://github.com/gamesbyian/Glimpse/pull/6).  
 **Supersedes operationally:** [the earlier same-day 264-source checkpoint](HANDOFF-2026-10-24-VISUAL-PACKET-CONTINUATION.md). Keep that document as chronological evidence, not a competing live status.
