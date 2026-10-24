@@ -1,0 +1,80 @@
+name: Glimpse R04 import recovery | targeted optical proof
+
+# Opt-in branch-only reference render; never runs on ordinary source changes.
+on:
+  push:
+    branches: [agent/visual-state-reconciliation-20261023]
+    paths: [.github/workflows/glimpse-audit-r04-import-optical.yml]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+concurrency:
+  group: glimpse-r04-optical-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  r04:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install --disable-pip-version-check cairosvg pillow
+      - name: Validate and render 2 actual R04 drafts only
+        run: |
+          set -euo pipefail
+          python3 scripts/validate-audit-cycle.py
+          python3 scripts/render-visual-reference-sheets.py --set audit-r04-import-recovery --native --output /tmp/glimpse-r04
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          from PIL import Image, ImageChops, ImageStat
+          root=Path("/tmp/glimpse-r04")
+          v=json.loads((root/"index.json").read_text())
+          images=[]
+          for item in v["nativePhoneFiles"]:
+              p=Path(item["path"])
+              assert p.exists(), p
+              im=Image.open(p).convert("RGB")
+              assert im.size == (401, 890), (p, im.size)
+              assert sum(ImageStat.Stat(im).stddev) > 45, (p, "blank")
+              images.append(im)
+          assert len(images)==2
+          diff=ImageChops.difference(images[0],images[1])
+          assert diff.getbbox() is not None, "two unique states required"
+          print("R04 2 source-hashed 401x890 draft phone crops and distinct recovery choices PASS")
+          PY
+      - name: Record machine evidence, not Android/owner acceptance
+        if: always()
+        env:
+          GH_SHA: ${{ github.sha }}
+          GH_RUN: ${{ github.run_id }}
+          RESULT: ${{ job.status }}
+        run: |
+          {
+            echo "# R04 automated reference evidence"
+            echo
+            echo "- Source commit: \`$GH_SHA\`"
+            echo "- Workflow: https://github.com/gamesbyian/Glimpse/actions/runs/$GH_RUN"
+            echo "- Job result: \`$RESULT\`"
+            echo "- Expected draft screens: import-cancel, import-no-space"
+            echo "- Independent optical review: **NOT automatically performed**"
+            echo "- Real Android import transaction: **NOT tested**"
+          } > docs/design/r04-targeted-automation-evidence.md
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add docs/design/r04-targeted-automation-evidence.md
+          if ! git diff --cached --quiet; then
+            git commit -m "ci: record R04 reference rendering outcome"
+            git push origin HEAD:agent/visual-state-reconciliation-20261023
+          fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: glimpse-r04-import-recovery-${{ github.sha }}
+          path: /tmp/glimpse-r04
+          if-no-files-found: warn
+          retention-days: 14
