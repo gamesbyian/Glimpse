@@ -245,7 +245,7 @@
       "title": "Wallpaper application transaction",
       "count": 7,
       "contact": "x03-all-07-phones.jpg",
-      "contactSHA256": "9872611ce822cc6171d4231a5387b966cbe889bfc06b239de3c933f50ab9c0ac",
+      "contactSHA256": "2ffdb0b733481e851e7a098677712cda742f3fdff4db24f2669bd176bb38d8ec",
       "frames": [
         {
           "ordinal": 1,
@@ -267,7 +267,7 @@
           "ordinal": 2,
           "id": "02-choose-target",
           "source": "design/proposals/storyboards/x03/02-choose-target.svg",
-          "sha256": "908a3bd2f43e77d84f19094a2d68e4d8a6e1667c6642097ad1965e54f7f8e1cf",
+          "sha256": "4adaccd8fdb49e8cd5c312e8d2cd6d3ef03a27144da5f6a5ea8d4b37448b3368",
           "crop": [
             15,
             14,
@@ -495,7 +495,7 @@
       "title": "Paper-reel physical motion",
       "count": 8,
       "contact": "x05-all-08-phones.jpg",
-      "contactSHA256": "a70094828bdc43873630fd01b4835165318d50842dd014136ab9ad2a80916235",
+      "contactSHA256": "da557b036ba2cf5724e70c85fd6c92a18e4580df97919ac69a0fd3e345b8aef1",
       "frames": [
         {
           "ordinal": 1,
@@ -565,7 +565,7 @@
           "ordinal": 5,
           "id": "05-snap-72",
           "source": "design/proposals/storyboards/x05/05-snap-72.svg",
-          "sha256": "b0766456003cc530401aa2f138fb4f50e37dd5c909df3d9e9c4969aaa23e8e50",
+          "sha256": "75c54660fcdf3665cbbbd9a77534e45fcf73340cd117b435608d7a9c1c9f05e7",
           "crop": [
             15,
             14,
@@ -581,7 +581,7 @@
           "ordinal": 6,
           "id": "06-reverse-18",
           "source": "design/proposals/storyboards/x05/06-reverse-18.svg",
-          "sha256": "4bd28303f7d683971c096f0cdff0d4cce65be97c488a84d765af9887f42f1272",
+          "sha256": "5d86812b48c2035d06e06bbea29269661d42334206aa230eacb13c587784054d",
           "crop": [
             15,
             14,
@@ -597,7 +597,7 @@
           "ordinal": 7,
           "id": "07-interrupted",
           "source": "design/proposals/storyboards/x05/07-interrupted.svg",
-          "sha256": "9c8c5c102c8d4a39c93767e32d9424f3b5c62e6d480f5628ecfd4e6106792eae",
+          "sha256": "b09188850d18b5567e69e0d0c7d87d0824c942109fc5459bbb69f0aa4eabcfd6",
           "crop": [
             15,
             14,
@@ -613,7 +613,7 @@
           "ordinal": 8,
           "id": "08-last",
           "source": "design/proposals/storyboards/x05/08-last.svg",
-          "sha256": "d4e9d2940c30ae25e7f3421c2dc811634c99df03ab5f7914675abdc258e532d8",
+          "sha256": "d0e7c44d62678fea2eed7843b72d119ab328f02e89aea1f0981c3c4e40c7eddb",
           "crop": [
             15,
             14,
