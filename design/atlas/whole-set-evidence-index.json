@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "status": "ALL_DRAFT_SOURCE_EVIDENCE_NOT_HUMAN_APPROVED",
-  "sourceCommit": "a3f4b23745a0dfc7b64ed6680e75f2162ece9d86",
+  "sourceCommit": "8a2bd69a9df2ab728ba6a09891ec0a3bc4088950",
   "auditCycleA": {
     "PASS_SOURCE_ONLY": 18,
     "ISSUE": 8,
@@ -51,7 +51,7 @@
           "path": "design/proposals/plates/quick-import.svg",
           "label": "Quick Import",
           "meaning": "Provisional preferred route; not approved",
-          "sourceSHA256": "2f6ee1845550017ab2505ef167a6c66630f33b9da6d5fcc0390a70ef0a054531"
+          "sourceSHA256": "7684ec2a6e1cd906c78ab9efaf3689b6d35a2dc38b4e9501025e3a8e50cba422"
         }
       ]
     },
@@ -131,7 +131,7 @@
           "path": "design/proposals/audit-revisions/r02-share-choice.svg",
           "label": "R02 Share Choice",
           "meaning": "Provisional preferred route; not approved",
-          "sourceSHA256": "6efd92d69e6a895a208f911176fb598e58035c71c53de23039b4d12cb73f1c33"
+          "sourceSHA256": "7bf97fb1f15d508097c3cd62ce928065abf82fb2e7f88c53517b7ea16e323685"
         },
         {
           "path": "design/proposals/audit-revisions/r06-share-dismissed.svg",
@@ -353,7 +353,7 @@
           "path": "design/proposals/plates/quick-import.svg",
           "label": "Quick Import",
           "meaning": "",
-          "sourceSHA256": "2f6ee1845550017ab2505ef167a6c66630f33b9da6d5fcc0390a70ef0a054531"
+          "sourceSHA256": "7684ec2a6e1cd906c78ab9efaf3689b6d35a2dc38b4e9501025e3a8e50cba422"
         },
         {
           "path": "design/proposals/plates/share.svg",
@@ -365,7 +365,7 @@
           "path": "design/proposals/plates/automation.svg",
           "label": "Automation",
           "meaning": "",
-          "sourceSHA256": "14df28e3f6d80768002b46d7cdd611909c8d4308cfdc14f49dcac71801d56dfd"
+          "sourceSHA256": "d8d212380239edeb46215ceedc211e1b9e016be8cf6f9ced4479f25be049825b"
         },
         {
           "path": "design/proposals/plates/discover.svg",
@@ -389,7 +389,7 @@
           "path": "design/proposals/plates/activity.svg",
           "label": "Activity",
           "meaning": "",
-          "sourceSHA256": "c2062c2bda729c5f681c71a5c13176050715b990c89084c32b351eab72e305fd"
+          "sourceSHA256": "da47f87075dabc179c0a0176183f9ba63b52344dc4c804372e3ca6db407ec13b"
         },
         {
           "path": "design/proposals/plates/automation-editor.svg",
@@ -467,7 +467,7 @@
           "path": "design/proposals/plates/accessibility-preferences.svg",
           "label": "Accessibility Preferences",
           "meaning": "",
-          "sourceSHA256": "ab18877822b973dfb60fb81a8aa3c8770e7b522821271b818c813b1099398d61"
+          "sourceSHA256": "db36e63966791913a58dc8b11f7646fc7dde4e18c35cbb4eefc17eef9f9fc5df"
         }
       ]
     },
@@ -2272,7 +2272,7 @@
           "path": "design/proposals/audit-revisions/r02-share-choice.svg",
           "label": "R02 Share Choice",
           "meaning": "",
-          "sourceSHA256": "6efd92d69e6a895a208f911176fb598e58035c71c53de23039b4d12cb73f1c33"
+          "sourceSHA256": "7bf97fb1f15d508097c3cd62ce928065abf82fb2e7f88c53517b7ea16e323685"
         },
         {
           "path": "design/proposals/audit-revisions/r03-home-last-ack-p04.svg",
