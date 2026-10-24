@@ -96,9 +96,38 @@ for item in compact["controls"]:
 if digest(DIR/"compact-fontscale-stress.jpg")!=stress["imageSHA256"]:
     errors.append("font-scale stress raster drift")
 
+# Every single P0/P1 frame, not only the representative 46, has a source-
+# matched visual challenge crop. Byte-integrity does not certify appearance.
+full=json.loads((DIR/"full-journey-corpus/full-journey-source-ledger.json").read_text(encoding="utf-8"))
+if full["kind"]!="B_UNAPPROVED_FULL_STORYBOARD_OPTICAL_CHALLENGE":
+    errors.append("full journey ledger wrong evidence level")
+if full["countGroups"]!=23 or full["countUniquePhones"]!=137:
+    errors.append("full journey coverage incomplete")
+full_seen=set()
+for group in full["groups"]:
+    if (not group["generatedOnly"] or group["independentlyOpticallyInspected"] or
+            group["nativeAndroidVerified"] or group["ownerApproved"]):
+        errors.append("full journey evidence level overstated: "+group["group"])
+    if group["count"]!=len(group["frames"]):
+        errors.append("full journey group count mismatch: "+group["group"])
+    if digest(DIR/"full-journey-corpus"/group["contact"])!=group["contactSHA256"]:
+        errors.append("full journey JPEG SHA mismatch: "+group["group"])
+    for f in group["frames"]:
+        full_seen.add(f["source"])
+        if digest(ROOT/f["source"])!=f["sha256"]:
+            errors.append("full journey source drift: "+f["source"])
+        if f["crop"]!=[15,14,416,904] or f["pixels"]!=[401,890]:
+            errors.append("full journey crop geometry drift: "+f["source"])
+if len(full_seen)!=137:
+    errors.append("full journey source identities incomplete")
+for f in journey_unique:
+    if f not in full_seen:errors.append("paired frame missing from full journey corpus: "+f)
+
+
 result={"scope":"B source/raster byte integrity only","supportSources":len(all_paths),
         "supportContacts":len(support["contacts"]),"journeyPairs":pairs["pairs"],
         "journeySources":len(journey_unique),"journeyContacts":len(pairs["contacts"]),
+        "fullJourneyPhones":len(full_seen),"fullJourneyContacts":len(full["groups"]),
         "compactControls":len(compact["controls"]),"errors":errors,
         "evidence":"NOT native, human, owner, TalkBack, fontScale2 nor wallpaper OS result"}
 print(json.dumps(result,indent=2))
