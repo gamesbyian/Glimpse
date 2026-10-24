@@ -118,6 +118,21 @@ for case in r05["cases"]:
         src = p.read_text()
         assert '"nativeProof":"unverified"' in src
         assert "not Android screenshot" in src or "not actual Android" in src
+# R04: distinguish bulk-import evidence from screenshot quick-import.
+r04 = json.loads((ROOT / "design/proposals/audit-revisions/r04-import-evidence.v1.json").read_text())
+assert len(r04["cases"]) == 6
+assert len({case["id"] for case in r04["cases"]}) == 6
+for case in r04["cases"]:
+    assert (ROOT / case["currentPath"]).is_file(), case["id"]
+    assert case["nativeEvidence"] == "unverified"
+    if case.get("dedicatedReferencePath"):
+        src = (ROOT / case["dedicatedReferencePath"]).read_text()
+        assert '"auditLane":"R04"' in src, case["id"]
+        for required in ('"photoTotal":22','"verifiedLocalCopies":17','"pendingPhotos":5',
+                         '"hasFullBatchSuccess":false','"originalsPreserved":true',
+                         '"nativeProof":"unverified"'):
+            assert required in src, (case["id"], required)
+assert len([c for c in r04["cases"] if c.get("dedicatedReferencePath")]) == 2
 counts = {x: sum(v["status"] == x for v in cycle["results"])
           for x in ("PASS", "ISSUE", "UNVERIFIED", "NOT_APPLICABLE")}
 assert counts == cycle["summary"]["counts"]
