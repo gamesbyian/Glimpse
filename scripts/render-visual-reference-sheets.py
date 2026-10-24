@@ -103,6 +103,8 @@ SETS["audit-r05-accessibility-routes"] = [
 SETS["audit-r04-import-recovery"] = [
     ("Cancel and keep verified copies", "design/proposals/audit-revisions/r04-import-cancel.svg"),
     ("Storage full, preserve verified", "design/proposals/audit-revisions/r04-import-no-space.svg"),
+    ("Zero selected and saved", "design/proposals/audit-revisions/r04-import-empty.svg"),
+    ("17 of 22 verified, Continue disabled", "design/proposals/audit-revisions/r04-import-17-of-22.svg"),
 ]
 # Exhaustive galleries are deliberately opt-in, never part of the cheap default.
 SETS["entire-original-66"] = [
