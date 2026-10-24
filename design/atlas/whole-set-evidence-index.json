@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "status": "ALL_DRAFT_SOURCE_EVIDENCE_NOT_HUMAN_APPROVED",
-  "sourceCommit": "ddc60e2e36ab5a3335a8d49677d8c98625cf713d",
+  "sourceCommit": "735df7581fa0e411456b2fcff73dd8fe65cfb955",
   "auditCycleA": {
     "PASS_SOURCE_ONLY": 18,
     "ISSUE": 8,
@@ -15,15 +15,15 @@
     "P0": 82,
     "P1": 55,
     "supplemental": 25,
-    "auditRevisionAlternatives": 34,
+    "auditRevisionAlternatives": 35,
     "preferredRoute": 39,
-    "uniqueEvidenceSources": 262,
+    "uniqueEvidenceSources": 263,
     "namedStateSlots": 34
   },
   "scenarioCoverage": {
     "totalRequired": 56,
-    "PARTIAL": 8,
-    "PICTURED": 48,
+    "PARTIAL": 7,
+    "PICTURED": 49,
     "MISSING_SPECIFIC": 0
   },
   "reviewGaps": [
@@ -44,12 +44,6 @@
       "scenario": "drag-36",
       "state": "PARTIAL",
       "needed": "36-degree pose uses older schematic fixture arrangement; verify five distinct photos and settled identity."
-    },
-    {
-      "lane": "R01",
-      "scenario": "first-last",
-      "state": "PARTIAL",
-      "needed": "Last is photographic; a source-matched first-item five-aperture paper scene is still needed."
     },
     {
       "lane": "R01",
@@ -2176,6 +2170,12 @@
           "label": "R01 Photo Empty 0",
           "meaning": "",
           "sourceSHA256": "8b6ac1f65e6f86514c4cfc40b945f51b38578c1a1ac4277736617d8e1d544657"
+        },
+        {
+          "path": "design/proposals/audit-revisions/r01-photo-first-22.svg",
+          "label": "R01 Photo First 22",
+          "meaning": "",
+          "sourceSHA256": "6ef1f8302e9a7dc88b6dec2498e6cc3c0403a57a7b072b1f367fbe9ba30b79fb"
         },
         {
           "path": "design/proposals/audit-revisions/r01-photo-five-5.svg",
