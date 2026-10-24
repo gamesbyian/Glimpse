@@ -104,3 +104,13 @@ Only adopt secondary reels when uncoached evidence demonstrates added usefulness
 - [ ] Capture/verify post-atlas five updated source images, native reel screenshots, 200%-text and focus hierarchy evidence before promoting unresolved questions.
 - [ ] Implement and raster-inspect next-round R01–R08 comparison mockups in separate unapproved source category; attach before/after and source hash.
 - [ ] Rerun all 60 audit questions on matching updated sources/native traces, document changed scores and unresolved gaps, request owner approval separately.
+
+
+## Latest audit delta (2026-10-23, R01/R04/R05)
+
+- [x] Independently render and inspect regenerated R01 photo-backed reel with **portable Grid vector arrow**. Source regeneration guard and [successful six-frame Actions #40048643795](https://github.com/gamesbyian/Glimpse/actions/runs/40048643795), actual phone crop inspected.
+- [x] Add R04 [bulk import evidence matrix](../../design/proposals/audit-revisions/r04-import-evidence.v1.json), explicit cancellation and low-storage proposal sources, [candidate B specification](AUDIT-CANDIDATE-B-IMPORT-RECOVERY.md), [source-hashed successful targeted Actions #40048067960](https://github.com/gamesbyian/Glimpse/actions/runs/40048067960) and [optical review](../design/R04-IMPORT-OPTICAL-INSPECTION-2026-10-23.md).
+- [x] Complete R05 [two draft diagrams plus photograph-backed focus overlay](../../design/proposals/audit-revisions/r05-accessibility-evidence.v1.json), source-fixture parity, proposed 48dp Grid touch outline and [successful optical Actions #40049026265](https://github.com/gamesbyian/Glimpse/actions/runs/40049026265).
+- [ ] Illustrate R04 dedicated zero-item and 22-item verified-progress/cancel contexts without substituting quick screenshot-specific 78% fixture.
+- [ ] Capture real native R01 finite reel and R05 focus/200% text/target bounds/TalkBack traces using the existing emulator/hierarchy collector; compare exact actual screenshots against the stronger photo-backed paper reel, then re-score only evidence-supported GUX items.
+- [ ] Resolve R04 native cancellation/storage/retained-byte behaviour, source URI expiry, and partial Room memberships with interrupted transaction checks; keep original provider images untouched.
