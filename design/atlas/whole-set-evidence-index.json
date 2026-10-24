@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "status": "ALL_DRAFT_SOURCE_EVIDENCE_NOT_HUMAN_APPROVED",
-  "sourceCommit": "7f1e4ae0bf8e5a487bf92acebfda003da4146670",
+  "sourceCommit": "5a6f59f5f414abe2605faf4c0f7dba30e7089090",
   "auditCycleA": {
     "PASS_SOURCE_ONLY": 18,
     "ISSUE": 8,
@@ -15,15 +15,15 @@
     "P0": 82,
     "P1": 55,
     "supplemental": 25,
-    "auditRevisionAlternatives": 36,
+    "auditRevisionAlternatives": 41,
     "preferredRoute": 39,
-    "uniqueEvidenceSources": 264,
+    "uniqueEvidenceSources": 269,
     "namedStateSlots": 34
   },
   "scenarioCoverage": {
     "totalRequired": 56,
-    "PARTIAL": 6,
-    "PICTURED": 50,
+    "PARTIAL": 4,
+    "PICTURED": 52,
     "MISSING_SPECIFIC": 0
   },
   "reviewGaps": [
@@ -50,18 +50,6 @@
       "scenario": "large-type",
       "state": "PARTIAL",
       "needed": "Render large type over identical photo-backed material and verify no cropped commands."
-    },
-    {
-      "lane": "R03",
-      "scenario": "home-last-confirmed",
-      "state": "PARTIAL",
-      "needed": "Need one Home status panel explicitly labelled last Glimpse acknowledgement versus present wallpaper uncertainty."
-    },
-    {
-      "lane": "R08",
-      "scenario": "recovery-back",
-      "state": "PARTIAL",
-      "needed": "No single context-preserving Back/return state after provider/restore adversity."
     }
   ],
   "readme": "Preferred is a proposed review sequence, not selected/approved native UX. Appendix may contain superseded alternatives. Every SHA-256 hashes SVG source bytes, not rendered pixels.",
@@ -2160,6 +2148,12 @@
           "sourceSHA256": "6a47bc256ad7b0417fad42929ce07199c48fd0ca621ba69ae21ca22d943fa2c4"
         },
         {
+          "path": "design/proposals/audit-revisions/r01-photo-drag-36.svg",
+          "label": "R01 Photo Drag 36",
+          "meaning": "",
+          "sourceSHA256": "54915a75bb0fba19821c2762bcc5576bac4b19a1d31d8810c24d2b9bbf2f7ce5"
+        },
+        {
           "path": "design/proposals/audit-revisions/r01-photo-empty-0.svg",
           "label": "R01 Photo Empty 0",
           "meaning": "",
@@ -2208,6 +2202,18 @@
           "sourceSHA256": "61df0f03de62a5a820ad9444a859cad2076b0910007196ce89d40b34904e3a9a"
         },
         {
+          "path": "design/proposals/audit-revisions/r01-photo-tap-p13-pressed.svg",
+          "label": "R01 Photo Tap P13 Pressed",
+          "meaning": "",
+          "sourceSHA256": "e261e56ae31c78511a614401a26e32a08c127689c2b2f093c597103aebe72acb"
+        },
+        {
+          "path": "design/proposals/audit-revisions/r01-photo-tap-p13-settled.svg",
+          "label": "R01 Photo Tap P13 Settled",
+          "meaning": "",
+          "sourceSHA256": "641b1025e8549ddd2b609a3e4c44d0e227d8a52868ea1f8ae55822b5b967f3d5"
+        },
+        {
           "path": "design/proposals/audit-revisions/r01-photo-three-3.svg",
           "label": "R01 Photo Three 3",
           "meaning": "",
@@ -2248,6 +2254,12 @@
           "label": "R02 Share Choice",
           "meaning": "",
           "sourceSHA256": "6efd92d69e6a895a208f911176fb598e58035c71c53de23039b4d12cb73f1c33"
+        },
+        {
+          "path": "design/proposals/audit-revisions/r03-home-last-ack-p04.svg",
+          "label": "R03 Home Last Ack P04",
+          "meaning": "",
+          "sourceSHA256": "4942c3e94a012063d82546c433788cf6570d1d5f268b303d8e80e640820c442a"
         },
         {
           "path": "design/proposals/audit-revisions/r03-preview-not-applied.svg",
@@ -2338,6 +2350,12 @@
           "label": "R08 Restore Conflict Choice",
           "meaning": "",
           "sourceSHA256": "8be4e307620c0129ee402976f1af19b0284c830dad7dd433be6f956d18d9f438"
+        },
+        {
+          "path": "design/proposals/audit-revisions/r08-skip-return-rainbows.svg",
+          "label": "R08 Skip Return Rainbows",
+          "meaning": "",
+          "sourceSHA256": "8e572365b8048cf8f39c55039ba4c5a805e193d7a634ef02558aa08d12fe88b6"
         },
         {
           "path": "design/proposals/audit-revisions/r08-source-revoked.svg",
