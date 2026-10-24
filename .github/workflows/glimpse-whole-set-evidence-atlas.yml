@@ -29,7 +29,10 @@ on:
       - design/proposals/plates/activity.svg
       - design/proposals/plates/accessibility-preferences.svg
       - design/proposals/audit-revisions/r02-share-choice.svg
+      - design/proposals/plates/**
       - design/proposals/support-plates/**
+      - design/proposals/advanced-storyboards/**
+      - design/proposals/storyboards/**
       - scripts/build-whole-product-review-viewer.py
       - design/proposals/whole-product-candidates/collections-photo-covers.svg
       - docs/design/glimpse-ux-audit-cycle-b-evidence-triage.v1.json
