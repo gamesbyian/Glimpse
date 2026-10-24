@@ -101,6 +101,7 @@ for rel, words in risk.items():
     for phrase in words:
         if phrase not in payload:errors.append(f"{rel}: missing journey truth {phrase}")
 for rel, keys in (
+    ("design/proposals/storyboards/x02/05-delete-confirm.svg", ("cancel-collection-removal","confirm-collection-removal")),
     ("design/proposals/advanced-storyboards/x19/04-restore-conflict.svg", ("cancel-restore","confirm-merge")),
     ("design/proposals/advanced-storyboards/x22/04-chooser.svg", ("open-android-sharesheet",))
 ):
@@ -112,6 +113,16 @@ for rel, keys in (
         elif min(float(shape.get("data-hit-width","0")),float(shape.get("data-hit-height","0")))<48:
             errors.append(f"{rel}: {key} under 48px static study")
 
+after=(ROOT/"design/proposals/storyboards/x02/06-empty-after-removal.svg").read_text(encoding="utf8")
+after_phone=after.split('<rect x="442"',1)[0]
+for phrase in ("Collections", "Last collection removed", "No collections remaining",
+               "Saved imported photos remain here", "Create a collection"):
+    if phrase not in after_phone:errors.append("x02 removal left a ghost collection: "+phrase)
+if ">Rainbows</text>" in after_phone:
+    errors.append("x02 deleted Rainbows is still the active collection heading")
+before=(ROOT/"design/proposals/storyboards/x02/05-delete-confirm.svg").read_text(encoding="utf8")
+if 'id="collection-delete-modal"' not in before:
+    errors.append("x02 destructive confirmation not visually modalized")
 ss=scenarios["scenarios"]
 if len(ss)!=56:errors.append("Unexpected audit scenario count")
 for sc in ss:
