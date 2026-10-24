@@ -1,6 +1,6 @@
 name: R01 photographic reference generation | one-shot
 
-# Targeted optical regression: empty has no indexes, singleton only 01, proven six-frame PNG run.
+# Targeted Grid icon proof: replace missing northeast glyph with actual SVG arrow in six real-photo reels.
 # Generate corrected photographic paper-reel audit sources only on an intentional
 # workflow edit or manual dispatch. Do not launch from every ordinary repo push.
 on:
