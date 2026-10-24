@@ -1,0 +1,424 @@
+{
+  "scope": "Agent B unapproved source-only audit",
+  "supportStates": 34,
+  "journeys": 23,
+  "storyboardFrames": 137,
+  "illustratedScenarios": 56,
+  "supportMinimumFontBelow14": 34,
+  "fontScaleVerdict": "320dp/200% real Android reflow unverified: source fonts and targets are only static reference geometry",
+  "navigationVerdict": "data-control rectangles are visual geometry proposals, not native semantics/focus tests",
+  "sourceSHA256": {
+    "design/proposals/support-plates/about--sideload.svg": {
+      "sha256": "2bd659a60879452e047209feabfe25f4d292650568f5b5f5ff2f9d8e73e1e5ca",
+      "actions": [
+        "back",
+        "nav-automation",
+        "nav-collections",
+        "nav-discover",
+        "nav-home"
+      ],
+      "modal": false,
+      "minVisibleFont": 11
+    },
+    "design/proposals/support-plates/about--play-release.svg": {
+      "sha256": "6eb7b1d3c7068e28619b67b1529370fb6458cf5672d0411169dbbd8c4703538d",
+      "actions": [
+        "back",
+        "nav-automation",
+        "nav-collections",
+        "nav-discover",
+        "nav-home"
+      ],
+      "modal": false,
+      "minVisibleFont": 11
+    },
+    "design/proposals/support-plates/help--topics.svg": {
+      "sha256": "e8908c3de07978bcfef449a0be054c87c2e88056911c86223dfe25285e53add5",
+      "actions": [
+        "back",
+        "nav-automation",
+        "nav-collections",
+        "nav-discover",
+        "nav-home"
+      ],
+      "modal": false,
+      "minVisibleFont": 11
+    },
+    "design/proposals/support-plates/help--article.svg": {
+      "sha256": "bdc7d37fb543b84e75e6a83b43b736944db4c8baf567e2ae36caa3d4d1606896",
+      "actions": [
+        "back",
+        "nav-automation",
+        "nav-collections",
+        "nav-discover",
+        "nav-home"
+      ],
+      "modal": false,
+      "minVisibleFont": 11
+    },
+    "design/proposals/support-plates/contact-feedback--available.svg": {
+      "sha256": "7a8eb4eb255f0c3896f9a541badc8c7418ded52c2354a00b2fc48a2e6402d6c0",
+      "actions": [
+        "back",
+        "nav-automation",
+        "nav-collections",
+        "nav-discover",
+        "nav-home"
+      ],
+      "modal": false,
+      "minVisibleFont": 11
+    },
+    "design/proposals/support-plates/contact-feedback--no-handler.svg": {
+      "sha256": "252fdd7ee49f170c7b325eab291fae50517453128eb8f11558ca31f312a87dbf",
+      "actions": [
+        "back",
+        "nav-automation",
+        "nav-collections",
+        "nav-discover",
+        "nav-home"
+      ],
+      "modal": false,
+      "minVisibleFont": 11
+    },
+    "design/proposals/support-plates/report-problem--draft.svg": {
+      "sha256": "dbdc3a5b044202376f6bd5539d802c31e15a143fcc94bc90f7047b43f929313e",
+      "actions": [
+        "back",
+        "nav-automation",
+        "nav-collections",
+        "nav-discover",
+        "nav-home"
+      ],
+      "modal": false,
+      "minVisibleFont": 11
+    },
+    "design/proposals/support-plates/report-problem--with-diagnostics.svg": {
+      "sha256": "9f51918fd75ead9b35648e535500f7c60e15ae13ed77cd5a10c48cca7488c476",
+      "actions": [
+        "back",
+        "nav-automation",
+        "nav-collections",
+        "nav-discover",
+        "nav-home"
+      ],
+      "modal": false,
+      "minVisibleFont": 11
+    },
+    "design/proposals/support-plates/crash-recovery--suspected-crash.svg": {
+      "sha256": "7b8e6723ad7d36564fc076ea4a0fff3c46b5d1df16eebc9117edfbace48b1079",
+      "actions": [
+        "back",
+        "nav-automation",
+        "nav-collections",
+        "nav-discover",
+        "nav-home"
+      ],
+      "modal": false,
+      "minVisibleFont": 11
+    },
+    "design/proposals/support-plates/crash-recovery--normal-exit.svg": {
+      "sha256": "928a65fa55b58b938d297beca68cc3d263c01bfef898dde689e3f3ca1a524916",
+      "actions": [
+        "back",
+        "nav-automation",
+        "nav-collections",
+        "nav-discover",
+        "nav-home"
+      ],
+      "modal": false,
+      "minVisibleFont": 11
+    },
+    "design/proposals/support-plates/diagnostic-preview--minimal.svg": {
+      "sha256": "604c348f09a7cbae00e05ffae3c14af7efef649660fefeca1e7417355e3c6b10",
+      "actions": [
+        "back",
+        "include-error-summary",
+        "include-technical-details",
+        "nav-automation",
+        "nav-collections",
+        "nav-discover",
+        "nav-home"
+      ],
+      "modal": false,
+      "minVisibleFont": 11
+    },
+    "design/proposals/support-plates/diagnostic-preview--expanded.svg": {
+      "sha256": "29bee6a8a3d59a4724e0603372f78734d3942055bc13a4dcb3259e7be0f76d3d",
+      "actions": [
+        "back",
+        "include-error-summary",
+        "include-technical-details",
+        "nav-automation",
+        "nav-collections",
+        "nav-discover",
+        "nav-home"
+      ],
+      "modal": false,
+      "minVisibleFont": 11
+    },
+    "design/proposals/support-plates/whats-new--latest.svg": {
+      "sha256": "19911936aeda2db3ca9a99290ebe445b1654beb708f94b9336b63df59f6471c2",
+      "actions": [
+        "back",
+        "nav-automation",
+        "nav-collections",
+        "nav-discover",
+        "nav-home"
+      ],
+      "modal": false,
+      "minVisibleFont": 11
+    },
+    "design/proposals/support-plates/whats-new--no-notes.svg": {
+      "sha256": "4e33b753a9cd6a998141843331ec13afa705c83f002bf36e2203c19ffe32baa0",
+      "actions": [
+        "back",
+        "nav-automation",
+        "nav-collections",
+        "nav-discover",
+        "nav-home"
+      ],
+      "modal": false,
+      "minVisibleFont": 11
+    },
+    "design/proposals/support-plates/updates--sideload.svg": {
+      "sha256": "3d4b8c610db4e2201a77c7a5cde21b77ac09355917848a0acd0ba74ed57e7b14",
+      "actions": [
+        "back",
+        "nav-automation",
+        "nav-collections",
+        "nav-discover",
+        "nav-home"
+      ],
+      "modal": false,
+      "minVisibleFont": 11
+    },
+    "design/proposals/support-plates/updates--play-eligible.svg": {
+      "sha256": "9282086ada50972e9f0f12adef5451c5a39b373317c19629464142b750043b33",
+      "actions": [
+        "back",
+        "nav-automation",
+        "nav-collections",
+        "nav-discover",
+        "nav-home"
+      ],
+      "modal": false,
+      "minVisibleFont": 11
+    },
+    "design/proposals/support-plates/updates--offline.svg": {
+      "sha256": "3aafb86aaf27a9b408c78ec0a2afd17a66d77e32e4d248218fabe0eac9895b7c",
+      "actions": [
+        "back",
+        "nav-automation",
+        "nav-collections",
+        "nav-discover",
+        "nav-home"
+      ],
+      "modal": false,
+      "minVisibleFont": 11
+    },
+    "design/proposals/support-plates/rate-review--not-available.svg": {
+      "sha256": "d7efeff7fff974405db2118368af784cc7043a8ade4ad4aab96aac947237d71e",
+      "actions": [
+        "back",
+        "nav-automation",
+        "nav-collections",
+        "nav-discover",
+        "nav-home"
+      ],
+      "modal": false,
+      "minVisibleFont": 11
+    },
+    "design/proposals/support-plates/rate-review--play-listing.svg": {
+      "sha256": "ee5e941f2ecc9313ab412d53b30420060e004ddf5251eca8f5dddf9b0dc9e811",
+      "actions": [
+        "back",
+        "nav-automation",
+        "nav-collections",
+        "nav-discover",
+        "nav-home"
+      ],
+      "modal": false,
+      "minVisibleFont": 11
+    },
+    "design/proposals/support-plates/privacy--local-only.svg": {
+      "sha256": "de6338cdf90e68c10fb6274e8dd6c5c61991da55ea3737c298f4c8f9e24442f9",
+      "actions": [
+        "back",
+        "nav-automation",
+        "nav-collections",
+        "nav-discover",
+        "nav-home"
+      ],
+      "modal": false,
+      "minVisibleFont": 11
+    },
+    "design/proposals/support-plates/privacy--diagnostics-opt-in.svg": {
+      "sha256": "769fc75d4dd567fec1b1c262b3008872aebe4f612063894bf2204844110d6a7d",
+      "actions": [
+        "back",
+        "nav-automation",
+        "nav-collections",
+        "nav-discover",
+        "nav-home"
+      ],
+      "modal": false,
+      "minVisibleFont": 11
+    },
+    "design/proposals/support-plates/storage-management--overview.svg": {
+      "sha256": "60cb8982889254341db391e5dcd4ddee2992bec6ecc969f3a79a6b562a585372",
+      "actions": [
+        "back",
+        "nav-automation",
+        "nav-collections",
+        "nav-discover",
+        "nav-home"
+      ],
+      "modal": false,
+      "minVisibleFont": 11
+    },
+    "design/proposals/support-plates/storage-management--delete-confirm.svg": {
+      "sha256": "f787cc945f21c5ea8cf033393aad6c51e8d25c6eda670883853668c05c8326c9",
+      "actions": [
+        "back",
+        "cancel-delete",
+        "confirm-delete"
+      ],
+      "modal": true,
+      "minVisibleFont": 11
+    },
+    "design/proposals/support-plates/storage-management--low-storage.svg": {
+      "sha256": "dece024b090926d20cd76b524fe8be72c1621d82acde93265a877657911b45da",
+      "actions": [
+        "back",
+        "nav-automation",
+        "nav-collections",
+        "nav-discover",
+        "nav-home"
+      ],
+      "modal": false,
+      "minVisibleFont": 11
+    },
+    "design/proposals/support-plates/permissions-capabilities--available.svg": {
+      "sha256": "b46045ab2a60fba31d96b9dbdb1f77a7dd2e15e7e0270623781d4741f8b1d683",
+      "actions": [
+        "back",
+        "nav-automation",
+        "nav-collections",
+        "nav-discover",
+        "nav-home"
+      ],
+      "modal": false,
+      "minVisibleFont": 11
+    },
+    "design/proposals/support-plates/permissions-capabilities--restricted.svg": {
+      "sha256": "7da7003c23b84133bb1c83c940e52d28b32ae32f7c9ac34da46571fa36c44a1f",
+      "actions": [
+        "back",
+        "nav-automation",
+        "nav-collections",
+        "nav-discover",
+        "nav-home"
+      ],
+      "modal": false,
+      "minVisibleFont": 11
+    },
+    "design/proposals/support-plates/credits-licences--components.svg": {
+      "sha256": "9c48a0bbd59339301645dfa066919211c8563892682f68cabe594da9f3b4d513",
+      "actions": [
+        "back",
+        "nav-automation",
+        "nav-collections",
+        "nav-discover",
+        "nav-home"
+      ],
+      "modal": false,
+      "minVisibleFont": 11
+    },
+    "design/proposals/support-plates/credits-licences--rights-warning.svg": {
+      "sha256": "226ca6b542fe2c00a0a47c9c848d823e4f287c889cba6e5b016b87b4b7c595a6",
+      "actions": [
+        "back",
+        "nav-automation",
+        "nav-collections",
+        "nav-discover",
+        "nav-home"
+      ],
+      "modal": false,
+      "minVisibleFont": 11
+    },
+    "design/proposals/support-plates/beta-feedback--invitation.svg": {
+      "sha256": "628a2c7814f90e10b4172078012727a9b60c8b3a0c5602ab6d71493d8b833219",
+      "actions": [
+        "back",
+        "nav-automation",
+        "nav-collections",
+        "nav-discover",
+        "nav-home"
+      ],
+      "modal": false,
+      "minVisibleFont": 11
+    },
+    "design/proposals/support-plates/beta-feedback--share-preview.svg": {
+      "sha256": "9d6968faacef0acbc11e1e01db2ed2d07fbfb9f445ae06045cd6d7ab9dcb33c8",
+      "actions": [
+        "back",
+        "nav-automation",
+        "nav-collections",
+        "nav-discover",
+        "nav-home",
+        "share-reviewed-feedback"
+      ],
+      "modal": false,
+      "minVisibleFont": 11
+    },
+    "design/proposals/support-plates/notification-preferences--not-implemented.svg": {
+      "sha256": "2baa518ccd75b6d4ee4a8e06f26826bea667da250c76af3f31ffce8279b8d5aa",
+      "actions": [
+        "back",
+        "nav-automation",
+        "nav-collections",
+        "nav-discover",
+        "nav-home"
+      ],
+      "modal": false,
+      "minVisibleFont": 11
+    },
+    "design/proposals/support-plates/notification-preferences--available.svg": {
+      "sha256": "240aa2b06027ddaa9cd055a1900c037e488224a2a1e48edf1a4e5416f8e1ab0b",
+      "actions": [
+        "back",
+        "nav-automation",
+        "nav-collections",
+        "nav-discover",
+        "nav-home"
+      ],
+      "modal": false,
+      "minVisibleFont": 11
+    },
+    "design/proposals/support-plates/external-handler-fallback--email-missing.svg": {
+      "sha256": "457b30c47d6fefabb6a6b277b48c6b3b89573d5a4d1d94990a7cf670407e3051",
+      "actions": [
+        "back",
+        "nav-automation",
+        "nav-collections",
+        "nav-discover",
+        "nav-home"
+      ],
+      "modal": false,
+      "minVisibleFont": 11
+    },
+    "design/proposals/support-plates/external-handler-fallback--chooser-cancelled.svg": {
+      "sha256": "08b4680d7ed987dd8578ec4c848337f725ca527fb4f77dd75e0a869892c17d41",
+      "actions": [
+        "back",
+        "nav-automation",
+        "nav-collections",
+        "nav-discover",
+        "nav-home"
+      ],
+      "modal": false,
+      "minVisibleFont": 11
+    }
+  },
+  "errors": []
+}

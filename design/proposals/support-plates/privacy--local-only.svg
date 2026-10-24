@@ -3,11 +3,11 @@
 <text x="39" y="45" font-family="Arial,Helvetica,sans-serif" fill="#153F46" font-size="14" font-weight="600">9:41</text>
 <text x="364" y="45" font-family="Arial,Helvetica,sans-serif" fill="#667975" font-size="13" font-weight="400">●  ▰  ▴</text>
 <path d="M32 55h368" stroke="#C8B7A1"/>
+<rect x="29" y="59" width="91" height="44" rx="12" fill="#E4ECE6" data-control="back" data-focus-order="1" data-hit-width="91" data-hit-height="44"/>
 <text x="35" y="88" font-family="Arial,Helvetica,sans-serif" fill="#1D5960" font-size="16" font-weight="650">‹ Back</text>
 <text x="37" y="129" font-family="Arial,Helvetica,sans-serif" fill="#153F46" font-size="28" font-weight="700">Privacy</text>
 <text x="38" y="155" font-family="Arial,Helvetica,sans-serif" fill="#667975" font-size="15" font-weight="400">Your photos belong to you</text>
-<rect x="40" y="171" width="348" height="32" rx="8" fill="#E9E0F5" stroke="none" stroke-width="1"/>
-<text x="52" y="193" font-family="Arial,Helvetica,sans-serif" fill="#153F46" font-size="13" font-weight="650">PROPOSAL • local only</text>
+<g id="support-body" transform="translate(0,-24)">
 <rect x="40" y="224" width="348" height="100" rx="13" fill="#FFFCF6" stroke="#C8B7A1" stroke-width="1"/>
 <text x="53" y="250" font-family="Arial,Helvetica,sans-serif" fill="#153F46" font-size="17" font-weight="650">Your photos stay local</text>
 <text x="53" y="273" font-family="Arial,Helvetica,sans-serif" fill="#667975" font-size="14" font-weight="400">Imported images are in Glimpse private</text>
@@ -28,7 +28,15 @@
 <text x="53" y="616" font-family="Arial,Helvetica,sans-serif" fill="#667975" font-size="14" font-weight="400">Readable offline; source-specific terms</text>
 <text x="53" y="635" font-family="Arial,Helvetica,sans-serif" fill="#667975" font-size="14" font-weight="400">when needed</text>
 <text x="53" y="655" font-family="Arial,Helvetica,sans-serif" fill="#1D5960" font-size="13" font-weight="650">Read policy</text>
+</g>
 <path d="M29 817h373" stroke="#C8B7A1"/>
+<g id="support-navigation" aria-label="Four tab destinations; static touch region proposal only">
+<rect x="31" y="822" width="86" height="46" rx="12" fill="#EBE5DB" data-control="nav-home" data-focus-order="90" data-hit-width="86" data-hit-height="46"/>
+<rect x="126" y="822" width="86" height="46" rx="12" fill="#EBE5DB" data-control="nav-discover" data-focus-order="91" data-hit-width="86" data-hit-height="46"/>
+<rect x="222" y="822" width="91" height="46" rx="12" fill="#EBE5DB" data-control="nav-collections" data-focus-order="92" data-hit-width="91" data-hit-height="46"/>
+<rect x="320" y="822" width="91" height="46" rx="12" fill="#EBE5DB" data-control="nav-automation" data-focus-order="93" data-hit-width="91" data-hit-height="46"/>
+</g>
+
 <text x="45" y="851" font-family="Arial,Helvetica,sans-serif" fill="#667975" font-size="13" font-weight="500">Home</text>
 <text x="141" y="851" font-family="Arial,Helvetica,sans-serif" fill="#667975" font-size="13" font-weight="500">Discover</text>
 <text x="237" y="851" font-family="Arial,Helvetica,sans-serif" fill="#667975" font-size="13" font-weight="500">Collections</text>
