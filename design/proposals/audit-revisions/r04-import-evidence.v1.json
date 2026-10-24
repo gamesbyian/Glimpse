@@ -50,9 +50,10 @@
       "currentPath": "design/proposals/storyboards/x01/04-copy-progress.svg",
       "evidenceClass": "related-progress-only",
       "acceptance": "Explicit Stop and retain verified copies vs continue, no claim unverified copies survive",
-      "disposition": "dedicated-visual-required",
+      "disposition": "draft-source-illustrated-awaiting-raster",
       "nativeEvidence": "unverified",
-      "ownerApproval": "not-requested"
+      "ownerApproval": "not-requested",
+      "dedicatedReferencePath": "design/proposals/audit-revisions/r04-import-cancel.svg"
     },
     {
       "id": "import-offline",
@@ -68,9 +69,10 @@
       "currentPath": "design/proposals/storyboards/x01/05-partial-recovery.svg",
       "evidenceClass": "related-partial-failure-only",
       "acceptance": "Out-of-space with 17/22 verified, accessible Keep verified and Free space / retry actions",
-      "disposition": "dedicated-visual-required",
+      "disposition": "draft-source-illustrated-awaiting-raster",
       "nativeEvidence": "unverified",
-      "ownerApproval": "not-requested"
+      "ownerApproval": "not-requested",
+      "dedicatedReferencePath": "design/proposals/audit-revisions/r04-import-no-space.svg"
     }
   ]
 }
