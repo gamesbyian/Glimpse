@@ -1,0 +1,92 @@
+{
+  "schemaVersion": 1,
+  "kind": "STATIC_RISK_SIMULATION_NOT_NATIVE_ANDROID",
+  "cases": [
+    {
+      "source": "design/proposals/support-plates/help--topics.svg",
+      "sourceSHA256": "e8908c3de07978bcfef449a0be054c87c2e88056911c86223dfe25285e53add5",
+      "scaledPhonePixels": [
+        320,
+        710
+      ],
+      "modes": [
+        "simple 401-to-320 uniform rescale",
+        "font-size attr doubled without reflow"
+      ],
+      "nativeAndroidEvidence": false,
+      "ownerApproved": false
+    },
+    {
+      "source": "design/proposals/support-plates/report-problem--with-diagnostics.svg",
+      "sourceSHA256": "9f51918fd75ead9b35648e535500f7c60e15ae13ed77cd5a10c48cca7488c476",
+      "scaledPhonePixels": [
+        320,
+        710
+      ],
+      "modes": [
+        "simple 401-to-320 uniform rescale",
+        "font-size attr doubled without reflow"
+      ],
+      "nativeAndroidEvidence": false,
+      "ownerApproved": false
+    },
+    {
+      "source": "design/proposals/support-plates/diagnostic-preview--expanded.svg",
+      "sourceSHA256": "29bee6a8a3d59a4724e0603372f78734d3942055bc13a4dcb3259e7be0f76d3d",
+      "scaledPhonePixels": [
+        320,
+        710
+      ],
+      "modes": [
+        "simple 401-to-320 uniform rescale",
+        "font-size attr doubled without reflow"
+      ],
+      "nativeAndroidEvidence": false,
+      "ownerApproved": false
+    },
+    {
+      "source": "design/proposals/support-plates/storage-management--delete-confirm.svg",
+      "sourceSHA256": "f787cc945f21c5ea8cf033393aad6c51e8d25c6eda670883853668c05c8326c9",
+      "scaledPhonePixels": [
+        320,
+        710
+      ],
+      "modes": [
+        "simple 401-to-320 uniform rescale",
+        "font-size attr doubled without reflow"
+      ],
+      "nativeAndroidEvidence": false,
+      "ownerApproved": false
+    },
+    {
+      "source": "design/proposals/support-plates/beta-feedback--share-preview.svg",
+      "sourceSHA256": "9d6968faacef0acbc11e1e01db2ed2d07fbfb9f445ae06045cd6d7ab9dcb33c8",
+      "scaledPhonePixels": [
+        320,
+        710
+      ],
+      "modes": [
+        "simple 401-to-320 uniform rescale",
+        "font-size attr doubled without reflow"
+      ],
+      "nativeAndroidEvidence": false,
+      "ownerApproved": false
+    },
+    {
+      "source": "design/proposals/support-plates/external-handler-fallback--chooser-cancelled.svg",
+      "sourceSHA256": "08b4680d7ed987dd8578ec4c848337f725ca527fb4f77dd75e0a869892c17d41",
+      "scaledPhonePixels": [
+        320,
+        710
+      ],
+      "modes": [
+        "simple 401-to-320 uniform rescale",
+        "font-size attr doubled without reflow"
+      ],
+      "nativeAndroidEvidence": false,
+      "ownerApproved": false
+    }
+  ],
+  "imageSHA256": "9b13eed9ae99d11886fe6e78edcbf41bcbe003f5d88406e6de661e8012e182e2",
+  "warning": "No physical dp/insets, dynamic font reflow, OS focus, TalkBack or device result; visual redlines only"
+}
