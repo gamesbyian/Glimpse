@@ -157,6 +157,8 @@ if 'id="collection-delete-modal"' not in before:
 frame_truth={
  "design/proposals/storyboards/x03/01-preview.svg": (
    ["Last Glimpse-acknowledged Home: p01"], ["Currently applied Home"]),
+ "design/proposals/storyboards/x03/02-choose-target.svg": (
+   ["Home selected"], ["Home ✓"]),
  "design/proposals/storyboards/x03/06-failed.svg": (
    ["Last Glimpse-acknowledged: p01"], ["Last applied photo remains"]),
  "design/proposals/storyboards/x04/07-stopped.svg": (
@@ -194,6 +196,13 @@ for rel,(required,forbidden) in frame_truth.items():
         if phrase not in phone:errors.append(f"{rel}: missing frame truth {phrase}")
     for phrase in forbidden:
         if phrase in phone:errors.append(f"{rel}: obsolete or false frame truth {phrase}")
+# Every gesture-study frame must offer legible non-touch Grid parity.
+for frame_id in ("01-rest","02-touch-down","03-drag-18","04-drag-36",
+                 "05-snap-72","06-reverse-18","07-interrupted","08-last"):
+    rel=f"design/proposals/storyboards/x05/{frame_id}.svg"
+    phone=(ROOT/rel).read_text(encoding="utf8").split('<rect x="442"',1)[0]
+    if ">View all</text>" not in phone or ">Grid ↗</text>" in phone:
+        errors.append(f"{rel}: illegible Grid / View all non-gesture parity")
 ss=scenarios["scenarios"]
 if len(ss)!=56:errors.append("Unexpected audit scenario count")
 for sc in ss:
