@@ -1,4 +1,4 @@
-name: Agent C isolated Commons photo recovery
+name: Agent C legacy research-photo replacement
 on:
   push:
     branches: [agent/production-c-photo-recovery-20261024]
@@ -12,7 +12,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        photo_id: [p08, p09, p16, p17]
+        photo_id: [p10, p11, p12, p13, p14, p15]
     name: Source ${{ matrix.photo_id }}
     runs-on: ubuntu-latest
     timeout-minutes: 12
@@ -20,5 +20,5 @@ jobs:
       - uses: actions/checkout@v4
       - name: Install image decoder
         run: python3 -m pip install --quiet Pillow==11.3.0
-      - name: Obtain exactly one Commons CC0 original with no retry after 429
+      - name: Independently verify one Commons CC0 source, no HTTP 429 retry
         run: python3 scripts/acquire-agent-c-grid-cc0.py --photo-id ${{ matrix.photo_id }}
