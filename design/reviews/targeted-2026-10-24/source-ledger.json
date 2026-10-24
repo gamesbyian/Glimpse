@@ -1,6 +1,6 @@
 {
-  "sourceCommit": "2cc839bf491a0df928a773e86d03b1c063bdcc34",
-  "runId": "40115984371",
+  "sourceCommit": "d16f4039546f0fa3c9a6a8a3e6e195732eb35716",
+  "runId": "40116392107",
   "scope": "source-derived images, not Android screenshots or owner approvals",
   "pixelReview": "not-yet-independently-viewed",
   "groups": [
@@ -107,7 +107,7 @@
     {
       "id": "p12-truth",
       "image": "p12-truth.jpg",
-      "imageSHA256": "03f2acd18613a8e75968d76a3372ea55afff228cb0fa548ccabe5dd30086f847",
+      "imageSHA256": "7488898925213b8913d2fd158927d6b3bf7cf2d89e03ad77c86a1648bdc40dfc",
       "phones": [
         {
           "source": "design/proposals/audit-revisions/r01-photo-rest-22.svg",
@@ -115,7 +115,7 @@
         },
         {
           "source": "design/proposals/audit-revisions/r03-preview-not-applied.svg",
-          "sourceSHA256": "e6917b888dbf40b88941e50ec4db37867b658fe222a74b248bebc41a4d334fe5"
+          "sourceSHA256": "21fbcaf9d1df03f610e37b79ab7615918e81478e1314f586c0ffcb152f5f6bef"
         },
         {
           "source": "design/proposals/audit-revisions/r03-unknown-after-request.svg",
