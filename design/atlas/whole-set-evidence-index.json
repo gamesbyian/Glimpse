@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "status": "ALL_DRAFT_SOURCE_EVIDENCE_NOT_HUMAN_APPROVED",
-  "sourceCommit": "b14d0b90a28c848adecd4f80e3bbdfd5028f054f",
+  "sourceCommit": "b5055f8be64641bfec4fe0b37bba74d3adef9b18",
   "auditCycleA": {
     "PASS_SOURCE_ONLY": 18,
     "ISSUE": 8,
@@ -365,7 +365,7 @@
           "path": "design/proposals/plates/automation.svg",
           "label": "Automation",
           "meaning": "",
-          "sourceSHA256": "d8d212380239edeb46215ceedc211e1b9e016be8cf6f9ced4479f25be049825b"
+          "sourceSHA256": "cc5964d646fed03c39abc337582d2b0f53cfeccfeecfe375f4d78dcd6b80f97f"
         },
         {
           "path": "design/proposals/plates/discover.svg",
@@ -389,13 +389,13 @@
           "path": "design/proposals/plates/activity.svg",
           "label": "Activity",
           "meaning": "",
-          "sourceSHA256": "da47f87075dabc179c0a0176183f9ba63b52344dc4c804372e3ca6db407ec13b"
+          "sourceSHA256": "286377bb558373e01240f67a55c45e3c36f7652efafa77b617f7b225a3d33cd3"
         },
         {
           "path": "design/proposals/plates/automation-editor.svg",
           "label": "Automation Editor",
           "meaning": "",
-          "sourceSHA256": "05b4eea9e5e90e1cfa69fb566919d9796b2ba4fde95989b2f49d18268ce2ebbe"
+          "sourceSHA256": "bd9a4bdedb0d4457412a4a426bb7cd844bc0e3e7c98f1b785f031155435d3cf8"
         },
         {
           "path": "design/proposals/plates/source-detail.svg",
@@ -467,7 +467,7 @@
           "path": "design/proposals/plates/accessibility-preferences.svg",
           "label": "Accessibility Preferences",
           "meaning": "",
-          "sourceSHA256": "db36e63966791913a58dc8b11f7646fc7dde4e18c35cbb4eefc17eef9f9fc5df"
+          "sourceSHA256": "9804c614aab05177dcba76c1a688ebd7da80dda3c368702cae16834fc7081bed"
         }
       ]
     },
