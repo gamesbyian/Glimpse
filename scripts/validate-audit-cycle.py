@@ -144,6 +144,8 @@ r05_fixture_bytes = re.findall(photo_pattern, r05_overlay)
 assert len(r01_fixture_bytes) == 6, "R01 actual photo-fixture group missing"
 assert r01_fixture_bytes == r05_fixture_bytes, "R05 must preserve exact R01 photo bytes"
 assert 'id="r05-focus-order-audit-overlay"' in r05_overlay
+assert '<rect x="299" y="400" width="93" height="48" rx="6"/>' in r05_overlay
+assert '"targetBoundsProposedNotMeasured":true' in r05_overlay
 assert '"nativeProof":"unverified"' in r05_overlay
 assert '"selectedAssetId":"p12"' in r05_overlay and '"lastConfirmedAppliedAssetId":"p04"' in r05_overlay
 for case in r05["cases"]:
