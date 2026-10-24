@@ -72,8 +72,16 @@ def main():
              ["Import photos from Android", "Wait for verified local copies.",
               "Selection only previews it.", "Browsing never applies automatically",
               "Back to help topics"], ["Read import guide"])
+    requires("diagnostic-preview--minimal",
+             ["Outgoing sample report", "provider-copy category (redacted)", "NEVER",
+              "Show redacted detail fields"],
+             ['<rect x="328" y="523"'])
+    requires("diagnostic-preview--expanded",
+             ["Outgoing sample report", "Extra included field examples",
+              "IDs redacted", "No images, source URIs or account tokens", "NEVER"],
+             ['<rect x="328" y="523"'])
     requires("help--topics", ["Get photos into Glimpse"])
-    print("PASS: 13 corrected support variants have distinct, source-visible, unapproved state semantics")
+    print("PASS: 15 corrected support variants have distinct, source-visible, unapproved state semantics")
 
 
 if __name__ == "__main__":

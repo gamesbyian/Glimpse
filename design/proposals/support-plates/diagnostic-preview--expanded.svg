@@ -8,10 +8,12 @@
 <text x="38" y="155" font-family="Arial,Helvetica,sans-serif" fill="#667975" font-size="15" font-weight="400">Only send what you approve</text>
 <rect x="40" y="171" width="348" height="32" rx="8" fill="#E9E0F5" stroke="none" stroke-width="1"/>
 <text x="52" y="193" font-family="Arial,Helvetica,sans-serif" fill="#153F46" font-size="13" font-weight="650">PROPOSAL • expanded</text>
-<rect x="40" y="225" width="348" height="100" rx="13" fill="#FFFCF6" stroke="#C8B7A1" stroke-width="1"/>
-<text x="53" y="251" font-family="Arial,Helvetica,sans-serif" fill="#153F46" font-size="17" font-weight="650">Outgoing report preview</text>
-<text x="53" y="274" font-family="Arial,Helvetica,sans-serif" fill="#667975" font-size="14" font-weight="400">App build, OS version, operation category</text>
-<text x="53" y="313" font-family="Arial,Helvetica,sans-serif" fill="#1D5960" font-size="13" font-weight="650">Expand details</text>
+<rect x="40" y="218" width="348" height="114" rx="13" fill="#FFFCF6" stroke="#C8B7A1"/>
+<text x="53" y="242" font-family="Arial,Helvetica,sans-serif" fill="#153F46" font-size="16" font-weight="700">Outgoing sample report • inspect before use</text>
+<text x="53" y="264" font-family="Arial,Helvetica,sans-serif" fill="#667975" font-size="13">Build: sample-dev; OS: example Android</text>
+<text x="53" y="283" font-family="Arial,Helvetica,sans-serif" fill="#667975" font-size="13">Operation: provider import interrupted</text>
+<text x="53" y="302" font-family="Arial,Helvetica,sans-serif" fill="#667975" font-size="13">Error: provider-copy category (redacted)</text>
+<text x="53" y="322" font-family="Arial,Helvetica,sans-serif" fill="#1D5960" font-size="13" font-weight="650">Details shown below</text>
 <rect x="40" y="338" width="348" height="69" rx="12" fill="#FFFCF6" stroke="#C8B7A1" stroke-width="1"/>
 <text x="53" y="363" font-family="Arial,Helvetica,sans-serif" fill="#153F46" font-size="16" font-weight="650">Include error summary</text>
 <text x="53" y="385" font-family="Arial,Helvetica,sans-serif" fill="#667975" font-size="12" font-weight="400">Sanitised exception category</text>
@@ -25,8 +27,7 @@
 <rect x="40" y="504" width="348" height="69" rx="12" fill="#FFFCF6" stroke="#C8B7A1" stroke-width="1"/>
 <text x="53" y="529" font-family="Arial,Helvetica,sans-serif" fill="#153F46" font-size="16" font-weight="650">Include photographs</text>
 <text x="53" y="551" font-family="Arial,Helvetica,sans-serif" fill="#667975" font-size="12" font-weight="400">Never included in diagnostic reports</text>
-<rect x="328" y="523" width="45" height="25" rx="15" fill="#C8B7A1" stroke="none" stroke-width="1"/>
-<circle cx="344" cy="535.5" r="10" fill="#FFFCF6"/>
+<text x="291" y="547" font-family="Arial,Helvetica,sans-serif" fill="#703B27" font-size="12" font-weight="650">NEVER</text>
 <text x="45" y="612" font-family="Arial,Helvetica,sans-serif" fill="#153F46" font-size="17" font-weight="650">Choose your action</text>
 <rect x="43" y="639" width="98" height="42" rx="20" fill="#FFFCF6" stroke="#C8B7A1" stroke-width="1"/>
 <text x="58" y="666" font-family="Arial,Helvetica,sans-serif" fill="#153F46" font-size="14" font-weight="650">Copy</text>
@@ -34,6 +35,11 @@
 <text x="168" y="666" font-family="Arial,Helvetica,sans-serif" fill="#153F46" font-size="14" font-weight="650">Save</text>
 <rect x="268" y="639" width="112" height="42" rx="20" fill="#1D5960" stroke="#1D5960" stroke-width="1"/>
 <text x="283" y="666" font-family="Arial,Helvetica,sans-serif" fill="#FFFFFF" font-size="14" font-weight="650">Share</text>
+<rect x="40" y="700" width="348" height="103" rx="12" fill="#E9E0F5" stroke="#C8B7A1"/>
+<text x="53" y="723" font-family="Arial,Helvetica,sans-serif" fill="#153F46" font-size="15" font-weight="700">Extra included field examples</text>
+<text x="53" y="744" font-family="Arial,Helvetica,sans-serif" fill="#667975" font-size="13">Attempt: copy • Result: interrupted</text>
+<text x="53" y="764" font-family="Arial,Helvetica,sans-serif" fill="#667975" font-size="13">Exception type: sanitised • IDs redacted</text>
+<text x="53" y="784" font-family="Arial,Helvetica,sans-serif" fill="#703B27" font-size="13" font-weight="700">No images, source URIs or account tokens</text>
 <path d="M29 817h373" stroke="#C8B7A1"/>
 <text x="45" y="851" font-family="Arial,Helvetica,sans-serif" fill="#667975" font-size="13" font-weight="500">Home</text>
 <text x="141" y="851" font-family="Arial,Helvetica,sans-serif" fill="#667975" font-size="13" font-weight="500">Discover</text>

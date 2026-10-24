@@ -657,7 +657,7 @@
           "reviewCandidatePath": "design/proposals/support-plates/diagnostic-preview--minimal.svg",
           "ownerChoice": null,
           "exactOwnerApprovalSHA256": null,
-          "reviewWarning": "Optically inspected original draft support screen. Earlier schematic/card vocabulary remains provisional; no Android, accessibility or owner signoff.",
+          "reviewWarning": "Actual opened/reviewed minimal example now shows illustrative outbound fields and never-on photo disclosure; native payload inspection remains required.",
           "opticalEvidence": "Six contact JPGs inspected before and after selected fixes (401×890); source SHA-256 in design/reviews/support-2026-10-24/source-ledger.json; no native acceptance."
         },
         {
@@ -665,7 +665,7 @@
           "reviewCandidatePath": "design/proposals/support-plates/diagnostic-preview--expanded.svg",
           "ownerChoice": null,
           "exactOwnerApprovalSHA256": null,
-          "reviewWarning": "Optically inspected original draft support screen. Earlier schematic/card vocabulary remains provisional; no Android, accessibility or owner signoff.",
+          "reviewWarning": "Actual opened/reviewed expanded example now shows redacted detailed payload fields and explicit no-photo disclosure; final native bytes must be built and verified.",
           "opticalEvidence": "Six contact JPGs inspected before and after selected fixes (401×890); source SHA-256 in design/reviews/support-2026-10-24/source-ledger.json; no native acceptance."
         }
       ]
