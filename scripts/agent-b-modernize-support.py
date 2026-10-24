@@ -64,6 +64,18 @@ def remove_crash_recovery_duplicate_cta(source: str, name: str) -> str:
     assert phone.count('>Continue</text>') == 1, name
     return phone + divider + notes
 
+def clarify_share_chooser_outcome(source: str, name: str) -> str:
+    """Closing Android Sharesheet is not reliable proof of final recipient delivery."""
+    if name != "external-handler-fallback--chooser-cancelled":
+        return source
+    source = source.replace("Sharing cancelled", "Share chooser closed")
+    source = source.replace("No recipient selected; nothing was sent",
+                            "Delivery not confirmed by Android")
+    source = source.replace("No recipient received your draft from this",
+                            "Delivery status cannot be verified for this")
+    # Existing continuation reads "attempt", retaining the non-claim.
+    return source
+
 def clarify_diagnostic_inclusion(source: str, name: str) -> str:
     """An ON control must not still describe itself as off; forbidden photos are labels."""
     if name not in ("report-problem--with-diagnostics",
@@ -128,7 +140,7 @@ def enforce_provisional_a_tokens(source: str) -> str:
 
 def modernize(name: str, original: str) -> str:
     if '<g id="support-body"' in original:
-        return enforce_provisional_a_tokens(clarify_diagnostic_inclusion(remove_crash_recovery_duplicate_cta(original, name),name))
+        return enforce_provisional_a_tokens(clarify_share_chooser_outcome(clarify_diagnostic_inclusion(remove_crash_recovery_duplicate_cta(original, name),name), name))
     source, count = BANNER.subn('<g id="support-body" transform="translate(0,-24)">\n', original, count=1)
     assert count == 1, (name, "missing decorative proposal banner")
     assert source.count(FOOTER) == 1
@@ -158,7 +170,7 @@ def modernize(name: str, original: str) -> str:
             assert needle in source
             source = source.replace(needle, new, 1)
     ET.fromstring(source)
-    return enforce_provisional_a_tokens(clarify_diagnostic_inclusion(remove_crash_recovery_duplicate_cta(source, name),name))
+    return enforce_provisional_a_tokens(clarify_share_chooser_outcome(clarify_diagnostic_inclusion(remove_crash_recovery_duplicate_cta(source, name),name), name))
 
 def main() -> None:
     parser = argparse.ArgumentParser()
