@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "status": "ALL_DRAFT_SOURCE_EVIDENCE_NOT_HUMAN_APPROVED",
-  "sourceCommit": "bb9b84136adf295559d1c3a297bc95ce76408578",
+  "sourceCommit": "b4badf3bb4473c4206e0620d27b94fa874d35923",
   "auditCycleA": {
     "PASS_SOURCE_ONLY": 18,
     "ISSUE": 8,
@@ -2126,7 +2126,7 @@
           "path": "design/proposals/audit-revisions/r01-photo-drag-36.svg",
           "label": "R01 Photo Drag 36",
           "meaning": "",
-          "sourceSHA256": "ab9b4a70ebf5c2918c3f80e47def02c19f8a2a13a78dc883f394ae6aa364daa5"
+          "sourceSHA256": "093ef9b4d0780ed7af8d64664789c1805697af57fdf60d3abab1f06e9115529a"
         },
         {
           "path": "design/proposals/audit-revisions/r01-photo-empty-0.svg",
