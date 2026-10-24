@@ -8,7 +8,7 @@
       "family": "about",
       "state": "sideload",
       "source": "design/proposals/support-plates/about--sideload.svg",
-      "sourceSHA256": "2bd659a60879452e047209feabfe25f4d292650568f5b5f5ff2f9d8e73e1e5ca",
+      "sourceSHA256": "57427cfd0ab036b0b3d897e812d285f4d0c813b0bf982b0ea408bda5469d45ad",
       "phoneCrop": [
         15,
         14,
@@ -28,7 +28,7 @@
       "family": "about",
       "state": "play-release",
       "source": "design/proposals/support-plates/about--play-release.svg",
-      "sourceSHA256": "6eb7b1d3c7068e28619b67b1529370fb6458cf5672d0411169dbbd8c4703538d",
+      "sourceSHA256": "8d2f0f03fca802429c38067f3c2b4f5dcbe360a826c92ab8102bdf729b3be9e9",
       "phoneCrop": [
         15,
         14,
@@ -48,7 +48,7 @@
       "family": "help",
       "state": "topics",
       "source": "design/proposals/support-plates/help--topics.svg",
-      "sourceSHA256": "e8908c3de07978bcfef449a0be054c87c2e88056911c86223dfe25285e53add5",
+      "sourceSHA256": "07aae340c6279e7c93a711ed7b31e9f6c92bad3246678536593d3443d5ca1ad5",
       "phoneCrop": [
         15,
         14,
@@ -68,7 +68,7 @@
       "family": "help",
       "state": "article",
       "source": "design/proposals/support-plates/help--article.svg",
-      "sourceSHA256": "bdc7d37fb543b84e75e6a83b43b736944db4c8baf567e2ae36caa3d4d1606896",
+      "sourceSHA256": "191ba66b8255cac9d62a6ddeef89afb03cf32622e13eec7cb66338beeed5f1f2",
       "phoneCrop": [
         15,
         14,
@@ -88,7 +88,7 @@
       "family": "contact-feedback",
       "state": "available",
       "source": "design/proposals/support-plates/contact-feedback--available.svg",
-      "sourceSHA256": "7a8eb4eb255f0c3896f9a541badc8c7418ded52c2354a00b2fc48a2e6402d6c0",
+      "sourceSHA256": "b5d441835dad389b09397e7513727c4d168fae36087e7ac0d09cbe3665a10af1",
       "phoneCrop": [
         15,
         14,
@@ -108,7 +108,7 @@
       "family": "contact-feedback",
       "state": "no-handler",
       "source": "design/proposals/support-plates/contact-feedback--no-handler.svg",
-      "sourceSHA256": "252fdd7ee49f170c7b325eab291fae50517453128eb8f11558ca31f312a87dbf",
+      "sourceSHA256": "b0e7b599d1cb34ebf50d74aa87a0f9ea1076b7020fe67c1057bbaa55ef810d12",
       "phoneCrop": [
         15,
         14,
@@ -128,7 +128,7 @@
       "family": "report-problem",
       "state": "draft",
       "source": "design/proposals/support-plates/report-problem--draft.svg",
-      "sourceSHA256": "dbdc3a5b044202376f6bd5539d802c31e15a143fcc94bc90f7047b43f929313e",
+      "sourceSHA256": "aa5c8cb5cf16ff46eb5f6900b1eeb2b5c1b4ac2412eb0e4a7a8fe7f587eefe25",
       "phoneCrop": [
         15,
         14,
@@ -148,7 +148,7 @@
       "family": "report-problem",
       "state": "with-diagnostics",
       "source": "design/proposals/support-plates/report-problem--with-diagnostics.svg",
-      "sourceSHA256": "9f51918fd75ead9b35648e535500f7c60e15ae13ed77cd5a10c48cca7488c476",
+      "sourceSHA256": "62f13a49e9c53fb37b7ccb26df67a90c7a3270d6ed47eab7e1ba84120593fd74",
       "phoneCrop": [
         15,
         14,
@@ -168,7 +168,7 @@
       "family": "crash-recovery",
       "state": "suspected-crash",
       "source": "design/proposals/support-plates/crash-recovery--suspected-crash.svg",
-      "sourceSHA256": "7b8e6723ad7d36564fc076ea4a0fff3c46b5d1df16eebc9117edfbace48b1079",
+      "sourceSHA256": "9497a865271f6e8d65dc24139b0f914bc18b40622725db41f5e4793a1d457da2",
       "phoneCrop": [
         15,
         14,
@@ -188,7 +188,7 @@
       "family": "crash-recovery",
       "state": "normal-exit",
       "source": "design/proposals/support-plates/crash-recovery--normal-exit.svg",
-      "sourceSHA256": "928a65fa55b58b938d297beca68cc3d263c01bfef898dde689e3f3ca1a524916",
+      "sourceSHA256": "ccfab54fc660323b87634796d8870aab5fa89e650f1cdd63ee4b215b53f4a971",
       "phoneCrop": [
         15,
         14,
@@ -208,7 +208,7 @@
       "family": "diagnostic-preview",
       "state": "minimal",
       "source": "design/proposals/support-plates/diagnostic-preview--minimal.svg",
-      "sourceSHA256": "604c348f09a7cbae00e05ffae3c14af7efef649660fefeca1e7417355e3c6b10",
+      "sourceSHA256": "ffb470f48f328c907296cb73796cd40342f93b93764e8c065f3f22ed4b98387f",
       "phoneCrop": [
         15,
         14,
@@ -228,7 +228,7 @@
       "family": "diagnostic-preview",
       "state": "expanded",
       "source": "design/proposals/support-plates/diagnostic-preview--expanded.svg",
-      "sourceSHA256": "29bee6a8a3d59a4724e0603372f78734d3942055bc13a4dcb3259e7be0f76d3d",
+      "sourceSHA256": "63c94e2cf25eb466b0c604bf3de702abe2a825d73731326816aece91c38a4fc1",
       "phoneCrop": [
         15,
         14,
@@ -248,7 +248,7 @@
       "family": "whats-new",
       "state": "latest",
       "source": "design/proposals/support-plates/whats-new--latest.svg",
-      "sourceSHA256": "19911936aeda2db3ca9a99290ebe445b1654beb708f94b9336b63df59f6471c2",
+      "sourceSHA256": "e2ac33156ad3f7e90ebbb42895433c4d834730c575a8ce66b40d781e11e17eb0",
       "phoneCrop": [
         15,
         14,
@@ -268,7 +268,7 @@
       "family": "whats-new",
       "state": "no-notes",
       "source": "design/proposals/support-plates/whats-new--no-notes.svg",
-      "sourceSHA256": "4e33b753a9cd6a998141843331ec13afa705c83f002bf36e2203c19ffe32baa0",
+      "sourceSHA256": "e013d169a2e9c31f97bd5c4a8357ab3a9625512b3999d5a099e9dbc6af8e224a",
       "phoneCrop": [
         15,
         14,
@@ -288,7 +288,7 @@
       "family": "updates",
       "state": "sideload",
       "source": "design/proposals/support-plates/updates--sideload.svg",
-      "sourceSHA256": "3d4b8c610db4e2201a77c7a5cde21b77ac09355917848a0acd0ba74ed57e7b14",
+      "sourceSHA256": "703414e235af0a52a0945ed3f45e1373a64e706e8625c58a00ac6daefb5517f1",
       "phoneCrop": [
         15,
         14,
@@ -308,7 +308,7 @@
       "family": "updates",
       "state": "play-eligible",
       "source": "design/proposals/support-plates/updates--play-eligible.svg",
-      "sourceSHA256": "9282086ada50972e9f0f12adef5451c5a39b373317c19629464142b750043b33",
+      "sourceSHA256": "da39bc4a689b1fce3aff98babd74d8fc2a6a4397190c63649eb986885e3436ec",
       "phoneCrop": [
         15,
         14,
@@ -328,7 +328,7 @@
       "family": "updates",
       "state": "offline",
       "source": "design/proposals/support-plates/updates--offline.svg",
-      "sourceSHA256": "3aafb86aaf27a9b408c78ec0a2afd17a66d77e32e4d248218fabe0eac9895b7c",
+      "sourceSHA256": "9b48409a92a7159fa1cb48afe4eb4c06968f6bb79145382398196e4b18a2365e",
       "phoneCrop": [
         15,
         14,
@@ -348,7 +348,7 @@
       "family": "rate-review",
       "state": "not-available",
       "source": "design/proposals/support-plates/rate-review--not-available.svg",
-      "sourceSHA256": "d7efeff7fff974405db2118368af784cc7043a8ade4ad4aab96aac947237d71e",
+      "sourceSHA256": "3fe2d07bba2d705cd9adf698f2bf8136c70c17c28c5f919fcbe3a00b3766df54",
       "phoneCrop": [
         15,
         14,
@@ -368,7 +368,7 @@
       "family": "rate-review",
       "state": "play-listing",
       "source": "design/proposals/support-plates/rate-review--play-listing.svg",
-      "sourceSHA256": "ee5e941f2ecc9313ab412d53b30420060e004ddf5251eca8f5dddf9b0dc9e811",
+      "sourceSHA256": "3e30c6acf497e92aa449f69da62d967b0128f13a8c51bbb87b887801613b914c",
       "phoneCrop": [
         15,
         14,
@@ -388,7 +388,7 @@
       "family": "privacy",
       "state": "local-only",
       "source": "design/proposals/support-plates/privacy--local-only.svg",
-      "sourceSHA256": "de6338cdf90e68c10fb6274e8dd6c5c61991da55ea3737c298f4c8f9e24442f9",
+      "sourceSHA256": "f97942922049153dd06083a720e94cde8822b3a05d1c1f0b978a4c0c236875ab",
       "phoneCrop": [
         15,
         14,
@@ -408,7 +408,7 @@
       "family": "privacy",
       "state": "diagnostics-opt-in",
       "source": "design/proposals/support-plates/privacy--diagnostics-opt-in.svg",
-      "sourceSHA256": "769fc75d4dd567fec1b1c262b3008872aebe4f612063894bf2204844110d6a7d",
+      "sourceSHA256": "17923ae9dfb39aa25c0b7094618846a096dd79e9a0c23d13b5ffc84ea59132a4",
       "phoneCrop": [
         15,
         14,
@@ -428,7 +428,7 @@
       "family": "storage-management",
       "state": "overview",
       "source": "design/proposals/support-plates/storage-management--overview.svg",
-      "sourceSHA256": "60cb8982889254341db391e5dcd4ddee2992bec6ecc969f3a79a6b562a585372",
+      "sourceSHA256": "ba2eaaafb039dafd6b8075b00ab9857619a4f66d835e107343e7d3f41099b4ce",
       "phoneCrop": [
         15,
         14,
@@ -448,7 +448,7 @@
       "family": "storage-management",
       "state": "delete-confirm",
       "source": "design/proposals/support-plates/storage-management--delete-confirm.svg",
-      "sourceSHA256": "f787cc945f21c5ea8cf033393aad6c51e8d25c6eda670883853668c05c8326c9",
+      "sourceSHA256": "32a8bf2a18789db738974a74cd8f26b1a9f9e9364ba154c1b680dd9638a30c79",
       "phoneCrop": [
         15,
         14,
@@ -468,7 +468,7 @@
       "family": "storage-management",
       "state": "low-storage",
       "source": "design/proposals/support-plates/storage-management--low-storage.svg",
-      "sourceSHA256": "dece024b090926d20cd76b524fe8be72c1621d82acde93265a877657911b45da",
+      "sourceSHA256": "4d6d55dbbd8d6b377bedcd04e04a97d9cd41031849cff6c73829efdc8d67d98d",
       "phoneCrop": [
         15,
         14,
@@ -488,7 +488,7 @@
       "family": "permissions-capabilities",
       "state": "available",
       "source": "design/proposals/support-plates/permissions-capabilities--available.svg",
-      "sourceSHA256": "b46045ab2a60fba31d96b9dbdb1f77a7dd2e15e7e0270623781d4741f8b1d683",
+      "sourceSHA256": "f2ac2acfd0108a30e9ea5dc35dab5e684dcdadcc967b9eaa50f0a8086a1ad7f7",
       "phoneCrop": [
         15,
         14,
@@ -508,7 +508,7 @@
       "family": "permissions-capabilities",
       "state": "restricted",
       "source": "design/proposals/support-plates/permissions-capabilities--restricted.svg",
-      "sourceSHA256": "7da7003c23b84133bb1c83c940e52d28b32ae32f7c9ac34da46571fa36c44a1f",
+      "sourceSHA256": "05b1a4271071880d584490f8970ce07f5534300c649390363a79570d34186979",
       "phoneCrop": [
         15,
         14,
@@ -528,7 +528,7 @@
       "family": "credits-licences",
       "state": "components",
       "source": "design/proposals/support-plates/credits-licences--components.svg",
-      "sourceSHA256": "9c48a0bbd59339301645dfa066919211c8563892682f68cabe594da9f3b4d513",
+      "sourceSHA256": "cbaf7d57a79f3b4cfff035e543883834bc376b942cadd57b4e773ce59eeeb857",
       "phoneCrop": [
         15,
         14,
@@ -548,7 +548,7 @@
       "family": "credits-licences",
       "state": "rights-warning",
       "source": "design/proposals/support-plates/credits-licences--rights-warning.svg",
-      "sourceSHA256": "226ca6b542fe2c00a0a47c9c848d823e4f287c889cba6e5b016b87b4b7c595a6",
+      "sourceSHA256": "286594784115d2a1d1aba6fe44e856e49ecbddd3ae5ee35783621396b51f1ad5",
       "phoneCrop": [
         15,
         14,
@@ -568,7 +568,7 @@
       "family": "beta-feedback",
       "state": "invitation",
       "source": "design/proposals/support-plates/beta-feedback--invitation.svg",
-      "sourceSHA256": "628a2c7814f90e10b4172078012727a9b60c8b3a0c5602ab6d71493d8b833219",
+      "sourceSHA256": "7bfff36bef4f2fda03163c36546267f81f8a3f9c6af2fc337f50b91d110efa0c",
       "phoneCrop": [
         15,
         14,
@@ -588,7 +588,7 @@
       "family": "beta-feedback",
       "state": "share-preview",
       "source": "design/proposals/support-plates/beta-feedback--share-preview.svg",
-      "sourceSHA256": "9d6968faacef0acbc11e1e01db2ed2d07fbfb9f445ae06045cd6d7ab9dcb33c8",
+      "sourceSHA256": "180e43b2525f45738daa8a9c993bd70bb4c3cfee7fd1c7c39dfb899e55e4a3e1",
       "phoneCrop": [
         15,
         14,
@@ -608,7 +608,7 @@
       "family": "notification-preferences",
       "state": "not-implemented",
       "source": "design/proposals/support-plates/notification-preferences--not-implemented.svg",
-      "sourceSHA256": "2baa518ccd75b6d4ee4a8e06f26826bea667da250c76af3f31ffce8279b8d5aa",
+      "sourceSHA256": "0ce8729da19ae607148d60213b84a1e042acec2371fd3dc52c1004824783b8ce",
       "phoneCrop": [
         15,
         14,
@@ -628,7 +628,7 @@
       "family": "notification-preferences",
       "state": "available",
       "source": "design/proposals/support-plates/notification-preferences--available.svg",
-      "sourceSHA256": "240aa2b06027ddaa9cd055a1900c037e488224a2a1e48edf1a4e5416f8e1ab0b",
+      "sourceSHA256": "16a027867ff16c66a27f209a044b851891a096f6568cbdb7d56cc6713887620d",
       "phoneCrop": [
         15,
         14,
@@ -648,7 +648,7 @@
       "family": "external-handler-fallback",
       "state": "email-missing",
       "source": "design/proposals/support-plates/external-handler-fallback--email-missing.svg",
-      "sourceSHA256": "457b30c47d6fefabb6a6b277b48c6b3b89573d5a4d1d94990a7cf670407e3051",
+      "sourceSHA256": "4cbe6b03d6fbc11094f039ba274b932cb7cb1cdcc461b3bea8d469aaa77dc6b6",
       "phoneCrop": [
         15,
         14,
@@ -668,7 +668,7 @@
       "family": "external-handler-fallback",
       "state": "chooser-cancelled",
       "source": "design/proposals/support-plates/external-handler-fallback--chooser-cancelled.svg",
-      "sourceSHA256": "08b4680d7ed987dd8578ec4c848337f725ca527fb4f77dd75e0a869892c17d41",
+      "sourceSHA256": "cfd74839a10bdb9e1a5929f41883d287a3fdcc15f71500670c312eaa9b19a65a",
       "phoneCrop": [
         15,
         14,
@@ -688,32 +688,32 @@
   "contacts": [
     {
       "name": "support-phone-contact-01.jpg",
-      "SHA256": "49fef6d0ef1261069a8e885295c2efdf9ed5a7afaca47ef29f52d2a3860acb61",
+      "SHA256": "237d1bd8a720702fc2aad5a628597522b132aa8ee4d926e67df200c1d212df91",
       "sourceCount": 6
     },
     {
       "name": "support-phone-contact-02.jpg",
-      "SHA256": "de586ee61121036720d427af3b5ea8ae614acbb5709cfd69977d7e5a8388bcdf",
+      "SHA256": "f56e3004e3a52946a3ef73d60aecf645d31369f4a5192d6887b01968682370ab",
       "sourceCount": 6
     },
     {
       "name": "support-phone-contact-03.jpg",
-      "SHA256": "e3d23a972baff1b4f24953d887423cd7ba1879976ac7b05309de3c0c733731ba",
+      "SHA256": "53da08e1fbf1d2e8a438ecebb4e2a433cfd1729fb455e2950aba214c3a57aa14",
       "sourceCount": 6
     },
     {
       "name": "support-phone-contact-04.jpg",
-      "SHA256": "6fbe61f1aba1c5b7dda5b2a1c89597d4cb47b815f7b0ee7e5dc80d3ec167553d",
+      "SHA256": "045ff92945f44815e73351800b2e3cb31b54aac29e32ca8f9d0cd67dec4053f3",
       "sourceCount": 6
     },
     {
       "name": "support-phone-contact-05.jpg",
-      "SHA256": "5a5fe1576e9d6ec9d46e1efd6d2cabf287da73c4b2785b1a94b0a25c71f6eccf",
+      "SHA256": "28943d22eee8c22ca615e397454656eed36e7b183b77c41465b10a8a11d7af1e",
       "sourceCount": 6
     },
     {
       "name": "support-phone-contact-06.jpg",
-      "SHA256": "856fc039195987a491afb2df9d3c54b402c729d599aede292b0c26278b4f36ed",
+      "SHA256": "0ec7092a746ef8c937e858c4708463ebbe2b41a15497b87020b0fbc7fdd1f9e9",
       "sourceCount": 4
     }
   ]

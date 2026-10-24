@@ -4,7 +4,7 @@
   "cases": [
     {
       "source": "design/proposals/support-plates/help--topics.svg",
-      "sourceSHA256": "e8908c3de07978bcfef449a0be054c87c2e88056911c86223dfe25285e53add5",
+      "sourceSHA256": "07aae340c6279e7c93a711ed7b31e9f6c92bad3246678536593d3443d5ca1ad5",
       "scaledPhonePixels": [
         320,
         710
@@ -18,7 +18,7 @@
     },
     {
       "source": "design/proposals/support-plates/report-problem--with-diagnostics.svg",
-      "sourceSHA256": "9f51918fd75ead9b35648e535500f7c60e15ae13ed77cd5a10c48cca7488c476",
+      "sourceSHA256": "62f13a49e9c53fb37b7ccb26df67a90c7a3270d6ed47eab7e1ba84120593fd74",
       "scaledPhonePixels": [
         320,
         710
@@ -32,7 +32,7 @@
     },
     {
       "source": "design/proposals/support-plates/diagnostic-preview--expanded.svg",
-      "sourceSHA256": "29bee6a8a3d59a4724e0603372f78734d3942055bc13a4dcb3259e7be0f76d3d",
+      "sourceSHA256": "63c94e2cf25eb466b0c604bf3de702abe2a825d73731326816aece91c38a4fc1",
       "scaledPhonePixels": [
         320,
         710
@@ -46,7 +46,7 @@
     },
     {
       "source": "design/proposals/support-plates/storage-management--delete-confirm.svg",
-      "sourceSHA256": "f787cc945f21c5ea8cf033393aad6c51e8d25c6eda670883853668c05c8326c9",
+      "sourceSHA256": "32a8bf2a18789db738974a74cd8f26b1a9f9e9364ba154c1b680dd9638a30c79",
       "scaledPhonePixels": [
         320,
         710
@@ -60,7 +60,7 @@
     },
     {
       "source": "design/proposals/support-plates/beta-feedback--share-preview.svg",
-      "sourceSHA256": "9d6968faacef0acbc11e1e01db2ed2d07fbfb9f445ae06045cd6d7ab9dcb33c8",
+      "sourceSHA256": "180e43b2525f45738daa8a9c993bd70bb4c3cfee7fd1c7c39dfb899e55e4a3e1",
       "scaledPhonePixels": [
         320,
         710
@@ -74,7 +74,7 @@
     },
     {
       "source": "design/proposals/support-plates/external-handler-fallback--chooser-cancelled.svg",
-      "sourceSHA256": "08b4680d7ed987dd8578ec4c848337f725ca527fb4f77dd75e0a869892c17d41",
+      "sourceSHA256": "cfd74839a10bdb9e1a5929f41883d287a3fdcc15f71500670c312eaa9b19a65a",
       "scaledPhonePixels": [
         320,
         710
@@ -87,6 +87,6 @@
       "ownerApproved": false
     }
   ],
-  "imageSHA256": "9b13eed9ae99d11886fe6e78edcbf41bcbe003f5d88406e6de661e8012e182e2",
+  "imageSHA256": "d0ac3a41b55696e0c5f1015d170c6ffa1f85bc7d23fa3b3601e34ebb9ba9b3d3",
   "warning": "No physical dp/insets, dynamic font reflow, OS focus, TalkBack or device result; visual redlines only"
 }

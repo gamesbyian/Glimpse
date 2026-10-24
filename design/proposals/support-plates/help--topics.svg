@@ -1,45 +1,45 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1160 920" width="1160" height="920" role="img" aria-label="Help topics unapproved Glimpse visual reference"><rect width="1160" height="920" fill="#E9E3D9"/>
 <rect x="15" y="14" width="401" height="890" rx="22" fill="#F6F0E6" stroke="#C4B7A4" stroke-width="2"/>
 <text x="39" y="45" font-family="Arial,Helvetica,sans-serif" fill="#153F46" font-size="14" font-weight="600">9:41</text>
-<text x="364" y="45" font-family="Arial,Helvetica,sans-serif" fill="#667975" font-size="13" font-weight="400">●  ▰  ▴</text>
+<text x="364" y="45" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="13" font-weight="400">●  ▰  ▴</text>
 <path d="M32 55h368" stroke="#C8B7A1"/>
-<rect x="29" y="59" width="91" height="44" rx="12" fill="#E4ECE6" data-control="back" data-focus-order="1" data-hit-width="91" data-hit-height="44"/>
+<rect x="29" y="57" width="91" height="48" rx="12" fill="#E4ECE6" data-control="back" data-focus-order="1" data-hit-width="91" data-hit-height="48"/>
 <text x="35" y="88" font-family="Arial,Helvetica,sans-serif" fill="#1D5960" font-size="16" font-weight="650">‹ Back</text>
 <text x="37" y="129" font-family="Arial,Helvetica,sans-serif" fill="#153F46" font-size="28" font-weight="700">Help</text>
-<text x="38" y="155" font-family="Arial,Helvetica,sans-serif" fill="#667975" font-size="15" font-weight="400">How Glimpse works</text>
+<text x="38" y="155" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="15" font-weight="400">How Glimpse works</text>
 <g id="support-body" transform="translate(0,-24)">
 <rect x="40" y="221" width="348" height="100" rx="13" fill="#FFFCF6" stroke="#C8B7A1" stroke-width="1"/>
 <text x="53" y="247" font-family="Arial,Helvetica,sans-serif" fill="#153F46" font-size="17" font-weight="650">Get photos into Glimpse</text>
-<text x="53" y="270" font-family="Arial,Helvetica,sans-serif" fill="#667975" font-size="14" font-weight="400">Use Android Photo Picker or a supported</text>
-<text x="53" y="289" font-family="Arial,Helvetica,sans-serif" fill="#667975" font-size="14" font-weight="400">share action</text>
+<text x="53" y="270" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="14" font-weight="400">Use Android Photo Picker or a supported</text>
+<text x="53" y="289" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="14" font-weight="400">share action</text>
 <text x="53" y="309" font-family="Arial,Helvetica,sans-serif" fill="#1D5960" font-size="13" font-weight="650">Read import guide</text>
 <rect x="40" y="336" width="348" height="100" rx="13" fill="#FFFCF6" stroke="#C8B7A1" stroke-width="1"/>
 <text x="53" y="362" font-family="Arial,Helvetica,sans-serif" fill="#153F46" font-size="17" font-weight="650">Browse without changing wallpaper</text>
-<text x="53" y="385" font-family="Arial,Helvetica,sans-serif" fill="#667975" font-size="14" font-weight="400">The reel and Grid select a preview only</text>
+<text x="53" y="385" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="14" font-weight="400">The reel and Grid select a preview only</text>
 <text x="53" y="424" font-family="Arial,Helvetica,sans-serif" fill="#1D5960" font-size="13" font-weight="650">Learn the reel</text>
 <rect x="40" y="451" width="348" height="100" rx="13" fill="#FFFCF6" stroke="#C8B7A1" stroke-width="1"/>
 <text x="53" y="477" font-family="Arial,Helvetica,sans-serif" fill="#153F46" font-size="17" font-weight="650">Apply a wallpaper</text>
-<text x="53" y="500" font-family="Arial,Helvetica,sans-serif" fill="#667975" font-size="14" font-weight="400">Choose Home or Lock where supported</text>
+<text x="53" y="500" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="14" font-weight="400">Choose Home or Lock where supported</text>
 <text x="53" y="539" font-family="Arial,Helvetica,sans-serif" fill="#1D5960" font-size="13" font-weight="650">What changes?</text>
 <rect x="40" y="566" width="348" height="100" rx="13" fill="#FFFCF6" stroke="#C8B7A1" stroke-width="1"/>
 <text x="53" y="592" font-family="Arial,Helvetica,sans-serif" fill="#153F46" font-size="17" font-weight="650">Rotation and Android restrictions</text>
-<text x="53" y="615" font-family="Arial,Helvetica,sans-serif" fill="#667975" font-size="14" font-weight="400">Why five minutes means eligible, not</text>
-<text x="53" y="634" font-family="Arial,Helvetica,sans-serif" fill="#667975" font-size="14" font-weight="400">guaranteed</text>
+<text x="53" y="615" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="14" font-weight="400">Why five minutes means eligible, not</text>
+<text x="53" y="634" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="14" font-weight="400">guaranteed</text>
 <text x="53" y="654" font-family="Arial,Helvetica,sans-serif" fill="#1D5960" font-size="13" font-weight="650">Fix a problem</text>
 </g>
 <path d="M29 817h373" stroke="#C8B7A1"/>
 <g id="support-navigation" aria-label="Four tab destinations; static touch region proposal only">
-<rect x="31" y="822" width="86" height="46" rx="12" fill="#EBE5DB" data-control="nav-home" data-focus-order="90" data-hit-width="86" data-hit-height="46"/>
-<rect x="126" y="822" width="86" height="46" rx="12" fill="#EBE5DB" data-control="nav-discover" data-focus-order="91" data-hit-width="86" data-hit-height="46"/>
-<rect x="222" y="822" width="91" height="46" rx="12" fill="#EBE5DB" data-control="nav-collections" data-focus-order="92" data-hit-width="91" data-hit-height="46"/>
-<rect x="320" y="822" width="91" height="46" rx="12" fill="#EBE5DB" data-control="nav-automation" data-focus-order="93" data-hit-width="91" data-hit-height="46"/>
+<rect x="31" y="820" width="86" height="50" rx="12" fill="#EBE5DB" data-control="nav-home" data-focus-order="90" data-hit-width="86" data-hit-height="50"/>
+<rect x="126" y="820" width="86" height="50" rx="12" fill="#EBE5DB" data-control="nav-discover" data-focus-order="91" data-hit-width="86" data-hit-height="50"/>
+<rect x="222" y="820" width="91" height="50" rx="12" fill="#EBE5DB" data-control="nav-collections" data-focus-order="92" data-hit-width="91" data-hit-height="50"/>
+<rect x="320" y="820" width="91" height="50" rx="12" fill="#EBE5DB" data-control="nav-automation" data-focus-order="93" data-hit-width="91" data-hit-height="50"/>
 </g>
 
-<text x="45" y="851" font-family="Arial,Helvetica,sans-serif" fill="#667975" font-size="13" font-weight="500">Home</text>
-<text x="141" y="851" font-family="Arial,Helvetica,sans-serif" fill="#667975" font-size="13" font-weight="500">Discover</text>
-<text x="237" y="851" font-family="Arial,Helvetica,sans-serif" fill="#667975" font-size="13" font-weight="500">Collections</text>
-<text x="333" y="851" font-family="Arial,Helvetica,sans-serif" fill="#667975" font-size="13" font-weight="500">Automation</text>
-<text x="39" y="895" font-family="Arial,Helvetica,sans-serif" fill="#667975" font-size="11" font-weight="650">SCREEN PROPOSAL • NOT USER-APPROVED</text>
+<text x="45" y="851" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="13" font-weight="500">Home</text>
+<text x="141" y="851" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="13" font-weight="500">Discover</text>
+<text x="237" y="851" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="13" font-weight="500">Collections</text>
+<text x="333" y="851" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="13" font-weight="500">Automation</text>
+<text x="39" y="895" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="11" font-weight="650">SCREEN PROPOSAL • NOT USER-APPROVED</text>
 <rect x="440" y="14" width="705" height="890" rx="16" fill="#FCF9F3" stroke="#C4B7A4" stroke-width="2"/>
 <text x="464" y="49" font-family="Arial,Helvetica,sans-serif" fill="#153F46" font-size="18" font-weight="700">UNIFIED GLIMPSE REFERENCE SYSTEM</text>
 <text x="465" y="80" font-family="Arial,Helvetica,sans-serif" fill="#1D5960" font-size="19" font-weight="650">HELP  /  topics</text>
