@@ -54,13 +54,16 @@ def build():
         svg.append(f'<clipPath id="{p["key"]}-photo"><rect x="49" y="0" width="112" height="109" rx="13"/></clipPath>')
     svg.append('</defs>')
     svg += [rect(0,0,1160,920,"#E9E2D6",0,"none"),rect(15,14,401,890,"#F6F0E6",22),
-            txt(38,44,"9:41",14,700),txt(358,44,"● ▰",12,500,"#667975"),
+            txt(38,44,"9:41",14,700),'<circle cx="354" cy="38" r="3" fill="#667975"/>',
+            '<rect x="365" y="32" width="14" height="9" rx="2" fill="none" stroke="#667975"/>',
+            '<rect x="379" y="35" width="3" height="3" rx="1" fill="#667975"/>',
             txt(38,100,"Collections",30,700),txt(39,131,"Keep your favorite photographs together",13,500,"#536F70"),
             rect(39,153,353,49),txt(57,184,"Search collections",15,500,"#667975"),
             '<circle cx="358" cy="176" r="7" stroke="#537174" stroke-width="2" fill="none"/>',
             '<path d="M364 182l8 8" stroke="#537174" stroke-width="2"/>',
             txt(40,229,"3 collections · locally saved",15,700),
-            txt(323,229,"Sort ▾",14,600,"#1D5960")]
+            txt(327,229,"Sort",14,600,"#1D5960"),
+            '<path d="M363 222l6 7 6 -7" stroke="#1D5960" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>']
     y0=245
     for idx,(name,p) in enumerate(photos.items()):
         y=y0+idx*150
