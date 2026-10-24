@@ -54,6 +54,26 @@ for photo in size_examples:
         src=file.read_text(encoding="utf-8")
         assert len(re.findall(r'<g clip-path="url\(#c[0-4]\)"><use href="#fixture[1-6]"',src))==min(n,5)
 
+offline_path=ROOT/"design/proposals/audit-revisions/r04-import-offline-17-of-22.svg"
+offline=ET.parse(offline_path).getroot()
+offline_meta=json.loads(offline.find("{http://www.w3.org/2000/svg}metadata").text)
+assert offline_meta["networkStatus"]=="offline"
+assert offline_meta["verifiedLocalCopies"]==17
+assert offline_meta["pendingPhotos"]==5
+assert offline_meta["hasFullBatchSuccess"] is False
+assert offline_meta["resumeEligibility"]=="requires-network-and-valid-provider-permission"
+phone_labels=[
+    e.text or "" for e in offline.iter()
+    if e.tag=="{http://www.w3.org/2000/svg}text"
+    and float(e.attrib.get("x",1000))<420
+]
+joined=" | ".join(phone_labels)
+assert "17 of 22 saved locally" in joined
+assert "Resume unavailable" in joined
+assert "Review 17 saved photos" in joined
+assert "No wallpaper was applied by importing" in joined
+assert "22 of 22" not in joined, "No all-verified claim when offline"
+
 print(f"PASS: 56 required audit scenarios traced; {states['PICTURED']} pictured, "
       f"{states['PARTIAL']} partial, {states['MISSING_SPECIFIC']} missing-specific. "
       "Six finite-size source cases; ZERO native/owner acceptance claims.")
