@@ -229,6 +229,11 @@ def validate(manifest, root):
             require(is_sha(record["originalSHA256"]) and
                     record["originalUrl"].startswith("https://"),
                     "Original source proof is incomplete")
+    verified = [x["sha256"] for x in records if x["rightsStatus"] == "verified"]
+    require(len(verified) == 7 and len(set(verified)) == 7,
+            "All seven independent Grid/Home photo IDs need unique source pixels")
+    require(not (set(verified) & set(fixtures.values())),
+            "Verified photographs cannot alias rights-unverified research fixtures")
     for lead in manifest["photographicLeads"]:
         published = lead["verificationStatus"].startswith("source-CC0-page-observed")
         if published:
