@@ -1,35 +1,57 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1160" height="920" viewBox="0 0 1160 920" role="img" aria-label="Proposed Glimpse activity annotated layout, default state, not yet approved"><rect width="1160" height="920" fill="#E9E3D9"/>
-<rect x="15" y="14" width="401" height="890" rx="22" fill="#F6F0E6" stroke="#C4B7A4" stroke-width="2"/>
-<text x="40" y="44" fill="#153F46" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="650" text-anchor="start">9:41</text>
-<text x="391" y="44" fill="#667975" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="400" text-anchor="end">● ▰ ▴</text>
-<path d="M31 56 L400 56" stroke="#C8B7A1" stroke-width="1" fill="none"/>
-<text x="36" y="99" fill="#153F46" font-family="Arial,Helvetica,sans-serif" font-size="32" font-weight="700" text-anchor="start">Activity</text>
-<text x="38" y="125" fill="#667975" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="400" text-anchor="start">Recorded Glimpse actions</text>
-<rect x="41" y="166" width="334" height="105" rx="13" fill="#FFFCF6" stroke="#C8B7A1" stroke-width="1"/>
-<text x="55" y="192" fill="#153F46" font-family="Arial,Helvetica,sans-serif" font-size="17" font-weight="650" text-anchor="start">00:11 · Home</text>
-<text x="55" y="214" fill="#667975" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="400" text-anchor="start">Home acknowledged; device may differ</text>
-<text x="55" y="254" fill="#1D5960" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="650" text-anchor="start">Review p04</text>
-<rect x="41" y="314" width="334" height="105" rx="13" fill="#FFFCF6" stroke="#C8B7A1" stroke-width="1"/>
-<text x="55" y="340" fill="#153F46" font-family="Arial,Helvetica,sans-serif" font-size="17" font-weight="650" text-anchor="start">00:06 · Home</text>
-<text x="55" y="362" fill="#667975" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="400" text-anchor="start">Skipped · one available photo</text>
-<text x="55" y="402" fill="#1D5960" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="650" text-anchor="start">Why?</text>
-<rect x="41" y="462" width="334" height="105" rx="13" fill="#FFFCF6" stroke="#C8B7A1" stroke-width="1"/>
-<text x="55" y="488" fill="#153F46" font-family="Arial,Helvetica,sans-serif" font-size="17" font-weight="650" text-anchor="start">00:01 · Home</text>
-<text x="55" y="510" fill="#667975" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="400" text-anchor="start">Eligible; no new apply logged</text>
-<text x="55" y="550" fill="#1D5960" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="650" text-anchor="start">Troubleshoot</text>
-<rect x="42" y="737" width="342" height="42" rx="18" fill="#1D5960" stroke="#1D5960" stroke-width="1"/>
-<text x="213" y="764" fill="#FFFFFF" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="650" text-anchor="middle">Review last Home choice</text>
-<rect x="24" y="823" width="384" height="56" rx="0" fill="#FFFCF6" stroke="none" stroke-width="1"/>
-<path d="M24 823 L408 823" stroke="#CEBC9F" stroke-width="1" fill="none"/>
-<text x="71" y="857" fill="#667975" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="600" text-anchor="middle">Home</text>
-<text x="167" y="857" fill="#667975" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="600" text-anchor="middle">Discover</text>
-<text x="263" y="857" fill="#667975" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="600" text-anchor="middle">Collections</text>
-<text x="359" y="857" fill="#667975" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="600" text-anchor="middle">Automation</text>
-<text x="35" y="897" fill="#667975" font-family="Arial,Helvetica,sans-serif" font-size="11" font-weight="650" text-anchor="start">PROPOSAL / NOT APPROVED</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="1160" height="920" viewBox="0 0 1160 920" role="img" aria-label="Proposed Glimpse activity annotated layout, default state, not yet approved"><rect x="0" y="0" width="1160" height="920" rx="0" fill="#E9E3D9" stroke="none"/>
+<rect x="15" y="14" width="401" height="890" rx="22" fill="#F6F0E6" stroke="#C4B7A4"/>
+<text x="39" y="44" fill="#153F46" font-size="14" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="start">9:41</text>
+<text x="390" y="44" fill="#566861" font-size="13" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="end">●  ●  ●</text>
+<path d="M31 56 L400 56" fill="none" stroke="#C8B7A1"/>
+<path d="M31 146 L400 146" fill="none" stroke="#C8B7A1"/>
+<text x="35" y="100" fill="#153F46" font-size="31" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="start">Activity</text>
+<rect x="354" y="69" width="48" height="48" rx="24" fill="#FFFCF6" stroke="#C8B7A1"/>
+<text x="378" y="99" fill="#153F46" font-size="20" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="middle">•••</text>
+<text x="36" y="132" fill="#566861" font-size="14" font-weight="500" font-family="Arial,Helvetica,sans-serif" text-anchor="start">Recorded Glimpse actions</text>
+<rect x="35" y="164" width="362" height="66" rx="13" fill="#F5E6D1" stroke="none"/>
+<rect x="47" y="174" width="4" height="46" rx="2" fill="#1D5960" stroke="none"/>
+<text x="61" y="190" fill="#153F46" font-size="15" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="start">Home acknowledged; device may differ</text>
+<text x="61" y="212" fill="#566861" font-size="13" font-weight="500" font-family="Arial,Helvetica,sans-serif" text-anchor="start">p04; Android current wallpaper unknown.</text>
+<text x="36" y="271" fill="#153F46" font-size="20" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="start">Recent events</text>
+<rect x="42" y="298" width="15" height="15" rx="8" fill="#DAEDE1" stroke="#1D5960"/>
+<path d="M49 315 L49 365" fill="none" stroke="#C8B7A1"/>
+<text x="71" y="308" fill="#1D5960" font-size="13" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="start">14:03</text>
+<text x="71" y="330" fill="#153F46" font-size="16" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="start">Home change requested</text>
+<text x="71" y="350" fill="#566861" font-size="13" font-weight="500" font-family="Arial,Helvetica,sans-serif" text-anchor="start">p04 locally acknowledged</text>
+<rect x="42" y="381" width="15" height="15" rx="8" fill="#DAEDE1" stroke="#1D5960"/>
+<path d="M49 398 L49 448" fill="none" stroke="#C8B7A1"/>
+<text x="71" y="391" fill="#1D5960" font-size="13" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="start">13:58</text>
+<text x="71" y="413" fill="#153F46" font-size="16" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="start">Rotation paused</text>
+<text x="71" y="433" fill="#566861" font-size="13" font-weight="500" font-family="Arial,Helvetica,sans-serif" text-anchor="start">User intent now paused</text>
+<rect x="42" y="464" width="15" height="15" rx="8" fill="#DAEDE1" stroke="#1D5960"/>
+<path d="M49 481 L49 531" fill="none" stroke="#C8B7A1"/>
+<text x="71" y="474" fill="#1D5960" font-size="13" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="start">12:25</text>
+<text x="71" y="496" fill="#153F46" font-size="16" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="start">No new wallpaper action</text>
+<text x="71" y="516" fill="#566861" font-size="13" font-weight="500" font-family="Arial,Helvetica,sans-serif" text-anchor="start">no new apply logged</text>
+<rect x="35" y="575" width="362" height="66" rx="14" fill="#FFFCF6" stroke="#C8B7A1"/>
+<rect x="47" y="588" width="42" height="40" rx="12" fill="#DAEDE1" stroke="none"/>
+<text x="68" y="614" fill="#1D5960" font-size="17" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="middle">?</text>
+<text x="103" y="601" fill="#153F46" font-size="16" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="start">Review last Home choice</text>
+<text x="103" y="623" fill="#566861" font-size="13" font-weight="500" font-family="Arial,Helvetica,sans-serif" text-anchor="start">Check permissions and source health</text>
+<text x="382" y="614" fill="#1D5960" font-size="23" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="middle">›</text>
+<rect x="35" y="658" width="362" height="66" rx="13" fill="#F5E6D1" stroke="none"/>
+<rect x="47" y="668" width="4" height="46" rx="2" fill="#1D5960" stroke="none"/>
+<text x="61" y="684" fill="#153F46" font-size="15" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="start">Review before retrying</text>
+<text x="61" y="706" fill="#566861" font-size="13" font-weight="500" font-family="Arial,Helvetica,sans-serif" text-anchor="start">An unverified state is not success.</text>
+<rect x="35" y="745" width="362" height="54" rx="18" fill="#1D5960" stroke="none"/>
+<text x="216" y="780" fill="#FFFFFF" font-size="16" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="middle">Review p04</text>
+<rect x="24" y="823" width="384" height="56" rx="0" fill="#FFFCF6" stroke="none"/>
+<path d="M24 823 L408 823" fill="none" stroke="#C8B7A1"/>
+<rect x="31" y="829" width="80" height="40" rx="13" fill="#DAEDE1" stroke="none"/>
+<text x="71" y="856" fill="#1D5960" font-size="13" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="middle">Home</text>
+<text x="167" y="856" fill="#566861" font-size="13" font-weight="600" font-family="Arial,Helvetica,sans-serif" text-anchor="middle">Discover</text>
+<text x="263" y="856" fill="#566861" font-size="13" font-weight="600" font-family="Arial,Helvetica,sans-serif" text-anchor="middle">Collections</text>
+<text x="359" y="856" fill="#566861" font-size="12" font-weight="600" font-family="Arial,Helvetica,sans-serif" text-anchor="middle">Automation</text>
+<text x="35" y="898" fill="#566861" font-size="10" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="start">PROPOSAL / NOT APPROVED</text>
 <rect x="439" y="14" width="707" height="890" rx="17" fill="#FCF9F3" stroke="#C4B7A4" stroke-width="2"/>
-<text x="462" y="47" fill="#153F46" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="700" text-anchor="start">VISUAL COVERAGE PLATE</text>
+<text x="462" y="47" fill="#153F46" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="700" text-anchor="start">PRIMARY SURFACE · PRODUCTION A</text>
 <text x="462" y="78" fill="#1D5960" font-family="Arial,Helvetica,sans-serif" font-size="22" font-weight="700" text-anchor="start">ACTIVITY · default</text>
-<text x="462" y="106" fill="#667975" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="400" text-anchor="start">Coherent screen-family schematic; not a user-approved screenshot</text>
+<text x="462" y="106" fill="#667975" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="400" text-anchor="start">Editable task-driven proposal; native and owner review pending</text>
 <path d="M453 124 L1130 124" stroke="#C8B7A1" stroke-width="1" fill="none"/>
 <text x="463" y="151" fill="#1D5960" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="700" text-anchor="start">REQUIRED ON THIS SURFACE</text>
 <text x="463" y="177" fill="#153F46" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="400" text-anchor="start">• applied- versus- eligible- distinction</text>
