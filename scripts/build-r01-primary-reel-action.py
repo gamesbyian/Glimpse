@@ -38,6 +38,16 @@ def generate():
     lower='<path d="M201 461 L229 461 L215 482 Z" fill="#E8876C"/>'
     assert s.count(pointer)==1,"the existing reel pointer changed upstream"
     s=s.replace(pointer,lower,1)
+    oldnav='<text x="43" y="852" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="500" fill="#667975">Home       Discover       Collections       Automation</text>'
+    nav=(
+      '<path d="M30 824 H401" stroke="#C4B7A4"/>'
+      '<text x="41" y="853" font-family="Arial,Helvetica,sans-serif" font-size="12" fill="#667975">Home</text>'
+      '<text x="132" y="853" font-family="Arial,Helvetica,sans-serif" font-size="12" fill="#667975">Discover</text>'
+      '<text x="226" y="853" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="700" fill="#1D5960">Collections</text>'
+      '<text x="326" y="853" font-family="Arial,Helvetica,sans-serif" font-size="12" fill="#667975">Automation</text>'
+    )
+    assert s.count(oldnav)==1, "navigation source changed"
+    s=s.replace(oldnav,nav,1)
     assert s.count("Previous photo")==1 and s.count("Next photo")==1
     assert s.count('<g clip-path="url(#c')==5
     assert len(re.findall(r'<use href="#fixture[1-6]"',s))==6
