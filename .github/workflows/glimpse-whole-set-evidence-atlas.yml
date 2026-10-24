@@ -21,6 +21,9 @@ on:
       - design/proposals/whole-product-review-selection.v1.json
       - scripts/validate-whole-product-review-selection.py
       - scripts/build-whole-product-review-viewer.py
+      - design/proposals/whole-product-candidates/collections-photo-covers.svg
+      - docs/design/glimpse-ux-audit-cycle-b-evidence-triage.v1.json
+      - scripts/validate-audit-cycle-b-evidence-triage.py
   workflow_dispatch:
 
 permissions:
@@ -45,6 +48,7 @@ jobs:
       - name: Validate manifest to source traceability
         run: |
           python3 scripts/validate-audit-scenario-trace.py
+          python3 scripts/validate-audit-cycle-b-evidence-triage.py
           python3 scripts/build-whole-set-evidence-atlas.py --check
       - name: Generate offline browser index and SHA256 evidence manifest
         run: python3 scripts/build-whole-set-evidence-atlas.py
