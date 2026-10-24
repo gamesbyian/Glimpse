@@ -1,10 +1,5 @@
 name: Agent C acquire six licensed Grid photos
 on:
-  pull_request:
-    paths:
-      - design/assets/production-c-grid-cc0-candidates.v1.json
-      - scripts/acquire-agent-c-grid-cc0.py
-      - .github/workflows/agent-c-grid-photo-source.yml
   workflow_dispatch:
 permissions:
   contents: read
