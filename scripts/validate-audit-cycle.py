@@ -102,6 +102,15 @@ if (ROOT / "design/proposals/audit-revisions/r01-photo-rest-22.svg").exists():
     from subprocess import run
     assert run(["python3", str(ROOT / "scripts/build-audit-r01-photo-variants.py")],
                cwd=ROOT, check=False).returncode == 0
+# R05: preserve explicit absence of native accessibility proof and prevent
+# missing reduced-motion/TalkBack source artwork from becoming false PASS.
+r05 = json.loads((ROOT / "design/proposals/audit-revisions/r05-accessibility-evidence.v1.json").read_text())
+assert len(r05["cases"]) == 9
+for case in r05["cases"]:
+    assert (ROOT / case["referencePath"]).exists(), case["referencePath"]
+    assert case["nativeStatus"] == "unverified", case["id"]
+    assert all(q in ids for q in case["questions"]), case["id"]
+assert {case["id"] for case in r05["cases"] if case["dedicatedReferenceMissing"]} == {"R05-07", "R05-08"}
 counts = {x: sum(v["status"] == x for v in cycle["results"])
           for x in ("PASS", "ISSUE", "UNVERIFIED", "NOT_APPLICABLE")}
 assert counts == cycle["summary"]["counts"]
