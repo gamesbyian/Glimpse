@@ -14,8 +14,8 @@
   },
   "counts": {
     "totalRequired": 56,
-    "PARTIAL": 4,
-    "PICTURED": 52,
+    "PARTIAL": 0,
+    "PICTURED": 56,
     "MISSING_SPECIFIC": 0
   },
   "finiteCountExamples": [
@@ -48,22 +48,22 @@
     {
       "lane": "R01",
       "scenario": "disc-full-and-crescent",
-      "evidenceState": "PARTIAL",
+      "evidenceState": "PICTURED",
       "sourcePaths": [
-        "design/proposals/audit-revisions/r01-photo-rest-22.svg",
-        "design/proposals/storyboards/x08/01-home-active.svg"
+        "design/proposals/audit-revisions/r01-photo-home-crescent.svg",
+        "design/proposals/audit-revisions/r01-photo-rest-22.svg"
       ],
-      "nextProof": "No same-framed physical-wheel/Home crescent treatment or human perception check."
+      "nextProof": "A clearly labelled Home Rainbows collection-cover crescent and a separate full five-aperture photographic Reel use identical R01 paper source and stable p12 selection; human preference/gesture comprehension and native hit targets remain unverified."
     },
     {
       "lane": "R01",
       "scenario": "tap-to-focus",
-      "evidenceState": "PARTIAL",
+      "evidenceState": "PICTURED",
       "sourcePaths": [
-        "design/proposals/storyboards/x05/02-touch-down.svg",
-        "design/proposals/audit-revisions/r01-photo-rest-22.svg"
+        "design/proposals/audit-revisions/r01-photo-tap-p13-pressed.svg",
+        "design/proposals/audit-revisions/r01-photo-tap-p13-settled.svg"
       ],
-      "nextProof": "A touch-down pose is not a photographed tap-select-and-settle comparison."
+      "nextProof": "Source-derived paired press and settled visual states: initial p12 selected, finger tap target p13, then p13 selected/hero with wallpaper last-ack p04 unchanged. Exact optics, gesture hit regions and Android timing remain unverified."
     },
     {
       "lane": "R01",
@@ -77,12 +77,13 @@
     {
       "lane": "R01",
       "scenario": "drag-36",
-      "evidenceState": "PARTIAL",
+      "evidenceState": "PICTURED",
       "sourcePaths": [
-        "design/proposals/storyboards/x05/04-drag-36.svg",
-        "design/proposals/audit-revisions/r01-photo-drag-18.svg"
+        "design/proposals/audit-revisions/r01-photo-drag-18.svg",
+        "design/proposals/audit-revisions/r01-photo-drag-36.svg",
+        "design/proposals/audit-revisions/r01-photo-snap-13.svg"
       ],
-      "nextProof": "36-degree pose uses older schematic fixture arrangement; verify five distinct photos and settled identity."
+      "nextProof": "36-degree source geometry now has distinct photographic neighboring p10–p14 IDs and retains p12 selected before commit; the matching snap changes to p13. Precise native physics/drag interruption and owner approval are unverified."
     },
     {
       "lane": "R01",
@@ -124,12 +125,12 @@
     {
       "lane": "R01",
       "scenario": "large-type",
-      "evidenceState": "PARTIAL",
+      "evidenceState": "PICTURED",
       "sourcePaths": [
-        "design/proposals/storyboards/x09/03-reel-200-text.svg",
+        "design/proposals/audit-revisions/r01-photo-large-type.svg",
         "design/proposals/audit-revisions/r01-photo-rest-22.svg"
       ],
-      "nextProof": "Render large type over identical photo-backed material and verify no cropped commands."
+      "nextProof": "Source-matched p12 photographic Reel candidate with large proposed text, Grid, Previous/Next and two-row nav exists and generated 401x890 pixels. This is no proof of real Android fontScale=2.0 reflow or accessibility focus."
     },
     {
       "lane": "R02",
