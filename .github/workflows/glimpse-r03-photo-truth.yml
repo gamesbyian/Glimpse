@@ -1,4 +1,5 @@
 name: Glimpse R03 | repair photographic p12 truth
+# Verify user-facing Home acknowledgement copy after photo identity reconciliation
 # Independent second scoped execution of exact-fixture restoration
 on:
   push:
