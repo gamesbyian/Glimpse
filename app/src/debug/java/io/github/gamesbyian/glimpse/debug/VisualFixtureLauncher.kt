@@ -46,11 +46,18 @@ class VisualFixtureLauncher : ComponentActivity() {
         dao.insertCollection(CollectionRecord(collectionId,
             "ATLAS FIXTURE · $count photos", 1_700_000_000_000L))
         val folder = File(filesDir, "visual-atlas").apply { mkdirs() }
+        val licensedSources = listOf(
+            "p04-philsacor-landscape-900w.jpg",
+            "p06-grid-photo.jpg",
+            "p07-grid-photo.jpg"
+        )
         repeat(count) { index ->
-            // Vary six fixed photos with a unique number overlay so 22 thumbnails
-            // have distinct bytes and verified content hashes.
+            // Only uploader-described CC0 photographic references are packaged
+            // in debug. The distinct numbered images are synthetic derivatives,
+            // NOT 22 separately sourced user photographs.
             val source = requireNotNull(
-                assets.open("art" + (index % 6 + 1) + ".jpg").use(BitmapFactory::decodeStream)
+                assets.open(licensedSources[index % licensedSources.size])
+                    .use(BitmapFactory::decodeStream)
             )
             val image = Bitmap.createBitmap(480, 720, Bitmap.Config.ARGB_8888)
             val canvas = Canvas(image)
