@@ -21,9 +21,10 @@ android {
         compose = true
     }
 
-    // Fixed research artwork in debug APK only, not user photo collections.
+    // Verified Commons CC0 photo sources for synthetic debug-only image records.
+    // Legacy research art1..art6 rights are unknown: never package those.
     sourceSets.getByName("debug").assets.srcDir(
-        "../design/research/reel-layout/fixtures/source"
+        "../design/assets/cc0"
     )
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
