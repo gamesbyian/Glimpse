@@ -65,6 +65,12 @@ for family in support["screens"]:
         if name in ("diagnostic-preview--expanded","diagnostic-preview--minimal"):
             if "Photographs excluded" not in phone or "Image bytes never enter diagnostics" not in phone:
                 errors.append(f"{p}: impossible photo attachment presented as opt-in")
+        if name=="external-handler-fallback--chooser-cancelled":
+            for truth in ("Share chooser closed", "Delivery not confirmed by Android",
+                          "Delivery status cannot be verified for this"):
+                if truth not in phone:errors.append(f"{p}: cancelled chooser asserted delivery {truth}")
+            for false_result in ("nothing was sent", "No recipient received"):
+                if false_result in phone:errors.append(f"{p}: falsely certain external delivery state {false_result}")
         if name=="beta-feedback--share-preview":
             for text in ("Review outgoing feedback","Screenshot: none selected","Diagnostics: off","Message: draft, not yet sent","Open Android Sharesheet"):
                 if text not in phone:errors.append(f"{p}: lost outbound consent distinction {text}")
