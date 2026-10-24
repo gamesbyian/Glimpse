@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 1,
+  "sourceType": "Wikimedia Commons uploader-labeled own-work photograph",
+  "candidates": [
+    {
+      "photoId": "p06",
+      "commonsFileTitle": "Mountain near lake.jpg",
+      "commonsPage": "https://commons.wikimedia.org/wiki/File:Mountain_near_lake.jpg",
+      "creator": "K.M.YOGESH",
+      "license": "CC0 1.0 Universal",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "licensePageInspectedAt": "2026-10-24",
+      "status": "page-metadata-verified; image bytes not downloaded or hashed"
+    },
+    {
+      "photoId": "p07",
+      "commonsFileTitle": "Sunflower in the garden.JPG",
+      "commonsPage": "https://commons.wikimedia.org/wiki/File:Sunflower_in_the_garden.JPG",
+      "creator": "Stefan Bellini",
+      "license": "CC0 1.0 Universal",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "licensePageInspectedAt": "2026-10-24",
+      "status": "page-metadata-verified; image bytes not downloaded or hashed"
+    },
+    {
+      "photoId": "p08",
+      "commonsFileTitle": "Sunset in the City 01.jpg",
+      "commonsPage": "https://commons.wikimedia.org/wiki/File:Sunset_in_the_City_01.jpg",
+      "creator": "PagesAndPathsPH",
+      "license": "CC0 1.0 Universal",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "licensePageInspectedAt": "2026-10-24",
+      "status": "page-metadata-verified; image bytes not downloaded or hashed"
+    },
+    {
+      "photoId": "p09",
+      "commonsFileTitle": "Purple Night sky.jpg",
+      "commonsPage": "https://commons.wikimedia.org/wiki/File:Purple_Night_sky.jpg",
+      "creator": "Kanimozhi Vennila",
+      "license": "CC0 1.0 Universal",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "licensePageInspectedAt": "2026-10-24",
+      "status": "page-metadata-verified; image bytes not downloaded or hashed"
+    },
+    {
+      "photoId": "p16",
+      "commonsFileTitle": "Boston Common at sunset.jpg",
+      "commonsPage": "https://commons.wikimedia.org/wiki/File:Boston_Common_at_sunset.jpg",
+      "creator": "Drgage25",
+      "license": "CC0 1.0 Universal",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "licensePageInspectedAt": "2026-10-24",
+      "status": "page-metadata-verified; image bytes not downloaded or hashed"
+    },
+    {
+      "photoId": "p17",
+      "commonsFileTitle": "Night sky and trees.jpg",
+      "commonsPage": "https://commons.wikimedia.org/wiki/File:Night_sky_and_trees.jpg",
+      "creator": "Cristian Butacu",
+      "license": "CC0 1.0 Universal",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "licensePageInspectedAt": "2026-10-24",
+      "status": "page-metadata-verified; image bytes not downloaded or hashed"
+    }
+  ]
+}
