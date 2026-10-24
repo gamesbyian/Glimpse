@@ -53,6 +53,10 @@ jobs:
           git add design/reviews/support-2026-10-24/
           if ! git diff --cached --quiet; then
             git commit -m "review: preserve six source-hashed support state phone contact sheets"
+            # Another focused workflow may have appended source-hash reviewer files.
+            # Rebase only this scoped generated-data commit on the newest branch.
+            git fetch origin "${GITHUB_REF_NAME}"
+            git rebase "origin/${GITHUB_REF_NAME}"
             git push origin HEAD:"${GITHUB_REF_NAME}"
           fi
       - uses: actions/upload-artifact@v4
