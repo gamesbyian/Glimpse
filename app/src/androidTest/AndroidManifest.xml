@@ -6,5 +6,9 @@
             android:authorities="io.github.gamesbyian.glimpse.test.ephemeral"
             android:exported="false"
             android:grantUriPermissions="true" />
+        <activity
+            android:name="io.github.gamesbyian.glimpse.data.EphemeralGrantBrokerActivity"
+            android:exported="true"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
     </application>
 </manifest>
