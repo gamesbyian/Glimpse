@@ -163,6 +163,19 @@ frame_truth={
    ["No new wallpaper change requested by Glimpse"], ["The Home wallpaper remains unchanged"]),
  "design/proposals/storyboards/x08/01-home-active.svg": (
    ["Last Glimpse-acknowledged Home", "LAST ACK."], ["Current Home wallpaper","CURRENT HOME"]),
+ "design/proposals/storyboards/x08/06-status-collapsed.svg": (
+   ["LAST ACK."], ["CURRENT HOME"]),
+ "design/proposals/advanced-storyboards/x16/01-rules.svg": (
+   ["Enabled rules may change Home when eligible"], ["Only explicit Apply changes wallpaper"]),
+ "design/proposals/advanced-storyboards/x16/02-conflict.svg": (
+   ["Enabled rules may change Home when eligible"], ["Only explicit Apply changes wallpaper"]),
+ "design/proposals/advanced-storyboards/x16/03-precedence.svg": (
+   ["Enabled rules may change Home when eligible"], ["Only explicit Apply changes wallpaper"]),
+ "design/proposals/advanced-storyboards/x16/05-simulate.svg": (
+   ["Simulation never applies wallpaper"], ["Only explicit Apply changes wallpaper"]),
+ "design/proposals/advanced-storyboards/x22/02-redacted.svg": (
+   ["Review report example", "Example build v0.1 · API 34"],
+   ["Review exact outgoing fields", "App v0.1 · Android API 34"]),
  "design/proposals/storyboards/x08/05-long-title.svg": (
    ["Our favourite holiday…", 'aria-label="Our favourite holiday photographs and travels"'],
    [">Our favourite holiday photographs...</text>"]),
