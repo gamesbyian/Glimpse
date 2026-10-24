@@ -26,8 +26,8 @@ SIZES = {
 ORIGINAL_INDEX = [10, 11, 12, 13, 14]
 ART_PER_APERTURE = ["art2", "art3", "art1", "art4", "art5"]
 LABEL = re.compile(
-    r'<rect x="[\\d.]+" y="[\\d.]+" width="39" height="23" rx="7" '
-    r'fill="#FFFCF6" stroke="none"/>\\s*<text x="[\\d.]+" y="[\\d.]+" '
+    r'<rect x="[\d.]+" y="[\d.]+" width="39" height="23" rx="7" '
+    r'fill="#FFFCF6" stroke="none"/>\s*<text x="[\d.]+" y="[\d.]+" '
     r'font-family="Arial,Helvetica,sans-serif" font-size="13" '
     r'font-weight="700" fill="#153F46">(10|11|12|13|14)</text>')
 
@@ -44,8 +44,8 @@ def create(n):
     assert len(original) == 5 and original[12] == selected
     for slot in (0, 4):
         if positions[slot] is None:
-            pattern = (r'<g clip-path="url\\(#c' + str(slot) +
-                       r'\\)"><use href="#fixture[1-6]" transform="[^"]+"/></g>')
+            pattern = (r'<g clip-path="url\(#c' + str(slot) +
+                       r'\)"><use href="#fixture[1-6]" transform="[^"]+"/></g>')
             body, count = re.subn(pattern, "", body)
             assert count == 1, (n, slot, "blank outer window must not hold photo")
 
@@ -106,11 +106,11 @@ def create(n):
         "R01 DRAFT. NOT ANDROID OR OWNER EVIDENCE.",
         "R01 FINITE-COUNT DRAFT. NOT ANDROID OR OWNER EVIDENCE.")
     ET.fromstring(source)
-    photos = re.findall(r'<g clip-path="url\\(#c[0-4]\\)"><use href="#fixture\\d+"', source)
+    photos = re.findall(r'<g clip-path="url\(#c[0-4]\)"><use href="#fixture\d+"', source)
     assert len(photos) == min(n, 5), (n, len(photos))
     labels = re.findall(
-        r'<text x="[\\d.]+" y="[\\d.]+" font-family="Arial,Helvetica,sans-serif" '
-        r'font-size="13" font-weight="700" fill="#153F46">(\\d\\d)</text>', body)
+        r'<text x="[\d.]+" y="[\d.]+" font-family="Arial,Helvetica,sans-serif" '
+        r'font-size="13" font-weight="700" fill="#153F46">(\d\d)</text>', body)
     assert labels == [f"{i:02d}" for i in positions if i is not None], (n, labels)
     assert f"Photo {selected} of {n} · Preview only" in body
     return source
