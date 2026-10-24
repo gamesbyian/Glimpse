@@ -88,8 +88,10 @@ risk={
  "design/proposals/advanced-storyboards/x19/04-restore-conflict.svg":
    ["Confirm safe merge", "Cancel", "No changes until you confirm",
     "Keep existing ID and 22 current photos", "4 providers need reconnecting"],
+ "design/proposals/advanced-storyboards/x22/03-consent.svg":
+   ["Review outgoing example", "Technical details", "Device model", "OFF · optional and reversible"],
  "design/proposals/advanced-storyboards/x22/04-chooser.svg":
-   ["Open Android Sharesheet", "Recipient not chosen. Nothing was sent.",
+   ["Open Android Sharesheet", "Copy report", "Save locally", "Recipient not chosen. Nothing was sent.",
     "Example fields only; app must show actual bytes.", "Source URIs and tokens: redacted"],
  "design/proposals/advanced-storyboards/x13/04-cancel.svg":
    ["Delivery unverified", "Delivery not confirmed"],
@@ -103,7 +105,8 @@ for rel, words in risk.items():
 for rel, keys in (
     ("design/proposals/storyboards/x02/05-delete-confirm.svg", ("cancel-collection-removal","confirm-collection-removal")),
     ("design/proposals/advanced-storyboards/x19/04-restore-conflict.svg", ("cancel-restore","confirm-merge")),
-    ("design/proposals/advanced-storyboards/x22/04-chooser.svg", ("open-android-sharesheet",))
+    ("design/proposals/advanced-storyboards/x22/03-consent.svg", ("technical-details-off","device-model-off")),
+    ("design/proposals/advanced-storyboards/x22/04-chooser.svg", ("copy-report","save-report","open-android-sharesheet"))
 ):
     root=ET.parse(ROOT/rel).getroot()
     controls={r.get("data-control"):r for r in root.iter(NS+"rect") if r.get("data-control")}
