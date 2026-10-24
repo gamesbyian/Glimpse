@@ -17,6 +17,7 @@ on:
       - design/proposals/audit-scenario-evidence.v1.json
       - design/proposals/whole-product-review-selection.v1.json
       - scripts/validate-whole-product-review-selection.py
+      - scripts/build-whole-product-review-viewer.py
   workflow_dispatch:
 
 permissions:
@@ -48,6 +49,8 @@ jobs:
         run: |
           python3 scripts/validate-whole-product-review-selection.py \
             --emit design/atlas/whole-product-review-snapshot.v1.json
+          python3 scripts/build-whole-product-review-viewer.py
+          python3 scripts/build-whole-product-review-viewer.py --check
       - name: Verify generated browser links and category counts
         run: |
           python3 - <<'PY'
@@ -66,7 +69,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add design/atlas/whole-set-evidence-atlas.html design/atlas/whole-set-evidence-index.json design/atlas/whole-product-review-snapshot.v1.json
+          git add design/atlas/whole-set-evidence-atlas.html design/atlas/whole-set-evidence-index.json design/atlas/whole-product-review-snapshot.v1.json design/atlas/whole-product-review-selection.html
           if git diff --cached --quiet; then
             echo "No source changes to generated reviewer files"
             exit 0
