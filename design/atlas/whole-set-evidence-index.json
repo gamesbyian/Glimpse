@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "status": "ALL_DRAFT_SOURCE_EVIDENCE_NOT_HUMAN_APPROVED",
-  "sourceCommit": "bfa3fd4bc662081c2cb11d101c150cc6714f1f64",
+  "sourceCommit": "43271e9396b4c99559847b0caed09b7dd546d7be",
   "auditCycleA": {
     "PASS_SOURCE_ONLY": 18,
     "ISSUE": 8,
