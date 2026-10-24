@@ -1,4 +1,5 @@
 name: Glimpse R01 | photographic tap and 36-degree motion proof
+# Recheck source-linked hero art1 and six-reference wedge ordering
 on:
   push:
     branches: [agent/visual-state-reconciliation-20261023]
@@ -7,7 +8,7 @@ on:
 permissions:
   contents: write
 concurrency:
-  group: glimpse-r01-motion-proof-${{ github.ref }}
+  group: glimpse-r01-motion-proof-v2-${{ github.ref }}
   cancel-in-progress: false
 jobs:
   motion-source-proof:
