@@ -1,4 +1,5 @@
 name: Glimpse | targeted source-hashed optical review contact sheets
+# Second optical contact capture after source corrections.
 # Refresh R03 p12 photographic proof after human-facing acknowledgement copy repair
 on:
   push:
