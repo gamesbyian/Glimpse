@@ -1,6 +1,6 @@
 name: Glimpse R04 import recovery | targeted optical proof
 
-# Opt-in four-state bulk import optical proof: empty, 17/22, cancel and low storage.
+# Opt-in five-state source rendering: empty, 17/22, cancel, low storage and offline partial-copy recovery.
 on:
   push:
     branches: [agent/visual-state-reconciliation-20261023]
@@ -47,6 +47,29 @@ jobs:
           assert diff.getbbox() is not None, "two unique states required"
           print("R04 4 source-hashed 401x890 draft phone crops and distinct recovery choices PASS")
           PY
+      - name: Validate and rasterize one new 17-of-22 offline recovery candidate
+        run: |
+          python3 scripts/validate-audit-scenario-trace.py
+          python3 - <<'PY'
+          from pathlib import Path
+          from hashlib import sha256
+          from cairosvg import svg2png
+          from PIL import Image
+          path=Path('design/proposals/audit-revisions/r04-import-offline-17-of-22.svg')
+          out=Path('/tmp/glimpse-r04')
+          svg2png(bytestring=path.read_bytes(),write_to=str(out/'r04-offline-full.png'),
+                  output_width=1160,output_height=920)
+          with Image.open(out/'r04-offline-full.png') as full:
+              phone=full.crop((15,14,416,904)).convert('RGB')
+              assert phone.size==(401,890)
+              assert len(phone.getcolors(401*890) or [])>100
+              phone.save(out/'r04-offline-phone-401x890.png')
+          (out/'r04-offline-source-sha256.txt').write_text(
+              'SVG source: '+sha256(path.read_bytes()).hexdigest()+'\\n'+
+              'PNG pixels: '+sha256((out/'r04-offline-phone-401x890.png').read_bytes()).hexdigest()+'\\n'+
+              'Native acceptance: NOT TESTED\\nOwner approved: NO\\n')
+          print('PASS: fifth R04 401x890 source SVG raster exists; optical/manual review remains absent')
+          PY
       - name: Record machine evidence, not Android/owner acceptance
         if: always()
         env:
@@ -60,7 +83,7 @@ jobs:
             echo "- Source commit: \`$GH_SHA\`"
             echo "- Workflow: https://github.com/gamesbyian/Glimpse/actions/runs/$GH_RUN"
             echo "- Job result: \`$RESULT\`"
-            echo "- Expected draft screens: import-cancel, import-no-space, import-empty, import-17-of-22"
+            echo "- Expected draft screens: import-cancel, import-no-space, import-empty, import-17-of-22, import-offline-17-of-22"
             echo "- Independent optical review: **NOT automatically performed**"
             echo "- Real Android import transaction: **NOT tested**"
           } > docs/design/r04-targeted-automation-evidence.md
