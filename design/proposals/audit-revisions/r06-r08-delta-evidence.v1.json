@@ -1,0 +1,122 @@
+{
+  "schemaVersion": 1,
+  "status": "DRAFT_NOT_OPTICALLY_OR_NATIVE_APPROVED",
+  "sourceSpec": "docs/planning/AUDIT-CANDIDATE-C-SHARE-SCHEDULE-RECOVERY.md",
+  "auditBaseline": {
+    "pass": 18,
+    "issue": 8,
+    "unverified": 34,
+    "changedScores": 0
+  },
+  "notes": [
+    "Five unique missing decision screens, existing shared states explicitly reused",
+    "GitHub source readback and metadata sanity checked; no raster optical review performed",
+    "No native source/app modification; 401x890 crop is intended at x=15,y=14",
+    "Photo-bearing R02 reference remains the photographic authority; these recovery/status screens are non-photo UI states"
+  ],
+  "scenarios": [
+    {
+      "id": "R06-dismissed",
+      "source": "design/proposals/audit-revisions/r06-share-dismissed.svg",
+      "before": "design/proposals/audit-revisions/r02-return-dismiss.svg",
+      "questions": [
+        "GUX-16",
+        "GUX-17"
+      ],
+      "phoneCrop": {
+        "x": 15,
+        "y": 14,
+        "width": 401,
+        "height": 890
+      },
+      "illustratedInDraft": true,
+      "sourceReadbackChecked": true,
+      "opticallyReviewedFromExactSourceSHA": false,
+      "verifiedOnAndroid": false,
+      "ownerApprovedExactSourceSHA": false
+    },
+    {
+      "id": "R07-battery-restricted",
+      "source": "design/proposals/audit-revisions/r07-battery-restricted.svg",
+      "before": "design/proposals/audit-revisions/../state-refinements/automation-delayed.svg",
+      "questions": [
+        "GUX-26",
+        "GUX-27",
+        "GUX-28"
+      ],
+      "phoneCrop": {
+        "x": 15,
+        "y": 14,
+        "width": 401,
+        "height": 890
+      },
+      "illustratedInDraft": true,
+      "sourceReadbackChecked": true,
+      "opticallyReviewedFromExactSourceSHA": false,
+      "verifiedOnAndroid": false,
+      "ownerApprovedExactSourceSHA": false
+    },
+    {
+      "id": "R07-outcome-unknown",
+      "source": "design/proposals/audit-revisions/r07-unknown-after-attempt.svg",
+      "before": "design/proposals/audit-revisions/../state-refinements/activity-uncertain.svg",
+      "questions": [
+        "GUX-27",
+        "GUX-29"
+      ],
+      "phoneCrop": {
+        "x": 15,
+        "y": 14,
+        "width": 401,
+        "height": 890
+      },
+      "illustratedInDraft": true,
+      "sourceReadbackChecked": true,
+      "opticallyReviewedFromExactSourceSHA": false,
+      "verifiedOnAndroid": false,
+      "ownerApprovedExactSourceSHA": false
+    },
+    {
+      "id": "R08-revoked",
+      "source": "design/proposals/audit-revisions/r08-source-revoked.svg",
+      "before": "design/proposals/audit-revisions/../state-refinements/source-detail-offline.svg",
+      "questions": [
+        "GUX-41",
+        "GUX-43",
+        "GUX-44"
+      ],
+      "phoneCrop": {
+        "x": 15,
+        "y": 14,
+        "width": 401,
+        "height": 890
+      },
+      "illustratedInDraft": true,
+      "sourceReadbackChecked": true,
+      "opticallyReviewedFromExactSourceSHA": false,
+      "verifiedOnAndroid": false,
+      "ownerApprovedExactSourceSHA": false
+    },
+    {
+      "id": "R08-restore-conflict",
+      "source": "design/proposals/audit-revisions/r08-restore-conflict-choice.svg",
+      "before": "design/proposals/audit-revisions/../state-refinements/backup-and-restore-restore.svg",
+      "questions": [
+        "GUX-46",
+        "GUX-47",
+        "GUX-50"
+      ],
+      "phoneCrop": {
+        "x": 15,
+        "y": 14,
+        "width": 401,
+        "height": 890
+      },
+      "illustratedInDraft": true,
+      "sourceReadbackChecked": true,
+      "opticallyReviewedFromExactSourceSHA": false,
+      "verifiedOnAndroid": false,
+      "ownerApprovedExactSourceSHA": false
+    }
+  ]
+}
