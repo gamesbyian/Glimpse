@@ -1,0 +1,19 @@
+name: Agent C acquire six licensed Grid photos
+on:
+  pull_request:
+    paths:
+      - design/assets/production-c-grid-cc0-candidates.v1.json
+      - scripts/acquire-agent-c-grid-cc0.py
+      - .github/workflows/agent-c-grid-photo-source.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  source-audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 -m pip install --quiet Pillow==11.3.0
+      - name: Verify current Commons file metadata and download actual SHA-matched photo bytes
+        run: python3 scripts/acquire-agent-c-grid-cc0.py
