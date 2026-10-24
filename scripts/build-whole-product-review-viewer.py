@@ -64,7 +64,7 @@ The 60-question desk audit remains 18 source-level PASS / 8 ISSUE / 34 UNVERIFIE
     for item in d["primarySurfaces"]:
         p.append(card(item["surfaceId"].replace("-"," ").title(),item["reviewCandidatePath"],
                       item["alternativesToDecide"],
-                      "Structural reference: inspect required/forbidden UI and adjacent actions before choosing"))
+                      item.get("reviewWarning", "Structural reference: inspect required/forbidden UI and adjacent actions before choosing")))
     p.append('</div></details>')
     p.append('<details><summary>Support and everyday states · 34 draft variants</summary><div class="gallery">')
     for family in d["supportSurfaces"]:
