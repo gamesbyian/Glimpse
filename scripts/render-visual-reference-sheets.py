@@ -99,6 +99,10 @@ SETS["audit-r05-accessibility-routes"] = [
     ("Motion-independent photo selection", "design/proposals/audit-revisions/r05-reduced-motion.svg"),
     ("TalkBack semantic focus path", "design/proposals/audit-revisions/r05-talkback-route.svg"),
 ]
+SETS["audit-r04-import-recovery"] = [
+    ("Cancel and keep verified copies", "design/proposals/audit-revisions/r04-import-cancel.svg"),
+    ("Storage full, preserve verified", "design/proposals/audit-revisions/r04-import-no-space.svg"),
+]
 # Exhaustive galleries are deliberately opt-in, never part of the cheap default.
 SETS["entire-original-66"] = [
     (p.stem, str(p.relative_to(ROOT)))
