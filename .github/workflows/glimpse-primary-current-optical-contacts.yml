@@ -1,0 +1,62 @@
+name: Glimpse | Inspect all 24 current primary reference phones
+
+on:
+  push:
+    branches: [agent/visual-state-reconciliation-20261023]
+    paths:
+      - .github/workflows/glimpse-primary-current-optical-contacts.yml
+      - scripts/render-primary-review-corpus.py
+      - design/proposals/whole-product-review-selection.v1.json
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: glimpse-primary-contact-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  capture-selected-primary:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Check 24 exact selected primary sources
+        run: |
+          python3 scripts/validate-whole-product-review-selection.py
+          python3 scripts/render-primary-review-corpus.py --check
+      - name: Render all 24 source-editable primary references
+        run: |
+          python3 -m pip install --quiet pillow cairosvg
+          python3 scripts/render-primary-review-corpus.py
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          j=json.loads(Path("design/reviews/primary-2026-10-24/source-ledger.json").read_text())
+          assert j["sourceCount"]==24 and len(j["sourceRows"])==24
+          assert len(j["sheets"])==4 and sum(x["count"] for x in j["sheets"])==24
+          assert all(not r["ownerApproved"] and not r["nativeVerified"] for r in j["sourceRows"])
+          print("PASS: 24 source-hashed static draft primary raster inputs")
+          PY
+      - name: Commit source-indexed raster review inputs
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add design/reviews/primary-2026-10-24/
+          if git diff --cached --quiet; then
+            echo "Selected primary reference crops unchanged"
+            exit 0
+          fi
+          git commit -m "review: regenerate four exact current primary phone contact sheets"
+          git fetch origin "${GITHUB_REF_NAME}"
+          git rebase "origin/${GITHUB_REF_NAME}"
+          git push origin HEAD:"${GITHUB_REF_NAME}"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: glimpse-24-primary-review-${{ github.sha }}
+          path: design/reviews/primary-2026-10-24/
+          retention-days: 14
