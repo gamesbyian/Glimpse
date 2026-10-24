@@ -1,0 +1,1181 @@
+{
+  "schemaVersion": 1,
+  "status": "PRELIMINARY_WHOLE_PRODUCT_REVIEW_SELECTION_NO_OWNER_APPROVAL",
+  "referenceEvidenceIndex": "design/atlas/whole-set-evidence-index.json",
+  "referenceAtlas": "design/atlas/whole-set-evidence-atlas.html",
+  "humanReviewSpine": "design/proposals/canonical-review-spine.v1.json",
+  "sourceAudit": "docs/design/glimpse-ux-audit-cycle-a.v1.json",
+  "approval": {
+    "ownerApproved": false,
+    "ownerApprovalDate": null,
+    "approvedSourceInventoryHash": null
+  },
+  "scopes": {
+    "primarySurfaces": 24,
+    "supportSurfaces": 16,
+    "supportVariantStates": 34,
+    "journeyGroups": 23,
+    "p0Frames": 82,
+    "p1Frames": 55,
+    "requiredNamedCoreStates": 34,
+    "auditComparisonScenarios": 56
+  },
+  "rules": [
+    "Every listed source is a draft source proposal, not a production or Android screenshot",
+    "Selected entry merely establishes an ordered human-review candidate, not a frozen owner choice",
+    "Contradictory alternative sources remain findable in the exhaustive atlas, not silently promoted",
+    "Separate source illustration from independent raster inspection, Android runtime, accessibility and owner approval",
+    "Confirm all features on 24 core surfaces, 34 support variants, 23 connected journeys and 56 audit scenarios before whole-set freeze",
+    "Do not approve generic original plates that the latest R01–R08 photographic/audit proposal has visibly superseded",
+    "No second reel is chosen merely to decorate a page; Home crescent remains an explicit human comparison question"
+  ],
+  "primarySurfaces": [
+    {
+      "surfaceId": "home",
+      "reviewCandidatePath": "design/proposals/audit-revisions/r03-home-last-ack-p04.svg",
+      "alternativesToDecide": [
+        "design/proposals/audit-revisions/r01-photo-home-crescent.svg",
+        "design/proposals/plates/home.svg"
+      ],
+      "requiredSemanticElements": [
+        "current-wallpaper-hero",
+        "applied-status",
+        "active-collection-name",
+        "change-now",
+        "pause",
+        "share",
+        "explicit-target-and-last-applied-confidence",
+        "change-wallpaper-labelled-action"
+      ],
+      "forbiddenSemanticElements": [
+        "selected-preview-presented-as-applied",
+        "exact-background-five-minute-guarantee",
+        "unlabeled-tiny-reel-pretends-to-be-draggable"
+      ],
+      "candidateState": "UNAPPROVED_PARTIAL_PAPER_AND_PIXEL_PROPOSAL",
+      "ownerChoice": null,
+      "exactOwnerApprovalSHA256": null
+    },
+    {
+      "surfaceId": "collections",
+      "reviewCandidatePath": "design/proposals/plates/collections.svg",
+      "alternativesToDecide": [],
+      "requiredSemanticElements": [
+        "collection-titles",
+        "true-item-counts",
+        "add-photos",
+        "enter-collection"
+      ],
+      "forbiddenSemanticElements": [
+        "faked-image-copies-to-fill-five-windows"
+      ],
+      "candidateState": "UNAPPROVED_PARTIAL_PAPER_AND_PIXEL_PROPOSAL",
+      "ownerChoice": null,
+      "exactOwnerApprovalSHA256": null
+    },
+    {
+      "surfaceId": "reel",
+      "reviewCandidatePath": "design/proposals/audit-revisions/r01-photo-rest-22.svg",
+      "alternativesToDecide": [
+        "design/proposals/audit-revisions/r01-photo-three-3.svg",
+        "design/proposals/audit-revisions/r01-photo-five-5.svg",
+        "design/proposals/audit-revisions/r01-photo-sixty-60.svg",
+        "design/proposals/audit-revisions/r01-photo-first-22.svg",
+        "design/proposals/audit-revisions/r01-photo-last-22.svg",
+        "design/proposals/audit-revisions/r01-photo-large-type.svg",
+        "design/proposals/audit-revisions/r05-photo-reel-narrow-short-320.svg"
+      ],
+      "requiredSemanticElements": [
+        "hero",
+        "selected-asset-index-and-total",
+        "five-window-paper-reel-geometry",
+        "partial-offscreen-crop",
+        "next-photo",
+        "previous-photo",
+        "view-all",
+        "set-as-wallpaper",
+        "previous-photo-fixed-control",
+        "next-photo-label-not-just-next",
+        "selected-photo-distinct-from-applied-wallpaper",
+        "one-pointer-per-interactive-reel"
+      ],
+      "forbiddenSemanticElements": [
+        "browse-rotation-applies-device-wallpaper",
+        "reel-claims-unbounded-collection",
+        "offscreen-reel-blocks-system-navigation",
+        "only-gesture-access",
+        "set-now-without-destination-or-continuation-policy",
+        "reel-hit-target-beneath-bottom-nav",
+        "inferred-whole-album-synchronization"
+      ],
+      "candidateState": "UNAPPROVED_PARTIAL_PAPER_AND_PIXEL_PROPOSAL",
+      "ownerChoice": null,
+      "exactOwnerApprovalSHA256": null
+    },
+    {
+      "surfaceId": "grid",
+      "reviewCandidatePath": "design/proposals/storyboards/x07/02-grid-focus.svg",
+      "alternativesToDecide": [
+        "design/proposals/plates/grid.svg"
+      ],
+      "requiredSemanticElements": [
+        "same-selected-asset-id",
+        "real-image-thumbnails",
+        "return-to-reel",
+        "share",
+        "collection-identity",
+        "visible-selection-state-for-selected-items",
+        "selection-meaning-explained",
+        "search-filter-or-position-jump"
+      ],
+      "forbiddenSemanticElements": [
+        "reset-selection-on-switch",
+        "render-all-10000-fullres-images",
+        "add-to-rotation-without-explaining-target-queue-effect"
+      ],
+      "candidateState": "UNAPPROVED_PARTIAL_PAPER_AND_PIXEL_PROPOSAL",
+      "ownerChoice": null,
+      "exactOwnerApprovalSHA256": null
+    },
+    {
+      "surfaceId": "quick-import",
+      "reviewCandidatePath": "design/proposals/plates/quick-import.svg",
+      "alternativesToDecide": [
+        "design/proposals/audit-revisions/r04-import-offline-17-of-22.svg"
+      ],
+      "requiredSemanticElements": [
+        "source-preview",
+        "rotate",
+        "crop",
+        "target-collection",
+        "use-now",
+        "show-next",
+        "just-save"
+      ],
+      "forbiddenSemanticElements": [
+        "save-silently-applies-wallpaper",
+        "destroy-original-during-crop"
+      ],
+      "candidateState": "UNAPPROVED_PARTIAL_PAPER_AND_PIXEL_PROPOSAL",
+      "ownerChoice": null,
+      "exactOwnerApprovalSHA256": null
+    },
+    {
+      "surfaceId": "share",
+      "reviewCandidatePath": "design/proposals/audit-revisions/r02-share-choice.svg",
+      "alternativesToDecide": [
+        "design/proposals/plates/share.svg",
+        "design/proposals/audit-revisions/r06-share-dismissed.svg"
+      ],
+      "requiredSemanticElements": [
+        "share-action",
+        "original-or-crop-label",
+        "android-sharesheet-handoff"
+      ],
+      "forbiddenSemanticElements": [
+        "share-changes-rotation",
+        "assume-lens-or-chatgpt-intent-always-exists"
+      ],
+      "candidateState": "UNAPPROVED_PARTIAL_PAPER_AND_PIXEL_PROPOSAL",
+      "ownerChoice": null,
+      "exactOwnerApprovalSHA256": null
+    },
+    {
+      "surfaceId": "automation",
+      "reviewCandidatePath": "design/proposals/plates/automation.svg",
+      "alternativesToDecide": [
+        "design/proposals/audit-revisions/r07-battery-restricted.svg",
+        "design/proposals/audit-revisions/r07-unknown-after-attempt.svg"
+      ],
+      "requiredSemanticElements": [
+        "rotation-status",
+        "interval-policy",
+        "paused-state",
+        "human-readable-constraints"
+      ],
+      "forbiddenSemanticElements": [
+        "eligibility-displayed-as-successful-apply"
+      ],
+      "candidateState": "UNAPPROVED_PARTIAL_PAPER_AND_PIXEL_PROPOSAL",
+      "ownerChoice": null,
+      "exactOwnerApprovalSHA256": null
+    },
+    {
+      "surfaceId": "discover",
+      "reviewCandidatePath": "design/proposals/plates/discover.svg",
+      "alternativesToDecide": [],
+      "requiredSemanticElements": [
+        "source-or-image-type-label",
+        "provider-provenance",
+        "search-or-filter",
+        "image-rights-explanation",
+        "add-to-collection-action"
+      ],
+      "forbiddenSemanticElements": [
+        "three-unlabelled-photos-posed-as-complete-source-directory",
+        "unexplained-new-collection-primary-cta"
+      ],
+      "candidateState": "UNAPPROVED_PARTIAL_PAPER_AND_PIXEL_PROPOSAL",
+      "ownerChoice": null,
+      "exactOwnerApprovalSHA256": null
+    },
+    {
+      "surfaceId": "destinations",
+      "reviewCandidatePath": "design/proposals/plates/destinations.svg",
+      "alternativesToDecide": [
+        "design/proposals/state-refinements/destinations-unsupported.svg"
+      ],
+      "requiredSemanticElements": [
+        "home-and-lock-labels",
+        "target-specific-preview",
+        "apply-specific-outcome",
+        "capability-status"
+      ],
+      "forbiddenSemanticElements": [
+        "applying-lock-silently-mutates-home",
+        "two-large-reels-cramp-phone-controls"
+      ],
+      "candidateState": "UNAPPROVED_PARTIAL_PAPER_AND_PIXEL_PROPOSAL",
+      "ownerChoice": null,
+      "exactOwnerApprovalSHA256": null
+    },
+    {
+      "surfaceId": "image-editor",
+      "reviewCandidatePath": "design/proposals/plates/image-editor.svg",
+      "alternativesToDecide": [
+        "design/proposals/audit-revisions/r02-crop-pending.svg",
+        "design/proposals/audit-revisions/r02-copy-saved.svg"
+      ],
+      "requiredSemanticElements": [
+        "source-preserved",
+        "crop-destination",
+        "reversible-recipe",
+        "explicit-save-result",
+        "gesture-alternative"
+      ],
+      "forbiddenSemanticElements": [
+        "rotation-reel-used-as-numeric-precision-crop-dial"
+      ],
+      "candidateState": "UNAPPROVED_PARTIAL_PAPER_AND_PIXEL_PROPOSAL",
+      "ownerChoice": null,
+      "exactOwnerApprovalSHA256": null
+    },
+    {
+      "surfaceId": "activity",
+      "reviewCandidatePath": "design/proposals/plates/activity.svg",
+      "alternativesToDecide": [],
+      "requiredSemanticElements": [
+        "applied-versus-eligible-distinction",
+        "operation-time-and-target",
+        "error-recovery",
+        "rollback-or-reapply"
+      ],
+      "forbiddenSemanticElements": [
+        "fake-success-after-failed-wallpaper-call"
+      ],
+      "candidateState": "UNAPPROVED_PARTIAL_PAPER_AND_PIXEL_PROPOSAL",
+      "ownerChoice": null,
+      "exactOwnerApprovalSHA256": null
+    },
+    {
+      "surfaceId": "automation-editor",
+      "reviewCandidatePath": "design/proposals/plates/automation-editor.svg",
+      "alternativesToDecide": [],
+      "requiredSemanticElements": [
+        "typed-trigger",
+        "target",
+        "collection-source",
+        "priority",
+        "condition",
+        "natural-language-preview",
+        "conflict-and-failure-explanation"
+      ],
+      "forbiddenSemanticElements": [
+        "rule-settings-changed-by-photo-reel",
+        "silent-apply-on-preview"
+      ],
+      "candidateState": "UNAPPROVED_PARTIAL_PAPER_AND_PIXEL_PROPOSAL",
+      "ownerChoice": null,
+      "exactOwnerApprovalSHA256": null
+    },
+    {
+      "surfaceId": "source-detail",
+      "reviewCandidatePath": "design/proposals/plates/source-detail.svg",
+      "alternativesToDecide": [],
+      "requiredSemanticElements": [
+        "provider-name",
+        "source-licence-provenance",
+        "import-permission-or-eligibility",
+        "image-preview",
+        "source-website-or-credit"
+      ],
+      "forbiddenSemanticElements": [
+        "implied-verified-rights-without-evidence",
+        "unscoped-auto-download"
+      ],
+      "candidateState": "UNAPPROVED_PARTIAL_PAPER_AND_PIXEL_PROPOSAL",
+      "ownerChoice": null,
+      "exactOwnerApprovalSHA256": null
+    },
+    {
+      "surfaceId": "photo-detail",
+      "reviewCandidatePath": "design/proposals/storyboards/x07/03-photo-detail.svg",
+      "alternativesToDecide": [
+        "design/proposals/plates/photo-detail.svg"
+      ],
+      "requiredSemanticElements": [
+        "image-identity",
+        "source-provenance",
+        "set-wallpaper-explicit-target",
+        "share",
+        "edit",
+        "collection-membership"
+      ],
+      "forbiddenSemanticElements": [
+        "silent-apply-on-open"
+      ],
+      "candidateState": "UNAPPROVED_PARTIAL_PAPER_AND_PIXEL_PROPOSAL",
+      "ownerChoice": null,
+      "exactOwnerApprovalSHA256": null
+    },
+    {
+      "surfaceId": "quickstart",
+      "reviewCandidatePath": "design/proposals/plates/quickstart.svg",
+      "alternativesToDecide": [],
+      "requiredSemanticElements": [
+        "named-source-collection",
+        "destination-choice",
+        "shuffle-policy",
+        "cadence-and-platform-limits",
+        "start-or-cancel"
+      ],
+      "forbiddenSemanticElements": [
+        "exact-five-minute-background-promise",
+        "rules-editor-mandatory"
+      ],
+      "candidateState": "UNAPPROVED_PARTIAL_PAPER_AND_PIXEL_PROPOSAL",
+      "ownerChoice": null,
+      "exactOwnerApprovalSHA256": null
+    },
+    {
+      "surfaceId": "schedule-simulator",
+      "reviewCandidatePath": "design/proposals/plates/schedule-simulator.svg",
+      "alternativesToDecide": [],
+      "requiredSemanticElements": [
+        "simulated-label",
+        "future-context",
+        "hypothetical-outcome",
+        "explanation"
+      ],
+      "forbiddenSemanticElements": [
+        "wallpaper-apply",
+        "real-queue-consumption",
+        "simulated-outcome-declared-actual"
+      ],
+      "candidateState": "UNAPPROVED_PARTIAL_PAPER_AND_PIXEL_PROPOSAL",
+      "ownerChoice": null,
+      "exactOwnerApprovalSHA256": null
+    },
+    {
+      "surfaceId": "diagnostics",
+      "reviewCandidatePath": "design/proposals/plates/diagnostics.svg",
+      "alternativesToDecide": [],
+      "requiredSemanticElements": [
+        "operation-history",
+        "target",
+        "eligible-versus-attempted-versus-applied",
+        "failure-reason",
+        "retry-or-repair"
+      ],
+      "forbiddenSemanticElements": [
+        "wallpaper-preview-reused-as-success-proof"
+      ],
+      "candidateState": "UNAPPROVED_PARTIAL_PAPER_AND_PIXEL_PROPOSAL",
+      "ownerChoice": null,
+      "exactOwnerApprovalSHA256": null
+    },
+    {
+      "surfaceId": "widgets",
+      "reviewCandidatePath": "design/proposals/plates/widgets.svg",
+      "alternativesToDecide": [],
+      "requiredSemanticElements": [
+        "action-identity",
+        "actual-command-target",
+        "accessible-name"
+      ],
+      "forbiddenSemanticElements": [
+        "gesture-wheel-required",
+        "widget-launch-silently-applies-wrong-target"
+      ],
+      "candidateState": "UNAPPROVED_PARTIAL_PAPER_AND_PIXEL_PROPOSAL",
+      "ownerChoice": null,
+      "exactOwnerApprovalSHA256": null
+    },
+    {
+      "surfaceId": "quick-settings-and-shortcuts",
+      "reviewCandidatePath": "design/proposals/plates/quick-settings-and-shortcuts.svg",
+      "alternativesToDecide": [],
+      "requiredSemanticElements": [
+        "destination-scoped-action",
+        "status-state",
+        "capability-fallback"
+      ],
+      "forbiddenSemanticElements": [
+        "ambiguous-untargeted-next",
+        "implied-persistent-service"
+      ],
+      "candidateState": "UNAPPROVED_PARTIAL_PAPER_AND_PIXEL_PROPOSAL",
+      "ownerChoice": null,
+      "exactOwnerApprovalSHA256": null
+    },
+    {
+      "surfaceId": "settings",
+      "reviewCandidatePath": "design/proposals/plates/settings.svg",
+      "alternativesToDecide": [],
+      "requiredSemanticElements": [
+        "motion-preferences",
+        "theme",
+        "storage",
+        "network-policy",
+        "privacy",
+        "permissions-and-capabilities",
+        "backup-entry"
+      ],
+      "forbiddenSemanticElements": [
+        "paper-reel-as-a-toggle-control",
+        "unnecessary-intrusive-permissions"
+      ],
+      "candidateState": "UNAPPROVED_PARTIAL_PAPER_AND_PIXEL_PROPOSAL",
+      "ownerChoice": null,
+      "exactOwnerApprovalSHA256": null
+    },
+    {
+      "surfaceId": "backup-and-restore",
+      "reviewCandidatePath": "design/proposals/plates/backup-and-restore.svg",
+      "alternativesToDecide": [
+        "design/proposals/audit-revisions/r08-restore-conflict-choice.svg",
+        "design/proposals/audit-revisions/r08-skip-return-rainbows.svg"
+      ],
+      "requiredSemanticElements": [
+        "export-scope",
+        "image-inclusion-off-by-default",
+        "version",
+        "restore-preview",
+        "missing-source-remap"
+      ],
+      "forbiddenSemanticElements": [
+        "default-include-all-private-photo-bytes",
+        "silent-credential-restore"
+      ],
+      "candidateState": "UNAPPROVED_PARTIAL_PAPER_AND_PIXEL_PROPOSAL",
+      "ownerChoice": null,
+      "exactOwnerApprovalSHA256": null
+    },
+    {
+      "surfaceId": "onboarding",
+      "reviewCandidatePath": "design/proposals/plates/onboarding.svg",
+      "alternativesToDecide": [],
+      "requiredSemanticElements": [
+        "add-photos-path",
+        "privacy-explanation",
+        "destination",
+        "cadence",
+        "start",
+        "skip"
+      ],
+      "forbiddenSemanticElements": [
+        "mandatory-rules-editor",
+        "forced-large-initial-upload"
+      ],
+      "candidateState": "UNAPPROVED_PARTIAL_PAPER_AND_PIXEL_PROPOSAL",
+      "ownerChoice": null,
+      "exactOwnerApprovalSHA256": null
+    },
+    {
+      "surfaceId": "error-empty-permission",
+      "reviewCandidatePath": "design/proposals/plates/error-empty-permission.svg",
+      "alternativesToDecide": [],
+      "requiredSemanticElements": [
+        "cause-or-condition",
+        "next-action",
+        "preserved-existing-content-statement"
+      ],
+      "forbiddenSemanticElements": [
+        "invented-photo-content",
+        "generic-success-after-OS-failure"
+      ],
+      "candidateState": "UNAPPROVED_PARTIAL_PAPER_AND_PIXEL_PROPOSAL",
+      "ownerChoice": null,
+      "exactOwnerApprovalSHA256": null
+    },
+    {
+      "surfaceId": "accessibility-preferences",
+      "reviewCandidatePath": "design/proposals/plates/accessibility-preferences.svg",
+      "alternativesToDecide": [],
+      "requiredSemanticElements": [
+        "reduced-motion",
+        "high-contrast",
+        "font-scaling-system-compliance",
+        "gesture-alternative-information"
+      ],
+      "forbiddenSemanticElements": [
+        "required-circular-gesture",
+        "flashing-visual-feedback-only"
+      ],
+      "candidateState": "UNAPPROVED_PARTIAL_PAPER_AND_PIXEL_PROPOSAL",
+      "ownerChoice": null,
+      "exactOwnerApprovalSHA256": null
+    }
+  ],
+  "supportSurfaces": [
+    {
+      "surfaceId": "about",
+      "variants": [
+        {
+          "stateId": "sideload",
+          "reviewCandidatePath": "design/proposals/support-plates/about--sideload.svg",
+          "ownerChoice": null,
+          "exactOwnerApprovalSHA256": null
+        },
+        {
+          "stateId": "play-release",
+          "reviewCandidatePath": "design/proposals/support-plates/about--play-release.svg",
+          "ownerChoice": null,
+          "exactOwnerApprovalSHA256": null
+        }
+      ]
+    },
+    {
+      "surfaceId": "help",
+      "variants": [
+        {
+          "stateId": "topics",
+          "reviewCandidatePath": "design/proposals/support-plates/help--topics.svg",
+          "ownerChoice": null,
+          "exactOwnerApprovalSHA256": null
+        },
+        {
+          "stateId": "article",
+          "reviewCandidatePath": "design/proposals/support-plates/help--article.svg",
+          "ownerChoice": null,
+          "exactOwnerApprovalSHA256": null
+        }
+      ]
+    },
+    {
+      "surfaceId": "contact-feedback",
+      "variants": [
+        {
+          "stateId": "available",
+          "reviewCandidatePath": "design/proposals/support-plates/contact-feedback--available.svg",
+          "ownerChoice": null,
+          "exactOwnerApprovalSHA256": null
+        },
+        {
+          "stateId": "no-handler",
+          "reviewCandidatePath": "design/proposals/support-plates/contact-feedback--no-handler.svg",
+          "ownerChoice": null,
+          "exactOwnerApprovalSHA256": null
+        }
+      ]
+    },
+    {
+      "surfaceId": "report-problem",
+      "variants": [
+        {
+          "stateId": "draft",
+          "reviewCandidatePath": "design/proposals/support-plates/report-problem--draft.svg",
+          "ownerChoice": null,
+          "exactOwnerApprovalSHA256": null
+        },
+        {
+          "stateId": "with-diagnostics",
+          "reviewCandidatePath": "design/proposals/support-plates/report-problem--with-diagnostics.svg",
+          "ownerChoice": null,
+          "exactOwnerApprovalSHA256": null
+        }
+      ]
+    },
+    {
+      "surfaceId": "crash-recovery",
+      "variants": [
+        {
+          "stateId": "suspected-crash",
+          "reviewCandidatePath": "design/proposals/support-plates/crash-recovery--suspected-crash.svg",
+          "ownerChoice": null,
+          "exactOwnerApprovalSHA256": null
+        },
+        {
+          "stateId": "normal-exit",
+          "reviewCandidatePath": "design/proposals/support-plates/crash-recovery--normal-exit.svg",
+          "ownerChoice": null,
+          "exactOwnerApprovalSHA256": null
+        }
+      ]
+    },
+    {
+      "surfaceId": "diagnostic-preview",
+      "variants": [
+        {
+          "stateId": "minimal",
+          "reviewCandidatePath": "design/proposals/support-plates/diagnostic-preview--minimal.svg",
+          "ownerChoice": null,
+          "exactOwnerApprovalSHA256": null
+        },
+        {
+          "stateId": "expanded",
+          "reviewCandidatePath": "design/proposals/support-plates/diagnostic-preview--expanded.svg",
+          "ownerChoice": null,
+          "exactOwnerApprovalSHA256": null
+        }
+      ]
+    },
+    {
+      "surfaceId": "whats-new",
+      "variants": [
+        {
+          "stateId": "latest",
+          "reviewCandidatePath": "design/proposals/support-plates/whats-new--latest.svg",
+          "ownerChoice": null,
+          "exactOwnerApprovalSHA256": null
+        },
+        {
+          "stateId": "no-notes",
+          "reviewCandidatePath": "design/proposals/support-plates/whats-new--no-notes.svg",
+          "ownerChoice": null,
+          "exactOwnerApprovalSHA256": null
+        }
+      ]
+    },
+    {
+      "surfaceId": "updates",
+      "variants": [
+        {
+          "stateId": "sideload",
+          "reviewCandidatePath": "design/proposals/support-plates/updates--sideload.svg",
+          "ownerChoice": null,
+          "exactOwnerApprovalSHA256": null
+        },
+        {
+          "stateId": "play-eligible",
+          "reviewCandidatePath": "design/proposals/support-plates/updates--play-eligible.svg",
+          "ownerChoice": null,
+          "exactOwnerApprovalSHA256": null
+        },
+        {
+          "stateId": "offline",
+          "reviewCandidatePath": "design/proposals/support-plates/updates--offline.svg",
+          "ownerChoice": null,
+          "exactOwnerApprovalSHA256": null
+        }
+      ]
+    },
+    {
+      "surfaceId": "rate-review",
+      "variants": [
+        {
+          "stateId": "not-available",
+          "reviewCandidatePath": "design/proposals/support-plates/rate-review--not-available.svg",
+          "ownerChoice": null,
+          "exactOwnerApprovalSHA256": null
+        },
+        {
+          "stateId": "play-listing",
+          "reviewCandidatePath": "design/proposals/support-plates/rate-review--play-listing.svg",
+          "ownerChoice": null,
+          "exactOwnerApprovalSHA256": null
+        }
+      ]
+    },
+    {
+      "surfaceId": "privacy",
+      "variants": [
+        {
+          "stateId": "local-only",
+          "reviewCandidatePath": "design/proposals/support-plates/privacy--local-only.svg",
+          "ownerChoice": null,
+          "exactOwnerApprovalSHA256": null
+        },
+        {
+          "stateId": "diagnostics-opt-in",
+          "reviewCandidatePath": "design/proposals/support-plates/privacy--diagnostics-opt-in.svg",
+          "ownerChoice": null,
+          "exactOwnerApprovalSHA256": null
+        }
+      ]
+    },
+    {
+      "surfaceId": "storage-management",
+      "variants": [
+        {
+          "stateId": "overview",
+          "reviewCandidatePath": "design/proposals/support-plates/storage-management--overview.svg",
+          "ownerChoice": null,
+          "exactOwnerApprovalSHA256": null
+        },
+        {
+          "stateId": "delete-confirm",
+          "reviewCandidatePath": "design/proposals/support-plates/storage-management--delete-confirm.svg",
+          "ownerChoice": null,
+          "exactOwnerApprovalSHA256": null
+        },
+        {
+          "stateId": "low-storage",
+          "reviewCandidatePath": "design/proposals/support-plates/storage-management--low-storage.svg",
+          "ownerChoice": null,
+          "exactOwnerApprovalSHA256": null
+        }
+      ]
+    },
+    {
+      "surfaceId": "permissions-capabilities",
+      "variants": [
+        {
+          "stateId": "available",
+          "reviewCandidatePath": "design/proposals/support-plates/permissions-capabilities--available.svg",
+          "ownerChoice": null,
+          "exactOwnerApprovalSHA256": null
+        },
+        {
+          "stateId": "restricted",
+          "reviewCandidatePath": "design/proposals/support-plates/permissions-capabilities--restricted.svg",
+          "ownerChoice": null,
+          "exactOwnerApprovalSHA256": null
+        }
+      ]
+    },
+    {
+      "surfaceId": "credits-licences",
+      "variants": [
+        {
+          "stateId": "components",
+          "reviewCandidatePath": "design/proposals/support-plates/credits-licences--components.svg",
+          "ownerChoice": null,
+          "exactOwnerApprovalSHA256": null
+        },
+        {
+          "stateId": "rights-warning",
+          "reviewCandidatePath": "design/proposals/support-plates/credits-licences--rights-warning.svg",
+          "ownerChoice": null,
+          "exactOwnerApprovalSHA256": null
+        }
+      ]
+    },
+    {
+      "surfaceId": "beta-feedback",
+      "variants": [
+        {
+          "stateId": "invitation",
+          "reviewCandidatePath": "design/proposals/support-plates/beta-feedback--invitation.svg",
+          "ownerChoice": null,
+          "exactOwnerApprovalSHA256": null
+        },
+        {
+          "stateId": "share-preview",
+          "reviewCandidatePath": "design/proposals/support-plates/beta-feedback--share-preview.svg",
+          "ownerChoice": null,
+          "exactOwnerApprovalSHA256": null
+        }
+      ]
+    },
+    {
+      "surfaceId": "notification-preferences",
+      "variants": [
+        {
+          "stateId": "not-implemented",
+          "reviewCandidatePath": "design/proposals/support-plates/notification-preferences--not-implemented.svg",
+          "ownerChoice": null,
+          "exactOwnerApprovalSHA256": null
+        },
+        {
+          "stateId": "available",
+          "reviewCandidatePath": "design/proposals/support-plates/notification-preferences--available.svg",
+          "ownerChoice": null,
+          "exactOwnerApprovalSHA256": null
+        }
+      ]
+    },
+    {
+      "surfaceId": "external-handler-fallback",
+      "variants": [
+        {
+          "stateId": "email-missing",
+          "reviewCandidatePath": "design/proposals/support-plates/external-handler-fallback--email-missing.svg",
+          "ownerChoice": null,
+          "exactOwnerApprovalSHA256": null
+        },
+        {
+          "stateId": "chooser-cancelled",
+          "reviewCandidatePath": "design/proposals/support-plates/external-handler-fallback--chooser-cancelled.svg",
+          "ownerChoice": null,
+          "exactOwnerApprovalSHA256": null
+        }
+      ]
+    }
+  ],
+  "journeys": [
+    {
+      "id": "x01",
+      "task": "Bulk Google Photos import",
+      "frames": [
+        "design/proposals/storyboards/x01/01-collection-entry.svg",
+        "design/proposals/storyboards/x01/02-system-picker.svg",
+        "design/proposals/storyboards/x01/03-cloud-pending.svg",
+        "design/proposals/storyboards/x01/04-copy-progress.svg",
+        "design/proposals/storyboards/x01/05-partial-recovery.svg",
+        "design/proposals/storyboards/x01/06-import-result.svg",
+        "design/proposals/storyboards/x01/07-offline-ready.svg"
+      ],
+      "status": "CONNECTED_SOURCE_DRAFT",
+      "ownerChoice": null
+    },
+    {
+      "id": "x02",
+      "task": "Collection creation and management",
+      "frames": [
+        "design/proposals/storyboards/x02/01-collection-list.svg",
+        "design/proposals/storyboards/x02/02-create-sheet.svg",
+        "design/proposals/storyboards/x02/03-import-target.svg",
+        "design/proposals/storyboards/x02/04-rename.svg",
+        "design/proposals/storyboards/x02/05-delete-confirm.svg",
+        "design/proposals/storyboards/x02/06-empty-after-removal.svg"
+      ],
+      "status": "CONNECTED_SOURCE_DRAFT",
+      "ownerChoice": null
+    },
+    {
+      "id": "x03",
+      "task": "Wallpaper application transaction",
+      "frames": [
+        "design/proposals/storyboards/x03/01-preview.svg",
+        "design/proposals/storyboards/x03/02-choose-target.svg",
+        "design/proposals/storyboards/x03/03-pending.svg",
+        "design/proposals/storyboards/x03/04-acknowledged.svg",
+        "design/proposals/storyboards/x03/05-uncertain.svg",
+        "design/proposals/storyboards/x03/06-failed.svg",
+        "design/proposals/storyboards/x03/07-unsupported.svg"
+      ],
+      "status": "CONNECTED_SOURCE_DRAFT",
+      "ownerChoice": null
+    },
+    {
+      "id": "x04",
+      "task": "Active-use shuffle lifecycle",
+      "frames": [
+        "design/proposals/storyboards/x04/01-ready.svg",
+        "design/proposals/storyboards/x04/02-start.svg",
+        "design/proposals/storyboards/x04/03-active.svg",
+        "design/proposals/storyboards/x04/04-delayed.svg",
+        "design/proposals/storyboards/x04/05-paused.svg",
+        "design/proposals/storyboards/x04/06-resumed.svg",
+        "design/proposals/storyboards/x04/07-stopped.svg"
+      ],
+      "status": "CONNECTED_SOURCE_DRAFT",
+      "ownerChoice": null
+    },
+    {
+      "id": "x05",
+      "task": "Paper-reel physical motion",
+      "frames": [
+        "design/proposals/storyboards/x05/01-rest.svg",
+        "design/proposals/storyboards/x05/02-touch-down.svg",
+        "design/proposals/storyboards/x05/03-drag-18.svg",
+        "design/proposals/storyboards/x05/04-drag-36.svg",
+        "design/proposals/storyboards/x05/05-snap-72.svg",
+        "design/proposals/storyboards/x05/06-reverse-18.svg",
+        "design/proposals/storyboards/x05/07-interrupted.svg",
+        "design/proposals/storyboards/x05/08-last.svg"
+      ],
+      "status": "CONNECTED_SOURCE_DRAFT",
+      "ownerChoice": null
+    },
+    {
+      "id": "x06",
+      "task": "Finite reel edge and scale",
+      "frames": [
+        "design/proposals/storyboards/x06/01-first.svg",
+        "design/proposals/storyboards/x06/02-single.svg",
+        "design/proposals/storyboards/x06/03-three.svg",
+        "design/proposals/storyboards/x06/04-exact-five.svg",
+        "design/proposals/storyboards/x06/05-twenty-two.svg",
+        "design/proposals/storyboards/x06/06-sixty.svg",
+        "design/proposals/storyboards/x06/07-last.svg"
+      ],
+      "status": "CONNECTED_SOURCE_DRAFT",
+      "ownerChoice": null
+    },
+    {
+      "id": "x07",
+      "task": "Reel / Grid / photo detail continuity",
+      "frames": [
+        "design/proposals/storyboards/x07/01-reel-focus.svg",
+        "design/proposals/storyboards/x07/02-grid-focus.svg",
+        "design/proposals/storyboards/x07/03-photo-detail.svg",
+        "design/proposals/storyboards/x07/04-back-reel.svg",
+        "design/proposals/storyboards/x07/05-switch-collection.svg",
+        "design/proposals/storyboards/x07/06-return-original.svg",
+        "design/proposals/storyboards/x07/07-multi-select.svg"
+      ],
+      "status": "CONNECTED_SOURCE_DRAFT",
+      "ownerChoice": null
+    },
+    {
+      "id": "x08",
+      "task": "Compact handset information hierarchy",
+      "frames": [
+        "design/proposals/storyboards/x08/01-home-active.svg",
+        "design/proposals/storyboards/x08/02-collections.svg",
+        "design/proposals/storyboards/x08/03-reel-hero.svg",
+        "design/proposals/storyboards/x08/04-grid-dense.svg",
+        "design/proposals/storyboards/x08/05-long-title.svg",
+        "design/proposals/storyboards/x08/06-status-collapsed.svg"
+      ],
+      "status": "CONNECTED_SOURCE_DRAFT",
+      "ownerChoice": null
+    },
+    {
+      "id": "x09",
+      "task": "Large text, high contrast and motion stress",
+      "frames": [
+        "design/proposals/storyboards/x09/01-home-200-text.svg",
+        "design/proposals/storyboards/x09/02-collections-long-name.svg",
+        "design/proposals/storyboards/x09/03-reel-200-text.svg",
+        "design/proposals/storyboards/x09/04-grid-large-type.svg",
+        "design/proposals/storyboards/x09/05-import-200-text.svg",
+        "design/proposals/storyboards/x09/06-apply-high-contrast.svg",
+        "design/proposals/storyboards/x09/07-error-compact.svg",
+        "design/proposals/storyboards/x09/08-help-dialog.svg"
+      ],
+      "status": "CONNECTED_SOURCE_DRAFT",
+      "ownerChoice": null
+    },
+    {
+      "id": "x10",
+      "task": "Failures and interruption recovery",
+      "frames": [
+        "design/proposals/storyboards/x10/01-cloud-pending.svg",
+        "design/proposals/storyboards/x10/02-uri-revoked.svg",
+        "design/proposals/storyboards/x10/03-apply-unknown.svg",
+        "design/proposals/storyboards/x10/04-storage-full.svg",
+        "design/proposals/storyboards/x10/05-no-photos.svg",
+        "design/proposals/storyboards/x10/06-rotation-delayed.svg",
+        "design/proposals/storyboards/x10/07-retry-explicit.svg"
+      ],
+      "status": "CONNECTED_SOURCE_DRAFT",
+      "ownerChoice": null
+    },
+    {
+      "id": "x11",
+      "task": "Screenshot intake and editing",
+      "frames": [
+        "design/proposals/storyboards/x11/01-inbound-original.svg",
+        "design/proposals/storyboards/x11/02-rotate.svg",
+        "design/proposals/storyboards/x11/03-crop.svg",
+        "design/proposals/storyboards/x11/04-save-only.svg",
+        "design/proposals/storyboards/x11/05-show-next.svg",
+        "design/proposals/storyboards/x11/06-use-now.svg",
+        "design/proposals/storyboards/x11/07-cancel-undo.svg"
+      ],
+      "status": "CONNECTED_SOURCE_DRAFT",
+      "ownerChoice": null
+    },
+    {
+      "id": "x12",
+      "task": "Touch, inset and accessible focus anatomy",
+      "frames": [
+        "design/proposals/storyboards/x12/01-reel-touch-regions.svg",
+        "design/proposals/storyboards/x12/02-safe-area-navigation.svg",
+        "design/proposals/storyboards/x12/03-keyboard-compose.svg",
+        "design/proposals/storyboards/x12/04-talkback-focus.svg",
+        "design/proposals/storyboards/x12/05-error-dialog-focus.svg"
+      ],
+      "status": "CONNECTED_SOURCE_DRAFT",
+      "ownerChoice": null
+    },
+    {
+      "id": "x13",
+      "task": "Android sharing and return",
+      "frames": [
+        "design/proposals/advanced-storyboards/x13/01-original.svg",
+        "design/proposals/advanced-storyboards/x13/02-edited.svg",
+        "design/proposals/advanced-storyboards/x13/03-chooser.svg",
+        "design/proposals/advanced-storyboards/x13/04-cancel.svg",
+        "design/proposals/advanced-storyboards/x13/05-unavailable.svg"
+      ],
+      "status": "CONNECTED_SOURCE_DRAFT",
+      "ownerChoice": null
+    },
+    {
+      "id": "x14",
+      "task": "Target-aware crop and capabilities",
+      "frames": [
+        "design/proposals/advanced-storyboards/x14/01-home.svg",
+        "design/proposals/advanced-storyboards/x14/02-lock.svg",
+        "design/proposals/advanced-storyboards/x14/03-side-by-side.svg",
+        "design/proposals/advanced-storyboards/x14/04-unsupported.svg",
+        "design/proposals/advanced-storyboards/x14/05-apply-both.svg"
+      ],
+      "status": "CONNECTED_SOURCE_DRAFT",
+      "ownerChoice": null
+    },
+    {
+      "id": "x15",
+      "task": "Large library operations",
+      "frames": [
+        "design/proposals/advanced-storyboards/x15/01-library.svg",
+        "design/proposals/advanced-storyboards/x15/02-filter.svg",
+        "design/proposals/advanced-storyboards/x15/03-range-selection.svg",
+        "design/proposals/advanced-storyboards/x15/04-confirm-exclude.svg",
+        "design/proposals/advanced-storyboards/x15/05-restore.svg"
+      ],
+      "status": "CONNECTED_SOURCE_DRAFT",
+      "ownerChoice": null
+    },
+    {
+      "id": "x16",
+      "task": "Rule conflict and simulation",
+      "frames": [
+        "design/proposals/advanced-storyboards/x16/01-rules.svg",
+        "design/proposals/advanced-storyboards/x16/02-conflict.svg",
+        "design/proposals/advanced-storyboards/x16/03-precedence.svg",
+        "design/proposals/advanced-storyboards/x16/04-nested.svg",
+        "design/proposals/advanced-storyboards/x16/05-simulate.svg"
+      ],
+      "status": "CONNECTED_SOURCE_DRAFT",
+      "ownerChoice": null
+    },
+    {
+      "id": "x17",
+      "task": "Source rights and network consequences",
+      "frames": [
+        "design/proposals/advanced-storyboards/x17/01-providers.svg",
+        "design/proposals/advanced-storyboards/x17/02-provider-detail.svg",
+        "design/proposals/advanced-storyboards/x17/03-image-licence.svg",
+        "design/proposals/advanced-storyboards/x17/04-offline.svg",
+        "design/proposals/advanced-storyboards/x17/05-partial-import.svg"
+      ],
+      "status": "CONNECTED_SOURCE_DRAFT",
+      "ownerChoice": null
+    },
+    {
+      "id": "x18",
+      "task": "History, diagnosis and reapply",
+      "frames": [
+        "design/proposals/advanced-storyboards/x18/01-activity.svg",
+        "design/proposals/advanced-storyboards/x18/02-unknown.svg",
+        "design/proposals/advanced-storyboards/x18/03-delayed.svg",
+        "design/proposals/advanced-storyboards/x18/04-retry.svg",
+        "design/proposals/advanced-storyboards/x18/05-previous.svg"
+      ],
+      "status": "CONNECTED_SOURCE_DRAFT",
+      "ownerChoice": null
+    },
+    {
+      "id": "x19",
+      "task": "Backup and restore integrity",
+      "frames": [
+        "design/proposals/advanced-storyboards/x19/01-export-scope.svg",
+        "design/proposals/advanced-storyboards/x19/02-export-confirm.svg",
+        "design/proposals/advanced-storyboards/x19/03-restore-review.svg",
+        "design/proposals/advanced-storyboards/x19/04-restore-conflict.svg",
+        "design/proposals/advanced-storyboards/x19/05-restore-result.svg"
+      ],
+      "status": "CONNECTED_SOURCE_DRAFT",
+      "ownerChoice": null
+    },
+    {
+      "id": "x20",
+      "task": "External Android-hosted controls",
+      "frames": [
+        "design/proposals/advanced-storyboards/x20/01-launcher-widget.svg",
+        "design/proposals/advanced-storyboards/x20/02-widget-resize.svg",
+        "design/proposals/advanced-storyboards/x20/03-quick-tile.svg",
+        "design/proposals/advanced-storyboards/x20/04-shortcut.svg",
+        "design/proposals/advanced-storyboards/x20/05-unavailable.svg"
+      ],
+      "status": "CONNECTED_SOURCE_DRAFT",
+      "ownerChoice": null
+    },
+    {
+      "id": "x21",
+      "task": "Settings, help and return",
+      "frames": [
+        "design/proposals/advanced-storyboards/x21/01-enter.svg",
+        "design/proposals/advanced-storyboards/x21/02-about-help.svg",
+        "design/proposals/advanced-storyboards/x21/03-permissions.svg",
+        "design/proposals/advanced-storyboards/x21/04-report.svg",
+        "design/proposals/advanced-storyboards/x21/05-return.svg"
+      ],
+      "status": "CONNECTED_SOURCE_DRAFT",
+      "ownerChoice": null
+    },
+    {
+      "id": "x22",
+      "task": "Exact diagnostic report handoff",
+      "frames": [
+        "design/proposals/advanced-storyboards/x22/01-draft.svg",
+        "design/proposals/advanced-storyboards/x22/02-redacted.svg",
+        "design/proposals/advanced-storyboards/x22/03-consent.svg",
+        "design/proposals/advanced-storyboards/x22/04-chooser.svg",
+        "design/proposals/advanced-storyboards/x22/05-absent.svg"
+      ],
+      "status": "CONNECTED_SOURCE_DRAFT",
+      "ownerChoice": null
+    },
+    {
+      "id": "x23",
+      "task": "Adverse asynchronous input states",
+      "frames": [
+        "design/proposals/advanced-storyboards/x23/01-loading.svg",
+        "design/proposals/advanced-storyboards/x23/02-cloud-placeholder.svg",
+        "design/proposals/advanced-storyboards/x23/03-long-names.svg",
+        "design/proposals/advanced-storyboards/x23/04-duplicates.svg",
+        "design/proposals/advanced-storyboards/x23/05-batch-error.svg"
+      ],
+      "status": "CONNECTED_SOURCE_DRAFT",
+      "ownerChoice": null
+    }
+  ],
+  "explicitOwnerQuestions": [
+    {
+      "id": "D01",
+      "subject": "Home photographic crescent",
+      "decision": "Keep a clearly labeled, tap-only crescent collection cover or use a conventional card?"
+    },
+    {
+      "id": "D02",
+      "subject": "Finite photographic reel",
+      "decision": "Do physical five-aperture paper rim, zoom, pointer, hero and clipped wheel communicate a usable photo selector?"
+    },
+    {
+      "id": "D03",
+      "subject": "Action hierarchy",
+      "decision": "At normal and 200% text, do Grid, Next/Previous, Set wallpaper and external sharing appear understandable and sufficiently accessible?"
+    },
+    {
+      "id": "D04",
+      "subject": "Selected vs applied",
+      "decision": "Is app-acknowledged Home p04 clearly distinguished from selected p12 and unknown current system wallpaper?"
+    },
+    {
+      "id": "D05",
+      "subject": "Provider lifetime",
+      "decision": "Are locally verified images and pending Google Photos source items correctly represented under offline/revoked/low-storage conditions?"
+    },
+    {
+      "id": "D06",
+      "subject": "OS-owned UI and background claims",
+      "decision": "Are system picker/sharesheet/Lock availability and best-effort five-minute scheduling portrayed without inventing guaranteed results?"
+    },
+    {
+      "id": "D07",
+      "subject": "Restore consequences",
+      "decision": "Are preview, Skip/Keep/Separate, committed outcome and Back clearly separate and safely reversible?"
+    },
+    {
+      "id": "D08",
+      "subject": "Whole-product visual language",
+      "decision": "Do support, recovery, accessibility and native entry points feel like the same Glimpse product as the photographic paper reel?"
+    }
+  ]
+}
