@@ -15,7 +15,7 @@ ROOT = Path(__file__).resolve().parents[1]
 DIR = ROOT / "design/proposals/support-plates"
 MANIFEST = ROOT / "design/proposals/support-coverage.v1.json"
 BANNER = re.compile(r'<rect x="40" y="171" width="348" height="32" rx="8" fill="#E9E0F5" stroke="none" stroke-width="1"/>\s*<text x="52" y="193"[^>]*>PROPOSAL • [^<]*</text>\s*')
-FOOTER = '<path d="M29 817h373"/>'
+FOOTER = '<path d="M29 817h373" stroke="#C8B7A1"/>'
 NAV = """<g id="support-navigation" aria-label="Four tab destinations; static touch region proposal only">
 <rect x="31" y="822" width="86" height="46" rx="12" fill="#EBE5DB" data-control="nav-home" data-focus-order="90" data-hit-width="86" data-hit-height="46"/>
 <rect x="126" y="822" width="86" height="46" rx="12" fill="#EBE5DB" data-control="nav-discover" data-focus-order="91" data-hit-width="86" data-hit-height="46"/>
