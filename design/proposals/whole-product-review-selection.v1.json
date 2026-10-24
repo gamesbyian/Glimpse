@@ -58,8 +58,10 @@
     },
     {
       "surfaceId": "collections",
-      "reviewCandidatePath": "design/proposals/plates/collections.svg",
-      "alternativesToDecide": [],
+      "reviewCandidatePath": "design/proposals/whole-product-candidates/collections-photo-covers.svg",
+      "alternativesToDecide": [
+        "design/proposals/plates/collections.svg"
+      ],
       "requiredSemanticElements": [
         "collection-titles",
         "true-item-counts",
@@ -69,9 +71,10 @@
       "forbiddenSemanticElements": [
         "faked-image-copies-to-fill-five-windows"
       ],
-      "candidateState": "UNAPPROVED_PARTIAL_PAPER_AND_PIXEL_PROPOSAL",
+      "candidateState": "UNAPPROVED_SOURCE_PHOTOGRAPHIC_CURRENT_GENERATION_NOT_NATIVE_ACCEPTED",
       "ownerChoice": null,
-      "exactOwnerApprovalSHA256": null
+      "exactOwnerApprovalSHA256": null,
+      "visualEvidence": "Static source-backed photo-paper covers with conventional list navigation, not draggable fake micro reels. Real runtime list and 200 percent scale unverified."
     },
     {
       "surfaceId": "reel",
