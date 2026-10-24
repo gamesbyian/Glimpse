@@ -1,0 +1,207 @@
+{
+  "screens": [
+    {
+      "screen": "accessibility-preferences",
+      "sourcePath": "design/proposals/plates/accessibility-preferences.svg",
+      "sourceSHA256": "9804c614aab05177dcba76c1a688ebd7da80dda3c368702cae16834fc7081bed",
+      "phoneRasterSHA256": "08c454c740bf56c3539d2814f5ce04dfe5c1a0d4061e729166d089f8864d67ca"
+    },
+    {
+      "screen": "activity",
+      "sourcePath": "design/proposals/plates/activity.svg",
+      "sourceSHA256": "286377bb558373e01240f67a55c45e3c36f7652efafa77b617f7b225a3d33cd3",
+      "phoneRasterSHA256": "3c5414cadc474c615fea27e3692a21cba388f3ec882213e3123fb4a8ffd96b95"
+    },
+    {
+      "screen": "automation-editor",
+      "sourcePath": "design/proposals/plates/automation-editor.svg",
+      "sourceSHA256": "bd9a4bdedb0d4457412a4a426bb7cd844bc0e3e7c98f1b785f031155435d3cf8",
+      "phoneRasterSHA256": "244ca03074f8cabc16172d995a78dfbe005016dcc2712a01b09b1ced057dbd27"
+    },
+    {
+      "screen": "automation",
+      "sourcePath": "design/proposals/plates/automation.svg",
+      "sourceSHA256": "cc5964d646fed03c39abc337582d2b0f53cfeccfeecfe375f4d78dcd6b80f97f",
+      "phoneRasterSHA256": "f73afe2b1c8d688624e42b2c2c9814bb0b594a5fe3c14164cd0c23a2080f2156"
+    },
+    {
+      "screen": "backup-and-restore",
+      "sourcePath": "design/proposals/plates/backup-and-restore.svg",
+      "sourceSHA256": "3a306d36c9c1b124939f06a8f96d33bf54b7918bc76007b98477156bfff1d377",
+      "phoneRasterSHA256": "c8323444888652ac0dd7e3955f69f6022e93565506ffc037717f44a080616fe6"
+    },
+    {
+      "screen": "destinations",
+      "sourcePath": "design/proposals/plates/destinations.svg",
+      "sourceSHA256": "bc2da412df3c3ca53607c483a0757e1498585d3b9fbdb759e338b038be67c107",
+      "phoneRasterSHA256": "d5e92e03119d2f5b2dd644e4c016f3d490b7e85d889798936be9cd97d0411fd5"
+    },
+    {
+      "screen": "diagnostics",
+      "sourcePath": "design/proposals/plates/diagnostics.svg",
+      "sourceSHA256": "2ec27e25e4375039f6ce7a729674cf889b269f357caf87abe2f8ec0f338ffc76",
+      "phoneRasterSHA256": "dcbf2c4ea940cb1df96d70148f4bd006c9edc226ed27dd3b40ad4f8eafd0980f"
+    },
+    {
+      "screen": "discover",
+      "sourcePath": "design/proposals/plates/discover.svg",
+      "sourceSHA256": "b2b92b6ae7cdaeb2c2eb7052ecc0579f203dd52a33d30fb8f5b88e03105a0e68",
+      "phoneRasterSHA256": "37e6f8122b257777e47ff700012951d7c91bf6d6f3d63919ff85cfab924bfc34"
+    },
+    {
+      "screen": "error-empty-permission",
+      "sourcePath": "design/proposals/plates/error-empty-permission.svg",
+      "sourceSHA256": "7e0a79132c292352464d85e50f0a32bfe22c47d22a5eabf5917e3f04db67880d",
+      "phoneRasterSHA256": "677b731159c44d416af783d02fb648eb946100e4380bd94c24d9f70562adce18"
+    },
+    {
+      "screen": "image-editor",
+      "sourcePath": "design/proposals/plates/image-editor.svg",
+      "sourceSHA256": "04cd81ac63c5ab92098af17f62dc2cb9e49b5c9f155051e75ab32f6bdb323f48",
+      "phoneRasterSHA256": "a3ca82f93ec5646b4f5a78f54d653ca6039d1d967af205bc695acf3990adb7de"
+    },
+    {
+      "screen": "onboarding",
+      "sourcePath": "design/proposals/plates/onboarding.svg",
+      "sourceSHA256": "ba6d900665e19405ce3ba725b3c578bd6b0e2f084c8d314b563a951d90ef937a",
+      "phoneRasterSHA256": "c5f9c90282049c9a6e8a6eca8cdc7f9c915f3df46c98e0c62995bdb1a7bffabd"
+    },
+    {
+      "screen": "quick-import",
+      "sourcePath": "design/proposals/plates/quick-import.svg",
+      "sourceSHA256": "48670018420d33aa7de4b33348fd0032cf20e00a1e52ffeb26950c9bf24d763a",
+      "phoneRasterSHA256": "8e2e16bf5447f72bd040b9384006f477e1ac5bcecdd1887db724c7111fb20575"
+    },
+    {
+      "screen": "quick-settings-and-shortcuts",
+      "sourcePath": "design/proposals/plates/quick-settings-and-shortcuts.svg",
+      "sourceSHA256": "db3e585bd076538f191c682d87f7f3c0889cca80d4d3f9ec5945c9dafc54336b",
+      "phoneRasterSHA256": "78b60a00bc760399b17e34e07e55ec5ef34e4d4f2d0cd3219d2980925e9b59a3"
+    },
+    {
+      "screen": "quickstart",
+      "sourcePath": "design/proposals/plates/quickstart.svg",
+      "sourceSHA256": "c703b20c763f663151ebadaa0fa14b29b0241afbc688a3818b216415a3e5910c",
+      "phoneRasterSHA256": "4765ecf634a79bf46e81f8b661b9fae7fc75ab21078ad4156dab9ca828ca175b"
+    },
+    {
+      "screen": "schedule-simulator",
+      "sourcePath": "design/proposals/plates/schedule-simulator.svg",
+      "sourceSHA256": "67f4aba1c3f2a6c42a4337a10a44df9931b06fbdb5c26294431ccc0b39cf5a5b",
+      "phoneRasterSHA256": "a62cf9a481c27a79a9f6023e12866dc38b6bb8db7cb636053c8e76505f6326c7"
+    },
+    {
+      "screen": "settings",
+      "sourcePath": "design/proposals/plates/settings.svg",
+      "sourceSHA256": "38759466ffd4a7c5d0b8534a536db8b46e495507ce73e123760f273b692e9b95",
+      "phoneRasterSHA256": "0ba3cae029dd8eec35c097340a1f1644b486dc4997c16abc608d90028af2c040"
+    },
+    {
+      "screen": "source-detail",
+      "sourcePath": "design/proposals/plates/source-detail.svg",
+      "sourceSHA256": "5e6dec1cf8cb8503b5d33a59e13956c63182269ae249bae6085a6ca0c8d84bf3",
+      "phoneRasterSHA256": "392b935f68b561aa74acd57cb042e9dcfb9233ca5ec5fd7a7aba356de5b4893c"
+    },
+    {
+      "screen": "widgets",
+      "sourcePath": "design/proposals/plates/widgets.svg",
+      "sourceSHA256": "76063da0380c74d7f659d3cda0d4fe44bdb81a066368d97b648c1a77813f78a2",
+      "phoneRasterSHA256": "e8d2e66a1c3df9474abb9fed824a2399f85874182004313883aa8bcbe0d531c5"
+    }
+  ],
+  "unselectedCandidates": [
+    {
+      "sourcePath": "design/proposals/whole-product-candidates/home-p04-photographic-cc0.svg",
+      "sourceSHA256": "ad0c7e3f66e3a2253c56a93338fd21c332f72d4b84e7917bf4348fb7eed12cdc",
+      "rasterPath": "design/system/reviews/ci-renders/home-p04-photographic-candidate.png",
+      "rasterSHA256": "3714e960ea9963387efcbcec611c83ad51a553f41e29b71d544cc9964bda1c52",
+      "status": "UNSELECTED",
+      "AndroidNativeVerified": false,
+      "ownerApproved": false
+    },
+    {
+      "sourcePath": "design/proposals/whole-product-candidates/grid-photography-provenance-p12.svg",
+      "sourceSHA256": "d13dc3374af934a48aecd5fafb7f0d3ef2cdf4be398671d08bd71b52b6566144",
+      "rasterPath": "design/system/reviews/ci-renders/grid-photography-provenance-p12.png",
+      "rasterSHA256": "b01bc473c784de3a0f70be0737342be52fe37c5bcaa0d58fdf3b68200add8be8",
+      "status": "UNSELECTED",
+      "AndroidNativeVerified": false,
+      "ownerApproved": false
+    },
+    {
+      "sourcePath": "design/proposals/whole-product-candidates/grid-3column-native-aligned-p12.svg",
+      "sourceSHA256": "f8b5a5edf3c84f594a03b432825c431bfcf56db2d094402b70baecede5cd6f83",
+      "rasterPath": "design/system/reviews/ci-renders/grid-native-three-column-p12.png",
+      "rasterSHA256": "d1cd722a54a98c940f166f5db8904c056c3e592aa04a77a6ff08a034b0f69f44",
+      "status": "UNSELECTED",
+      "AndroidNativeVerified": false,
+      "ownerApproved": false
+    },
+    {
+      "sourcePath": "design/proposals/whole-product-candidates/compact-320dp-200pct-sections-sheet.svg",
+      "sourceSHA256": "b4a0b5419b3860ea9176ae28e3f2d4589f964a113c8debcd8c6feab18b46157a",
+      "rasterPath": "design/system/reviews/ci-renders/compact-320dp-fontscale2-unselected.png",
+      "rasterSHA256": "90a99cb2ad4187576cb989cd5d4270fb5ad67a27375d6bda2d5894c3fba3de85",
+      "status": "UNSELECTED",
+      "AndroidNativeVerified": false,
+      "ownerApproved": false
+    },
+    {
+      "sourcePath": "design/proposals/whole-product-candidates/cc0-consistent-20261024/home.svg",
+      "sourceSHA256": "b436a27959c0b78e81d2d66c342d8bca605595904b5ff97530ea9331062f33d8",
+      "rasterPath": "design/system/reviews/ci-renders/cc0-consistent-home.png",
+      "rasterSHA256": "342d81ce3d5396e49feb3a9b5ba1b331441d79e327fb2d4992114f92bcd50ff9",
+      "status": "UNSELECTED",
+      "AndroidNativeVerified": false,
+      "ownerApproved": false
+    },
+    {
+      "sourcePath": "design/proposals/whole-product-candidates/cc0-consistent-20261024/reel.svg",
+      "sourceSHA256": "5d562b3f8420170e537ac27e5d10416414747028f2af2924f4ff87ceaa51400e",
+      "rasterPath": "design/system/reviews/ci-renders/cc0-consistent-reel.png",
+      "rasterSHA256": "ef6111ff9cd660bb4dae5b954e5d95bcdaaf0e4ab6c5ac779ab50fa14070224c",
+      "status": "UNSELECTED",
+      "AndroidNativeVerified": false,
+      "ownerApproved": false
+    },
+    {
+      "sourcePath": "design/proposals/whole-product-candidates/cc0-consistent-20261024/grid-3column.svg",
+      "sourceSHA256": "59a22728243ef80b3f1393927b8cca12f4bbbe7559bc937ce514e789a1d098af",
+      "rasterPath": "design/system/reviews/ci-renders/cc0-consistent-grid-3column.png",
+      "rasterSHA256": "f90a6938e58fd6f7b9e38710dc9b96b1d51e703b540c77c4093486657f38fb02",
+      "status": "UNSELECTED",
+      "AndroidNativeVerified": false,
+      "ownerApproved": false
+    },
+    {
+      "sourcePath": "design/proposals/whole-product-candidates/cc0-consistent-20261024/detail.svg",
+      "sourceSHA256": "a2958974c25a520b3f3574866432671ad44379cb35ce976dd1cbcb568be38303",
+      "rasterPath": "design/system/reviews/ci-renders/cc0-consistent-detail.png",
+      "rasterSHA256": "f7fe91443fde13dbe3017f8eb870c843ab96fa6d4dd2b23e56fe2f521d82a482",
+      "status": "UNSELECTED",
+      "AndroidNativeVerified": false,
+      "ownerApproved": false
+    },
+    {
+      "sourcePath": "design/proposals/whole-product-candidates/cc0-consistent-20261024/collections.svg",
+      "sourceSHA256": "a738f6cc22cee1ed40f30d0efb1703cecefe771bf519d28da205d15049e54339",
+      "rasterPath": "design/system/reviews/ci-renders/cc0-consistent-collections.png",
+      "rasterSHA256": "5a5d19efc765768847e023f570d3f24c2758c110f64ccba79af9bf14510b32c9",
+      "status": "UNSELECTED",
+      "AndroidNativeVerified": false,
+      "ownerApproved": false
+    },
+    {
+      "sourcePath": "design/proposals/whole-product-candidates/cc0-consistent-20261024/share.svg",
+      "sourceSHA256": "e379e1e5941ca293a4e6a776b2682b3470d2cd6f912b8a07cc6d23d4b78e491c",
+      "rasterPath": "design/system/reviews/ci-renders/cc0-consistent-share.png",
+      "rasterSHA256": "5cca4ab2d837a4fa3670393cf2143d4c0beb12290da1f627e636ac54494e9d9b",
+      "status": "UNSELECTED",
+      "AndroidNativeVerified": false,
+      "ownerApproved": false
+    }
+  ],
+  "AndroidNativeVerified": false,
+  "independentlyOpticallyInspected": false,
+  "ownerApproved": false
+}
