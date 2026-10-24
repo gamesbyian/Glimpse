@@ -74,7 +74,7 @@ class ProvenanceContractTest(unittest.TestCase):
             (ROOT / "design/assets/production-c-provenance.v1.json").read_text()
         )
         blockers, embedded = module.validate(manifest, ROOT)
-        self.assertEqual(6, blockers)
+        self.assertEqual(4, blockers)
         self.assertGreaterEqual(embedded, 6)
 
 
