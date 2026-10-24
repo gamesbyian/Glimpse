@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "status": "ALL_DRAFT_SOURCE_EVIDENCE_NOT_HUMAN_APPROVED",
-  "sourceCommit": "cb26a980c6906736ebea318f7e7dbb33fdd958fb",
+  "sourceCommit": "d59144d50cc8789a82cd2b152a8e6bc6c746d943",
   "auditCycleA": {
     "PASS_SOURCE_ONLY": 18,
     "ISSUE": 8,
@@ -2097,7 +2097,7 @@
           "path": "design/proposals/whole-product-candidates/collections-photo-covers.svg",
           "label": "Collections Photo Covers",
           "meaning": "Proposed full-product visual refinement; owner approval absent",
-          "sourceSHA256": "e3aa044d09374d678492b853757477dfdd9affc51483214bdfda63ebac0414e4"
+          "sourceSHA256": "e318dbbfa331fde235102430e2ccb750cca8acb340fa2b3e0b6af3ba65e31daa"
         }
       ]
     },
