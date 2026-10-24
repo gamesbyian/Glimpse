@@ -32,6 +32,13 @@ def generate():
     for old,new in PAIRS:
         assert s.count(old)==1, "R03 source has changed; reconcile manually"
         s=s.replace(old,new,1)
+    earlier='Browsing changes no wallpaper'
+    clearer='Change now uses active shuffle'
+    assert s.count(earlier)==1
+    s=s.replace(earlier,clearer,1)
+    oldnav='>Auto</text>'
+    assert s.count(oldnav)==1
+    s=s.replace(oldnav,'>Automation</text>',1)
     m=re.search(r"<metadata>(.*?)</metadata>",s,re.S)
     assert m
     d=json.loads(html.unescape(m.group(1)))
