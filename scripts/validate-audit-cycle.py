@@ -138,8 +138,11 @@ assert len([c for c in r04["cases"] if c.get("dedicatedReferencePath")]) == 2
 # separate or simulated Android TalkBack implementation.
 r01_reel = (ROOT / "design/proposals/audit-revisions/r01-photo-rest-22.svg").read_text()
 r05_overlay = (ROOT / "design/proposals/audit-revisions/r05-photo-reel-focus-overlay.svg").read_text()
-photo_pattern = r'<image id="(fixture\\d+)"[^>]*href="data:image/jpeg;base64,([^"]+)"'
-assert re.findall(photo_pattern, r01_reel) == re.findall(photo_pattern, r05_overlay)
+photo_pattern = r'<image id="(fixture\d+)"[^>]*href="data:image/jpeg;base64,([^"]+)"'
+r01_fixture_bytes = re.findall(photo_pattern, r01_reel)
+r05_fixture_bytes = re.findall(photo_pattern, r05_overlay)
+assert len(r01_fixture_bytes) == 6, "R01 actual photo-fixture group missing"
+assert r01_fixture_bytes == r05_fixture_bytes, "R05 must preserve exact R01 photo bytes"
 assert 'id="r05-focus-order-audit-overlay"' in r05_overlay
 assert '"nativeProof":"unverified"' in r05_overlay
 assert '"selectedAssetId":"p12"' in r05_overlay and '"lastConfirmedAppliedAssetId":"p04"' in r05_overlay
