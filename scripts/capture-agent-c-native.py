@@ -121,10 +121,13 @@ def main():
         base.start_fixture(22)
         base.capture("22-native-200-percent",
                      "Android system font scale 2.0, optical/a11y review pending")
+        # UIAutomator dumps only on-screen nodes: measure visible chip height
+        # BEFORE scrolling chips off-screen. Previously this was measured after
+        # the scroll and falsely failed with zero clickable nodes.
+        verify_large_type_navigation_targets()
         base.swipe("up")
         base.capture("22-native-200-percent-scrolled",
                      "Second viewport at 2.0 font scale, no approval inferred")
-        verify_large_type_navigation_targets()
     except Exception as error:
         failures.append(str(error))
         print("Agent C native sweep failed:", error, flush=True)
