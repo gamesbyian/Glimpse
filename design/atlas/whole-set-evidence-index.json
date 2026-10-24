@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "status": "ALL_DRAFT_SOURCE_EVIDENCE_NOT_HUMAN_APPROVED",
-  "sourceCommit": "b4badf3bb4473c4206e0620d27b94fa874d35923",
+  "sourceCommit": "8b1f6204a8013d4f8b94b138901dc288d7cce993",
   "auditCycleA": {
     "PASS_SOURCE_ONLY": 18,
     "ISSUE": 8,
@@ -16,8 +16,9 @@
     "P1": 55,
     "supplemental": 25,
     "auditRevisionAlternatives": 43,
+    "wholeProductCandidates": 1,
     "preferredRoute": 39,
-    "uniqueEvidenceSources": 271,
+    "uniqueEvidenceSources": 272,
     "namedStateSlots": 34
   },
   "scenarioCoverage": {
@@ -2084,6 +2085,19 @@
           "label": "Batch partial failure",
           "meaning": "No premature all-done badge or lost successful copies",
           "sourceSHA256": "9484a8a3680f3e280c3f04b4f4064edd90aa9a913ab5684c7d21b4771078f028"
+        }
+      ]
+    },
+    {
+      "name": "Current-generation whole-product visual candidates",
+      "class": "whole-product-candidate",
+      "tier": "APPENDIX",
+      "items": [
+        {
+          "path": "design/proposals/whole-product-candidates/collections-photo-covers.svg",
+          "label": "Collections Photo Covers",
+          "meaning": "Proposed full-product visual refinement; owner approval absent",
+          "sourceSHA256": "e3aa044d09374d678492b853757477dfdd9affc51483214bdfda63ebac0414e4"
         }
       ]
     },
