@@ -12,6 +12,7 @@ on:
       - design/proposals/advanced-storyboard-coverage.v1.json
       - design/proposals/storyboard-coverage.v1.json
       - docs/design/screen-contract.json
+      - design/proposals/audit-scenario-evidence.v1.json
   workflow_dispatch:
 
 permissions:
@@ -34,7 +35,9 @@ jobs:
         with:
           python-version: '3.12'
       - name: Validate manifest to source traceability
-        run: python3 scripts/build-whole-set-evidence-atlas.py --check
+        run: |
+          python3 scripts/validate-audit-scenario-trace.py
+          python3 scripts/build-whole-set-evidence-atlas.py --check
       - name: Generate offline browser index and SHA256 evidence manifest
         run: python3 scripts/build-whole-set-evidence-atlas.py
       - name: Verify generated browser links and category counts
