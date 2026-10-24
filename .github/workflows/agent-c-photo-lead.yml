@@ -1,9 +1,5 @@
 name: Agent C audit CC0 photo lead
 on:
-  pull_request:
-    paths:
-      - scripts/acquire-agent-c-cc0-lead.py
-      - .github/workflows/agent-c-photo-lead.yml
   workflow_dispatch:
 permissions:
   contents: read
