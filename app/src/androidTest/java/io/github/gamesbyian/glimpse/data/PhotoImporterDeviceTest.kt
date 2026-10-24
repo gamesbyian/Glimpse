@@ -7,6 +7,7 @@ import android.net.Uri
 import android.os.Build
 import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
+import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert.assertArrayEquals
@@ -19,6 +20,7 @@ import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 import java.io.File
+import android.content.Intent
 import java.security.MessageDigest
 import java.util.UUID
 
@@ -163,6 +165,55 @@ class PhotoImporterDeviceTest {
             corrupt.delete()
         }
     }
+
+    @Test fun controlledContentProviderGrantCanExpireAfterOfflineImport() =
+        withDatabase { dao ->
+            val testPackage = InstrumentationRegistry.getInstrumentation().context
+            val transientSource = sourceFixture(91)
+            val externalFixture = File(
+                testPackage.cacheDir, "fixture-" + UUID.randomUUID() + ".jpg"
+            )
+            try {
+                transientSource.copyTo(externalFixture, overwrite = true)
+                val exact = externalFixture.readBytes()
+                val expectedSha = sha256(externalFixture)
+                val uri = Uri.parse(
+                    "content://io.github.gamesbyian.glimpse.test.ephemeral/" +
+                        externalFixture.name
+                )
+                dao.insertCollection(CollectionRecord("granted", "Granted", 1L))
+                testPackage.grantUriPermission(
+                    context.packageName, uri, Intent.FLAG_GRANT_READ_URI_PERMISSION
+                )
+                val accepted = PhotoImporter(context, dao).import(listOf(uri), "granted")
+                assertEquals(1, accepted.imported)
+                assertEquals(0, accepted.failures)
+                val saved = dao.photosIn("granted").single()
+                assertEquals(expectedSha, saved.id)
+                val offline = File(saved.localPath)
+                assertArrayEquals(exact, offline.readBytes())
+                // This is a private test provider, not Google's Photo Picker.
+                // Its explicit grant is revoked before retry, and the source
+                // remains in place so rejection measures access, not deletion.
+                testPackage.revokeUriPermission(
+                    uri, Intent.FLAG_GRANT_READ_URI_PERMISSION
+                )
+                val denied = PhotoImporter(context, dao).import(listOf(uri), "granted")
+                assertEquals(0, denied.imported)
+                assertEquals(1, denied.failures)
+                assertArrayEquals(exact, offline.readBytes())
+                assertEquals(expectedSha, sha256(offline))
+                assertEquals(saved.id, dao.photosIn("granted").single().id)
+            } finally {
+                testPackage.revokeUriPermission(
+                    Uri.parse("content://io.github.gamesbyian.glimpse.test.ephemeral/" +
+                        externalFixture.name),
+                    Intent.FLAG_GRANT_READ_URI_PERMISSION
+                )
+                transientSource.delete()
+                externalFixture.delete()
+            }
+        }
 
     @Test fun corruptedPrivateCopyIsAtomicallyRestoredBeforeReusingHashId() =
         withDatabase { dao ->
