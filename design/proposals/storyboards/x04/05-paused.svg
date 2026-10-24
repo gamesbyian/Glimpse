@@ -19,7 +19,7 @@
 <rect x="44" y="468" width="333" height="107" rx="13" fill="#E9E0F5" stroke="none" stroke-width="1"/>
 <text x="58" y="497" text-anchor="start" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="700" fill="#153F46">Rotation paused</text>
 <text x="58" y="524" text-anchor="start" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="400" fill="#667975">Last applied Home stays as it was</text>
-<text x="50" y="613" text-anchor="start" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="550" fill="#153F46">Next eligible 00:16 · foreground only</text>
+<text x="50" y="613" text-anchor="start" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="550" fill="#153F46">No scheduled changes while paused</text>
 <rect x="50" y="655" width="144" height="42" rx="17" fill="#1D5960" stroke="#1D5960" stroke-width="1"/>
 <text x="122" y="682" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="650" fill="#FFFFFF">Resume</text>
 <rect x="210" y="655" width="155" height="42" rx="17" fill="#FFFCF6" stroke="#BCA990" stroke-width="1"/>
