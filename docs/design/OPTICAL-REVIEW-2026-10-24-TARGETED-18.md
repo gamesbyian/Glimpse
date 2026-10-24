@@ -1,0 +1,30 @@
+# Glimpse second pass: eighteen source-linked phone render comparisons · 2026-10-24
+
+This is a **direct visual review** of six full-native-size `401×890` three-phone contact JPEGs saved in [`design/reviews/targeted-2026-10-24`](../../design/reviews/targeted-2026-10-24/) and source hashes in [`source-ledger.json`](../../design/reviews/targeted-2026-10-24/source-ledger.json). Source rendering was [Actions #40115984371](https://github.com/gamesbyian/Glimpse/actions/runs/40115984371), subsequently refreshed for R03 preview wording in [Actions #40116392107](https://github.com/gamesbyian/Glimpse/actions/runs/40116392107). The latest source and render hash in the ledger determines the exact proof, not whichever earlier run number is read in isolation. There are **18 displayed phone entries** (some sources intentionally appear twice for comparison), not necessarily 18 different SVG identities. The contact is JPEG-encoded from actual CairoSVG phone raster, not an emulator or physical phone screenshot.
+
+The [first pass report](OPTICAL-REVIEW-2026-10-24-TARGETED-12.md) already covers finite 0/1/3/5/22/60, first p01, Home crescent, enlarged type, R03 Home, R04 offline and R08 skip-return. This second pass specifically assesses the **motion** and **p12 identity** sheets using actual displayed images.
+
+## Confirmed source-level visual observations
+
+| Frame | Agent-observed image detail | Disposition / next gate |
+| --- | --- | --- |
+| `r01-photo-tap-p13-pressed.svg` | Hero and label remain p12, five physically distinct neighbors retained, translucent pressed indicator appears over p13 photographic aperture on the right. Nothing looks applied. | Correct *illustration* of pointer-down before selection commit; tap bounds and time response unverified natively. |
+| `r01-photo-tap-p13-settled.svg` | Hero switches visibly to the architectural p13 JPEG, central paper wedge is the **same architectural image**, focus index reads 13 of 22 and top pointer remains fixed. | Correct cross-frame image identity at sampled pixels. Actual gesture/snap implementation unverified. |
+| `r01-photo-drag-36.svg` | Physically rotated paper wedges with p12 still the selected hero; p13 approaches the fixed pointer but has not committed selection. **Badges for p11/p14 are only partially visible near the lower wheel crop**. | **Optical cosmetic defect found:** suppress incomplete lower clipped number badges in this mid-drag pose while retaining the true photo wedges/IDs. Do not fake p11/p14 deletion from the collection. [Source generator](../../scripts/build-r01-photo-motion-continuity.py) and [scoped workflow](../../.github/workflows/glimpse-r01-motion-continuity.yml) revised; new source SHA/raster must be inspected before marking the fix resolved. |
+| `r01-photo-rest-22.svg` | Selected hero p12 and focal paper wedge depict matching landscape research JPEG. Neighbor p11 appears as visually distinct floral art; p13 is architectural. | Baseline photography and material geometry consistent. |
+| `r03-preview-not-applied.svg` | Same p12 landscape original reappears as tall crop-to-fill photographic image rather than the previous fake rainbow. It reads Previewing 12 and maintains a separate Home-acknowledgement p04 status. Later source revision uses **“Last Glimpse acknowledgement: p04”** and **“Preview does not change your wallpaper”**, which were directly visible and comfortably legible in the latest refreshed p12-truth three-phone sheet. | Concrete JPEG identity mismatch repaired and copy reviewed; real OS screenshot and actual wallpaper state still unverified. |
+| `r03-unknown-after-request.svg` | The identical tall p12 crop remains selected; UNKNOWN request and last Glimpse ack p04 are expressed separately with Inspect system wallpaper / View activity recovery actions. | Cross-screen byte and concept identity repaired in draft; owner comprehension and Android result semantics unverified. |
+
+## Relevant design quality cautions
+
+- **Finite wheel:** a broad wheel is deliberately cropped; an offscreen wedge is not the same as a missing item. During mid-drag, however, visibly **half-numbered badges** distract and suggest clipping errors. Remove only those labels when their visible area is insufficient.
+- **Image identity:** avoid inserting a vector stand-in for p12 on one screen while calling it the same image as in Reel/Grid/Edit. p12 must always refer to the same original bytes; edited derivative p12c must use its *different* derived bytes. A different preview crop is acceptable when it genuinely uses the same original.
+- **Home p04:** currently intentionally a synthetic illustration to distinguish the separate *last acknowledged* image. Its JPEG identity is not verified; this is an unresolved quality/design source task before owner whole-set freeze, not a claim that p04 equals one of the five visible neighboring fixtures.
+- **Larger type:** static typography, even at 20–31pt on the drawing, **cannot** establish a real 200% Android text layout. Use native fontScale=2.0, UI hierarchy, focus and screenshot comparison.
+- **Tap/crescent:** pressed photo aperture is a real photo-selection mechanism in the full collection browser. Home crescent should be one **Open collection route**, not imply another independently draggable wallpaper-control disc. Owner judgment remains necessary.
+
+## Evidence boundary
+
+This second pass increases verified *visual-source* evidence. It does **not** establish material Android visual conformity, native tap-to-select/drag physics, external picker/chooser fidelity, persistence, 48dp focus order or any human approval. Never convert [cycle-A UX audit](glimpse-ux-audit-cycle-a.v1.json) from its recorded **18 draft-source PASS / 8 ISSUE / 34 UNVERIFIED** without its question-specific proof.
+
+**Follow-up:** confirm refreshed p11/p14 badge suppression at the new SVG SHA in a new 401×890 source-hashed phone raster; review the [24-primary coherent candidate](../../design/atlas/whole-product-review-selection.html) for user-facing consistency rather than proclaiming the 271 draft references complete in visual quality.
