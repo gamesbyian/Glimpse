@@ -1,7 +1,7 @@
 name: Glimpse R05 accessibility references | targeted optical proof
 
 # One-time opt-in check; no automatic CI on ordinary source, images or docs.
-# Source-hash matched redraw: explicit before/after motion state and focus overlay legend.
+# Source-matched real-photo R05 audit overlay: three illustrations with photo-byte parity.
 on:
   push:
     branches: [agent/visual-state-reconciliation-20261023]
@@ -37,14 +37,14 @@ jobs:
           from PIL import Image, ImageStat
           output=Path("/tmp/glimpse-r05")
           ledger=json.loads((output/"index.json").read_text())
-          assert len(ledger["nativePhoneFiles"]) == 2, ledger["nativePhoneFiles"]
+          assert len(ledger["nativePhoneFiles"]) == 3, ledger["nativePhoneFiles"]
           for entry in ledger["nativePhoneFiles"]:
               path=Path(entry["path"])
               assert path.exists(), path
               im=Image.open(path).convert("RGB")
               assert im.size == (401,890), (path,im.size)
               assert sum(ImageStat.Stat(im).stddev) > 45, (path, "suspicious blank image")
-          print("R05: two source-hashed, nonblank 401x890 draft phone crops")
+          print("R05: three source-hashed, nonblank 401x890 draft phone crops")
           PY
       - name: Record CI machine evidence without overstating optical approval
         if: always()
@@ -60,7 +60,7 @@ jobs:
             echo "- Source commit: \`$GH_SHA\`"
             echo "- Workflow run: https://github.com/gamesbyian/Glimpse/actions/runs/$GH_RUN"
             echo "- Job outcome: \`$JOB_STATUS\`"
-            echo "- Intended references: r05-reduced-motion.svg and r05-talkback-route.svg"
+            echo "- Intended references: r05-reduced-motion.svg, r05-talkback-route.svg, r05-photo-reel-focus-overlay.svg"
             echo "- Optical approval: **NOT tested by CI**"
             echo "- Android/TalkBack/owner acceptance: **NOT tested**"
             echo
