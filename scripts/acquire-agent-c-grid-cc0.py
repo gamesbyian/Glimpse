@@ -54,11 +54,15 @@ def source_info(record):
 
 def main():
     parser=argparse.ArgumentParser()
-    parser.add_argument("--photo-id", required=True, choices=("p08","p09","p16","p17"))
+    parser.add_argument("--photo-id", required=True,
+                        choices=("p10","p11","p12","p13","p14","p15"))
+    parser.add_argument("--manifest", default=str(
+        ROOT/"design/assets/production-c-legacy-replacement-candidates.v1.json"
+    ))
     args=parser.parse_args()
-    manifest=json.loads(INPUT.read_text())
+    manifest=json.loads(Path(args.manifest).read_text())
     records=manifest["candidates"]
-    wanted={"p06","p07","p08","p09","p16","p17"}
+    wanted={"p10","p11","p12","p13","p14","p15"}
     if {x["photoId"] for x in records}!=wanted or len(records)!=6:
         raise ValueError("Expected six unique stable IDs")
     for record in records:
@@ -76,10 +80,14 @@ def main():
             converted=ImageOps.exif_transpose(im).convert("RGB")
         converted.thumbnail((900,900),Image.Resampling.LANCZOS)
         buffer=io.BytesIO()
-        converted.save(buffer,"JPEG",quality=82,optimize=True)
-        derivative=buffer.getvalue()
+        for quality in (82,74,66):
+            buffer=io.BytesIO()
+            converted.save(buffer,"JPEG",quality=quality,optimize=True)
+            derivative=buffer.getvalue()
+            if len(derivative)<=220_000:
+                break
         if len(derivative)>220_000:
-            raise ValueError("Downsampled jpeg oversized: "+ident)
+            raise ValueError("Even bounded quality derivative oversized: "+ident)
         record_out={
             "photoId":ident, "author":record["creator"],
             "commonsPage":record["commonsPage"], "sourceUrl":original_url,
@@ -87,7 +95,7 @@ def main():
             "originalSHA256":sha(original),"originalBytes":len(original),
             "derivativeSHA256":sha(derivative),"derivativeBytes":len(derivative),
             "derivativeDimensions":[converted.width,converted.height],
-            "transform":"EXIF transpose, strip metadata, <=900px, JPEG quality 82",
+            "transform":"EXIF transpose, strip metadata, <=900px, JPEG quality "+str(quality),
             "evidenceBoundary":"source bytes and uploader license only, not current Android acceptance"
         }
         print("PHOTO_PROVENANCE="+json.dumps(record_out,separators=(",",":")),flush=True)
