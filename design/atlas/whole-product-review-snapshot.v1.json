@@ -9,7 +9,7 @@
     "revisionScenarios": 56
   },
   "referenceManifest": "design/proposals/whole-product-review-selection.v1.json",
-  "uniqueReferencedSources": 253,
+  "uniqueReferencedSources": 254,
   "sources": [
     {
       "path": "design/proposals/advanced-storyboards/x13/01-original.svg",
@@ -1274,6 +1274,11 @@
     {
       "path": "design/proposals/support-plates/whats-new--no-notes.svg",
       "sourceSHA256": "56bb3c36e3ec0b5939132592f6e8bb26f41d149bcccee930a4f5e3b900f8ac3a",
+      "ownerApproved": false
+    },
+    {
+      "path": "design/proposals/whole-product-candidates/collections-photo-covers.svg",
+      "sourceSHA256": "e3aa044d09374d678492b853757477dfdd9affc51483214bdfda63ebac0414e4",
       "ownerApproved": false
     }
   ]
