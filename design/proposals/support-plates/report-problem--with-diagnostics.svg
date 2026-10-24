@@ -16,7 +16,7 @@
 <text x="56" y="427" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="14" font-weight="400">Expected outcome (optional)</text>
 <rect x="40" y="502" width="348" height="69" rx="12" fill="#FFFCF6" stroke="#C8B7A1" stroke-width="1"/>
 <text x="53" y="527" font-family="Arial,Helvetica,sans-serif" fill="#153F46" font-size="16" font-weight="650">Include diagnostics</text>
-<text x="53" y="549" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="14" font-weight="400">Off by default, inspect before sharing</text>
+<text x="53" y="549" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="14" font-weight="400">Selected; check exact fields before sharing</text>
 <rect x="328" y="521" width="45" height="25" rx="15" fill="#1D5960" stroke="none" stroke-width="1"/>
 <circle cx="358" cy="533.5" r="10" fill="#FFFCF6"/>
 <rect x="40" y="589" width="348" height="100" rx="13" fill="#FFFCF6" stroke="#C8B7A1" stroke-width="1"/>

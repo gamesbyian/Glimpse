@@ -18,7 +18,7 @@
     },
     {
       "source": "design/proposals/support-plates/report-problem--with-diagnostics.svg",
-      "sourceSHA256": "6b4ee614fb92076206a71b7b0ebe1425988c12f461711783bb1ea9dda0ff322e",
+      "sourceSHA256": "5786f44765502cbdb7f68db5ad66471eeff0982caf7ddcbfb25b4281963fd314",
       "scaledPhonePixels": [
         320,
         710
@@ -32,7 +32,7 @@
     },
     {
       "source": "design/proposals/support-plates/diagnostic-preview--expanded.svg",
-      "sourceSHA256": "199cda71cc2053aa9c740cedf154f65adf88ce7624dde8dcf10645edcb1d09e1",
+      "sourceSHA256": "108e0966ed0622332f2fea14cabe5084781f5f83f373bc7f4ab015c954e24e52",
       "scaledPhonePixels": [
         320,
         710
@@ -87,6 +87,6 @@
       "ownerApproved": false
     }
   ],
-  "imageSHA256": "977ce470358b4aa4f89e59b18b50397140c9aa229d184083383d9e564e266c1b",
+  "imageSHA256": "1bfd23050eedac85d569bd20dee0e84473a39b4980f7d837c3a6cdfc0fcd5c42",
   "warning": "No physical dp/insets, dynamic font reflow, OS focus, TalkBack or device result; visual redlines only"
 }

@@ -148,7 +148,7 @@
       "family": "report-problem",
       "state": "with-diagnostics",
       "source": "design/proposals/support-plates/report-problem--with-diagnostics.svg",
-      "sourceSHA256": "6b4ee614fb92076206a71b7b0ebe1425988c12f461711783bb1ea9dda0ff322e",
+      "sourceSHA256": "5786f44765502cbdb7f68db5ad66471eeff0982caf7ddcbfb25b4281963fd314",
       "phoneCrop": [
         15,
         14,
@@ -208,7 +208,7 @@
       "family": "diagnostic-preview",
       "state": "minimal",
       "source": "design/proposals/support-plates/diagnostic-preview--minimal.svg",
-      "sourceSHA256": "a564397e9ace04aff7c74f81713e47c4efc66fb0813f9db31e2775b98a89c526",
+      "sourceSHA256": "c0dae4e4426a0454af26e00e59228ab7e1c300c401211de9a57bbd6b90f42b05",
       "phoneCrop": [
         15,
         14,
@@ -228,7 +228,7 @@
       "family": "diagnostic-preview",
       "state": "expanded",
       "source": "design/proposals/support-plates/diagnostic-preview--expanded.svg",
-      "sourceSHA256": "199cda71cc2053aa9c740cedf154f65adf88ce7624dde8dcf10645edcb1d09e1",
+      "sourceSHA256": "108e0966ed0622332f2fea14cabe5084781f5f83f373bc7f4ab015c954e24e52",
       "phoneCrop": [
         15,
         14,
@@ -693,7 +693,7 @@
     },
     {
       "name": "support-phone-contact-02.jpg",
-      "SHA256": "c1e1c89424274fd2becf2e6003a78b7c71dfc75bb106fb2feb6c0609de29b5f2",
+      "SHA256": "05a268253c8a52fd97527ea42f8ba6c4a27aa4c3bd04dab46a30a4568e8220a6",
       "sourceCount": 6
     },
     {

@@ -25,8 +25,8 @@
 <rect x="328" y="440" width="45" height="25" rx="15" fill="#C8B7A1" stroke="none" stroke-width="1"/>
 <circle cx="344" cy="452.5" r="10" fill="#FFFCF6"/>
 <rect x="40" y="504" width="348" height="69" rx="12" fill="#FFFCF6" stroke="#C8B7A1" stroke-width="1"/>
-<text x="53" y="529" font-family="Arial,Helvetica,sans-serif" fill="#153F46" font-size="16" font-weight="650">Include photographs</text>
-<text x="53" y="551" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="14" font-weight="400">Never included in diagnostic reports</text>
+<text x="53" y="529" font-family="Arial,Helvetica,sans-serif" fill="#153F46" font-size="16" font-weight="650">Photographs excluded</text>
+<text x="53" y="551" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="14" font-weight="400">Image bytes never enter diagnostics</text>
 <text x="291" y="547" font-family="Arial,Helvetica,sans-serif" fill="#703B27" font-size="14" font-weight="650">NEVER</text>
 <text x="45" y="612" font-family="Arial,Helvetica,sans-serif" fill="#153F46" font-size="17" font-weight="650">Choose your action</text>
 <rect x="43" y="639" width="98" height="48" rx="20" fill="#FFFCF6" stroke="#C8B7A1" stroke-width="1"/>

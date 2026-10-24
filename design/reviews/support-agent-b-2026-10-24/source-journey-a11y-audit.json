@@ -93,7 +93,7 @@
       "minBodyFont": 14.0
     },
     "design/proposals/support-plates/report-problem--with-diagnostics.svg": {
-      "sha256": "6b4ee614fb92076206a71b7b0ebe1425988c12f461711783bb1ea9dda0ff322e",
+      "sha256": "5786f44765502cbdb7f68db5ad66471eeff0982caf7ddcbfb25b4281963fd314",
       "actions": [
         "back",
         "nav-automation",
@@ -129,7 +129,7 @@
       "minBodyFont": 14.0
     },
     "design/proposals/support-plates/diagnostic-preview--minimal.svg": {
-      "sha256": "a564397e9ace04aff7c74f81713e47c4efc66fb0813f9db31e2775b98a89c526",
+      "sha256": "c0dae4e4426a0454af26e00e59228ab7e1c300c401211de9a57bbd6b90f42b05",
       "actions": [
         "back",
         "include-error-summary",
@@ -143,7 +143,7 @@
       "minBodyFont": 14.0
     },
     "design/proposals/support-plates/diagnostic-preview--expanded.svg": {
-      "sha256": "199cda71cc2053aa9c740cedf154f65adf88ce7624dde8dcf10645edcb1d09e1",
+      "sha256": "108e0966ed0622332f2fea14cabe5084781f5f83f373bc7f4ab015c954e24e52",
       "actions": [
         "back",
         "include-error-summary",
