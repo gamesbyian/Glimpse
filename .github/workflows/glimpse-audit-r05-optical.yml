@@ -1,0 +1,81 @@
+name: Glimpse R05 accessibility references | targeted optical proof
+
+# One-time opt-in check; no automatic CI on ordinary source, images or docs.
+on:
+  push:
+    branches: [agent/visual-state-reconciliation-20261023]
+    paths: [.github/workflows/glimpse-audit-r05-optical.yml]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: glimpse-r05-optical-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  render-r05:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install raster libraries
+        run: python -m pip install --disable-pip-version-check cairosvg pillow
+      - name: Validate audit and render only R05 routes
+        run: |
+          set -euo pipefail
+          python3 scripts/validate-audit-cycle.py
+          python3 scripts/render-visual-reference-sheets.py --set audit-r05-accessibility-routes --native --output /tmp/glimpse-r05
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          from PIL import Image, ImageStat
+          output=Path("/tmp/glimpse-r05")
+          ledger=json.loads((output/"index.json").read_text())
+          assert len(ledger["nativePhoneFiles"]) == 2, ledger["nativePhoneFiles"]
+          for entry in ledger["nativePhoneFiles"]:
+              path=Path(entry["path"])
+              assert path.exists(), path
+              im=Image.open(path).convert("RGB")
+              assert im.size == (401,890), (path,im.size)
+              assert sum(ImageStat.Stat(im).stddev) > 45, (path, "suspicious blank image")
+          print("R05: two source-hashed, nonblank 401x890 draft phone crops")
+          PY
+      - name: Record CI machine evidence without overstating optical approval
+        if: always()
+        env:
+          GH_SHA: ${{ github.sha }}
+          GH_RUN: ${{ github.run_id }}
+          JOB_STATUS: ${{ job.status }}
+        run: |
+          mkdir -p docs/design
+          {
+            echo "# R05 targeted automated source/render evidence"
+            echo
+            echo "- Source commit: \`$GH_SHA\`"
+            echo "- Workflow run: https://github.com/gamesbyian/Glimpse/actions/runs/$GH_RUN"
+            echo "- Job outcome: \`$JOB_STATUS\`"
+            echo "- Intended references: r05-reduced-motion.svg and r05-talkback-route.svg"
+            echo "- Optical approval: **NOT tested by CI**"
+            echo "- Android/TalkBack/owner acceptance: **NOT tested**"
+            echo
+            echo "This is an automated render and source-integrity result; inspect the uploaded crops independently."
+          } > docs/design/r05-targeted-automation-evidence.md
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add docs/design/r05-targeted-automation-evidence.md
+          if ! git diff --cached --quiet; then
+            git commit -m "ci: record R05 targeted rendering source and outcome"
+            git push origin HEAD:agent/visual-state-reconciliation-20261023
+          fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: glimpse-r05-accessibility-routes-${{ github.sha }}
+          path: /tmp/glimpse-r05
+          if-no-files-found: warn
+          retention-days: 14
