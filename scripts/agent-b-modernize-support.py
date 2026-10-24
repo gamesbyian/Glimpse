@@ -78,7 +78,7 @@ def enforce_provisional_a_tokens(source: str) -> str:
     # (status, evidence footer, and the side explanatory proposal desk).
     def enlarge_small_content_text(match):
         element = match.group(0)
-        ymatch = re.search(r'\\by="([0-9.]+)"', element)
+        ymatch = re.search(r'\by="([0-9.]+)"', element)
         size = re.search(r'font-size="([0-9.]+)"', element)
         if not ymatch or not size:
             return element
@@ -86,7 +86,7 @@ def enforce_provisional_a_tokens(source: str) -> str:
         if 195 <= y < 810 and float(size.group(1)) < 14:
             element = element.replace(size.group(0), 'font-size="14"', 1)
         return element
-    phone = re.sub(r'<text\\b[^>]*>[^<]*</text>', enlarge_small_content_text, phone)
+    phone = re.sub(r'<text\b[^>]*>[^<]*</text>', enlarge_small_content_text, phone)
     phone = phone.replace('x="29" y="59" width="91" height="44"',
                           'x="29" y="57" width="91" height="48"')
     phone = phone.replace('data-hit-height="44"', 'data-hit-height="48"')
