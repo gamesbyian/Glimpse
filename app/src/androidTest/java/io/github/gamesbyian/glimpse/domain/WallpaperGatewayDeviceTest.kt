@@ -43,11 +43,11 @@ class WallpaperGatewayDeviceTest {
         context = ApplicationProvider.getApplicationContext()
     }
 
-    private fun testBitmapFile(): File {
+    private fun testBitmapFile(base: Int = Color.rgb(39, 126, 168)): File {
         val file = File.createTempFile("glimpse-wallpaper-", ".jpg", context.cacheDir)
         val bitmap = Bitmap.createBitmap(320, 560, Bitmap.Config.ARGB_8888)
         try {
-            bitmap.eraseColor(Color.rgb(39, 126, 168))
+            bitmap.eraseColor(base)
             for (y in 40 until 520 step 40) {
                 for (x in 0 until 320) {
                     bitmap.setPixel(x, y, Color.rgb(240, (x + y) % 240, 90))
@@ -104,6 +104,43 @@ class WallpaperGatewayDeviceTest {
         } finally {
             database.close()
             image.delete()
+        }
+    }
+
+    @Test fun decodableButChangedPixelsNeverReachAndroidWallpaperManager() = runBlocking {
+        val system = WallpaperManager.getInstance(context)
+        assumeTrue(system.isWallpaperSupported && system.isSetWallpaperAllowed)
+        val original = testBitmapFile()
+        val replacement = testBitmapFile(Color.rgb(214, 48, 104))
+        val db = Room.inMemoryDatabaseBuilder(context, GlimpseDatabase::class.java).build()
+        try {
+            val dao = db.dao()
+            dao.insertCollection(CollectionRecord("sha-rejection", "SHA rejection", 1L))
+            val originalId = sha(original)
+            dao.attach(PhotoRecord(
+                id = originalId, sha256 = originalId, localPath = original.absolutePath,
+                mime = "image/jpeg", width = 320, height = 560,
+                byteLength = original.length(), importedAt = 1L
+            ), "sha-rejection")
+            val before = system.getWallpaperId(WallpaperManager.FLAG_SYSTEM)
+            // Valid JPEG with different photographic bytes. BitmapFactory can
+            // still decode this; filename and DB row have not changed.
+            original.writeBytes(replacement.readBytes())
+            assertTrue(original.length() > 0)
+            assertTrue(originalId != sha(original))
+            val result = WallpaperCommands(context, dao).applySelected(originalId)
+            val after = system.getWallpaperId(WallpaperManager.FLAG_SYSTEM)
+            assertEquals("Corrupted content must never be passed to wallpaper OS", before, after)
+            assertTrue("Failure must be reported truthfully: " + result,
+                result.contains("failed", ignoreCase = true))
+            val rotation = requireNotNull(dao.readRotation())
+            assertNull(rotation.pendingPhotoId)
+            assertNull(rotation.lastAcknowledgedPhotoId)
+            assertTrue(rotation.outcome.contains("Apply failed"))
+        } finally {
+            db.close()
+            original.delete()
+            replacement.delete()
         }
     }
 
