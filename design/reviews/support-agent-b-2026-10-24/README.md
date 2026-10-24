@@ -41,6 +41,24 @@ High-value current-source findings and repairs, anchored to the current ledger:
 
 The [source validator](../../../../scripts/validate-agent-b-support-journeys.py) now rejects regressions where X02 still shows the deleted collection, a destructive choice is unguarded, or X19/X22 lack explicit consequences and recognizable 48-unit design hit areas. The scoped workflow passed source+existing storyboard semantics and rendered all updated evidence; no shared viewer/selection manifests have been modified by B. **Integrator must reconcile shared advanced-storyboard action captions** for X19 `Confirm safe merge` (formerly `Choose safe merge`) and X22 `Review outgoing example` / `Open Android Sharesheet…` (formerly `Enable selected fields` / `Copy / Save / Share`). The manifest owns catalog captions, and B deliberately did not touch it.
 
+## Companion 320dp / 200%-type support reflow study (unselected)
+
+Production A's unselected two-state [Sections sheet primary concept](https://github.com/gamesbyian/Glimpse/blob/agent/production-a-primary-system-20261024/design/proposals/whole-product-candidates/compact-320dp-200pct-sections-sheet.svg) has a matching, independently source-editable **Report a problem** support-form companion at [`compact-report-sections.v0.1.svg`](compact-report-sections.v0.1.svg), with directly inspected [PNG](compact-report-sections.v0.1.png) and [machine-readable SHA/evidence record](compact-report-sections.v0.1.json). This stays **OUTSIDE** the selected 34 support paths and is not an owner IA decision.
+
+The left visual study has a two-line 36-unit heading, 94/91-unit form fields, separate 85-unit diagnostics OFF row, reachable 54-unit Review report and 55-unit Sections controls; scrollable form content is an intended **native** behavior, not implemented by the SVG. The right study shows four **86-unit** section rows and a 54-unit Close sections action inside a modal layer, with focus trap/return rules described rather than falsely simulated as TalkBack. Script `scripts/render-agent-b-compact-support-study.py` generates both the editable SVG and 1080×800 raster and hashes all evidence; its own structural gate checks **12 explicit >=54-unit source targets**, which are **not Android dp measurements**.
+
+**Direct pixel inspection:** the first PNG exposed a clipped right-hand notes heading and a tofu/missing-glyph dropdown arrow. Both were corrected in source generator, [focused CI #40137946540](https://github.com/gamesbyian/Glimpse/actions/runs/40137946540) passed, and the exact final PNG was reopened. The compact heading, complete panel labels, 4 destination rows and path-based Sections chevron now all fit without visible nominal-size clipping. Current editable SVG SHA-256 `58c2561a65563b649d8e136b24af3e16d9857446429e61b1a9fb4fd11274d9b7`; current PNG SHA-256 `81ee37a46315e9e9896cc4cdfdf3a44bee270529b7b583c14bce07817c786d20`. **No real 320dp/Android fontScale=2/IME/TalkBack/inset/native scrolling or device approval follows.** See [blocker #13](https://github.com/gamesbyian/Glimpse/issues/13).
+
+## 34-state in-app copy readability and diagnostic state-telling pass
+
+The B modernization generator now **raises all in-app body/action text originally at 12–13 study pixels to at least 14 pixels** within the `y=195..809` content region, leaving the mandatory non-app evidence footer and status metadata outside this threshold. The separate validator deliberately measures only *in-app body* text, not the 11px draft-evidence disclaimer: in [the exact-source machine audit](source-journey-a11y-audit.json), **34 support states, 0 body fonts below 14px, 0 source/path errors**, with all 23 journeys/137 frames/56 trace scenarios intact. This modest floor is NOT the 200%-text native reflow acceptance.
+
+**Fresh direct optical check:** I opened **all six final 34-state 401×890 source-hashed JPEG contacts** after the font upgrades. At this nominal reference size no gross overflow appeared; card actions, helper descriptions and list routes are easier to read. A closer sheet-02 reinspection caught and corrected two state-wording contradictions: the selected ON diagnostics switch saying "Off by default", and the expanded report's ON technical-details row still reading as OFF. The passive photo exclusion strip now says **Photographs excluded / Image bytes never enter diagnostics / NEVER**, avoiding a fake `Include photographs` option. I reopened the latest sheet 02 showing these distinctions visibly, with no clipping. [Focused PASS #40138616669](https://github.com/gamesbyian/Glimpse/actions/runs/40138616669) covers the new state guard and complete 34-state raster corpus.
+
+Current exact relevant source SHA-256, indexed independently by [source ledger](source-ledger.json): report problem with selected diagnostic fields `5786f44765502cbdb7f68db5ad66471eeff0982caf7ddcbfb25b4281963fd314`; minimal report preview `c0dae4e4426a0454af26e00e59228ab7e1c300c401211de9a57bbd6b90f42b05`; expanded report `108e0966ed0622332f2fea14cabe5084781f5f83f373bc7f4ab015c954e24e52`. Sheet 02 JPEG SHA-256 `05a268253c8a52fd97527ea42f8ba6c4a27aa4c3bd04dab46a30a4568e8220a6`.
+
+The optical workflow initially returned a transient failure on an older concurrent push because its generated-data commit raced a newer B branch commit. The **subsequent source-validated run passed**; scoped CI was hardened to detect newer branch SHA and skip pushing superseded raster/ledger bytes without force pushing or writing stale evidence. The run's own immutable SHA-keyed artifact remains inspectable, but only a current-head source ledger may qualify current graphics. Real provider/Android payload serialization, actual 48dp controls, TalkBack, 320dp/200%-font reflow and user approval remain unresolved.
+
 ## Focused developer replay
 
 ```sh
@@ -56,6 +74,7 @@ python3 -m pip install cairosvg pillow
 python3 scripts/render-support-review-corpus.py
 python3 scripts/render-agent-b-accessibility-probes.py
 python3 scripts/render-agent-b-journey-pairs.py
+python3 scripts/render-agent-b-compact-support-study.py
 ```
 
 The old `render-support-review-corpus.py` itself targets the historical support contact directory; the B-owned lean Actions wrapper moves generated copies into this versioned folder, deliberately avoiding historical evidence replacement. Read SHA-256s from the current ledger, not this prose.

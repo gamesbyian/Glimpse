@@ -13,17 +13,17 @@
 <text x="53" y="274" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="14" font-weight="400">1. Choose Add photos in Collections.</text>
 <text x="53" y="294" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="14" font-weight="400">2. Select items in the system picker.</text>
 <text x="53" y="314" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="14" font-weight="400">3. Wait for verified local copies.</text>
-<text x="53" y="337" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="13" font-weight="400">No full-library permission required</text>
+<text x="53" y="337" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="14" font-weight="400">No full-library permission required</text>
 <rect x="40" y="367" width="348" height="132" rx="13" fill="#FFFCF6" stroke="#C8B7A1"/>
 <text x="53" y="394" font-family="Arial,Helvetica,sans-serif" fill="#153F46" font-size="18" font-weight="700">Then browse your collection</text>
 <text x="53" y="421" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="14" font-weight="400">Use the finite Reel or Grid to choose</text>
 <text x="53" y="441" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="14" font-weight="400">a photo. Selection only previews it.</text>
-<text x="53" y="468" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="13" font-weight="400">Previous / Next work without swiping</text>
+<text x="53" y="468" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="14" font-weight="400">Previous / Next work without swiping</text>
 <rect x="40" y="514" width="348" height="132" rx="13" fill="#FFFCF6" stroke="#C8B7A1"/>
 <text x="53" y="541" font-family="Arial,Helvetica,sans-serif" fill="#153F46" font-size="18" font-weight="700">Applying is a separate choice</text>
 <text x="53" y="568" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="14" font-weight="400">Tap Set wallpaper, select an available</text>
 <text x="53" y="588" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="14" font-weight="400">Android target, then check the result.</text>
-<text x="53" y="619" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="13" font-weight="400">Browsing never applies automatically</text>
+<text x="53" y="619" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="14" font-weight="400">Browsing never applies automatically</text>
 <rect x="43" y="685" width="336" height="48" rx="22" fill="#1D5960"/>
 <text x="59" y="714" font-family="Arial,Helvetica,sans-serif" fill="#FFFFFF" font-size="15" font-weight="700">Back to help topics</text>
 </g>

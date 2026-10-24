@@ -12,17 +12,17 @@
 <text x="53" y="247" font-family="Arial,Helvetica,sans-serif" fill="#153F46" font-size="17" font-weight="650">Glimpse project licence</text>
 <text x="53" y="270" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="14" font-weight="400">Not yet selected; public repository is not</text>
 <text x="53" y="289" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="14" font-weight="400">a licence</text>
-<text x="53" y="309" font-family="Arial,Helvetica,sans-serif" fill="#1D5960" font-size="13" font-weight="650">Project source</text>
+<text x="53" y="309" font-family="Arial,Helvetica,sans-serif" fill="#1D5960" font-size="14" font-weight="650">Project source</text>
 <rect x="40" y="334" width="348" height="100" rx="13" fill="#FFFCF6" stroke="#C8B7A1" stroke-width="1"/>
 <text x="53" y="360" font-family="Arial,Helvetica,sans-serif" fill="#153F46" font-size="17" font-weight="650">Third-party components</text>
 <text x="53" y="383" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="14" font-weight="400">Notices for Kotlin, Compose, Room and</text>
 <text x="53" y="402" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="14" font-weight="400">future dependencies</text>
-<text x="53" y="422" font-family="Arial,Helvetica,sans-serif" fill="#1D5960" font-size="13" font-weight="650">View notices</text>
+<text x="53" y="422" font-family="Arial,Helvetica,sans-serif" fill="#1D5960" font-size="14" font-weight="650">View notices</text>
 <rect x="40" y="447" width="348" height="100" rx="13" fill="#FFFCF6" stroke="#C8B7A1" stroke-width="1"/>
 <text x="53" y="473" font-family="Arial,Helvetica,sans-serif" fill="#153F46" font-size="17" font-weight="650">Image credits</text>
 <text x="53" y="496" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="14" font-weight="400">Artwork attribution and source-specific</text>
 <text x="53" y="515" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="14" font-weight="400">rights</text>
-<text x="53" y="535" font-family="Arial,Helvetica,sans-serif" fill="#1D5960" font-size="13" font-weight="650">Read attributions</text>
+<text x="53" y="535" font-family="Arial,Helvetica,sans-serif" fill="#1D5960" font-size="14" font-weight="650">Read attributions</text>
 <rect x="42" y="654" width="341" height="48" rx="20" fill="#FFFCF6" stroke="#C8B7A1" stroke-width="1"/>
 <text x="57" y="681" font-family="Arial,Helvetica,sans-serif" fill="#153F46" font-size="14" font-weight="650">Copy licence summary</text>
 </g>

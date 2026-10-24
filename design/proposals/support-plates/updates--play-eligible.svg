@@ -11,11 +11,11 @@
 <rect x="40" y="223" width="348" height="100" rx="13" fill="#FFFCF6" stroke="#C8B7A1" stroke-width="1"/>
 <text x="53" y="249" font-family="Arial,Helvetica,sans-serif" fill="#153F46" font-size="17" font-weight="650">Installed build</text>
 <text x="53" y="272" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="14" font-weight="400">Google Play distribution</text>
-<text x="53" y="311" font-family="Arial,Helvetica,sans-serif" fill="#1D5960" font-size="13" font-weight="650">View build info</text>
+<text x="53" y="311" font-family="Arial,Helvetica,sans-serif" fill="#1D5960" font-size="14" font-weight="650">View build info</text>
 <rect x="40" y="338" width="348" height="100" rx="13" fill="#FFFCF6" stroke="#C8B7A1" stroke-width="1"/>
 <text x="53" y="364" font-family="Arial,Helvetica,sans-serif" fill="#153F46" font-size="17" font-weight="650">How updates work</text>
 <text x="53" y="387" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="14" font-weight="400">Use the supported Play update pathway</text>
-<text x="53" y="426" font-family="Arial,Helvetica,sans-serif" fill="#1D5960" font-size="13" font-weight="650">Learn more</text>
+<text x="53" y="426" font-family="Arial,Helvetica,sans-serif" fill="#1D5960" font-size="14" font-weight="650">Learn more</text>
 <rect x="42" y="637" width="338" height="48" rx="20" fill="#1D5960" stroke="#1D5960" stroke-width="1"/>
 <text x="57" y="664" font-family="Arial,Helvetica,sans-serif" fill="#FFFFFF" font-size="14" font-weight="650">Open update source</text>
 </g>

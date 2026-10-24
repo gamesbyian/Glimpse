@@ -12,20 +12,20 @@
 <text x="53" y="247" font-family="Arial,Helvetica,sans-serif" fill="#153F46" font-size="17" font-weight="650">Get photos into Glimpse</text>
 <text x="53" y="270" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="14" font-weight="400">Use Android Photo Picker or a supported</text>
 <text x="53" y="289" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="14" font-weight="400">share action</text>
-<text x="53" y="309" font-family="Arial,Helvetica,sans-serif" fill="#1D5960" font-size="13" font-weight="650">Read import guide</text>
+<text x="53" y="309" font-family="Arial,Helvetica,sans-serif" fill="#1D5960" font-size="14" font-weight="650">Read import guide</text>
 <rect x="40" y="336" width="348" height="100" rx="13" fill="#FFFCF6" stroke="#C8B7A1" stroke-width="1"/>
 <text x="53" y="362" font-family="Arial,Helvetica,sans-serif" fill="#153F46" font-size="17" font-weight="650">Browse without changing wallpaper</text>
 <text x="53" y="385" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="14" font-weight="400">The reel and Grid select a preview only</text>
-<text x="53" y="424" font-family="Arial,Helvetica,sans-serif" fill="#1D5960" font-size="13" font-weight="650">Learn the reel</text>
+<text x="53" y="424" font-family="Arial,Helvetica,sans-serif" fill="#1D5960" font-size="14" font-weight="650">Learn the reel</text>
 <rect x="40" y="451" width="348" height="100" rx="13" fill="#FFFCF6" stroke="#C8B7A1" stroke-width="1"/>
 <text x="53" y="477" font-family="Arial,Helvetica,sans-serif" fill="#153F46" font-size="17" font-weight="650">Apply a wallpaper</text>
 <text x="53" y="500" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="14" font-weight="400">Choose Home or Lock where supported</text>
-<text x="53" y="539" font-family="Arial,Helvetica,sans-serif" fill="#1D5960" font-size="13" font-weight="650">What changes?</text>
+<text x="53" y="539" font-family="Arial,Helvetica,sans-serif" fill="#1D5960" font-size="14" font-weight="650">What changes?</text>
 <rect x="40" y="566" width="348" height="100" rx="13" fill="#FFFCF6" stroke="#C8B7A1" stroke-width="1"/>
 <text x="53" y="592" font-family="Arial,Helvetica,sans-serif" fill="#153F46" font-size="17" font-weight="650">Rotation and Android restrictions</text>
 <text x="53" y="615" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="14" font-weight="400">Why five minutes means eligible, not</text>
 <text x="53" y="634" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="14" font-weight="400">guaranteed</text>
-<text x="53" y="654" font-family="Arial,Helvetica,sans-serif" fill="#1D5960" font-size="13" font-weight="650">Fix a problem</text>
+<text x="53" y="654" font-family="Arial,Helvetica,sans-serif" fill="#1D5960" font-size="14" font-weight="650">Fix a problem</text>
 </g>
 <path d="M29 817h373" stroke="#C8B7A1"/>
 <g id="support-navigation" aria-label="Four tab destinations; static touch region proposal only">

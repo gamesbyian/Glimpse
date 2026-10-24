@@ -57,7 +57,9 @@ t(42,638,"Scroll for more options ↓",18,COLORS["secondary"])
 rect(30,649,296,54,COLORS["accent"],18,control="review-report",hit_width=296,hit_height=54)
 t(178,685,"Review report",24,"#FFFFFF",700,"middle")
 rect(30,710,296,55,COLORS["surface"],18,COLORS["accent"],control="open-sections",hit_width=296,hit_height=55)
-t(178,748,"Sections ▾",24,COLORS["accent"],700,"middle")
+t(178,748,"Sections",24,COLORS["accent"],700,"middle")
+line(271,736,282,747,COLORS["accent"])
+line(282,747,293,736,COLORS["accent"])
 
 # Second phone: same form, scoped modal sheet with four roomy routes.
 phone(370)
@@ -80,7 +82,7 @@ rect(395,702,270,54,COLORS["accent"],17,control="close-sections",hit_width=270,h
 t(530,737,"Close sections",23,"#FFFFFF",700,"middle")
 # Annotated source-only proof boundary.
 rect(718,20,345,760,COLORS["surface"],18,COLORS["border"])
-t(738,65,"COMPACT SUPPORT STUDY",24,COLORS["accent"],700)
+t(738,65,"SUPPORT REFLOW",24,COLORS["accent"],700)
 t(738,104,"320dp • 200% type",27,weight=700)
 line(739,132,1040,132,COLORS["border"])
 for y,txt,size,weight,color in [
