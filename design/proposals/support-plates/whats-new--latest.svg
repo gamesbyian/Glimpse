@@ -12,12 +12,12 @@
 <text x="53" y="251" font-family="Arial,Helvetica,sans-serif" fill="#153F46" font-size="17" font-weight="650">Version 0.1 • A working foundation</text>
 <text x="53" y="274" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="14" font-weight="400">Photo Picker, offline collections and a</text>
 <text x="53" y="293" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="14" font-weight="400">preview reel</text>
-<text x="53" y="313" font-family="Arial,Helvetica,sans-serif" fill="#1D5960" font-size="13" font-weight="650">Read details</text>
+<text x="53" y="313" font-family="Arial,Helvetica,sans-serif" fill="#1D5960" font-size="14" font-weight="650">Read details</text>
 <rect x="40" y="340" width="348" height="100" rx="13" fill="#FFFCF6" stroke="#C8B7A1" stroke-width="1"/>
 <text x="53" y="366" font-family="Arial,Helvetica,sans-serif" fill="#153F46" font-size="17" font-weight="650">What is still coming</text>
 <text x="53" y="389" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="14" font-weight="400">Final tactile reel design, editing and</text>
 <text x="53" y="408" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="14" font-weight="400">sharing</text>
-<text x="53" y="428" font-family="Arial,Helvetica,sans-serif" fill="#1D5960" font-size="13" font-weight="650">Roadmap</text>
+<text x="53" y="428" font-family="Arial,Helvetica,sans-serif" fill="#1D5960" font-size="14" font-weight="650">Roadmap</text>
 <rect x="43" y="618" width="337" height="48" rx="20" fill="#1D5960" stroke="#1D5960" stroke-width="1"/>
 <text x="58" y="645" font-family="Arial,Helvetica,sans-serif" fill="#FFFFFF" font-size="14" font-weight="650">Back to Glimpse</text>
 </g>

@@ -12,22 +12,22 @@
 <text x="53" y="250" font-family="Arial,Helvetica,sans-serif" fill="#153F46" font-size="17" font-weight="650">Your photos stay local</text>
 <text x="53" y="273" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="14" font-weight="400">Imported images are in Glimpse private</text>
 <text x="53" y="292" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="14" font-weight="400">storage</text>
-<text x="53" y="312" font-family="Arial,Helvetica,sans-serif" fill="#1D5960" font-size="13" font-weight="650">Storage details</text>
+<text x="53" y="312" font-family="Arial,Helvetica,sans-serif" fill="#1D5960" font-size="14" font-weight="650">Storage details</text>
 <rect x="40" y="337" width="348" height="100" rx="13" fill="#FFFCF6" stroke="#C8B7A1" stroke-width="1"/>
 <text x="53" y="363" font-family="Arial,Helvetica,sans-serif" fill="#153F46" font-size="17" font-weight="650">Sharing is your choice</text>
 <text x="53" y="386" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="14" font-weight="400">Android recipient apps handle images you</text>
 <text x="53" y="405" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="14" font-weight="400">explicitly share</text>
-<text x="53" y="425" font-family="Arial,Helvetica,sans-serif" fill="#1D5960" font-size="13" font-weight="650">How it works</text>
+<text x="53" y="425" font-family="Arial,Helvetica,sans-serif" fill="#1D5960" font-size="14" font-weight="650">How it works</text>
 <rect x="40" y="451" width="348" height="100" rx="13" fill="#FFFCF6" stroke="#C8B7A1" stroke-width="1"/>
 <text x="53" y="477" font-family="Arial,Helvetica,sans-serif" fill="#153F46" font-size="17" font-weight="650">Diagnostics are optional</text>
 <text x="53" y="500" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="14" font-weight="400">No automatic remote reports in this</text>
 <text x="53" y="519" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="14" font-weight="400">proposal</text>
-<text x="53" y="539" font-family="Arial,Helvetica,sans-serif" fill="#1D5960" font-size="13" font-weight="650">Report privacy</text>
+<text x="53" y="539" font-family="Arial,Helvetica,sans-serif" fill="#1D5960" font-size="14" font-weight="650">Report privacy</text>
 <rect x="40" y="567" width="348" height="100" rx="13" fill="#FFFCF6" stroke="#C8B7A1" stroke-width="1"/>
 <text x="53" y="593" font-family="Arial,Helvetica,sans-serif" fill="#153F46" font-size="17" font-weight="650">Privacy policy</text>
 <text x="53" y="616" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="14" font-weight="400">Readable offline; source-specific terms</text>
 <text x="53" y="635" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="14" font-weight="400">when needed</text>
-<text x="53" y="655" font-family="Arial,Helvetica,sans-serif" fill="#1D5960" font-size="13" font-weight="650">Read policy</text>
+<text x="53" y="655" font-family="Arial,Helvetica,sans-serif" fill="#1D5960" font-size="14" font-weight="650">Read policy</text>
 </g>
 <path d="M29 817h373" stroke="#C8B7A1"/>
 <g id="support-navigation" aria-label="Four tab destinations; static touch region proposal only">

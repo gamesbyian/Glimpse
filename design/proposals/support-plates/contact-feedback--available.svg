@@ -12,16 +12,16 @@
 <text x="53" y="248" font-family="Arial,Helvetica,sans-serif" fill="#153F46" font-size="17" font-weight="650">Report a problem</text>
 <text x="53" y="271" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="14" font-weight="400">Explain what happened; attach redacted data</text>
 <text x="53" y="290" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="14" font-weight="400">only if you choose</text>
-<text x="53" y="310" font-family="Arial,Helvetica,sans-serif" fill="#1D5960" font-size="13" font-weight="650">Create a report</text>
+<text x="53" y="310" font-family="Arial,Helvetica,sans-serif" fill="#1D5960" font-size="14" font-weight="650">Create a report</text>
 <rect x="40" y="338" width="348" height="100" rx="13" fill="#FFFCF6" stroke="#C8B7A1" stroke-width="1"/>
 <text x="53" y="364" font-family="Arial,Helvetica,sans-serif" fill="#153F46" font-size="17" font-weight="650">Suggest an improvement</text>
 <text x="53" y="387" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="14" font-weight="400">What would make Glimpse more useful?</text>
-<text x="53" y="426" font-family="Arial,Helvetica,sans-serif" fill="#1D5960" font-size="13" font-weight="650">Write feedback</text>
+<text x="53" y="426" font-family="Arial,Helvetica,sans-serif" fill="#1D5960" font-size="14" font-weight="650">Write feedback</text>
 <rect x="40" y="454" width="348" height="100" rx="13" fill="#FFFCF6" stroke="#C8B7A1" stroke-width="1"/>
 <text x="53" y="480" font-family="Arial,Helvetica,sans-serif" fill="#153F46" font-size="17" font-weight="650">Public GitHub issues</text>
 <text x="53" y="503" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="14" font-weight="400">May require GitHub login; issue will be</text>
 <text x="53" y="522" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="14" font-weight="400">public</text>
-<text x="53" y="542" font-family="Arial,Helvetica,sans-serif" fill="#1D5960" font-size="13" font-weight="650">Open issues</text>
+<text x="53" y="542" font-family="Arial,Helvetica,sans-serif" fill="#1D5960" font-size="14" font-weight="650">Open issues</text>
 <rect x="42" y="660" width="170" height="48" rx="20" fill="#FFFCF6" stroke="#C8B7A1" stroke-width="1"/>
 <text x="57" y="687" font-family="Arial,Helvetica,sans-serif" fill="#153F46" font-size="14" font-weight="650">Copy feedback</text>
 </g>
