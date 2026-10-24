@@ -56,6 +56,34 @@ class ProvenanceContractTest(unittest.TestCase):
         self.assertTrue(actual.exists())
         self.assertEqual(p04["sha256"], module.digest(actual.read_bytes()))
 
+    def test_all_thirteen_licensed_photo_ids_are_distinct(self):
+        import json
+        manifest = json.loads(
+            (ROOT / "design/assets/production-c-provenance.v1.json").read_text()
+        )
+        originals = manifest["requestedIndependentPhotos"]
+        replacements = manifest["verifiedReplacementPhotos"]
+        hashes = [item["sha256"] for item in originals + replacements]
+        self.assertEqual(13, len(hashes))
+        self.assertEqual(13, len(set(hashes)))
+        legacy = {x["sha256"] for x in manifest["priorFixtureSet"]["assets"]}
+        self.assertFalse(set(hashes) & legacy)
+
+    def test_migration_fails_closed_until_selected_svg_bytes_are_replaced(self):
+        import json
+        manifest = json.loads(
+            (ROOT / "design/assets/production-c-provenance.v1.json").read_text()
+        )
+        self.assertEqual(
+            "legacy-research",
+            manifest["crossSurfaceProofTarget"]["photoSourceMode"]
+        )
+        manifest["crossSurfaceProofTarget"]["photoSourceMode"] = (
+            "rights-verified-replacements"
+        )
+        with self.assertRaisesRegex(ValueError, "actual embedded bytes missing"):
+            module.validate(manifest, ROOT)
+
     def test_embedded_photo_cannot_be_an_http_reference(self):
         import tempfile
         with tempfile.TemporaryDirectory() as temporary:
