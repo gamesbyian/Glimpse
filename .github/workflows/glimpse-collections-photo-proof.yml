@@ -1,4 +1,5 @@
 name: Glimpse | photographic Collections current-generation proposal
+# Rerender after vectorization of Sort affordance and battery/signal indicators.
 on:
   push:
     branches: [agent/visual-state-reconciliation-20261023]
