@@ -22,11 +22,10 @@
 <text x="53" y="518" font-family="Arial,Helvetica,sans-serif" fill="#667975" font-size="14" font-weight="400">commit</text>
 <text x="53" y="538" font-family="Arial,Helvetica,sans-serif" fill="#1D5960" font-size="13" font-weight="650">Review removal</text>
 <rect x="37" y="574" width="354" height="104" rx="15" fill="#E9E0F5" stroke="none" stroke-width="1"/>
-<text x="56" y="606" font-family="Arial,Helvetica,sans-serif" fill="#153F46" font-size="20" font-weight="700">Delete local copies?</text>
-<text x="56" y="631" font-family="Arial,Helvetica,sans-serif" fill="#667975" font-size="14" font-weight="400">Backup first. This cannot delete</text>
-<text x="56" y="650" font-family="Arial,Helvetica,sans-serif" fill="#667975" font-size="14" font-weight="400">originals held by Google Photos.</text>
-<rect x="43" y="713" width="336" height="42" rx="20" fill="#1D5960" stroke="#1D5960" stroke-width="1"/>
-<text x="58" y="740" font-family="Arial,Helvetica,sans-serif" fill="#FFFFFF" font-size="14" font-weight="650">Confirm with affected count</text>
+<text x="56" y="606" font-family="Arial,Helvetica,sans-serif" fill="#153F46" font-size="20" font-weight="700">Delete 22 local copies?</text>
+<text x="56" y="631" font-family="Arial,Helvetica,sans-serif" fill="#667975" font-size="14" font-weight="400">22 Glimpse copies will be removed.</text>
+<text x="56" y="650" font-family="Arial,Helvetica,sans-serif" fill="#667975" font-size="14" font-weight="400">Original provider photos stay intact.</text>
+<rect x="43" y="713" width="147" height="44" rx="20" fill="#FFFCF6" stroke="#C8B7A1"/><text x="58" y="741" font-family="Arial,Helvetica,sans-serif" fill="#153F46" font-size="15" font-weight="650">Cancel</text><rect x="200" y="713" width="179" height="44" rx="20" fill="#703B27" stroke="#703B27"/><text x="213" y="741" font-family="Arial,Helvetica,sans-serif" fill="#FFFFFF" font-size="14" font-weight="650">Delete 22 copies</text>
 <path d="M29 817h373" stroke="#C8B7A1"/>
 <text x="45" y="851" font-family="Arial,Helvetica,sans-serif" fill="#667975" font-size="13" font-weight="500">Home</text>
 <text x="141" y="851" font-family="Arial,Helvetica,sans-serif" fill="#667975" font-size="13" font-weight="500">Discover</text>

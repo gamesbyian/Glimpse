@@ -5,27 +5,27 @@
 <path d="M32 55h368" stroke="#C8B7A1"/>
 <text x="35" y="88" font-family="Arial,Helvetica,sans-serif" fill="#1D5960" font-size="16" font-weight="650">‹ Back</text>
 <text x="37" y="129" font-family="Arial,Helvetica,sans-serif" fill="#153F46" font-size="28" font-weight="700">Help</text>
-<text x="38" y="155" font-family="Arial,Helvetica,sans-serif" fill="#667975" font-size="15" font-weight="400">How Glimpse works</text>
+<text x="38" y="155" font-family="Arial,Helvetica,sans-serif" fill="#667975" font-size="15" font-weight="400">Import, preview and apply</text>
 <rect x="40" y="171" width="348" height="32" rx="8" fill="#E9E0F5" stroke="none" stroke-width="1"/>
 <text x="52" y="193" font-family="Arial,Helvetica,sans-serif" fill="#153F46" font-size="13" font-weight="650">PROPOSAL • article</text>
-<rect x="40" y="221" width="348" height="100" rx="13" fill="#FFFCF6" stroke="#C8B7A1" stroke-width="1"/>
-<text x="53" y="247" font-family="Arial,Helvetica,sans-serif" fill="#153F46" font-size="17" font-weight="650">Get photos into Glimpse</text>
-<text x="53" y="270" font-family="Arial,Helvetica,sans-serif" fill="#667975" font-size="14" font-weight="400">Use Android Photo Picker or a supported</text>
-<text x="53" y="289" font-family="Arial,Helvetica,sans-serif" fill="#667975" font-size="14" font-weight="400">share action</text>
-<text x="53" y="309" font-family="Arial,Helvetica,sans-serif" fill="#1D5960" font-size="13" font-weight="650">Read import guide</text>
-<rect x="40" y="336" width="348" height="100" rx="13" fill="#FFFCF6" stroke="#C8B7A1" stroke-width="1"/>
-<text x="53" y="362" font-family="Arial,Helvetica,sans-serif" fill="#153F46" font-size="17" font-weight="650">Browse without changing wallpaper</text>
-<text x="53" y="385" font-family="Arial,Helvetica,sans-serif" fill="#667975" font-size="14" font-weight="400">The reel and Grid select a preview only</text>
-<text x="53" y="424" font-family="Arial,Helvetica,sans-serif" fill="#1D5960" font-size="13" font-weight="650">Learn the reel</text>
-<rect x="40" y="451" width="348" height="100" rx="13" fill="#FFFCF6" stroke="#C8B7A1" stroke-width="1"/>
-<text x="53" y="477" font-family="Arial,Helvetica,sans-serif" fill="#153F46" font-size="17" font-weight="650">Apply a wallpaper</text>
-<text x="53" y="500" font-family="Arial,Helvetica,sans-serif" fill="#667975" font-size="14" font-weight="400">Choose Home or Lock where supported</text>
-<text x="53" y="539" font-family="Arial,Helvetica,sans-serif" fill="#1D5960" font-size="13" font-weight="650">What changes?</text>
-<rect x="40" y="566" width="348" height="100" rx="13" fill="#FFFCF6" stroke="#C8B7A1" stroke-width="1"/>
-<text x="53" y="592" font-family="Arial,Helvetica,sans-serif" fill="#153F46" font-size="17" font-weight="650">Rotation and Android restrictions</text>
-<text x="53" y="615" font-family="Arial,Helvetica,sans-serif" fill="#667975" font-size="14" font-weight="400">Why five minutes means eligible, not</text>
-<text x="53" y="634" font-family="Arial,Helvetica,sans-serif" fill="#667975" font-size="14" font-weight="400">guaranteed</text>
-<text x="53" y="654" font-family="Arial,Helvetica,sans-serif" fill="#1D5960" font-size="13" font-weight="650">Fix a problem</text>
+<rect x="40" y="220" width="348" height="132" rx="13" fill="#FFFCF6" stroke="#C8B7A1"/>
+<text x="53" y="247" font-family="Arial,Helvetica,sans-serif" fill="#153F46" font-size="18" font-weight="700">Import photos from Android</text>
+<text x="53" y="274" font-family="Arial,Helvetica,sans-serif" fill="#667975" font-size="14" font-weight="400">1. Choose Add photos in Collections.</text>
+<text x="53" y="294" font-family="Arial,Helvetica,sans-serif" fill="#667975" font-size="14" font-weight="400">2. Select items in the system picker.</text>
+<text x="53" y="314" font-family="Arial,Helvetica,sans-serif" fill="#667975" font-size="14" font-weight="400">3. Wait for verified local copies.</text>
+<text x="53" y="337" font-family="Arial,Helvetica,sans-serif" fill="#667975" font-size="13" font-weight="400">No full-library permission required</text>
+<rect x="40" y="367" width="348" height="132" rx="13" fill="#FFFCF6" stroke="#C8B7A1"/>
+<text x="53" y="394" font-family="Arial,Helvetica,sans-serif" fill="#153F46" font-size="18" font-weight="700">Then browse your collection</text>
+<text x="53" y="421" font-family="Arial,Helvetica,sans-serif" fill="#667975" font-size="14" font-weight="400">Use the finite Reel or Grid to choose</text>
+<text x="53" y="441" font-family="Arial,Helvetica,sans-serif" fill="#667975" font-size="14" font-weight="400">a photo. Selection only previews it.</text>
+<text x="53" y="468" font-family="Arial,Helvetica,sans-serif" fill="#667975" font-size="13" font-weight="400">Previous / Next work without swiping</text>
+<rect x="40" y="514" width="348" height="132" rx="13" fill="#FFFCF6" stroke="#C8B7A1"/>
+<text x="53" y="541" font-family="Arial,Helvetica,sans-serif" fill="#153F46" font-size="18" font-weight="700">Applying is a separate choice</text>
+<text x="53" y="568" font-family="Arial,Helvetica,sans-serif" fill="#667975" font-size="14" font-weight="400">Tap Set wallpaper, select an available</text>
+<text x="53" y="588" font-family="Arial,Helvetica,sans-serif" fill="#667975" font-size="14" font-weight="400">Android target, then check the result.</text>
+<text x="53" y="619" font-family="Arial,Helvetica,sans-serif" fill="#667975" font-size="13" font-weight="400">Browsing never applies automatically</text>
+<rect x="43" y="685" width="336" height="46" rx="22" fill="#1D5960"/>
+<text x="59" y="714" font-family="Arial,Helvetica,sans-serif" fill="#FFFFFF" font-size="15" font-weight="700">Back to help topics</text>
 <path d="M29 817h373" stroke="#C8B7A1"/>
 <text x="45" y="851" font-family="Arial,Helvetica,sans-serif" fill="#667975" font-size="13" font-weight="500">Home</text>
 <text x="141" y="851" font-family="Arial,Helvetica,sans-serif" fill="#667975" font-size="13" font-weight="500">Discover</text>

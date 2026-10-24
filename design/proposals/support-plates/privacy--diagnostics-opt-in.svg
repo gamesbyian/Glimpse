@@ -28,7 +28,7 @@
 <text x="53" y="616" font-family="Arial,Helvetica,sans-serif" fill="#667975" font-size="14" font-weight="400">Readable offline; source-specific terms</text>
 <text x="53" y="635" font-family="Arial,Helvetica,sans-serif" fill="#667975" font-size="14" font-weight="400">when needed</text>
 <text x="53" y="655" font-family="Arial,Helvetica,sans-serif" fill="#1D5960" font-size="13" font-weight="650">Read policy</text>
-<path d="M29 817h373" stroke="#C8B7A1"/>
+<rect x="40" y="681" width="348" height="77" rx="12" fill="#E9E0F5" stroke="#C8B7A1"/><text x="53" y="705" font-family="Arial,Helvetica,sans-serif" fill="#153F46" font-size="16" font-weight="700">Diagnostics selected for this report</text><text x="53" y="727" font-family="Arial,Helvetica,sans-serif" fill="#667975" font-size="13">Review exact contents before sharing.</text><text x="53" y="746" font-family="Arial,Helvetica,sans-serif" fill="#1D5960" font-size="13" font-weight="650">Review report</text><path d="M29 817h373" stroke="#C8B7A1"/>
 <text x="45" y="851" font-family="Arial,Helvetica,sans-serif" fill="#667975" font-size="13" font-weight="500">Home</text>
 <text x="141" y="851" font-family="Arial,Helvetica,sans-serif" fill="#667975" font-size="13" font-weight="500">Discover</text>
 <text x="237" y="851" font-family="Arial,Helvetica,sans-serif" fill="#667975" font-size="13" font-weight="500">Collections</text>
