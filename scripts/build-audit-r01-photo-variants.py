@@ -45,6 +45,18 @@ FRAMES = {
                       {"p20": "art2", "p21": "art3", "p22": "art6"}),
 }
 
+# CairoSVG and some Android font stacks lack the decorative northeast arrow
+# glyph; draw an explicit vector arrow instead of a missing-glyph square.
+GRID_TEXT = '<text x="306" y="433" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="600" fill="#1D5960">Grid ↗</text>'
+GRID_VECTOR = ('<text x="306" y="433" font-family="Arial,Helvetica,sans-serif" font-size="14" '
+               'font-weight="600" fill="#1D5960">Grid</text>'
+               '<path d="M345 433 L359 419 M348 419 H359 V430" fill="none" '
+               'stroke="#1D5960" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>')
+
+def portable_grid_icon(source):
+    assert source.count(GRID_TEXT) == 1, "unexpected Grid shortcut source"
+    return source.replace(GRID_TEXT, GRID_VECTOR)
+
 def generate(slug, details):
     origin, state, selected, refs, image_map = details
     source = (P0 / origin).read_text(encoding="utf-8")
@@ -98,7 +110,7 @@ def generate(slug, details):
         index = int(art[3:])
         assert hashlib.sha256(embedded[index]).hexdigest() == assets[art], (slug, pid)
     assert [m for m in re.findall(r'<use href="#(fixture\d+)"', source)] == refs, slug
-    return source
+    return portable_grid_icon(source)
 
 def generate_edge(slug, single):
     """Keep the actual X05 paper wheel, but leave unoccupied wedges empty."""
@@ -182,7 +194,7 @@ def generate_edge(slug, single):
     assert source.count("<use href=") == (2 if single else 0), (slug, "ghost images")
     labels = re.findall(r'<text[^>]*>(\d\d)</text>', source)
     assert labels == (["01"] if single else []), (slug, "ghost photo indices", labels)
-    return source
+    return portable_grid_icon(source)
 
 def main():
     p = argparse.ArgumentParser()
