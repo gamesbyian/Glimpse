@@ -56,8 +56,10 @@ def generate():
     s=s.replace('<title>Reel ↔ Grid ↔ detail / 03-photo-detail</title>',
        '<title>R02 · photographic p12 detail with real image actions · draft</title>')
     ET.fromstring(s)
-    assert s.count("Set wallpaper…")==1 and s.count("Edit copy")==1
-    assert s.count("Share photo")==1 and s.count("Grid</text>")==1
+    assert len(re.findall(r'<text[^>]*>Set wallpaper…</text>',s))==1
+    assert len(re.findall(r'<text[^>]*>Edit copy</text>',s))==1
+    assert len(re.findall(r'<text[^>]*>Share photo</text>',s))==1
+    assert len(re.findall(r'<text[^>]*>Grid</text>',s))==1
     assert '<text x="57" y="531"' in s and '<use href="#fixture1"' in s
     return s
 
