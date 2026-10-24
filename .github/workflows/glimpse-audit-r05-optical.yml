@@ -1,6 +1,7 @@
 name: Glimpse R05 accessibility references | targeted optical proof
 
 # One-time opt-in check; no automatic CI on ordinary source, images or docs.
+# Retry after R01 numeric-photo-ID / GUX question-ID variable collision fix.
 on:
   push:
     branches: [agent/visual-state-reconciliation-20261023]
