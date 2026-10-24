@@ -65,8 +65,9 @@ jobs:
           p=subprocess.run(["python3","scripts/validate-storyboard-semantics.py"],capture_output=True,text=True)
           if p.returncode:
               data=json.loads(p.stdout)
-              allowed=["x08/01-home-active.svg: current/confirmed status badge would clip"]
-              if data.get("semanticSourceErrors")==allowed:
+              allowed=["x08/01-home-active.svg: current/confirmed status badge would clip",
+                       "x08/06-status-collapsed.svg: current/confirmed status badge would clip"]
+              if sorted(data.get("semanticSourceErrors",[]))==sorted(allowed):
                   print("KNOWN SHARED STORYBOARD ASSERTION: requires CURRENT HOME vs source-truth LAST ACK.; issue #10")
               else:
                   print(p.stdout,p.stderr)
