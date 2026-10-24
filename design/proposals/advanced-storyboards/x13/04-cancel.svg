@@ -3,10 +3,10 @@
 <rect x="15" y="14" width="401" height="890" rx="22" fill="#F6F0E6" stroke="#C4B7A4"/>
 <text x="38" y="44" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="650" fill="#153F46">9:41</text>
 <text x="356" y="44" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="450" fill="#667975">● ▰</text>
-<text x="39" y="100" font-family="Arial,Helvetica,sans-serif" font-size="25" font-weight="750" fill="#153F46">Sharing cancelled</text>
-<text x="40" y="132" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="500" fill="#667975">No image delivered</text>
+<text x="39" y="100" font-family="Arial,Helvetica,sans-serif" font-size="25" font-weight="750" fill="#153F46">Back from sharing</text>
+<text x="40" y="132" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="500" fill="#667975">Delivery not confirmed</text>
 <rect x="41" y="210" width="344" height="93" rx="13" fill="#E9E0F5" stroke="#E8876C"/>
-<text x="55" y="240" font-family="Arial,Helvetica,sans-serif" font-size="17" font-weight="650" fill="#153F46">Share dismissed</text>
+<text x="55" y="240" font-family="Arial,Helvetica,sans-serif" font-size="17" font-weight="650" fill="#153F46">Sharing closed</text>
 <text x="55" y="272" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="440" fill="#667975">Your wallpaper has not changed</text>
 <rect x="43" y="621" width="338" height="44" rx="16" fill="#1D5960" stroke="#1D5960"/>
 <text x="57" y="650" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="700" fill="white">Return to photo</text>
