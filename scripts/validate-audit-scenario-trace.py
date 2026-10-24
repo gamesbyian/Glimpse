@@ -32,7 +32,8 @@ for scenario in trace["scenarios"]:
     if state!="PICTURED":
         assert len(scenario["nextProof"])>=30, scenario
 assert states=={key:trace["counts"][key] for key in states}
-assert states["PICTURED"]>=50, "Core revision scenario art unexpectedly regressed"\n# All 56 pictures can exist while native usability, optical acceptance and owner signoff remain unverified.
+assert states["PICTURED"]>=50, "Core revision scenario art unexpectedly regressed"
+# All 56 pictures can exist while native usability, optical acceptance and owner signoff remain unverified.
 assert trace["auditCycleA"]=={"PASS":18,"ISSUE":8,"UNVERIFIED":34}
 
 size_examples=trace["finiteCountExamples"]
