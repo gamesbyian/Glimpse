@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "authority": "Wikimedia Commons file pages; explicit own work uploader CC0 declarations; not a legal opinion",
+  "proposalStatus": "Candidate only: selected p10-p15 mockups retain exact old JPEG bytes until cross-surface replacement",
+  "candidates": [
+    {
+      "photoId": "p10",
+      "commonsFileTitle": "Sunny beach ocean.jpg",
+      "commonsPage": "https://commons.wikimedia.org/wiki/File:Sunny_beach_ocean.jpg",
+      "creator": "Pinguinguy",
+      "license": "CC0 1.0 Universal",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "licensePageInspectedAt": "2026-10-24",
+      "status": "uploader-claimed CC0 on live file page; original bytes and SHA not yet obtained; replacement candidate only"
+    },
+    {
+      "photoId": "p11",
+      "commonsFileTitle": "Landscape of a wild forest.jpg",
+      "commonsPage": "https://commons.wikimedia.org/wiki/File:Landscape_of_a_wild_forest.jpg",
+      "creator": "SpessiG",
+      "license": "CC0 1.0 Universal",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "licensePageInspectedAt": "2026-10-24",
+      "status": "uploader-claimed CC0 on live file page; original bytes and SHA not yet obtained; replacement candidate only"
+    },
+    {
+      "photoId": "p12",
+      "commonsFileTitle": "Chive flower close-up.jpg",
+      "commonsPage": "https://commons.wikimedia.org/wiki/File:Chive_flower_close-up.jpg",
+      "creator": "Sporlo",
+      "license": "CC0 1.0 Universal",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "licensePageInspectedAt": "2026-10-24",
+      "status": "uploader-claimed CC0 on live file page; original bytes and SHA not yet obtained; replacement candidate only"
+    },
+    {
+      "photoId": "p13",
+      "commonsFileTitle": "Still and clear sea.jpg",
+      "commonsPage": "https://commons.wikimedia.org/wiki/File:Still_and_clear_sea.jpg",
+      "creator": "Jdszekeres",
+      "license": "CC0 1.0 Universal",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "licensePageInspectedAt": "2026-10-24",
+      "status": "uploader-claimed CC0 on live file page; original bytes and SHA not yet obtained; replacement candidate only"
+    },
+    {
+      "photoId": "p14",
+      "commonsFileTitle": "Starry sky1.jpg",
+      "commonsPage": "https://commons.wikimedia.org/wiki/File:Starry_sky1.jpg",
+      "creator": "TBOE PC Ohm",
+      "license": "CC0 1.0 Universal",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "licensePageInspectedAt": "2026-10-24",
+      "status": "uploader-claimed CC0 on live file page; original bytes and SHA not yet obtained; replacement candidate only"
+    },
+    {
+      "photoId": "p15",
+      "commonsFileTitle": "Pinwheel flower close-up shot.jpg",
+      "commonsPage": "https://commons.wikimedia.org/wiki/File:Pinwheel_flower_close-up_shot.jpg",
+      "creator": "Villager3222",
+      "license": "CC0 1.0 Universal",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "licensePageInspectedAt": "2026-10-24",
+      "status": "uploader-claimed CC0 on live file page; original bytes and SHA not yet obtained; replacement candidate only"
+    }
+  ]
+}
