@@ -70,7 +70,7 @@ The 60-question desk audit remains 18 source-level PASS / 8 ISSUE / 34 UNVERIFIE
     for family in d["supportSurfaces"]:
         for variant in family["variants"]:
             label=family["surfaceId"].replace("-"," ").title()+" / "+variant["stateId"].replace("-"," ").title()
-            p.append(card(label,variant["reviewCandidatePath"]))
+            p.append(card(label,variant["reviewCandidatePath"],note=variant.get("reviewWarning", "Original support draft; native evidence unavailable")))
     p.append('</div></details>')
     p.append('<details><summary>Interaction stories · 23 complete P0/P1 packages, 137 frame sources</summary>')
     for flow in d["journeys"]:

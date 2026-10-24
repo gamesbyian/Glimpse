@@ -551,13 +551,17 @@
           "stateId": "sideload",
           "reviewCandidatePath": "design/proposals/support-plates/about--sideload.svg",
           "ownerChoice": null,
-          "exactOwnerApprovalSHA256": null
+          "exactOwnerApprovalSHA256": null,
+          "reviewWarning": "Optically inspected original draft support screen. Earlier schematic/card vocabulary remains provisional; no Android, accessibility or owner signoff.",
+          "opticalEvidence": "Six contact JPGs inspected before and after selected fixes (401×890); source SHA-256 in design/reviews/support-2026-10-24/source-ledger.json; no native acceptance."
         },
         {
           "stateId": "play-release",
           "reviewCandidatePath": "design/proposals/support-plates/about--play-release.svg",
           "ownerChoice": null,
-          "exactOwnerApprovalSHA256": null
+          "exactOwnerApprovalSHA256": null,
+          "reviewWarning": "Optically inspected original draft support screen. Earlier schematic/card vocabulary remains provisional; no Android, accessibility or owner signoff.",
+          "opticalEvidence": "Six contact JPGs inspected before and after selected fixes (401×890); source SHA-256 in design/reviews/support-2026-10-24/source-ledger.json; no native acceptance."
         }
       ]
     },
@@ -568,13 +572,17 @@
           "stateId": "topics",
           "reviewCandidatePath": "design/proposals/support-plates/help--topics.svg",
           "ownerChoice": null,
-          "exactOwnerApprovalSHA256": null
+          "exactOwnerApprovalSHA256": null,
+          "reviewWarning": "Optically inspected original draft support screen. Earlier schematic/card vocabulary remains provisional; no Android, accessibility or owner signoff.",
+          "opticalEvidence": "Six contact JPGs inspected before and after selected fixes (401×890); source SHA-256 in design/reviews/support-2026-10-24/source-ledger.json; no native acceptance."
         },
         {
           "stateId": "article",
           "reviewCandidatePath": "design/proposals/support-plates/help--article.svg",
           "ownerChoice": null,
-          "exactOwnerApprovalSHA256": null
+          "exactOwnerApprovalSHA256": null,
+          "reviewWarning": "Optically revised: practical import, preview, explicit apply tutorial. Native text scaling and system-picker wording untested.",
+          "opticalEvidence": "Six contact JPGs inspected before and after selected fixes (401×890); source SHA-256 in design/reviews/support-2026-10-24/source-ledger.json; no native acceptance."
         }
       ]
     },
@@ -585,13 +593,17 @@
           "stateId": "available",
           "reviewCandidatePath": "design/proposals/support-plates/contact-feedback--available.svg",
           "ownerChoice": null,
-          "exactOwnerApprovalSHA256": null
+          "exactOwnerApprovalSHA256": null,
+          "reviewWarning": "Optically inspected original draft support screen. Earlier schematic/card vocabulary remains provisional; no Android, accessibility or owner signoff.",
+          "opticalEvidence": "Six contact JPGs inspected before and after selected fixes (401×890); source SHA-256 in design/reviews/support-2026-10-24/source-ledger.json; no native acceptance."
         },
         {
           "stateId": "no-handler",
           "reviewCandidatePath": "design/proposals/support-plates/contact-feedback--no-handler.svg",
           "ownerChoice": null,
-          "exactOwnerApprovalSHA256": null
+          "exactOwnerApprovalSHA256": null,
+          "reviewWarning": "Optically inspected original draft support screen. Earlier schematic/card vocabulary remains provisional; no Android, accessibility or owner signoff.",
+          "opticalEvidence": "Six contact JPGs inspected before and after selected fixes (401×890); source SHA-256 in design/reviews/support-2026-10-24/source-ledger.json; no native acceptance."
         }
       ]
     },
@@ -602,13 +614,17 @@
           "stateId": "draft",
           "reviewCandidatePath": "design/proposals/support-plates/report-problem--draft.svg",
           "ownerChoice": null,
-          "exactOwnerApprovalSHA256": null
+          "exactOwnerApprovalSHA256": null,
+          "reviewWarning": "Revised expectation prompt. Actual input focus, keyboard and draft persistence need Android tests.",
+          "opticalEvidence": "Six contact JPGs inspected before and after selected fixes (401×890); source SHA-256 in design/reviews/support-2026-10-24/source-ledger.json; no native acceptance."
         },
         {
           "stateId": "with-diagnostics",
           "reviewCandidatePath": "design/proposals/support-plates/report-problem--with-diagnostics.svg",
           "ownerChoice": null,
-          "exactOwnerApprovalSHA256": null
+          "exactOwnerApprovalSHA256": null,
+          "reviewWarning": "Revised expectation prompt; enabling diagnostics must remain opt-in, inspectable and unsent.",
+          "opticalEvidence": "Six contact JPGs inspected before and after selected fixes (401×890); source SHA-256 in design/reviews/support-2026-10-24/source-ledger.json; no native acceptance."
         }
       ]
     },
@@ -619,13 +635,17 @@
           "stateId": "suspected-crash",
           "reviewCandidatePath": "design/proposals/support-plates/crash-recovery--suspected-crash.svg",
           "ownerChoice": null,
-          "exactOwnerApprovalSHA256": null
+          "exactOwnerApprovalSHA256": null,
+          "reviewWarning": "Optically inspected original draft support screen. Earlier schematic/card vocabulary remains provisional; no Android, accessibility or owner signoff.",
+          "opticalEvidence": "Six contact JPGs inspected before and after selected fixes (401×890); source SHA-256 in design/reviews/support-2026-10-24/source-ledger.json; no native acceptance."
         },
         {
           "stateId": "normal-exit",
           "reviewCandidatePath": "design/proposals/support-plates/crash-recovery--normal-exit.svg",
           "ownerChoice": null,
-          "exactOwnerApprovalSHA256": null
+          "exactOwnerApprovalSHA256": null,
+          "reviewWarning": "Corrected misleading crash language; normal launch should not imply a crash or interrupt routine use.",
+          "opticalEvidence": "Six contact JPGs inspected before and after selected fixes (401×890); source SHA-256 in design/reviews/support-2026-10-24/source-ledger.json; no native acceptance."
         }
       ]
     },
@@ -636,13 +656,17 @@
           "stateId": "minimal",
           "reviewCandidatePath": "design/proposals/support-plates/diagnostic-preview--minimal.svg",
           "ownerChoice": null,
-          "exactOwnerApprovalSHA256": null
+          "exactOwnerApprovalSHA256": null,
+          "reviewWarning": "Optically inspected original draft support screen. Earlier schematic/card vocabulary remains provisional; no Android, accessibility or owner signoff.",
+          "opticalEvidence": "Six contact JPGs inspected before and after selected fixes (401×890); source SHA-256 in design/reviews/support-2026-10-24/source-ledger.json; no native acceptance."
         },
         {
           "stateId": "expanded",
           "reviewCandidatePath": "design/proposals/support-plates/diagnostic-preview--expanded.svg",
           "ownerChoice": null,
-          "exactOwnerApprovalSHA256": null
+          "exactOwnerApprovalSHA256": null,
+          "reviewWarning": "Optically inspected original draft support screen. Earlier schematic/card vocabulary remains provisional; no Android, accessibility or owner signoff.",
+          "opticalEvidence": "Six contact JPGs inspected before and after selected fixes (401×890); source SHA-256 in design/reviews/support-2026-10-24/source-ledger.json; no native acceptance."
         }
       ]
     },
@@ -653,13 +677,17 @@
           "stateId": "latest",
           "reviewCandidatePath": "design/proposals/support-plates/whats-new--latest.svg",
           "ownerChoice": null,
-          "exactOwnerApprovalSHA256": null
+          "exactOwnerApprovalSHA256": null,
+          "reviewWarning": "Optically inspected original draft support screen. Earlier schematic/card vocabulary remains provisional; no Android, accessibility or owner signoff.",
+          "opticalEvidence": "Six contact JPGs inspected before and after selected fixes (401×890); source SHA-256 in design/reviews/support-2026-10-24/source-ledger.json; no native acceptance."
         },
         {
           "stateId": "no-notes",
           "reviewCandidatePath": "design/proposals/support-plates/whats-new--no-notes.svg",
           "ownerChoice": null,
-          "exactOwnerApprovalSHA256": null
+          "exactOwnerApprovalSHA256": null,
+          "reviewWarning": "Now accurately says release notes are unavailable; sample build metadata cannot count as release provenance.",
+          "opticalEvidence": "Six contact JPGs inspected before and after selected fixes (401×890); source SHA-256 in design/reviews/support-2026-10-24/source-ledger.json; no native acceptance."
         }
       ]
     },
@@ -670,19 +698,25 @@
           "stateId": "sideload",
           "reviewCandidatePath": "design/proposals/support-plates/updates--sideload.svg",
           "ownerChoice": null,
-          "exactOwnerApprovalSHA256": null
+          "exactOwnerApprovalSHA256": null,
+          "reviewWarning": "Optically inspected original draft support screen. Earlier schematic/card vocabulary remains provisional; no Android, accessibility or owner signoff.",
+          "opticalEvidence": "Six contact JPGs inspected before and after selected fixes (401×890); source SHA-256 in design/reviews/support-2026-10-24/source-ledger.json; no native acceptance."
         },
         {
           "stateId": "play-eligible",
           "reviewCandidatePath": "design/proposals/support-plates/updates--play-eligible.svg",
           "ownerChoice": null,
-          "exactOwnerApprovalSHA256": null
+          "exactOwnerApprovalSHA256": null,
+          "reviewWarning": "Optically inspected original draft support screen. Earlier schematic/card vocabulary remains provisional; no Android, accessibility or owner signoff.",
+          "opticalEvidence": "Six contact JPGs inspected before and after selected fixes (401×890); source SHA-256 in design/reviews/support-2026-10-24/source-ledger.json; no native acceptance."
         },
         {
           "stateId": "offline",
           "reviewCandidatePath": "design/proposals/support-plates/updates--offline.svg",
           "ownerChoice": null,
-          "exactOwnerApprovalSHA256": null
+          "exactOwnerApprovalSHA256": null,
+          "reviewWarning": "Optically inspected original draft support screen. Earlier schematic/card vocabulary remains provisional; no Android, accessibility or owner signoff.",
+          "opticalEvidence": "Six contact JPGs inspected before and after selected fixes (401×890); source SHA-256 in design/reviews/support-2026-10-24/source-ledger.json; no native acceptance."
         }
       ]
     },
@@ -693,13 +727,17 @@
           "stateId": "not-available",
           "reviewCandidatePath": "design/proposals/support-plates/rate-review--not-available.svg",
           "ownerChoice": null,
-          "exactOwnerApprovalSHA256": null
+          "exactOwnerApprovalSHA256": null,
+          "reviewWarning": "Optically inspected original draft support screen. Earlier schematic/card vocabulary remains provisional; no Android, accessibility or owner signoff.",
+          "opticalEvidence": "Six contact JPGs inspected before and after selected fixes (401×890); source SHA-256 in design/reviews/support-2026-10-24/source-ledger.json; no native acceptance."
         },
         {
           "stateId": "play-listing",
           "reviewCandidatePath": "design/proposals/support-plates/rate-review--play-listing.svg",
           "ownerChoice": null,
-          "exactOwnerApprovalSHA256": null
+          "exactOwnerApprovalSHA256": null,
+          "reviewWarning": "Optically inspected original draft support screen. Earlier schematic/card vocabulary remains provisional; no Android, accessibility or owner signoff.",
+          "opticalEvidence": "Six contact JPGs inspected before and after selected fixes (401×890); source SHA-256 in design/reviews/support-2026-10-24/source-ledger.json; no native acceptance."
         }
       ]
     },
@@ -710,13 +748,17 @@
           "stateId": "local-only",
           "reviewCandidatePath": "design/proposals/support-plates/privacy--local-only.svg",
           "ownerChoice": null,
-          "exactOwnerApprovalSHA256": null
+          "exactOwnerApprovalSHA256": null,
+          "reviewWarning": "Optically inspected original draft support screen. Earlier schematic/card vocabulary remains provisional; no Android, accessibility or owner signoff.",
+          "opticalEvidence": "Six contact JPGs inspected before and after selected fixes (401×890); source SHA-256 in design/reviews/support-2026-10-24/source-ledger.json; no native acceptance."
         },
         {
           "stateId": "diagnostics-opt-in",
           "reviewCandidatePath": "design/proposals/support-plates/privacy--diagnostics-opt-in.svg",
           "ownerChoice": null,
-          "exactOwnerApprovalSHA256": null
+          "exactOwnerApprovalSHA256": null,
+          "reviewWarning": "Visible report-level selection state added; must expose exact outgoing bytes, never auto-upload.",
+          "opticalEvidence": "Six contact JPGs inspected before and after selected fixes (401×890); source SHA-256 in design/reviews/support-2026-10-24/source-ledger.json; no native acceptance."
         }
       ]
     },
@@ -727,19 +769,25 @@
           "stateId": "overview",
           "reviewCandidatePath": "design/proposals/support-plates/storage-management--overview.svg",
           "ownerChoice": null,
-          "exactOwnerApprovalSHA256": null
+          "exactOwnerApprovalSHA256": null,
+          "reviewWarning": "Optically inspected original draft support screen. Earlier schematic/card vocabulary remains provisional; no Android, accessibility or owner signoff.",
+          "opticalEvidence": "Six contact JPGs inspected before and after selected fixes (401×890); source SHA-256 in design/reviews/support-2026-10-24/source-ledger.json; no native acceptance."
         },
         {
           "stateId": "delete-confirm",
           "reviewCandidatePath": "design/proposals/support-plates/storage-management--delete-confirm.svg",
           "ownerChoice": null,
-          "exactOwnerApprovalSHA256": null
+          "exactOwnerApprovalSHA256": null,
+          "reviewWarning": "Revised cancellation and 22-copy fixture count. Real count/impact and consent must be computed at runtime.",
+          "opticalEvidence": "Six contact JPGs inspected before and after selected fixes (401×890); source SHA-256 in design/reviews/support-2026-10-24/source-ledger.json; no native acceptance."
         },
         {
           "stateId": "low-storage",
           "reviewCandidatePath": "design/proposals/support-plates/storage-management--low-storage.svg",
           "ownerChoice": null,
-          "exactOwnerApprovalSHA256": null
+          "exactOwnerApprovalSHA256": null,
+          "reviewWarning": "Visible low-space warning distinguishes overview; actual storage detection and recovery untested.",
+          "opticalEvidence": "Six contact JPGs inspected before and after selected fixes (401×890); source SHA-256 in design/reviews/support-2026-10-24/source-ledger.json; no native acceptance."
         }
       ]
     },
@@ -750,13 +798,17 @@
           "stateId": "available",
           "reviewCandidatePath": "design/proposals/support-plates/permissions-capabilities--available.svg",
           "ownerChoice": null,
-          "exactOwnerApprovalSHA256": null
+          "exactOwnerApprovalSHA256": null,
+          "reviewWarning": "Optically inspected original draft support screen. Earlier schematic/card vocabulary remains provisional; no Android, accessibility or owner signoff.",
+          "opticalEvidence": "Six contact JPGs inspected before and after selected fixes (401×890); source SHA-256 in design/reviews/support-2026-10-24/source-ledger.json; no native acceptance."
         },
         {
           "stateId": "restricted",
           "reviewCandidatePath": "design/proposals/support-plates/permissions-capabilities--restricted.svg",
           "ownerChoice": null,
-          "exactOwnerApprovalSHA256": null
+          "exactOwnerApprovalSHA256": null,
+          "reviewWarning": "Lock target unavailability called out; Home support must be independently verified at runtime.",
+          "opticalEvidence": "Six contact JPGs inspected before and after selected fixes (401×890); source SHA-256 in design/reviews/support-2026-10-24/source-ledger.json; no native acceptance."
         }
       ]
     },
@@ -767,13 +819,17 @@
           "stateId": "components",
           "reviewCandidatePath": "design/proposals/support-plates/credits-licences--components.svg",
           "ownerChoice": null,
-          "exactOwnerApprovalSHA256": null
+          "exactOwnerApprovalSHA256": null,
+          "reviewWarning": "Optically inspected original draft support screen. Earlier schematic/card vocabulary remains provisional; no Android, accessibility or owner signoff.",
+          "opticalEvidence": "Six contact JPGs inspected before and after selected fixes (401×890); source SHA-256 in design/reviews/support-2026-10-24/source-ledger.json; no native acceptance."
         },
         {
           "stateId": "rights-warning",
           "reviewCandidatePath": "design/proposals/support-plates/credits-licences--rights-warning.svg",
           "ownerChoice": null,
-          "exactOwnerApprovalSHA256": null
+          "exactOwnerApprovalSHA256": null,
+          "reviewWarning": "Explicit unverified image reuse warning; verify actual third-party asset licences.",
+          "opticalEvidence": "Six contact JPGs inspected before and after selected fixes (401×890); source SHA-256 in design/reviews/support-2026-10-24/source-ledger.json; no native acceptance."
         }
       ]
     },
@@ -784,13 +840,17 @@
           "stateId": "invitation",
           "reviewCandidatePath": "design/proposals/support-plates/beta-feedback--invitation.svg",
           "ownerChoice": null,
-          "exactOwnerApprovalSHA256": null
+          "exactOwnerApprovalSHA256": null,
+          "reviewWarning": "Optically inspected original draft support screen. Earlier schematic/card vocabulary remains provisional; no Android, accessibility or owner signoff.",
+          "opticalEvidence": "Six contact JPGs inspected before and after selected fixes (401×890); source SHA-256 in design/reviews/support-2026-10-24/source-ledger.json; no native acceptance."
         },
         {
           "stateId": "share-preview",
           "reviewCandidatePath": "design/proposals/support-plates/beta-feedback--share-preview.svg",
           "ownerChoice": null,
-          "exactOwnerApprovalSHA256": null
+          "exactOwnerApprovalSHA256": null,
+          "reviewWarning": "Optically inspected original draft support screen. Earlier schematic/card vocabulary remains provisional; no Android, accessibility or owner signoff.",
+          "opticalEvidence": "Six contact JPGs inspected before and after selected fixes (401×890); source SHA-256 in design/reviews/support-2026-10-24/source-ledger.json; no native acceptance."
         }
       ]
     },
@@ -801,13 +861,17 @@
           "stateId": "not-implemented",
           "reviewCandidatePath": "design/proposals/support-plates/notification-preferences--not-implemented.svg",
           "ownerChoice": null,
-          "exactOwnerApprovalSHA256": null
+          "exactOwnerApprovalSHA256": null,
+          "reviewWarning": "Disabled unavailable features no longer resemble actionable toggles. No permission before feature exists.",
+          "opticalEvidence": "Six contact JPGs inspected before and after selected fixes (401×890); source SHA-256 in design/reviews/support-2026-10-24/source-ledger.json; no native acceptance."
         },
         {
           "stateId": "available",
           "reviewCandidatePath": "design/proposals/support-plates/notification-preferences--available.svg",
           "ownerChoice": null,
-          "exactOwnerApprovalSHA256": null
+          "exactOwnerApprovalSHA256": null,
+          "reviewWarning": "Alerts explicitly opt-in/off by default. This hypothetical availability is not shipping evidence.",
+          "opticalEvidence": "Six contact JPGs inspected before and after selected fixes (401×890); source SHA-256 in design/reviews/support-2026-10-24/source-ledger.json; no native acceptance."
         }
       ]
     },
@@ -818,13 +882,17 @@
           "stateId": "email-missing",
           "reviewCandidatePath": "design/proposals/support-plates/external-handler-fallback--email-missing.svg",
           "ownerChoice": null,
-          "exactOwnerApprovalSHA256": null
+          "exactOwnerApprovalSHA256": null,
+          "reviewWarning": "Optically inspected original draft support screen. Earlier schematic/card vocabulary remains provisional; no Android, accessibility or owner signoff.",
+          "opticalEvidence": "Six contact JPGs inspected before and after selected fixes (401×890); source SHA-256 in design/reviews/support-2026-10-24/source-ledger.json; no native acceptance."
         },
         {
           "stateId": "chooser-cancelled",
           "reviewCandidatePath": "design/proposals/support-plates/external-handler-fallback--chooser-cancelled.svg",
           "ownerChoice": null,
-          "exactOwnerApprovalSHA256": null
+          "exactOwnerApprovalSHA256": null,
+          "reviewWarning": "Chooser cancelled by user, not missing handler; return draft and offer retry without claiming send.",
+          "opticalEvidence": "Six contact JPGs inspected before and after selected fixes (401×890); source SHA-256 in design/reviews/support-2026-10-24/source-ledger.json; no native acceptance."
         }
       ]
     }

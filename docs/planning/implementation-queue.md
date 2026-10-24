@@ -185,3 +185,15 @@ The newer [whole-product handoff](HANDOFF-2026-10-24-WHOLE-PRODUCT-REVIEW.md) is
 - [ ] Collect actual Android behavior/hierarchy/large-text/gesture/OS source, apply and Sharesheet proof, then require explicit human approval of one exact compatible whole-set visual reference SHA inventory.
 
 [Current continuation handoff](HANDOFF-2026-10-24-CORE-TASK-ACTIONS.md) supersedes earlier 271-source status, with exact source files, optical evidence and pending gates. The first scored 60-question audit remains **18 source PASS / 8 ISSUE / 34 UNVERIFIED**; PR #6 remains **draft and unmerged**.
+
+## Support-state direct optical reconciliation · October 24
+
+- [x] Open **all six original source-hashed support contact JPEGs**, inspect each 401×890 phone image, record 34 distinct observations with pre-repair source SHA-256 ([review log](../design/SUPPORT-STATE-OPTICAL-REVIEW-2026-10-24.md)).
+- [x] Correct 13 actual misleading SVG state variants (cancelled chooser distinct from unavailable email, notifications available vs not implemented, explicit safe deletion with 22-copy example/Cancel, opt-in diagnostics, low-storage warning, actionable Help content, unsupported Lock target and artwork rights), preserving editable sources.
+- [x] Add narrow source-truth regression guard and trigger rerender of six contact sheets on support-plate changes. [CI #40127564296](https://github.com/gamesbyian/Glimpse/actions/runs/40127564296) PASS; directly inspect **all six corrected raster contacts** (completed). These are *draft optical checks*, not native or owner acceptance.
+- [ ] Unify typography, controls, and use of negative space in remaining original support/primary reference art; show readable exact outgoing report contents in diagnostic minimal and expanded states; include usable native 200%-font and 320dp examples.
+- [ ] Source real p04 photo, remaining Grid identities p06–09/p16–17 with genuine provenance/rights and show no invented photo identity.
+- [ ] Capture selected current native app scenes and compare with reference, 0/1/3/5/22/60 Reel, chooser/share/apply/unknown outcomes, permission, backup, accessibility and timing.
+- [ ] Ask human to choose **one exact-source-hashed coherent 24-primary/34-support/23-journey set**, or revise; do not promote to `design/approved/` before explicit decision.
+
+All selected references remain editorial candidates: **276 editable proposals**, **56/56 pictured scenarios**, **18 source PASS / 8 ISSUE / 34 UNVERIFIED** in independent scored cycle A.

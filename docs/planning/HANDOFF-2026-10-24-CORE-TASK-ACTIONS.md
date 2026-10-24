@@ -45,3 +45,19 @@ python3 -m http.server 8000
 ```
 
 **Never treat complete SVG source coverage or CI-green generated crops as user-approved design or native Android behavior.** Working PR #6 remains intentionally draft.
+
+## Later same-day continuation · support states independently inspected and selectively repaired
+
+- **All 34 original support variants** were directly opened as the original six 401×890 contact sheets and examined individually; [specific per-state pre-repair SHA/finding report](../design/SUPPORT-STATE-OPTICAL-REVIEW-2026-10-24.md). Thirteen SVG states were corrected rather than simply classified: Help article, report expectations (2), crash normal exit, no-notes, privacy diagnostics opt-in, storage deletion and low-space, notifications (2), chooser cancelled, capabilities restricted, rights-warning. Preserve the remaining 21 earlier sources without implying polish.
+- [Successful focused support CI #40127564296](https://github.com/gamesbyian/Glimpse/actions/runs/40127564296) rerendered all six sheets, source-hashed all 34 SVGs, passed `scripts/validate-support-state-truth.py` and committed fresh contacts and [ledger](../../design/reviews/support-2026-10-24/source-ledger.json) at `2bcf6d70a765a675ae9113cf6b578cd1ffad5091`. All **six latest sheets were independently opened again**; real 401px renders showed corrections visibly differentiated with no gross overflow. No Android, large-type, comprehension, touch, or owner acceptance was obtained.
+- [Whole-product owner review registry](../../design/proposals/whole-product-review-selection.v1.json) retains 24 primary and 34 support variants and eight unresolved owner questions, with extra support warnings; [browser reviewer](../../design/atlas/whole-product-review-selection.html) surfaces these warnings next to relevant source plates.
+- **Still blocks owner-grade final set**: 20 primary legacy-schematic candidates and multiple unrevised support states need coherent art/typography/hierarchy passes; Home p04 and six remaining Grid image IDs need genuinely independent rights-cleared photographs; diagnostic disclosure requires real payload samples; device-specific native conformity, 320dp/200% text/accessibility and best-effort scheduling need separate tests. Audit Cycle A stays **18 PASS source / 8 ISSUE / 34 UNVERIFIED**; zero human selections or approvals.
+
+```sh
+python3 scripts/validate-support-state-truth.py
+python3 scripts/render-support-review-corpus.py --check
+python3 scripts/render-support-review-corpus.py  # CairoSVG and Pillow required
+python3 scripts/validate-whole-product-review-selection.py
+```
+
+**Branch and PR remain draft-only**. Do not mutate `design/approved/`, claim OS support, or merge without human review.

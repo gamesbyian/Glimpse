@@ -50,3 +50,18 @@ The corrected draft sources address **13 variants** across notification availabi
 **Safety invariants:** A cancelled Android chooser means nothing was sent and does not imply no handler exists. A user choosing a diagnostic option never triggers upload; the outbound payload remains inspectable. Local-copy deletion must display its actual affected count, preserve external originals, and expose Cancel. 'Available' notification designs do not prove a feature shipped. Rights-warning art never grants unverified reuse permission.
 
 **Audit cycle A unchanged:** 18 source-level PASS / 8 ISSUE / 34 UNVERIFIED. The optical observations here identify flaws and their proposed source-level fixes only. The 34 original reference slots are now individually inspected *historically*, not accepted as the final 34 approval-ready support screens.
+
+## Independent optical reinspection of the repaired corpus
+
+**Second actual pixel inspection, after source fixes:** all six revised JPEG contact sheets were opened and checked individually. Focused [CI #40127564296](https://github.com/gamesbyian/Glimpse/actions/runs/40127564296) succeeded (34/34 SVG traces, source-truth validator, CairoSVG/Pillow render and preservation). The current images and [source ledger](../../design/reviews/support-2026-10-24/source-ledger.json) are preserved on the branch by CI commit `2bcf6d70a765a675ae9113cf6b578cd1ffad5091`; each rendered phone still has a 401×890 crop at x=15..416 and y=14..904. Contact SHA-256 digests:
+
+- `support-phone-contact-01.jpg`: `5dfa8e08485bf1a71e90a352b7f9ff20177919a8dc708d55ff45382a20c127c6`
+- `support-phone-contact-02.jpg`: `6decafa27dd0b2740a15a64901627d046ff8a4cd88077f51a4ee6bc6894d62bb`
+- `support-phone-contact-03.jpg`: `fae4cb12cc7b84ad23750bd80856a5034d7555197b3a1907590e982484ff3a58`
+- `support-phone-contact-04.jpg`: `e11275eb41fc1cfcbc651cf1f849af55fceee794cf33738cc82bceecaf8815ea`
+- `support-phone-contact-05.jpg`: `b7924a14bbd7d516de43e003c047a7d7832f91ab1cbb118cc9fba42b981bb2b8`
+- `support-phone-contact-06.jpg`: `cef2123f931ecf4e39a00716550e99603cf1ef611d81f130a77de58eacbe17d6`
+
+**Direct visual findings:** revised Help article now depicts distinct import → finite Reel/Grid preview → explicit wallpaper apply instructions rather than duplicating the Help directory; normal-exit subtitle no longer falsely says the app crashed; report fields align their prompts with their labels. The no-release-notes variant now truthfully states notes are unavailable. In sheet 04 the diagnostic opt-in state is visibly distinct from local-only, and the Storage warning and 22-copy destructive confirmation with independent Cancel / Delete actions fit without apparent clipping. In sheet 05 the restricted Lock warning and unverified-artwork rights warning have visible, bounded contrast. Sheet 06 visibly separates non-implemented notification settings (no faux enabled switches), optional available alerts (default off), missing handler, and user-cancelled chooser. No gross overlap was visible at this one static font scale in any of the 34 revised crops.
+
+**Still unacceptable to call final:** The identical minimal/expanded diagnostic payload cards do not show the actual contents to be copied/shared; many non-revised states have 12–14px body text, whitespace with weak hierarchy, and an earlier list-of-cards look; none is an actual 200% Android-font screenshot or TalkBack hitbox proof. The pictured 22 photos are test-fixture context, not a live deletion estimate. The hypothetical Play release, notice links, copyright and future notifications lack real device/build provenance. This reinspection is 34/34 original source-state optical *coverage*, **0/34 whole-set human or native acceptance**.
