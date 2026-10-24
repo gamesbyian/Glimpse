@@ -85,8 +85,8 @@ def make_settled():
     assert s.count(">Frame 5 / 8: Snapped to item 13</text>")==1
     s=s.replace(">Frame 5 / 8: Snapped to item 13</text>",
                 ">Tap p13 / selection settled</text>")
-    assert s.count(">Current reel angle relative to settled frame: -72°</text>")==1
-    s=s.replace(">Current reel angle relative to settled frame: -72°</text>",
+    assert s.count(">Current reel angle relative to settled frame: 0°</text>")==1
+    s=s.replace(">Current reel angle relative to settled frame: 0°</text>",
                 ">Settled one notch; p13 selected by tap</text>")
     s=update_meta(s,{"stateId":"tap-p13-settled",
        "auditInteraction":"tap-neighbour-aperture",
