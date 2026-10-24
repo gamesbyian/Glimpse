@@ -12,6 +12,8 @@ on:
       - scripts/render-agent-b-all-journeys.py
       - scripts/render-agent-b-compact-support-study.py
       - design/proposals/support-plates/**
+      - design/proposals/storyboards/**
+      - design/proposals/advanced-storyboards/**
       - .github/workflows/glimpse-agent-b-support-review.yml
   workflow_dispatch:
 
