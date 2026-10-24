@@ -43,8 +43,9 @@ for family in support["screens"]:
         for key,shape in controls.items():
             width=float(shape.get("data-hit-width","0"))
             height=float(shape.get("data-hit-height","0"))
-            if width<44 or height<44: errors.append(f"{p}:{key} sub-44 design target {width}x{height}")
+            if width<48 or height<48: errors.append(f"{p}:{key} sub-48 provisional study target {width}x{height}")
             if not shape.get("data-focus-order"):errors.append(f"{p}:{key} absent focus proposal")
+        if 'fill="#667975"' in phone: errors.append(f"{p}: low-contrast legacy secondary color")
         if name=="beta-feedback--share-preview":
             for text in ("Review outgoing feedback","Screenshot: none selected","Diagnostics: off","Message: draft, not yet sent","Open Android Sharesheet"):
                 if text not in phone:errors.append(f"{p}: lost outbound consent distinction {text}")
