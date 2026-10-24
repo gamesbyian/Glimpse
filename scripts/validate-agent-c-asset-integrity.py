@@ -164,19 +164,45 @@ def validate(manifest, root):
     require(sorted(ids) == sorted(("p04", "p06", "p07", "p08", "p09", "p16", "p17")),
             "Independent image identity registry incomplete")
     require(len(set(ids)) == len(ids), "Duplicate independent photo ID")
+    unresolved = 0
     for record in records:
-        validate_record(record)
-        require(record["sourceStatus"] == "blocked"
-                if record["rightsStatus"] == "unverified" else True,
-                f"{record['photoId']}: unclear rights blocker")
+        status = validate_record(record)
+        if status == "unverified":
+            unresolved += 1
+            require(record["sourceStatus"] == "blocked",
+                    f"{record['photoId']}: unresolved rights not marked blocked")
+        else:
+            require(record["sourceStatus"] == "available-not-integrated",
+                    "Rights-cleared source does not imply SVG integration")
+            file = root / record["assetPath"]
+            require(file.is_file() and file.resolve().is_relative_to(root),
+                    f"{record['photoId']}: fixture missing or unsafe source path")
+            binary = file.read_bytes()
+            require(binary.startswith(bytes.fromhex("ffd8ff")),
+                    f"{record['photoId']}: source is not a JPEG")
+            require(digest(binary) == record["sha256"],
+                    f"{record['photoId']}: rights-cleared bytes changed")
+            require(len(binary) == record["derivativeBytes"],
+                    f"{record['photoId']}: byte length changed")
+            require(is_sha(record["originalSHA256"]) and
+                    record["originalUrl"].startswith("https://"),
+                    "Original source proof is incomplete")
     for lead in manifest["photographicLeads"]:
-        require(lead["verificationStatus"].startswith("license-page-inspected"),
-                "An unverified lead cannot be presented as incorporated art")
-        require(not lead["assetPath"] and not lead["sha256"],
-                "Lead lacks checked-in byte provenance")
+        published = lead["verificationStatus"].startswith("source-CC0-page-observed")
+        if published:
+            real = next((x for x in records if x["photoId"] == lead["proposedFor"]), None)
+            require(real is not None and real["rightsStatus"] == "verified",
+                    "Only rights-cleared source may be published")
+            require(lead["assetPath"] == real["assetPath"] and
+                    lead["sha256"] == real["sha256"],
+                    "Published lead bytes do not match ledger")
+        else:
+            require(lead["verificationStatus"].startswith("license-page-inspected"),
+                    "Lead claim is not supported")
+            require(not lead["assetPath"] and not lead["sha256"],
+                    "Unpublished lead must not claim local bytes")
     embedded_count = audit_cross_surface(manifest, root, fixtures)
-    return len(records), embedded_count
-
+    return unresolved, embedded_count
 
 def main():
     parser = argparse.ArgumentParser()
