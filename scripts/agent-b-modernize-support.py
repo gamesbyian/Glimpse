@@ -71,6 +71,13 @@ def enforce_provisional_a_tokens(source: str) -> str:
     phone = phone.replace('height="46" rx="12" fill="#EBE5DB"',
                           'height="50" rx="12" fill="#EBE5DB"')
     phone = phone.replace('data-hit-height="46"', 'data-hit-height="50"')
+    # Task pills were nominally 42–46px in the inherited original corpus.
+    # Raise their drawn height to A's provisional 48px target (native dp
+    # hitboxes and semantic labels must still be implemented separately).
+    # Preserve hidden legacy buttons beneath a blocking delete modal scrim.
+    if 'id="delete-modal-scrim"' not in phone:
+        phone = re.sub(r'height="(?:42|44|45|46)"(?= rx="(?:18|19|20|21|22|23|24)")',
+                       'height="48"', phone)
     result = phone + divider + notes
     ET.fromstring(result)
     return result
