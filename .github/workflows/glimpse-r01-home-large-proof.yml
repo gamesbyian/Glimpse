@@ -38,7 +38,7 @@ jobs:
           manifest=[]
           for stem in cases:
             path=src/(stem+".svg");raw=path.read_bytes()
-            xml=ElementTree.fromstring(raw)
+            xml=ET.fromstring(raw)
             m=json.loads(xml.find("{http://www.w3.org/2000/svg}metadata").text)
             assert m["photoTotal"]==22 and m["ownerApproved"] is False
             assert m["lastConfirmedAppliedAssetId"]=="p04"
