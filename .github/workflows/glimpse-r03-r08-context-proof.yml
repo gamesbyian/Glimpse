@@ -1,0 +1,79 @@
+name: Glimpse R03-R08 | state-context draft proof
+on:
+  push:
+    branches: [agent/visual-state-reconciliation-20261023]
+    paths: [.github/workflows/glimpse-r03-r08-context-proof.yml]
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: glimpse-r03-r08-context-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  state-context:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Generate deterministic photo-backed state candidates
+        run: |
+          python3 scripts/build-r03-r08-context-states.py --write
+          python3 scripts/build-r03-r08-context-states.py
+      - name: Render/verify one Home acknowledgement and one restore Back
+        run: |
+          python3 -m pip install --quiet cairosvg pillow
+          python3 - <<'PY'
+          import hashlib,json,os
+          from pathlib import Path
+          import xml.etree.ElementTree as ET
+          from cairosvg import svg2png
+          from PIL import Image
+          root=Path("design/proposals/audit-revisions")
+          out=Path("/tmp/glimpse-context");out.mkdir(parents=True,exist_ok=True)
+          summaries=[]
+          for name in ("r03-home-last-ack-p04","r08-skip-return-rainbows"):
+            svg=root/(name+".svg")
+            tree=ET.fromstring(svg.read_bytes())
+            info=json.loads(tree.find('{http://www.w3.org/2000/svg}metadata').text)
+            assert info["selectedAssetId"]=="p12" and info["lastConfirmedAppliedAssetId"]=="p04"
+            assert info["wallpaperMutation"] is False
+            assert info["p12FixtureSHA256"]
+            if name.startswith("r08"):
+                assert info["restoreCommitted"] is False and info["conflictUnresolved"] is True
+                assert info["returnRoute"]=="collections/Rainbows"
+            else: assert info["presentOSWallpaperStatus"]=="not-read-back"
+            target=out/(name+"-full.png")
+            svg2png(bytestring=svg.read_bytes(),write_to=str(target),
+                    output_width=1160,output_height=920)
+            with Image.open(target) as im:
+                phone=im.crop((15,14,416,904)).convert("RGB")
+                assert phone.size==(401,890)
+                assert len(phone.getcolors(401*890) or [])>100
+                phone.save(out/(name+"-phone.png"))
+            summaries.append({"path":str(svg),"sourceSHA256":hashlib.sha256(svg.read_bytes()).hexdigest(),
+              "phoneSHA256":hashlib.sha256((out/(name+"-phone.png")).read_bytes()).hexdigest(),
+              "state":info["stateId"]})
+          (out/"index.json").write_text(json.dumps({
+            "workflowSourceSHA":os.environ["GITHUB_SHA"],"runID":os.environ["GITHUB_RUN_ID"],
+            "opticallyInspected":False,"nativeVerified":False,"ownerApproved":False,
+            "references":summaries
+          },indent=2)+"\n")
+          print("PASS: two actual SVG rasters, wallpaper/selection/restore boundaries preserved")
+          PY
+      - name: Commit reproducibly authored proposals
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add design/proposals/audit-revisions/r03-home-last-ack-p04.svg design/proposals/audit-revisions/r08-skip-return-rainbows.svg
+          if ! git diff --cached --quiet; then
+            git commit -m "design: add source-linked R03 Home and R08 restore-return images"
+            git push origin HEAD:"${GITHUB_REF_NAME}"
+          fi
+      - uses: actions/upload-artifact@v4
+        with:
+          name: glimpse-R03-R08-context-${{ github.sha }}
+          path: /tmp/glimpse-context/
+          retention-days: 14
