@@ -114,3 +114,8 @@ Only adopt secondary reels when uncoached evidence demonstrates added usefulness
 - [x] Illustrate R04 dedicated zero-item and 17-of-22 verified-progress/cancel contexts; [run 40049428896](https://github.com/gamesbyian/Glimpse/actions/runs/40049428896) rendered all four R04 draft cases, independently inspected. Other X01 offline/completion reference and real native import behaviour remain to be verified.
 - [ ] Capture real native R01 finite reel and R05 focus/200% text/target bounds/TalkBack traces using the existing emulator/hierarchy collector; compare exact actual screenshots against the stronger photo-backed paper reel, then re-score only evidence-supported GUX items.
 - [ ] Resolve R04 native cancellation/storage/retained-byte behaviour, source URI expiry, and partial Room memberships with interrupted transaction checks; keep original provider images untouched.
+
+
+## Safe interrupted-session handoff (2026-10-23)
+
+The newest recovered priority/evidence snapshot is [HANDOFF-2026-10-23-SESSION-RECOVERY-AND-NEXT-AGENT.md](HANDOFF-2026-10-23-SESSION-RECOVERY-AND-NEXT-AGENT.md). Treat full one-shot 40041023803 and later targeted R01/R04/R05 checks separately. The next agent should prioritize genuine Android screenshots/hierarchy and native trace collection, not more unchecked reference counts. Cycle-A audit remains 18 PASS / 8 ISSUE / 34 UNVERIFIED; all visual work remains draft.
