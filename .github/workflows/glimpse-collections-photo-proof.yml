@@ -52,13 +52,31 @@ jobs:
               "phoneSHA256":hashlib.sha256((out/"phone-401x890.png").read_bytes()).hexdigest(),
               "independentOpticalInspection":False,"nativeConformity":False,"approved":False
           },indent=2)+"\n")
+          # Publish a small source-hashed viewing sample for direct human/agent
+          # raster inspection. This is never an Android app screenshot.
+          review=Path("design/reviews/targeted-2026-10-24")
+          review.mkdir(parents=True,exist_ok=True)
+          from PIL import ImageDraw,ImageFont
+          with Image.open(out/"phone-401x890.png") as pic:
+              canvas=Image.new("RGB",(441,954),"#eee8dd")
+              canvas.paste(pic,(20,42))
+              draw=ImageDraw.Draw(canvas)
+              font=ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf",12)
+              draw.text((20,10),"Collections · photographed draft · not approved",fill="#153f46",font=font)
+              canvas.save(review/"collections-photo-cover.jpg",quality=90,subsampling=0)
+          (review/"collections-photo-cover-source.json").write_text(json.dumps({
+              "sourceSVG":str(p),"sourceSHA256":hashlib.sha256(raw).hexdigest(),
+              "reviewJPEG":"collections-photo-cover.jpg",
+              "reviewJPEG_SHA256":hashlib.sha256((review/"collections-photo-cover.jpg").read_bytes()).hexdigest(),
+              "nativeOrOwnerProof":False
+          },indent=2)+"\\n")
           print("PASS: three genuine distinct photo sources, 401x890 paper-cover draft generated")
           PY
       - name: Commit one editable current-generation proposal
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add design/proposals/whole-product-candidates/collections-photo-covers.svg
+          git add design/proposals/whole-product-candidates/collections-photo-covers.svg design/reviews/targeted-2026-10-24/collections-photo-cover.jpg design/reviews/targeted-2026-10-24/collections-photo-cover-source.json
           if ! git diff --cached --quiet; then
             git commit -m "design: add photo-backed Collections candidate with conventional navigation"
             git push origin HEAD:"${GITHUB_REF_NAME}"
