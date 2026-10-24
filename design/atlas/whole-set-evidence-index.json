@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "status": "ALL_DRAFT_SOURCE_EVIDENCE_NOT_HUMAN_APPROVED",
-  "sourceCommit": "d59144d50cc8789a82cd2b152a8e6bc6c746d943",
+  "sourceCommit": "53b4350983013109bed3fdb5c655b6f8f4a253f6",
   "auditCycleA": {
     "PASS_SOURCE_ONLY": 18,
     "ISSUE": 8,
@@ -15,10 +15,10 @@
     "P0": 82,
     "P1": 55,
     "supplemental": 25,
-    "auditRevisionAlternatives": 43,
+    "auditRevisionAlternatives": 44,
     "wholeProductCandidates": 1,
     "preferredRoute": 39,
-    "uniqueEvidenceSources": 272,
+    "uniqueEvidenceSources": 273,
     "namedStateSlots": 34
   },
   "scenarioCoverage": {
@@ -2177,6 +2177,12 @@
           "label": "R01 Photo Last 22",
           "meaning": "",
           "sourceSHA256": "e0b1911f247b4218ad8d1e959964400e0b93ae535ed962fee0ab4bf9c3a5aa5f"
+        },
+        {
+          "path": "design/proposals/audit-revisions/r01-photo-primary-wallpaper-action.svg",
+          "label": "R01 Photo Primary Wallpaper Action",
+          "meaning": "",
+          "sourceSHA256": "3a452b1e017d718bb45961b8a1d11d5b9f55ebe87bc5755771f8cbcea0beef17"
         },
         {
           "path": "design/proposals/audit-revisions/r01-photo-rest-22.svg",
