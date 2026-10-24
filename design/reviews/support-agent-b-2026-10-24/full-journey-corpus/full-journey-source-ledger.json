@@ -245,13 +245,13 @@
       "title": "Wallpaper application transaction",
       "count": 7,
       "contact": "x03-all-07-phones.jpg",
-      "contactSHA256": "736507f0e736c83231e4bcfba81493e404f80135e1228bc83ae5d669ddb2100e",
+      "contactSHA256": "9872611ce822cc6171d4231a5387b966cbe889bfc06b239de3c933f50ab9c0ac",
       "frames": [
         {
           "ordinal": 1,
           "id": "01-preview",
           "source": "design/proposals/storyboards/x03/01-preview.svg",
-          "sha256": "3ab699ade6c65eb7e55fdff0d54e84653434b1cd3ebfb070c56ba21615031e37",
+          "sha256": "ab14d57d0aa9e2e64fda33bf6d61a00cae440d4e375b860354df33433778a680",
           "crop": [
             15,
             14,
@@ -331,7 +331,7 @@
           "ordinal": 6,
           "id": "06-failed",
           "source": "design/proposals/storyboards/x03/06-failed.svg",
-          "sha256": "6e45c50e9598e34c2618b719794a457f1076272b59b58bfaa2075c712ca69225",
+          "sha256": "8425b6986989b0712bec7d7af01ceea488ac0082282e82c99d366836194ffb58",
           "crop": [
             15,
             14,
@@ -370,7 +370,7 @@
       "title": "Active-use shuffle lifecycle",
       "count": 7,
       "contact": "x04-all-07-phones.jpg",
-      "contactSHA256": "db166a62070cb8a675923fb240210355fa9351a8753708b2c572528b0a5fb735",
+      "contactSHA256": "7c546b7222955b37f5362942d47145946ceb1a24eeeb4f2180bfe0f7cca48137",
       "frames": [
         {
           "ordinal": 1,
@@ -472,7 +472,7 @@
           "ordinal": 7,
           "id": "07-stopped",
           "source": "design/proposals/storyboards/x04/07-stopped.svg",
-          "sha256": "494e6990fceb2eb31736929d34048dc42198e9e4c242ed04a4a15bd682e4865c",
+          "sha256": "560f7841e053edef917a0b4fc44adb1d46f8529b76dbb493c95253366df6b93e",
           "crop": [
             15,
             14,
@@ -886,13 +886,13 @@
       "title": "Compact handset information hierarchy",
       "count": 6,
       "contact": "x08-all-06-phones.jpg",
-      "contactSHA256": "6ad05bec47e8269cf2b7cb72ab5c9afd4dc1e9a66a8706e9e29c31164f34b0a3",
+      "contactSHA256": "51674e520ae14ecb55d5121048694ca78487796c03907e71bf817746c551a1a4",
       "frames": [
         {
           "ordinal": 1,
           "id": "01-home-active",
           "source": "design/proposals/storyboards/x08/01-home-active.svg",
-          "sha256": "c1648ff062496adc85f8c29acecbc6ca2905df6ee3a32dc7bc1df75f94a681dd",
+          "sha256": "63ba7fb8669f25282fd3f7b9785e5432a18887459e892c58789326c578cf7410",
           "crop": [
             15,
             14,
@@ -956,7 +956,7 @@
           "ordinal": 5,
           "id": "05-long-title",
           "source": "design/proposals/storyboards/x08/05-long-title.svg",
-          "sha256": "e03106b3234c54a6d9b1a250af2c22f6ab5a99f08f8606157dd8294d52d205f6",
+          "sha256": "24733b02fe8ad2576fd4fec8bbadedd1b732c89603f5de182418ecbc6791c4c2",
           "crop": [
             15,
             14,
@@ -972,7 +972,7 @@
           "ordinal": 6,
           "id": "06-status-collapsed",
           "source": "design/proposals/storyboards/x08/06-status-collapsed.svg",
-          "sha256": "770d72cdb8d239e39ae4326945ec74d7c1de5f46e0213f373020e5c846335253",
+          "sha256": "b72c3c0e74a9cedfee62d10f009ba8139eca03ccd4c8e93d70d983eed17ca5c1",
           "crop": [
             15,
             14,
@@ -1665,7 +1665,7 @@
       "title": "Large library operations",
       "count": 5,
       "contact": "x15-all-05-phones.jpg",
-      "contactSHA256": "907f7f58a57cb98e346f19dde472ccca868839bb71a5b8ae138e81300fdef805",
+      "contactSHA256": "e482758b142bfdf7c22689d7fafb1bff3bdab36d283a14b99dd89bd8218e1cd0",
       "frames": [
         {
           "ordinal": 1,
@@ -1719,7 +1719,7 @@
           "ordinal": 4,
           "id": "04-confirm-exclude",
           "source": "design/proposals/advanced-storyboards/x15/04-confirm-exclude.svg",
-          "sha256": "23d3e4c316131d60e8545f046c6eabc615908fb44064d8d21b02bba9f2b50be9",
+          "sha256": "7dcd43d5df3e520b29cb4adae24b0b27396fae6101a795aa069e93ab7b739166",
           "crop": [
             15,
             14,
@@ -1758,13 +1758,13 @@
       "title": "Rule conflict and simulation",
       "count": 5,
       "contact": "x16-all-05-phones.jpg",
-      "contactSHA256": "c91b1145bd3941df519e0fa6b002f0155979e2d0e7d00e8a3564f3229dc693d6",
+      "contactSHA256": "6546132e1bdf168a6b04c2196200fe5fe7ff7dbfd6ac3d9021aaed9f75aa1c6c",
       "frames": [
         {
           "ordinal": 1,
           "id": "01-rules",
           "source": "design/proposals/advanced-storyboards/x16/01-rules.svg",
-          "sha256": "731252f6478b85a587a6769bebdd3019c83e979058c80a21857965ad3030a1e3",
+          "sha256": "6728677986d6cab23ee5c4717f2a3535ecbb450d0203d2efa37af90b85b954e0",
           "crop": [
             15,
             14,
@@ -1780,7 +1780,7 @@
           "ordinal": 2,
           "id": "02-conflict",
           "source": "design/proposals/advanced-storyboards/x16/02-conflict.svg",
-          "sha256": "9acd2741697d643b9a4b25abbed85a71b739c92906b9f12a0c87388b1e5ec719",
+          "sha256": "721f78788a94e29cffe807c62ce699209c63706d1d9521ec3e65d8334ffcc298",
           "crop": [
             15,
             14,
@@ -1796,7 +1796,7 @@
           "ordinal": 3,
           "id": "03-precedence",
           "source": "design/proposals/advanced-storyboards/x16/03-precedence.svg",
-          "sha256": "9b34562f0cdca1854b4350434ca113b748983a8afb63c8665c37058a5b21b9ae",
+          "sha256": "1d781626d315436d8d4a41ec3ae6b35748f2aeba8844add83d881932683329f7",
           "crop": [
             15,
             14,
@@ -1828,7 +1828,7 @@
           "ordinal": 5,
           "id": "05-simulate",
           "source": "design/proposals/advanced-storyboards/x16/05-simulate.svg",
-          "sha256": "18da9ac81abbbd86a92195e55bab70a999d03b5241b8d6a8ca1850c7a226d8c9",
+          "sha256": "fa144a9f5d7781b0230e95be4630942f8bd912f814ffaebab34278553daf227b",
           "crop": [
             15,
             14,
@@ -2037,7 +2037,7 @@
       "title": "Backup and restore integrity",
       "count": 5,
       "contact": "x19-all-05-phones.jpg",
-      "contactSHA256": "45558ed49c95b58526fb3066ccc0e5c6de9de4378723b8a3437059b8e17e0351",
+      "contactSHA256": "6e2269fea93d6df3a6b2b28d33b76b4562cab1d76e5bca3a60ca734d4cacd474",
       "frames": [
         {
           "ordinal": 1,
@@ -2107,7 +2107,7 @@
           "ordinal": 5,
           "id": "05-restore-result",
           "source": "design/proposals/advanced-storyboards/x19/05-restore-result.svg",
-          "sha256": "6bd12f9ac5886b542510cadc1ae0ae61233f4d9bf48385c5d089e4349c11dd52",
+          "sha256": "3781d6def895ffb1f5e538ef0c6ac2e4b0f82d4600574294694b7fd657547a33",
           "crop": [
             15,
             14,
@@ -2316,7 +2316,7 @@
       "title": "Exact diagnostic report handoff",
       "count": 5,
       "contact": "x22-all-05-phones.jpg",
-      "contactSHA256": "7c75ea3535e4cdeae9fce61ad70669705aff7ba35767ded72de077406ab0d325",
+      "contactSHA256": "04e23b006f8c0465df525def294bdd235282925c9ca5d2e679707d81c7c71586",
       "frames": [
         {
           "ordinal": 1,
@@ -2338,7 +2338,7 @@
           "ordinal": 2,
           "id": "02-redacted",
           "source": "design/proposals/advanced-storyboards/x22/02-redacted.svg",
-          "sha256": "0494796782a69c8e744cb4846b9ed377421def76f12a739f18b37542c8aee652",
+          "sha256": "2c7e57489539949af1670a6c900f45d4d128e38271df5c743d166bbbbcbf4824",
           "crop": [
             15,
             14,

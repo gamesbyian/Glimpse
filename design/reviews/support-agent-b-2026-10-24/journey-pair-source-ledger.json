@@ -292,7 +292,7 @@
         {
           "frameId": "01-home-active",
           "path": "design/proposals/storyboards/x08/01-home-active.svg",
-          "sha256": "c1648ff062496adc85f8c29acecbc6ca2905df6ee3a32dc7bc1df75f94a681dd",
+          "sha256": "63ba7fb8669f25282fd3f7b9785e5432a18887459e892c58789326c578cf7410",
           "crop": [
             15,
             14,
@@ -307,7 +307,7 @@
         {
           "frameId": "06-status-collapsed",
           "path": "design/proposals/storyboards/x08/06-status-collapsed.svg",
-          "sha256": "770d72cdb8d239e39ae4326945ec74d7c1de5f46e0213f373020e5c846335253",
+          "sha256": "b72c3c0e74a9cedfee62d10f009ba8139eca03ccd4c8e93d70d983eed17ca5c1",
           "crop": [
             15,
             14,
@@ -572,7 +572,7 @@
         {
           "frameId": "04-confirm-exclude",
           "path": "design/proposals/advanced-storyboards/x15/04-confirm-exclude.svg",
-          "sha256": "23d3e4c316131d60e8545f046c6eabc615908fb44064d8d21b02bba9f2b50be9",
+          "sha256": "7dcd43d5df3e520b29cb4adae24b0b27396fae6101a795aa069e93ab7b739166",
           "crop": [
             15,
             14,
@@ -612,7 +612,7 @@
         {
           "frameId": "02-conflict",
           "path": "design/proposals/advanced-storyboards/x16/02-conflict.svg",
-          "sha256": "9acd2741697d643b9a4b25abbed85a71b739c92906b9f12a0c87388b1e5ec719",
+          "sha256": "721f78788a94e29cffe807c62ce699209c63706d1d9521ec3e65d8334ffcc298",
           "crop": [
             15,
             14,
@@ -627,7 +627,7 @@
         {
           "frameId": "05-simulate",
           "path": "design/proposals/advanced-storyboards/x16/05-simulate.svg",
-          "sha256": "18da9ac81abbbd86a92195e55bab70a999d03b5241b8d6a8ca1850c7a226d8c9",
+          "sha256": "fa144a9f5d7781b0230e95be4630942f8bd912f814ffaebab34278553daf227b",
           "crop": [
             15,
             14,
@@ -747,7 +747,7 @@
         {
           "frameId": "05-restore-result",
           "path": "design/proposals/advanced-storyboards/x19/05-restore-result.svg",
-          "sha256": "6bd12f9ac5886b542510cadc1ae0ae61233f4d9bf48385c5d089e4349c11dd52",
+          "sha256": "3781d6def895ffb1f5e538ef0c6ac2e4b0f82d4600574294694b7fd657547a33",
           "crop": [
             15,
             14,
@@ -933,7 +933,7 @@
     },
     {
       "name": "journey-pair-contact-02.jpg",
-      "sha256": "5eaad8f55ca6c6780a7d5b1022e18063465f30849e5703ea3b3d5ebfc992121f",
+      "sha256": "04cb53ed4d75b37cab4e9a646fd37fb334ea58e0549fc4a5bbab4336c71f59a3",
       "pairs": 4
     },
     {
@@ -943,12 +943,12 @@
     },
     {
       "name": "journey-pair-contact-04.jpg",
-      "sha256": "da7f5411f7f9d498e170248d39cda565eeda3df960fa2be97c8fa43c0e6c5d2f",
+      "sha256": "cb91d9b7cf8988a3b1d926aed84b18ae54fd4232cfb0829551e9fce01324117c",
       "pairs": 4
     },
     {
       "name": "journey-pair-contact-05.jpg",
-      "sha256": "2156a2d0cd29af4f0d6d741a27147c6898d6f53acc1b6a0dcd4f3c17b5bc0e43",
+      "sha256": "5689e21f1f68788c25e61a7e7ec9b36a77fa19634eefb3f2f51ab186edf10d40",
       "pairs": 4
     },
     {
