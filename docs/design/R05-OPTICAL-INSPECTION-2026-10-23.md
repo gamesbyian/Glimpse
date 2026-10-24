@@ -29,3 +29,10 @@ Preserve these two diagrams as *illustrative accessibility interaction reference
 ### Related CI bug fixed
 
 Initial targeted run [40047475006](https://github.com/gamesbyian/Glimpse/actions/runs/40047475006) failed because the audit validator overwrote the 60 GUX question IDs with R01's numeric photo IDs. The validator now uses `visible_photo_ids` separately; the re-run passed and rendered both candidates. **This was a test variable-shadowing bug, not invalid R05 source references.**
+
+
+## Targeted correction and second optical review
+
+The draft illustrations were edited after the first run: reduced-motion now labels `BEFORE · p12 (12 of 22)` and `AFTER NEXT · p13 (13 of 22)` and declares the transition target `p13` in its metadata; TalkBack's diagram explicitly says **audit overlay, not UI button text**. [Targeted run 40047904810](https://github.com/gamesbyian/Glimpse/actions/runs/40047904810) passed and emitted 401×890 phone images with source hashes `1d031b2ea995915bb951231fa3bc95a0fe8aa37d50e324cd224a7891d8c9dc87` (motion) and `7165688761aa02cff0d1192b04a3f587001680b2cf70b6a040a05e82adc5f7be` (focus route). **I directly re-opened the revised two-panel PNG at rendered size**: the before/after labels and audit-versus-button distinction are visible and have resolved the initial *annotation-clarity* defects.
+
+**Still missing:** photography-backed focus overlay showing these semantics on the genuine R01 paper reel, uncoached user comprehension, native target bounds, actual Android accessibility tree, TalkBack speech/focus restoration, reduced-motion settings and fontScale=2.0 captures. Do not reinterpret a corrected caption as native proof or change any GUX-31–39 result without independent behaviour evidence.
