@@ -12,6 +12,8 @@ import os
 from pathlib import Path
 import sys
 import time
+import xml.etree.ElementTree as ET
+import re
 
 ROOT = Path(__file__).resolve().parents[1]
 ATLAS_SCRIPT = ROOT / "scripts/capture-android-atlas.py"
@@ -61,6 +63,34 @@ def test_step_maintains_preview_separate_from_wallpaper(count):
         raise AssertionError("Visible Reel did not return to first selected ID")
 
 
+def verify_large_type_navigation_targets():
+    """Regression gate for previously measured 38.9dp visible native chips."""
+    xml = ET.fromstring(base.hierarchy())
+    _, _, dpi = base.screen_geometry()
+    for label in ("Reel", "View all · Grid"):
+        matched = []
+        for node in xml.iter("node"):
+            if node.attrib.get("clickable") != "true":
+                continue
+            descendants = [n.attrib.get("text") or n.attrib.get("content-desc")
+                           for n in node.iter("node")]
+            if label not in descendants:
+                continue
+            values = list(map(int, re.findall(r"\\d+", node.attrib.get("bounds", ""))))
+            if len(values) != 4:
+                continue
+            height_dp = (values[3] - values[1]) * 160 / dpi
+            matched.append(height_dp)
+        if not matched:
+            raise AssertionError("Missing 200% scale accessible nav target: " + label)
+        if max(matched) < 44.0:
+            raise AssertionError(
+                f"Native {label} nav target only {max(matched):.1f}dp at 200% font"
+            )
+        print("Native 200%-font navigation hit target:", label,
+              f"{max(matched):.1f}dp", flush=True)
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--out", default="artifacts/agent-c-native")
@@ -94,6 +124,7 @@ def main():
         base.swipe("up")
         base.capture("22-native-200-percent-scrolled",
                      "Second viewport at 2.0 font scale, no approval inferred")
+        verify_large_type_navigation_targets()
     except Exception as error:
         failures.append(str(error))
         print("Agent C native sweep failed:", error, flush=True)
