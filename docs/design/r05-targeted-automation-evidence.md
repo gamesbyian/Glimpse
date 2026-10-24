@@ -1,7 +1,7 @@
 # R05 targeted automated source/render evidence
 
-- Source commit: `7a22c8387fb0c7825e9fc7f7b5837edbdaf5710a`
-- Workflow run: https://github.com/gamesbyian/Glimpse/actions/runs/40048816204
+- Source commit: `ccebfa104365acb81bc853f0cc9cbe88723462ae`
+- Workflow run: https://github.com/gamesbyian/Glimpse/actions/runs/40049026265
 - Job outcome: `success`
 - Intended references: r05-reduced-motion.svg, r05-talkback-route.svg, r05-photo-reel-focus-overlay.svg
 - Optical approval: **NOT tested by CI**
