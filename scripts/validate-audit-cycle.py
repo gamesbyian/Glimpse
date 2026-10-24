@@ -133,6 +133,23 @@ for case in r04["cases"]:
                          '"nativeProof":"unverified"'):
             assert required in src, (case["id"], required)
 assert len([c for c in r04["cases"] if c.get("dedicatedReferencePath")]) == 2
+# R05 photographic overlay is a read-only audit layer on exactly the same
+# source-image pixels as the genuine R01 paper reel. Do not confuse it with a
+# separate or simulated Android TalkBack implementation.
+r01_reel = (ROOT / "design/proposals/audit-revisions/r01-photo-rest-22.svg").read_text()
+r05_overlay = (ROOT / "design/proposals/audit-revisions/r05-photo-reel-focus-overlay.svg").read_text()
+photo_pattern = r'<image id="(fixture\\d+)"[^>]*href="data:image/jpeg;base64,([^"]+)"'
+assert re.findall(photo_pattern, r01_reel) == re.findall(photo_pattern, r05_overlay)
+assert 'id="r05-focus-order-audit-overlay"' in r05_overlay
+assert '"nativeProof":"unverified"' in r05_overlay
+assert '"selectedAssetId":"p12"' in r05_overlay and '"lastConfirmedAppliedAssetId":"p04"' in r05_overlay
+for case in r05["cases"]:
+    if case.get("photoOverlayReferencePath"):
+        assert (ROOT / case["photoOverlayReferencePath"]).exists(), case["id"]
+for slug in ("rest-22", "drag-18", "snap-13", "last-22", "empty-0", "single-1"):
+    image = (ROOT / "design/proposals/audit-revisions" / ("r01-photo-" + slug + ".svg")).read_text()
+    assert '>Grid ↗</text>' not in image, slug
+    assert 'd="M345 433 L359 419 M348 419 H359 V430"' in image, slug
 counts = {x: sum(v["status"] == x for v in cycle["results"])
           for x in ("PASS", "ISSUE", "UNVERIFIED", "NOT_APPLICABLE")}
 assert counts == cycle["summary"]["counts"]
