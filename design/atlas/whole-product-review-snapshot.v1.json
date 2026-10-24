@@ -1158,7 +1158,7 @@
     },
     {
       "path": "design/proposals/support-plates/crash-recovery--normal-exit.svg",
-      "sourceSHA256": "03cf49d18676e0761f221d3b3c6823c82d52441fa663aeedc21066c958fee761",
+      "sourceSHA256": "533ec0c9b8076e83d0816f6efccb0ad5d4a97039185711294327beb151eb7609",
       "ownerApproved": false
     },
     {
@@ -1173,7 +1173,7 @@
     },
     {
       "path": "design/proposals/support-plates/credits-licences--rights-warning.svg",
-      "sourceSHA256": "dc0aabf0707dec6c01b2afabce11f558fa854ba39422efcc07aed1127aabac24",
+      "sourceSHA256": "4f45261da4ac8c85a3554ee3d7bf1abb5c344e6b1426e770d4cf15a4b2f655e9",
       "ownerApproved": false
     },
     {
@@ -1188,7 +1188,7 @@
     },
     {
       "path": "design/proposals/support-plates/external-handler-fallback--chooser-cancelled.svg",
-      "sourceSHA256": "e3e6ef094e1789aa6c2151668072b98e553fc11824af275ba95a62734f359ce8",
+      "sourceSHA256": "d49da7181cf9b427b3bb4f8ca37f08ca9b71757e338b61302f96861bd8ce332d",
       "ownerApproved": false
     },
     {
@@ -1198,7 +1198,7 @@
     },
     {
       "path": "design/proposals/support-plates/help--article.svg",
-      "sourceSHA256": "3966dccbfeeb053cbc03296da53a5710fb198c0bd5110baf3df51bd7e7b9cda5",
+      "sourceSHA256": "35e12f6ccc0a015c5f057575e64a0ebd1c076ab98192c3e0d6e5c67b178d49c9",
       "ownerApproved": false
     },
     {
@@ -1208,12 +1208,12 @@
     },
     {
       "path": "design/proposals/support-plates/notification-preferences--available.svg",
-      "sourceSHA256": "13bc7d9388f79927ce75ca535df24335823c5a7aed4c3a0468d1187a30dd8e5d",
+      "sourceSHA256": "1f27e3e42004e95bcf7fac53a07673cb5b6b45d60b354ce7d71f21931807112b",
       "ownerApproved": false
     },
     {
       "path": "design/proposals/support-plates/notification-preferences--not-implemented.svg",
-      "sourceSHA256": "9832b19b21b9ccd575e598401d13e1cde444723281ef2402519a01f3660bcd56",
+      "sourceSHA256": "ed6f7bf7da9348f95e259b320e454211037e099764c4508ce4dfb4c01ed3a176",
       "ownerApproved": false
     },
     {
@@ -1223,12 +1223,12 @@
     },
     {
       "path": "design/proposals/support-plates/permissions-capabilities--restricted.svg",
-      "sourceSHA256": "305270c9d873a004f23b8a03aac68fc6b0fb79435a3417339db5c24bcf9ef08e",
+      "sourceSHA256": "4b9a65627078de0618f90baf93bcb48006911b7058e770f6ecce7811b0c4812d",
       "ownerApproved": false
     },
     {
       "path": "design/proposals/support-plates/privacy--diagnostics-opt-in.svg",
-      "sourceSHA256": "d4e77ee3b98cda9d01eb52664f564aad6bd70c6a0dd9aeb45b083486f876c882",
+      "sourceSHA256": "ee056a01ffe13bd9dc2ff1c6fb829c395a830a02bb6aa081bdb3bb65ce29226a",
       "ownerApproved": false
     },
     {
@@ -1248,22 +1248,22 @@
     },
     {
       "path": "design/proposals/support-plates/report-problem--draft.svg",
-      "sourceSHA256": "79dc0c704169b2abf3de69f1ad761a89aa8eb852e9edc65ba45afc2b20e1ae0c",
+      "sourceSHA256": "ddb330705e27d768db1084fcdce84f2638ac5c36e54ba233e0b7a8b6de3a2e0e",
       "ownerApproved": false
     },
     {
       "path": "design/proposals/support-plates/report-problem--with-diagnostics.svg",
-      "sourceSHA256": "6f37c7fb63ae8af036d3c337193c23ddf29efc5c460b4b10310ff54da210a58e",
+      "sourceSHA256": "bcb28e37cf263acd2fece0cc8c4d24e67b365f24f3522346cb8697b3393126f3",
       "ownerApproved": false
     },
     {
       "path": "design/proposals/support-plates/storage-management--delete-confirm.svg",
-      "sourceSHA256": "7bd661ff9804f56ce5690b4bf1ffe9c45b58a6310f1ce5e8f22dc0f2f6793977",
+      "sourceSHA256": "240c766e3c590266ccbb4a965086713abb43ddf1c12304d3972c203b63f52a70",
       "ownerApproved": false
     },
     {
       "path": "design/proposals/support-plates/storage-management--low-storage.svg",
-      "sourceSHA256": "becd03c11220b82a604a5f778a1982fa63d76a98f1a4564df1877e08c33406bc",
+      "sourceSHA256": "6e59c17f79534f9cb4bc6e686db14b012cd9d6ff1997fc98ca80f73a11ddbf0e",
       "ownerApproved": false
     },
     {
@@ -1293,7 +1293,7 @@
     },
     {
       "path": "design/proposals/support-plates/whats-new--no-notes.svg",
-      "sourceSHA256": "56bb3c36e3ec0b5939132592f6e8bb26f41d149bcccee930a4f5e3b900f8ac3a",
+      "sourceSHA256": "c57de8a775cfa027224c9ff1249a15fcc8da73375a5a0b4dd95063e262393814",
       "ownerApproved": false
     },
     {
