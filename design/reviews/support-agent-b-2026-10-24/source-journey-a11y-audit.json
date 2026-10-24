@@ -408,7 +408,7 @@
       "minBodyFont": 14.0
     },
     "design/proposals/support-plates/external-handler-fallback--chooser-cancelled.svg": {
-      "sha256": "64ee7185f01e2110ec56fe80087938cc904ac23c2d6e131fb4c5657b14483af7",
+      "sha256": "e39c6f631b8a51eebc25b793f59e2415dddc6fea9c264bbb94b652dbaeb6563b",
       "actions": [
         "back",
         "nav-automation",

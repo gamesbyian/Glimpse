@@ -668,7 +668,7 @@
       "family": "external-handler-fallback",
       "state": "chooser-cancelled",
       "source": "design/proposals/support-plates/external-handler-fallback--chooser-cancelled.svg",
-      "sourceSHA256": "64ee7185f01e2110ec56fe80087938cc904ac23c2d6e131fb4c5657b14483af7",
+      "sourceSHA256": "e39c6f631b8a51eebc25b793f59e2415dddc6fea9c264bbb94b652dbaeb6563b",
       "phoneCrop": [
         15,
         14,
@@ -713,7 +713,7 @@
     },
     {
       "name": "support-phone-contact-06.jpg",
-      "SHA256": "17e1e4c3e2e19a29f3ce11d1dfb151748c1a2dcef7fc78cc22f499141422c930",
+      "SHA256": "7bafa6767f11c124dfef89f55a7204dc9f2e970c6bc5809df5c7a5f892e424b7",
       "sourceCount": 4
     }
   ]

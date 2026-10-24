@@ -74,7 +74,7 @@
     },
     {
       "source": "design/proposals/support-plates/external-handler-fallback--chooser-cancelled.svg",
-      "sourceSHA256": "64ee7185f01e2110ec56fe80087938cc904ac23c2d6e131fb4c5657b14483af7",
+      "sourceSHA256": "e39c6f631b8a51eebc25b793f59e2415dddc6fea9c264bbb94b652dbaeb6563b",
       "scaledPhonePixels": [
         320,
         710
@@ -87,6 +87,6 @@
       "ownerApproved": false
     }
   ],
-  "imageSHA256": "1bfd23050eedac85d569bd20dee0e84473a39b4980f7d837c3a6cdfc0fcd5c42",
+  "imageSHA256": "ad468dabeedd9573bdc52d7e6b39a6cecb881ffe1609c8164bada1dd605269cb",
   "warning": "No physical dp/insets, dynamic font reflow, OS focus, TalkBack or device result; visual redlines only"
 }
