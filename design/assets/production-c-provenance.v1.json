@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "generatedOn": "2026-10-24",
-  "evidenceLevel": "source-bytes-only; CC0 fixture rights page observed; no Android or human acceptance",
+  "evidenceLevel": "source-bytes-only; p04,p06,p07 CC0 photos retrieved and hashed; no Android or human acceptance",
   "photoIdRule": "IDs are semantic identities. Reusing source fixture bytes for distinct simultaneous photo IDs is forbidden; derived copies receive new IDs.",
   "priorFixtureSet": {
     "basePath": "design/research/reel-layout/fixtures/source",
@@ -90,27 +90,45 @@
     },
     {
       "photoId": "p06",
-      "sourceStatus": "blocked",
-      "rightsStatus": "unverified",
-      "assetPath": null,
-      "sourceUrl": null,
-      "creator": null,
-      "license": null,
-      "verifiedAt": null,
-      "sha256": null,
-      "visualFallback": "illustrative non-photographic design only"
+      "sourceStatus": "available-not-integrated",
+      "rightsStatus": "verified",
+      "assetPath": "design/assets/cc0/p06-grid-photo.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Mountain_near_lake.jpg",
+      "creator": "K.M.YOGESH",
+      "license": "CC0 1.0 Universal",
+      "verifiedAt": "2026-10-24",
+      "sha256": "c5902098629b2ce85686a94204ea011a88711ac6d65308aa48323d9052a8dc1a",
+      "visualFallback": "Source available; A owns placement in Grid source SVG",
+      "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/7/7e/Mountain_near_lake.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "originalSHA256": "b6a4f0bc20d868e2f8bb4ebaa79c267ee3e5e1b5d2012b586878ce052dada268",
+      "originalBytes": 76286,
+      "derivativeBytes": 58415,
+      "derivativeDimensions": [
+        675,
+        900
+      ]
     },
     {
       "photoId": "p07",
-      "sourceStatus": "blocked",
-      "rightsStatus": "unverified",
-      "assetPath": null,
-      "sourceUrl": null,
-      "creator": null,
-      "license": null,
-      "verifiedAt": null,
-      "sha256": null,
-      "visualFallback": "illustrative non-photographic design only"
+      "sourceStatus": "available-not-integrated",
+      "rightsStatus": "verified",
+      "assetPath": "design/assets/cc0/p07-grid-photo.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Sunflower_in_the_garden.JPG",
+      "creator": "Stefan Bellini",
+      "license": "CC0 1.0 Universal",
+      "verifiedAt": "2026-10-24",
+      "sha256": "a64e072f62f72b5ebd167bea0ad44f64e6d51a7d07a7dc78d01c0c0fc0160e59",
+      "visualFallback": "Source available; A owns placement in Grid source SVG",
+      "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/a/ac/Sunflower_in_the_garden.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "originalSHA256": "0a87e2a9cf90e96fbdb4b222f0e1e7b5366ecd25039f7033bafb981736882acf",
+      "originalBytes": 6348131,
+      "derivativeBytes": 77791,
+      "derivativeDimensions": [
+        675,
+        900
+      ]
     },
     {
       "photoId": "p08",
@@ -188,5 +206,6 @@
       "grid": "design/proposals/audit-revisions/r02-grid-primary-actions-p12.svg",
       "detail": "design/proposals/audit-revisions/r02-photo-detail-actions-p12.svg"
     }
-  }
+  },
+  "acquisitionCaveat": "Commons HTTP 429 interrupted sequential download before p08; other four Grid IDs remain blocked; do not hammer source host."
 }
