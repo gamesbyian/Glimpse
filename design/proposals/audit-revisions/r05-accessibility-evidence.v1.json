@@ -6,7 +6,7 @@
     "References are unapproved illustrations, never proof of TalkBack or text-size runtime behaviour",
     "Record Android build SHA, device/API, density, viewport, fontScale and accessibility settings",
     "Each interaction logs photo ID before and after, accessibility focus, target bounds px→dp, outcome state",
-    "Missing reduced-motion and focus-route dedicated pictures are explicit audit inputs, not implicit passes"
+    "Dedicated reduced-motion and focus-route diagrams exist; neither is native behavioural evidence"
   ],
   "cases": [
     {
@@ -96,7 +96,7 @@
         "GUX-37"
       ],
       "title": "Motion-independent equivalent",
-      "required": "No dedicated reduced-motion current source; audit must request one and test no animated rotation",
+      "required": "Dedicated draft before/after Next reference exists; require real zero-spin native p12→p13 selection and focus evidence",
       "nativeStatus": "unverified",
       "dedicatedReferenceMissing": false,
       "dedicatedReferencePath": "design/proposals/audit-revisions/r05-reduced-motion.svg",
@@ -111,7 +111,7 @@
         "GUX-34"
       ],
       "title": "TalkBack sequence",
-      "required": "No direct focus-route drawing; obtain UI hierarchy and traversal trace",
+      "required": "Dedicated focus-order draft overlay exists; verify actual Android spoken output, focus restoration and 22-item index/total",
       "nativeStatus": "unverified",
       "dedicatedReferenceMissing": false,
       "dedicatedReferencePath": "design/proposals/audit-revisions/r05-talkback-route.svg",
