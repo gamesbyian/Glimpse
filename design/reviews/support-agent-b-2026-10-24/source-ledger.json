@@ -168,7 +168,7 @@
       "family": "crash-recovery",
       "state": "suspected-crash",
       "source": "design/proposals/support-plates/crash-recovery--suspected-crash.svg",
-      "sourceSHA256": "e86b0325eb4706df292d81593b127f7cb746d10d84c57a547e18c1a1a2ea9b06",
+      "sourceSHA256": "f8d07f5f061f446e267f1459e8c60690f7e5e1e621fcd552feb0b8abeef247bf",
       "phoneCrop": [
         15,
         14,
@@ -188,7 +188,7 @@
       "family": "crash-recovery",
       "state": "normal-exit",
       "source": "design/proposals/support-plates/crash-recovery--normal-exit.svg",
-      "sourceSHA256": "e5c964d1dd7dfb1c3a765cea92bb84ffdc8f96ac2d2097acb23b465386b444c7",
+      "sourceSHA256": "eeb6d12da787f25cc85abb6caf81a161b311a31725218a0ec7dc570d0c2fd038",
       "phoneCrop": [
         15,
         14,
@@ -693,7 +693,7 @@
     },
     {
       "name": "support-phone-contact-02.jpg",
-      "SHA256": "243e82344e265c34eff50fe85db37ab773ebcea5267dcb501ad215400af71ea6",
+      "SHA256": "ca1d610ea6673d384182fe6833e8cffcf8be41b0f6625872a84e4cbce2ebcb98",
       "sourceCount": 6
     },
     {
