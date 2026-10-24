@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "status": "ALL_DRAFT_SOURCE_EVIDENCE_NOT_HUMAN_APPROVED",
-  "sourceCommit": "3b7a132f13c0d8215e14eb34a1b8458c8bc010c6",
+  "sourceCommit": "b14d0b90a28c848adecd4f80e3bbdfd5028f054f",
   "auditCycleA": {
     "PASS_SOURCE_ONLY": 18,
     "ISSUE": 8,
@@ -2039,8 +2039,8 @@
         },
         {
           "path": "design/proposals/advanced-storyboards/x22/04-chooser.svg",
-          "label": "Choose destination",
-          "meaning": "Chooser display is not a successful submission",
+          "label": "Choose copy, local save or Android Sharesheet",
+          "meaning": "Outgoing payload is a sample, native implementation must show exact bytes; chooser is not successful delivery",
           "sourceSHA256": "3b0a9bdaac22ddc71d6566d6b6cf84bde8aaf29d7edf482d450db137f85d72f0"
         },
         {
