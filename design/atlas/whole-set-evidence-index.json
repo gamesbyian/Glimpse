@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "status": "ALL_DRAFT_SOURCE_EVIDENCE_NOT_HUMAN_APPROVED",
-  "sourceCommit": "bf5249ed2f4961f3be3b01a3c35d611eea843824",
+  "sourceCommit": "bb9b84136adf295559d1c3a297bc95ce76408578",
   "auditCycleA": {
     "PASS_SOURCE_ONLY": 18,
     "ISSUE": 8,
@@ -186,7 +186,7 @@
           "path": "design/proposals/audit-revisions/r03-preview-not-applied.svg",
           "label": "R03 Preview Not Applied",
           "meaning": "Provisional preferred route; not approved",
-          "sourceSHA256": "e6917b888dbf40b88941e50ec4db37867b658fe222a74b248bebc41a4d334fe5"
+          "sourceSHA256": "21fbcaf9d1df03f610e37b79ab7615918e81478e1314f586c0ffcb152f5f6bef"
         },
         {
           "path": "design/proposals/audit-revisions/r03-unknown-after-request.svg",
@@ -2252,7 +2252,7 @@
           "path": "design/proposals/audit-revisions/r03-preview-not-applied.svg",
           "label": "R03 Preview Not Applied",
           "meaning": "",
-          "sourceSHA256": "e6917b888dbf40b88941e50ec4db37867b658fe222a74b248bebc41a4d334fe5"
+          "sourceSHA256": "21fbcaf9d1df03f610e37b79ab7615918e81478e1314f586c0ffcb152f5f6bef"
         },
         {
           "path": "design/proposals/audit-revisions/r03-unknown-after-request.svg",
