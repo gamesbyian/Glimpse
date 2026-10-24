@@ -106,8 +106,15 @@ def audit_cross_surface(manifest, root, fixture_hashes):
             "Source-only evidence cannot verify present OS wallpaper")
     require(set(target["requiredSourcePaths"]) == {"home", "reel", "grid", "detail"},
             "Four primary proposals required")
-    expected = {id_: fixture_hashes[name] for id_, name in
-                manifest["activeResearchMapping"].items()}
+    mode = target.get("photoSourceMode", "legacy-research")
+    require(mode in ("legacy-research", "rights-verified-replacements"),
+            "Unknown photographic source migration policy")
+    if mode == "legacy-research":
+        expected = {id_: fixture_hashes[name] for id_, name in
+                    manifest["activeResearchMapping"].items()}
+    else:
+        expected = {x["photoId"]: x["sha256"] for x in
+                    manifest["verifiedReplacementPhotos"]}
     require(set(expected) == {"p10", "p11", "p12", "p13", "p14", "p15"},
             "Research identity mapping was changed")
     require(len(set(expected.values())) == 6, "Simultaneously visible photo ID alias")
@@ -236,6 +243,34 @@ def validate(manifest, root):
                     "Lead claim is not supported")
             require(not lead["assetPath"] and not lead["sha256"],
                     "Unpublished lead must not claim local bytes")
+    replacements = manifest["verifiedReplacementPhotos"]
+    require({x["photoId"] for x in replacements} ==
+            {"p10", "p11", "p12", "p13", "p14", "p15"} and len(replacements) == 6,
+            "Six distinct photo replacements are required")
+    hashes = []
+    for record in replacements:
+        require(validate_record(record) == "verified",
+                "Replacement source lacks verified-rights metadata")
+        require(record["sourceStatus"] ==
+                "verified-source-pending-cross-surface-insertion",
+                "Source acquisition cannot imply primary SVG replacement")
+        file = root / record["assetPath"]
+        require(file.is_file() and file.resolve().is_relative_to(root),
+                "Missing exact independently licensed photo")
+        raw = file.read_bytes()
+        require(raw.startswith(bytes.fromhex("ffd8ff")) and
+                len(raw) == record["derivativeBytes"] and
+                digest(raw) == record["sha256"] and
+                is_sha(record["originalSHA256"]) and
+                record["originalUrl"].startswith("https://"),
+                f"Replacement {record['photoId']} lacks exact byte/origin proof")
+        hashes.append(record["sha256"])
+    all_other_hashes = set(fixtures.values()) | {
+        record["sha256"] for record in records if record.get("sha256")
+    }
+    require(len(set(hashes)) == 6 and
+            not (set(hashes) & all_other_hashes),
+            "Distinct replacement photo IDs cannot alias existing images")
     embedded_count = audit_cross_surface(manifest, root, fixtures)
     return unresolved, embedded_count
 
