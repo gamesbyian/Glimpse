@@ -179,7 +179,12 @@
         "applicable Android screenshot/hierarchy fixture or marked unverified",
         "audit finding closure verification"
       ],
-      "disposition": "queued-from-audit-not-yet-rendered"
+      "disposition": "Six import states reconciled to X01, two new draft recovery scenes; other four require dedicated/optical evidence. Native proof unverified",
+      "evidenceManifest": "design/proposals/audit-revisions/r04-import-evidence.v1.json",
+      "initialSourceDrafts": [
+        "design/proposals/audit-revisions/r04-import-cancel.svg",
+        "design/proposals/audit-revisions/r04-import-no-space.svg"
+      ]
     },
     {
       "id": "R05",
