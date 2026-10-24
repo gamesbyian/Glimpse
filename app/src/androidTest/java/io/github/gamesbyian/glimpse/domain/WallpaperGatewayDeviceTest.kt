@@ -1,0 +1,140 @@
+package io.github.gamesbyian.glimpse.domain
+
+import android.app.WallpaperManager
+import android.content.Context
+import android.graphics.Bitmap
+import android.graphics.Color
+import android.os.Build
+import androidx.room.Room
+import androidx.test.core.app.ApplicationProvider
+import androidx.test.ext.junit.runners.AndroidJUnit4
+import io.github.gamesbyian.glimpse.data.CollectionRecord
+import io.github.gamesbyian.glimpse.data.GlimpseDatabase
+import io.github.gamesbyian.glimpse.data.PhotoRecord
+import io.github.gamesbyian.glimpse.data.RotationRecord
+import kotlinx.coroutines.runBlocking
+import org.junit.Assert.assertEquals
+import org.junit.Assert.assertNull
+import org.junit.Assert.assertTrue
+import org.junit.Assume.assumeTrue
+import org.junit.Before
+import org.junit.Test
+import org.junit.runner.RunWith
+import java.io.File
+import java.security.MessageDigest
+
+/**
+ * Actual wallpaper OS ID readback and persisted uncertainty behavior.
+ * Destructive Home wallpaper mutation is emulator-only and uses synthetic
+ * fixture pixels. Passing this does NOT prove the displayed crop, Lockscreen,
+ * arbitrary OEMs, background/Doze eligibility, or current wallpaper at a
+ * future time.
+ */
+@RunWith(AndroidJUnit4::class)
+class WallpaperGatewayDeviceTest {
+    private lateinit var context: Context
+
+    @Before fun onlyDisposableEmulators() {
+        val emulator = Build.HARDWARE.contains("ranchu", ignoreCase = true) ||
+            Build.HARDWARE.contains("goldfish", ignoreCase = true) ||
+            Build.FINGERPRINT.contains("generic", ignoreCase = true) ||
+            Build.MODEL.contains("sdk_gphone", ignoreCase = true)
+        assumeTrue("Never change a real user's wallpaper during acceptance tests", emulator)
+        context = ApplicationProvider.getApplicationContext()
+    }
+
+    private fun testBitmapFile(): File {
+        val file = File.createTempFile("glimpse-wallpaper-", ".jpg", context.cacheDir)
+        val bitmap = Bitmap.createBitmap(320, 560, Bitmap.Config.ARGB_8888)
+        try {
+            bitmap.eraseColor(Color.rgb(39, 126, 168))
+            for (y in 40 until 520 step 40) {
+                for (x in 0 until 320) {
+                    bitmap.setPixel(x, y, Color.rgb(240, (x + y) % 240, 90))
+                }
+            }
+            file.outputStream().use { stream ->
+                check(bitmap.compress(Bitmap.CompressFormat.JPEG, 92, stream))
+            }
+        } finally {
+            bitmap.recycle()
+        }
+        return file
+    }
+
+    private fun sha(file: File) = MessageDigest.getInstance("SHA-256")
+        .digest(file.readBytes()).joinToString("") { "%02x".format(it) }
+
+    @Test fun explicitHomeCommandAgreesWithImmediateOsWallpaperIdReadback() = runBlocking {
+        val system = WallpaperManager.getInstance(context)
+        assumeTrue(
+            "Wallpaper setting not available on this emulator: cannot claim OS acceptance",
+            system.isWallpaperSupported && system.isSetWallpaperAllowed
+        )
+        val image = testBitmapFile()
+        val database = Room.inMemoryDatabaseBuilder(
+            context, GlimpseDatabase::class.java
+        ).build()
+        try {
+            val dao = database.dao()
+            dao.insertCollection(CollectionRecord("os-proof", "OS proof", 1L))
+            val id = sha(image)
+            val photo = PhotoRecord(
+                id = id, sha256 = id, localPath = image.absolutePath,
+                mime = "image/jpeg", width = 320, height = 560,
+                byteLength = image.length(), importedAt = 1L
+            )
+            dao.attach(photo, "os-proof")
+            val before = system.getWallpaperId(WallpaperManager.FLAG_SYSTEM)
+            val outcome = WallpaperCommands(context, dao).applySelected(id)
+            val record = requireNotNull(dao.readRotation())
+            val actual = system.getWallpaperId(WallpaperManager.FLAG_SYSTEM)
+            assertTrue("Expected positive new wallpaper ID, got " + actual, actual > 0)
+            assertTrue("Expected new Home wallpaper ID: " + before + " -> " + actual,
+                actual != before)
+            assertEquals(id, record.lastAcknowledgedPhotoId)
+            assertNull(record.pendingPhotoId)
+            assertTrue(outcome, outcome.contains("acknowledged", ignoreCase = true))
+            val recordedId = Regex("ID ([0-9]+)").find(record.outcome)
+                ?.groupValues?.get(1)?.toInt()
+            assertEquals("Gateway ID must match actual immediate OS readback", actual, recordedId)
+            assertEquals(false, record.active)
+            // An API acknowledgement is a precise instant in time. This test
+            // never claims the device will keep that wallpaper later.
+        } finally {
+            database.close()
+            image.delete()
+        }
+    }
+
+    @Test fun pendingUncertainOperationBlocksApplyWithoutCallingOs() = runBlocking {
+        val database = Room.inMemoryDatabaseBuilder(
+            context, GlimpseDatabase::class.java
+        ).build()
+        val image = testBitmapFile()
+        try {
+            val dao = database.dao()
+            val id = sha(image)
+            dao.insertCollection(CollectionRecord("pending", "Pending", 1L))
+            dao.attach(PhotoRecord(
+                id = id, sha256 = id, localPath = image.absolutePath,
+                mime = "image/jpeg", width = 320, height = 560,
+                byteLength = image.length(), importedAt = 1L
+            ), "pending")
+            dao.saveRotation(RotationRecord(
+                collectionId = "pending", pendingPhotoId = "prior-unresolved",
+                active = false, outcome = "Prior attempt unresolved"
+            ))
+            val wallpaper = WallpaperManager.getInstance(context)
+            val before = wallpaper.getWallpaperId(WallpaperManager.FLAG_SYSTEM)
+            val outcome = WallpaperCommands(context, dao).applySelected(id)
+            val after = wallpaper.getWallpaperId(WallpaperManager.FLAG_SYSTEM)
+            assertEquals("A pending operation must prevent any new OS mutation", before, after)
+            assertTrue(outcome, outcome.contains("uncertain", ignoreCase = true))
+            assertEquals("prior-unresolved", dao.readRotation()?.pendingPhotoId)
+        } finally {
+            database.close()
+            image.delete()
+        }
+    }
+}
