@@ -54,6 +54,16 @@ BETA = """<rect x="40" y="506" width="348" height="158" rx="16" fill="#E4ECE6" s
 <text x="60" y="713" font-family="Arial,Helvetica,sans-serif" fill="#FFFFFF" font-size="16" font-weight="700">Open Android Sharesheet…</text>
 """
 
+def remove_crash_recovery_duplicate_cta(source: str, name: str) -> str:
+    """Crash recovery needs one actual Continue, not two competing tap affordances."""
+    if name not in ("crash-recovery--normal-exit", "crash-recovery--suspected-crash"):
+        return source
+    phone, divider, notes = source.partition('<rect x="440"')
+    needle = '<text x="53" y="435" font-family="Arial,Helvetica,sans-serif" fill="#1D5960" font-size="13" font-weight="650">Continue</text>'
+    phone = phone.replace(needle, '', 1)
+    assert phone.count('>Continue</text>') == 1, name
+    return phone + divider + notes
+
 def enforce_provisional_a_tokens(source: str) -> str:
     """B challenge of A revision 0.1: 48px study hit regions and AA body tone.
 
@@ -84,7 +94,7 @@ def enforce_provisional_a_tokens(source: str) -> str:
 
 def modernize(name: str, original: str) -> str:
     if '<g id="support-body"' in original:
-        return enforce_provisional_a_tokens(original)
+        return enforce_provisional_a_tokens(remove_crash_recovery_duplicate_cta(original, name))
     source, count = BANNER.subn('<g id="support-body" transform="translate(0,-24)">\n', original, count=1)
     assert count == 1, (name, "missing decorative proposal banner")
     assert source.count(FOOTER) == 1
@@ -114,7 +124,7 @@ def modernize(name: str, original: str) -> str:
             assert needle in source
             source = source.replace(needle, new, 1)
     ET.fromstring(source)
-    return enforce_provisional_a_tokens(source)
+    return enforce_provisional_a_tokens(remove_crash_recovery_duplicate_cta(source, name))
 
 def main() -> None:
     parser = argparse.ArgumentParser()
