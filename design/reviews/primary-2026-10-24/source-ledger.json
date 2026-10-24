@@ -1,0 +1,343 @@
+{
+  "schemaVersion": 1,
+  "evidenceType": "SVG_SELECTION_EXACT_SOURCE_RASTER_NO_OPTICAL_INFERENCE",
+  "sourceCount": 24,
+  "sourceRows": [
+    {
+      "surfaceId": "home",
+      "path": "design/proposals/audit-revisions/r03-home-primary-actions-p04.svg",
+      "sourceSHA256": "77e652b3bb0320f0e6f989770d6f565f602508f7840048a2b6238adc5eba1a5a",
+      "phonePixels": [
+        401,
+        890
+      ],
+      "rendered": true,
+      "agentOpticallyInspected": false,
+      "nativeVerified": false,
+      "ownerApproved": false
+    },
+    {
+      "surfaceId": "collections",
+      "path": "design/proposals/whole-product-candidates/collections-photo-covers.svg",
+      "sourceSHA256": "e318dbbfa331fde235102430e2ccb750cca8acb340fa2b3e0b6af3ba65e31daa",
+      "phonePixels": [
+        401,
+        890
+      ],
+      "rendered": true,
+      "agentOpticallyInspected": false,
+      "nativeVerified": false,
+      "ownerApproved": false
+    },
+    {
+      "surfaceId": "reel",
+      "path": "design/proposals/audit-revisions/r01-photo-primary-wallpaper-action.svg",
+      "sourceSHA256": "9b9a0f18723340cdecec8eec38751f8c2e58b5678b53ec5ef05e20ab20a9852b",
+      "phonePixels": [
+        401,
+        890
+      ],
+      "rendered": true,
+      "agentOpticallyInspected": false,
+      "nativeVerified": false,
+      "ownerApproved": false
+    },
+    {
+      "surfaceId": "grid",
+      "path": "design/proposals/audit-revisions/r02-grid-primary-actions-p12.svg",
+      "sourceSHA256": "d07b44d764c1b17c43b9d02a6973185e1c95122d18b2ae82ffbdd2f3fea416e4",
+      "phonePixels": [
+        401,
+        890
+      ],
+      "rendered": true,
+      "agentOpticallyInspected": false,
+      "nativeVerified": false,
+      "ownerApproved": false
+    },
+    {
+      "surfaceId": "quick-import",
+      "path": "design/proposals/plates/quick-import.svg",
+      "sourceSHA256": "2f6ee1845550017ab2505ef167a6c66630f33b9da6d5fcc0390a70ef0a054531",
+      "phonePixels": [
+        401,
+        890
+      ],
+      "rendered": true,
+      "agentOpticallyInspected": false,
+      "nativeVerified": false,
+      "ownerApproved": false
+    },
+    {
+      "surfaceId": "share",
+      "path": "design/proposals/audit-revisions/r02-share-choice.svg",
+      "sourceSHA256": "6efd92d69e6a895a208f911176fb598e58035c71c53de23039b4d12cb73f1c33",
+      "phonePixels": [
+        401,
+        890
+      ],
+      "rendered": true,
+      "agentOpticallyInspected": false,
+      "nativeVerified": false,
+      "ownerApproved": false
+    },
+    {
+      "surfaceId": "automation",
+      "path": "design/proposals/plates/automation.svg",
+      "sourceSHA256": "14df28e3f6d80768002b46d7cdd611909c8d4308cfdc14f49dcac71801d56dfd",
+      "phonePixels": [
+        401,
+        890
+      ],
+      "rendered": true,
+      "agentOpticallyInspected": false,
+      "nativeVerified": false,
+      "ownerApproved": false
+    },
+    {
+      "surfaceId": "discover",
+      "path": "design/proposals/plates/discover.svg",
+      "sourceSHA256": "76c0e0e2d189006289410d481694f3fbc5d33bf628caff797159e4c25d0620b4",
+      "phonePixels": [
+        401,
+        890
+      ],
+      "rendered": true,
+      "agentOpticallyInspected": false,
+      "nativeVerified": false,
+      "ownerApproved": false
+    },
+    {
+      "surfaceId": "destinations",
+      "path": "design/proposals/plates/destinations.svg",
+      "sourceSHA256": "8c4c55cc3a07120cf00f507f4d59f1e62dcc45cc1c48aa952c95942a7a6063e9",
+      "phonePixels": [
+        401,
+        890
+      ],
+      "rendered": true,
+      "agentOpticallyInspected": false,
+      "nativeVerified": false,
+      "ownerApproved": false
+    },
+    {
+      "surfaceId": "image-editor",
+      "path": "design/proposals/plates/image-editor.svg",
+      "sourceSHA256": "3ccbbbcedfc9bbe300c49c7f919af141930d94c08d0f686c3a47cea45eec857b",
+      "phonePixels": [
+        401,
+        890
+      ],
+      "rendered": true,
+      "agentOpticallyInspected": false,
+      "nativeVerified": false,
+      "ownerApproved": false
+    },
+    {
+      "surfaceId": "activity",
+      "path": "design/proposals/plates/activity.svg",
+      "sourceSHA256": "c2062c2bda729c5f681c71a5c13176050715b990c89084c32b351eab72e305fd",
+      "phonePixels": [
+        401,
+        890
+      ],
+      "rendered": true,
+      "agentOpticallyInspected": false,
+      "nativeVerified": false,
+      "ownerApproved": false
+    },
+    {
+      "surfaceId": "automation-editor",
+      "path": "design/proposals/plates/automation-editor.svg",
+      "sourceSHA256": "05b4eea9e5e90e1cfa69fb566919d9796b2ba4fde95989b2f49d18268ce2ebbe",
+      "phonePixels": [
+        401,
+        890
+      ],
+      "rendered": true,
+      "agentOpticallyInspected": false,
+      "nativeVerified": false,
+      "ownerApproved": false
+    },
+    {
+      "surfaceId": "source-detail",
+      "path": "design/proposals/plates/source-detail.svg",
+      "sourceSHA256": "9275d0bd9d005ec984f85e56282ef699ce08e8779a1821ac38b44cfd1628d0b7",
+      "phonePixels": [
+        401,
+        890
+      ],
+      "rendered": true,
+      "agentOpticallyInspected": false,
+      "nativeVerified": false,
+      "ownerApproved": false
+    },
+    {
+      "surfaceId": "photo-detail",
+      "path": "design/proposals/audit-revisions/r02-photo-detail-actions-p12.svg",
+      "sourceSHA256": "4d894bd3a70114dd7d23f4cbfc7d935f82810b382f89a4bc458ae1e30ad7173d",
+      "phonePixels": [
+        401,
+        890
+      ],
+      "rendered": true,
+      "agentOpticallyInspected": false,
+      "nativeVerified": false,
+      "ownerApproved": false
+    },
+    {
+      "surfaceId": "quickstart",
+      "path": "design/proposals/plates/quickstart.svg",
+      "sourceSHA256": "f7c78b2cc92cbd8e7bdb62b4df4aa2b5ca95c120bc6a7d4da775807c9c95ee2e",
+      "phonePixels": [
+        401,
+        890
+      ],
+      "rendered": true,
+      "agentOpticallyInspected": false,
+      "nativeVerified": false,
+      "ownerApproved": false
+    },
+    {
+      "surfaceId": "schedule-simulator",
+      "path": "design/proposals/plates/schedule-simulator.svg",
+      "sourceSHA256": "0b68b9881e5181ce5816d432b3fd59074c9f371abdf6c13957566dfc6d32273f",
+      "phonePixels": [
+        401,
+        890
+      ],
+      "rendered": true,
+      "agentOpticallyInspected": false,
+      "nativeVerified": false,
+      "ownerApproved": false
+    },
+    {
+      "surfaceId": "diagnostics",
+      "path": "design/proposals/plates/diagnostics.svg",
+      "sourceSHA256": "3d8b55067210797045e0e09712f271e019442d73c8c430bf43f636c2d7795f7d",
+      "phonePixels": [
+        401,
+        890
+      ],
+      "rendered": true,
+      "agentOpticallyInspected": false,
+      "nativeVerified": false,
+      "ownerApproved": false
+    },
+    {
+      "surfaceId": "widgets",
+      "path": "design/proposals/plates/widgets.svg",
+      "sourceSHA256": "25985c9af96a9eb664cac431fa392c45e9e80386052d1fb42b9c6e1fe237fb99",
+      "phonePixels": [
+        401,
+        890
+      ],
+      "rendered": true,
+      "agentOpticallyInspected": false,
+      "nativeVerified": false,
+      "ownerApproved": false
+    },
+    {
+      "surfaceId": "quick-settings-and-shortcuts",
+      "path": "design/proposals/plates/quick-settings-and-shortcuts.svg",
+      "sourceSHA256": "92af1265003045df41ae71c78d197e9a8a04ed94fce71b6e8acc91c005f0fc60",
+      "phonePixels": [
+        401,
+        890
+      ],
+      "rendered": true,
+      "agentOpticallyInspected": false,
+      "nativeVerified": false,
+      "ownerApproved": false
+    },
+    {
+      "surfaceId": "settings",
+      "path": "design/proposals/plates/settings.svg",
+      "sourceSHA256": "9bcc580eacf16532d354032360f1d38b610a89fa10c14be4b637afd027e97fae",
+      "phonePixels": [
+        401,
+        890
+      ],
+      "rendered": true,
+      "agentOpticallyInspected": false,
+      "nativeVerified": false,
+      "ownerApproved": false
+    },
+    {
+      "surfaceId": "backup-and-restore",
+      "path": "design/proposals/plates/backup-and-restore.svg",
+      "sourceSHA256": "7719a88b242ba9e4ef536fc8f098ff3080f70aa557fd9fe9c7ac20e1e2ff2436",
+      "phonePixels": [
+        401,
+        890
+      ],
+      "rendered": true,
+      "agentOpticallyInspected": false,
+      "nativeVerified": false,
+      "ownerApproved": false
+    },
+    {
+      "surfaceId": "onboarding",
+      "path": "design/proposals/plates/onboarding.svg",
+      "sourceSHA256": "74fd6a003c792d986bed4c31adf194568429703414ccbed6caf7518ea1f0cb0a",
+      "phonePixels": [
+        401,
+        890
+      ],
+      "rendered": true,
+      "agentOpticallyInspected": false,
+      "nativeVerified": false,
+      "ownerApproved": false
+    },
+    {
+      "surfaceId": "error-empty-permission",
+      "path": "design/proposals/plates/error-empty-permission.svg",
+      "sourceSHA256": "a7307d0aa39be029063e5b3f9c57b9e7329d15f6c45069e28f0fe07394a53962",
+      "phonePixels": [
+        401,
+        890
+      ],
+      "rendered": true,
+      "agentOpticallyInspected": false,
+      "nativeVerified": false,
+      "ownerApproved": false
+    },
+    {
+      "surfaceId": "accessibility-preferences",
+      "path": "design/proposals/plates/accessibility-preferences.svg",
+      "sourceSHA256": "ab18877822b973dfb60fb81a8aa3c8770e7b522821271b818c813b1099398d61",
+      "phonePixels": [
+        401,
+        890
+      ],
+      "rendered": true,
+      "agentOpticallyInspected": false,
+      "nativeVerified": false,
+      "ownerApproved": false
+    }
+  ],
+  "sheets": [
+    {
+      "name": "selected-primary-contact-01.jpg",
+      "sha256": "b153949d941bdf92d633a904ee7c3b1ce3301e8e064a38ca2b53d5a3e95ed2e0",
+      "count": 6
+    },
+    {
+      "name": "selected-primary-contact-02.jpg",
+      "sha256": "ebff3cdef895f93dfea953489737d607a71f4fdcf12d78caf31b3c0c3d67e1c9",
+      "count": 6
+    },
+    {
+      "name": "selected-primary-contact-03.jpg",
+      "sha256": "c6ae63d5e138d5c42d01039ae62e9688374a456958cca8ddb8e389103b4e754f",
+      "count": 6
+    },
+    {
+      "name": "selected-primary-contact-04.jpg",
+      "sha256": "44a7fa71741853108252349e0bcf617ab6eb2b775378f3111a3ae6f93e9c08a6",
+      "count": 6
+    }
+  ],
+  "ownerApproved": false,
+  "nativeVerified": false
+}
