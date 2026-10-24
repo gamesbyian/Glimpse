@@ -78,7 +78,15 @@ jobs:
           git add design/proposals/support-plates/ design/reviews/support-agent-b-2026-10-24/
           if ! git diff --cached --quiet; then
             git commit -m "design(support): render source-hashed 34-state safe interaction reference"
-            git push origin HEAD:"${GITHUB_REF_NAME}"
+            # Work ahead safely: a newer production commit supersedes this
+            # snapshot; never push its stale generated SHA/raster into HEAD.
+            git fetch --quiet origin "${GITHUB_REF_NAME}"
+            remote_sha="$(git rev-parse FETCH_HEAD)"
+            if [ "${remote_sha}" != "${GITHUB_SHA}" ]; then
+              echo "::warning::A newer branch commit superseded this raster job. Preserve only its source-keyed artifact; do not rewrite current evidence."
+            elif ! git push origin HEAD:"${GITHUB_REF_NAME}"; then
+              echo "::warning::Branch advanced while pushing. A newer run will regenerate evidence; old artifact remains source-keyed."
+            fi
           fi
       - uses: actions/upload-artifact@v4
         with:
