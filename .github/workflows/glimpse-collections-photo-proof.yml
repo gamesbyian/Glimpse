@@ -1,0 +1,70 @@
+name: Glimpse | photographic Collections current-generation proposal
+on:
+  push:
+    branches: [agent/visual-state-reconciliation-20261023]
+    paths: [.github/workflows/glimpse-collections-photo-proof.yml]
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: glimpse-collections-photo-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  build-proposal:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Generate exact photographic collections draft
+        run: |
+          python3 scripts/build-whole-product-collections-photo.py --write
+          python3 scripts/build-whole-product-collections-photo.py
+      - name: Verify three source fixtures and generate 401x890 phone pixels
+        run: |
+          python3 -m pip install --quiet cairosvg pillow
+          python3 - <<'PY'
+          import hashlib,json,os
+          from pathlib import Path
+          from xml.etree import ElementTree as ET
+          from cairosvg import svg2png
+          from PIL import Image
+          p=Path("design/proposals/whole-product-candidates/collections-photo-covers.svg")
+          raw=p.read_bytes();root=ElementTree.fromstring(raw)
+          meta=json.loads(root.find('{http://www.w3.org/2000/svg}metadata').text)
+          assert meta["exampleCollectionCounts"]=={"Rainbows":22,"Golden Hour":50,"Patterns":3}
+          assert meta["noGestureWheelOnCollectionsList"] is True
+          assert meta["wallpaperMutation"] is False
+          assert meta["visualApproval"]=="not-owner-approved"
+          assert len({x["sha256"] for x in meta["sourcePhotoMap"].values()})==3
+          out=Path("/tmp/glimpse-collections-photo-proof");out.mkdir(parents=True,exist_ok=True)
+          svg2png(bytestring=raw,write_to=str(out/"full.png"),output_width=1160,output_height=920)
+          with Image.open(out/"full.png") as img:
+              phone=img.crop((15,14,416,904)).convert("RGB")
+              assert phone.size==(401,890)
+              assert len(phone.getcolors(401*890) or [])>100
+              phone.save(out/"phone-401x890.png")
+          (out/"evidence.json").write_text(json.dumps({
+              "inputCommit":os.environ["GITHUB_SHA"],
+              "sourceSHA256":hashlib.sha256(raw).hexdigest(),
+              "phoneSHA256":hashlib.sha256((out/"phone-401x890.png").read_bytes()).hexdigest(),
+              "independentOpticalInspection":False,"nativeConformity":False,"approved":False
+          },indent=2)+"\n")
+          print("PASS: three genuine distinct photo sources, 401x890 paper-cover draft generated")
+          PY
+      - name: Commit one editable current-generation proposal
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add design/proposals/whole-product-candidates/collections-photo-covers.svg
+          if ! git diff --cached --quiet; then
+            git commit -m "design: add photo-backed Collections candidate with conventional navigation"
+            git push origin HEAD:"${GITHUB_REF_NAME}"
+          fi
+      - uses: actions/upload-artifact@v4
+        with:
+          name: glimpse-collections-current-reference-${{ github.sha }}
+          path: /tmp/glimpse-collections-photo-proof/
+          retention-days: 14
