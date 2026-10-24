@@ -1,0 +1,57 @@
+name: Glimpse | 34 support state optical contact generation
+
+on:
+  push:
+    branches: [agent/visual-state-reconciliation-20261023]
+    paths:
+      - .github/workflows/glimpse-support-optical-contacts.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: glimpse-support-optical-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  render-original-supports:
+    runs-on: ubuntu-latest
+    timeout-minutes: 14
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Assert all original 34 support states exist
+        run: python3 scripts/render-support-review-corpus.py --check
+      - name: Render only 34 original support phone crops into 6 inspection sheets
+        run: |
+          python3 -m pip install --quiet cairosvg pillow
+          python3 scripts/render-support-review-corpus.py
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path("design/reviews/support-2026-10-24/source-ledger.json")
+          data=json.loads(p.read_text())
+          assert data['total']==34 and len(data['contacts'])==6
+          assert sum(x['sourceCount'] for x in data['contacts'])==34
+          assert len(set(x['source'] for x in data['sources']))==34
+          assert all(not x['independentlyOpticallyReviewed'] and not x['ownerApproved']
+                     and not x['nativeAndroidVerified'] for x in data['sources'])
+          print("PASS: all original support review contacts are generated, not approved")
+          PY
+      - name: Preserve real raster review input and source ledger
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add design/reviews/support-2026-10-24/
+          if ! git diff --cached --quiet; then
+            git commit -m "review: preserve six source-hashed support state phone contact sheets"
+            git push origin HEAD:"${GITHUB_REF_NAME}"
+          fi
+      - uses: actions/upload-artifact@v4
+        with:
+          name: glimpse-original-support-34-${{ github.sha }}
+          path: design/reviews/support-2026-10-24/
+          retention-days: 14
