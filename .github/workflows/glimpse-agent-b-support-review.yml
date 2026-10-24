@@ -7,6 +7,7 @@ on:
       - scripts/agent-b-modernize-support.py
       - scripts/validate-agent-b-support-journeys.py
       - scripts/render-agent-b-accessibility-probes.py
+      - scripts/render-agent-b-journey-pairs.py
       - design/proposals/support-plates/**
       - .github/workflows/glimpse-agent-b-support-review.yml
   workflow_dispatch:
@@ -46,6 +47,7 @@ jobs:
           cp design/reviews/support-2026-10-24/source-ledger.json design/reviews/support-agent-b-2026-10-24/
           cp /tmp/agent-b-source-proof.json design/reviews/support-agent-b-2026-10-24/source-journey-a11y-audit.json
           python3 scripts/render-agent-b-accessibility-probes.py
+          python3 scripts/render-agent-b-journey-pairs.py
           python3 - <<'PY'
           import json, pathlib
           out=pathlib.Path('design/reviews/support-agent-b-2026-10-24')
@@ -55,6 +57,10 @@ jobs:
           assert a['supportStates']==34 and a['journeys']==23 and a['storyboardFrames']==137
           assert a['illustratedScenarios']==56 and not a['errors']
           assert json.loads((out/'compact-fontscale-stress.json').read_text())['kind']=='STATIC_RISK_SIMULATION_NOT_NATIVE_ANDROID'
+          pairs=json.loads((out/'journey-pair-source-ledger.json').read_text())
+          assert pairs['pairs']==23 and pairs['frames']==46 and len(pairs['contacts'])==6
+          assert sum(p['pairs'] for p in pairs['contacts'])==23
+          assert all(not g['androidVerified'] and not g['ownerApproved'] for g in pairs['groups'])
           assert all(not s['independentlyOpticallyReviewed'] and
                      not s['nativeAndroidVerified'] and not s['ownerApproved']
                      for s in j['sources'])
