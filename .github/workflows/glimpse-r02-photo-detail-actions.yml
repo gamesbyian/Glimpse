@@ -1,4 +1,5 @@
 name: Glimpse | photograph detail task-action reference
+# Corrected phone-only action text validator (exclude metadata labels).
 
 on:
   push:
