@@ -8,21 +8,22 @@
 <rect x="45" y="160" width="338" height="277" rx="13" fill="#DFB087" stroke="none" stroke-width="1"/>
 <clipPath id="photo-45-160"><rect x="45" y="160" width="338" height="277" rx="13"/></clipPath><g clip-path="url(#photo-45-160)"><rect x="45" y="160" width="338" height="277" fill="#EDB783"/><circle cx="305.26" cy="237.56" r="44.32" fill="#F8DEAA"/><path d="M45 370.52 Q122.74000000000001 220.94 214 353.9 T383 298.5 L383 437 H45Z" fill="#447983"/><path d="M45 414.84000000000003 Q119.36 309.58000000000004 214 400.99 T383 356.66999999999996 L383 437 H45Z" fill="#254D62"/></g>
 <rect x="54" y="409" width="150" height="21" rx="7" fill="#FFFCF6" stroke="none" stroke-width="1"/>
-<text x="63" y="424" fill="#153F46" font-family="Arial,Helvetica,sans-serif" font-size="11" font-weight="600" text-anchor="start">SOURCE SCREENSHOT</text>
-<rect x="44" y="458" width="100" height="31" rx="12" fill="#FFFCF6" stroke="#C8B7A1" stroke-width="1"/>
+<text x="63" y="424" fill="#153F46" font-family="Arial,Helvetica,sans-serif" font-size="11" font-weight="600" text-anchor="start">SAMPLE PREVIEW</text>
+<rect x="44" y="451" width="100" height="44" rx="12" fill="#FFFCF6" stroke="#C8B7A1" stroke-width="1"/>
 <text x="94" y="479" fill="#153F46" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="600" text-anchor="middle">Rotate</text>
-<rect x="158" y="458" width="92" height="31" rx="12" fill="#E9E0F5" stroke="#E9E0F5" stroke-width="1"/>
+<rect x="158" y="451" width="92" height="44" rx="12" fill="#E9E0F5" stroke="#E9E0F5" stroke-width="1"/>
 <text x="204" y="479" fill="#153F46" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="600" text-anchor="middle">Crop</text>
-<rect x="262" y="458" width="121" height="31" rx="12" fill="#FFFCF6" stroke="#C8B7A1" stroke-width="1"/>
+<rect x="262" y="451" width="121" height="44" rx="12" fill="#FFFCF6" stroke="#C8B7A1" stroke-width="1"/>
 <text x="322.5" y="479" fill="#153F46" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="600" text-anchor="middle">Original</text>
 <rect x="41" y="518" width="334" height="105" rx="13" fill="#FFFCF6" stroke="#C8B7A1" stroke-width="1"/>
 <text x="55" y="544" fill="#153F46" font-family="Arial,Helvetica,sans-serif" font-size="17" font-weight="650" text-anchor="start">Save to collection</text>
 <text x="55" y="566" fill="#667975" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="400" text-anchor="start">Rainbows · selected source never deleted.</text>
 <text x="55" y="606" fill="#1D5960" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="650" text-anchor="start">Change collection</text>
+<text x="55" y="650" fill="#703B27" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="600">Saving does not change your wallpaper.</text>
 <rect x="44" y="670" width="140" height="42" rx="18" fill="#1D5960" stroke="#1D5960" stroke-width="1"/>
 <text x="114" y="697" fill="#FFFFFF" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="650" text-anchor="middle">Just save</text>
 <rect x="187" y="670" width="93" height="42" rx="16" fill="#FFFCF6" stroke="#C8B7A1"/><rect x="287" y="670" width="96" height="42" rx="16" fill="#FFFCF6" stroke="#C8B7A1"/>
-<text x="198" y="696" fill="#153F46" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="650">Show next</text><text x="299" y="696" fill="#153F46" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="650">Use now</text>
+<text x="198" y="696" fill="#153F46" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="650">Show next</text><text x="299" y="696" fill="#153F46" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="650">Apply…</text>
 <rect x="24" y="823" width="384" height="56" rx="0" fill="#FFFCF6" stroke="none" stroke-width="1"/>
 <path d="M24 823 L408 823" stroke="#CEBC9F" stroke-width="1" fill="none"/>
 <text x="71" y="857" fill="#667975" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="600" text-anchor="middle">Home</text>

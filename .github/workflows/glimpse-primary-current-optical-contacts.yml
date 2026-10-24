@@ -7,6 +7,12 @@ on:
       - .github/workflows/glimpse-primary-current-optical-contacts.yml
       - scripts/render-primary-review-corpus.py
       - design/proposals/whole-product-review-selection.v1.json
+      - scripts/validate-primary-context-truth.py
+      - design/proposals/plates/quick-import.svg
+      - design/proposals/plates/automation.svg
+      - design/proposals/plates/activity.svg
+      - design/proposals/plates/accessibility-preferences.svg
+      - design/proposals/audit-revisions/r02-share-choice.svg
   workflow_dispatch:
 
 permissions:
@@ -29,6 +35,7 @@ jobs:
         run: |
           python3 scripts/validate-whole-product-review-selection.py
           python3 scripts/render-primary-review-corpus.py --check
+          python3 scripts/validate-primary-context-truth.py
       - name: Render all 24 source-editable primary references
         run: |
           python3 -m pip install --quiet pillow cairosvg

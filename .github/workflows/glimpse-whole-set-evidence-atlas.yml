@@ -22,6 +22,12 @@ on:
       - scripts/validate-whole-product-review-selection.py
       - scripts/validate-primary-task-action-review.py
       - scripts/validate-support-state-truth.py
+      - scripts/validate-primary-context-truth.py
+      - design/proposals/plates/quick-import.svg
+      - design/proposals/plates/automation.svg
+      - design/proposals/plates/activity.svg
+      - design/proposals/plates/accessibility-preferences.svg
+      - design/proposals/audit-revisions/r02-share-choice.svg
       - design/proposals/support-plates/**
       - scripts/build-whole-product-review-viewer.py
       - design/proposals/whole-product-candidates/collections-photo-covers.svg
@@ -53,6 +59,7 @@ jobs:
           python3 scripts/validate-audit-scenario-trace.py
           python3 scripts/validate-primary-task-action-review.py
           python3 scripts/validate-support-state-truth.py
+          python3 scripts/validate-primary-context-truth.py
           python3 scripts/validate-audit-cycle-b-evidence-triage.py
           python3 scripts/build-whole-set-evidence-atlas.py --check
       - name: Generate offline browser index and SHA256 evidence manifest
