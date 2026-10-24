@@ -184,6 +184,28 @@ def validate(manifest, root):
             unresolved += 1
             require(record["sourceStatus"] == "blocked",
                     f"{record['photoId']}: unresolved rights not marked blocked")
+            require(record.get("visualFallbackPath") and
+                    record.get("fallbackGitBlobSha"),
+                    f"{record['photoId']}: missing honest non-photographic fallback")
+            raw = (root / record["visualFallbackPath"]).read_bytes()
+            tree = ET.fromstring(raw)
+            require(tree.tag == SVG + "svg",
+                    f"{record['photoId']}: fallback is not SVG")
+            metadata = tree.find(SVG + "metadata")
+            require(metadata is not None and bool(metadata.text),
+                    "Schematic missing metadata")
+            truth = json.loads(metadata.text)
+            require(truth["photoId"] == record["photoId"] and
+                    truth["assetClass"] == "ORIGINAL_NONPHOTOGRAPHIC_PLACEHOLDER" and
+                    truth["sourcePhotograph"] is False and
+                    truth["photographicClearance"] == "blocked" and
+                    truth["ownerApproved"] is False,
+                    f"{record['photoId']}: misleading schematic photo claim")
+            git_blob = hashlib.sha1(
+                ("blob " + str(len(raw)) + "\\0").encode() + raw
+            ).hexdigest()
+            require(git_blob == record["fallbackGitBlobSha"],
+                    f"{record['photoId']}: fallback bytes silently changed")
         else:
             require(record["sourceStatus"] == "available-not-integrated",
                     "Rights-cleared source does not imply SVG integration")

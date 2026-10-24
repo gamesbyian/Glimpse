@@ -140,7 +140,9 @@
       "license": null,
       "verifiedAt": null,
       "sha256": null,
-      "visualFallback": "illustrative non-photographic design only"
+      "visualFallback": "Original non-photographic source-pending schematic. Do not claim photographic provenance.",
+      "visualFallbackPath": "design/assets/fallbacks/p08.svg",
+      "fallbackGitBlobSha": "999613c9428f0152ce08a8fb93d19e32f225210c"
     },
     {
       "photoId": "p09",
@@ -152,7 +154,9 @@
       "license": null,
       "verifiedAt": null,
       "sha256": null,
-      "visualFallback": "illustrative non-photographic design only"
+      "visualFallback": "Original non-photographic source-pending schematic. Do not claim photographic provenance.",
+      "visualFallbackPath": "design/assets/fallbacks/p09.svg",
+      "fallbackGitBlobSha": "eacb5418903a5074126709e0de5a863e78434089"
     },
     {
       "photoId": "p16",
@@ -164,7 +168,9 @@
       "license": null,
       "verifiedAt": null,
       "sha256": null,
-      "visualFallback": "illustrative non-photographic design only"
+      "visualFallback": "Original non-photographic source-pending schematic. Do not claim photographic provenance.",
+      "visualFallbackPath": "design/assets/fallbacks/p16.svg",
+      "fallbackGitBlobSha": "bd06af271f25dde081f9805d9547bc02461df363"
     },
     {
       "photoId": "p17",
@@ -176,7 +182,9 @@
       "license": null,
       "verifiedAt": null,
       "sha256": null,
-      "visualFallback": "illustrative non-photographic design only"
+      "visualFallback": "Original non-photographic source-pending schematic. Do not claim photographic provenance.",
+      "visualFallbackPath": "design/assets/fallbacks/p17.svg",
+      "fallbackGitBlobSha": "b8ccfe7da3d1e03343720d6a67ac00dd7a2e749f"
     }
   ],
   "photographicLeads": [

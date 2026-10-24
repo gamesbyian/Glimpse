@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 720" width="480" height="720" role="img" aria-labelledby="title description">
+<title id="title">p16: city-building concept. Schematic source placeholder.</title>
+<desc id="description">Original non-photographic Glimpse placeholder. Do not treat as a rights-cleared user photograph.</desc>
+<metadata>{"photoId":"p16","assetClass":"ORIGINAL_NONPHOTOGRAPHIC_PLACEHOLDER","sourcePhotograph":false,"assetRights":"project-authored geometric SVG","photographicClearance":"blocked","ownerApproved":false}</metadata>
+<defs><linearGradient id="wash" x1="0" y1="0" x2=".9" y2="1"><stop offset="0" stop-color="#badbdd"/><stop offset="1" stop-color="#4e816b"/></linearGradient></defs>
+<rect width="480" height="720" fill="url(#wash)"/>
+<circle cx="340" cy="175" r="90" fill="#fff7d3"/><path d="M0 326 H75 V247 H169 V385 H235 V166 H337 V349 H405 V284 H480 V545 H0 Z" fill="#316276"/><g stroke="#d2ede2" stroke-width="15"><path d="M102 332 V370 M284 221 V270 M284 298 V325 M442 344 V389"/></g>
+<path d="M0 0 H480 V720 H0 Z" fill="none" stroke="#b6e6b9" stroke-width="16"/>
+<rect x="0" y="545" width="480" height="175" fill="#101d2a"/>
+<text x="24" y="603" font-family="sans-serif" font-size="44" font-weight="700" fill="#fff">P16 · DEMO</text>
+<text x="24" y="645" font-family="sans-serif" font-size="30" font-weight="700" fill="#ffe1b0">NO SOURCE PHOTO</text>
+<text x="24" y="680" font-family="sans-serif" font-size="23" fill="#fff">Non-photographic placeholder</text>
+</svg>
