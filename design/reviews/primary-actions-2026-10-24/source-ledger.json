@@ -1,0 +1,42 @@
+{
+  "workflowSourceCommit": "953b055407176a3d138bb617c15d2c1f85703a94",
+  "runId": "40125539145",
+  "renderer": "CairoSVG/Pillow on ubuntu-latest",
+  "contactSHA256": "4c7996b5926edcac2ce83d943e6111631e736f710ef129d6cf45e77adc558db6",
+  "evidenceClass": "current-source-referenced-svg-pixels-not-native",
+  "sources": [
+    {
+      "source": "design/proposals/audit-revisions/r03-home-primary-actions-p04.svg",
+      "sourceSHA256": "ff5a9bdfca9c1dc865e31e64695bb8b29df2810d515b4e33123b25e9a60082dc",
+      "phoneViewportPixels": [
+        401,
+        890
+      ],
+      "reviewStatus": "SOURCE_RENDERED_WAITING_FOR_INDEPENDENT_OPTICAL_INSPECTION",
+      "nativeAndroidVerified": false,
+      "ownerApproved": false
+    },
+    {
+      "source": "design/proposals/audit-revisions/r01-photo-primary-wallpaper-action.svg",
+      "sourceSHA256": "3a452b1e017d718bb45961b8a1d11d5b9f55ebe87bc5755771f8cbcea0beef17",
+      "phoneViewportPixels": [
+        401,
+        890
+      ],
+      "reviewStatus": "SOURCE_RENDERED_WAITING_FOR_INDEPENDENT_OPTICAL_INSPECTION",
+      "nativeAndroidVerified": false,
+      "ownerApproved": false
+    },
+    {
+      "source": "design/proposals/audit-revisions/r02-photo-detail-actions-p12.svg",
+      "sourceSHA256": "4d894bd3a70114dd7d23f4cbfc7d935f82810b382f89a4bc458ae1e30ad7173d",
+      "phoneViewportPixels": [
+        401,
+        890
+      ],
+      "reviewStatus": "SOURCE_RENDERED_WAITING_FOR_INDEPENDENT_OPTICAL_INSPECTION",
+      "nativeAndroidVerified": false,
+      "ownerApproved": false
+    }
+  ]
+}
