@@ -1,4 +1,5 @@
 name: Glimpse R01 | photographic tap and 36-degree motion proof
+# Targeted post-optical suppression of half-clipped lower number badges
 # Recheck source-linked hero art1 and six-reference wedge ordering
 on:
   push:
@@ -67,6 +68,10 @@ jobs:
             assert len(set(m["photoFixtureSHA256"].values()))==5,name
           assert metas["r01-photo-tap-p13-settled"]["motionPhase"]=="tap-settled"
           assert metas["r01-photo-drag-36"]["gestureDeltaDegrees"]==36
+          assert metas["r01-photo-drag-36"]["offscreenNumberBadgesSuppressed"]==["p11","p14"]
+          drag= (root/"r01-photo-drag-36.svg").read_text()
+          assert ">11</text>" not in drag and ">14</text>" not in drag
+          assert drag.count('<g clip-path="url(#c')==5
           assert ImageChops.difference(phones[1],phones[2]).getbbox() is not None
           assert ImageChops.difference(phones[3],phones[4]).getbbox() is not None
           (out/"index.json").write_text(json.dumps({
