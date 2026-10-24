@@ -69,7 +69,7 @@ jobs:
               "reviewJPEG":"collections-photo-cover.jpg",
               "reviewJPEG_SHA256":hashlib.sha256((review/"collections-photo-cover.jpg").read_bytes()).hexdigest(),
               "nativeOrOwnerProof":False
-          },indent=2)+"\\n")
+          },indent=2)+chr(10))
           print("PASS: three genuine distinct photo sources, 401x890 paper-cover draft generated")
           PY
       - name: Commit one editable current-generation proposal
