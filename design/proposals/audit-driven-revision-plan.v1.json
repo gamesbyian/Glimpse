@@ -222,12 +222,13 @@
         "applicable Android screenshot/hierarchy fixture or marked unverified",
         "audit finding closure verification"
       ],
-      "disposition": "Nine evidence routes mapped; two dedicated diagrams source-hashed and rendered in targeted CI, native and 200% text unverified",
+      "disposition": "Nine evidence routes, before/after and focus-number diagrams plus photo-backed reel focus overlay; draft optical proof pending for new overlay, native evidence all unverified",
       "evidenceManifest": "design/proposals/audit-revisions/r05-accessibility-evidence.v1.json",
       "nativeProofProtocol": "docs/design/R05-ACCESSIBILITY-NATIVE-ACCEPTANCE.md",
       "initialSourceDrafts": [
         "design/proposals/audit-revisions/r05-reduced-motion.svg",
-        "design/proposals/audit-revisions/r05-talkback-route.svg"
+        "design/proposals/audit-revisions/r05-talkback-route.svg",
+        "design/proposals/audit-revisions/r05-photo-reel-focus-overlay.svg"
       ]
     },
     {
