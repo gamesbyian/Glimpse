@@ -13,7 +13,7 @@
 <text x="55" y="348" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="440" fill="#667975">20:00–23:00 · Priority 6</text>
 <rect x="41" y="396" width="344" height="93" rx="13" fill="#FFFCF6" stroke="#C4B7A4"/>
 <text x="55" y="426" font-family="Arial,Helvetica,sans-serif" font-size="17" font-weight="650" fill="#153F46">SIMULATION · no side effects</text>
-<text x="55" y="458" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="440" fill="#667975">Only explicit Apply changes wallpaper</text>
+<text x="55" y="458" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="440" fill="#667975">Simulation never applies wallpaper</text>
 <rect x="42" y="520" width="337" height="84" rx="12" fill="#E9E0F5" stroke="none"/>
 <text x="57" y="551" font-family="Arial,Helvetica,sans-serif" font-size="16" font-weight="700" fill="#153F46">20:00 → Evening focus</text>
 <text x="57" y="583" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="500" fill="#667975">Predicted, not applied</text>
