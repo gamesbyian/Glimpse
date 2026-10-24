@@ -324,8 +324,9 @@
     },
     {
       "surfaceId": "photo-detail",
-      "reviewCandidatePath": "design/proposals/storyboards/x07/03-photo-detail.svg",
+      "reviewCandidatePath": "design/proposals/audit-revisions/r02-photo-detail-actions-p12.svg",
       "alternativesToDecide": [
+        "design/proposals/storyboards/x07/03-photo-detail.svg",
         "design/proposals/plates/photo-detail.svg"
       ],
       "requiredSemanticElements": [
@@ -339,9 +340,10 @@
       "forbiddenSemanticElements": [
         "silent-apply-on-open"
       ],
-      "candidateState": "UNAPPROVED_PARTIAL_PAPER_AND_PIXEL_PROPOSAL",
+      "candidateState": "UNAPPROVED_PHOTOGRAPHIC_PHOTO_DETAIL_WITH_SEPARATE_ACTIONS_NOT_NATIVE_ACCEPTED",
       "ownerChoice": null,
-      "exactOwnerApprovalSHA256": null
+      "exactOwnerApprovalSHA256": null,
+      "visualEvidence": "Photo detail source-matched to p12 in X07 Reel/Grid and R01/R02. Separate 48px-height Back to Grid, Set wallpaper chooser, Share photo and Edit copy actions; no silent Android API invoke. Successful Actions run 40125360202 rasterized; no independent inspection or owner decision."
     },
     {
       "surfaceId": "quickstart",
