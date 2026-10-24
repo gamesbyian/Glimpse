@@ -159,6 +159,8 @@ frame_truth={
    ["Last Glimpse-acknowledged Home: p01"], ["Currently applied Home"]),
  "design/proposals/storyboards/x03/02-choose-target.svg": (
    ["Home selected"], ["Home ✓"]),
+ "design/proposals/storyboards/x03/07-unsupported.svg": (
+   ["Home selected"], ["Home ✓"]),
  "design/proposals/storyboards/x03/06-failed.svg": (
    ["Last Glimpse-acknowledged: p01"], ["Last applied photo remains"]),
  "design/proposals/storyboards/x04/07-stopped.svg": (
