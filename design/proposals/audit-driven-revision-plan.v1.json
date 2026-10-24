@@ -51,7 +51,7 @@
         "applicable Android screenshot/hierarchy fixture or marked unverified",
         "audit finding closure verification"
       ],
-      "disposition": "Six source-editable paper-wedge photographs/finite zero-one states now committed. Older circular-chip geometry retained for comparison only. Independent latest six PNG raster/Android/owner proof pending.",
+      "disposition": "Six source-generated distinct-photo paper reel files; Grid vector glyph optically fixed, native unverified",
       "initialSourceDrafts": [
         "design/proposals/audit-revisions/r01-idle-22.svg",
         "design/proposals/audit-revisions/r01-drag-18.svg",
@@ -70,7 +70,8 @@
       ],
       "photographicSourceGenerator": "scripts/build-audit-r01-photo-variants.py",
       "photoFixturePolicy": "six checked-in JPEGs; visible neighbouring photo IDs have distinct bytes, not proof of all 22 unique real collection items",
-      "photoRevisionExplanation": "X05 source reel wedge geometry + original checked-in six photo fixtures; zero and single retain empty paper apertures"
+      "photoRevisionExplanation": "X05 source reel wedge geometry + original checked-in six photo fixtures; zero and single retain empty paper apertures",
+      "latestTargetedEvidenceRun": 40048643795
     },
     {
       "id": "R02",
@@ -179,14 +180,15 @@
         "applicable Android screenshot/hierarchy fixture or marked unverified",
         "audit finding closure verification"
       ],
-      "disposition": "Four dedicated bulk-import SVGs: empty, 17/22 pending, cancel, storage-full; two X01 completion/offline paths remain partial until crossflow/optical acceptance",
+      "disposition": "Four dedicated source-sha-matched draft bulk-import states optically inspected; two other X01 flow states need review, native unverified",
       "evidenceManifest": "design/proposals/audit-revisions/r04-import-evidence.v1.json",
       "initialSourceDrafts": [
         "design/proposals/audit-revisions/r04-import-cancel.svg",
         "design/proposals/audit-revisions/r04-import-no-space.svg",
         "design/proposals/audit-revisions/r04-import-empty.svg",
         "design/proposals/audit-revisions/r04-import-17-of-22.svg"
-      ]
+      ],
+      "latestTargetedEvidenceRun": 40049428896
     },
     {
       "id": "R05",
@@ -224,14 +226,15 @@
         "applicable Android screenshot/hierarchy fixture or marked unverified",
         "audit finding closure verification"
       ],
-      "disposition": "Nine evidence routes, before/after and focus-number diagrams plus photo-backed reel focus overlay; draft optical proof pending for new overlay, native evidence all unverified",
+      "disposition": "Three source-sha-matched accessibility illustrations incl photo-backed focus overlay optically inspected; 48dp target proposed only, native unverified",
       "evidenceManifest": "design/proposals/audit-revisions/r05-accessibility-evidence.v1.json",
       "nativeProofProtocol": "docs/design/R05-ACCESSIBILITY-NATIVE-ACCEPTANCE.md",
       "initialSourceDrafts": [
         "design/proposals/audit-revisions/r05-reduced-motion.svg",
         "design/proposals/audit-revisions/r05-talkback-route.svg",
         "design/proposals/audit-revisions/r05-photo-reel-focus-overlay.svg"
-      ]
+      ],
+      "latestTargetedEvidenceRun": 40049026265
     },
     {
       "id": "R06",
