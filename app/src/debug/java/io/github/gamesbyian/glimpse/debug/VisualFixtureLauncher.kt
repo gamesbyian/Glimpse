@@ -62,7 +62,19 @@ class VisualFixtureLauncher : ComponentActivity() {
             val image = Bitmap.createBitmap(480, 720, Bitmap.Config.ARGB_8888)
             val canvas = Canvas(image)
             val paint = Paint(Paint.ANTI_ALIAS_FLAG or Paint.FILTER_BITMAP_FLAG)
-            canvas.drawBitmap(source, null, Rect(0, 0, 480, 720), paint)
+            // Exact source aspect ratio is preserved by deterministic center
+            // crop. Stretching a 900x675 landscape into a 480x720 portrait
+            // previously made native screenshot "photo proof" misleading.
+            val crop = if (source.width * 720 > source.height * 480) {
+                val cropWidth = source.height * 480 / 720
+                val left = (source.width - cropWidth) / 2
+                Rect(left, 0, left + cropWidth, source.height)
+            } else {
+                val cropHeight = source.width * 720 / 480
+                val top = (source.height - cropHeight) / 2
+                Rect(0, top, source.width, top + cropHeight)
+            }
+            canvas.drawBitmap(source, crop, Rect(0, 0, 480, 720), paint)
             paint.color = Color.argb(225, 245, 238, 222)
             canvas.drawRoundRect(RectF(18f, 18f, 138f, 92f), 14f, 14f, paint)
             paint.color = Color.rgb(22, 70, 78)
