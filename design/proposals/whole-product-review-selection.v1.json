@@ -78,8 +78,9 @@
     },
     {
       "surfaceId": "reel",
-      "reviewCandidatePath": "design/proposals/audit-revisions/r01-photo-rest-22.svg",
+      "reviewCandidatePath": "design/proposals/audit-revisions/r01-photo-primary-wallpaper-action.svg",
       "alternativesToDecide": [
+        "design/proposals/audit-revisions/r01-photo-rest-22.svg",
         "design/proposals/audit-revisions/r01-photo-three-3.svg",
         "design/proposals/audit-revisions/r01-photo-five-5.svg",
         "design/proposals/audit-revisions/r01-photo-sixty-60.svg",
@@ -111,9 +112,10 @@
         "reel-hit-target-beneath-bottom-nav",
         "inferred-whole-album-synchronization"
       ],
-      "candidateState": "UNAPPROVED_PARTIAL_PAPER_AND_PIXEL_PROPOSAL",
+      "candidateState": "UNAPPROVED_SOURCE_GENERATED_PHOTOGRAPHIC_REEL_ACTION_FIX_NOT_OPTICALLY_OR_NATIVE_ACCEPTED",
       "ownerChoice": null,
-      "exactOwnerApprovalSHA256": null
+      "exactOwnerApprovalSHA256": null,
+      "visualEvidence": "Preferred source retains exact R01 p12 JPEG and five-window paper reel; visible 47px View all and Set wallpaper chooser-entry actions. The chooser must demand Home/Lock choice and later confirmation; preview, drag and Grid do not call WallpaperManager. Source/raster run 40125088857 passed; exact pixel inspection and Android behavior remain outstanding."
     },
     {
       "surfaceId": "grid",
