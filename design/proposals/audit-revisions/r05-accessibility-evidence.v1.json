@@ -20,7 +20,8 @@
       "title": "Reel target dimensions",
       "required": "Measure bounds in dp; demonstrate tapping, Previous/Next, Grid stable ID",
       "nativeStatus": "unverified",
-      "dedicatedReferenceMissing": false
+      "dedicatedReferenceMissing": false,
+      "photoOverlayReferencePath": "design/proposals/audit-revisions/r05-photo-reel-focus-overlay.svg"
     },
     {
       "id": "R05-02",
@@ -115,7 +116,8 @@
       "nativeStatus": "unverified",
       "dedicatedReferenceMissing": false,
       "dedicatedReferencePath": "design/proposals/audit-revisions/r05-talkback-route.svg",
-      "referenceKind": "illustrative-interaction-route-not-native-evidence"
+      "referenceKind": "illustrative-interaction-route-not-native-evidence",
+      "photoOverlayReferencePath": "design/proposals/audit-revisions/r05-photo-reel-focus-overlay.svg"
     },
     {
       "id": "R05-09",
