@@ -133,3 +133,12 @@ The newest recovered priority/evidence snapshot is [HANDOFF-2026-10-23-SESSION-R
 - [x] Cross-audit existing P1 X13/X18/X19 against the new R06–R08 states; fix false categorical recipient-delivery copy in `x13/04-cancel.svg` and contradictory no-action-committed text in `x19/05-restore-result.svg`. These two modified older frames still need freshly raster-inspected phone crops.
 - [x] Add an opt-in, **five-source only** [R06–R08 optical CI workflow](../../.github/workflows/glimpse-audit-r06-r08-optical.yml) with strict source-SHA contract and optional renderer-specific pixel-hash comparison. Do not infer CI execution from the workflow's presence.
 - [ ] Confirm updated X13 and X19 actual pixels are readable, align X19's restore review/choice/result route with the dedicated R08 three-decision screen, then close only question-specific visual evidence gaps.
+
+## Whole-set human-review spine and cross-storyboard truth (2026-10-23 late)
+
+- [x] Assemble [39 source-linked candidate phone frames](../../design/proposals/canonical-review-spine.v1.json) in eight task-order groups with a [phone-only, annotation-clipped HTML review spine](../../design/atlas/canonical-review-spine.html). **All 39 GitHub source paths independently existed at check; this is still a partial tour, not 39 approvals or the whole 203-image acceptance gate.**
+- [x] Add [spine source/HTML validator](../../scripts/validate-canonical-review-spine.py) with opt-in source-hash snapshot for later whole-set human signoff. Validator committed, not yet executed on an intact checkout.
+- [x] Reconcile P1 X13 share return and X19 restore result against R06 and R08 and repair two materially false/contradictory copy claims. See [cross-storyboard audit](../design/CROSS-STORYBOARD-TRUTH-RECONCILIATION-2026-10-23.md).
+- [x] Extend the opt-in seven-source optical CI workflow to produce the five R06–R08 changed-phone crops plus the two corrected P1 original phone crops, without the expensive 203-image render. Workflow execution outcome remains unverified.
+- [ ] Complete a reviewer-readable **full reference selection** beyond this 39-frame spine, covering every mandatory screen/control/error state, and distinguish optional variants and obsolete sketches in a versioned reference decision ledger.
+- [ ] Independently inspect revised X13/X19 phone pixels, review full 203 baseline and 25 refinements at actual rendered scale for cross-screen typography, and freeze final whole-set source hashes only after explicit human approval.
