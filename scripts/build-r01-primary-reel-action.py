@@ -34,6 +34,10 @@ def generate():
     s=SRC.read_text(encoding="utf-8")
     assert s.count(OLD)==1, "R01 action row changed upstream: reconcile instead of guessing"
     s=s.replace(OLD,NEW,1)
+    pointer='<path d="M201 452 L229 452 L215 472 Z" fill="#E8876C"/>'
+    lower='<path d="M201 461 L229 461 L215 482 Z" fill="#E8876C"/>'
+    assert s.count(pointer)==1,"the existing reel pointer changed upstream"
+    s=s.replace(pointer,lower,1)
     assert s.count("Previous photo")==1 and s.count("Next photo")==1
     assert s.count('<g clip-path="url(#c')==5
     assert len(re.findall(r'<use href="#fixture[1-6]"',s))==6
