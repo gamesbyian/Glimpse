@@ -151,6 +151,36 @@ if ">Rainbows</text>" in after_phone:
 before=(ROOT/"design/proposals/storyboards/x02/05-delete-confirm.svg").read_text(encoding="utf8")
 if 'id="collection-delete-modal"' not in before:
     errors.append("x02 destructive confirmation not visually modalized")
+# Direct full-137-frame optical review found misleading state claims
+# and one escaped 401px card title. These are current phone-side source rules,
+# not evidence that the Android OS state has actually been interrogated.
+frame_truth={
+ "design/proposals/storyboards/x03/01-preview.svg": (
+   ["Last Glimpse-acknowledged Home: p01"], ["Currently applied Home"]),
+ "design/proposals/storyboards/x03/06-failed.svg": (
+   ["Last Glimpse-acknowledged: p01"], ["Last applied photo remains"]),
+ "design/proposals/storyboards/x04/07-stopped.svg": (
+   ["No new wallpaper change requested by Glimpse"], ["The Home wallpaper remains unchanged"]),
+ "design/proposals/storyboards/x08/01-home-active.svg": (
+   ["Last Glimpse-acknowledged Home", "LAST GLIMPSE"], ["Current Home wallpaper","CURRENT HOME"]),
+ "design/proposals/storyboards/x08/05-long-title.svg": (
+   ["Our favourite holiday…", 'aria-label="Our favourite holiday photographs and travels"'],
+   [">Our favourite holiday photographs...</text>"]),
+ "design/proposals/advanced-storyboards/x19/05-restore-result.svg": (
+   ["1,282 entries restored", "2 skipped"], ["1,284 entries restored"]),
+ "design/proposals/advanced-storyboards/x15/04-confirm-exclude.svg": (
+   ["12 selected for exclusion", "Imported files stay untouched"],
+   ["12 excluded from rotation", "Excluding keeps imported files"])
+}
+for rel,(required,forbidden) in frame_truth.items():
+    raw=(ROOT/rel).read_text(encoding="utf8")
+    # Phone body only: right-side annotation doesn't count as visible proof.
+    phone=raw.split('<rect x="442"',1)[0]
+    ET.fromstring(raw)
+    for phrase in required:
+        if phrase not in phone:errors.append(f"{rel}: missing frame truth {phrase}")
+    for phrase in forbidden:
+        if phrase in phone:errors.append(f"{rel}: obsolete or false frame truth {phrase}")
 ss=scenarios["scenarios"]
 if len(ss)!=56:errors.append("Unexpected audit scenario count")
 for sc in ss:
