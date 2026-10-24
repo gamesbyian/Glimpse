@@ -495,13 +495,13 @@
       "title": "Paper-reel physical motion",
       "count": 8,
       "contact": "x05-all-08-phones.jpg",
-      "contactSHA256": "0b3f468822319c5824ce659398a1ce6204505be182f41f42dcb95a0165c6cef0",
+      "contactSHA256": "a70094828bdc43873630fd01b4835165318d50842dd014136ab9ad2a80916235",
       "frames": [
         {
           "ordinal": 1,
           "id": "01-rest",
           "source": "design/proposals/storyboards/x05/01-rest.svg",
-          "sha256": "88c73fb27675c1c6c73b5b9f41171916cfe9172ba160454e4e25ae75970b2324",
+          "sha256": "fb89180b3538deebee7a35af4eadbbe17c068febcf61226285ae890fde161deb",
           "crop": [
             15,
             14,
@@ -517,7 +517,7 @@
           "ordinal": 2,
           "id": "02-touch-down",
           "source": "design/proposals/storyboards/x05/02-touch-down.svg",
-          "sha256": "2ea0ec9a9a9cc4cf35aa31d9ab9bfff11541f8fe58c064069b3344266079d47f",
+          "sha256": "2755a4564aa18f1e1259898a9664c626258038ac80221e00df9a9deb268e2529",
           "crop": [
             15,
             14,
@@ -533,7 +533,7 @@
           "ordinal": 3,
           "id": "03-drag-18",
           "source": "design/proposals/storyboards/x05/03-drag-18.svg",
-          "sha256": "fc2d515bb3fdbb9ca0139602294da1aaf3c5a6afe6fa5505a6353c66d94a1294",
+          "sha256": "72eeec1786d39abf8edb2d61b6f56daa04d24d65da5c3f0d87b546ebeadb12b3",
           "crop": [
             15,
             14,
@@ -549,7 +549,7 @@
           "ordinal": 4,
           "id": "04-drag-36",
           "source": "design/proposals/storyboards/x05/04-drag-36.svg",
-          "sha256": "48d20da704ee120d92593757a5eebd841c9cbbadfe679cbd59bda819a8c56b2b",
+          "sha256": "aacad1a3a562f50bcba0f32525f1de2b22b99036725c95515254a69c489b8fd2",
           "crop": [
             15,
             14,
