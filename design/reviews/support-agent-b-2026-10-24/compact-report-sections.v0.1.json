@@ -1,0 +1,81 @@
+{
+  "schemaVersion": 1,
+  "status": "STATIC_UNSELECTED_NOT_NATIVE_OR_OWNER_ACCEPTANCE",
+  "source": "design/reviews/support-agent-b-2026-10-24/compact-report-sections.v0.1.svg",
+  "sourceSHA256": "5cea8e4165249ec10ea2809fd413fd0dcda267b8599074545121f080128515e5",
+  "previewSHA256": "f927f19cd129deb605dbb59ffea83b6d0dc816c34b6edb5a67e751b09074fd8e",
+  "viewportStudyDp": [
+    320,
+    760
+  ],
+  "controls": [
+    {
+      "name": "back",
+      "sourceHitWidth": 54,
+      "sourceHitHeight": 54
+    },
+    {
+      "name": "issue-field",
+      "sourceHitWidth": 288,
+      "sourceHitHeight": 94
+    },
+    {
+      "name": "expected-field",
+      "sourceHitWidth": 288,
+      "sourceHitHeight": 91
+    },
+    {
+      "name": "diagnostics-off",
+      "sourceHitWidth": 288,
+      "sourceHitHeight": 85
+    },
+    {
+      "name": "review-report",
+      "sourceHitWidth": 296,
+      "sourceHitHeight": 54
+    },
+    {
+      "name": "open-sections",
+      "sourceHitWidth": 296,
+      "sourceHitHeight": 55
+    },
+    {
+      "name": "back",
+      "sourceHitWidth": 54,
+      "sourceHitHeight": 54
+    },
+    {
+      "name": "section_home",
+      "sourceHitWidth": 270,
+      "sourceHitHeight": 86
+    },
+    {
+      "name": "section_discover",
+      "sourceHitWidth": 270,
+      "sourceHitHeight": 86
+    },
+    {
+      "name": "section_collections",
+      "sourceHitWidth": 270,
+      "sourceHitHeight": 86
+    },
+    {
+      "name": "section_automation",
+      "sourceHitWidth": 270,
+      "sourceHitHeight": 86
+    },
+    {
+      "name": "close-sections",
+      "sourceHitWidth": 270,
+      "sourceHitHeight": 54
+    }
+  ],
+  "requiresNative": [
+    "fontScale2 dynamic reflow",
+    "48dp hitboxes",
+    "scroll + insets",
+    "TalkBack focus order and return",
+    "OS sharing focus return",
+    "human approval"
+  ]
+}
