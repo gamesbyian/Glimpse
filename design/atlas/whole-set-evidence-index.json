@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "status": "ALL_DRAFT_SOURCE_EVIDENCE_NOT_HUMAN_APPROVED",
-  "sourceCommit": "8132c6354a4e96d2424c10386799455df5f38471",
+  "sourceCommit": "9e6220b82d4dc37423bc65dd1b2f8c6e21f1cfcf",
   "auditCycleA": {
     "PASS_SOURCE_ONLY": 18,
     "ISSUE": 8,
@@ -15,11 +15,73 @@
     "P0": 82,
     "P1": 55,
     "supplemental": 25,
-    "auditRevisionAlternatives": 30,
+    "auditRevisionAlternatives": 33,
     "preferredRoute": 39,
-    "uniqueEvidenceSources": 258,
+    "uniqueEvidenceSources": 261,
     "namedStateSlots": 34
   },
+  "scenarioCoverage": {
+    "totalRequired": 56,
+    "PARTIAL": 8,
+    "PICTURED": 47,
+    "MISSING_SPECIFIC": 1
+  },
+  "reviewGaps": [
+    {
+      "lane": "R01",
+      "scenario": "disc-full-and-crescent",
+      "state": "PARTIAL",
+      "needed": "No same-framed physical-wheel/Home crescent treatment or human perception check."
+    },
+    {
+      "lane": "R01",
+      "scenario": "tap-to-focus",
+      "state": "PARTIAL",
+      "needed": "A touch-down pose is not a photographed tap-select-and-settle comparison."
+    },
+    {
+      "lane": "R01",
+      "scenario": "drag-36",
+      "state": "PARTIAL",
+      "needed": "36-degree pose uses older schematic fixture arrangement; verify five distinct photos and settled identity."
+    },
+    {
+      "lane": "R01",
+      "scenario": "first-last",
+      "state": "PARTIAL",
+      "needed": "Last is photographic; a source-matched first-item five-aperture paper scene is still needed."
+    },
+    {
+      "lane": "R01",
+      "scenario": "large-type",
+      "state": "PARTIAL",
+      "needed": "Render large type over identical photo-backed material and verify no cropped commands."
+    },
+    {
+      "lane": "R03",
+      "scenario": "home-last-confirmed",
+      "state": "PARTIAL",
+      "needed": "Need one Home status panel explicitly labelled last Glimpse acknowledgement versus present wallpaper uncertainty."
+    },
+    {
+      "lane": "R04",
+      "scenario": "import-offline",
+      "state": "PARTIAL",
+      "needed": "Need dedicated partial-copy provider-offline recovery preserving verified local counts."
+    },
+    {
+      "lane": "R05",
+      "scenario": "narrow-short",
+      "state": "MISSING_SPECIFIC",
+      "needed": "No explicit 320dp-short-screen crop of the current photographic design; Android layout proof also absent."
+    },
+    {
+      "lane": "R08",
+      "scenario": "recovery-back",
+      "state": "PARTIAL",
+      "needed": "No single context-preserving Back/return state after provider/restore adversity."
+    }
+  ],
   "readme": "Preferred is a proposed review sequence, not selected/approved native UX. Appendix may contain superseded alternatives. Every SHA-256 hashes SVG source bytes, not rendered pixels.",
   "chapters": [
     {
@@ -185,7 +247,7 @@
           "path": "design/proposals/audit-revisions/r03-unknown-after-request.svg",
           "label": "R03 Unknown After Request",
           "meaning": "Provisional preferred route; not approved",
-          "sourceSHA256": "9b0bcda300d25320e769725543b296a4b7509f15e93557147434fd4da547668c"
+          "sourceSHA256": "6321212650746e9fb1b77b35ebff9824069dcc354762cfba2f4e6da5b7c1974d"
         },
         {
           "path": "design/proposals/advanced-storyboards/x14/05-apply-both.svg",
@@ -2122,6 +2184,12 @@
           "sourceSHA256": "8b6ac1f65e6f86514c4cfc40b945f51b38578c1a1ac4277736617d8e1d544657"
         },
         {
+          "path": "design/proposals/audit-revisions/r01-photo-five-5.svg",
+          "label": "R01 Photo Five 5",
+          "meaning": "",
+          "sourceSHA256": "328a467b48aad4d58e73ac23ff41de70bda0c8d7aa9156d5e034ce9054a1040c"
+        },
+        {
           "path": "design/proposals/audit-revisions/r01-photo-last-22.svg",
           "label": "R01 Photo Last 22",
           "meaning": "",
@@ -2140,10 +2208,22 @@
           "sourceSHA256": "e5f25f357b234c7bee3947b01d63e4d5b0c120b7e1aa13ecbf1618d7b6119dae"
         },
         {
+          "path": "design/proposals/audit-revisions/r01-photo-sixty-60.svg",
+          "label": "R01 Photo Sixty 60",
+          "meaning": "",
+          "sourceSHA256": "cc433bca397d667847c67ac5125f5494413d81d36419ec8fd1ece5e9b64b99de"
+        },
+        {
           "path": "design/proposals/audit-revisions/r01-photo-snap-13.svg",
           "label": "R01 Photo Snap 13",
           "meaning": "",
           "sourceSHA256": "61df0f03de62a5a820ad9444a859cad2076b0910007196ce89d40b34904e3a9a"
+        },
+        {
+          "path": "design/proposals/audit-revisions/r01-photo-three-3.svg",
+          "label": "R01 Photo Three 3",
+          "meaning": "",
+          "sourceSHA256": "1a49beb0716fd8ac45a918c4bdb4444d11684a51df01b9403976287280f30340"
         },
         {
           "path": "design/proposals/audit-revisions/r01-settled-snap.svg",
@@ -2191,7 +2271,7 @@
           "path": "design/proposals/audit-revisions/r03-unknown-after-request.svg",
           "label": "R03 Unknown After Request",
           "meaning": "",
-          "sourceSHA256": "9b0bcda300d25320e769725543b296a4b7509f15e93557147434fd4da547668c"
+          "sourceSHA256": "6321212650746e9fb1b77b35ebff9824069dcc354762cfba2f4e6da5b7c1974d"
         },
         {
           "path": "design/proposals/audit-revisions/r04-import-17-of-22.svg",
