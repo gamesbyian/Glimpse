@@ -21,6 +21,16 @@ p1=load("design/proposals/advanced-storyboard-coverage.v1.json")
 scenarios=load("design/proposals/audit-scenario-evidence.v1.json")
 def rel_phone(source):
     return source.split('<rect x="440"',1)[0]
+def content_font_floor(phone):
+    """Smallest in-app body/action SVG font, excluding status/proposal footer."""
+    sizes=[]
+    for node in re.findall(r'<text\b[^>]*>[^<]*</text>',phone):
+        y=re.search(r'\by="([0-9.]+)"',node)
+        font=re.search(r'font-size="([0-9.]+)"',node)
+        if y and font and 195<=float(y.group(1))<810:
+            sizes.append(float(font.group(1)))
+    return min(sizes,default=None)
+
 errors=[]
 sources={}
 for family in support["screens"]:
@@ -61,7 +71,7 @@ for family in support["screens"]:
             errors.append(f"{p}: draft data-transmission truth")
         sources[str(p)]={"sha256":hashlib.sha256(raw.encode("utf8")).hexdigest(),
                          "actions":sorted(controls),"modal":is_modal,
-                         "minVisibleFont":min((int(x) for x in re.findall(r'font-size="(\d+)"',phone)),default=None)}
+                         "minBodyFont":content_font_floor(phone)}
 assert len(sources)==34
 groups=p0["groups"]+p1["groups"]
 if len(p0["groups"])!=12 or len(p1["groups"])!=11 or len(groups)!=23:
@@ -133,10 +143,11 @@ for sc in ss:
     for path in sc.get("sourcePaths",[]):
         if not (ROOT/path).is_file(): errors.append(f"Scenario missing source {sc['scenario']} -> {path}")
 # Risk probe: don't conflate static SVG preview with Android's actual dynamic font scaling.
-small=[(k,v["minVisibleFont"]) for k,v in sources.items() if v["minVisibleFont"] is not None and v["minVisibleFont"]<14]
+small=[(k,v["minBodyFont"]) for k,v in sources.items() if v["minBodyFont"] is not None and v["minBodyFont"]<14]
+if small:errors.append("Support body fonts under 14px: "+str(small))
 print(json.dumps({"scope":"Agent B unapproved source-only audit",
  "supportStates":len(sources),"journeys":len(groups),"storyboardFrames":len(frames),"illustratedScenarios":len(ss),
- "supportMinimumFontBelow14":len(small),
+ "supportMinimumBodyFontBelow14":len(small),
  "fontScaleVerdict":"320dp/200% real Android reflow unverified: source fonts and targets are only static reference geometry",
  "navigationVerdict":"data-control rectangles are visual geometry proposals, not native semantics/focus tests",
  "sourceSHA256":sources, "errors":errors},indent=2))
