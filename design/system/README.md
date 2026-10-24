@@ -36,3 +36,10 @@ These are proposed refinements to the same provisional grammar, **not a frozen c
 A owns primary `design/proposals/plates/` and primary candidate SVGs, plus `design/system/`. B (#8) owns support/storyboards. C (#9) owns assets and Android technical verification. Integration (#10) owns selection registries, reviewer/snapshot, #6 branch and revision freeze. B/C may adopt stable 0.1 token names now but should report exceptions to issues; no silent cross-lane edits. Every modified SVG needs source SHA-256 and before/after 401×890 optical review, with source/render/native/human kept separate. 320dp and 200%-font acceptance requires actual comparable capture and focus tests.
 
 **Status:** usable working contract / pending integration freeze / no human approval.
+
+## Post-revision photographic source migration (13 slots)
+
+Agent C #12 now supplies verified uploader-described CC0 source records and exact JPEGs for **p04 and every p06–p17 sample slot**. Previous `NO PHOTO` and `RIGHTS?` editorial alternatives remain useful historical fallbacks, but they are superseded as the *best available* review candidate by the complete independent [Home/Reel/three-column Grid/Detail CC0 set](../proposals/whole-product-candidates/cc0-consistent-20261024/). Four files migrate atomically because p12 must stay byte-identical across thumbnail, Reel, Grid and Detail, p04 stays last-app-acknowledged only, and neither browsing nor photo preview applies wallpaper. Production A [validator](validate-cross-surface-cc0-migration.py) fails on incorrect embedded source bytes or IDs. This is **not** owner approval of aesthetic photo selections, licensing legal certainty, or native verification.
+
+The original four-column Grid aesthetic alternative is preserved; C's actual API34 native prototype shows three columns. Do not freeze column count without owner/integration review. The actual 320dp/200%-font native issues and explicit owner choices remain gating.
+
