@@ -13,16 +13,16 @@ python3 -m http.server 8000
 
 | Viewer | Purpose | Evidence boundary |
 | --- | --- | --- |
-| [Whole-set evidence atlas](whole-set-evidence-atlas.html) | All **261 unique currently checked-in draft SVGs**, searchable with a two-phone side-by-side comparison tray | Source discovery and browser SVG rendering, **not** 261 optical passes or one approved design |
+| [Whole-set evidence atlas](whole-set-evidence-atlas.html) | All **262 unique currently checked-in draft SVGs**, searchable with a two-phone side-by-side comparison tray | Source discovery and browser SVG rendering, **not** 261 optical passes or one approved design |
 | [39-source preliminary preferred review spine](canonical-review-spine.html) | Human task-order journey through the intended visual language | Incomplete selection, not final specification |
 | [Original reference atlas](index.html) | 66 original designs: 24 core, 8 critical reel, 34 support states | Original design families; not extra additions |
 | [P0 connected storyboard viewer](storyboards.html) | 82 P0 frames X01–X12 | Interaction drawings, not working Android flows |
 | [Named-state contact sheet](core-state-contact-sheet.html) | The **34 originally missing named states**, now 34/34 structurally pictured with exact source paths | Phone-side same-surface presence only, not optical/human validation |
 | [Representative flow comparisons](representative-flows.html) | 60 selected entries linking high-risk transitions | Useful visual reconnaissance, not complete audit |
 
-The full count is **203 baseline** (66 original + 82 P0 + 55 P1), plus **25 separately classified refinements**, plus **33 audit-driven revision studies** after the N=3/5/60 photographic additions. The source inventory is computed rather than manually transcribed: [SHA-256 index](whole-set-evidence-index.json). The 39-source preferred tour and 34 state names are **views into** those sources, not extra assets to add to 261.
+The full count is **203 baseline** (66 original + 82 P0 + 55 P1), plus **25 separately classified refinements**, plus **34 audit-driven revision studies** after the N=3/5/60 photographic additions. The source inventory is computed rather than manually transcribed: [SHA-256 index](whole-set-evidence-index.json). The 39-source preferred tour and 34 state names are **views into** those sources, not extra assets to add to 261.
 
-[All 56 audit-revision scenarios](../proposals/audit-scenario-evidence.v1.json) are now mapped to source evidence as **47 directly pictured, 8 partial, 1 missing-specific**. The latter is a current-design narrow/short-device variant. These numbers describe *illustration availability*, not native correctness, optical acceptance or progress against the 60-question scored UX audit. The 60-question cycle A scores stay **18 source-level PASS / 8 ISSUE / 34 UNVERIFIED**.
+[All 56 audit-revision scenarios](../proposals/audit-scenario-evidence.v1.json) are now mapped to source evidence as **48 directly pictured, 8 partial, 0 missing-specific**. The formerly missing-specific 320×640 compact-phone case is now illustrated with the exact R01 photographic paper-wheel geometry; its [focused CI proof](https://github.com/gamesbyian/Glimpse/actions/runs/40070030469) generated real pixels, but no independent optical or Android acceptance is implied. These numbers describe *illustration availability*, not native correctness, optical acceptance or progress against the 60-question scored UX audit. The 60-question cycle A scores stay **18 source-level PASS / 8 ISSUE / 34 UNVERIFIED**.
 
 ## Rebuild and verify without expensive emulator CI
 
