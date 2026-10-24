@@ -1,6 +1,6 @@
 {
-  "sourceCommit": "db50e4e9c461c93454dd5fe35efeb4bc0431db35",
-  "runId": "40115382836",
+  "sourceCommit": "2cc839bf491a0df928a773e86d03b1c063bdcc34",
+  "runId": "40115984371",
   "scope": "source-derived images, not Android screenshots or owner approvals",
   "pixelReview": "not-yet-independently-viewed",
   "groups": [
@@ -67,7 +67,7 @@
     {
       "id": "empty-single-unknown",
       "image": "empty-single-unknown.jpg",
-      "imageSHA256": "a5c56224e05729547ac4667b1f2da70bea73c27a9277bc262256def35a9f9397",
+      "imageSHA256": "cd79962289b242e78ecf2994a6253d019d7041749814204e5096702283db9e51",
       "phones": [
         {
           "source": "design/proposals/audit-revisions/r01-photo-empty-0.svg",
@@ -79,7 +79,47 @@
         },
         {
           "source": "design/proposals/audit-revisions/r03-unknown-after-request.svg",
-          "sourceSHA256": "6321212650746e9fb1b77b35ebff9824069dcc354762cfba2f4e6da5b7c1974d"
+          "sourceSHA256": "d41326fa6cdd186c25d09e0a8fb809e6c7fe2b75dcf9e3eaf6cfb2162c5fe732"
+        }
+      ],
+      "atNaturalPixelSize": true
+    },
+    {
+      "id": "motion",
+      "image": "motion.jpg",
+      "imageSHA256": "658b3b91dc5b1d0eeb4436148175fb5506fd7a0e63c98fc4ebec05e88843e4d8",
+      "phones": [
+        {
+          "source": "design/proposals/audit-revisions/r01-photo-tap-p13-pressed.svg",
+          "sourceSHA256": "3a2b4137fdf093f06b47b93207a59108c6426a104a50572b55616e038e71f99a"
+        },
+        {
+          "source": "design/proposals/audit-revisions/r01-photo-tap-p13-settled.svg",
+          "sourceSHA256": "641b1025e8549ddd2b609a3e4c44d0e227d8a52868ea1f8ae55822b5b967f3d5"
+        },
+        {
+          "source": "design/proposals/audit-revisions/r01-photo-drag-36.svg",
+          "sourceSHA256": "ab9b4a70ebf5c2918c3f80e47def02c19f8a2a13a78dc883f394ae6aa364daa5"
+        }
+      ],
+      "atNaturalPixelSize": true
+    },
+    {
+      "id": "p12-truth",
+      "image": "p12-truth.jpg",
+      "imageSHA256": "03f2acd18613a8e75968d76a3372ea55afff228cb0fa548ccabe5dd30086f847",
+      "phones": [
+        {
+          "source": "design/proposals/audit-revisions/r01-photo-rest-22.svg",
+          "sourceSHA256": "3123329da461994bea8535aaf4e82ab74208a565cdee5360af2e5e16a983110c"
+        },
+        {
+          "source": "design/proposals/audit-revisions/r03-preview-not-applied.svg",
+          "sourceSHA256": "e6917b888dbf40b88941e50ec4db37867b658fe222a74b248bebc41a4d334fe5"
+        },
+        {
+          "source": "design/proposals/audit-revisions/r03-unknown-after-request.svg",
+          "sourceSHA256": "d41326fa6cdd186c25d09e0a8fb809e6c7fe2b75dcf9e3eaf6cfb2162c5fe732"
         }
       ],
       "atNaturalPixelSize": true
