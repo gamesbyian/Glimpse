@@ -10,7 +10,7 @@
       "license": "CC0 1.0 Universal",
       "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
       "licensePageInspectedAt": "2026-10-24",
-      "status": "page-metadata-verified; image bytes not downloaded or hashed"
+      "status": "real CC0 original and EXIF-stripped JPEG acquired, SHA-256 tracked in production-c-provenance.v1.json"
     },
     {
       "photoId": "p07",
@@ -20,7 +20,7 @@
       "license": "CC0 1.0 Universal",
       "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
       "licensePageInspectedAt": "2026-10-24",
-      "status": "page-metadata-verified; image bytes not downloaded or hashed"
+      "status": "real CC0 original and EXIF-stripped JPEG acquired, SHA-256 tracked in production-c-provenance.v1.json"
     },
     {
       "photoId": "p08",
@@ -30,7 +30,7 @@
       "license": "CC0 1.0 Universal",
       "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
       "licensePageInspectedAt": "2026-10-24",
-      "status": "page-metadata-verified; image bytes not downloaded or hashed"
+      "status": "Commons page CC0 checked; derivative not acquired (download rate-limited at p08)"
     },
     {
       "photoId": "p09",
@@ -40,7 +40,7 @@
       "license": "CC0 1.0 Universal",
       "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
       "licensePageInspectedAt": "2026-10-24",
-      "status": "page-metadata-verified; image bytes not downloaded or hashed"
+      "status": "Commons page CC0 checked; derivative not acquired (download rate-limited at p08)"
     },
     {
       "photoId": "p16",
@@ -50,7 +50,7 @@
       "license": "CC0 1.0 Universal",
       "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
       "licensePageInspectedAt": "2026-10-24",
-      "status": "page-metadata-verified; image bytes not downloaded or hashed"
+      "status": "Commons page CC0 checked; derivative not acquired (download rate-limited at p08)"
     },
     {
       "photoId": "p17",
@@ -60,7 +60,7 @@
       "license": "CC0 1.0 Universal",
       "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
       "licensePageInspectedAt": "2026-10-24",
-      "status": "page-metadata-verified; image bytes not downloaded or hashed"
+      "status": "Commons page CC0 checked; derivative not acquired (download rate-limited at p08)"
     }
   ]
 }
