@@ -112,6 +112,12 @@ def build():
     for group in p1["groups"]:
         add("P1 " + group["id"].upper() + " / " + group["title"], "P1-storyboard",
             [item(f["path"], f.get("caption"), f.get("invariant")) for f in group["frames"]])
+    whole_product = sorted((PROPOSALS / "whole-product-candidates").glob("*.svg"))
+    if not whole_product:
+        raise ValueError("Whole-product modernized candidate source set is missing")
+    add("Current-generation whole-product visual candidates", "whole-product-candidate",
+        [item("design/proposals/whole-product-candidates/" + p.name,
+              meaning="Proposed full-product visual refinement; owner approval absent") for p in whole_product])
     revisions = sorted((PROPOSALS / "audit-revisions").glob("*.svg"))
     add("Audit-driven revision alternatives (R01–R08)", "audit-revision",
         [item("design/proposals/audit-revisions/" + p.name) for p in revisions])
@@ -132,7 +138,7 @@ def build():
         for rel in case["sourcePaths"]:
             if rel not in hashes:
                 raise ValueError("Scenario trace refers to unindexed SVG: " + rel)
-    expected = 203 + 25 + len(revisions)
+    expected = 203 + 25 + len(revisions) + len(whole_product)
     if len(hashes) != expected:
         raise ValueError(f"Unexpected unique source count {len(hashes)}; expected {expected}")
     for group in chapters[:8]:
@@ -147,6 +153,7 @@ def build():
         "counts": {"baseline": 203, "core": 24, "criticalReel": 8,
                    "support": 34, "P0": 82, "P1": 55, "supplemental": 25,
                    "auditRevisionAlternatives": len(revisions),
+                   "wholeProductCandidates": len(whole_product),
                    "preferredRoute": 39, "uniqueEvidenceSources": len(hashes),
                    "namedStateSlots": 34},
         "scenarioCoverage": scenario_status,
@@ -210,7 +217,9 @@ def render(doc):
               html.escape(doc["sourceCommit"] or "unknown / run from Git checkout for pinned SHA"),
               '</code> · <b>Unique SVG references:</b> ', str(doc["counts"]["uniqueEvidenceSources"]),
               ' · <b>Original baseline:</b> 203 · <b>Supplemental:</b> 25 · <b>Audit alternatives:</b> ',
-              str(doc["counts"]["auditRevisionAlternatives"]), '</p>',
+              str(doc["counts"]["auditRevisionAlternatives"]),
+              ' · <b>Whole-product candidates:</b> ',
+              str(doc["counts"]["wholeProductCandidates"]), '</p>',
               '<p><b>Audit scenarios:</b> ',
               str(doc["scenarioCoverage"]["PICTURED"]), ' pictured structurally / ',
               str(doc["scenarioCoverage"]["PARTIAL"]), ' partial / ',
