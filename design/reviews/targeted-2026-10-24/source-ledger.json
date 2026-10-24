@@ -1,0 +1,88 @@
+{
+  "sourceCommit": "db50e4e9c461c93454dd5fe35efeb4bc0431db35",
+  "runId": "40115382836",
+  "scope": "source-derived images, not Android screenshots or owner approvals",
+  "pixelReview": "not-yet-independently-viewed",
+  "groups": [
+    {
+      "id": "finite",
+      "image": "finite.jpg",
+      "imageSHA256": "f899bbf833d0b2f4815920a5ef2e8ac8cfff8f3b0c4b97389805975f54962800",
+      "phones": [
+        {
+          "source": "design/proposals/audit-revisions/r01-photo-three-3.svg",
+          "sourceSHA256": "1a49beb0716fd8ac45a918c4bdb4444d11684a51df01b9403976287280f30340"
+        },
+        {
+          "source": "design/proposals/audit-revisions/r01-photo-five-5.svg",
+          "sourceSHA256": "328a467b48aad4d58e73ac23ff41de70bda0c8d7aa9156d5e034ce9054a1040c"
+        },
+        {
+          "source": "design/proposals/audit-revisions/r01-photo-sixty-60.svg",
+          "sourceSHA256": "cc433bca397d667847c67ac5125f5494413d81d36419ec8fd1ece5e9b64b99de"
+        }
+      ],
+      "atNaturalPixelSize": true
+    },
+    {
+      "id": "edge-and-scale",
+      "image": "edge-and-scale.jpg",
+      "imageSHA256": "7bd8199600da5899cd564416118a42d8eb7bd239cd774575edcbf38b11381d7c",
+      "phones": [
+        {
+          "source": "design/proposals/audit-revisions/r01-photo-first-22.svg",
+          "sourceSHA256": "6ef1f8302e9a7dc88b6dec2498e6cc3c0403a57a7b072b1f367fbe9ba30b79fb"
+        },
+        {
+          "source": "design/proposals/audit-revisions/r01-photo-home-crescent.svg",
+          "sourceSHA256": "0a65ac6b0b1725dbf0d147b9bc01e21b099cff1bbc72d1c9209ff4c0a754e146"
+        },
+        {
+          "source": "design/proposals/audit-revisions/r01-photo-large-type.svg",
+          "sourceSHA256": "d56a5dd94bd2b13197b54391cd3e110536376ea5dea73a763142c3a3e55736bd"
+        }
+      ],
+      "atNaturalPixelSize": true
+    },
+    {
+      "id": "truth-and-return",
+      "image": "truth-and-return.jpg",
+      "imageSHA256": "fa6fc641ecda722c37d764b0e8aeb6724ef92873b649653536d76c26e1449fc6",
+      "phones": [
+        {
+          "source": "design/proposals/audit-revisions/r03-home-last-ack-p04.svg",
+          "sourceSHA256": "4942c3e94a012063d82546c433788cf6570d1d5f268b303d8e80e640820c442a"
+        },
+        {
+          "source": "design/proposals/audit-revisions/r04-import-offline-17-of-22.svg",
+          "sourceSHA256": "84b3023f8e20c007fd18baf033e41bcf719a274b7ab985ec27dd004d4f565fa6"
+        },
+        {
+          "source": "design/proposals/audit-revisions/r08-skip-return-rainbows.svg",
+          "sourceSHA256": "8e572365b8048cf8f39c55039ba4c5a805e193d7a634ef02558aa08d12fe88b6"
+        }
+      ],
+      "atNaturalPixelSize": true
+    },
+    {
+      "id": "empty-single-unknown",
+      "image": "empty-single-unknown.jpg",
+      "imageSHA256": "a5c56224e05729547ac4667b1f2da70bea73c27a9277bc262256def35a9f9397",
+      "phones": [
+        {
+          "source": "design/proposals/audit-revisions/r01-photo-empty-0.svg",
+          "sourceSHA256": "8b6ac1f65e6f86514c4cfc40b945f51b38578c1a1ac4277736617d8e1d544657"
+        },
+        {
+          "source": "design/proposals/audit-revisions/r01-photo-single-1.svg",
+          "sourceSHA256": "e5f25f357b234c7bee3947b01d63e4d5b0c120b7e1aa13ecbf1618d7b6119dae"
+        },
+        {
+          "source": "design/proposals/audit-revisions/r03-unknown-after-request.svg",
+          "sourceSHA256": "6321212650746e9fb1b77b35ebff9824069dcc354762cfba2f4e6da5b7c1974d"
+        }
+      ],
+      "atNaturalPixelSize": true
+    }
+  ]
+}
