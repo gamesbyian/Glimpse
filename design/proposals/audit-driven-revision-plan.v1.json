@@ -164,7 +164,7 @@
       ],
       "requiredScenarios": [
         "import-empty",
-        "import-78-pct-disabled",
+        "import-17-of-22-disabled",
         "import-100-pct",
         "import-cancel",
         "import-offline",
@@ -179,11 +179,13 @@
         "applicable Android screenshot/hierarchy fixture or marked unverified",
         "audit finding closure verification"
       ],
-      "disposition": "Six import states reconciled to X01, two new draft recovery scenes; other four require dedicated/optical evidence. Native proof unverified",
+      "disposition": "Four dedicated bulk-import SVGs: empty, 17/22 pending, cancel, storage-full; two X01 completion/offline paths remain partial until crossflow/optical acceptance",
       "evidenceManifest": "design/proposals/audit-revisions/r04-import-evidence.v1.json",
       "initialSourceDrafts": [
         "design/proposals/audit-revisions/r04-import-cancel.svg",
-        "design/proposals/audit-revisions/r04-import-no-space.svg"
+        "design/proposals/audit-revisions/r04-import-no-space.svg",
+        "design/proposals/audit-revisions/r04-import-empty.svg",
+        "design/proposals/audit-revisions/r04-import-17-of-22.svg"
       ]
     },
     {
