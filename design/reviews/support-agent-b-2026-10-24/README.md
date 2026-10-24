@@ -59,6 +59,14 @@ Current exact relevant source SHA-256, indexed independently by [source ledger](
 
 The optical workflow initially returned a transient failure on an older concurrent push because its generated-data commit raced a newer B branch commit. The **subsequent source-validated run passed**; scoped CI was hardened to detect newer branch SHA and skip pushing superseded raster/ledger bytes without force pushing or writing stale evidence. The run's own immutable SHA-keyed artifact remains inspectable, but only a current-head source ledger may qualify current graphics. Real provider/Android payload serialization, actual 48dp controls, TalkBack, 320dp/200%-font reflow and user approval remain unresolved.
 
+## Complete 137-frame direct optical study
+
+The earlier B paired corpus covered 46 selectively contrasted frames; the new [**23 full-journey contact sheets**](full-journey-corpus/) render **all 137** unique P0/P1 source SVG frames at 401×890 with exact per-file source and JPEG SHA-256 in [the current full source ledger](full-journey-corpus/full-journey-source-ledger.json). **Every one of the 23 contact sheets was directly opened and inspected**, first to identify defects, then the changed groups were reopened after raster regeneration. The [group-by-group review and honest acceptance boundary](full-journey-corpus/OPTICAL-REVIEW.md) enumerates all 23 flows, real SVG repairs, unresolved rights/native/platform questions and two integration-owned stale validators.
+
+Major directly observed and source-corrected defects: long collection title overflowing its card; OS wallpaper result overstated versus last Glimpse acknowledgement; restore 1,284 proposed/2 skipped but an impossible 1,284 restored; premature exclusion success before Confirm; paused/stopped displaying next eligible attempt; misleading chooser-delivery assertions; enabled rules falsely described as incapable of scheduled wallpaper changes; exact-runtime outgoing report headings on mock examples; checkmark and Grid arrow glyph tofu; disabled first/last/single-image navigation mislabelled as actionable. The source validator now has explicit guards for those fixes.
+
+**Evidence level:** all 137 rendered and visually examined at reference scale, **not** all 137 approved or Android accepted. SVG layout cannot establish physical touch targets, OS wallpaper identity, TalkBack announcements or 320dp/200%-font responsive reflow. Any current optical audit must rerun the ledger after source changes. The 23 contact sheets and source hashes were added to B's strict source-raster CI integrity check.
+
 ## Focused developer replay
 
 ```sh
@@ -74,6 +82,7 @@ python3 -m pip install cairosvg pillow
 python3 scripts/render-support-review-corpus.py
 python3 scripts/render-agent-b-accessibility-probes.py
 python3 scripts/render-agent-b-journey-pairs.py
+python3 scripts/render-agent-b-all-journeys.py
 python3 scripts/render-agent-b-compact-support-study.py
 ```
 
