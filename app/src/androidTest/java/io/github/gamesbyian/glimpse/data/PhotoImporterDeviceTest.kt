@@ -7,7 +7,6 @@ import android.net.Uri
 import android.os.Build
 import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
-import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert.assertArrayEquals
@@ -21,6 +20,8 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import java.io.File
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.os.Process
 import java.security.MessageDigest
 import java.util.UUID
 
@@ -166,9 +167,40 @@ class PhotoImporterDeviceTest {
         }
     }
 
+    private fun transitionTestUriPermission(uri: Uri, grant: Boolean) {
+        // Instrumentation code executes under the app-under-test UID. Only an
+        // Activity in the separate test APK (the provider owner) can grant
+        // this URI to Glimpse legitimately.
+        val action = if (grant) EphemeralGrantBrokerActivity.ACTION_GRANT
+            else EphemeralGrantBrokerActivity.ACTION_REVOKE
+        val intent = Intent(action)
+            .setClassName(
+                "io.github.gamesbyian.glimpse.test",
+                EphemeralGrantBrokerActivity::class.java.name
+            )
+            .setData(uri)
+            .putExtra(EphemeralGrantBrokerActivity.EXTRA_TARGET_PACKAGE, context.packageName)
+            .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+        context.startActivity(intent)
+        val expected = if (grant) PackageManager.PERMISSION_GRANTED
+            else PackageManager.PERMISSION_DENIED
+        repeat(40) {
+            val actual = context.checkUriPermission(
+                uri, Process.myPid(), Process.myUid(),
+                Intent.FLAG_GRANT_READ_URI_PERMISSION
+            )
+            if (actual == expected) return
+            Thread.sleep(125)
+        }
+        throw AssertionError(
+            "Test provider URI permission did not become " +
+                (if (grant) "granted" else "revoked") +
+                " for Glimpse's UID"
+        )
+    }
+
     @Test fun controlledContentProviderGrantCanExpireAfterOfflineImport() =
         withDatabase { dao ->
-            val testPackage = InstrumentationRegistry.getInstrumentation().context
             val uri = Uri.parse(
                 "content://io.github.gamesbyian.glimpse.test.ephemeral/fixture-" +
                     UUID.randomUUID() + ".jpg"
@@ -177,9 +209,7 @@ class PhotoImporterDeviceTest {
                 dao.insertCollection(CollectionRecord("granted", "Granted", 1L))
                 // Provider emits a real JPEG through a read-only pipe, avoiding
                 // cross-package test APK filesystem access on modern Android.
-                testPackage.grantUriPermission(
-                    context.packageName, uri, Intent.FLAG_GRANT_READ_URI_PERMISSION
-                )
+                transitionTestUriPermission(uri, grant = true)
                 val accepted = PhotoImporter(context, dao).import(listOf(uri), "granted")
                 assertEquals(1, accepted.imported)
                 assertEquals(0, accepted.failures)
@@ -198,9 +228,7 @@ class PhotoImporterDeviceTest {
                 // A successful one-shot copy survives a *real revoked*
                 // content:// permission. This test provider stays available;
                 // rejection after revoke must be permission-based.
-                testPackage.revokeUriPermission(
-                    uri, Intent.FLAG_GRANT_READ_URI_PERMISSION
-                )
+                transitionTestUriPermission(uri, grant = false)
                 val denied = PhotoImporter(context, dao).import(listOf(uri), "granted")
                 assertEquals(0, denied.imported)
                 assertEquals(1, denied.failures)
@@ -208,9 +236,7 @@ class PhotoImporterDeviceTest {
                 assertEquals(expectedSha, sha256(offline))
                 assertEquals(saved.id, dao.photosIn("granted").single().id)
             } finally {
-                testPackage.revokeUriPermission(
-                    uri, Intent.FLAG_GRANT_READ_URI_PERMISSION
-                )
+                runCatching { transitionTestUriPermission(uri, grant = false) }
             }
         }
 
