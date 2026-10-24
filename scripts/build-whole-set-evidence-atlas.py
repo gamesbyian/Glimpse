@@ -60,6 +60,7 @@ def build():
     core = read("design/proposals/core-state-evidence.v1.json")
     p0 = read("design/proposals/storyboard-coverage.v1.json")
     p1 = read("design/proposals/advanced-storyboard-coverage.v1.json")
+    scenario_trace = read("design/proposals/audit-scenario-evidence.v1.json")
     if len(spine["groups"]) != 8 or sum(len(g["items"]) for g in spine["groups"]) != 39:
         raise ValueError("Preferred spine changed: reconcile the reviewer itinerary.")
     if len(contract["screens"]) != 24 or len(core["states"]) != 34:
@@ -122,6 +123,15 @@ def build():
             if it["path"] not in hashes:
                 hashes[it["path"]] = checked(it["path"])
             it["sourceSHA256"] = hashes[it["path"]]
+    scenario_status = scenario_trace["counts"]
+    if scenario_status["totalRequired"] != 56 or sum(
+        scenario_status[key] for key in ("PICTURED","PARTIAL","MISSING_SPECIFIC")
+    ) != 56:
+        raise ValueError("Audit 56-scenario coverage count drift")
+    for case in scenario_trace["scenarios"]:
+        for rel in case["sourcePaths"]:
+            if rel not in hashes:
+                raise ValueError("Scenario trace refers to unindexed SVG: " + rel)
     expected = 203 + 25 + len(revisions)
     if len(hashes) != expected:
         raise ValueError(f"Unexpected unique source count {len(hashes)}; expected {expected}")
@@ -139,6 +149,12 @@ def build():
                    "auditRevisionAlternatives": len(revisions),
                    "preferredRoute": 39, "uniqueEvidenceSources": len(hashes),
                    "namedStateSlots": 34},
+        "scenarioCoverage": scenario_status,
+        "reviewGaps": [
+            {"lane": x["lane"], "scenario": x["scenario"],
+             "state": x["evidenceState"], "needed": x["nextProof"]}
+            for x in scenario_trace["scenarios"] if x["evidenceState"] != "PICTURED"
+        ],
         "readme": "Preferred is a proposed review sequence, not selected/approved native UX. "
                   "Appendix may contain superseded alternatives. Every SHA-256 hashes SVG source bytes, not rendered pixels.",
         "chapters": chapters,
@@ -195,6 +211,12 @@ def render(doc):
               '</code> · <b>Unique SVG references:</b> ', str(doc["counts"]["uniqueEvidenceSources"]),
               ' · <b>Original baseline:</b> 203 · <b>Supplemental:</b> 25 · <b>Audit alternatives:</b> ',
               str(doc["counts"]["auditRevisionAlternatives"]), '</p>',
+              '<p><b>Audit scenarios:</b> ',
+              str(doc["scenarioCoverage"]["PICTURED"]), ' pictured structurally / ',
+              str(doc["scenarioCoverage"]["PARTIAL"]), ' partial / ',
+              str(doc["scenarioCoverage"]["MISSING_SPECIFIC"]), ' missing-specific. ',
+              'These are source-level categories, not native or visual scores. ',
+              '<a href="../proposals/audit-scenario-evidence.v1.json">Trace each of the 56 cases</a>.</p>',
               '<p><a href="canonical-review-spine.html">39-frame preliminary itinerary</a> · ',
               '<a href="whole-set-evidence-index.json">Full indexed source SHA-256 evidence</a> · ',
               '<a href="../../docs/design/LATEST-GENERATION-HUMAN-REVIEW-GATES-2026-10-23.md">Review/approval gates</a></p>',
