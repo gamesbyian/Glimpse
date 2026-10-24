@@ -20,6 +20,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
@@ -154,8 +155,19 @@ private fun GlimpseScreen(model: GlimpseModel) {
                     horizontalArrangement = Arrangement.SpaceBetween
                 ) {
                     Text("Collections", fontWeight = FontWeight.SemiBold)
-                    TextButton(onClick = { showNewCollection = !showNewCollection }) {
-                        Text(if (showNewCollection) "Cancel" else "New collection")
+                    TextButton(
+                        modifier = Modifier.heightIn(min = 48.dp).semantics {
+                            contentDescription = if (showNewCollection) {
+                                "Cancel new collection"
+                            } else {
+                                "New collection"
+                            }
+                        },
+                        onClick = { showNewCollection = !showNewCollection }
+                    ) {
+                        // The enclosing Collections heading supplies context.
+                        // "New collection" breaks into three lines at 320dp/200%.
+                        Text(if (showNewCollection) "Cancel" else "New")
                     }
                 }
                 LazyRow(
@@ -164,6 +176,7 @@ private fun GlimpseScreen(model: GlimpseModel) {
                 ) {
                     items(state.collections, key = { it.id }) { group ->
                         FilterChip(
+                            modifier = Modifier.heightIn(min = 48.dp),
                             selected = activeCollection == group.id,
                             onClick = { model.browseCollection(group.id) },
                             label = { Text(group.title) }
@@ -171,6 +184,7 @@ private fun GlimpseScreen(model: GlimpseModel) {
                     }
                 }
                 OutlinedButton(
+                    modifier = Modifier.heightIn(min = 48.dp),
                     onClick = {
                         picker.launch(
                             PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly)
@@ -188,11 +202,13 @@ private fun GlimpseScreen(model: GlimpseModel) {
                 )
                 Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                     FilterChip(
+                        modifier = Modifier.heightIn(min = 48.dp),
                         selected = !state.grid,
                         onClick = { if (state.grid) model.toggleGrid() },
                         label = { Text("Reel") }
                     )
                     FilterChip(
+                        modifier = Modifier.heightIn(min = 48.dp),
                         selected = state.grid,
                         onClick = { if (!state.grid) model.toggleGrid() },
                         label = { Text("View all · Grid") }
