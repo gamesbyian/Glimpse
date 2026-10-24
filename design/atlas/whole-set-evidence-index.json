@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "status": "ALL_DRAFT_SOURCE_EVIDENCE_NOT_HUMAN_APPROVED",
-  "sourceCommit": "31f7d4efc1d995fb1d0813a46e0556872656c809",
+  "sourceCommit": "f24f87a28e6a806de2cedc1308e4532c456084e9",
   "auditCycleA": {
     "PASS_SOURCE_ONLY": 18,
     "ISSUE": 8,
@@ -22,36 +22,11 @@
   },
   "scenarioCoverage": {
     "totalRequired": 56,
-    "PARTIAL": 4,
-    "PICTURED": 52,
+    "PARTIAL": 0,
+    "PICTURED": 56,
     "MISSING_SPECIFIC": 0
   },
-  "reviewGaps": [
-    {
-      "lane": "R01",
-      "scenario": "disc-full-and-crescent",
-      "state": "PARTIAL",
-      "needed": "No same-framed physical-wheel/Home crescent treatment or human perception check."
-    },
-    {
-      "lane": "R01",
-      "scenario": "tap-to-focus",
-      "state": "PARTIAL",
-      "needed": "A touch-down pose is not a photographed tap-select-and-settle comparison."
-    },
-    {
-      "lane": "R01",
-      "scenario": "drag-36",
-      "state": "PARTIAL",
-      "needed": "36-degree pose uses older schematic fixture arrangement; verify five distinct photos and settled identity."
-    },
-    {
-      "lane": "R01",
-      "scenario": "large-type",
-      "state": "PARTIAL",
-      "needed": "Render large type over identical photo-backed material and verify no cropped commands."
-    }
-  ],
+  "reviewGaps": [],
   "readme": "Preferred is a proposed review sequence, not selected/approved native UX. Appendix may contain superseded alternatives. Every SHA-256 hashes SVG source bytes, not rendered pixels.",
   "chapters": [
     {
