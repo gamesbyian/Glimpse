@@ -1,0 +1,82 @@
+name: Glimpse R01 | Home paper crescent and large text reference
+on:
+  push:
+    branches: [agent/visual-state-reconciliation-20261023]
+    paths: [.github/workflows/glimpse-r01-home-large-proof.yml]
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: glimpse-r01-home-large-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  home-and-large-font:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Reproduce source-linked drawings
+        run: |
+          python3 scripts/build-r01-home-large-type.py --write
+          python3 scripts/build-r01-home-large-type.py
+      - name: Validate source truth and render phone pixels
+        run: |
+          python3 -m pip install --quiet cairosvg pillow
+          python3 - <<'PY'
+          import hashlib,json,os,re
+          from pathlib import Path
+          from xml.etree import ElementTree as ET
+          from cairosvg import svg2png
+          from PIL import Image
+          src=Path("design/proposals/audit-revisions")
+          out=Path("/tmp/glimpse-r01-home-large");out.mkdir(parents=True,exist_ok=True)
+          cases=["r01-photo-home-crescent","r01-photo-large-type"]
+          manifest=[]
+          for stem in cases:
+            path=src/(stem+".svg");raw=path.read_bytes()
+            xml=ElementTree.fromstring(raw)
+            m=json.loads(xml.find("{http://www.w3.org/2000/svg}metadata").text)
+            assert m["photoTotal"]==22 and m["ownerApproved"] is False
+            assert m["lastConfirmedAppliedAssetId"]=="p04"
+            if "large" in stem:
+              assert m["selectedAssetId"]=="p12"
+              assert m["fontScaleDesign"]==2
+              assert m["gestureAlternativeControls"]==["Previous photo","Next photo","Grid"]
+            else:
+              assert m["homeCrescentAction"]=="OpenCollection(Rainbows)"
+              assert m["homeCrescentDraggable"] is False
+              assert m["wallpaperMutation"] is False
+            output=out/(stem+".png")
+            svg2png(bytestring=raw,write_to=str(out/(stem+"-full.png")),
+                    output_width=1160,output_height=920)
+            with Image.open(out/(stem+"-full.png")) as img:
+              crop=img.crop((15,14,416,904)).convert("RGB")
+              assert crop.size==(401,890)
+              assert len(crop.getcolors(401*890) or [])>100
+              crop.save(output)
+            manifest.append({"source":str(path),"sourceSHA256":hashlib.sha256(raw).hexdigest(),
+              "phonePNG":output.name,"phoneSHA256":hashlib.sha256(output.read_bytes()).hexdigest()})
+          (out/"index.json").write_text(json.dumps({
+            "runId":os.environ["GITHUB_RUN_ID"],"workflowSourceSHA":os.environ["GITHUB_SHA"],
+            "evidenceType":"rendered-svg-not-native","opticalReview":False,
+            "androidAcceptance":False,"ownerApproval":False,"cases":manifest
+          },indent=2)+"\n")
+          print("PASS: two real-photo proposed screens at 401x890, no platform/owner proof")
+          PY
+      - name: Commit two separate editable mockups
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add design/proposals/audit-revisions/r01-photo-home-crescent.svg design/proposals/audit-revisions/r01-photo-large-type.svg
+          if ! git diff --cached --quiet; then
+            git commit -m "design: add photo paper Home crescent and large-type visual candidates"
+            git push origin HEAD:"${GITHUB_REF_NAME}"
+          fi
+      - uses: actions/upload-artifact@v4
+        with:
+          name: glimpse-r01-home-large-photo-${{ github.sha }}
+          path: /tmp/glimpse-r01-home-large/
+          retention-days: 14
