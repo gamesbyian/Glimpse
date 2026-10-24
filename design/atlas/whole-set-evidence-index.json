@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "status": "ALL_DRAFT_SOURCE_EVIDENCE_NOT_HUMAN_APPROVED",
-  "sourceCommit": "0796af35f4f280b60a53c97981a1cc67eef175bd",
+  "sourceCommit": "a5f97875d5de2039054dbb5f8d041a463be9710f",
   "auditCycleA": {
     "PASS_SOURCE_ONLY": 18,
     "ISSUE": 8,
@@ -15,10 +15,10 @@
     "P0": 82,
     "P1": 55,
     "supplemental": 25,
-    "auditRevisionAlternatives": 45,
+    "auditRevisionAlternatives": 47,
     "wholeProductCandidates": 1,
     "preferredRoute": 39,
-    "uniqueEvidenceSources": 274,
+    "uniqueEvidenceSources": 276,
     "namedStateSlots": 34
   },
   "scenarioCoverage": {
@@ -2182,7 +2182,7 @@
           "path": "design/proposals/audit-revisions/r01-photo-primary-wallpaper-action.svg",
           "label": "R01 Photo Primary Wallpaper Action",
           "meaning": "",
-          "sourceSHA256": "3a452b1e017d718bb45961b8a1d11d5b9f55ebe87bc5755771f8cbcea0beef17"
+          "sourceSHA256": "9b9a0f18723340cdecec8eec38751f8c2e58b5678b53ec5ef05e20ab20a9852b"
         },
         {
           "path": "design/proposals/audit-revisions/r01-photo-rest-22.svg",
@@ -2251,6 +2251,12 @@
           "sourceSHA256": "5592eb02deb39792216c90287681d19f56ffaa0e4638cb3621ef4cb1a597162a"
         },
         {
+          "path": "design/proposals/audit-revisions/r02-grid-primary-actions-p12.svg",
+          "label": "R02 Grid Primary Actions P12",
+          "meaning": "",
+          "sourceSHA256": "d07b44d764c1b17c43b9d02a6973185e1c95122d18b2ae82ffbdd2f3fea416e4"
+        },
+        {
           "path": "design/proposals/audit-revisions/r02-photo-detail-actions-p12.svg",
           "label": "R02 Photo Detail Actions P12",
           "meaning": "",
@@ -2273,6 +2279,12 @@
           "label": "R03 Home Last Ack P04",
           "meaning": "",
           "sourceSHA256": "4942c3e94a012063d82546c433788cf6570d1d5f268b303d8e80e640820c442a"
+        },
+        {
+          "path": "design/proposals/audit-revisions/r03-home-primary-actions-p04.svg",
+          "label": "R03 Home Primary Actions P04",
+          "meaning": "",
+          "sourceSHA256": "77e652b3bb0320f0e6f989770d6f565f602508f7840048a2b6238adc5eba1a5a"
         },
         {
           "path": "design/proposals/audit-revisions/r03-preview-not-applied.svg",

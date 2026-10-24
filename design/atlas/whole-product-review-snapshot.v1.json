@@ -9,7 +9,7 @@
     "revisionScenarios": 56
   },
   "referenceManifest": "design/proposals/whole-product-review-selection.v1.json",
-  "uniqueReferencedSources": 256,
+  "uniqueReferencedSources": 258,
   "sources": [
     {
       "path": "design/proposals/advanced-storyboards/x13/01-original.svg",
@@ -323,7 +323,7 @@
     },
     {
       "path": "design/proposals/audit-revisions/r01-photo-primary-wallpaper-action.svg",
-      "sourceSHA256": "3a452b1e017d718bb45961b8a1d11d5b9f55ebe87bc5755771f8cbcea0beef17",
+      "sourceSHA256": "9b9a0f18723340cdecec8eec38751f8c2e58b5678b53ec5ef05e20ab20a9852b",
       "ownerApproved": false
     },
     {
@@ -367,6 +367,11 @@
       "ownerApproved": false
     },
     {
+      "path": "design/proposals/audit-revisions/r02-grid-primary-actions-p12.svg",
+      "sourceSHA256": "d07b44d764c1b17c43b9d02a6973185e1c95122d18b2ae82ffbdd2f3fea416e4",
+      "ownerApproved": false
+    },
+    {
       "path": "design/proposals/audit-revisions/r02-photo-detail-actions-p12.svg",
       "sourceSHA256": "4d894bd3a70114dd7d23f4cbfc7d935f82810b382f89a4bc458ae1e30ad7173d",
       "ownerApproved": false
@@ -384,6 +389,11 @@
     {
       "path": "design/proposals/audit-revisions/r03-home-last-ack-p04.svg",
       "sourceSHA256": "4942c3e94a012063d82546c433788cf6570d1d5f268b303d8e80e640820c442a",
+      "ownerApproved": false
+    },
+    {
+      "path": "design/proposals/audit-revisions/r03-home-primary-actions-p04.svg",
+      "sourceSHA256": "77e652b3bb0320f0e6f989770d6f565f602508f7840048a2b6238adc5eba1a5a",
       "ownerApproved": false
     },
     {
