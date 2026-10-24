@@ -33,6 +33,13 @@ def construct(name):
 <defs><clipPath id="r03-p12-photo-frame"><rect x="48" y="167" width="336" height="310" rx="12"/></clipPath></defs>
 <g clip-path="url(#r03-p12-photo-frame)"><image x="48" y="167" width="336" height="310"
 preserveAspectRatio="xMidYMid slice" href="'''+photo+'''"/></g>'''
+    if 'id="r03-p12-photo-frame"' in original:
+        # Already generated source; a second --write/check must not mutate it.
+        _,existing_sha=fixture()
+        assert existing_sha in original, (name,"photo digest drift")
+        root=ET.fromstring(original)
+        assert root.get("viewBox")=="0 0 1160 920"
+        return original
     draft,count=PHOTO_PATTERN.subn(lambda _:art,original)
     assert count==1,(name,count)
     m=re.search(r'<metadata>(.*?)</metadata>',draft,re.S);assert m
@@ -45,7 +52,7 @@ preserveAspectRatio="xMidYMid slice" href="'''+photo+'''"/></g>'''
               "r03PhotoIdentityRevision":1,"opticalStatus":"re-render-required",
               "androidProof":"unverified","ownerApproved":False})
     draft=draft[:m.start(1)]+html.escape(json.dumps(j,separators=(",",":")),quote=True)+draft[m.end(1):]
-    root=ElementTree.fromstring(draft)
+    root=ET.fromstring(draft)
     assert root.get("viewBox")=="0 0 1160 920"
     assert "SELECTED · p12" in draft and draft.count('id="r03-p12-photo-frame"')==1
     return draft
