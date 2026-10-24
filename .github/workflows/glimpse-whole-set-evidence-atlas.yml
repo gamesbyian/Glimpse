@@ -9,6 +9,9 @@ on:
       - scripts/build-whole-set-evidence-atlas.py
       - scripts/validate-audit-scenario-trace.py
       - design/proposals/audit-revisions/r05-photo-reel-narrow-short-320.svg
+      - design/proposals/audit-revisions/r01-photo-drag-36.svg
+      - design/proposals/audit-revisions/r03-preview-not-applied.svg
+      - design/proposals/audit-revisions/r03-unknown-after-request.svg
       - design/proposals/canonical-review-spine.v1.json
       - design/proposals/core-state-evidence.v1.json
       - design/proposals/advanced-storyboard-coverage.v1.json
