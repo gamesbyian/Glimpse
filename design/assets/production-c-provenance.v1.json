@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "generatedOn": "2026-10-24",
-  "evidenceLevel": "source-bytes-only; p04,p06,p07 CC0 photos retrieved and hashed; no Android or human acceptance",
+  "evidenceLevel": "source-bytes-only; p04/p06/p07/p08/p09/p16/p17 photographed CC0 uploader-labeled sources downloaded and hashed; no Android or human acceptance",
   "photoIdRule": "IDs are semantic identities. Reusing source fixture bytes for distinct simultaneous photo IDs is forbidden; derived copies receive new IDs.",
   "priorFixtureSet": {
     "basePath": "design/research/reel-layout/fixtures/source",
@@ -132,59 +132,95 @@
     },
     {
       "photoId": "p08",
-      "sourceStatus": "blocked",
-      "rightsStatus": "unverified",
-      "assetPath": null,
-      "sourceUrl": null,
-      "creator": null,
-      "license": null,
-      "verifiedAt": null,
-      "sha256": null,
-      "visualFallback": "Original non-photographic source-pending schematic. Do not claim photographic provenance.",
+      "sourceStatus": "available-not-integrated",
+      "rightsStatus": "verified",
+      "assetPath": "design/assets/cc0/p08-grid-photo.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Sunset_in_the_City_01.jpg",
+      "creator": "PagesAndPathsPH",
+      "license": "CC0 1.0 Universal",
+      "verifiedAt": "2026-10-24",
+      "sha256": "68a2e5c556be1db5a3ac6abdf60a8e2c2eaa8773aae84f48a3bf600a9c73e656",
+      "visualFallback": "Original nonphotographic alternate remains historical; independently licensed photo has not yet been inserted into A-owned Grid proposal",
       "visualFallbackPath": "design/assets/fallbacks/p08.svg",
-      "fallbackGitBlobSha": "999613c9428f0152ce08a8fb93d19e32f225210c"
+      "fallbackGitBlobSha": "999613c9428f0152ce08a8fb93d19e32f225210c",
+      "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/c/c5/Sunset_in_the_City_01.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "originalSHA256": "fe0c7d71c0ecae08fc8d43e4779ad96fd7aab7f8e60fe13990b1c711b6724a4b",
+      "originalBytes": 2207507,
+      "derivativeBytes": 53532,
+      "derivativeDimensions": [
+        900,
+        415
+      ]
     },
     {
       "photoId": "p09",
-      "sourceStatus": "blocked",
-      "rightsStatus": "unverified",
-      "assetPath": null,
-      "sourceUrl": null,
-      "creator": null,
-      "license": null,
-      "verifiedAt": null,
-      "sha256": null,
-      "visualFallback": "Original non-photographic source-pending schematic. Do not claim photographic provenance.",
+      "sourceStatus": "available-not-integrated",
+      "rightsStatus": "verified",
+      "assetPath": "design/assets/cc0/p09-grid-photo.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Purple_Night_sky.jpg",
+      "creator": "Kanimozhi Vennila",
+      "license": "CC0 1.0 Universal",
+      "verifiedAt": "2026-10-24",
+      "sha256": "7a01f8b4f1ab6a6a28cf85b4b4387f0df9a8734186eb322568e273a5174cc00d",
+      "visualFallback": "Original nonphotographic alternate remains historical; independently licensed photo has not yet been inserted into A-owned Grid proposal",
       "visualFallbackPath": "design/assets/fallbacks/p09.svg",
-      "fallbackGitBlobSha": "eacb5418903a5074126709e0de5a863e78434089"
+      "fallbackGitBlobSha": "eacb5418903a5074126709e0de5a863e78434089",
+      "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/2/24/Purple_Night_sky.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "originalSHA256": "5a92b083c344d250eb2a2cde87a139685634df651b5548dfd738a7730aa33f2d",
+      "originalBytes": 113563,
+      "derivativeBytes": 62635,
+      "derivativeDimensions": [
+        900,
+        677
+      ]
     },
     {
       "photoId": "p16",
-      "sourceStatus": "blocked",
-      "rightsStatus": "unverified",
-      "assetPath": null,
-      "sourceUrl": null,
-      "creator": null,
-      "license": null,
-      "verifiedAt": null,
-      "sha256": null,
-      "visualFallback": "Original non-photographic source-pending schematic. Do not claim photographic provenance.",
+      "sourceStatus": "available-not-integrated",
+      "rightsStatus": "verified",
+      "assetPath": "design/assets/cc0/p16-grid-photo.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Boston_Common_at_sunset.jpg",
+      "creator": "Drgage25",
+      "license": "CC0 1.0 Universal",
+      "verifiedAt": "2026-10-24",
+      "sha256": "92d30c89130514f15bcb82539db6b31c9ae5f6175a73c13d02aa6c04161c4d48",
+      "visualFallback": "Original nonphotographic alternate remains historical; independently licensed photo has not yet been inserted into A-owned Grid proposal",
       "visualFallbackPath": "design/assets/fallbacks/p16.svg",
-      "fallbackGitBlobSha": "bd06af271f25dde081f9805d9547bc02461df363"
+      "fallbackGitBlobSha": "bd06af271f25dde081f9805d9547bc02461df363",
+      "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/9/96/Boston_Common_at_sunset.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "originalSHA256": "5db123fdfc43f99995efc30a81ab607d49723e101ebc0efc250cb2751fedb675",
+      "originalBytes": 952984,
+      "derivativeBytes": 201542,
+      "derivativeDimensions": [
+        706,
+        900
+      ]
     },
     {
       "photoId": "p17",
-      "sourceStatus": "blocked",
-      "rightsStatus": "unverified",
-      "assetPath": null,
-      "sourceUrl": null,
-      "creator": null,
-      "license": null,
-      "verifiedAt": null,
-      "sha256": null,
-      "visualFallback": "Original non-photographic source-pending schematic. Do not claim photographic provenance.",
+      "sourceStatus": "available-not-integrated",
+      "rightsStatus": "verified",
+      "assetPath": "design/assets/cc0/p17-grid-photo.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Night_sky_and_trees.jpg",
+      "creator": "Cristian Butacu",
+      "license": "CC0 1.0 Universal",
+      "verifiedAt": "2026-10-24",
+      "sha256": "ab0010efc6ebed8ada9cefc3ea0f246ef0a4de4437ea9efc8a6ebf83b0524d8e",
+      "visualFallback": "Original nonphotographic alternate remains historical; independently licensed photo has not yet been inserted into A-owned Grid proposal",
       "visualFallbackPath": "design/assets/fallbacks/p17.svg",
-      "fallbackGitBlobSha": "b8ccfe7da3d1e03343720d6a67ac00dd7a2e749f"
+      "fallbackGitBlobSha": "b8ccfe7da3d1e03343720d6a67ac00dd7a2e749f",
+      "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/7/7f/Night_sky_and_trees.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "originalSHA256": "779cb91584e92fccb0e0ab278310bd812564b5e2e57c266bad923dcf1b9801b2",
+      "originalBytes": 91427,
+      "derivativeBytes": 51969,
+      "derivativeDimensions": [
+        900,
+        405
+      ]
     }
   ],
   "photographicLeads": [
@@ -215,5 +251,5 @@
       "detail": "design/proposals/audit-revisions/r02-photo-detail-actions-p12.svg"
     }
   },
-  "acquisitionCaveat": "Commons HTTP 429 interrupted sequential download before p08; other four Grid IDs remain blocked; do not hammer source host."
+  "acquisitionCaveat": "All seven originally missing p04 + p06-09 + p16-17 source identities now have verified independent photographed JPEG fixtures; old six p10-p15 research JPEG reuse rights remain unresolved."
 }
