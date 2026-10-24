@@ -54,9 +54,30 @@ BETA = """<rect x="40" y="506" width="348" height="158" rx="16" fill="#E4ECE6" s
 <text x="60" y="713" font-family="Arial,Helvetica,sans-serif" fill="#FFFFFF" font-size="16" font-weight="700">Open Android Sharesheet…</text>
 """
 
+def enforce_provisional_a_tokens(source: str) -> str:
+    """B challenge of A revision 0.1: 48px study hit regions and AA body tone.
+
+    This upgrades already modernized sources too. The palette is a draft,
+    not proof of native accessibility or an integration-approved freeze.
+    """
+    phone, divider, notes = source.partition('<rect x="440"')
+    assert divider, "missing proposal notes divider"
+    phone = phone.replace('fill="#667975"', 'fill="#566861"')
+    phone = phone.replace('x="29" y="59" width="91" height="44"',
+                          'x="29" y="57" width="91" height="48"')
+    phone = phone.replace('data-hit-height="44"', 'data-hit-height="48"')
+    for x in (31, 126, 222, 320):
+        phone = phone.replace(f'x="{x}" y="822"', f'x="{x}" y="820"')
+    phone = phone.replace('height="46" rx="12" fill="#EBE5DB"',
+                          'height="50" rx="12" fill="#EBE5DB"')
+    phone = phone.replace('data-hit-height="46"', 'data-hit-height="50"')
+    result = phone + divider + notes
+    ET.fromstring(result)
+    return result
+
 def modernize(name: str, original: str) -> str:
     if '<g id="support-body"' in original:
-        return original
+        return enforce_provisional_a_tokens(original)
     source, count = BANNER.subn('<g id="support-body" transform="translate(0,-24)">\n', original, count=1)
     assert count == 1, (name, "missing decorative proposal banner")
     assert source.count(FOOTER) == 1
@@ -86,7 +107,7 @@ def modernize(name: str, original: str) -> str:
             assert needle in source
             source = source.replace(needle, new, 1)
     ET.fromstring(source)
-    return source
+    return enforce_provisional_a_tokens(source)
 
 def main() -> None:
     parser = argparse.ArgumentParser()
