@@ -58,7 +58,7 @@
     {
       "surfaceId": "quick-import",
       "path": "design/proposals/plates/quick-import.svg",
-      "sourceSHA256": "2f6ee1845550017ab2505ef167a6c66630f33b9da6d5fcc0390a70ef0a054531",
+      "sourceSHA256": "7684ec2a6e1cd906c78ab9efaf3689b6d35a2dc38b4e9501025e3a8e50cba422",
       "phonePixels": [
         401,
         890
@@ -71,7 +71,7 @@
     {
       "surfaceId": "share",
       "path": "design/proposals/audit-revisions/r02-share-choice.svg",
-      "sourceSHA256": "6efd92d69e6a895a208f911176fb598e58035c71c53de23039b4d12cb73f1c33",
+      "sourceSHA256": "7bf97fb1f15d508097c3cd62ce928065abf82fb2e7f88c53517b7ea16e323685",
       "phonePixels": [
         401,
         890
@@ -84,7 +84,7 @@
     {
       "surfaceId": "automation",
       "path": "design/proposals/plates/automation.svg",
-      "sourceSHA256": "14df28e3f6d80768002b46d7cdd611909c8d4308cfdc14f49dcac71801d56dfd",
+      "sourceSHA256": "d8d212380239edeb46215ceedc211e1b9e016be8cf6f9ced4479f25be049825b",
       "phonePixels": [
         401,
         890
@@ -136,7 +136,7 @@
     {
       "surfaceId": "activity",
       "path": "design/proposals/plates/activity.svg",
-      "sourceSHA256": "c2062c2bda729c5f681c71a5c13176050715b990c89084c32b351eab72e305fd",
+      "sourceSHA256": "da47f87075dabc179c0a0176183f9ba63b52344dc4c804372e3ca6db407ec13b",
       "phonePixels": [
         401,
         890
@@ -305,7 +305,7 @@
     {
       "surfaceId": "accessibility-preferences",
       "path": "design/proposals/plates/accessibility-preferences.svg",
-      "sourceSHA256": "ab18877822b973dfb60fb81a8aa3c8770e7b522821271b818c813b1099398d61",
+      "sourceSHA256": "db36e63966791913a58dc8b11f7646fc7dde4e18c35cbb4eefc17eef9f9fc5df",
       "phonePixels": [
         401,
         890
@@ -319,12 +319,12 @@
   "sheets": [
     {
       "name": "selected-primary-contact-01.jpg",
-      "sha256": "b153949d941bdf92d633a904ee7c3b1ce3301e8e064a38ca2b53d5a3e95ed2e0",
+      "sha256": "94f8e35409b44d88da1affacef09199b29c07240e4ceb663530010a7677facd7",
       "count": 6
     },
     {
       "name": "selected-primary-contact-02.jpg",
-      "sha256": "ebff3cdef895f93dfea953489737d607a71f4fdcf12d78caf31b3c0c3d67e1c9",
+      "sha256": "c6b6aa36a137557f2a9e6e659adfd40727f47bf140b5cb2952bffd19d2c7f5ad",
       "count": 6
     },
     {
@@ -334,7 +334,7 @@
     },
     {
       "name": "selected-primary-contact-04.jpg",
-      "sha256": "44a7fa71741853108252349e0bcf617ab6eb2b775378f3111a3ae6f93e9c08a6",
+      "sha256": "7ab7a020f3e41452b219d5bbe47231d7ad8d0273f90b9e45dc2cc085fa77c7a7",
       "count": 6
     }
   ],
