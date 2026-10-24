@@ -6,6 +6,7 @@ hash, and commit them as ordinary source files. Inputs are from CC0-per-file
 manual web-page desk review; API rechecks machine-readable license metadata.
 Nothing is copied into approved SVGs automatically.
 """
+import argparse
 import base64
 import hashlib
 import io
@@ -52,12 +53,17 @@ def source_info(record):
     return source_url, license_code, source["size"]
 
 def main():
+    parser=argparse.ArgumentParser()
+    parser.add_argument("--photo-id", required=True, choices=("p08","p09","p16","p17"))
+    args=parser.parse_args()
     manifest=json.loads(INPUT.read_text())
     records=manifest["candidates"]
     wanted={"p06","p07","p08","p09","p16","p17"}
     if {x["photoId"] for x in records}!=wanted or len(records)!=6:
         raise ValueError("Expected six unique stable IDs")
     for record in records:
+        if record["photoId"] != args.photo_id:
+            continue
         ident=record["photoId"]
         original_url, license_code, byte_length=source_info(record)
         with urlopen(Request(original_url,headers=HEADERS),timeout=50) as response:
@@ -90,7 +96,7 @@ def main():
         for j in range(0,len(transport),160):
             print("C64:"+ident+":"+transport[j:j+160],flush=True)
         print("PHOTO_BASE64_END:"+ident,flush=True)
-    print("ACQUISITION_COMPLETE:6 distinct real CC0 source files",flush=True)
+    print("ACQUISITION_COMPLETE:" + args.photo_id + " individually verified",flush=True)
 
 if __name__=="__main__":
     main()
