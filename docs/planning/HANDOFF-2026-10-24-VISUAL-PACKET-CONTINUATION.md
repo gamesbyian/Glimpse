@@ -1,5 +1,8 @@
 # Glimpse visual-packet continuation handoff · 2026-10-24
 
+> **Newer checkpoint (2026-10-24):** [Whole-product review handoff](HANDOFF-2026-10-24-WHOLE-PRODUCT-REVIEW.md) supersedes the source counts and work priorities below. Live draft PR #6 now has **271 source-editable SVGs, 56/56 illustrative audit scenarios**, a [24-primary-screen/34-support-state selection viewer](../../design/atlas/whole-product-review-selection.html), and a source-hashed optical gallery with the R03 p12 identity defect repaired. **No owner approval or native conformity is inferred.**
+
+
 **Branch:** `agent/visual-state-reconciliation-20261023` · **PR:** [#6, DRAFT](https://github.com/gamesbyian/Glimpse/pull/6) · **Approval:** NONE. **Native Android acceptance:** NOT ESTABLISHED.
 
 This checkpoint follows [the original visual reconciliation handoff](HANDOFF-2026-10-23-VISUAL-RECONCILIATION.md) and [recovery handoff](HANDOFF-2026-10-23-SESSION-RECOVERY-AND-NEXT-AGENT.md). Start next work from **live** PR/main SHAs, not those earlier historical counts.
