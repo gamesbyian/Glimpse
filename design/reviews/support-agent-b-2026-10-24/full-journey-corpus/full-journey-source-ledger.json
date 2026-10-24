@@ -245,7 +245,7 @@
       "title": "Wallpaper application transaction",
       "count": 7,
       "contact": "x03-all-07-phones.jpg",
-      "contactSHA256": "2ffdb0b733481e851e7a098677712cda742f3fdff4db24f2669bd176bb38d8ec",
+      "contactSHA256": "fadd42c24af3d0ea21bd07fdc71a89c0d7b6973511774acb1724df60f62d5cfc",
       "frames": [
         {
           "ordinal": 1,
@@ -347,7 +347,7 @@
           "ordinal": 7,
           "id": "07-unsupported",
           "source": "design/proposals/storyboards/x03/07-unsupported.svg",
-          "sha256": "95c7f579754e75ccbe316c47b7f94b71c639a91b995dcc5e252e14cbbbde3a64",
+          "sha256": "723e21d1f574ff0a514d5588e7c64deb65286fddaa33467046bb6986e2b7d9c8",
           "crop": [
             15,
             14,
@@ -1665,7 +1665,7 @@
       "title": "Large library operations",
       "count": 5,
       "contact": "x15-all-05-phones.jpg",
-      "contactSHA256": "e482758b142bfdf7c22689d7fafb1bff3bdab36d283a14b99dd89bd8218e1cd0",
+      "contactSHA256": "bce22356fb149243e8cf61c5d4ff70f6dc4a358e9af71ef9b5ed41e53419171d",
       "frames": [
         {
           "ordinal": 1,
@@ -1703,7 +1703,7 @@
           "ordinal": 3,
           "id": "03-range-selection",
           "source": "design/proposals/advanced-storyboards/x15/03-range-selection.svg",
-          "sha256": "699fd5228ab560b788bf2767bf18770f212e1b53f43ba1f30c71dae602429374",
+          "sha256": "9f54bfec40e9a2d3a8f898222c748b08a6114a8c506ff73743c0aec6ca99b416",
           "crop": [
             15,
             14,
@@ -1719,7 +1719,7 @@
           "ordinal": 4,
           "id": "04-confirm-exclude",
           "source": "design/proposals/advanced-storyboards/x15/04-confirm-exclude.svg",
-          "sha256": "7dcd43d5df3e520b29cb4adae24b0b27396fae6101a795aa069e93ab7b739166",
+          "sha256": "ae8828994891ccb0231135ad1bc9bfef152fa05d8960ec2c75215ec4d1efacf8",
           "crop": [
             15,
             14,
@@ -1735,7 +1735,7 @@
           "ordinal": 5,
           "id": "05-restore",
           "source": "design/proposals/advanced-storyboards/x15/05-restore.svg",
-          "sha256": "36b5a6bb4ac29cdbebe71eb2c81d3161995ff7938a282d181a2c64b598848619",
+          "sha256": "683d6a0c1dea0cae1616a84be580e6de1e026e0da53ade86a1020d38d4d3f48a",
           "crop": [
             15,
             14,
