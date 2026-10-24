@@ -1,7 +1,7 @@
 name: Glimpse R05 accessibility references | targeted optical proof
 
 # One-time opt-in check; no automatic CI on ordinary source, images or docs.
-# Source-matched real-photo R05 audit overlay: three illustrations with photo-byte parity.
+# Recheck final R05 photo overlay with explicit proposed 48dp Grid focus boundary.
 on:
   push:
     branches: [agent/visual-state-reconciliation-20261023]
