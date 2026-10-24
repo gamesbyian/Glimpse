@@ -1,0 +1,130 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-23",
+  "stage": "R05_NATIVE_PROOF_REQUEST_NOT_TEST_RESULTS",
+  "rules": [
+    "References are unapproved illustrations, never proof of TalkBack or text-size runtime behaviour",
+    "Record Android build SHA, device/API, density, viewport, fontScale and accessibility settings",
+    "Each interaction logs photo ID before and after, accessibility focus, target bounds px→dp, outcome state",
+    "Missing reduced-motion and focus-route dedicated pictures are explicit audit inputs, not implicit passes"
+  ],
+  "cases": [
+    {
+      "id": "R05-01",
+      "slug": "touch-targets",
+      "referencePath": "design/proposals/audit-revisions/r01-photo-rest-22.svg",
+      "questions": [
+        "GUX-31",
+        "GUX-32"
+      ],
+      "title": "Reel target dimensions",
+      "required": "Measure bounds in dp; demonstrate tapping, Previous/Next, Grid stable ID",
+      "nativeStatus": "unverified",
+      "dedicatedReferenceMissing": false
+    },
+    {
+      "id": "R05-02",
+      "slug": "large-home",
+      "referencePath": "design/proposals/storyboards/x09/01-home-200-text.svg",
+      "questions": [
+        "GUX-35",
+        "GUX-36"
+      ],
+      "title": "Home text at 200%",
+      "required": "Native fontScale=2.0 captures with insets and clipped-line detection",
+      "nativeStatus": "unverified",
+      "dedicatedReferenceMissing": false
+    },
+    {
+      "id": "R05-03",
+      "slug": "large-reel",
+      "referencePath": "design/proposals/storyboards/x09/03-reel-200-text.svg",
+      "questions": [
+        "GUX-33",
+        "GUX-35"
+      ],
+      "title": "Reel 200% count",
+      "required": "Selected item index/total and alternatives available at scale",
+      "nativeStatus": "unverified",
+      "dedicatedReferenceMissing": false
+    },
+    {
+      "id": "R05-04",
+      "slug": "large-import",
+      "referencePath": "design/proposals/storyboards/x09/05-import-200-text.svg",
+      "questions": [
+        "GUX-35",
+        "GUX-39"
+      ],
+      "title": "Import progress 200%",
+      "required": "Pending vs disabled actions visible and announced",
+      "nativeStatus": "unverified",
+      "dedicatedReferenceMissing": false
+    },
+    {
+      "id": "R05-05",
+      "slug": "large-grid",
+      "referencePath": "design/proposals/storyboards/x09/04-grid-large-type.svg",
+      "questions": [
+        "GUX-35",
+        "GUX-36"
+      ],
+      "title": "Grid 200%",
+      "required": "Focus/selection preserved with scaled text",
+      "nativeStatus": "unverified",
+      "dedicatedReferenceMissing": false
+    },
+    {
+      "id": "R05-06",
+      "slug": "high-contrast",
+      "referencePath": "design/proposals/state-refinements/accessibility-high-contrast.svg",
+      "questions": [
+        "GUX-38",
+        "GUX-39"
+      ],
+      "title": "High contrast",
+      "required": "Contrast/focus/checked icon tested beyond static SVG",
+      "nativeStatus": "unverified",
+      "dedicatedReferenceMissing": false
+    },
+    {
+      "id": "R05-07",
+      "slug": "reduced-motion",
+      "referencePath": "design/proposals/critical-reel/reel-large-text.svg",
+      "questions": [
+        "GUX-32",
+        "GUX-37"
+      ],
+      "title": "Motion-independent equivalent",
+      "required": "No dedicated reduced-motion current source; audit must request one and test no animated rotation",
+      "nativeStatus": "unverified",
+      "dedicatedReferenceMissing": true
+    },
+    {
+      "id": "R05-08",
+      "slug": "talkback",
+      "referencePath": "design/proposals/storyboards/x09/03-reel-200-text.svg",
+      "questions": [
+        "GUX-33",
+        "GUX-34"
+      ],
+      "title": "TalkBack sequence",
+      "required": "No direct focus-route drawing; obtain UI hierarchy and traversal trace",
+      "nativeStatus": "unverified",
+      "dedicatedReferenceMissing": true
+    },
+    {
+      "id": "R05-09",
+      "slug": "short-error",
+      "referencePath": "design/proposals/storyboards/x09/07-error-compact.svg",
+      "questions": [
+        "GUX-31",
+        "GUX-36"
+      ],
+      "title": "Narrow/short viewport recovery",
+      "required": "Inset and keyboard bounds, access to retry and back",
+      "nativeStatus": "unverified",
+      "dedicatedReferenceMissing": false
+    }
+  ]
+}
