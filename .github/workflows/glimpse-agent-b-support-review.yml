@@ -109,6 +109,8 @@ jobs:
                      for s in j['sources'])
           print('PASS: 34 source-hashed raster phones, 23 journeys, 137 frames, 56 scenario references; no human/native acceptance')
           PY
+      # Evidence synchronization is lease-guarded: only the checkout SHA may publish
+      # its 23 group sheets and 34 support contacts. Otherwise use its artifact.
       - name: Preserve versioned B-only edit and pixel inputs on branch
         run: |
           git config user.name 'github-actions[bot]'
