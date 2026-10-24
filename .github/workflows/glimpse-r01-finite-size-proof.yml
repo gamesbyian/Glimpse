@@ -1,0 +1,82 @@
+name: Glimpse R01 | finite 3-5-60 photo proof
+
+on:
+  push:
+    branches:
+      - agent/visual-state-reconciliation-20261023
+    paths:
+      - .github/workflows/glimpse-r01-finite-size-proof.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: glimpse-r01-finite-sizes-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  create-finite-photo-cases:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Build and self-verify unique 3, 5, 60-photo count studies
+        run: |
+          python3 scripts/build-r01-finite-size-evidence.py --write
+          python3 scripts/build-r01-finite-size-evidence.py
+      - name: Render three native-sized phone crops and source hash ledger
+        run: |
+          python3 -m pip install --quiet cairosvg pillow
+          python3 - <<'PY'
+          import hashlib, json, os
+          from pathlib import Path
+          from cairosvg import svg2png
+          from PIL import Image
+          root=Path("design/proposals/audit-revisions")
+          out=Path("/tmp/glimpse-r01-finite-count-proof")
+          out.mkdir(parents=True, exist_ok=True)
+          results=[]
+          for name,n in (("three-3",3),("five-5",5),("sixty-60",60)):
+              source=root/("r01-photo-"+name+".svg")
+              rendered=out/(name+"-full.png")
+              cropped=out/(name+"-phone-401x890.png")
+              svg2png(bytestring=source.read_bytes(), write_to=str(rendered),
+                      output_width=1160, output_height=920)
+              with Image.open(rendered) as image:
+                  phone=image.crop((15,14,416,904)).convert("RGB")
+                  assert phone.size==(401,890)
+                  assert len(phone.getcolors(401*890) or []) > 100, "Unexpected flat crop"
+                  phone.save(cropped)
+              results.append({
+                  "collectionPhotoCount":n, "source":str(source),
+                  "sourceSHA256":hashlib.sha256(source.read_bytes()).hexdigest(),
+                  "phonePNG":str(cropped), "phoneSHA256":hashlib.sha256(cropped.read_bytes()).hexdigest(),
+                  "reviewStatus":"rendered-needs-independent-optical-review",
+                  "androidVerified":False,"ownerApproved":False
+              })
+          (out/"evidence.json").write_text(json.dumps({
+              "sourceCommit":os.environ["GITHUB_SHA"],"runId":os.environ["GITHUB_RUN_ID"],
+              "evidenceClass":"svg-raster-only", "photos":results
+          },indent=2)+"\n")
+          print("PASS: three finite, source-hashed 401x890 draft PNGs; optical review pending")
+          PY
+      - name: Commit exactly three additional source-editable drafts
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add design/proposals/audit-revisions/r01-photo-three-3.svg
+          git add design/proposals/audit-revisions/r01-photo-five-5.svg
+          git add design/proposals/audit-revisions/r01-photo-sixty-60.svg
+          if ! git diff --cached --quiet; then
+            git commit -m "design: illustrate finite paper reel at 3, 5 and 60 photos"
+            git push origin HEAD:"${GITHUB_REF_NAME}"
+          fi
+      - uses: actions/upload-artifact@v4
+        with:
+          name: glimpse-r01-finite-three-five-sixty-${{ github.sha }}
+          path: /tmp/glimpse-r01-finite-count-proof/
+          retention-days: 14
