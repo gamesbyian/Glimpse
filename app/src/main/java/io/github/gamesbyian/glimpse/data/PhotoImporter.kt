@@ -8,6 +8,9 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.io.File
 import java.io.FileOutputStream
+import java.nio.file.Files
+import java.nio.file.LinkOption
+import java.nio.file.StandardCopyOption
 import java.security.MessageDigest
 
 data class ImportResult(
@@ -82,8 +85,25 @@ class PhotoImporter(private val context: Context, private val dao: GlimpseDao) {
                 else -> ".jpg"
             }
             val target = File(originals, hex + extension)
-            if (!target.exists()) {
-                require(temp.renameTo(target)) { "Unable to finalize offline copy" }
+            // Content-addressed naming is not enough: an existing private
+            // copy could have been truncated or corrupted after an earlier
+            // import. Verify bytes before reusing its identity.
+            val existingVerified = Files.isRegularFile(
+                target.toPath(), LinkOption.NOFOLLOW_LINKS
+            ) && target.length() == size && sha256(target) == hex
+            if (!existingVerified) {
+                // The temp and target share a directory, so a successful
+                // atomic move never exposes a partially written original.
+                // An unsupported atomic move must fail closed rather than
+                // replacing a previously indexed photo non-atomically.
+                Files.move(
+                    temp.toPath(), target.toPath(),
+                    StandardCopyOption.ATOMIC_MOVE,
+                    StandardCopyOption.REPLACE_EXISTING
+                )
+                require(target.isFile && target.length() == size && sha256(target) == hex) {
+                    "Offline copy failed final SHA-256 verification"
+                }
             }
             val photo = PhotoRecord(
                 id = hex,
@@ -101,5 +121,18 @@ class PhotoImporter(private val context: Context, private val dao: GlimpseDao) {
         } finally {
             temp.delete()
         }
+    }
+
+    private fun sha256(file: File): String {
+        val digest = MessageDigest.getInstance("SHA-256")
+        file.inputStream().use { stream ->
+            val buffer = ByteArray(64 * 1024)
+            while (true) {
+                val read = stream.read(buffer)
+                if (read < 0) break
+                if (read > 0) digest.update(buffer, 0, read)
+            }
+        }
+        return digest.digest().joinToString("") { "%02x".format(it) }
     }
 }
