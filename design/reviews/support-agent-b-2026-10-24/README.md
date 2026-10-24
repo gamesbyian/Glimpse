@@ -41,6 +41,14 @@ High-value current-source findings and repairs, anchored to the current ledger:
 
 The [source validator](../../../../scripts/validate-agent-b-support-journeys.py) now rejects regressions where X02 still shows the deleted collection, a destructive choice is unguarded, or X19/X22 lack explicit consequences and recognizable 48-unit design hit areas. The scoped workflow passed source+existing storyboard semantics and rendered all updated evidence; no shared viewer/selection manifests have been modified by B. **Integrator must reconcile shared advanced-storyboard action captions** for X19 `Confirm safe merge` (formerly `Choose safe merge`) and X22 `Review outgoing example` / `Open Android Sharesheet…` (formerly `Enable selected fields` / `Copy / Save / Share`). The manifest owns catalog captions, and B deliberately did not touch it.
 
+## Companion 320dp / 200%-type support reflow study (unselected)
+
+Production A's unselected two-state [Sections sheet primary concept](https://github.com/gamesbyian/Glimpse/blob/agent/production-a-primary-system-20261024/design/proposals/whole-product-candidates/compact-320dp-200pct-sections-sheet.svg) has a matching, independently source-editable **Report a problem** support-form companion at [`compact-report-sections.v0.1.svg`](compact-report-sections.v0.1.svg), with directly inspected [PNG](compact-report-sections.v0.1.png) and [machine-readable SHA/evidence record](compact-report-sections.v0.1.json). This stays **OUTSIDE** the selected 34 support paths and is not an owner IA decision.
+
+The left visual study has a two-line 36-unit heading, 94/91-unit form fields, separate 85-unit diagnostics OFF row, reachable 54-unit Review report and 55-unit Sections controls; scrollable form content is an intended **native** behavior, not implemented by the SVG. The right study shows four **86-unit** section rows and a 54-unit Close sections action inside a modal layer, with focus trap/return rules described rather than falsely simulated as TalkBack. Script `scripts/render-agent-b-compact-support-study.py` generates both the editable SVG and 1080×800 raster and hashes all evidence; its own structural gate checks **12 explicit >=54-unit source targets**, which are **not Android dp measurements**.
+
+**Direct pixel inspection:** the first PNG exposed a clipped right-hand notes heading and a tofu/missing-glyph dropdown arrow. Both were corrected in source generator, [focused CI #40137946540](https://github.com/gamesbyian/Glimpse/actions/runs/40137946540) passed, and the exact final PNG was reopened. The compact heading, complete panel labels, 4 destination rows and path-based Sections chevron now all fit without visible nominal-size clipping. Current editable SVG SHA-256 `58c2561a65563b649d8e136b24af3e16d9857446429e61b1a9fb4fd11274d9b7`; current PNG SHA-256 `81ee37a46315e9e9896cc4cdfdf3a44bee270529b7b583c14bce07817c786d20`. **No real 320dp/Android fontScale=2/IME/TalkBack/inset/native scrolling or device approval follows.** See [blocker #13](https://github.com/gamesbyian/Glimpse/issues/13).
+
 ## Focused developer replay
 
 ```sh
@@ -56,6 +64,7 @@ python3 -m pip install cairosvg pillow
 python3 scripts/render-support-review-corpus.py
 python3 scripts/render-agent-b-accessibility-probes.py
 python3 scripts/render-agent-b-journey-pairs.py
+python3 scripts/render-agent-b-compact-support-study.py
 ```
 
 The old `render-support-review-corpus.py` itself targets the historical support contact directory; the B-owned lean Actions wrapper moves generated copies into this versioned folder, deliberately avoiding historical evidence replacement. Read SHA-256s from the current ledger, not this prose.
