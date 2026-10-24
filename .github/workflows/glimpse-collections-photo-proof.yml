@@ -32,7 +32,7 @@ jobs:
           from cairosvg import svg2png
           from PIL import Image
           p=Path("design/proposals/whole-product-candidates/collections-photo-covers.svg")
-          raw=p.read_bytes();root=ElementTree.fromstring(raw)
+          raw=p.read_bytes();root=ET.fromstring(raw)
           meta=json.loads(root.find('{http://www.w3.org/2000/svg}metadata').text)
           assert meta["exampleCollectionCounts"]=={"Rainbows":22,"Golden Hour":50,"Patterns":3}
           assert meta["noGestureWheelOnCollectionsList"] is True
