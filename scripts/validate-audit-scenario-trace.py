@@ -32,7 +32,7 @@ for scenario in trace["scenarios"]:
     if state!="PICTURED":
         assert len(scenario["nextProof"])>=30, scenario
 assert states=={key:trace["counts"][key] for key in states}
-assert states["MISSING_SPECIFIC"]>=1, "Do not imply the entire candidate set is finished"
+assert states["PARTIAL"]>=1, "Existing visual sequences still have documented partial evidence"
 assert trace["auditCycleA"]=={"PASS":18,"ISSUE":8,"UNVERIFIED":34}
 
 size_examples=trace["finiteCountExamples"]
