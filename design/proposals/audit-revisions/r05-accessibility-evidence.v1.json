@@ -101,7 +101,8 @@
       "nativeStatus": "unverified",
       "dedicatedReferenceMissing": false,
       "dedicatedReferencePath": "design/proposals/audit-revisions/r05-reduced-motion.svg",
-      "referenceKind": "illustrative-interaction-route-not-native-evidence"
+      "referenceKind": "illustrative-interaction-route-not-native-evidence",
+      "dedicatedOpticalStatus": "source-sha-matched-phone-crop-independently-viewed"
     },
     {
       "id": "R05-08",
@@ -117,7 +118,8 @@
       "dedicatedReferenceMissing": false,
       "dedicatedReferencePath": "design/proposals/audit-revisions/r05-talkback-route.svg",
       "referenceKind": "illustrative-interaction-route-not-native-evidence",
-      "photoOverlayReferencePath": "design/proposals/audit-revisions/r05-photo-reel-focus-overlay.svg"
+      "photoOverlayReferencePath": "design/proposals/audit-revisions/r05-photo-reel-focus-overlay.svg",
+      "dedicatedOpticalStatus": "source-sha-matched-phone-crop-independently-viewed"
     },
     {
       "id": "R05-09",
@@ -132,5 +134,7 @@
       "nativeStatus": "unverified",
       "dedicatedReferenceMissing": false
     }
-  ]
+  ],
+  "opticalSourceRun": 40049026265,
+  "photoOverlaySourceSha256": "80bef8638ed0c18d6e91e67fb66a5f89336458ff592738bc9ebd5c3922135f07"
 }
