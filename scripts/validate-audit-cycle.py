@@ -110,7 +110,14 @@ for case in r05["cases"]:
     assert (ROOT / case["referencePath"]).exists(), case["referencePath"]
     assert case["nativeStatus"] == "unverified", case["id"]
     assert all(q in ids for q in case["questions"]), case["id"]
-assert {case["id"] for case in r05["cases"] if case["dedicatedReferenceMissing"]} == {"R05-07", "R05-08"}
+assert not any(case["dedicatedReferenceMissing"] for case in r05["cases"])
+for case in r05["cases"]:
+    if "dedicatedReferencePath" in case:
+        p = ROOT / case["dedicatedReferencePath"]
+        assert p.exists(), case["id"]
+        src = p.read_text()
+        assert '"nativeProof":"unverified"' in src
+        assert "not Android screenshot" in src or "not actual Android" in src
 counts = {x: sum(v["status"] == x for v in cycle["results"])
           for x in ("PASS", "ISSUE", "UNVERIFIED", "NOT_APPLICABLE")}
 assert counts == cycle["summary"]["counts"]
