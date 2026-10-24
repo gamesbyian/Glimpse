@@ -1,4 +1,5 @@
 name: Glimpse R05 | compact phone photo-reel draft proof
+# Re-evaluate fixed JPEG magic check in deterministic source generator.
 
 on:
   push:
