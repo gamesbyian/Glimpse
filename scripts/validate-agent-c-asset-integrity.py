@@ -129,8 +129,21 @@ def audit_cross_surface(manifest, root, fixture_hashes):
             "Proposal must not assert current device wallpaper")
     require(home["wallpaperMutation"] is False,
             "Home browse/preview must not imply apply")
-    require("illustrative vector" in home["p04HeroArtwork"],
-            "p04 cannot claim photographic source before rights are cleared")
+    p04_reference = next(x for x in manifest["requestedIndependentPhotos"]
+                         if x["photoId"] == "p04")
+    artwork_claim = home["p04HeroArtwork"]
+    if "illustrative vector" in artwork_claim:
+        require(not home.get("p04SourceSHA256"),
+                "Unintegrated p04 art cannot advertise a photo digest")
+    else:
+        require("source-verified" in artwork_claim,
+                "Photo claim needs explicit source-verified metadata")
+        require(p04_reference["rightsStatus"] == "verified",
+                "p04 photo rights and source remain unverified")
+        require(home.get("p04SourceSHA256") == p04_reference["sha256"],
+                "p04 claim does not match independent photo bytes")
+        require(p04_reference["sha256"] in {sha for _, sha in sources["home"][1]},
+                "Home p04 displayed photo does not embed exact verified bytes")
     for surface in ("reel", "grid", "detail"):
         info = sources[surface][0]
         require(info.get("appliedStatus") == "unchanged",
