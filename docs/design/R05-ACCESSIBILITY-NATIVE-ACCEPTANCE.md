@@ -22,3 +22,8 @@ For hit targets, measure **actual bounding rectangles**, density and resulting d
 ## Audit handoff
 
 Link the native artifact back to GUX-31–39 and the exact reference SHA. Mark each case PASS, ISSUE or UNVERIFIED independently; a missing test does not establish a defect. Then update candidate spec and source-editable mockups for observed failures; rerender revised source and repeat native comparison. **Owner approval is a separate gate.**
+
+
+## Illustration-gap closure, separate from native testing
+
+Two new **interaction-diagram references** are available: [reduced-motion p12→p13](../../design/proposals/audit-revisions/r05-reduced-motion.svg) and [TalkBack focus route](../../design/proposals/audit-revisions/r05-talkback-route.svg). Their purpose is to make focus/selection requirements visually reviewable; neither is a screenshot, simulated TalkBack log or tested implementation. The [manifest](../../design/proposals/audit-revisions/r05-accessibility-evidence.v1.json) now maps both dedicated sources without claiming any device result. The original source gaps above describe what was missing *before* this addition. Every R05 native proof remains **unverified**.
