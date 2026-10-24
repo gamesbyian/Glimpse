@@ -20,9 +20,9 @@ GEN=runpy.run_path(str(ROOT/"scripts/build-audit-r01-photo-variants.py"))
 BY_P={"p10":"art2","p11":"art3","p12":"art1","p13":"art4","p14":"art5"}
 INPUTS={
  "r01-photo-drag-36.svg":("04-drag-36.svg","drag-36","p12",
-     ["fixture2","fixture3","fixture1","fixture4","fixture5","fixture1"]),
+     ["fixture1","fixture2","fixture3","fixture1","fixture4","fixture5"]),
  "r01-photo-tap-p13-pressed.svg":("02-touch-down.svg","tap-p13-pressed","p12",
-     ["fixture2","fixture3","fixture1","fixture4","fixture5","fixture1"]),
+     ["fixture1","fixture2","fixture3","fixture1","fixture4","fixture5"]),
 }
 # Order must match original X05 frame's 6 USE nodes (one hero, five wedges).
 PAPER_USE=("fixture1","fixture2","fixture3","fixture1","fixture2","fixture3")
