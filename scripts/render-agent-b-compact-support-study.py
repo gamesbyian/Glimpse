@@ -104,7 +104,7 @@ for y,txt,size,weight,color in [
 svg='<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="800" viewBox="0 0 1080 800" role="img" aria-label="Unselected 320dp large-type report form and Sections sheet study"><title>Agent B compact support and a11y study, not native acceptance</title><desc>Two 320 unit visual proposal phones and explicit native proof limits.</desc><metadata>{"schemaVersion":1,"status":"UNSELECTED_NOT_OWNER_APPROVED","nativeVerified":false,"humanApproved":false,"target":"320dp/fontScale2-static-composition","source":"Agent A draft Sections grammar"}</metadata>'+''.join(parts)+'</svg>\n'
 root=ET.fromstring(svg)
 controls=[n for n in root.iter() if n.attrib.get("data-control")]
-assert len(controls)==9
+assert len(controls)==12
 assert all(min(float(n.attrib["data-hit-width"]),float(n.attrib["data-hit-height"]))>=54 for n in controls)
 OUT.mkdir(parents=True,exist_ok=True)
 src=OUT/"compact-report-sections.v0.1.svg"
@@ -121,4 +121,4 @@ report={"schemaVersion":1,"status":"STATIC_UNSELECTED_NOT_NATIVE_OR_OWNER_ACCEPT
         "requiresNative":["fontScale2 dynamic reflow","48dp hitboxes","scroll + insets",
         "TalkBack focus order and return","OS sharing focus return","human approval"]}
 (OUT/"compact-report-sections.v0.1.json").write_text(json.dumps(report,indent=2)+"\n")
-print("PASS: 2-source-editable 320dp conceptual panels, 9 >=54px study targets; native/owner approval false")
+print("PASS: 2-source-editable 320dp conceptual panels, 12 >=54px study targets; native/owner approval false")
