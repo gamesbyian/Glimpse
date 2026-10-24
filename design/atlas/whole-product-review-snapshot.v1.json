@@ -9,7 +9,7 @@
     "revisionScenarios": 56
   },
   "referenceManifest": "design/proposals/whole-product-review-selection.v1.json",
-  "uniqueReferencedSources": 255,
+  "uniqueReferencedSources": 256,
   "sources": [
     {
       "path": "design/proposals/advanced-storyboards/x13/01-original.svg",
@@ -364,6 +364,11 @@
     {
       "path": "design/proposals/audit-revisions/r02-crop-pending.svg",
       "sourceSHA256": "5592eb02deb39792216c90287681d19f56ffaa0e4638cb3621ef4cb1a597162a",
+      "ownerApproved": false
+    },
+    {
+      "path": "design/proposals/audit-revisions/r02-photo-detail-actions-p12.svg",
+      "sourceSHA256": "4d894bd3a70114dd7d23f4cbfc7d935f82810b382f89a4bc458ae1e30ad7173d",
       "ownerApproved": false
     },
     {

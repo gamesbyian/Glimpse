@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "status": "ALL_DRAFT_SOURCE_EVIDENCE_NOT_HUMAN_APPROVED",
-  "sourceCommit": "53b4350983013109bed3fdb5c655b6f8f4a253f6",
+  "sourceCommit": "0796af35f4f280b60a53c97981a1cc67eef175bd",
   "auditCycleA": {
     "PASS_SOURCE_ONLY": 18,
     "ISSUE": 8,
@@ -15,10 +15,10 @@
     "P0": 82,
     "P1": 55,
     "supplemental": 25,
-    "auditRevisionAlternatives": 44,
+    "auditRevisionAlternatives": 45,
     "wholeProductCandidates": 1,
     "preferredRoute": 39,
-    "uniqueEvidenceSources": 273,
+    "uniqueEvidenceSources": 274,
     "namedStateSlots": 34
   },
   "scenarioCoverage": {
@@ -2249,6 +2249,12 @@
           "label": "R02 Crop Pending",
           "meaning": "",
           "sourceSHA256": "5592eb02deb39792216c90287681d19f56ffaa0e4638cb3621ef4cb1a597162a"
+        },
+        {
+          "path": "design/proposals/audit-revisions/r02-photo-detail-actions-p12.svg",
+          "label": "R02 Photo Detail Actions P12",
+          "meaning": "",
+          "sourceSHA256": "4d894bd3a70114dd7d23f4cbfc7d935f82810b382f89a4bc458ae1e30ad7173d"
         },
         {
           "path": "design/proposals/audit-revisions/r02-return-dismiss.svg",
