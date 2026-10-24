@@ -65,7 +65,7 @@ def checked_in_fixture_assets(manifest, root):
         expected = entry["sha256"]
         require(is_sha(expected), f"Malformed {name} SHA")
         binary = (root / fixture["basePath"] / name).read_bytes()
-        require(binary.startswith(b"\\xff\\xd8\\xff"), f"{name} is not a JPEG")
+        require(binary.startswith(b"\xff\xd8\xff"), f"{name} is not a JPEG")
         require(digest(binary) == expected, f"Fixture SHA drift: {name}")
         hashes[name] = expected
     require(len(hashes) == 6 and len(set(hashes.values())) == 6,
@@ -88,7 +88,7 @@ def source_svg(path):
                 raw = base64.b64decode(href.split(",", 1)[1], validate=True)
             except (ValueError, binascii.Error) as error:
                 raise ValueError(f"{path}: bad embedded JPEG: {error}") from error
-            require(raw.startswith(b"\\xff\\xd8\\xff"), f"{path}: invalid JPEG image")
+            require(raw.startswith(b"\xff\xd8\xff"), f"{path}: invalid JPEG image")
             photos.append((element.get("id"), digest(raw)))
         elif href.startswith(("https:", "http:", "file:", "data:image")):
             raise ValueError(f"{path}: external or unchecked image link")
