@@ -76,7 +76,7 @@ def verify_large_type_navigation_targets():
                            for n in node.iter("node")]
             if label not in descendants:
                 continue
-            values = list(map(int, re.findall(r"\\d+", node.attrib.get("bounds", ""))))
+            values = list(map(int, re.findall(r"\d+", node.attrib.get("bounds", ""))))
             if len(values) != 4:
                 continue
             height_dp = (values[3] - values[1]) * 160 / dpi
