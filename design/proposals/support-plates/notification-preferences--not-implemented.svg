@@ -21,7 +21,7 @@
 <text x="53" y="463" font-family="Arial,Helvetica,sans-serif" fill="#153F46" font-size="16" font-weight="650">Source or import failures</text>
 <text x="53" y="485" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="12" font-weight="400">Check Activity for import issues</text>
 
-<rect x="44" y="652" width="336" height="42" rx="20" fill="#FFFCF6" stroke="#C8B7A1" stroke-width="1"/>
+<rect x="44" y="652" width="336" height="48" rx="20" fill="#FFFCF6" stroke="#C8B7A1" stroke-width="1"/>
 <text x="59" y="679" font-family="Arial,Helvetica,sans-serif" fill="#153F46" font-size="14" font-weight="650">Return to settings</text>
 </g>
 <path d="M29 817h373" stroke="#C8B7A1"/>

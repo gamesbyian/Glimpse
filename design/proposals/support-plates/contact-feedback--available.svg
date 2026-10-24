@@ -22,7 +22,7 @@
 <text x="53" y="503" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="14" font-weight="400">May require GitHub login; issue will be</text>
 <text x="53" y="522" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="14" font-weight="400">public</text>
 <text x="53" y="542" font-family="Arial,Helvetica,sans-serif" fill="#1D5960" font-size="13" font-weight="650">Open issues</text>
-<rect x="42" y="660" width="170" height="42" rx="20" fill="#FFFCF6" stroke="#C8B7A1" stroke-width="1"/>
+<rect x="42" y="660" width="170" height="48" rx="20" fill="#FFFCF6" stroke="#C8B7A1" stroke-width="1"/>
 <text x="57" y="687" font-family="Arial,Helvetica,sans-serif" fill="#153F46" font-size="14" font-weight="650">Copy feedback</text>
 </g>
 <path d="M29 817h373" stroke="#C8B7A1"/>

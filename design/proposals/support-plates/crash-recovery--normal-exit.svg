@@ -17,9 +17,9 @@
 <text x="53" y="396" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="14" font-weight="400">Return to your original collection and</text>
 <text x="53" y="415" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="14" font-weight="400">selection</text>
 <text x="53" y="435" font-family="Arial,Helvetica,sans-serif" fill="#1D5960" font-size="13" font-weight="650">Continue</text>
-<rect x="43" y="685" width="180" height="42" rx="20" fill="#1D5960" stroke="#1D5960" stroke-width="1"/>
+<rect x="43" y="685" width="180" height="48" rx="20" fill="#1D5960" stroke="#1D5960" stroke-width="1"/>
 <text x="58" y="712" font-family="Arial,Helvetica,sans-serif" fill="#FFFFFF" font-size="14" font-weight="650">Continue</text>
-<rect x="236" y="685" width="147" height="42" rx="20" fill="#FFFCF6" stroke="#C8B7A1" stroke-width="1"/>
+<rect x="236" y="685" width="147" height="48" rx="20" fill="#FFFCF6" stroke="#C8B7A1" stroke-width="1"/>
 <text x="251" y="712" font-family="Arial,Helvetica,sans-serif" fill="#153F46" font-size="14" font-weight="650">Not now</text>
 </g>
 <path d="M29 817h373" stroke="#C8B7A1"/>

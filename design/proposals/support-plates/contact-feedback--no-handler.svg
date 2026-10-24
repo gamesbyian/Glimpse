@@ -25,7 +25,7 @@
 <rect x="42" y="571" width="343" height="62" rx="10" fill="#E9E0F5" stroke="none" stroke-width="1"/>
 <text x="55" y="599" font-family="Arial,Helvetica,sans-serif" fill="#153F46" font-size="16" font-weight="650">No email/share handler found</text>
 <text x="55" y="622" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="14" font-weight="400">Copy your draft instead.</text>
-<rect x="42" y="660" width="170" height="42" rx="20" fill="#FFFCF6" stroke="#C8B7A1" stroke-width="1"/>
+<rect x="42" y="660" width="170" height="48" rx="20" fill="#FFFCF6" stroke="#C8B7A1" stroke-width="1"/>
 <text x="57" y="687" font-family="Arial,Helvetica,sans-serif" fill="#153F46" font-size="14" font-weight="650">Copy feedback</text>
 </g>
 <path d="M29 817h373" stroke="#C8B7A1"/>

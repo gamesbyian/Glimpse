@@ -26,7 +26,7 @@
 <text x="53" y="542" font-family="Arial,Helvetica,sans-serif" fill="#153F46" font-size="17" font-weight="650">Choose destination</text>
 <text x="53" y="565" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="14" font-weight="400">Public issues can be read by anyone</text>
 <text x="53" y="604" font-family="Arial,Helvetica,sans-serif" fill="#1D5960" font-size="13" font-weight="650">Preview first</text>
-<rect x="43" y="674" width="339" height="42" rx="20" fill="#1D5960" stroke="#1D5960" stroke-width="1"/>
+<rect x="43" y="674" width="339" height="48" rx="20" fill="#1D5960" stroke="#1D5960" stroke-width="1"/>
 <text x="58" y="701" font-family="Arial,Helvetica,sans-serif" fill="#FFFFFF" font-size="14" font-weight="650">Preview feedback</text>
 </g>
 <path d="M29 817h373" stroke="#C8B7A1"/>

@@ -17,7 +17,7 @@
 <text x="53" y="393" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="14" font-weight="400">You can report a problem without leaving a</text>
 <text x="53" y="412" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="14" font-weight="400">rating</text>
 <text x="53" y="432" font-family="Arial,Helvetica,sans-serif" fill="#1D5960" font-size="13" font-weight="650">Contact developer</text>
-<rect x="43" y="631" width="338" height="42" rx="20" fill="#1D5960" stroke="#1D5960" stroke-width="1"/>
+<rect x="43" y="631" width="338" height="48" rx="20" fill="#1D5960" stroke="#1D5960" stroke-width="1"/>
 <text x="58" y="658" font-family="Arial,Helvetica,sans-serif" fill="#FFFFFF" font-size="14" font-weight="650">Open Google Play</text>
 </g>
 <path d="M29 817h373" stroke="#C8B7A1"/>

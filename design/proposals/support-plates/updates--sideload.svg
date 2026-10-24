@@ -16,7 +16,7 @@
 <text x="53" y="364" font-family="Arial,Helvetica,sans-serif" fill="#153F46" font-size="17" font-weight="650">How updates work</text>
 <text x="53" y="387" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="14" font-weight="400">Review signed GitHub release manually</text>
 <text x="53" y="426" font-family="Arial,Helvetica,sans-serif" fill="#1D5960" font-size="13" font-weight="650">Learn more</text>
-<rect x="42" y="637" width="338" height="42" rx="20" fill="#1D5960" stroke="#1D5960" stroke-width="1"/>
+<rect x="42" y="637" width="338" height="48" rx="20" fill="#1D5960" stroke="#1D5960" stroke-width="1"/>
 <text x="57" y="664" font-family="Arial,Helvetica,sans-serif" fill="#FFFFFF" font-size="14" font-weight="650">Open update source</text>
 </g>
 <path d="M29 817h373" stroke="#C8B7A1"/>

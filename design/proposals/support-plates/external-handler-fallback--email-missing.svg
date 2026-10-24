@@ -17,11 +17,11 @@
 <text x="53" y="405" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="14" font-weight="400">Nothing was submitted to an external</text>
 <text x="53" y="424" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="14" font-weight="400">service</text>
 <text x="53" y="444" font-family="Arial,Helvetica,sans-serif" fill="#1D5960" font-size="13" font-weight="650">Edit draft</text>
-<rect x="43" y="509" width="163" height="42" rx="20" fill="#1D5960" stroke="#1D5960" stroke-width="1"/>
+<rect x="43" y="509" width="163" height="48" rx="20" fill="#1D5960" stroke="#1D5960" stroke-width="1"/>
 <text x="58" y="536" font-family="Arial,Helvetica,sans-serif" fill="#FFFFFF" font-size="14" font-weight="650">Copy details</text>
-<rect x="217" y="509" width="162" height="42" rx="20" fill="#FFFCF6" stroke="#C8B7A1" stroke-width="1"/>
+<rect x="217" y="509" width="162" height="48" rx="20" fill="#FFFCF6" stroke="#C8B7A1" stroke-width="1"/>
 <text x="232" y="536" font-family="Arial,Helvetica,sans-serif" fill="#153F46" font-size="14" font-weight="650">Save locally</text>
-<rect x="42" y="658" width="338" height="42" rx="20" fill="#FFFCF6" stroke="#C8B7A1" stroke-width="1"/>
+<rect x="42" y="658" width="338" height="48" rx="20" fill="#FFFCF6" stroke="#C8B7A1" stroke-width="1"/>
 <text x="57" y="685" font-family="Arial,Helvetica,sans-serif" fill="#153F46" font-size="14" font-weight="650">Return to Glimpse</text>
 </g>
 <path d="M29 817h373" stroke="#C8B7A1"/>

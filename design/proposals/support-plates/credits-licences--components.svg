@@ -23,7 +23,7 @@
 <text x="53" y="496" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="14" font-weight="400">Artwork attribution and source-specific</text>
 <text x="53" y="515" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="14" font-weight="400">rights</text>
 <text x="53" y="535" font-family="Arial,Helvetica,sans-serif" fill="#1D5960" font-size="13" font-weight="650">Read attributions</text>
-<rect x="42" y="654" width="341" height="42" rx="20" fill="#FFFCF6" stroke="#C8B7A1" stroke-width="1"/>
+<rect x="42" y="654" width="341" height="48" rx="20" fill="#FFFCF6" stroke="#C8B7A1" stroke-width="1"/>
 <text x="57" y="681" font-family="Arial,Helvetica,sans-serif" fill="#153F46" font-size="14" font-weight="650">Copy licence summary</text>
 </g>
 <path d="M29 817h373" stroke="#C8B7A1"/>

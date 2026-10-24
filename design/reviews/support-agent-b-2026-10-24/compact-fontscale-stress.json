@@ -18,7 +18,7 @@
     },
     {
       "source": "design/proposals/support-plates/report-problem--with-diagnostics.svg",
-      "sourceSHA256": "62f13a49e9c53fb37b7ccb26df67a90c7a3270d6ed47eab7e1ba84120593fd74",
+      "sourceSHA256": "8dad5fcbaa8d05d6e3bce3a2daf92514da982102282ba9b3ff4076fd13d0d28c",
       "scaledPhonePixels": [
         320,
         710
@@ -32,7 +32,7 @@
     },
     {
       "source": "design/proposals/support-plates/diagnostic-preview--expanded.svg",
-      "sourceSHA256": "63c94e2cf25eb466b0c604bf3de702abe2a825d73731326816aece91c38a4fc1",
+      "sourceSHA256": "d9510adc6969002b7118140d6f7f8d0a68360c22c2dfa55bac012ce04f6c9903",
       "scaledPhonePixels": [
         320,
         710
@@ -74,7 +74,7 @@
     },
     {
       "source": "design/proposals/support-plates/external-handler-fallback--chooser-cancelled.svg",
-      "sourceSHA256": "cfd74839a10bdb9e1a5929f41883d287a3fdcc15f71500670c312eaa9b19a65a",
+      "sourceSHA256": "8f78979eb3fa4df2764cc667548ba2ad453e1b395a249520436aac2756a078d3",
       "scaledPhonePixels": [
         320,
         710
@@ -87,6 +87,6 @@
       "ownerApproved": false
     }
   ],
-  "imageSHA256": "d0ac3a41b55696e0c5f1015d170c6ffa1f85bc7d23fa3b3601e34ebb9ba9b3d3",
+  "imageSHA256": "fc8408fa0abc0275dee21019abc9e37ba40ae8d625e51585a90a0086ea8694be",
   "warning": "No physical dp/insets, dynamic font reflow, OS focus, TalkBack or device result; visual redlines only"
 }

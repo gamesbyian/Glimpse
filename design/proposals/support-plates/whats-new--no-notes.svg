@@ -18,7 +18,7 @@
 <text x="53" y="389" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="14" font-weight="400">Plans can change before release; see</text>
 <text x="53" y="408" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="14" font-weight="400">the current public roadmap.</text>
 <text x="53" y="428" font-family="Arial,Helvetica,sans-serif" fill="#1D5960" font-size="13" font-weight="650">Roadmap</text>
-<rect x="43" y="618" width="337" height="42" rx="20" fill="#1D5960" stroke="#1D5960" stroke-width="1"/>
+<rect x="43" y="618" width="337" height="48" rx="20" fill="#1D5960" stroke="#1D5960" stroke-width="1"/>
 <text x="58" y="645" font-family="Arial,Helvetica,sans-serif" fill="#FFFFFF" font-size="14" font-weight="650">Back to Glimpse</text>
 </g>
 <path d="M29 817h373" stroke="#C8B7A1"/>
