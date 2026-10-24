@@ -52,6 +52,9 @@ for family in support["screens"]:
         if name=="storage-management--delete-confirm":
             for text in ("delete-modal-scrim","Example count; Android must calculate it.","Original provider photos stay intact.","Review active rotation first"):
                 if text not in phone:errors.append(f"{p}: missing destructive preflight {text}")
+        if name in ("crash-recovery--normal-exit","crash-recovery--suspected-crash"):
+            if phone.count('>Continue</text>') != 1:
+                errors.append(f"{p}: duplicate or missing recovery action")
         if name=="report-problem--with-diagnostics" and "Diagnostics selected, not sent" not in phone:
             errors.append(f"{p}: diagnostic selection indistinguishable from sent result")
         if name=="report-problem--draft" and "Nothing sent; diagnostics off" not in phone:
