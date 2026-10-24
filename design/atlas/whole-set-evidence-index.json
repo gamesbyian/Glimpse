@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "status": "ALL_DRAFT_SOURCE_EVIDENCE_NOT_HUMAN_APPROVED",
-  "sourceCommit": "735df7581fa0e411456b2fcff73dd8fe65cfb955",
+  "sourceCommit": "938a19978e9a3b523cd97cfeb34eecc5c7e4b565",
   "auditCycleA": {
     "PASS_SOURCE_ONLY": 18,
     "ISSUE": 8,
@@ -15,15 +15,15 @@
     "P0": 82,
     "P1": 55,
     "supplemental": 25,
-    "auditRevisionAlternatives": 35,
+    "auditRevisionAlternatives": 36,
     "preferredRoute": 39,
-    "uniqueEvidenceSources": 263,
+    "uniqueEvidenceSources": 264,
     "namedStateSlots": 34
   },
   "scenarioCoverage": {
     "totalRequired": 56,
-    "PARTIAL": 7,
-    "PICTURED": 49,
+    "PARTIAL": 6,
+    "PICTURED": 50,
     "MISSING_SPECIFIC": 0
   },
   "reviewGaps": [
@@ -56,12 +56,6 @@
       "scenario": "home-last-confirmed",
       "state": "PARTIAL",
       "needed": "Need one Home status panel explicitly labelled last Glimpse acknowledgement versus present wallpaper uncertainty."
-    },
-    {
-      "lane": "R04",
-      "scenario": "import-offline",
-      "state": "PARTIAL",
-      "needed": "Need dedicated partial-copy provider-offline recovery preserving verified local counts."
     },
     {
       "lane": "R08",
@@ -2290,6 +2284,12 @@
           "label": "R04 Import No Space",
           "meaning": "",
           "sourceSHA256": "acd6d5cff270dc015051875a14f8152fa5b61c18ac18a22fb098644c7c418d4a"
+        },
+        {
+          "path": "design/proposals/audit-revisions/r04-import-offline-17-of-22.svg",
+          "label": "R04 Import Offline 17 Of 22",
+          "meaning": "",
+          "sourceSHA256": "84b3023f8e20c007fd18baf033e41bcf719a274b7ab985ec27dd004d4f565fa6"
         },
         {
           "path": "design/proposals/audit-revisions/r05-photo-reel-focus-overlay.svg",
