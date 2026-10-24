@@ -10,7 +10,9 @@
 <rect x="0" y="0" width="1160" height="920" rx="0" fill="#E9E2D6" stroke="none"/>
 <rect x="15" y="14" width="401" height="890" rx="22" fill="#F6F0E6" stroke="#C4B7A4"/>
 <text x="38" y="44" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="700" fill="#153F46">9:41</text>
-<text x="358" y="44" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="500" fill="#667975">● ▰</text>
+<circle cx="354" cy="38" r="3" fill="#667975"/>
+<rect x="365" y="32" width="14" height="9" rx="2" fill="none" stroke="#667975"/>
+<rect x="379" y="35" width="3" height="3" rx="1" fill="#667975"/>
 <text x="38" y="100" font-family="Arial,Helvetica,sans-serif" font-size="30" font-weight="700" fill="#153F46">Collections</text>
 <text x="39" y="131" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="500" fill="#536F70">Keep your favorite photographs together</text>
 <rect x="39" y="153" width="353" height="49" rx="13" fill="#FFFCF6" stroke="#C4B7A4"/>
@@ -18,7 +20,8 @@
 <circle cx="358" cy="176" r="7" stroke="#537174" stroke-width="2" fill="none"/>
 <path d="M364 182l8 8" stroke="#537174" stroke-width="2"/>
 <text x="40" y="229" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="700" fill="#153F46">3 collections · locally saved</text>
-<text x="323" y="229" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="600" fill="#1D5960">Sort ▾</text>
+<text x="327" y="229" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="600" fill="#1D5960">Sort</text>
+<path d="M363 222l6 7 6 -7" stroke="#1D5960" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
 <rect x="39" y="245" width="353" height="139" rx="13" fill="#FFFCF6" stroke="#C4B7A4"/>
 <rect x="49" y="257" width="112" height="113" rx="15" fill="#EAD9BD" stroke="#AE9B84" stroke-width="3"/>
 <clipPath id="photo-0"><rect x="53" y="261" width="104" height="105" rx="11"/></clipPath>
