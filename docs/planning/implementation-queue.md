@@ -119,3 +119,13 @@ Only adopt secondary reels when uncoached evidence demonstrates added usefulness
 ## Safe interrupted-session handoff (2026-10-23)
 
 The newest recovered priority/evidence snapshot is [HANDOFF-2026-10-23-SESSION-RECOVERY-AND-NEXT-AGENT.md](HANDOFF-2026-10-23-SESSION-RECOVERY-AND-NEXT-AGENT.md). Treat full one-shot 40041023803 and later targeted R01/R04/R05 checks separately. The next agent should prioritize genuine Android screenshots/hierarchy and native trace collection, not more unchecked reference counts. Cycle-A audit remains 18 PASS / 8 ISSUE / 34 UNVERIFIED; all visual work remains draft.
+
+
+## R06–R08 follow-through (2026-10-23; still draft)
+
+- [x] Commit [candidate C](AUDIT-CANDIDATE-C-SHARE-SCHEDULE-RECOVERY.md) covering normative share-return, scheduling uncertainty, local-copy retention and non-destructive restore conflict decisions.
+- [x] Add five distinct draft phone-screen sources for share dismissal, battery restriction, unknown apply, revoked provider access and restore conflict choice. See [source-evidence manifest](../../design/proposals/audit-revisions/r06-r08-delta-evidence.v1.json); source-readback checks succeeded, **no optical acceptance inferred**.
+- [ ] Independently rasterize the five current SHA sources into annotation-free 401×890 crops, compare against corresponding existing drawings, inspect actual pixels for typography/cutouts/actions, and log file/source SHA256.
+- [ ] Add the smallest viable transition and accessibility-equivalence checks; confirm actual 48dp touch bounds, 200% layout, TalkBack order and external activity returns on Android.
+- [ ] Examine remaining R03 pending/partial per-target apply and R06 share preparation/no-handler state before declaring a complete human-review candidate.
+- [ ] Run comprehensive cross-screen optical and command-semantic review, then arrange **explicit human whole-set approval** with version/hash freeze. Cycle-A scores remain 18/8/34 until new audit evidence supports a change.
