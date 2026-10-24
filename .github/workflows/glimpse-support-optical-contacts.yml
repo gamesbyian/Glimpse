@@ -5,6 +5,9 @@ on:
     branches: [agent/visual-state-reconciliation-20261023]
     paths:
       - .github/workflows/glimpse-support-optical-contacts.yml
+      - scripts/render-support-review-corpus.py
+      - scripts/validate-support-state-truth.py
+      - design/proposals/support-plates/**
   workflow_dispatch:
 
 permissions:
@@ -24,7 +27,9 @@ jobs:
         with:
           python-version: '3.12'
       - name: Assert all original 34 support states exist
-        run: python3 scripts/render-support-review-corpus.py --check
+        run: |
+          python3 scripts/render-support-review-corpus.py --check
+          python3 scripts/validate-support-state-truth.py
       - name: Render only 34 original support phone crops into 6 inspection sheets
         run: |
           python3 -m pip install --quiet cairosvg pillow
