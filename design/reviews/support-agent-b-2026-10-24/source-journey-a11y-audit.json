@@ -4,7 +4,7 @@
   "journeys": 23,
   "storyboardFrames": 137,
   "illustratedScenarios": 56,
-  "supportMinimumFontBelow14": 34,
+  "supportMinimumBodyFontBelow14": 0,
   "fontScaleVerdict": "320dp/200% real Android reflow unverified: source fonts and targets are only static reference geometry",
   "navigationVerdict": "data-control rectangles are visual geometry proposals, not native semantics/focus tests",
   "sourceSHA256": {
@@ -18,7 +18,7 @@
         "nav-home"
       ],
       "modal": false,
-      "minVisibleFont": 11
+      "minBodyFont": 14.0
     },
     "design/proposals/support-plates/about--play-release.svg": {
       "sha256": "4d94a67c8fd251845994fb6409fbc1b047c8122784f0194c09a2ca07d1db2de6",
@@ -30,7 +30,7 @@
         "nav-home"
       ],
       "modal": false,
-      "minVisibleFont": 11
+      "minBodyFont": 14.0
     },
     "design/proposals/support-plates/help--topics.svg": {
       "sha256": "c89b1c7233fd789fa65e5185ff7e62e70a5695d748f4c53991099c2282e7fe3c",
@@ -42,7 +42,7 @@
         "nav-home"
       ],
       "modal": false,
-      "minVisibleFont": 11
+      "minBodyFont": 14.0
     },
     "design/proposals/support-plates/help--article.svg": {
       "sha256": "37926c42185adaf557e2f3083362f55c6921a847e9d3c22484f35d55d0d5ff6e",
@@ -54,7 +54,7 @@
         "nav-home"
       ],
       "modal": false,
-      "minVisibleFont": 11
+      "minBodyFont": 14.0
     },
     "design/proposals/support-plates/contact-feedback--available.svg": {
       "sha256": "1c56621d3929f0fb94cf604b878cd3394978630086a5fc5e4103c21052aab716",
@@ -66,7 +66,7 @@
         "nav-home"
       ],
       "modal": false,
-      "minVisibleFont": 11
+      "minBodyFont": 14.0
     },
     "design/proposals/support-plates/contact-feedback--no-handler.svg": {
       "sha256": "cfaff6f8cda0a06aaffaa79ff1ce51abf01f1e47fc479ca3ab38e41f1163258e",
@@ -78,7 +78,7 @@
         "nav-home"
       ],
       "modal": false,
-      "minVisibleFont": 11
+      "minBodyFont": 14.0
     },
     "design/proposals/support-plates/report-problem--draft.svg": {
       "sha256": "533b357f6e9aa58a8427b61b6c166bf8ab571a5b4bb188ca146f2a50053721f5",
@@ -90,7 +90,7 @@
         "nav-home"
       ],
       "modal": false,
-      "minVisibleFont": 11
+      "minBodyFont": 14.0
     },
     "design/proposals/support-plates/report-problem--with-diagnostics.svg": {
       "sha256": "6b4ee614fb92076206a71b7b0ebe1425988c12f461711783bb1ea9dda0ff322e",
@@ -102,7 +102,7 @@
         "nav-home"
       ],
       "modal": false,
-      "minVisibleFont": 11
+      "minBodyFont": 14.0
     },
     "design/proposals/support-plates/crash-recovery--suspected-crash.svg": {
       "sha256": "7527f03f80150178af9cdcd498902d64e4f82f896394f46d50031a9c70d5b7bf",
@@ -114,7 +114,7 @@
         "nav-home"
       ],
       "modal": false,
-      "minVisibleFont": 11
+      "minBodyFont": 14.0
     },
     "design/proposals/support-plates/crash-recovery--normal-exit.svg": {
       "sha256": "9ff46c6972d4aa6d098a19ab63e8a014328e493ff38187edcfbb9e1210dd2f40",
@@ -126,7 +126,7 @@
         "nav-home"
       ],
       "modal": false,
-      "minVisibleFont": 11
+      "minBodyFont": 14.0
     },
     "design/proposals/support-plates/diagnostic-preview--minimal.svg": {
       "sha256": "a564397e9ace04aff7c74f81713e47c4efc66fb0813f9db31e2775b98a89c526",
@@ -140,7 +140,7 @@
         "nav-home"
       ],
       "modal": false,
-      "minVisibleFont": 11
+      "minBodyFont": 14.0
     },
     "design/proposals/support-plates/diagnostic-preview--expanded.svg": {
       "sha256": "199cda71cc2053aa9c740cedf154f65adf88ce7624dde8dcf10645edcb1d09e1",
@@ -154,7 +154,7 @@
         "nav-home"
       ],
       "modal": false,
-      "minVisibleFont": 11
+      "minBodyFont": 14.0
     },
     "design/proposals/support-plates/whats-new--latest.svg": {
       "sha256": "00b6f89f0fd6378c7daa7fe9a259b67f204dd572d45ca161dc9b956c124f151e",
@@ -166,7 +166,7 @@
         "nav-home"
       ],
       "modal": false,
-      "minVisibleFont": 11
+      "minBodyFont": 14.0
     },
     "design/proposals/support-plates/whats-new--no-notes.svg": {
       "sha256": "d141ae2f0ca6f50932c59495485535508474724283a464f171a058cde1f84c73",
@@ -178,7 +178,7 @@
         "nav-home"
       ],
       "modal": false,
-      "minVisibleFont": 11
+      "minBodyFont": 14.0
     },
     "design/proposals/support-plates/updates--sideload.svg": {
       "sha256": "52173c78a70db1c7bde5d2ddd10f94d3aff555fd593e6f58cd7a54d88f1da81c",
@@ -190,7 +190,7 @@
         "nav-home"
       ],
       "modal": false,
-      "minVisibleFont": 11
+      "minBodyFont": 14.0
     },
     "design/proposals/support-plates/updates--play-eligible.svg": {
       "sha256": "242e535d8128acf802f442bcf93500b8018cc072b04ecd801616656e32f3e6d6",
@@ -202,7 +202,7 @@
         "nav-home"
       ],
       "modal": false,
-      "minVisibleFont": 11
+      "minBodyFont": 14.0
     },
     "design/proposals/support-plates/updates--offline.svg": {
       "sha256": "d1e73ed47dcc7a5aec95f8380860dfb4db321589f8e8e27d7d3c1130e13ea05c",
@@ -214,7 +214,7 @@
         "nav-home"
       ],
       "modal": false,
-      "minVisibleFont": 11
+      "minBodyFont": 14.0
     },
     "design/proposals/support-plates/rate-review--not-available.svg": {
       "sha256": "06754eafedf424455c1800bb01000a5be9e50a81d0e6729ec46cda93aac219ae",
@@ -226,7 +226,7 @@
         "nav-home"
       ],
       "modal": false,
-      "minVisibleFont": 11
+      "minBodyFont": 14.0
     },
     "design/proposals/support-plates/rate-review--play-listing.svg": {
       "sha256": "d876dac569fc70f8fc69f8352bf8d113968b7ba27697c9f240a07eb8c4851046",
@@ -238,7 +238,7 @@
         "nav-home"
       ],
       "modal": false,
-      "minVisibleFont": 11
+      "minBodyFont": 14.0
     },
     "design/proposals/support-plates/privacy--local-only.svg": {
       "sha256": "339015b7ba452f9b0f64915a29bdfc0c8085c3cd58edfddee2cc2d3701807e98",
@@ -250,7 +250,7 @@
         "nav-home"
       ],
       "modal": false,
-      "minVisibleFont": 11
+      "minBodyFont": 14.0
     },
     "design/proposals/support-plates/privacy--diagnostics-opt-in.svg": {
       "sha256": "8925b1d7c6ef1ca8e5e126c5338af8a783588f01d310451972f934d4e45c13c2",
@@ -262,7 +262,7 @@
         "nav-home"
       ],
       "modal": false,
-      "minVisibleFont": 11
+      "minBodyFont": 14.0
     },
     "design/proposals/support-plates/storage-management--overview.svg": {
       "sha256": "97fb45925f208e5537cc69d5027eb3f6a8754a70ad045f3e54fd19a1bac89fd7",
@@ -274,7 +274,7 @@
         "nav-home"
       ],
       "modal": false,
-      "minVisibleFont": 11
+      "minBodyFont": 14.0
     },
     "design/proposals/support-plates/storage-management--delete-confirm.svg": {
       "sha256": "7518d6daf41a5f7a0731a1f5e1323b946adedc5962036a7f71afa383f6420af9",
@@ -284,7 +284,7 @@
         "confirm-delete"
       ],
       "modal": true,
-      "minVisibleFont": 11
+      "minBodyFont": 14.0
     },
     "design/proposals/support-plates/storage-management--low-storage.svg": {
       "sha256": "9a734dcda05438e46b0891d3cd3338466082daad5aada6ec610f70366d590402",
@@ -296,7 +296,7 @@
         "nav-home"
       ],
       "modal": false,
-      "minVisibleFont": 11
+      "minBodyFont": 14.0
     },
     "design/proposals/support-plates/permissions-capabilities--available.svg": {
       "sha256": "297cef3e94ab3764dbfb16ec7aa8ee185baa45a87315a225160b5389811bfcaa",
@@ -308,7 +308,7 @@
         "nav-home"
       ],
       "modal": false,
-      "minVisibleFont": 11
+      "minBodyFont": 14.0
     },
     "design/proposals/support-plates/permissions-capabilities--restricted.svg": {
       "sha256": "b63308cba65701883c63e965f3f718fa48099ebec9f6ff1915b906ff3b71676b",
@@ -320,7 +320,7 @@
         "nav-home"
       ],
       "modal": false,
-      "minVisibleFont": 11
+      "minBodyFont": 14.0
     },
     "design/proposals/support-plates/credits-licences--components.svg": {
       "sha256": "f97688de973ca1c40640ece679881fe560416b98d77660c7fd5101fcd174555e",
@@ -332,7 +332,7 @@
         "nav-home"
       ],
       "modal": false,
-      "minVisibleFont": 11
+      "minBodyFont": 14.0
     },
     "design/proposals/support-plates/credits-licences--rights-warning.svg": {
       "sha256": "7fb24fdc7cc226cd47f2d470c93f1ebca59ed593d000b32c7569a7a3f873db3d",
@@ -344,7 +344,7 @@
         "nav-home"
       ],
       "modal": false,
-      "minVisibleFont": 11
+      "minBodyFont": 14.0
     },
     "design/proposals/support-plates/beta-feedback--invitation.svg": {
       "sha256": "33263ded50d22d61e35a3a9e5257e8d6272b90e0709dd2b408ece1ad7112603d",
@@ -356,7 +356,7 @@
         "nav-home"
       ],
       "modal": false,
-      "minVisibleFont": 11
+      "minBodyFont": 14.0
     },
     "design/proposals/support-plates/beta-feedback--share-preview.svg": {
       "sha256": "b1a8e7dff37f323019e11b9cf1ee4c410653f7d04f8f740e61374cb55ec4966b",
@@ -369,7 +369,7 @@
         "share-reviewed-feedback"
       ],
       "modal": false,
-      "minVisibleFont": 11
+      "minBodyFont": 14.0
     },
     "design/proposals/support-plates/notification-preferences--not-implemented.svg": {
       "sha256": "9bfe79d4f329ef7d631359f65400f3f9dc4ea551be50dcfb9256c86793e0d0a0",
@@ -381,7 +381,7 @@
         "nav-home"
       ],
       "modal": false,
-      "minVisibleFont": 11
+      "minBodyFont": 14.0
     },
     "design/proposals/support-plates/notification-preferences--available.svg": {
       "sha256": "e8b223164c539406a72bf4449a1293cf9b1ef0e0015c2b0e7c0bf83b2070f27a",
@@ -393,7 +393,7 @@
         "nav-home"
       ],
       "modal": false,
-      "minVisibleFont": 11
+      "minBodyFont": 14.0
     },
     "design/proposals/support-plates/external-handler-fallback--email-missing.svg": {
       "sha256": "ef3ac9344b7ce14a0042929c8f09c6fb9bad7b910decd91f87cc576b4ac78868",
@@ -405,7 +405,7 @@
         "nav-home"
       ],
       "modal": false,
-      "minVisibleFont": 11
+      "minBodyFont": 14.0
     },
     "design/proposals/support-plates/external-handler-fallback--chooser-cancelled.svg": {
       "sha256": "64ee7185f01e2110ec56fe80087938cc904ac23c2d6e131fb4c5657b14483af7",
@@ -417,7 +417,7 @@
         "nav-home"
       ],
       "modal": false,
-      "minVisibleFont": 11
+      "minBodyFont": 14.0
     }
   },
   "errors": []
