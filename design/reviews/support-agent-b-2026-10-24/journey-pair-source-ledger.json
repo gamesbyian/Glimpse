@@ -852,7 +852,7 @@
         {
           "frameId": "03-consent",
           "path": "design/proposals/advanced-storyboards/x22/03-consent.svg",
-          "sha256": "2ce9df2896802c9f9792f1a1322698914f4b6ae1816d42d6ae033c6302a81e5d",
+          "sha256": "3ef34cf5a4dd7a9a90c889a0e170bb06283811bcae1cf0ae498bf56599fefcdd",
           "crop": [
             15,
             14,
@@ -867,7 +867,7 @@
         {
           "frameId": "04-chooser",
           "path": "design/proposals/advanced-storyboards/x22/04-chooser.svg",
-          "sha256": "74e0c681424abd5a286c55f584f957987cb19e470b8aaf615dc9a24948936f94",
+          "sha256": "3b0a9bdaac22ddc71d6566d6b6cf84bde8aaf29d7edf482d450db137f85d72f0",
           "crop": [
             15,
             14,
@@ -953,7 +953,7 @@
     },
     {
       "name": "journey-pair-contact-06.jpg",
-      "sha256": "18465b87348be866b1da4445381e937639f99a3e1835e7bd07b95d62a64ea0fe",
+      "sha256": "79a471387f0845a339dbd041946474060ecf7dcbcaa966102b3beb97f6cb5c62",
       "pairs": 3
     }
   ],
