@@ -169,26 +169,14 @@ class PhotoImporterDeviceTest {
     @Test fun controlledContentProviderGrantCanExpireAfterOfflineImport() =
         withDatabase { dao ->
             val testPackage = InstrumentationRegistry.getInstrumentation().context
-            val transientSource = sourceFixture(91)
-            val externalFixture = File(
-                testPackage.cacheDir, "fixture-" + UUID.randomUUID() + ".jpg"
+            val uri = Uri.parse(
+                "content://io.github.gamesbyian.glimpse.test.ephemeral/fixture-" +
+                    UUID.randomUUID() + ".jpg"
             )
             try {
-                // androidTest APK cache is not guaranteed to exist before first
-                // provider access on a freshly provisioned emulator. This
-                // fixture failure must not be confused with URI grant behavior.
-                require(testPackage.cacheDir.isDirectory ||
-                        testPackage.cacheDir.mkdirs()) {
-                    "Cannot create isolated test-provider cache directory"
-                }
-                transientSource.copyTo(externalFixture, overwrite = true)
-                val exact = externalFixture.readBytes()
-                val expectedSha = sha256(externalFixture)
-                val uri = Uri.parse(
-                    "content://io.github.gamesbyian.glimpse.test.ephemeral/" +
-                        externalFixture.name
-                )
                 dao.insertCollection(CollectionRecord("granted", "Granted", 1L))
+                // Provider emits a real JPEG through a read-only pipe, avoiding
+                // cross-package test APK filesystem access on modern Android.
                 testPackage.grantUriPermission(
                     context.packageName, uri, Intent.FLAG_GRANT_READ_URI_PERMISSION
                 )
@@ -196,29 +184,33 @@ class PhotoImporterDeviceTest {
                 assertEquals(1, accepted.imported)
                 assertEquals(0, accepted.failures)
                 val saved = dao.photosIn("granted").single()
-                assertEquals(expectedSha, saved.id)
                 val offline = File(saved.localPath)
-                assertArrayEquals(exact, offline.readBytes())
-                // This is a private test provider, not Google's Photo Picker.
-                // Its explicit grant is revoked before retry, and the source
-                // remains in place so rejection measures access, not deletion.
+                assertTrue(offline.isFile)
+                val snapshot = offline.readBytes()
+                assertTrue(snapshot.size > 100)
+                val expectedSha = sha256(offline)
+                assertEquals(expectedSha, saved.id)
+                assertEquals(expectedSha, saved.sha256)
+                assertEquals("image/jpeg", saved.mime)
+                assertEquals(64, saved.width)
+                assertEquals(88, saved.height)
+
+                // A successful one-shot copy survives a *real revoked*
+                // content:// permission. This test provider stays available;
+                // rejection after revoke must be permission-based.
                 testPackage.revokeUriPermission(
                     uri, Intent.FLAG_GRANT_READ_URI_PERMISSION
                 )
                 val denied = PhotoImporter(context, dao).import(listOf(uri), "granted")
                 assertEquals(0, denied.imported)
                 assertEquals(1, denied.failures)
-                assertArrayEquals(exact, offline.readBytes())
+                assertArrayEquals(snapshot, offline.readBytes())
                 assertEquals(expectedSha, sha256(offline))
                 assertEquals(saved.id, dao.photosIn("granted").single().id)
             } finally {
                 testPackage.revokeUriPermission(
-                    Uri.parse("content://io.github.gamesbyian.glimpse.test.ephemeral/" +
-                        externalFixture.name),
-                    Intent.FLAG_GRANT_READ_URI_PERMISSION
+                    uri, Intent.FLAG_GRANT_READ_URI_PERMISSION
                 )
-                transientSource.delete()
-                externalFixture.delete()
             }
         }
 
