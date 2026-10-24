@@ -12,6 +12,10 @@ import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 import kotlinx.coroutines.withContext
 import org.json.JSONArray
+import java.io.File
+import java.nio.file.Files
+import java.nio.file.LinkOption
+import java.security.MessageDigest
 
 /**
  * Single serialized side-effect gateway. Browsing never calls this class.
@@ -166,6 +170,29 @@ class WallpaperCommands(
     }
 
     private fun decodeForWallpaper(photo: PhotoRecord): android.graphics.Bitmap {
+        // A decodable but corrupted private copy must never be applied under
+        // a stable SHA-derived ImageAssetId. Validate the *present* source
+        // bytes immediately before the irreversible Android OS side-effect.
+        val local = File(photo.localPath)
+        require(Files.isRegularFile(local.toPath(), LinkOption.NOFOLLOW_LINKS)) {
+            "Original offline file is missing or not a regular file"
+        }
+        require(photo.id == photo.sha256 && photo.byteLength in 1..(50L * 1024 * 1024) &&
+                local.length() == photo.byteLength) {
+            "Original offline file identity or length changed"
+        }
+        val digest = MessageDigest.getInstance("SHA-256")
+        local.inputStream().use { stream ->
+            val chunk = ByteArray(64 * 1024)
+            while (true) {
+                val count = stream.read(chunk)
+                if (count < 0) break
+                if (count > 0) digest.update(chunk, 0, count)
+            }
+        }
+        require(digest.digest().joinToString("") { "%02x".format(it) } == photo.sha256) {
+            "Original offline file SHA-256 mismatch"
+        }
         val bound = BitmapFactory.Options().apply { inJustDecodeBounds = true }
         BitmapFactory.decodeFile(photo.localPath, bound)
         require(bound.outWidth > 0 && bound.outHeight > 0) { "Image missing or corrupt" }
