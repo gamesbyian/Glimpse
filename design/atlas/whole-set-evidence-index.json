@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "status": "ALL_DRAFT_SOURCE_EVIDENCE_NOT_HUMAN_APPROVED",
-  "sourceCommit": "ad996fe22031c55f9abcf37f936f2f723a6f75e5",
+  "sourceCommit": "ddc60e2e36ab5a3335a8d49677d8c98625cf713d",
   "auditCycleA": {
     "PASS_SOURCE_ONLY": 18,
     "ISSUE": 8,
@@ -15,16 +15,16 @@
     "P0": 82,
     "P1": 55,
     "supplemental": 25,
-    "auditRevisionAlternatives": 33,
+    "auditRevisionAlternatives": 34,
     "preferredRoute": 39,
-    "uniqueEvidenceSources": 261,
+    "uniqueEvidenceSources": 262,
     "namedStateSlots": 34
   },
   "scenarioCoverage": {
     "totalRequired": 56,
     "PARTIAL": 8,
-    "PICTURED": 47,
-    "MISSING_SPECIFIC": 1
+    "PICTURED": 48,
+    "MISSING_SPECIFIC": 0
   },
   "reviewGaps": [
     {
@@ -68,12 +68,6 @@
       "scenario": "import-offline",
       "state": "PARTIAL",
       "needed": "Need dedicated partial-copy provider-offline recovery preserving verified local counts."
-    },
-    {
-      "lane": "R05",
-      "scenario": "narrow-short",
-      "state": "MISSING_SPECIFIC",
-      "needed": "No explicit 320dp-short-screen crop of the current photographic design; Android layout proof also absent."
     },
     {
       "lane": "R08",
@@ -2302,6 +2296,12 @@
           "label": "R05 Photo Reel Focus Overlay",
           "meaning": "",
           "sourceSHA256": "80bef8638ed0c18d6e91e67fb66a5f89336458ff592738bc9ebd5c3922135f07"
+        },
+        {
+          "path": "design/proposals/audit-revisions/r05-photo-reel-narrow-short-320.svg",
+          "label": "R05 Photo Reel Narrow Short 320",
+          "meaning": "",
+          "sourceSHA256": "8a71a2f023d0b160763264e0419d1cbc6e6895dcbf8aee30584b8c777733d0c5"
         },
         {
           "path": "design/proposals/audit-revisions/r05-reduced-motion.svg",
