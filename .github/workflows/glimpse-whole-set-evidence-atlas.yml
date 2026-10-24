@@ -87,4 +87,8 @@ jobs:
             exit 0
           fi
           git commit -m "docs: regenerate exhaustive draft optical evidence atlas"
+          # Support-source contact updates can land during this atlas run.
+          # Rebase this generated reviewer-only commit; never force-push.
+          git fetch origin "${GITHUB_REF_NAME}"
+          git rebase "origin/${GITHUB_REF_NAME}"
           git push origin HEAD:"${GITHUB_REF_NAME}"
