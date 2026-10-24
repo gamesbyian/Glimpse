@@ -1,0 +1,47 @@
+# Glimpse primary-task visual reconciliation handoff · 2026-10-24
+
+**Active branch:** `agent/visual-state-reconciliation-20261023`  
+**Draft [PR #6](https://github.com/gamesbyian/Glimpse/pull/6): remains open, not owner approved, must not merge.**  
+**Predecessor:** [Whole-product review handoff](HANDOFF-2026-10-24-WHOLE-PRODUCT-REVIEW.md). This is a later checkpoint in the same October 24 development lane.
+
+## Live inventory and honest evidence status
+
+- **276** source-editable SVG proposal files: **203 historical baseline + 25 supplemental states + 47 R01–R08 audit alternatives + 1 current-generation Collections candidate**.
+- **56/56** planned audit illustration scenarios structurally pictured. No remaining uncovered scenario IDs. This measures drawing availability, **not** completeness/quality of whole-product design.
+- A curated [24-primary-screen/34-support-state/23-journey owner selection](../../design/atlas/whole-product-review-selection.html), source-hashed [selection registry](../../design/proposals/whole-product-review-selection.v1.json) and [full evidence atlas](../../design/atlas/whole-set-evidence-atlas.html) remain **draft-only**.
+- Audit Cycle A is still **18 source-level PASS / 8 ISSUE / 34 UNVERIFIED**; never automatically promote a scored answer from an SVG or green CI.
+- There are historically **seven real Android emulator screenshots** from the old rectangular-reel prototype, not current native photograph/paper-reel conformity. See [native evidence recovery](../quality/NATIVE-ATLAS-DISCOVERY-2026-10-24.md).
+
+## This session's high-impact changes (all source-editable and in PR #6)
+
+1. **Primary photographic Reel now has a visible wallpaper path**: [`r01-photo-primary-wallpaper-action.svg`](../../design/proposals/audit-revisions/r01-photo-primary-wallpaper-action.svg). Added **View all** and **Set wallpaper…** (opens target chooser, never silently applies), retained p12 hero, exact five-aperture X05 tactile wheel, true 12/22 finite index and previous/next. Adjusted fixed pointer off the new button row, and fixed four separately spaced bottom nav labels. Deterministic [generator](../../scripts/build-r01-primary-reel-action.py), [CI #40125088857](https://github.com/gamesbyian/Glimpse/actions/runs/40125088857).
+2. **Photo Detail is now a task surface**: [`r02-photo-detail-actions-p12.svg`](../../design/proposals/audit-revisions/r02-photo-detail-actions-p12.svg), same exact p12 image from X07, with separate Grid return, Set wallpaper…, Share photo, and Edit copy, preserving the source. [Generator](../../scripts/build-r02-photo-detail-actions.py), [successful CI #40125360202](https://github.com/gamesbyian/Glimpse/actions/runs/40125360202) after correcting a metadata-versus-phone-text assertion.
+3. **Default Home now has daily controls without asserting present OS state**: [`r03-home-primary-actions-p04.svg`](../../design/proposals/audit-revisions/r03-home-primary-actions-p04.svg). Keeps p04 **last Glimpse acknowledgement** visually separate from source-linked p12 **selected preview**, and warns that Android wallpaper might since have changed. Added Change Home now (active shuffle, not p12 apply), Pause shuffle, Open Rainbows, Share saved p04 and Activity/system inspection. [Generator](../../scripts/build-r03-home-primary-actions.py). **p04 hero is currently only illustrative vector art, not source-authenticated p04 photography.**
+4. **Grid exposes its primary jobs and preserves source image identity**: [`r02-grid-primary-actions-p12.svg`](../../design/proposals/audit-revisions/r02-grid-primary-actions-p12.svg) adds search/jump, Share p12, multi-select and clear Reel/detail returns. Corrected photo identities **p10, p11, p13, p14, p15** by embedding the exact distinct, checked-in R01 research JPEG bytes. p12 itself stays byte-identical to Reel and Detail. The remaining visible p06–p09/p16–p17 tiles are **still schematic**. [Generator](../../scripts/build-r02-grid-primary-actions.py).
+5. **Actual direct pixel inspection completed**: [source-matched four-phone contact JPEG](../../design/reviews/primary-actions-2026-10-24/home-reel-grid-detail.jpg), [exact SHA-256 ledger](../../design/reviews/primary-actions-2026-10-24/four-source-ledger.json), [specific observed findings](../design/CORE-FOUR-ACTION-OPTICAL-REVIEW-2026-10-24.md). Four current-source phone images at exact **401×890** were opened and compared directly, detecting/fixing missing commands, a Reel pointer near-collision, compressed nav, and Grid photo identity. [Final source/render CI #40125933149](https://github.com/gamesbyian/Glimpse/actions/runs/40125933149) is successful. **No real Android/comprehension/a11y proof follows from the contact JPEG.**
+6. **Contract defense**: [source-level primary UX guard](../../scripts/validate-primary-task-action-review.py) checks the actual x≤415 phone-side visible controls for all four selected sources, p04 vs p12 truth, exact shared JPEG bytes and six distinct photographed Grid fixtures, absence of owner approval. Wired to the [whole-set atlas CI](../../.github/workflows/glimpse-whole-set-evidence-atlas.yml), [latest success #40126233952](https://github.com/gamesbyian/Glimpse/actions/runs/40126233952). This is **not** an automated optical, device or human usability PASS.
+7. **Review guidance:** The selection registry and generated browser now show actionable caveats for Home, Reel, Grid, Photo Detail and Collections rather than hiding known issues behind a generic provisional label. All four action-complete drafts are selected as **candidates**, with their earlier alternatives still retained.
+
+## High priority before requesting one whole-set owner approval
+
+1. **Source-authenticated image set**: Provide a genuine, separately sourced/identified p04 Home image and distinct photo fixtures for the remaining Grid placeholder IDs; never alias one JPEG to multiple real IDs without provenance. Determine licence/use constraints for all research art.
+2. **24+34 complete visual consistency**: The other twenty primary screens and thirty-four support-state drawings include older schematic art; the four core revisions are a necessary but insufficient bridge to a cohesive polished application.
+3. **Real Android checks**: Test preview versus actual Home/Lock apply and unknown result, 0/1/3/5/22/60 finite Reel drag/tap/settle/interrupt, stable Grid/Detail IDs, import/URI revocation and persistence, 320dp/large text/TalkBack and input hit bounds, actual OS Sharesheet, best-effort rotation/Doze.
+4. **Human decisions**: Owner must review a single compatible exact-SHA source set, not 276 images or individually selected favorites. Preserve eight decision questions and alternate studies. No automatic promotion to `design/approved/`.
+
+## Reproduce the edited source choices
+
+```sh
+python3 scripts/build-r03-home-primary-actions.py
+python3 scripts/build-r01-primary-reel-action.py
+python3 scripts/build-r02-grid-primary-actions.py
+python3 scripts/build-r02-photo-detail-actions.py
+python3 scripts/validate-primary-task-action-review.py
+python3 scripts/validate-whole-product-review-selection.py
+python3 scripts/build-whole-set-evidence-atlas.py --check
+python3 scripts/build-whole-product-review-viewer.py --check
+python3 -m http.server 8000
+# http://localhost:8000/design/atlas/whole-product-review-selection.html
+```
+
+**Never treat complete SVG source coverage or CI-green generated crops as user-approved design or native Android behavior.** Working PR #6 remains intentionally draft.
