@@ -67,10 +67,22 @@ Major directly observed and source-corrected defects: long collection title over
 
 **Evidence level:** all 137 rendered and visually examined at reference scale, **not** all 137 approved or Android accepted. SVG layout cannot establish physical touch targets, OS wallpaper identity, TalkBack announcements or 320dp/200%-font responsive reflow. Any current optical audit must rerun the ledger after source changes. The 23 contact sheets and source hashes were added to B's strict source-raster CI integrity check.
 
+## Full support action/focus semantics recovery (static proposal, unapproved)
+
+A geometric control audit of all 34 current support plates found that **38 of 41 visible-looking pill candidates** were missing source `data-control` / focus / hit metadata. Of those, **two** are legacy buttons deliberately **occluded by the blocking local-copy delete modal** and must stay un-focusable. The other **36** visible buttons now have unique `task-*` control IDs, exact matching painted hit regions (nominal 48px or greater), descriptive `data-action-label` and explicit focus order; the blocked modal retains only Cancel/Delete. The original issue was real: source-proposal keyboard parity did not even describe buttons that the artwork depicted.
+
+Direct scan of the larger content regions showed further unlabeled interactivity. **42 full-height support action cards** now have `card-*` IDs, full 348×100 painted study target and ordered focus semantics in Contact, Help, Privacy, About, Updates, Storage and Permissions. **Seven 348×69 opt-in choice rows** in available Notifications, Feedback and problem reports now have `toggle-*` IDs, instead of treating their decorative 45×25 knobs as their only target. The **not-implemented Notifications state remains non-actionable**; this is not a back-door permission request.
+
+[`scripts/annotate-agent-b-support-actions.py`](../../../../scripts/annotate-agent-b-support-actions.py) is the idempotent B-owned source transformer; [`scripts/audit-agent-b-task-pill-regions.py`](../../../../scripts/audit-agent-b-task-pill-regions.py) inventories the omissions; [`scripts/validate-agent-b-support-journeys.py`](../../../../scripts/validate-agent-b-support-journeys.py) fails closed on missing/duplicate labels, IDs, 48-unit drawn region sizes, duplicated focus orders, modal leaks and the exact **36 / 42 / 7** source-control counts. The exact latest [machine audit](source-journey-a11y-audit.json) records 34 states / 36 pills / 42 cards / 7 toggles / 23 journeys / 137 storyboard frames / 56 audit scenarios / **0 source errors**, independently regenerated at **[focused CI #40153995696](https://github.com/gamesbyian/Glimpse/actions/runs/40153995696), successful**. Six support visual contacts and all storyboard contacts are regenerated with their exact source SHA-256s; metadata does not intentionally alter nominal pixels.
+
+**Boundary:** these annotated SVG rectangles are documentation of expected native actions, not real Android accessibility node semantics, keyboard traversal, TalkBack speech, pointer targets in dp, working external intents, modal focus trap, or `fontScale=2` reflow. Issue [#13](https://github.com/gamesbyian/Glimpse/issues/13) remains open. Native engineers must implement the described actions rather than merely reproducing their labels, and independently test return focus, IME, 320dp layout and device permissions. No user approval or new owner IA decision follows from this sweep.
+
 ## Focused developer replay
 
 ```sh
 python3 scripts/agent-b-modernize-support.py --apply
+python3 scripts/annotate-agent-b-support-actions.py --apply
+python3 scripts/annotate-agent-b-support-actions.py
 python3 scripts/agent-b-modernize-support.py
 python3 scripts/validate-agent-b-support-journeys.py
 python3 scripts/validate-support-state-truth.py
