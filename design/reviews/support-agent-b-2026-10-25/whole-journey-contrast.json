@@ -2,45 +2,11 @@
   "status": "UNAPPROVED_STATIC_DESK_AUDIT_NOT_NATIVE",
   "sourceStates": 34,
   "sourceStoryboardFrames": 137,
-  "measuredTextElements": 1341,
+  "measuredTextElements": 1344,
   "belowAA": 0,
-  "unknownCases": 5,
+  "unknownCases": 0,
   "groupedFailureStates": {},
   "failures": [],
-  "uncertainties": [
-    {
-      "state": "design/proposals/storyboards/x07/07-multi-select.svg",
-      "kind": "non-solid-background",
-      "text": "✓",
-      "color": null,
-      "opacity": 1.0
-    },
-    {
-      "state": "design/proposals/storyboards/x07/07-multi-select.svg",
-      "kind": "non-solid-background",
-      "text": "✓",
-      "color": null,
-      "opacity": 1.0
-    },
-    {
-      "state": "design/proposals/storyboards/x07/07-multi-select.svg",
-      "kind": "non-solid-background",
-      "text": "✓",
-      "color": null,
-      "opacity": 1.0
-    },
-    {
-      "state": "design/proposals/storyboards/x11/02-rotate.svg",
-      "kind": "unknown-transform",
-      "element": "g",
-      "transform": "rotate(90 211 338)"
-    },
-    {
-      "state": "design/proposals/advanced-storyboards/x13/02-edited.svg",
-      "kind": "unknown-transform",
-      "element": "g",
-      "transform": "translate(-116 -138) scale(1.5)"
-    }
-  ],
+  "uncertainties": [],
   "limitations": "Solid SVG source color against latest covering rectangle at glyph mid-ascent only; not pixel-composited, text wrapping, alpha, Android rendering, 320dp, TalkBack or human acceptance."
 }
