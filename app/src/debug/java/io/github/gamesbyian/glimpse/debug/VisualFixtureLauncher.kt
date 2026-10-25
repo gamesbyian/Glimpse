@@ -44,7 +44,10 @@ class VisualFixtureLauncher : ComponentActivity() {
         val dao = GlimpseDatabase.open(applicationContext).dao()
         val collectionId = "visual-atlas-$count"
         dao.insertCollection(CollectionRecord(collectionId,
-            "ATLAS FIXTURE · $count photos", 1_700_000_000_000L))
+            // The collection name must not freeze a photo count: this fixture
+            // starts at N=0 but real Photo Picker tests add items afterward.
+            // Live membership counts are reported separately by MainActivity.
+            "ATLAS FIXTURE", 1_700_000_000_000L))
         val folder = File(filesDir, "visual-atlas").apply { mkdirs() }
         val licensedSources = listOf(
             "p04-philsacor-landscape-900w.jpg",
