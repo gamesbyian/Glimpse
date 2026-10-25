@@ -1,0 +1,43 @@
+name: Glimpse | Draft source acceptance gates
+on:
+  push:
+    branches:
+      - agent/visual-state-reconciliation-20261023
+    paths:
+      - .github/workflows/glimpse-integration-source-acceptance.yml
+      - scripts/validate-integration-source-freeze.py
+      - scripts/validate-integrated-optical-ledger.py
+      - design/atlas/whole-product-review-snapshot.v1.json
+      - design/proposals/whole-product-review-selection.v1.json
+      - design/proposals/plates/**
+      - design/proposals/support-plates/**
+      - design/proposals/storyboards/**
+      - design/proposals/advanced-storyboards/**
+      - design/system/reviews/ci-renders/ci-raster-ledger.json
+      - design/reviews/support-agent-b-2026-10-24/**
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  validate-unapproved-draft:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Require exact 58 candidate source hashes and 189 optical-ledger hashes
+        run: |
+          python3 scripts/validate-integration-source-freeze.py
+          python3 scripts/validate-integrated-optical-ledger.py
+      - name: Preserve owner approval boundary
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          manifest=json.loads(Path('design/proposals/whole-product-review-selection.v1.json').read_text())
+          assert manifest['approval']['ownerApproved'] is False
+          assert not any(Path('design/approved').glob('*.svg')) if Path('design/approved').exists() else True
+          print('PASS: draft source gates only; no human approval inferred')
+          PY
