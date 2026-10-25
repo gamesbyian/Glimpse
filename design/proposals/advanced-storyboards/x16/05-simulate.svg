@@ -16,7 +16,7 @@
 <text x="55" y="458" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="440" fill="#667975">Simulation never applies wallpaper</text>
 <rect x="42" y="520" width="337" height="84" rx="12" fill="#E9E0F5" stroke="none"/>
 <text x="57" y="551" font-family="Arial,Helvetica,sans-serif" font-size="16" font-weight="700" fill="#153F46">20:00 → Evening focus</text>
-<text x="57" y="583" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="500" fill="#667975">Predicted, not applied</text>
+<text x="57" y="583" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="500" fill="#445851">Predicted, not applied</text>
 <rect x="43" y="685" width="338" height="44" rx="16" fill="#1D5960" stroke="#1D5960"/>
 <text x="57" y="714" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="700" fill="white">Save rule</text>
 <path d="M31 820 H402" stroke="#C4B7A4"/>

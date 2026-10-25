@@ -25,7 +25,7 @@
 <rect x="312.05002531391176" y="593.1195867987575" width="72" height="106" rx="12" fill="#A6C0CC" stroke="#C4B7A4"/>
 <rect x="260.4655058255312" y="751.8804132012425" width="72" height="106" rx="12" fill="#A9C4B5" stroke="#C4B7A4"/>
 <circle cx="213" cy="694" r="66" fill="#EAD9BD" stroke="#AD967A" stroke-width="8"/><circle cx="213" cy="694" r="29" fill="#FFFCF6"/></g>
-<text x="202" y="474" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="700" fill="#E8876C">▼</text>
+<text x="202" y="474" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="700" fill="#703B27">▼</text>
 <rect x="42" y="756" width="154" height="43" rx="18" fill="#FFFCF6" stroke="#C4B7A4"/>
 <text x="56" y="783" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="650" fill="#153F46">Previous</text>
 <rect x="206" y="756" width="178" height="43" rx="18" fill="#FFFCF6" stroke="#C4B7A4"/>

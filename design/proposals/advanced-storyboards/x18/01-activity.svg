@@ -13,7 +13,7 @@
 <text x="54" y="355" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="450" fill="#667975">No guaranteed wake while sleeping</text>
 <rect x="40" y="403" width="346" height="93" fill="#E9E0F5" rx="13" stroke="#E8876C"/>
 <text x="54" y="432" font-family="Arial,Helvetica,sans-serif" font-size="16" font-weight="700" fill="#153F46">00:21 · unknown</text>
-<text x="54" y="463" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="450" fill="#667975">Result requires inspection</text>
+<text x="54" y="463" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="450" fill="#445851">Result requires inspection</text>
 <rect x="44" y="666" width="337" height="45" fill="#1D5960" rx="18" stroke="#1D5960"/>
 <text x="58" y="694" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="700" fill="white">Inspect attempt</text>
 <path d="M30 822 H403" stroke="#C4B7A4"/>

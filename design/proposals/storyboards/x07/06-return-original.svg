@@ -30,7 +30,7 @@
 <rect x="285.9" y="797.8" width="39" height="23" rx="7" fill="#FFFCF6" stroke="none"/>
 <text x="293.9" y="813.8" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="700" fill="#153F46">14</text>
 <circle cx="215" cy="686" r="82" fill="#EAD9BD" stroke="#B6A48D" stroke-width="5"/><circle cx="215" cy="686" r="48" fill="#F6F0E6"/></g></g>
-<text x="202" y="474" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="700" fill="#E8876C">▼</text>
+<text x="202" y="474" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="700" fill="#703B27">▼</text>
 <rect x="42" y="756" width="154" height="43" rx="18" fill="#FFFCF6" stroke="#C4B7A4"/>
 <text x="56" y="783" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="650" fill="#153F46">Previous</text>
 <rect x="206" y="756" width="178" height="43" rx="18" fill="#FFFCF6" stroke="#C4B7A4"/>

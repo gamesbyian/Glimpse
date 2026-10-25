@@ -10,7 +10,7 @@
 <text x="55" y="246" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="440" fill="#667975">1,284 proposed entries; 2 skipped</text>
 <rect x="41" y="298" width="344" height="93" rx="13" fill="#E9E0F5" stroke="#E8876C"/>
 <text x="55" y="328" font-family="Arial,Helvetica,sans-serif" font-size="17" font-weight="650" fill="#153F46">Rainbows ID conflict</text>
-<text x="55" y="360" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="440" fill="#667975">Keep existing ID and 22 current photos</text>
+<text x="55" y="360" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="440" fill="#445851">Keep existing ID and 22 current photos</text>
 <rect x="41" y="412" width="344" height="93" rx="13" fill="#FFFCF6" stroke="#C4B7A4"/>
 <text x="55" y="442" font-family="Arial,Helvetica,sans-serif" font-size="17" font-weight="650" fill="#153F46">4 providers need reconnecting</text>
 <text x="55" y="474" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="440" fill="#667975">Offline originals stay untouched</text>

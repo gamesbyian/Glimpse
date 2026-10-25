@@ -8,8 +8,8 @@
 <text x="39" y="130" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="550" fill="#667975">Error focus restoration</text>
 <rect x="39" y="176" width="348" height="190" rx="15" fill="#E9E0F5" stroke="#E8876C" stroke-width="1"/>
 <text x="53" y="206" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="700" fill="#153F46">Something needs attention</text>
-<text x="53" y="229" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="440" fill="#667975">Screen reader focuses title first. Close</text>
-<text x="53" y="247" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="440" fill="#667975">returns to selected p12.</text>
+<text x="53" y="229" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="440" fill="#445851">Screen reader focuses title first. Close</text>
+<text x="53" y="247" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="440" fill="#445851">returns to selected p12.</text>
 <rect x="42" y="605" width="154" height="43" rx="17" fill="#FFFCF6" stroke="#C4B7A4" stroke-width="1"/>
 <text x="55" y="632" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="650" fill="#153F46">Cancel</text>
 <rect x="206" y="605" width="175" height="43" rx="17" fill="#1D5960" stroke="#1D5960" stroke-width="1"/>

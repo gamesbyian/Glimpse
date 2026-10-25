@@ -18,7 +18,7 @@
 <text x="64" y="390" text-anchor="start" font-family="Arial,Helvetica,sans-serif" font-size="11" font-weight="650" fill="#153F46">LOCAL COPY</text>
 <rect x="44" y="426" width="333" height="107" rx="13" fill="#F5DDDA" stroke="none" stroke-width="1"/>
 <text x="58" y="455" text-anchor="start" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="700" fill="#153F46">Partial results</text>
-<text x="58" y="482" text-anchor="start" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="400" fill="#667975">18 saved · 1 duplicate · 3 unavailable</text>
+<text x="58" y="482" text-anchor="start" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="400" fill="#445851">18 saved · 1 duplicate · 3 unavailable</text>
 <rect x="48" y="654" width="324" height="42" rx="17" fill="#1D5960" stroke="#1D5960" stroke-width="1"/>
 <text x="210" y="681" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="650" fill="#FFFFFF">Retry unavailable</text>
 <path d="M 27 822 L 405 822" stroke="#BCA990" stroke-width="1" fill="none"/>

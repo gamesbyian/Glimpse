@@ -8,8 +8,8 @@
 <text x="39" y="130" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="550" fill="#667975">Source access lost</text>
 <rect x="39" y="187" width="348" height="191" rx="15" fill="#E9E0F5" stroke="#E8876C" stroke-width="1"/>
 <text x="53" y="217" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="700" fill="#153F46">Original access expired</text>
-<text x="53" y="240" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="440" fill="#667975">18 offline copies remain usable. Choose</text>
-<text x="53" y="258" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="440" fill="#667975">the missing cloud images again.</text>
+<text x="53" y="240" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="440" fill="#445851">18 offline copies remain usable. Choose</text>
+<text x="53" y="258" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="440" fill="#445851">the missing cloud images again.</text>
 <rect x="43" y="655" width="336" height="43" rx="17" fill="#1D5960" stroke="#1D5960" stroke-width="1"/>
 <text x="56" y="682" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="650" fill="white">Pick missing files again</text>
 <path d="M30 823 H402" stroke="#C4B7A4"/>

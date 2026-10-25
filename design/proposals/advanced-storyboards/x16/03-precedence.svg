@@ -10,7 +10,7 @@
 <text x="55" y="238" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="440" fill="#667975">08:00–22:00 · Priority 3</text>
 <rect x="41" y="286" width="344" height="93" rx="13" fill="#E9E0F5" stroke="#E8876C"/>
 <text x="55" y="316" font-family="Arial,Helvetica,sans-serif" font-size="17" font-weight="650" fill="#153F46">Evening focus</text>
-<text x="55" y="348" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="440" fill="#667975">20:00–23:00 · Priority 6</text>
+<text x="55" y="348" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="440" fill="#445851">20:00–23:00 · Priority 6</text>
 <rect x="41" y="396" width="344" height="93" rx="13" fill="#FFFCF6" stroke="#C4B7A4"/>
 <text x="55" y="426" font-family="Arial,Helvetica,sans-serif" font-size="17" font-weight="650" fill="#153F46">Winner: Evening focus</text>
 <text x="55" y="458" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="440" fill="#667975">Enabled rules may change Home when eligible</text>

@@ -7,7 +7,7 @@
 <text x="39" y="130" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="500" fill="#667975">18 copied · 2 duplicates · 2 failed</text>
 <rect x="40" y="208" width="346" height="93" fill="#E9E0F5" rx="13" stroke="#E8876C"/>
 <text x="54" y="237" font-family="Arial,Helvetica,sans-serif" font-size="16" font-weight="700" fill="#153F46">18 copied, 2 duplicates</text>
-<text x="54" y="268" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="450" fill="#667975">2 cloud photos failed</text>
+<text x="54" y="268" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="450" fill="#445851">2 cloud photos failed</text>
 <rect x="40" y="329" width="346" height="93" fill="#FFFCF6" rx="13" stroke="#C4B7A4"/>
 <text x="54" y="358" font-family="Arial,Helvetica,sans-serif" font-size="16" font-weight="700" fill="#153F46">Verified images remain available</text>
 <text x="54" y="389" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="450" fill="#667975">Retry missing only</text>

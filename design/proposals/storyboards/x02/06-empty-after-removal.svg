@@ -8,7 +8,7 @@
 <text x="39" y="122" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="500" fill="#667975">Last collection removed</text>
 <rect x="41" y="172" width="344" height="346" rx="21" fill="#EAD9BD" stroke="none"/>
 <text x="73" y="271" font-family="Arial,Helvetica,sans-serif" font-size="22" font-weight="700" fill="#153F46">No collections remaining</text>
-<text x="73" y="301" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="400" fill="#667975">Saved imported photos remain here</text>
+<text x="73" y="301" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="400" fill="#445851">Saved imported photos remain here</text>
 <rect x="73" y="403" width="246" height="51" rx="18" fill="#1D5960" stroke="#1D5960"/>
 <text x="87" y="433" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="650" fill="white">Create a collection</text>
 <path d="M25 823 H406" stroke="#C4B7A4"/>

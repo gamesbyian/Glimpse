@@ -16,8 +16,8 @@
 <text x="55" y="373" font-family="Arial,Helvetica,sans-serif" font-size="11" font-weight="700" fill="#153F46">p12</text>
 <rect x="39" y="404" width="348" height="183" rx="15" fill="#E9E0F5" stroke="#E8876C" stroke-width="1"/>
 <text x="53" y="434" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="700" fill="#153F46">Wallpaper outcome unknown</text>
-<text x="53" y="457" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="440" fill="#667975">Check device Home. Shuffle cursor and</text>
-<text x="53" y="475" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="440" fill="#667975">last-known result remain unchanged.</text>
+<text x="53" y="457" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="440" fill="#445851">Check device Home. Shuffle cursor and</text>
+<text x="53" y="475" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="440" fill="#445851">last-known result remain unchanged.</text>
 <rect x="43" y="685" width="336" height="43" rx="17" fill="#1D5960" stroke="#1D5960" stroke-width="1"/>
 <text x="56" y="712" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="650" fill="white">Acknowledge and pause</text>
 <path d="M30 823 H402" stroke="#C4B7A4"/>

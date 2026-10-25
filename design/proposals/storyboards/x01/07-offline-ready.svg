@@ -18,7 +18,7 @@
 <text x="64" y="390" text-anchor="start" font-family="Arial,Helvetica,sans-serif" font-size="11" font-weight="650" fill="#153F46">LOCAL COPY</text>
 <rect x="44" y="426" width="333" height="107" rx="13" fill="#E9E0F5" stroke="none" stroke-width="1"/>
 <text x="58" y="455" text-anchor="start" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="700" fill="#153F46">Available offline</text>
-<text x="58" y="482" text-anchor="start" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="400" fill="#667975">20 local images · airplane-mode example</text>
+<text x="58" y="482" text-anchor="start" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="400" fill="#445851">20 local images · airplane-mode example</text>
 <clipPath id="clip-217-206"><rect x="217" y="206" width="140" height="196" rx="12"/></clipPath>
 <g clip-path="url(#clip-217-206)"><use href="#fixture3" transform="translate(217 206) scale(0.2917 0.2722)"/></g>
 <rect x="217" y="206" width="140" height="196" rx="12" fill="none" stroke="#B8A78E" stroke-width="1"/>

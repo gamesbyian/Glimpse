@@ -10,7 +10,7 @@
 <text x="55" y="235" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="440" fill="#667975">App v0.1 · Android API 34</text>
 <rect x="41" y="279" width="344" height="93" rx="13" fill="#E9E0F5" stroke="#E8876C"/>
 <text x="55" y="309" font-family="Arial,Helvetica,sans-serif" font-size="17" font-weight="650" fill="#153F46">No compatible share target</text>
-<text x="55" y="341" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="440" fill="#667975">No automatic upload</text>
+<text x="55" y="341" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="440" fill="#445851">No automatic upload</text>
 <rect x="41" y="389" width="344" height="93" rx="13" fill="#FFFCF6" stroke="#C4B7A4"/>
 <text x="55" y="419" font-family="Arial,Helvetica,sans-serif" font-size="17" font-weight="650" fill="#153F46">Photo bytes: excluded</text>
 <text x="55" y="451" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="440" fill="#667975">Full technical payload review</text>

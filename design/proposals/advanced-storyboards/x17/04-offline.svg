@@ -7,7 +7,7 @@
 <text x="39" y="130" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="500" fill="#667975">Internet unavailable</text>
 <rect x="40" y="203" width="346" height="93" fill="#E9E0F5" rx="13" stroke="#E8876C"/>
 <text x="54" y="232" font-family="Arial,Helvetica,sans-serif" font-size="16" font-weight="700" fill="#153F46">Network unavailable</text>
-<text x="54" y="263" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="450" fill="#667975">Saved offline photos still usable</text>
+<text x="54" y="263" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="450" fill="#445851">Saved offline photos still usable</text>
 <rect x="40" y="322" width="346" height="93" fill="#FFFCF6" rx="13" stroke="#C4B7A4"/>
 <text x="54" y="351" font-family="Arial,Helvetica,sans-serif" font-size="16" font-weight="700" fill="#153F46">Originals not deleted</text>
 <text x="54" y="382" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="450" fill="#667975">Review per-image outcome</text>

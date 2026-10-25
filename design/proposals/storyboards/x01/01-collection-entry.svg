@@ -14,11 +14,11 @@
 <text x="38" y="169" text-anchor="start" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="400" fill="#667975">empty</text>
 <rect x="44" y="208" width="333" height="107" rx="13" fill="#E9E0F5" stroke="none" stroke-width="1"/>
 <text x="58" y="237" text-anchor="start" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="700" fill="#153F46">No photos in Rainbows</text>
-<text x="58" y="264" text-anchor="start" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="400" fill="#667975">Import a collection using the system</text>
-<text x="58" y="283" text-anchor="start" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="400" fill="#667975">photo picker.</text>
+<text x="58" y="264" text-anchor="start" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="400" fill="#445851">Import a collection using the system</text>
+<text x="58" y="283" text-anchor="start" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="400" fill="#445851">photo picker.</text>
 <rect x="45" y="345" width="318" height="42" rx="17" fill="#1D5960" stroke="#1D5960" stroke-width="1"/>
 <text x="204" y="372" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="650" fill="#FFFFFF">Add photos</text>
-<text x="47" y="428" text-anchor="start" font-family="Arial,Helvetica,sans-serif" font-size="16" font-weight="500" fill="#667975">A reel appears after import.</text>
+<text x="47" y="428" text-anchor="start" font-family="Arial,Helvetica,sans-serif" font-size="16" font-weight="500" fill="#445851">A reel appears after import.</text>
 <path d="M 27 822 L 405 822" stroke="#BCA990" stroke-width="1" fill="none"/>
 <text x="36" y="851" text-anchor="start" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="600" fill="#667975">Home</text>
 <text x="133" y="851" text-anchor="start" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="600" fill="#667975">Discover</text>

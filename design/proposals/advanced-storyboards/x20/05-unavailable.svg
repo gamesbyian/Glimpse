@@ -8,7 +8,7 @@
 <rect x="31" y="147" width="371" height="615" fill="#CECEC6" rx="16" stroke="none"/>
 <rect x="40" y="230" width="346" height="93" fill="#E9E0F5" rx="13" stroke="#E8876C"/>
 <text x="54" y="259" font-family="Arial,Helvetica,sans-serif" font-size="16" font-weight="700" fill="#153F46">Widget unavailable</text>
-<text x="54" y="290" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="450" fill="#667975">Launcher does not support this format</text>
+<text x="54" y="290" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="450" fill="#445851">Launcher does not support this format</text>
 <rect x="40" y="338" width="346" height="93" fill="#FFFCF6" rx="13" stroke="#C4B7A4"/>
 <text x="54" y="367" font-family="Arial,Helvetica,sans-serif" font-size="16" font-weight="700" fill="#153F46">Glimpse app remains usable</text>
 <text x="54" y="398" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="450" fill="#667975">Open app instead</text>
