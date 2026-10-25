@@ -47,12 +47,18 @@ def phone_markup(svg: str) -> str:
 def check() -> dict:
     tokens = json.loads(TOKENS.read_text(encoding="utf-8"))
     colors = tokens["color"]
-    assert tokens["revision"] == "0.1.1"
+    assert tokens["revision"] == "0.1.2"
     assert tokens["status"] == "DRAFT_PENDING_INTEGRATION_LOCK"
     assert colors["secondary"] == "#566861", "Paper token must remain stable"
     assert colors["secondaryOnTint"] == "#445851"
     assert colors["attentionText"] == "#703B27"
     assert colors["accent"] == "#1D5960"
+    focus = tokens["focusVisible"]
+    assert focus["indicatorColor"] == colors["accent"]
+    assert focus["strokePxNominal"] >= 3
+    assert contrast(focus["indicatorColor"], colors["paper"]) >= focus["minimumContrastAgainstPaper"]
+    assert contrast(focus["indicatorColor"], colors["surface"]) >= focus["minimumContrastAgainstPaper"]
+    assert contrast(focus["indicatorColor"], colors["tintTan"]) >= focus["minimumContrastAgainstPaper"]
     assert contrast(colors["secondary"], colors["paper"]) >= AA_SMALL_TEXT
     assert contrast(colors["onAccent"], colors["accent"]) >= AA_SMALL_TEXT
 
