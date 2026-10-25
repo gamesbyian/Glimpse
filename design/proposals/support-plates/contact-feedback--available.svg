@@ -8,21 +8,21 @@
 <text x="37" y="129" font-family="Arial,Helvetica,sans-serif" fill="#153F46" font-size="28" font-weight="700">Contact</text>
 <text x="38" y="155" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="15" font-weight="400">Choose how to reach out</text>
 <g id="support-body" transform="translate(0,-24)">
-<rect x="40" y="222" width="348" height="100" rx="13" fill="#FFFCF6" stroke="#C8B7A1" stroke-width="1"/>
+<rect data-control="card-create-a-report" data-focus-order="2" data-hit-width="348" data-hit-height="100" data-action-label="Create a report" x="40" y="222" width="348" height="100" rx="13" fill="#FFFCF6" stroke="#C8B7A1" stroke-width="1"/>
 <text x="53" y="248" font-family="Arial,Helvetica,sans-serif" fill="#153F46" font-size="17" font-weight="650">Report a problem</text>
 <text x="53" y="271" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="14" font-weight="400">Explain what happened; attach redacted data</text>
 <text x="53" y="290" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="14" font-weight="400">only if you choose</text>
-<text x="53" y="310" font-family="Arial,Helvetica,sans-serif" fill="#1D5960" font-size="13" font-weight="650">Create a report</text>
-<rect x="40" y="338" width="348" height="100" rx="13" fill="#FFFCF6" stroke="#C8B7A1" stroke-width="1"/>
+<text x="53" y="310" font-family="Arial,Helvetica,sans-serif" fill="#1D5960" font-size="14" font-weight="650">Create a report</text>
+<rect data-control="card-write-feedback" data-focus-order="3" data-hit-width="348" data-hit-height="100" data-action-label="Write feedback" x="40" y="338" width="348" height="100" rx="13" fill="#FFFCF6" stroke="#C8B7A1" stroke-width="1"/>
 <text x="53" y="364" font-family="Arial,Helvetica,sans-serif" fill="#153F46" font-size="17" font-weight="650">Suggest an improvement</text>
 <text x="53" y="387" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="14" font-weight="400">What would make Glimpse more useful?</text>
-<text x="53" y="426" font-family="Arial,Helvetica,sans-serif" fill="#1D5960" font-size="13" font-weight="650">Write feedback</text>
-<rect x="40" y="454" width="348" height="100" rx="13" fill="#FFFCF6" stroke="#C8B7A1" stroke-width="1"/>
+<text x="53" y="426" font-family="Arial,Helvetica,sans-serif" fill="#1D5960" font-size="14" font-weight="650">Write feedback</text>
+<rect data-control="card-open-issues" data-focus-order="4" data-hit-width="348" data-hit-height="100" data-action-label="Open issues" x="40" y="454" width="348" height="100" rx="13" fill="#FFFCF6" stroke="#C8B7A1" stroke-width="1"/>
 <text x="53" y="480" font-family="Arial,Helvetica,sans-serif" fill="#153F46" font-size="17" font-weight="650">Public GitHub issues</text>
 <text x="53" y="503" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="14" font-weight="400">May require GitHub login; issue will be</text>
 <text x="53" y="522" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="14" font-weight="400">public</text>
-<text x="53" y="542" font-family="Arial,Helvetica,sans-serif" fill="#1D5960" font-size="13" font-weight="650">Open issues</text>
-<rect x="42" y="660" width="170" height="48" rx="20" fill="#FFFCF6" stroke="#C8B7A1" stroke-width="1"/>
+<text x="53" y="542" font-family="Arial,Helvetica,sans-serif" fill="#1D5960" font-size="14" font-weight="650">Open issues</text>
+<rect x="42" y="660" width="170" height="48" rx="20" fill="#FFFCF6" stroke="#C8B7A1" stroke-width="1" data-control="task-copy-feedback" data-focus-order="10" data-hit-width="170" data-hit-height="48" data-action-label="Copy feedback"/>
 <text x="57" y="687" font-family="Arial,Helvetica,sans-serif" fill="#153F46" font-size="14" font-weight="650">Copy feedback</text>
 </g>
 <path d="M29 817h373" stroke="#C8B7A1"/>

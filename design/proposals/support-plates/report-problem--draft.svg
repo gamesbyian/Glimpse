@@ -16,14 +16,14 @@
 <text x="56" y="427" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="14" font-weight="400">Expected outcome (optional)</text>
 <rect x="40" y="502" width="348" height="69" rx="12" fill="#FFFCF6" stroke="#C8B7A1" stroke-width="1"/>
 <text x="53" y="527" font-family="Arial,Helvetica,sans-serif" fill="#153F46" font-size="16" font-weight="650">Include diagnostics</text>
-<text x="53" y="549" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="12" font-weight="400">Off by default, inspect before sharing</text>
+<text x="53" y="549" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="14" font-weight="400">Off by default, inspect before sharing</text>
 <rect x="328" y="521" width="45" height="25" rx="15" fill="#C8B7A1" stroke="none" stroke-width="1"/>
 <circle cx="344" cy="533.5" r="10" fill="#FFFCF6"/>
 <rect x="40" y="589" width="348" height="100" rx="13" fill="#FFFCF6" stroke="#C8B7A1" stroke-width="1"/>
 <text x="53" y="615" font-family="Arial,Helvetica,sans-serif" fill="#153F46" font-size="17" font-weight="650">Nothing sent; diagnostics off</text>
 <text x="53" y="638" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="14" font-weight="400">Preview and redact before Android sharing</text>
-<text x="53" y="677" font-family="Arial,Helvetica,sans-serif" fill="#1D5960" font-size="13" font-weight="650">Review outgoing report</text>
-<rect x="44" y="720" width="335" height="48" rx="20" fill="#1D5960" stroke="#1D5960" stroke-width="1"/>
+<text x="53" y="677" font-family="Arial,Helvetica,sans-serif" fill="#1D5960" font-size="14" font-weight="650">Review outgoing report</text>
+<rect x="44" y="720" width="335" height="48" rx="20" fill="#1D5960" stroke="#1D5960" stroke-width="1" data-control="task-review-report" data-focus-order="10" data-hit-width="335" data-hit-height="48" data-action-label="Review report"/>
 <text x="59" y="747" font-family="Arial,Helvetica,sans-serif" fill="#FFFFFF" font-size="14" font-weight="650">Review report</text>
 </g>
 <path d="M29 817h373" stroke="#C8B7A1"/>
