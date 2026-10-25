@@ -20,6 +20,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import java.io.File
 import java.security.MessageDigest
+import java.util.UUID
 import java.util.concurrent.atomic.AtomicInteger
 
 /**
@@ -231,5 +232,68 @@ class ForegroundRotationDeviceTest {
             assertNull(db.dao().readRotation())
             assertEquals(0, setterCount.get())
         }
+
+    @Test fun onDiskRoomReopenRetainsDeadlineAndRemainingPhotoIds() = runBlocking {
+        val name = "glimpse-c-rotation-" + UUID.randomUUID() + ".db"
+        val images = listOf(fixture(44), fixture(149))
+        val db1 = Room.databaseBuilder(context, GlimpseDatabase::class.java, name).build()
+        var db2: GlimpseDatabase? = null
+        try {
+            val dao = db1.dao()
+            dao.insertCollection(CollectionRecord("durable", "Durable", 1L))
+            val ids = images.mapIndexed { index, image ->
+                val id = sha(image)
+                dao.attach(PhotoRecord(
+                    id = id, sha256 = id, localPath = image.path,
+                    mime = "image/jpeg", width = 64, height = 96,
+                    byteLength = image.length(), importedAt = index.toLong()
+                ), "durable")
+                id
+            }
+            var clock = 18_000_000L
+            val count = AtomicInteger()
+            val firstGateway = WallpaperCommands(context, dao, now = { clock },
+                setHomeWallpaper = { count.incrementAndGet(); 1701 })
+            firstGateway.start("durable")
+            clock += 300_000L
+            firstGateway.pollWhileVisible()
+            assertEquals(1, count.get())
+            val saved = requireNotNull(dao.readRotation())
+            assertTrue(saved.lastAcknowledgedPhotoId in ids)
+            assertTrue(saved.active)
+            assertNull(saved.pendingPhotoId)
+            db1.close()
+
+            // Reopen a physical Room SQLite database with a distinct gateway.
+            // This verifies persistence, not real Android process kill/restart
+            // and definitely not WorkManager, Doze or background delivery.
+            val reopened = Room.databaseBuilder(
+                context, GlimpseDatabase::class.java, name
+            ).build()
+            db2 = reopened
+            val dao2 = reopened.dao()
+            assertEquals(saved.remainingJson, dao2.readRotation()?.remainingJson)
+            assertEquals(saved.nextEligibleAt, dao2.readRotation()?.nextEligibleAt)
+            assertEquals(saved.lastAcknowledgedPhotoId,
+                dao2.readRotation()?.lastAcknowledgedPhotoId)
+            val afterReopen = WallpaperCommands(context, dao2, now = { clock },
+                setHomeWallpaper = { count.incrementAndGet(); 1700 + count.get() })
+            clock += 299_999L
+            afterReopen.pollWhileVisible()
+            assertEquals(1, count.get())
+            clock++
+            afterReopen.pollWhileVisible()
+            assertEquals(2, count.get())
+            val next = requireNotNull(dao2.readRotation())
+            assertTrue(next.lastAcknowledgedPhotoId != saved.lastAcknowledgedPhotoId)
+            assertEquals(clock + 300_000L, next.nextEligibleAt)
+            assertNull(next.pendingPhotoId)
+        } finally {
+            db2?.close()
+            db1.close()
+            context.deleteDatabase(name)
+            images.forEach { it.delete() }
+        }
+    }
 
 }

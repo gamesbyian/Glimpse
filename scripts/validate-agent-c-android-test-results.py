@@ -19,6 +19,7 @@ EXPECTED={
         "noDuplicatesInsideThreePhotoCycleOrAtBoundary",
         "gatewayRecreationPreservesRoomDeadlineAndShuffleCursor",
         "emptyCollectionNeverStartsOrCallsAndroidSetter",
+        "onDiskRoomReopenRetainsDeadlineAndRemainingPhotoIds",
     },
     "io.github.gamesbyian.glimpse.data.PhotoBitmapsDeviceTest": {
         "cameraRotate90SwapsPreviewDimensionsWithoutChangingStoredJpeg",
