@@ -5,7 +5,7 @@
 <text x="354" y="43" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="500" fill="#667975">●  ▰</text>
 <path d="M33 56 H396" stroke="#C4B7A4"/>
 <text x="37" y="94" font-family="Arial,Helvetica,sans-serif" font-size="29" font-weight="700" fill="#153F46">Home</text>
-<text x="39" y="122" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="500" fill="#667975">Status with details collapsed</text>
+<text x="39" y="122" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="500" fill="#445851">Status with details collapsed</text>
 <rect x="42" y="154" width="343" height="366" rx="12" fill="#21323B" stroke="none"/>
 <path d="M69.44 234.51999999999998 Q206.64 161.32 350.7 241.84" stroke="#E8876C" stroke-width="20.13" fill="none" stroke-linecap="round"/>
 <path d="M69.44 304.06 Q206.64 216.22 350.7 318.7" stroke="#ECC85E" stroke-width="20.13" fill="none" stroke-linecap="round"/>
@@ -19,10 +19,10 @@
 <text x="57" y="677" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="650" fill="#153F46">Next eligible ≈ 00:16</text>
 <text x="57" y="705" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="450" fill="#667975">Android may defer changes</text>
 <path d="M25 823 H406" stroke="#C4B7A4"/>
-<text x="42" y="853" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="500" fill="#667975">Home</text>
-<text x="136" y="853" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="500" fill="#667975">Discover</text>
-<text x="230" y="853" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="500" fill="#667975">Collections</text>
-<text x="324" y="853" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="500" fill="#667975">Automation</text>
+<text x="42" y="853" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="500" fill="#445851">Home</text>
+<text x="136" y="853" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="500" fill="#445851">Discover</text>
+<text x="230" y="853" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="500" fill="#445851">Collections</text>
+<text x="324" y="853" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="500" fill="#445851">Automation</text>
 <text x="37" y="899" font-family="Arial,Helvetica,sans-serif" font-size="11" font-weight="700" fill="#667975">DRAFT · NOT APPROVED</text>
 <rect x="442" y="14" width="704" height="890" rx="18" fill="#FFFCF6" stroke="#C4B7A4"/>
 <text x="464" y="55" font-family="Arial,Helvetica,sans-serif" font-size="22" font-weight="700" fill="#153F46">X08 / Compact-screen hierarchy</text>

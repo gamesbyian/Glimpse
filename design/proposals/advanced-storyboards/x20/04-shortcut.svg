@@ -4,7 +4,7 @@
 <text x="38" y="43" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="650" fill="#153F46">9:41</text>
 <text x="352" y="43" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="450" fill="#667975">● ▰ ▴</text>
 <text x="38" y="99" font-family="Arial,Helvetica,sans-serif" font-size="24" font-weight="700" fill="#153F46">App shortcut</text>
-<text x="39" y="130" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="500" fill="#667975">Change Home · Open collection</text>
+<text x="39" y="130" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="500" fill="#445851">Change Home · Open collection</text>
 <rect x="31" y="147" width="371" height="615" fill="#CECEC6" rx="16" stroke="none"/>
 <rect x="40" y="225" width="346" height="93" fill="#FFFCF6" rx="13" stroke="#C4B7A4"/>
 <text x="54" y="254" font-family="Arial,Helvetica,sans-serif" font-size="16" font-weight="700" fill="#153F46">Android launcher shortcuts</text>

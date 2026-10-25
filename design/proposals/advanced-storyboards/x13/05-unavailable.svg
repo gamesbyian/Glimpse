@@ -4,17 +4,17 @@
 <text x="38" y="44" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="650" fill="#153F46">9:41</text>
 <text x="356" y="44" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="450" fill="#667975">● ▰</text>
 <text x="39" y="100" font-family="Arial,Helvetica,sans-serif" font-size="25" font-weight="750" fill="#153F46">No compatible handler</text>
-<text x="40" y="132" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="500" fill="#667975">No share destination</text>
+<text x="40" y="132" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="500" fill="#445851">No share destination</text>
 <rect x="41" y="210" width="344" height="93" rx="13" fill="#E9E0F5" stroke="#E8876C"/>
 <text x="55" y="240" font-family="Arial,Helvetica,sans-serif" font-size="17" font-weight="650" fill="#153F46">No compatible app found</text>
 <text x="55" y="272" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="440" fill="#445851">Report/preview retained</text>
 <rect x="43" y="621" width="338" height="44" rx="16" fill="#1D5960" stroke="#1D5960"/>
 <text x="57" y="650" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="700" fill="white">Save or copy</text>
 <path d="M31 820 H402" stroke="#C4B7A4"/>
-<text x="39" y="853" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="500" fill="#667975">Home</text>
-<text x="134" y="853" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="500" fill="#667975">Discover</text>
-<text x="229" y="853" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="500" fill="#667975">Collections</text>
-<text x="324" y="853" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="500" fill="#667975">Automation</text>
+<text x="39" y="853" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="500" fill="#445851">Home</text>
+<text x="134" y="853" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="500" fill="#445851">Discover</text>
+<text x="229" y="853" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="500" fill="#445851">Collections</text>
+<text x="324" y="853" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="500" fill="#445851">Automation</text>
 <text x="38" y="894" font-family="Arial,Helvetica,sans-serif" font-size="11" font-weight="700" fill="#667975">P1 · DRAFT · NOT APPROVED</text>
 <rect x="441" y="15" width="704" height="890" rx="19" fill="#FFFCF6" stroke="#C4B7A4"/>
 <text x="465" y="55" font-family="Arial,Helvetica,sans-serif" font-size="22" font-weight="750" fill="#153F46">X13 / Android sharing and return</text>

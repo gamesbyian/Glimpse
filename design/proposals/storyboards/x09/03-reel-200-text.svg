@@ -5,7 +5,7 @@
 <text x="348" y="43" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="550" fill="#667975">● ▰</text>
 <path d="M31 57 H400" stroke="#C4B7A4"/>
 <text x="37" y="95" font-family="Arial,Helvetica,sans-serif" font-size="34" font-weight="700" fill="#153F46">Glimpse</text>
-<text x="39" y="130" font-family="Arial,Helvetica,sans-serif" font-size="20" font-weight="550" fill="#667975">200% text • Reel</text>
+<text x="39" y="130" font-family="Arial,Helvetica,sans-serif" font-size="20" font-weight="550" fill="#445851">200% text • Reel</text>
 <rect x="43" y="169" width="341" height="212" rx="12" fill="#161A27" stroke="none" stroke-width="1"/>
 <path d="M56.64 194.44 Q199.86 171.12 370.36 211.4" stroke="#EE4640" stroke-width="9.964" fill="none" stroke-linecap="round"/>
 <path d="M56.64 228.36 Q199.86 207.16 370.36 243.2" stroke="#F0AF38" stroke-width="9.964" fill="none" stroke-linecap="round"/>
@@ -65,9 +65,9 @@
 <text x="221" y="783" font-family="Arial,Helvetica,sans-serif" font-size="21" font-weight="650" fill="white">Next photo</text>
 <path d="M30 814 H402" stroke="#C4B7A4"/>
 <text x="44" y="837" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="600" fill="#1D5960">Home</text>
-<text x="225" y="837" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="600" fill="#667975">Discover</text>
-<text x="44" y="867" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="600" fill="#667975">Collections</text>
-<text x="225" y="867" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="600" fill="#667975">Automation</text>
+<text x="225" y="837" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="600" fill="#445851">Discover</text>
+<text x="44" y="867" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="600" fill="#445851">Collections</text>
+<text x="225" y="867" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="600" fill="#445851">Automation</text>
 <rect x="182" y="891" width="70" height="5" rx="4" fill="#153F46" stroke="none" stroke-width="1"/>
 <rect x="439" y="14" width="706" height="890" rx="18" fill="#FFFCF6" stroke="#C4B7A4" stroke-width="1"/>
 <text x="463" y="54" font-family="Arial,Helvetica,sans-serif" font-size="22" font-weight="700" fill="#153F46">X09 / Accessibility and environment stress</text>

@@ -4,7 +4,7 @@
 <text x="38" y="44" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="650" fill="#153F46">9:41</text>
 <text x="356" y="44" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="450" fill="#667975">● ▰</text>
 <text x="39" y="100" font-family="Arial,Helvetica,sans-serif" font-size="25" font-weight="750" fill="#153F46">Review exported content</text>
-<text x="40" y="132" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="500" fill="#667975">1,284 metadata entries · no images</text>
+<text x="40" y="132" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="500" fill="#445851">1,284 metadata entries · no images</text>
 <rect x="41" y="184" width="344" height="93" rx="13" fill="#FFFCF6" stroke="#C4B7A4"/>
 <text x="55" y="214" font-family="Arial,Helvetica,sans-serif" font-size="17" font-weight="650" fill="#153F46">Export backup</text>
 <text x="55" y="246" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="440" fill="#667975">Settings / Rules / Collections</text>
@@ -17,10 +17,10 @@
 <rect x="43" y="653" width="338" height="44" rx="16" fill="#1D5960" stroke="#1D5960"/>
 <text x="57" y="682" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="700" fill="white">Export backup</text>
 <path d="M31 820 H402" stroke="#C4B7A4"/>
-<text x="39" y="853" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="500" fill="#667975">Home</text>
-<text x="134" y="853" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="500" fill="#667975">Discover</text>
-<text x="229" y="853" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="500" fill="#667975">Collections</text>
-<text x="324" y="853" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="500" fill="#667975">Automation</text>
+<text x="39" y="853" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="500" fill="#445851">Home</text>
+<text x="134" y="853" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="500" fill="#445851">Discover</text>
+<text x="229" y="853" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="500" fill="#445851">Collections</text>
+<text x="324" y="853" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="500" fill="#445851">Automation</text>
 <text x="38" y="894" font-family="Arial,Helvetica,sans-serif" font-size="11" font-weight="700" fill="#667975">P1 · DRAFT · NOT APPROVED</text>
 <rect x="441" y="15" width="704" height="890" rx="19" fill="#FFFCF6" stroke="#C4B7A4"/>
 <text x="465" y="55" font-family="Arial,Helvetica,sans-serif" font-size="22" font-weight="750" fill="#153F46">X19 / Backup and restore integrity</text>

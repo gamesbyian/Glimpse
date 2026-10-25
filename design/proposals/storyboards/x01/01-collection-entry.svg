@@ -10,8 +10,8 @@
 <path d="M 30 59 L 401 59" stroke="#BCA990" stroke-width="1" fill="none"/>
 <text x="38" y="92" text-anchor="start" font-family="Arial,Helvetica,sans-serif" font-size="22" font-weight="700" fill="#153F46">Glimpse</text>
 <text x="38" y="125" text-anchor="start" font-family="Arial,Helvetica,sans-serif" font-size="23" font-weight="700" fill="#153F46">Rainbows</text>
-<text x="38" y="151" text-anchor="start" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="400" fill="#667975">22-photo import example · collection currently</text>
-<text x="38" y="169" text-anchor="start" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="400" fill="#667975">empty</text>
+<text x="38" y="151" text-anchor="start" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="400" fill="#445851">22-photo import example · collection currently</text>
+<text x="38" y="169" text-anchor="start" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="400" fill="#445851">empty</text>
 <rect x="44" y="208" width="333" height="107" rx="13" fill="#E9E0F5" stroke="none" stroke-width="1"/>
 <text x="58" y="237" text-anchor="start" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="700" fill="#153F46">No photos in Rainbows</text>
 <text x="58" y="264" text-anchor="start" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="400" fill="#445851">Import a collection using the system</text>
@@ -20,10 +20,10 @@
 <text x="204" y="372" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="650" fill="#FFFFFF">Add photos</text>
 <text x="47" y="428" text-anchor="start" font-family="Arial,Helvetica,sans-serif" font-size="16" font-weight="500" fill="#445851">A reel appears after import.</text>
 <path d="M 27 822 L 405 822" stroke="#BCA990" stroke-width="1" fill="none"/>
-<text x="36" y="851" text-anchor="start" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="600" fill="#667975">Home</text>
-<text x="133" y="851" text-anchor="start" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="600" fill="#667975">Discover</text>
-<text x="230" y="851" text-anchor="start" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="600" fill="#667975">Collections</text>
-<text x="327" y="851" text-anchor="start" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="600" fill="#667975">Automation</text>
+<text x="36" y="851" text-anchor="start" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="600" fill="#445851">Home</text>
+<text x="133" y="851" text-anchor="start" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="600" fill="#445851">Discover</text>
+<text x="230" y="851" text-anchor="start" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="600" fill="#445851">Collections</text>
+<text x="327" y="851" text-anchor="start" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="600" fill="#445851">Automation</text>
 <text x="38" y="894" text-anchor="start" font-family="Arial,Helvetica,sans-serif" font-size="11" font-weight="650" fill="#667975">DRAFT STORYBOARD · X01 / collection-entry</text>
 <rect x="439" y="14" width="707" height="890" rx="18" fill="#FCF9F3" stroke="#C4B7A4" stroke-width="2"/>
 <text x="466" y="53" text-anchor="start" font-family="Arial,Helvetica,sans-serif" font-size="24" font-weight="700" fill="#153F46">X01 · Google Photos → durable import</text>
