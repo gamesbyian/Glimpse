@@ -15,6 +15,8 @@ on:
       - design/proposals/advanced-storyboards/**
       - design/system/reviews/ci-renders/ci-raster-ledger.json
       - design/reviews/support-agent-b-2026-10-24/**
+      - scripts/test-agent-b-contrast.py
+      - scripts/validate-agent-b-storyboard-contrast.py
   workflow_dispatch:
 permissions:
   contents: read
