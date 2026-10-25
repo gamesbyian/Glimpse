@@ -18,6 +18,7 @@ on:
       - scripts/test-agent-b-contrast.py
       - scripts/validate-agent-b-support-contrast.py
       - scripts/validate-agent-c-cc0-proposals.py
+      - scripts/validate-owner-review-readiness.py
   workflow_dispatch:
 permissions:
   contents: read
@@ -35,6 +36,7 @@ jobs:
           python3 scripts/validate-integration-source-freeze.py
           python3 scripts/validate-integrated-optical-ledger.py
           python3 scripts/test-agent-b-contrast.py
+          python3 scripts/validate-owner-review-readiness.py
       - name: Preserve owner approval boundary
         run: |
           python3 - <<'PY'
