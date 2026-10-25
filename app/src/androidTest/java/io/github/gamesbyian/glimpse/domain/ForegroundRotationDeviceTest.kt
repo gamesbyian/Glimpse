@@ -78,7 +78,8 @@ class ForegroundRotationDeviceTest {
         val count = AtomicInteger()
         val commands = WallpaperCommands(context, db.dao(), now = { clock },
             setHomeWallpaper = { count.incrementAndGet(); 101 + count.get() })
-        assertTrue(commands.start("timing").contains("five minutes"))
+        assertTrue(commands.start("timing").contains("Rotation enabled"))
+        assertTrue(requireNotNull(db.dao().readRotation()).outcome.contains("five minutes"))
         assertEquals(clock + 300_000L, db.dao().readRotation()?.nextEligibleAt)
         clock += 299_999L
         commands.pollWhileVisible()
