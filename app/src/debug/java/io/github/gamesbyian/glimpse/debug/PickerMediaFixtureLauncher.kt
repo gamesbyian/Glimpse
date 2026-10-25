@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.ContentValues
 import android.graphics.Bitmap
 import android.graphics.Color
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
@@ -27,6 +28,31 @@ class PickerMediaFixtureLauncher : Activity() {
                 Build.FINGERPRINT.contains("generic", true) ||
                 Build.MODEL.contains("sdk_gphone", true)
             require(emulator) { "Picker fixture refuses non-emulator hardware" }
+            if (intent.getBooleanExtra("cleanup", false)) {
+                // Delete *only* the original URI this debug APK recorded as its
+                // own uniquely named synthetic source. Never enumerate or
+                // mutate any other MediaStore image.
+                val provenance = JSONObject(verdict.readText())
+                require(provenance.getString("status") == "READY" &&
+                        provenance.getString("sourceDisplayName") ==
+                            "GLIMPSE-C-PRIVATE-PICKER-FIXTURE.jpg") {
+                    "Cleanup source identity is not our exact synthetic fixture"
+                }
+                val uri = Uri.parse(provenance.getString("sourceUri"))
+                require(uri.scheme == "content" && uri.authority == "media" &&
+                        uri.path?.startsWith("/external/images/media/") == true) {
+                    "Cleanup URI is not our single published MediaStore image"
+                }
+                val deleted = contentResolver.delete(uri, null, null)
+                File(filesDir, "picker-fixture-cleanup.json").writeText(
+                    JSONObject().apply {
+                        put("deleted", deleted)
+                        put("sourceSHA256", provenance.getString("sourceSHA256"))
+                        put("deletedOnlyOwnTestSource", true)
+                    }.toString()
+                )
+                return
+            }
             val image = Bitmap.createBitmap(192, 256, Bitmap.Config.ARGB_8888)
             val bytes = try {
                 image.eraseColor(Color.rgb(31, 93, 180))
