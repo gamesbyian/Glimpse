@@ -8,6 +8,7 @@ on:
       - scripts/capture-agent-c-native.py
       - scripts/validate-agent-c-android-test-results.py
       - scripts/run-agent-c-native-evidence.sh
+      - scripts/capture-agent-c-native-picker.py
       - app/src/main/**
       - app/src/debug/**
       - app/src/test/java/io/github/gamesbyian/glimpse/domain/AgentCFiniteIdentityTest.kt
@@ -31,7 +32,7 @@ jobs:
           python3 -m unittest discover -s scripts/tests -p test_agent_c_asset_integrity.py -v
           python3 scripts/validate-agent-c-asset-integrity.py
       - name: Verify native harness syntax only
-        run: python3 -m py_compile scripts/capture-agent-c-native.py scripts/validate-agent-c-android-test-results.py
+        run: python3 -m py_compile scripts/capture-agent-c-native.py scripts/capture-agent-c-native-picker.py scripts/validate-agent-c-android-test-results.py
 
   native-emulator:
     runs-on: ubuntu-latest
@@ -79,6 +80,14 @@ jobs:
             app/build/outputs/androidTest-results/connected/
             app/build/reports/androidTests/connected/
             app/build/test-results/testDebugUnitTest/
+          retention-days: 14
+          if-no-files-found: warn
+      - name: Preserve actual Android platform Photo Picker/chooser screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: glimpse-agent-c-android-photo-picker-api34
+          path: artifacts/agent-c-native-picker/
           retention-days: 14
           if-no-files-found: warn
       - name: Preserve real screenshot/hierarchy evidence even on failure

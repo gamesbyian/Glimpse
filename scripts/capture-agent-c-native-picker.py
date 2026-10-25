@@ -44,7 +44,8 @@ def capture_picker(out):
     external = sorted(p for p in packages if p not in (APP, "com.android.systemui"))
     base.capture("00-android-picker-or-chooser",
                  "Actual Android native result of tapping Add photos, before any selection")
-    base.RESULTS[-1]["capturedFrom"] = "Android OS Photo Picker or chooser invoked from production MainActivity"
+    base.RESULTS[-1]["capturedFrom"] = ("Actual external Android picker/chooser" if external
+                                               else "Unverified UI after Android picker intent")
     base.RESULTS[-1]["visiblePackages"] = packages
     base.RESULTS[-1]["systemPickerOrChooserObserved"] = bool(external)
     (out / "00-android-picker-focus.json").write_text(json.dumps({
@@ -79,8 +80,13 @@ def capture_picker(out):
     }
     (out / "agent-c-picker-manifest.json").write_text(json.dumps(record,indent=2)+"\n")
     base.write_gallery()
-    print("PASS: OS picker invocation captured; canceled with collection still empty. ",
-          "Visible external package(s):", external if external else "(not verified)")
+    if not external:
+        raise AssertionError(
+            "No external Android Photo Picker/chooser package could be verified; "
+            "artifacts are recorded as unverified, not evidence of integration"
+        )
+    print("PASS: Actual Android picker/chooser surface captured and canceled; ",
+          "external package(s):", external)
     return 0
 
 
