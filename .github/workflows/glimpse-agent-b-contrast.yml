@@ -4,13 +4,14 @@ on:
     branches: [agent/b-static-contrast-20261025]
     paths:
       - scripts/validate-agent-b-support-contrast.py
+      - scripts/fix-agent-b-storyboard-contrast.py
       - design/proposals/support-plates/**
       - design/proposals/storyboards/**
       - design/proposals/advanced-storyboards/**
       - .github/workflows/glimpse-agent-b-contrast.yml
   workflow_dispatch:
 permissions:
-  contents: read
+  contents: write
 concurrency:
   group: glimpse-b-contrast-${{ github.ref }}
   cancel-in-progress: true
@@ -26,8 +27,10 @@ jobs:
       - name: Independently measure source-author contrast without declaring native proof
         run: |
           mkdir -p /tmp/glimpse-b-contrast
+          python3 scripts/fix-agent-b-storyboard-contrast.py --apply > /tmp/glimpse-b-contrast/targeted-edits.json
+          python3 scripts/fix-agent-b-storyboard-contrast.py
           python3 scripts/validate-agent-b-support-contrast.py --fail-low-contrast --report /tmp/glimpse-b-contrast/static-contrast.json
-          python3 scripts/validate-agent-b-support-contrast.py --include-storyboards --report /tmp/glimpse-b-contrast/whole-journey-contrast.json
+          python3 scripts/validate-agent-b-support-contrast.py --include-storyboards --fail-low-contrast --report /tmp/glimpse-b-contrast/whole-journey-contrast.json
           python3 - <<'PY'
           import json
           x=json.load(open('/tmp/glimpse-b-contrast/static-contrast.json'))
@@ -38,8 +41,23 @@ jobs:
           assert x['belowAA']==0 and x['unknownCases']==0
           y=json.load(open('/tmp/glimpse-b-contrast/whole-journey-contrast.json'))
           assert y['sourceStoryboardFrames']==137
+          assert y['belowAA']==0
           print('137-frame desk audit:', y['measuredTextElements'], 'solid texts;', y['belowAA'], 'low contrast and', y['unknownCases'], 'unresolved')
           PY
+      - name: Preserve source-only contrast repairs on this B branch
+        run: |
+          git add design/proposals/storyboards/ design/proposals/advanced-storyboards/
+          if ! git diff --cached --quiet; then
+            git config user.name 'github-actions[bot]'
+            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+            git fetch --quiet origin "${GITHUB_REF_NAME}"
+            if [ "$(git rev-parse FETCH_HEAD)" != "${GITHUB_SHA}" ]; then
+              echo "::error::Ref advanced while correcting. Re-run on current tree; never push stale art."
+              exit 1
+            fi
+            git commit -m "design(B): repair failing storyboard contrast against actual SVG backdrops"
+            git push origin HEAD:"${GITHUB_REF_NAME}"
+          fi
       - uses: actions/upload-artifact@v4
         with:
           name: b-support-contrast-${{ github.sha }}
