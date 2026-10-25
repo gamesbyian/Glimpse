@@ -21,6 +21,7 @@ on:
       - design/proposals/whole-product-review-selection.v1.json
       - scripts/validate-whole-product-review-selection.py
       - scripts/validate-integration-source-freeze.py
+      - docs/planning/HANDOFF-2026-10-24-INDEPENDENT-INTEGRATION.md
       - scripts/validate-primary-task-action-review.py
       - scripts/validate-support-state-truth.py
       - scripts/validate-primary-context-truth.py
