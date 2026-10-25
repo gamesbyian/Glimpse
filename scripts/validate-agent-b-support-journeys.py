@@ -265,7 +265,7 @@ for state in ("03-range-selection","04-confirm-exclude","05-restore"):
     if ">✓</text>" in phone:
         errors.append(f"{path}: unsupported text-glyph selection marker")
 if task_buttons!=36:errors.append(f"Expected 36 visible support task-pill controls, found {task_buttons}")
-if card_buttons!=15:errors.append(f"Expected 15 action-captioned full-height task cards, found {card_buttons}")
+if card_buttons!=42:errors.append(f"Expected 42 action-captioned full-height task cards, found {card_buttons}")
 if toggle_rows!=7:errors.append(f"Expected seven accessible full-row opt-in studies, found {toggle_rows}")
 ss=scenarios["scenarios"]
 if len(ss)!=56:errors.append("Unexpected audit scenario count")
