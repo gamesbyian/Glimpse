@@ -118,7 +118,7 @@ def main(out):
                   if node.attrib.get("clickable") == "true"
                   and node.attrib.get("resource-id") ==
                       "com.android.providers.media.module:id/button_add"
-                  and re.fullmatch(r"Add \\(1\\)", node.attrib.get("text", ""))]
+                  and node.attrib.get("text", "") == "Add (1)"]
         if len(accept) != 1:
             raise RuntimeError("Cannot identify one Android picker confirm action: " +
                                str([(n.attrib.get("text"), n.attrib.get("content-desc"))
