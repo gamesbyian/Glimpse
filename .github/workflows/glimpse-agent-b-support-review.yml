@@ -1,0 +1,87 @@
+name: Glimpse | Agent B support-source and journey optical challenge
+
+on:
+  push:
+    branches: [agent/support-journey-a11y-20261024]
+    paths:
+      - scripts/agent-b-modernize-support.py
+      - scripts/validate-agent-b-support-journeys.py
+      - scripts/render-agent-b-accessibility-probes.py
+      - scripts/render-agent-b-journey-pairs.py
+      - scripts/render-agent-b-compact-support-study.py
+      - design/proposals/support-plates/**
+      - .github/workflows/glimpse-agent-b-support-review.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: glimpse-agent-b-support-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  support-journey-evidence:
+    runs-on: ubuntu-latest
+    timeout-minutes: 14
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Apply idempotent B-owned SVG changes and validate source/semantic paths
+        run: |
+          python3 scripts/agent-b-modernize-support.py --apply
+          python3 scripts/agent-b-modernize-support.py
+          python3 scripts/validate-agent-b-support-journeys.py > /tmp/agent-b-source-proof.json
+          python3 scripts/validate-support-state-truth.py
+          python3 scripts/validate-visual-spec.py > /tmp/glimpse-visual-spec.json
+          python3 scripts/validate-storyboard-coverage.py
+          python3 scripts/validate-storyboard-semantics.py
+          python3 scripts/validate-audit-scenario-trace.py
+      - name: Render all 34 exact phone crops, preserve B-only evidence
+        run: |
+          python3 -m pip install --quiet cairosvg pillow
+          python3 scripts/render-support-review-corpus.py
+          mkdir -p design/reviews/support-agent-b-2026-10-24
+          cp design/reviews/support-2026-10-24/support-phone-contact-*.jpg design/reviews/support-agent-b-2026-10-24/
+          cp design/reviews/support-2026-10-24/source-ledger.json design/reviews/support-agent-b-2026-10-24/
+          cp /tmp/agent-b-source-proof.json design/reviews/support-agent-b-2026-10-24/source-journey-a11y-audit.json
+          python3 scripts/render-agent-b-accessibility-probes.py
+          python3 scripts/render-agent-b-journey-pairs.py
+          python3 scripts/render-agent-b-compact-support-study.py
+          python3 - <<'PY'
+          import json, pathlib
+          out=pathlib.Path('design/reviews/support-agent-b-2026-10-24')
+          j=json.loads((out/'source-ledger.json').read_text())
+          a=json.loads((out/'source-journey-a11y-audit.json').read_text())
+          assert j['total']==34 and len(j['contacts'])==6
+          assert a['supportStates']==34 and a['journeys']==23 and a['storyboardFrames']==137
+          assert a['illustratedScenarios']==56 and not a['errors']
+          assert json.loads((out/'compact-fontscale-stress.json').read_text())['kind']=='STATIC_RISK_SIMULATION_NOT_NATIVE_ANDROID'
+          pairs=json.loads((out/'journey-pair-source-ledger.json').read_text())
+          assert pairs['pairs']==23 and pairs['frames']==46 and len(pairs['contacts'])==6
+          compact=json.loads((out/'compact-report-sections.v0.1.json').read_text())
+          assert len(compact['controls'])==12 and not any(c['sourceHitHeight']<54 for c in compact['controls'])
+          assert compact['status']=='STATIC_UNSELECTED_NOT_NATIVE_OR_OWNER_ACCEPTANCE'
+          assert sum(p['pairs'] for p in pairs['contacts'])==23
+          assert all(not g['androidVerified'] and not g['ownerApproved'] for g in pairs['groups'])
+          assert all(not s['independentlyOpticallyReviewed'] and
+                     not s['nativeAndroidVerified'] and not s['ownerApproved']
+                     for s in j['sources'])
+          print('PASS: 34 source-hashed raster phones, 23 journeys, 137 frames, 56 scenario references; no human/native acceptance')
+          PY
+      - name: Preserve versioned B-only edit and pixel inputs on branch
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add design/proposals/support-plates/ design/reviews/support-agent-b-2026-10-24/
+          if ! git diff --cached --quiet; then
+            git commit -m "design(support): render source-hashed 34-state safe interaction reference"
+            git push origin HEAD:"${GITHUB_REF_NAME}"
+          fi
+      - uses: actions/upload-artifact@v4
+        with:
+          name: agent-b-support-34-phones-${{ github.sha }}
+          path: design/reviews/support-agent-b-2026-10-24/
+          retention-days: 14

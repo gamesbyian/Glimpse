@@ -305,7 +305,7 @@
     {
       "surfaceId": "accessibility-preferences",
       "path": "design/proposals/plates/accessibility-preferences.svg",
-      "sourceSHA256": "db36e63966791913a58dc8b11f7646fc7dde4e18c35cbb4eefc17eef9f9fc5df",
+      "sourceSHA256": "9804c614aab05177dcba76c1a688ebd7da80dda3c368702cae16834fc7081bed",
       "phonePixels": [
         401,
         890
@@ -334,7 +334,7 @@
     },
     {
       "name": "selected-primary-contact-04.jpg",
-      "sha256": "7ab7a020f3e41452b219d5bbe47231d7ad8d0273f90b9e45dc2cc085fa77c7a7",
+      "sha256": "e8f2c17721c7d9d69d0786093c9ea450fa734d89e2d2da648c0b17edb643b230",
       "count": 6
     }
   ],

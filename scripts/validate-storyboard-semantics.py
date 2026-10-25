@@ -119,8 +119,8 @@ def main():
     # Native raster sweep found status captions outside their pale badges.
     # Enforce enough width for the known short status strings.
     badge_fixture = {
-        "x08/01-home-active.svg": ('<rect x="49" y="494" width="116"', 'CURRENT HOME'),
-        "x08/06-status-collapsed.svg": ('<rect x="49" y="494" width="116"', 'CURRENT HOME'),
+        "x08/01-home-active.svg": ('<rect x="49" y="494" width="116"', 'LAST ACKNOWLEDGED'),
+        "x08/06-status-collapsed.svg": ('<rect x="49" y="494" width="116"', 'LAST ACKNOWLEDGED'),
         "x10/06-rotation-delayed.svg": ('<rect x="49" y="374" width="167"', 'LAST ACKNOWLEDGED'),
     }
     for frame, (chip, label) in badge_fixture.items():

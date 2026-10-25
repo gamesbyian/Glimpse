@@ -1,38 +1,46 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1160 920" width="1160" height="920" role="img" aria-label="Contact no-handler unapproved Glimpse visual reference"><rect width="1160" height="920" fill="#E9E3D9"/>
 <rect x="15" y="14" width="401" height="890" rx="22" fill="#F6F0E6" stroke="#C4B7A4" stroke-width="2"/>
 <text x="39" y="45" font-family="Arial,Helvetica,sans-serif" fill="#153F46" font-size="14" font-weight="600">9:41</text>
-<text x="364" y="45" font-family="Arial,Helvetica,sans-serif" fill="#667975" font-size="13" font-weight="400">●  ▰  ▴</text>
+<text x="364" y="45" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="13" font-weight="400">●  ▰  ▴</text>
 <path d="M32 55h368" stroke="#C8B7A1"/>
+<rect x="29" y="57" width="91" height="48" rx="12" fill="#E4ECE6" data-control="back" data-focus-order="1" data-hit-width="91" data-hit-height="48"/>
 <text x="35" y="88" font-family="Arial,Helvetica,sans-serif" fill="#1D5960" font-size="16" font-weight="650">‹ Back</text>
 <text x="37" y="129" font-family="Arial,Helvetica,sans-serif" fill="#153F46" font-size="28" font-weight="700">Contact</text>
-<text x="38" y="155" font-family="Arial,Helvetica,sans-serif" fill="#667975" font-size="15" font-weight="400">Choose how to reach out</text>
-<rect x="40" y="171" width="348" height="32" rx="8" fill="#E9E0F5" stroke="none" stroke-width="1"/>
-<text x="52" y="193" font-family="Arial,Helvetica,sans-serif" fill="#153F46" font-size="13" font-weight="650">PROPOSAL • no handler</text>
+<text x="38" y="155" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="15" font-weight="400">Choose how to reach out</text>
+<g id="support-body" transform="translate(0,-24)">
 <rect x="40" y="222" width="348" height="100" rx="13" fill="#FFFCF6" stroke="#C8B7A1" stroke-width="1"/>
 <text x="53" y="248" font-family="Arial,Helvetica,sans-serif" fill="#153F46" font-size="17" font-weight="650">Report a problem</text>
-<text x="53" y="271" font-family="Arial,Helvetica,sans-serif" fill="#667975" font-size="14" font-weight="400">Explain what happened; attach redacted data</text>
-<text x="53" y="290" font-family="Arial,Helvetica,sans-serif" fill="#667975" font-size="14" font-weight="400">only if you choose</text>
+<text x="53" y="271" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="14" font-weight="400">Explain what happened; attach redacted data</text>
+<text x="53" y="290" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="14" font-weight="400">only if you choose</text>
 <text x="53" y="310" font-family="Arial,Helvetica,sans-serif" fill="#1D5960" font-size="13" font-weight="650">Create a report</text>
 <rect x="40" y="338" width="348" height="100" rx="13" fill="#FFFCF6" stroke="#C8B7A1" stroke-width="1"/>
 <text x="53" y="364" font-family="Arial,Helvetica,sans-serif" fill="#153F46" font-size="17" font-weight="650">Suggest an improvement</text>
-<text x="53" y="387" font-family="Arial,Helvetica,sans-serif" fill="#667975" font-size="14" font-weight="400">What would make Glimpse more useful?</text>
+<text x="53" y="387" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="14" font-weight="400">What would make Glimpse more useful?</text>
 <text x="53" y="426" font-family="Arial,Helvetica,sans-serif" fill="#1D5960" font-size="13" font-weight="650">Write feedback</text>
 <rect x="40" y="454" width="348" height="100" rx="13" fill="#FFFCF6" stroke="#C8B7A1" stroke-width="1"/>
 <text x="53" y="480" font-family="Arial,Helvetica,sans-serif" fill="#153F46" font-size="17" font-weight="650">Public GitHub issues</text>
-<text x="53" y="503" font-family="Arial,Helvetica,sans-serif" fill="#667975" font-size="14" font-weight="400">May require GitHub login; issue will be</text>
-<text x="53" y="522" font-family="Arial,Helvetica,sans-serif" fill="#667975" font-size="14" font-weight="400">public</text>
+<text x="53" y="503" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="14" font-weight="400">May require GitHub login; issue will be</text>
+<text x="53" y="522" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="14" font-weight="400">public</text>
 <text x="53" y="542" font-family="Arial,Helvetica,sans-serif" fill="#1D5960" font-size="13" font-weight="650">Open issues</text>
 <rect x="42" y="571" width="343" height="62" rx="10" fill="#E9E0F5" stroke="none" stroke-width="1"/>
 <text x="55" y="599" font-family="Arial,Helvetica,sans-serif" fill="#153F46" font-size="16" font-weight="650">No email/share handler found</text>
-<text x="55" y="622" font-family="Arial,Helvetica,sans-serif" fill="#667975" font-size="14" font-weight="400">Copy your draft instead.</text>
-<rect x="42" y="660" width="170" height="42" rx="20" fill="#FFFCF6" stroke="#C8B7A1" stroke-width="1"/>
+<text x="55" y="622" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="14" font-weight="400">Copy your draft instead.</text>
+<rect x="42" y="660" width="170" height="48" rx="20" fill="#FFFCF6" stroke="#C8B7A1" stroke-width="1"/>
 <text x="57" y="687" font-family="Arial,Helvetica,sans-serif" fill="#153F46" font-size="14" font-weight="650">Copy feedback</text>
+</g>
 <path d="M29 817h373" stroke="#C8B7A1"/>
-<text x="45" y="851" font-family="Arial,Helvetica,sans-serif" fill="#667975" font-size="13" font-weight="500">Home</text>
-<text x="141" y="851" font-family="Arial,Helvetica,sans-serif" fill="#667975" font-size="13" font-weight="500">Discover</text>
-<text x="237" y="851" font-family="Arial,Helvetica,sans-serif" fill="#667975" font-size="13" font-weight="500">Collections</text>
-<text x="333" y="851" font-family="Arial,Helvetica,sans-serif" fill="#667975" font-size="13" font-weight="500">Automation</text>
-<text x="39" y="895" font-family="Arial,Helvetica,sans-serif" fill="#667975" font-size="11" font-weight="650">SCREEN PROPOSAL • NOT USER-APPROVED</text>
+<g id="support-navigation" aria-label="Four tab destinations; static touch region proposal only">
+<rect x="31" y="820" width="86" height="50" rx="12" fill="#EBE5DB" data-control="nav-home" data-focus-order="90" data-hit-width="86" data-hit-height="50"/>
+<rect x="126" y="820" width="86" height="50" rx="12" fill="#EBE5DB" data-control="nav-discover" data-focus-order="91" data-hit-width="86" data-hit-height="50"/>
+<rect x="222" y="820" width="91" height="50" rx="12" fill="#EBE5DB" data-control="nav-collections" data-focus-order="92" data-hit-width="91" data-hit-height="50"/>
+<rect x="320" y="820" width="91" height="50" rx="12" fill="#EBE5DB" data-control="nav-automation" data-focus-order="93" data-hit-width="91" data-hit-height="50"/>
+</g>
+
+<text x="45" y="851" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="13" font-weight="500">Home</text>
+<text x="141" y="851" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="13" font-weight="500">Discover</text>
+<text x="237" y="851" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="13" font-weight="500">Collections</text>
+<text x="333" y="851" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="13" font-weight="500">Automation</text>
+<text x="39" y="895" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="11" font-weight="650">SCREEN PROPOSAL • NOT USER-APPROVED</text>
 <rect x="440" y="14" width="705" height="890" rx="16" fill="#FCF9F3" stroke="#C4B7A4" stroke-width="2"/>
 <text x="464" y="49" font-family="Arial,Helvetica,sans-serif" fill="#153F46" font-size="18" font-weight="700">UNIFIED GLIMPSE REFERENCE SYSTEM</text>
 <text x="465" y="80" font-family="Arial,Helvetica,sans-serif" fill="#1D5960" font-size="19" font-weight="650">CONTACT-FEEDBACK  /  no handler</text>

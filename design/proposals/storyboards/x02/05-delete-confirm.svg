@@ -14,19 +14,36 @@
 <text x="143" y="239" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="650" fill="#1D5960">Browse →</text>
 <rect x="40" y="287" width="343" height="298" rx="18" fill="#E9E0F5" stroke="none"/>
 <text x="55" y="328" font-family="Arial,Helvetica,sans-serif" font-size="21" font-weight="700" fill="#153F46">Remove Rainbows?</text>
-<text x="54" y="362" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="400" fill="#153F46">22 local memberships affected</text>
-<text x="54" y="387" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="400" fill="#153F46">Other collections remain intact</text>
-<text x="54" y="412" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="400" fill="#153F46">Active shuffle pauses safely</text>
-<rect x="52" y="496" width="128" height="43" rx="18" fill="#FFFCF6" stroke="#C4B7A4"/>
+<text x="54" y="362" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="400" fill="#153F46">22 memberships removed from Rainbows</text>
+<text x="54" y="387" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="400" fill="#153F46">Saved copies and other collections stay</text>
+<text x="54" y="412" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="400" fill="#153F46">Active shuffle pauses; originals stay</text>
+<rect x="52" y="493" width="128" height="50" rx="18" fill="#FFFCF6" stroke="#C4B7A4"/>
 <text x="66" y="523" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="650" fill="#153F46">Cancel</text>
-<rect x="188" y="496" width="188" height="43" rx="18" fill="#1D5960" stroke="#1D5960"/>
-<text x="202" y="523" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="650" fill="white">Review removal</text>
+<rect x="188" y="493" width="188" height="50" rx="18" fill="#703B27" stroke="#703B27"/>
+<text x="202" y="523" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="650" fill="white">Remove Rainbows</text>
 <path d="M25 823 H406" stroke="#C4B7A4"/>
 <text x="42" y="853" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="500" fill="#667975">Home</text>
 <text x="136" y="853" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="500" fill="#667975">Discover</text>
 <text x="230" y="853" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="500" fill="#667975">Collections</text>
 <text x="324" y="853" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="500" fill="#667975">Automation</text>
 <text x="37" y="899" font-family="Arial,Helvetica,sans-serif" font-size="11" font-weight="700" fill="#667975">DRAFT · NOT APPROVED</text>
+<g id="collection-delete-modal" role="group" aria-label="Confirm collection removal; background disabled">
+<rect x="15" y="55" width="401" height="827" fill="#153F46" opacity="0.63"/>
+<rect x="28" y="254" width="375" height="410" rx="24" fill="#FFFCF6" stroke="#C4B7A4" stroke-width="2"/>
+<rect x="46" y="276" width="168" height="31" rx="12" fill="#FBE4D6"/>
+<text x="58" y="297" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="700" fill="#703B27">COLLECTION REMOVAL</text>
+<text x="45" y="347" font-family="Arial,Helvetica,sans-serif" font-size="23" font-weight="700" fill="#153F46">Remove Rainbows?</text>
+<text x="46" y="383" font-family="Arial,Helvetica,sans-serif" font-size="14" fill="#153F46">22 memberships leave this collection.</text>
+<text x="46" y="408" font-family="Arial,Helvetica,sans-serif" font-size="14" fill="#153F46">Saved photos and source originals stay.</text>
+<rect x="45" y="431" width="337" height="90" rx="13" fill="#FBE4D6"/>
+<text x="57" y="460" font-family="Arial,Helvetica,sans-serif" font-size="16" font-weight="700" fill="#703B27">Active shuffle pauses</text>
+<text x="57" y="485" font-family="Arial,Helvetica,sans-serif" font-size="14" fill="#703B27">Choose another collection to resume.</text>
+<text x="46" y="548" font-family="Arial,Helvetica,sans-serif" font-size="13" fill="#566861">Nothing changes until you confirm.</text>
+<rect x="45" y="575" width="134" height="54" rx="18" fill="#FFFCF6" stroke="#C4B7A4" data-control="cancel-collection-removal" data-hit-width="134" data-hit-height="54"/>
+<text x="68" y="609" font-family="Arial,Helvetica,sans-serif" font-size="16" font-weight="700" fill="#153F46">Cancel</text>
+<rect x="189" y="575" width="191" height="54" rx="18" fill="#703B27" stroke="#703B27" data-control="confirm-collection-removal" data-hit-width="191" data-hit-height="54"/>
+<text x="202" y="609" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="700" fill="#FFFFFF">Remove Rainbows</text>
+</g>
 <rect x="442" y="14" width="704" height="890" rx="18" fill="#FFFCF6" stroke="#C4B7A4"/>
 <text x="464" y="55" font-family="Arial,Helvetica,sans-serif" font-size="22" font-weight="700" fill="#153F46">X02 / Collection management</text>
 <text x="465" y="91" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="700" fill="#1D5960">05-DELETE-CONFIRM</text>
@@ -36,7 +53,7 @@
 <text x="465" y="219" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="400" fill="#153F46">pause</text>
 <rect x="467" y="298" width="643" height="132" rx="14" fill="#E9E0F5" stroke="none"/>
 <text x="484" y="328" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="700" fill="#1D5960">TRIGGER</text>
-<text x="484" y="360" font-family="Arial,Helvetica,sans-serif" font-size="20" font-weight="700" fill="#153F46">Review removal</text>
+<text x="484" y="360" font-family="Arial,Helvetica,sans-serif" font-size="20" font-weight="700" fill="#153F46">Remove Rainbows</text>
 <text x="484" y="396" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="450" fill="#667975">Frame 5/6 · next step has explicit scope</text>
 <text x="466" y="475" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="700" fill="#153F46">CROSS-FRAME IDENTITY</text>
 <text x="468" y="515" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="650" fill="#667975">journey</text>

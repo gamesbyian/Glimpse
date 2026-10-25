@@ -15,7 +15,7 @@ def check(path,yes,no=()):
 def main():
     check("design/proposals/plates/quick-import.svg",
           ["SAMPLE PREVIEW","Saving does not change your wallpaper.","Apply…",
-          'y="451" width="100" height="44"'],
+          'y="451" width="100" height="50"'],
           ["Use now</text>","SOURCE SCREENSHOT"])
     check("design/proposals/plates/automation.svg",
           ["Foreground rotation enabled","Five-minute eligibility",

@@ -1,37 +1,45 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1160 920" width="1160" height="920" role="img" aria-label="Help article unapproved Glimpse visual reference"><rect width="1160" height="920" fill="#E9E3D9"/>
 <rect x="15" y="14" width="401" height="890" rx="22" fill="#F6F0E6" stroke="#C4B7A4" stroke-width="2"/>
 <text x="39" y="45" font-family="Arial,Helvetica,sans-serif" fill="#153F46" font-size="14" font-weight="600">9:41</text>
-<text x="364" y="45" font-family="Arial,Helvetica,sans-serif" fill="#667975" font-size="13" font-weight="400">●  ▰  ▴</text>
+<text x="364" y="45" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="13" font-weight="400">●  ▰  ▴</text>
 <path d="M32 55h368" stroke="#C8B7A1"/>
+<rect x="29" y="57" width="91" height="48" rx="12" fill="#E4ECE6" data-control="back" data-focus-order="1" data-hit-width="91" data-hit-height="48"/>
 <text x="35" y="88" font-family="Arial,Helvetica,sans-serif" fill="#1D5960" font-size="16" font-weight="650">‹ Back</text>
 <text x="37" y="129" font-family="Arial,Helvetica,sans-serif" fill="#153F46" font-size="28" font-weight="700">Help</text>
-<text x="38" y="155" font-family="Arial,Helvetica,sans-serif" fill="#667975" font-size="15" font-weight="400">Import, preview and apply</text>
-<rect x="40" y="171" width="348" height="32" rx="8" fill="#E9E0F5" stroke="none" stroke-width="1"/>
-<text x="52" y="193" font-family="Arial,Helvetica,sans-serif" fill="#153F46" font-size="13" font-weight="650">PROPOSAL • article</text>
+<text x="38" y="155" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="15" font-weight="400">Import, preview and apply</text>
+<g id="support-body" transform="translate(0,-24)">
 <rect x="40" y="220" width="348" height="132" rx="13" fill="#FFFCF6" stroke="#C8B7A1"/>
 <text x="53" y="247" font-family="Arial,Helvetica,sans-serif" fill="#153F46" font-size="18" font-weight="700">Import photos from Android</text>
-<text x="53" y="274" font-family="Arial,Helvetica,sans-serif" fill="#667975" font-size="14" font-weight="400">1. Choose Add photos in Collections.</text>
-<text x="53" y="294" font-family="Arial,Helvetica,sans-serif" fill="#667975" font-size="14" font-weight="400">2. Select items in the system picker.</text>
-<text x="53" y="314" font-family="Arial,Helvetica,sans-serif" fill="#667975" font-size="14" font-weight="400">3. Wait for verified local copies.</text>
-<text x="53" y="337" font-family="Arial,Helvetica,sans-serif" fill="#667975" font-size="13" font-weight="400">No full-library permission required</text>
+<text x="53" y="274" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="14" font-weight="400">1. Choose Add photos in Collections.</text>
+<text x="53" y="294" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="14" font-weight="400">2. Select items in the system picker.</text>
+<text x="53" y="314" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="14" font-weight="400">3. Wait for verified local copies.</text>
+<text x="53" y="337" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="13" font-weight="400">No full-library permission required</text>
 <rect x="40" y="367" width="348" height="132" rx="13" fill="#FFFCF6" stroke="#C8B7A1"/>
 <text x="53" y="394" font-family="Arial,Helvetica,sans-serif" fill="#153F46" font-size="18" font-weight="700">Then browse your collection</text>
-<text x="53" y="421" font-family="Arial,Helvetica,sans-serif" fill="#667975" font-size="14" font-weight="400">Use the finite Reel or Grid to choose</text>
-<text x="53" y="441" font-family="Arial,Helvetica,sans-serif" fill="#667975" font-size="14" font-weight="400">a photo. Selection only previews it.</text>
-<text x="53" y="468" font-family="Arial,Helvetica,sans-serif" fill="#667975" font-size="13" font-weight="400">Previous / Next work without swiping</text>
+<text x="53" y="421" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="14" font-weight="400">Use the finite Reel or Grid to choose</text>
+<text x="53" y="441" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="14" font-weight="400">a photo. Selection only previews it.</text>
+<text x="53" y="468" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="13" font-weight="400">Previous / Next work without swiping</text>
 <rect x="40" y="514" width="348" height="132" rx="13" fill="#FFFCF6" stroke="#C8B7A1"/>
 <text x="53" y="541" font-family="Arial,Helvetica,sans-serif" fill="#153F46" font-size="18" font-weight="700">Applying is a separate choice</text>
-<text x="53" y="568" font-family="Arial,Helvetica,sans-serif" fill="#667975" font-size="14" font-weight="400">Tap Set wallpaper, select an available</text>
-<text x="53" y="588" font-family="Arial,Helvetica,sans-serif" fill="#667975" font-size="14" font-weight="400">Android target, then check the result.</text>
-<text x="53" y="619" font-family="Arial,Helvetica,sans-serif" fill="#667975" font-size="13" font-weight="400">Browsing never applies automatically</text>
-<rect x="43" y="685" width="336" height="46" rx="22" fill="#1D5960"/>
+<text x="53" y="568" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="14" font-weight="400">Tap Set wallpaper, select an available</text>
+<text x="53" y="588" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="14" font-weight="400">Android target, then check the result.</text>
+<text x="53" y="619" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="13" font-weight="400">Browsing never applies automatically</text>
+<rect x="43" y="685" width="336" height="48" rx="22" fill="#1D5960"/>
 <text x="59" y="714" font-family="Arial,Helvetica,sans-serif" fill="#FFFFFF" font-size="15" font-weight="700">Back to help topics</text>
+</g>
 <path d="M29 817h373" stroke="#C8B7A1"/>
-<text x="45" y="851" font-family="Arial,Helvetica,sans-serif" fill="#667975" font-size="13" font-weight="500">Home</text>
-<text x="141" y="851" font-family="Arial,Helvetica,sans-serif" fill="#667975" font-size="13" font-weight="500">Discover</text>
-<text x="237" y="851" font-family="Arial,Helvetica,sans-serif" fill="#667975" font-size="13" font-weight="500">Collections</text>
-<text x="333" y="851" font-family="Arial,Helvetica,sans-serif" fill="#667975" font-size="13" font-weight="500">Automation</text>
-<text x="39" y="895" font-family="Arial,Helvetica,sans-serif" fill="#667975" font-size="11" font-weight="650">SCREEN PROPOSAL • NOT USER-APPROVED</text>
+<g id="support-navigation" aria-label="Four tab destinations; static touch region proposal only">
+<rect x="31" y="820" width="86" height="50" rx="12" fill="#EBE5DB" data-control="nav-home" data-focus-order="90" data-hit-width="86" data-hit-height="50"/>
+<rect x="126" y="820" width="86" height="50" rx="12" fill="#EBE5DB" data-control="nav-discover" data-focus-order="91" data-hit-width="86" data-hit-height="50"/>
+<rect x="222" y="820" width="91" height="50" rx="12" fill="#EBE5DB" data-control="nav-collections" data-focus-order="92" data-hit-width="91" data-hit-height="50"/>
+<rect x="320" y="820" width="91" height="50" rx="12" fill="#EBE5DB" data-control="nav-automation" data-focus-order="93" data-hit-width="91" data-hit-height="50"/>
+</g>
+
+<text x="45" y="851" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="13" font-weight="500">Home</text>
+<text x="141" y="851" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="13" font-weight="500">Discover</text>
+<text x="237" y="851" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="13" font-weight="500">Collections</text>
+<text x="333" y="851" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="13" font-weight="500">Automation</text>
+<text x="39" y="895" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="11" font-weight="650">SCREEN PROPOSAL • NOT USER-APPROVED</text>
 <rect x="440" y="14" width="705" height="890" rx="16" fill="#FCF9F3" stroke="#C4B7A4" stroke-width="2"/>
 <text x="464" y="49" font-family="Arial,Helvetica,sans-serif" fill="#153F46" font-size="18" font-weight="700">UNIFIED GLIMPSE REFERENCE SYSTEM</text>
 <text x="465" y="80" font-family="Arial,Helvetica,sans-serif" fill="#1D5960" font-size="19" font-weight="650">HELP  /  article</text>

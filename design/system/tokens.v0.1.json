@@ -1,0 +1,102 @@
+{
+  "contract": "glimpse-production-a",
+  "revision": "0.1.0",
+  "status": "DRAFT_PENDING_INTEGRATION_LOCK",
+  "canvas": {
+    "study": [
+      1160,
+      920
+    ],
+    "phone": {
+      "x": 15,
+      "y": 14,
+      "width": 401,
+      "height": 890
+    },
+    "regions": {
+      "status": [
+        14,
+        56
+      ],
+      "header": [
+        56,
+        146
+      ],
+      "body": [
+        146,
+        806
+      ],
+      "nav": [
+        823,
+        879
+      ]
+    }
+  },
+  "color": {
+    "paper": "#F6F0E6",
+    "surface": "#FFFCF6",
+    "ink": "#153F46",
+    "accent": "#1D5960",
+    "secondary": "#566861",
+    "border": "#C8B7A1",
+    "warning": "#A5482D",
+    "selected": "#E9E0F5",
+    "onAccent": "#FFFFFF"
+  },
+  "typographyPx": {
+    "display": 32,
+    "section": 22,
+    "row": 18,
+    "body": 16,
+    "secondary": 15,
+    "metadata": 13
+  },
+  "spacingPx": [
+    4,
+    8,
+    12,
+    16,
+    20,
+    24,
+    32
+  ],
+  "radiiPx": {
+    "panel": 16,
+    "pill": 24
+  },
+  "targets": {
+    "nativeMinDp": 48,
+    "svgNominalMinPx": 48
+  },
+  "focusSequence": [
+    "back-or-close",
+    "scene-status-and-details",
+    "contextual-controls",
+    "primary-action",
+    "secondary-actions",
+    "destination-navigation"
+  ],
+  "invariants": [
+    "finite-five-aperture-reel",
+    "grid-prev-next-parity",
+    "preview-not-apply",
+    "explicit-home-lock-target",
+    "os-state-unknown-unless-verified",
+    "best-effort-scheduling",
+    "photo-id-and-rights-traceable",
+    "OS-owned-controls-not-recreated"
+  ],
+  "evidenceLevels": [
+    "source",
+    "optical-render",
+    "Android-native",
+    "human-owner"
+  ],
+  "requiresNativeChecks": [
+    "320dp",
+    "fontScale=2",
+    "TalkBack",
+    "48dp-hitbox",
+    "gesture-and-focus-return"
+  ]
+}

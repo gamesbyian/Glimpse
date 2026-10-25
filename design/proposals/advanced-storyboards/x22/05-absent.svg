@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1160" height="920" viewBox="0 0 1160 920"><title>Exact diagnostic report handoff No supported handler</title><desc>Unapproved connected Glimpse interface proposal, not an actual Android screenshot.</desc><metadata>{&quot;journeyId&quot;:&quot;x22&quot;,&quot;stateId&quot;:&quot;05-absent&quot;,&quot;sourceAssetId&quot;:&quot;illustrative-vector-p12&quot;,&quot;selectedAssetId&quot;:null,&quot;viewportDp&quot;:[420,900],&quot;status&quot;:&quot;draft-not-approved&quot;,&quot;action&quot;:&quot;Copy details&quot;,&quot;assertion&quot;:&quot;Retain draft after cancelled/unavailable share&quot;}</metadata>
+<svg xmlns="http://www.w3.org/2000/svg" width="1160" height="920" viewBox="0 0 1160 920"><title>Exact diagnostic report handoff No supported handler</title><desc>Unapproved connected Glimpse interface proposal, not an actual Android screenshot.</desc><metadata>{&quot;journeyId&quot;:&quot;x22&quot;,&quot;stateId&quot;:&quot;05-absent&quot;,&quot;sourceAssetId&quot;:&quot;illustrative-vector-p12&quot;,&quot;selectedAssetId&quot;:null,&quot;viewportDp&quot;:[420,900],&quot;status&quot;:&quot;draft-not-approved&quot;,&quot;action&quot;:&quot;Copy details&quot;,&quot;assertion&quot;:&quot;No handler; keep draft for copy or save&quot;}</metadata>
 <rect x="0" y="0" width="1160" height="920" rx="0" fill="#E9E2D6" stroke="none"/>
 <rect x="15" y="14" width="401" height="890" rx="22" fill="#F6F0E6" stroke="#C4B7A4"/>
 <text x="38" y="44" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="650" fill="#153F46">9:41</text>
@@ -9,7 +9,7 @@
 <text x="55" y="203" font-family="Arial,Helvetica,sans-serif" font-size="17" font-weight="650" fill="#153F46">Diagnostic payload preview</text>
 <text x="55" y="235" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="440" fill="#667975">App v0.1 · Android API 34</text>
 <rect x="41" y="279" width="344" height="93" rx="13" fill="#E9E0F5" stroke="#E8876C"/>
-<text x="55" y="309" font-family="Arial,Helvetica,sans-serif" font-size="17" font-weight="650" fill="#153F46">No recipient installed</text>
+<text x="55" y="309" font-family="Arial,Helvetica,sans-serif" font-size="17" font-weight="650" fill="#153F46">No compatible share target</text>
 <text x="55" y="341" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="440" fill="#667975">No automatic upload</text>
 <rect x="41" y="389" width="344" height="93" rx="13" fill="#FFFCF6" stroke="#C4B7A4"/>
 <text x="55" y="419" font-family="Arial,Helvetica,sans-serif" font-size="17" font-weight="650" fill="#153F46">Photo bytes: excluded</text>
