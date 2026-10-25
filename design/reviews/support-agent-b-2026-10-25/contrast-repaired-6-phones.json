@@ -1,0 +1,111 @@
+{
+  "status": "UNAPPROVED_RASTER_CONTRAST_STUDY",
+  "totalPhones": 6,
+  "sources": [
+    {
+      "path": "design/proposals/storyboards/x01/01-collection-entry.svg",
+      "sourceSHA256": "6ef7504d0c6f45c198b300fa592319d8321d51c57b50e0acdde43e5e7c8613b5",
+      "crop": [
+        15,
+        14,
+        416,
+        904
+      ],
+      "phone": [
+        401,
+        890
+      ],
+      "independentlyOpticallyReviewed": false,
+      "nativeVerified": false,
+      "ownerApproved": false
+    },
+    {
+      "path": "design/proposals/storyboards/x01/05-partial-recovery.svg",
+      "sourceSHA256": "998af60a8ca75268d96e2fa1b54b55dc6361a2cd23f6266508ae2d1f5b573d7c",
+      "crop": [
+        15,
+        14,
+        416,
+        904
+      ],
+      "phone": [
+        401,
+        890
+      ],
+      "independentlyOpticallyReviewed": false,
+      "nativeVerified": false,
+      "ownerApproved": false
+    },
+    {
+      "path": "design/proposals/storyboards/x02/06-empty-after-removal.svg",
+      "sourceSHA256": "d74320b844e9253db0cc20b6b0be46c091e7141f646aa4f83be9dde413b8880f",
+      "crop": [
+        15,
+        14,
+        416,
+        904
+      ],
+      "phone": [
+        401,
+        890
+      ],
+      "independentlyOpticallyReviewed": false,
+      "nativeVerified": false,
+      "ownerApproved": false
+    },
+    {
+      "path": "design/proposals/storyboards/x06/03-three.svg",
+      "sourceSHA256": "4d6661de05fe2eb32dc192939e6a90a9fa37d26ac4cfbd761c8216db2cb606dd",
+      "crop": [
+        15,
+        14,
+        416,
+        904
+      ],
+      "phone": [
+        401,
+        890
+      ],
+      "independentlyOpticallyReviewed": false,
+      "nativeVerified": false,
+      "ownerApproved": false
+    },
+    {
+      "path": "design/proposals/storyboards/x08/03-reel-hero.svg",
+      "sourceSHA256": "d450db3fe730c96753ed4c729eab010f25314c3fdd41b23b83aca365f27e772b",
+      "crop": [
+        15,
+        14,
+        416,
+        904
+      ],
+      "phone": [
+        401,
+        890
+      ],
+      "independentlyOpticallyReviewed": false,
+      "nativeVerified": false,
+      "ownerApproved": false
+    },
+    {
+      "path": "design/proposals/storyboards/x09/07-error-compact.svg",
+      "sourceSHA256": "fdb257778795c985d25b2e2904f7bf05fd4b994c110ff82c142caebb48be2563",
+      "crop": [
+        15,
+        14,
+        416,
+        904
+      ],
+      "phone": [
+        401,
+        890
+      ],
+      "independentlyOpticallyReviewed": false,
+      "nativeVerified": false,
+      "ownerApproved": false
+    }
+  ],
+  "contact": "contrast-repaired-6-phones.jpg",
+  "contactSHA256": "d47fd3f2f463d76d36941b10a87c0f97ef460c1f40f51d5a57928d5e4f975677",
+  "limitations": "6 direct review candidates, not all 137 inspected after this color pass; nominal SVG crop, no actual Android rendering, source assets unchanged."
+}

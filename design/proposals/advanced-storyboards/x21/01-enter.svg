@@ -4,7 +4,7 @@
 <text x="38" y="43" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="650" fill="#153F46">9:41</text>
 <text x="352" y="43" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="450" fill="#667975">● ▰ ▴</text>
 <text x="38" y="99" font-family="Arial,Helvetica,sans-serif" font-size="24" font-weight="700" fill="#153F46">Home overflow</text>
-<text x="39" y="130" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="500" fill="#667975">Current selection p12</text>
+<text x="39" y="130" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="500" fill="#445851">Current selection p12</text>
 <rect x="42" y="170" width="338" height="313" fill="#161926" rx="13" stroke="none"/>
 <path d="M47 195.04 Q211 176.26 375 241.99" stroke="#D63E4F" stroke-width="13.459" fill="none"/>
 <path d="M47 251.38 Q211 229.47 375 298.33000000000004" stroke="#D98F39" stroke-width="13.459" fill="none"/>
@@ -19,10 +19,10 @@
 <rect x="43" y="673" width="336" height="45" fill="#1D5960" rx="18" stroke="#1D5960"/>
 <text x="57" y="701" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="700" fill="white">Open Settings</text>
 <path d="M30 822 H403" stroke="#C4B7A4"/>
-<text x="40" y="851" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="500" fill="#667975">Home</text>
-<text x="135" y="851" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="500" fill="#667975">Discover</text>
-<text x="230" y="851" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="500" fill="#667975">Collections</text>
-<text x="325" y="851" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="500" fill="#667975">Automation</text>
+<text x="40" y="851" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="500" fill="#445851">Home</text>
+<text x="135" y="851" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="500" fill="#445851">Discover</text>
+<text x="230" y="851" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="500" fill="#445851">Collections</text>
+<text x="325" y="851" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="500" fill="#445851">Automation</text>
 <text x="37" y="891" font-family="Arial,Helvetica,sans-serif" font-size="11" font-weight="700" fill="#667975">P1 DRAFT · NOT APPROVED</text>
 <rect x="441" y="15" width="705" height="890" fill="#FFFCF6" rx="18" stroke="#C4B7A4"/>
 <text x="465" y="55" font-family="Arial,Helvetica,sans-serif" font-size="22" font-weight="700" fill="#153F46">X21 / Settings, help and return</text>

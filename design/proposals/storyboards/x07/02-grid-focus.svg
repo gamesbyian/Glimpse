@@ -5,7 +5,7 @@
 <text x="354" y="43" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="500" fill="#667975">●  ▰</text>
 <path d="M33 56 H396" stroke="#C4B7A4"/>
 <text x="37" y="94" font-family="Arial,Helvetica,sans-serif" font-size="29" font-weight="700" fill="#153F46">Rainbows</text>
-<text x="39" y="122" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="500" fill="#667975">Grid focus p12</text>
+<text x="39" y="122" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="500" fill="#445851">Grid focus p12</text>
 <text x="40" y="182" font-family="Arial,Helvetica,sans-serif" font-size="16" font-weight="650" fill="#153F46">Selected p12 of 22</text>
 <rect x="38" y="216" width="80" height="99" rx="12" fill="#21323B" stroke="none"/>
 <path d="M44.4 237.78 Q76.4 217.98 110 239.76" stroke="#E8876C" stroke-width="5.445" fill="none" stroke-linecap="round"/>
@@ -82,10 +82,10 @@
 <rect x="208" y="591" width="173" height="43" rx="18" fill="#1D5960" stroke="#1D5960"/>
 <text x="222" y="618" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="650" fill="white">View p12</text>
 <path d="M25 823 H406" stroke="#C4B7A4"/>
-<text x="42" y="853" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="500" fill="#667975">Home</text>
-<text x="136" y="853" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="500" fill="#667975">Discover</text>
-<text x="230" y="853" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="500" fill="#667975">Collections</text>
-<text x="324" y="853" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="500" fill="#667975">Automation</text>
+<text x="42" y="853" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="500" fill="#445851">Home</text>
+<text x="136" y="853" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="500" fill="#445851">Discover</text>
+<text x="230" y="853" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="500" fill="#445851">Collections</text>
+<text x="324" y="853" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="500" fill="#445851">Automation</text>
 <text x="37" y="899" font-family="Arial,Helvetica,sans-serif" font-size="11" font-weight="700" fill="#667975">DRAFT · NOT APPROVED</text>
 <rect x="442" y="14" width="704" height="890" rx="18" fill="#FFFCF6" stroke="#C4B7A4"/>
 <text x="464" y="55" font-family="Arial,Helvetica,sans-serif" font-size="22" font-weight="700" fill="#153F46">X07 / Reel ↔ Grid ↔ detail</text>

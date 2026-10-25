@@ -4,7 +4,7 @@
 <text x="38" y="43" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="650" fill="#153F46">9:41</text>
 <text x="352" y="43" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="450" fill="#667975">● ▰ ▴</text>
 <text x="38" y="99" font-family="Arial,Helvetica,sans-serif" font-size="24" font-weight="700" fill="#153F46">Previous wallpaper</text>
-<text x="39" y="130" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="500" fill="#667975">p11 · last acknowledged</text>
+<text x="39" y="130" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="500" fill="#445851">p11 · last acknowledged</text>
 <rect x="43" y="166" width="338" height="283" fill="#161926" rx="13" stroke="none"/>
 <path d="M48 188.64 Q212 171.66 376 231.09" stroke="#D63E4F" stroke-width="12.168999999999999" fill="none"/>
 <path d="M48 239.57999999999998 Q212 219.77 376 282.03000000000003" stroke="#D98F39" stroke-width="12.168999999999999" fill="none"/>
@@ -19,10 +19,10 @@
 <rect x="44" y="666" width="337" height="45" fill="#1D5960" rx="18" stroke="#1D5960"/>
 <text x="58" y="694" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="700" fill="white">Reapply p11</text>
 <path d="M30 822 H403" stroke="#C4B7A4"/>
-<text x="40" y="851" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="500" fill="#667975">Home</text>
-<text x="135" y="851" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="500" fill="#667975">Discover</text>
-<text x="230" y="851" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="500" fill="#667975">Collections</text>
-<text x="325" y="851" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="500" fill="#667975">Automation</text>
+<text x="40" y="851" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="500" fill="#445851">Home</text>
+<text x="135" y="851" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="500" fill="#445851">Discover</text>
+<text x="230" y="851" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="500" fill="#445851">Collections</text>
+<text x="325" y="851" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="500" fill="#445851">Automation</text>
 <text x="37" y="891" font-family="Arial,Helvetica,sans-serif" font-size="11" font-weight="700" fill="#667975">P1 DRAFT · NOT APPROVED</text>
 <rect x="441" y="15" width="705" height="890" fill="#FFFCF6" rx="18" stroke="#C4B7A4"/>
 <text x="465" y="55" font-family="Arial,Helvetica,sans-serif" font-size="22" font-weight="700" fill="#153F46">X18 / History, diagnosis and reapply</text>

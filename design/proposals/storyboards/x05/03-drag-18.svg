@@ -9,7 +9,7 @@
 <text x="39" y="43" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="650" fill="#153F46">9:41</text>
 <text x="38" y="89" font-family="Arial,Helvetica,sans-serif" font-size="24" font-weight="700" fill="#153F46">Glimpse</text>
 <text x="38" y="126" font-family="Arial,Helvetica,sans-serif" font-size="24" font-weight="700" fill="#153F46">Rainbows</text>
-<text x="38" y="157" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="550" fill="#667975">Photo 12 of 22 · Preview only</text>
+<text x="38" y="157" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="550" fill="#445851">Photo 12 of 22 · Preview only</text>
 <rect x="40" y="181" width="350" height="220" rx="15" fill="#FFFCF6" stroke="#B6A48D"/>
 <clipPath id="hero"><rect x="43" y="184" width="344" height="214" rx="13"/></clipPath><g clip-path="url(#hero)"><use href="#fixture1" transform="translate(43 184) scale(.7167 .2972)"/></g>
 <rect x="48" y="370" width="184" height="22" rx="12" fill="#FFFCF6" stroke="none"/>
@@ -44,7 +44,7 @@
 <rect x="214" y="755" width="177" height="48" rx="18" fill="#FFFCF6" stroke="#C4B7A4"/>
 <text x="57" y="786" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="650" fill="#153F46">Previous photo</text>
 <text x="226" y="786" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="650" fill="#153F46">Next photo</text>
-<text x="43" y="852" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="500" fill="#667975">Home       Discover       Collections       Automation</text>
+<text x="43" y="852" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="500" fill="#445851">Home       Discover       Collections       Automation</text>
 <text x="43" y="896" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="700" fill="#667975">PROPOSAL · NOT APPROVED</text>
 <rect x="438" y="14" width="707" height="890" rx="18" fill="#FCF9F3" stroke="#C4B7A4"/>
 <text x="463" y="50" font-family="Arial,Helvetica,sans-serif" font-size="22" font-weight="700" fill="#153F46">X05 · PHYSICAL REEL INTERACTION STORYBOARD</text>

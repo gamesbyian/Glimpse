@@ -5,7 +5,7 @@
 <text x="354" y="43" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="500" fill="#667975">●  ▰</text>
 <path d="M33 56 H396" stroke="#C4B7A4"/>
 <text x="37" y="94" font-family="Arial,Helvetica,sans-serif" font-size="29" font-weight="700" fill="#153F46">Collections</text>
-<text x="39" y="122" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="500" fill="#667975">Remove collection</text>
+<text x="39" y="122" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="500" fill="#445851">Remove collection</text>
 <rect x="41" y="156" width="343" height="99" rx="16" fill="#FFFCF6" stroke="#C4B7A4"/>
 <rect x="52" y="168" width="76" height="76" rx="13" fill="#EAD9BD" stroke="none"/>
 <circle cx="90" cy="205" r="28" fill="#D78D68"/><circle cx="90" cy="205" r="11" fill="#FFFCF6"/>
@@ -22,10 +22,10 @@
 <rect x="188" y="493" width="188" height="50" rx="18" fill="#703B27" stroke="#703B27"/>
 <text x="202" y="523" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="650" fill="white">Remove Rainbows</text>
 <path d="M25 823 H406" stroke="#C4B7A4"/>
-<text x="42" y="853" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="500" fill="#667975">Home</text>
-<text x="136" y="853" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="500" fill="#667975">Discover</text>
-<text x="230" y="853" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="500" fill="#667975">Collections</text>
-<text x="324" y="853" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="500" fill="#667975">Automation</text>
+<text x="42" y="853" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="500" fill="#445851">Home</text>
+<text x="136" y="853" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="500" fill="#445851">Discover</text>
+<text x="230" y="853" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="500" fill="#445851">Collections</text>
+<text x="324" y="853" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="500" fill="#445851">Automation</text>
 <text x="37" y="899" font-family="Arial,Helvetica,sans-serif" font-size="11" font-weight="700" fill="#667975">DRAFT · NOT APPROVED</text>
 <g id="collection-delete-modal" role="group" aria-label="Confirm collection removal; background disabled">
 <rect x="15" y="55" width="401" height="827" fill="#153F46" opacity="0.63"/>
