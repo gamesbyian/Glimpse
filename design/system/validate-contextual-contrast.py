@@ -58,7 +58,8 @@ def check() -> dict:
     assert focus["strokePxNominal"] >= 3
     assert contrast(focus["indicatorColor"], colors["paper"]) >= focus["minimumContrastAgainstPaper"]
     assert contrast(focus["indicatorColor"], colors["surface"]) >= focus["minimumContrastAgainstPaper"]
-    assert contrast(focus["indicatorColor"], colors["tintTan"]) >= focus["minimumContrastAgainstPaper"]
+    for surface in ("paper", "surface", *TINTS):
+        assert contrast(focus["indicatorColor"], colors[surface]) >= focus["minimumContrastAgainstPaper"], surface
     assert contrast(colors["secondary"], colors["paper"]) >= AA_SMALL_TEXT
     assert contrast(colors["onAccent"], colors["accent"]) >= AA_SMALL_TEXT
 
