@@ -2,7 +2,6 @@ package io.github.gamesbyian.glimpse.domain
 
 import android.app.WallpaperManager
 import android.content.Context
-import android.graphics.BitmapFactory
 import androidx.annotation.VisibleForTesting
 import io.github.gamesbyian.glimpse.data.GlimpseDao
 import io.github.gamesbyian.glimpse.data.PhotoRecord
@@ -233,18 +232,10 @@ class WallpaperCommands(
         require(digest.digest().joinToString("") { "%02x".format(it) } == photo.sha256) {
             "Original offline file SHA-256 mismatch"
         }
-        val bound = BitmapFactory.Options().apply { inJustDecodeBounds = true }
-        BitmapFactory.decodeFile(photo.localPath, bound)
-        require(bound.outWidth > 0 && bound.outHeight > 0) { "Image missing or corrupt" }
-        var sample = 1
-        while (bound.outWidth / sample > 3200 || bound.outHeight / sample > 3200) {
-            sample *= 2
-        }
         return requireNotNull(
-            BitmapFactory.decodeFile(photo.localPath, BitmapFactory.Options().apply {
-                inSampleSize = sample
-            })
-        ) { "Unable to decode offline image" }
+            io.github.gamesbyian.glimpse.data.PhotoBitmaps
+                .decodeOriented(photo.localPath, maxSide = 3200)
+        ) { "Unable to decode original image with its EXIF orientation" }
     }
 
     private fun decodeBag(raw: String): List<String> = try {

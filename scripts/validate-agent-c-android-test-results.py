@@ -11,6 +11,10 @@ from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
 RESULTS=ROOT/"app/build/outputs/androidTest-results/connected"
 EXPECTED={
+    "io.github.gamesbyian.glimpse.data.PhotoBitmapsDeviceTest": {
+        "cameraRotate90SwapsPreviewDimensionsWithoutChangingStoredJpeg",
+        "cameraRotate270AlsoSwapsOutputAndSmallBoundedSampleWorks",
+    },
     "io.github.gamesbyian.glimpse.data.PhotoImporterDeviceTest": {
         "verifiedOfflineCopySurvivesSourceDeletion",
         "duplicateBytesDeduplicateButMembershipIsCollectionSpecific",
@@ -51,7 +55,7 @@ def main():
         raise ValueError(f"Required native cases missing: {sorted(missing)}; JUnit files: {files}")
     print(f"PASS: {len(observed)} independent Android instrumentation "
           "tests actually executed without failures or skips, including "
-          "content:// URI revocation, offline SHA repair, and Home OS readback")
+          "content:// URI revocation, EXIF rotation, offline SHA repair, and Home OS readback")
     print("Emulator evidence only. Not physical Pixel, Photo Picker, "
           "TalkBack, Doze, OS future-state or human design approval.")
     return 0

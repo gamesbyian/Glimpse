@@ -1,6 +1,5 @@
 package io.github.gamesbyian.glimpse
 
-import android.graphics.BitmapFactory
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.rememberLauncherForActivityResult
@@ -312,15 +311,8 @@ private fun PhotoPreview(photo: PhotoRecord?, modifier: Modifier, label: String)
     val image by produceState<ImageBitmap?>(initialValue = null, key1 = path) {
         value = if (path == null) null else withContext(Dispatchers.IO) {
             try {
-                val bounds = BitmapFactory.Options().apply { inJustDecodeBounds = true }
-                BitmapFactory.decodeFile(path, bounds)
-                if (bounds.outWidth <= 0 || bounds.outHeight <= 0) return@withContext null
-                var sample = 1
-                while (bounds.outWidth / sample > 1024 || bounds.outHeight / sample > 1024) sample *= 2
-                BitmapFactory.decodeFile(
-                    path,
-                    BitmapFactory.Options().apply { inSampleSize = sample }
-                )?.asImageBitmap()
+                io.github.gamesbyian.glimpse.data.PhotoBitmaps
+                    .decodeOriented(path, maxSide = 1024)?.asImageBitmap()
             } catch (_: Exception) {
                 null
             }
