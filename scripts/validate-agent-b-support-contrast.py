@@ -40,7 +40,7 @@ def contrast(fg: str, bg: str) -> float:
     a,b = luminance(fg), luminance(bg)
     return (max(a,b) + .05)/(min(a,b) + .05)
 
-def paint(svg_text: str, name: str):
+def paint(svg_text: str, name: str, whole_phone: bool = False):
     root = ET.fromstring(svg_text)
     regions = []
     audit = []
@@ -101,7 +101,7 @@ def paint(svg_text: str, name: str):
                 return
             # Excludes launcher status, the bottom system/navigation region,
             # and the right-hand proposal annotation desk.
-            if not (15 <= x < 416 and 190 <= y <= 810):
+            if not (15 <= x < 416 and ((55 <= y < 885) if whole_phone else (190 <= y <= 810))):
                 return
             text = "".join(node.itertext()).strip()
             if not text: return
@@ -143,6 +143,7 @@ def main():
     p.add_argument("--report",type=Path)
     p.add_argument("--fail-low-contrast",action="store_true")
     p.add_argument("--include-storyboards",action="store_true")
+    p.add_argument("--whole-phone",action="store_true",help="Also check headers and bottom navigation; draft SVG geometry only")
     args=p.parse_args()
     inv=json.loads((ROOT/"design/proposals/support-coverage.v1.json").read_text())
     states=[f"{g['id']}--{s}" for g in inv["screens"] for s in g["states"]]
@@ -150,7 +151,7 @@ def main():
     data=[]
     for state in states:
         file=ROOT/"design/proposals/support-plates"/(state+".svg")
-        data.extend(paint(file.read_text(encoding="utf8"),state))
+        data.extend(paint(file.read_text(encoding="utf8"),state,args.whole_phone))
     frame_count=0
     if args.include_storyboards:
         for manifest in ("storyboard-coverage.v1.json",
@@ -159,7 +160,7 @@ def main():
             for group in groups["groups"]:
                 for frame in group["frames"]:
                     rel=frame["path"]
-                    data.extend(paint((ROOT/rel).read_text(encoding="utf8"),rel))
+                    data.extend(paint((ROOT/rel).read_text(encoding="utf8"),rel,args.whole_phone))
                     frame_count+=1
         assert frame_count==137
     checks=[x for x in data if x["kind"]=="text-contrast"]
@@ -167,7 +168,7 @@ def main():
     uncertainty=[x for x in data if x["kind"]!="text-contrast"]
     findings={
         "status":"UNAPPROVED_STATIC_DESK_AUDIT_NOT_NATIVE",
-        "sourceStates":len(states),"sourceStoryboardFrames":frame_count,"measuredTextElements":len(checks),
+        "sourceStates":len(states),"sourceStoryboardFrames":frame_count,"wholePhone":args.whole_phone,"measuredTextElements":len(checks),
         "belowAA":len(failures),"unknownCases":len(uncertainty),
         "groupedFailureStates":dict(sorted(Counter(x["state"] for x in failures).items())),
         "failures":failures,"uncertainties":uncertainty,
