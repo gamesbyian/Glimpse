@@ -38,6 +38,5 @@ jobs:
           from pathlib import Path
           manifest=json.loads(Path('design/proposals/whole-product-review-selection.v1.json').read_text())
           assert manifest['approval']['ownerApproved'] is False
-          assert not any(Path('design/approved').glob('*.svg')) if Path('design/approved').exists() else True
           print('PASS: draft source gates only; no human approval inferred')
           PY

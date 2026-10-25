@@ -1,0 +1,33 @@
+name: Glimpse Agent B | no-handler handoff truth
+on:
+  push:
+    branches: [agent/b-no-handler-truth-20261024]
+    paths:
+      - design/proposals/advanced-storyboards/x22/05-absent.svg
+      - scripts/validate-agent-b-no-handler-truth.py
+      - .github/workflows/glimpse-agent-b-handler-truth.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  source-truth:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate exact B state distinctions
+        run: |
+          python3 scripts/validate-agent-b-no-handler-truth.py
+          python3 scripts/validate-storyboard-coverage.py
+          python3 scripts/validate-agent-b-support-journeys.py >/tmp/agent-b-state-trace.json
+          python3 - <<'PY'
+          import json
+          p=json.load(open('/tmp/agent-b-state-trace.json'))
+          assert p['supportStates']==34 and p['journeys']==23
+          assert p['storyboardFrames']==137 and p['illustratedScenarios']==56
+          assert not p['errors']
+          print('PASS: 34/23/137/56 source trace, not native or owner approval')
+          PY

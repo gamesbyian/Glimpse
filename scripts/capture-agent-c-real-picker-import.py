@@ -136,6 +136,52 @@ def main(out):
     assert hashlib.sha256(copied).hexdigest() == record["sourceSHA256"]
     assert "Previewing 1 of 1" in ui or "Photos: 1" in ui
     assert "No images yet." not in ui
+    # Select the *same exact original* a second time through the real OS
+    # Photo Picker. A correct importer reports a duplicate and does not create
+    # a second membership/photo or rewrite the immutable SHA identity.
+    base.click_label("Add photos")
+    time.sleep(1.5)
+    second = visible_nodes()
+    assert "com.android.providers.media.module" in {
+        x.attrib.get("package", "") for x in second
+    }, "The second Add photos tap did not focus Android's real picker"
+    matching = []
+    for node in second:
+        d, a = node.attrib, bounds(node)
+        if d.get("package") != "com.android.providers.media.module" or not a:
+            continue
+        if d.get("clickable") != "true" or a[3]-a[1] < 45 or a[2]-a[0] < 45 or a[1] < 500:
+            continue
+        labels = (d.get("resource-id", "")+" "+d.get("content-desc", "")+" "+
+                  d.get("text", "")).lower()
+        if any(k in labels for k in ("photo", "thumbnail", "image", "media_grid", "item")):
+            matching.append(node)
+    assert len(matching) == 1, "Second picker has ambiguous picture tile count: "+str(len(matching))
+    tap_node(matching[0])
+    if not wait_for_photo_count(1, timeout=3):
+        buttons = [node for node in visible_nodes()
+                   if node.attrib.get("clickable") == "true"
+                   and node.attrib.get("resource-id") ==
+                       "com.android.providers.media.module:id/button_add"
+                   and node.attrib.get("text") == "Add (1)"]
+        assert len(buttons) == 1, "Second picker confirmation was not uniquely Add (1)"
+        tap_node(buttons[0])
+    limit = time.monotonic()+32
+    repeated = None
+    while time.monotonic() < limit:
+        candidate = base.hierarchy()
+        if ("Photos: 1" in candidate and "duplicates 1" in candidate
+                and "imported 0" in candidate):
+            repeated = candidate
+            break
+        time.sleep(.6)
+    if not repeated:
+        raise RuntimeError("Second real picker selection did not confirm Photos: 1, imported 0, duplicates 1")
+    assert base.adb("exec-out","run-as",APP,"cat",
+                    "files/originals/"+record["sourceSHA256"]+".jpg",
+                    binary=True) == source_data
+    base.capture("04-after-repeat-real-picker-deduplication",
+                 "Second actual OS picker selection preserved Photos 1, imported 0, duplicates 1")
     # Follow the same photograph through public source removal and a complete
     # Android app-process restart. Only our exact MediaStore URI is deleted by
     # the debug-only emulator activity, never a user's photograph.
@@ -161,7 +207,7 @@ def main(out):
                          "files/originals/" + record["sourceSHA256"] + ".jpg",
                          binary=True)
     assert persisted == source_data, "Offline original bytes changed after deleting public MediaStore image"
-    base.capture("04-after-media-source-deleted-and-process-restart",
+    base.capture("05-after-media-source-deleted-and-process-restart",
                  "Glimpse still previews the exact private JPEG after public MediaStore deletion and app restart")
     receipt = {
         "sourceIdentity": record["sourceSHA256"],
@@ -169,6 +215,10 @@ def main(out):
         "sourceProvider": "Android MediaStore via OS Photo Picker",
         "sourceBytes": record["sourceBytes"],
         "sourceEqualsPrivateCopy": True,
+        "sameSourceReimportDeduplicated": True,
+        "secondPickerImportCount": 0,
+        "secondPickerDuplicateCount": 1,
+        "uiPhotoCountAfterRepeatedImport": 1,
         "sourceDeletedFromMediaStore": True,
         "exactPrivateCopySurvivedProcessRestart": True,
         "pickerPackageObserved": "com.android.providers.media.module",
