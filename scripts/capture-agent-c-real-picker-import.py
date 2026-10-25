@@ -111,11 +111,14 @@ def main(out):
                  "Actual system photo tile selected, before final grant/confirm")
     if not wait_for_photo_count(1, timeout=3):
         controls = visible_nodes()
+        # Android's native multi-select picker exposes both "View selected"
+        # and the actual commit button "Add (1)". Never treat the former as
+        # a grant/confirmation or choose between the two arbitrarily.
         accept = [node for node in controls
                   if node.attrib.get("clickable") == "true"
-                  and any(word in (node.attrib.get("text", "") + " " +
-                              node.attrib.get("content-desc", "")).lower()
-                          for word in ("add", "done", "select"))]
+                  and node.attrib.get("resource-id") ==
+                      "com.android.providers.media.module:id/button_add"
+                  and re.fullmatch(r"Add \\(1\\)", node.attrib.get("text", ""))]
         if len(accept) != 1:
             raise RuntimeError("Cannot identify one Android picker confirm action: " +
                                str([(n.attrib.get("text"), n.attrib.get("content-desc"))
