@@ -28,18 +28,18 @@
 <text x="53" y="529" font-family="Arial,Helvetica,sans-serif" fill="#153F46" font-size="16" font-weight="650">Photographs excluded</text>
 <text x="53" y="551" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="14" font-weight="400">Image bytes never enter diagnostics</text>
 <text x="291" y="547" font-family="Arial,Helvetica,sans-serif" fill="#703B27" font-size="14" font-weight="650">NEVER</text>
-<text x="45" y="612" font-family="Arial,Helvetica,sans-serif" fill="#153F46" font-size="17" font-weight="650">Choose your action</text>
-<rect x="43" y="639" width="98" height="48" rx="20" fill="#FFFCF6" stroke="#C8B7A1" stroke-width="1" data-control="task-copy" data-focus-order="10" data-hit-width="98" data-hit-height="48" data-action-label="Copy"/>
-<text x="58" y="666" font-family="Arial,Helvetica,sans-serif" fill="#153F46" font-size="14" font-weight="650">Copy</text>
-<rect x="153" y="639" width="104" height="48" rx="20" fill="#FFFCF6" stroke="#C8B7A1" stroke-width="1" data-control="task-save" data-focus-order="11" data-hit-width="104" data-hit-height="48" data-action-label="Save"/>
-<text x="168" y="666" font-family="Arial,Helvetica,sans-serif" fill="#153F46" font-size="14" font-weight="650">Save</text>
-<rect x="268" y="639" width="112" height="48" rx="20" fill="#1D5960" stroke="#1D5960" stroke-width="1" data-control="task-share" data-focus-order="12" data-hit-width="112" data-hit-height="48" data-action-label="Share"/>
-<text x="283" y="666" font-family="Arial,Helvetica,sans-serif" fill="#FFFFFF" font-size="14" font-weight="650">Share</text>
-<rect x="40" y="700" width="348" height="103" rx="12" fill="#E9E0F5" stroke="#C8B7A1"/>
-<text x="53" y="723" font-family="Arial,Helvetica,sans-serif" fill="#153F46" font-size="15" font-weight="700">Extra included field examples</text>
-<text x="53" y="744" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="14">Attempt: copy • Result: interrupted</text>
-<text x="53" y="764" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="14">Exception type: sanitised • IDs redacted</text>
-<text x="53" y="784" font-family="Arial,Helvetica,sans-serif" fill="#703B27" font-size="14" font-weight="700">No images, source URIs or account tokens</text>
+<text x="45" y="717" font-family="Arial,Helvetica,sans-serif" fill="#153F46" font-size="17" font-weight="650">Choose your action</text>
+<rect x="43" y="742" width="98" height="48" rx="20" fill="#FFFCF6" stroke="#C8B7A1" stroke-width="1" data-control="task-copy" data-focus-order="10" data-hit-width="98" data-hit-height="48" data-action-label="Copy"/>
+<text x="58" y="769" font-family="Arial,Helvetica,sans-serif" fill="#153F46" font-size="14" font-weight="650">Copy</text>
+<rect x="153" y="742" width="104" height="48" rx="20" fill="#FFFCF6" stroke="#C8B7A1" stroke-width="1" data-control="task-save" data-focus-order="11" data-hit-width="104" data-hit-height="48" data-action-label="Save"/>
+<text x="168" y="769" font-family="Arial,Helvetica,sans-serif" fill="#153F46" font-size="14" font-weight="650">Save</text>
+<rect x="268" y="742" width="112" height="48" rx="20" fill="#1D5960" stroke="#1D5960" stroke-width="1" data-control="task-share" data-focus-order="12" data-hit-width="112" data-hit-height="48" data-action-label="Share"/>
+<text x="283" y="769" font-family="Arial,Helvetica,sans-serif" fill="#FFFFFF" font-size="14" font-weight="650">Share</text>
+<rect x="40" y="582" width="348" height="103" rx="12" fill="#E9E0F5" stroke="#C8B7A1"/>
+<text x="53" y="605" font-family="Arial,Helvetica,sans-serif" fill="#153F46" font-size="15" font-weight="700">Extra included field examples</text>
+<text x="53" y="626" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="14">Attempt: copy • Result: interrupted</text>
+<text x="53" y="646" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="14">Exception type: sanitised • IDs redacted</text>
+<text x="53" y="769" font-family="Arial,Helvetica,sans-serif" fill="#703B27" font-size="14" font-weight="700">No images, source URIs or account tokens</text>
 </g>
 <path d="M29 817h373" stroke="#C8B7A1"/>
 <g id="support-navigation" aria-label="Four tab destinations; static touch region proposal only">
