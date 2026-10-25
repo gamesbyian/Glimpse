@@ -17,6 +17,7 @@ on:
       - design/reviews/support-agent-b-2026-10-24/**
       - scripts/test-agent-b-contrast.py
       - scripts/validate-agent-b-support-contrast.py
+      - scripts/validate-agent-c-cc0-proposals.py
   workflow_dispatch:
 permissions:
   contents: read
