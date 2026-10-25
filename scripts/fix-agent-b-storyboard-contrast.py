@@ -55,7 +55,13 @@ def changed_source(path:Path, whole_phone: bool = False):
             return text
         old=fill.group(1).lower()
         if old=="#667975":
-            new="#445851"  # AA even against beige, lavender, soft error pink
+            # On X08's Reel hero, the selected pale-green panel extends
+            # behind two navigation labels: #445851 only reaches 4.075:1
+            # there. Choose the stronger variant directly in one pass.
+            if whole_phone and path.name=="03-reel-hero.svg" and path.parent.name=="x08" and raw in ("Discover","Automation"):
+                new="#3C504A"
+            else:
+                new="#445851"  # AA on cream, beige, lavender and error pink
         elif old=="#e8876c" and raw=="▼":
             new="#703B27"  # visible pointer glyph over cream
         elif old=="#445851" and whole_phone:
