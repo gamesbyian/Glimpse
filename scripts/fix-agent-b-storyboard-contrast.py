@@ -33,9 +33,9 @@ def groups():
             for f in g["frames"]:
                 yield f["path"]
 
-def changed_source(path:Path):
+def changed_source(path:Path, whole_phone: bool = False):
     source=path.read_text(encoding="utf8")
-    problems=[x for x in audit.paint(source,str(path.relative_to(ROOT)))
+    problems=[x for x in audit.paint(source,str(path.relative_to(ROOT)),whole_phone=whole_phone)
               if x["kind"]=="text-contrast" and not x["passed"]]
     if not problems:
         return source,0,[]
@@ -47,7 +47,7 @@ def changed_source(path:Path):
         ymatch=re.search(r'\by="([0-9.]+)"',text)
         if not xmatch or not ymatch:
             return text
-        if not (15<=float(xmatch.group(1))<416 and 190<=float(ymatch.group(1))<=810):
+        if not (15<=float(xmatch.group(1))<416 and ((55<=float(ymatch.group(1))<885) if whole_phone else (190<=float(ymatch.group(1))<=810))):
             return text  # non-app desk/status text is never modified
         raw=html.unescape(re.search(r">([^<]*)</text>",text).group(1))
         fill=FILL.search(text)
@@ -65,13 +65,14 @@ def changed_source(path:Path):
     updated=TEXT.sub(convert,source)
     if changed[0]==0:
         raise AssertionError((path,"low contrast detected but no source edit"))
-    failures=[x for x in audit.paint(updated,str(path.relative_to(ROOT)))
+    failures=[x for x in audit.paint(updated,str(path.relative_to(ROOT)),whole_phone=whole_phone)
               if x["kind"]=="text-contrast" and not x["passed"]]
     return updated,changed[0],failures
 
 def main():
     p=argparse.ArgumentParser()
     p.add_argument("--apply",action="store_true")
+    p.add_argument("--whole-phone",action="store_true",help="Also repair proven failing headers/nav source text")
     args=p.parse_args()
     items=list(groups())
     assert len(items)==137 and len(set(items))==137
@@ -80,13 +81,13 @@ def main():
     for rel in items:
         path=ROOT/rel
         source=path.read_text(encoding="utf8")
-        rewritten,count,left=changed_source(path)
+        rewritten,count,left=changed_source(path,args.whole_phone)
         if left:residual.extend(left)
         if source!=rewritten:
             modified.append((rel,count))
             if args.apply:
                 path.write_text(rewritten,encoding="utf8")
-    print(json.dumps({"frames":len(items),"modifiedFrames":len(modified),
+    print(json.dumps({"frames":len(items),"wholePhone":args.whole_phone,"modifiedFrames":len(modified),
                       "rewrittenTextElements":sum(n for _,n in modified),
                       "stillBelowAA":len(residual),
                       "paths":modified},indent=2))
