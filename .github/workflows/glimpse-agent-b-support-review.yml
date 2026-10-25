@@ -7,6 +7,7 @@ on:
       - scripts/agent-b-modernize-support.py
       - scripts/validate-agent-b-support-journeys.py
       - scripts/validate-agent-b-source-raster-integrity.py
+      - scripts/audit-agent-b-task-pill-regions.py
       - scripts/render-agent-b-accessibility-probes.py
       - scripts/render-agent-b-journey-pairs.py
       - scripts/render-agent-b-all-journeys.py
@@ -35,7 +36,15 @@ jobs:
           python-version: '3.12'
       - name: Apply idempotent B-owned SVG changes and validate source/semantic paths
         run: |
-          python3 scripts/agent-b-modernize-support.py --apply
+          python3 scripts/agent-b-modernize-support.py
+          python3 scripts/audit-agent-b-task-pill-regions.py > /tmp/b-task-pill-region-audit.json
+          python3 - <<'PY'
+          import json
+          d=json.load(open('/tmp/b-task-pill-region-audit.json'))
+          print('Support task pill audit:',d['screens'],'screens,',d['candidates'],'visible pills,',d['undeclared'],'no source focus region')
+          for x in d['inventory']:
+              if x['undeclared']: print(x['name'],[(c['x'],c['y'],c['labels']) for c in x['undeclared']])
+          PY --apply
           python3 scripts/agent-b-modernize-support.py
           python3 scripts/validate-agent-b-support-journeys.py > /tmp/agent-b-source-proof.json
           # Integration-owned legacy guard still insists that a closed Android
