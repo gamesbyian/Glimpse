@@ -1,0 +1,23 @@
+name: Agent C atomic photographic selection
+on:
+  pull_request:
+    paths:
+      - scripts/validate-agent-c-review-selection.py
+      - scripts/tests/test_agent_c_review_selection.py
+      - design/assets/production-c-provenance.v1.json
+      - design/proposals/whole-product-review-selection.v1.json
+      - design/proposals/whole-product-candidates/cc0-consistent-20261024/migration-manifest.v1.json
+      - .github/workflows/agent-c-review-selection.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  source-only-proof:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Fail on mixed photographic source selection and false owner approval
+        run: |
+          python3 scripts/validate-agent-c-review-selection.py
+          python3 -m unittest discover -s scripts/tests -p 'test_agent_c_review_selection.py' -v
