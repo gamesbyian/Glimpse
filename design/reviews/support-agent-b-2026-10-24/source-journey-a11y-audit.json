@@ -1,6 +1,7 @@
 {
   "scope": "Agent B unapproved source-only audit",
   "supportStates": 34,
+  "supportTaskControls": 36,
   "journeys": 23,
   "storyboardFrames": 137,
   "illustratedScenarios": 56,
