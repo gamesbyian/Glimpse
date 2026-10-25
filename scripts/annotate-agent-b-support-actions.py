@@ -26,6 +26,7 @@ CARD_ACTIONS={
     "contact-feedback--no-handler":[(222,"Create a report"),(338,"Write feedback"),(454,"Open issues")],
     "help--topics":[(221,"Read import guide"),(336,"Learn the reel"),(451,"What changes?"),(566,"Fix a problem")],
     "storage-management--overview":[(223,"View collections"),(336,"Clear cache"),(450,"Review removal")],
+    "storage-management--low-storage":[(223,"View collections"),(336,"Clear cache"),(450,"Review removal")],
     "updates--play-eligible":[(223,"View build info"),(338,"Learn more")],
     "updates--sideload":[(223,"View build info"),(338,"Learn more")],
     "updates--offline":[(223,"View build info"),(338,"Learn more")],
