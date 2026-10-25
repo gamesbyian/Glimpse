@@ -53,5 +53,12 @@ def main():
     outside=svg('<rect x="0" y="0" width="1160" height="920" fill="#ffffff"/>'
                 '<text x="450" y="300" fill="#aaaaaa" font-size="16">Review notes only</text>')
     assert not any(z["kind"]=="text-contrast" for z in kinds(outside))
-    print("PASS: low contrast, text-size threshold, circle, image, alpha, transforms and annotation exclusion")
+    header=svg('<rect x="0" y="0" width="420" height="900" fill="#f6f0e6"/>'
+               '<text x="40" y="110" font-size="16" fill="#aaaaaa">Header</text>'
+               '<text x="40" y="851" font-size="13" fill="#aaaaaa">Bottom nav</text>')
+    assert not any(z["kind"]=="text-contrast" for z in c.paint(header,"synthetic"))
+    whole=c.paint(header,"synthetic",whole_phone=True)
+    assert [z["text"] for z in whole if z["kind"]=="text-contrast"]==["Header","Bottom nav"]
+    assert all(not z["passed"] for z in whole)
+    print("PASS: low contrast, size, circles, images, alpha, transforms, body and full-phone boundaries")
 if __name__=="__main__":main()
