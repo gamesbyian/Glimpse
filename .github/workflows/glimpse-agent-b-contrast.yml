@@ -6,6 +6,7 @@ on:
       - scripts/validate-agent-b-support-contrast.py
       - scripts/fix-agent-b-storyboard-contrast.py
       - scripts/render-agent-b-contrast-contact.py
+      - scripts/test-agent-b-contrast.py
       - design/proposals/support-plates/**
       - design/proposals/storyboards/**
       - design/proposals/advanced-storyboards/**
@@ -28,6 +29,7 @@ jobs:
       - name: Independently measure source-author contrast without declaring native proof
         run: |
           mkdir -p /tmp/glimpse-b-contrast
+          python3 scripts/test-agent-b-contrast.py
           python3 scripts/fix-agent-b-storyboard-contrast.py --apply > /tmp/glimpse-b-contrast/targeted-edits.json
           python3 scripts/fix-agent-b-storyboard-contrast.py
           python3 scripts/validate-agent-b-support-contrast.py --fail-low-contrast --report /tmp/glimpse-b-contrast/static-contrast.json
