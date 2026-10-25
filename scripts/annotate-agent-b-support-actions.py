@@ -49,6 +49,33 @@ def annotate_task_cards(source,name):
         existing.add(key)
     return phone+divider+notes
 
+# Entire row represents the accessible choice, not the tiny 45x25 knob.
+# Not-implemented notifications intentionally get no focusable switches.
+TOGGLE_ACTIONS={
+    "notification-preferences--available":[(346,"Important rotation problems"),
+                                           (438,"Source or import failures")],
+    "beta-feedback--invitation":[(340,"Attach a screenshot"),(426,"Attach diagnostics")],
+    "beta-feedback--share-preview":[(340,"Attach a screenshot"),(426,"Attach diagnostics")],
+    "report-problem--with-diagnostics":[(502,"Include diagnostics")],
+}
+def annotate_toggle_rows(source,name):
+    items=TOGGLE_ACTIONS.get(name,[])
+    if not items:return source
+    phone,divider,notes=source.partition('<rect x="440"')
+    assert divider,name
+    for index,(y,label) in enumerate(items,2):
+        key="toggle-"+re.sub(r"[^a-z0-9]+","-",label.lower()).strip("-")
+        if f'data-control="{key}"' in phone:continue
+        if f">{label}</text>" not in phone:raise AssertionError((name,label,"row label missing"))
+        needle=f'<rect x="40" y="{y}" width="348" height="69" rx="12"'
+        if phone.count(needle)!=1:raise AssertionError((name,y,"expected full-height switch row missing"))
+        repl=(f'<rect data-control="{key}" data-focus-order="{index}"'
+              f' data-hit-width="348" data-hit-height="69"'
+              f' data-action-label="{label}" x="40" y="{y}"'
+              f' width="348" height="69" rx="12"')
+        phone=phone.replace(needle,repl,1)
+    return phone+divider+notes
+
 def annotated(raw,name):
     if name=="storage-management--delete-confirm":
         # A blocking scrim replaces prior page actions. Its own Cancel and
@@ -90,7 +117,7 @@ def annotated(raw,name):
         changes.append((match.start(),match.end(),old[:-2]+extra+"/>"))
     for start,end,new in sorted(changes,reverse=True):
         phone=phone[:start]+new+phone[end:]
-    whole=annotate_task_cards(phone+divider+notes,name)
+    whole=annotate_toggle_rows(annotate_task_cards(phone+divider+notes,name),name)
     ET.fromstring(whole)
     return whole
 def main():
