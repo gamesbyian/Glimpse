@@ -130,6 +130,18 @@ def check():
             assert len(images)==1
             assert_jpeg('p12',images[0])
             assert state['p12FixtureSHA256']==EXPECTED['p12']
+            assert state['photoCredit']['creator']=='Sporlo'
+            assert state['photoCredit']['independentSourcePhotoId']=='p12'
+            assert state['photoCredit']['sourceUrl'].startswith('https://commons.wikimedia.org/wiki/File:Chive_flower')
+            assert 'CC0' in state['photoCredit']['licenseClaim']
+            assert state['photoCredit']['originalPreserved'] is True
+            visible=path.read_text()
+            assert 'Source and rights ›</text>' in visible
+            assert 'Sporlo · CC0 source listed</text>' in visible
+            assert 'Local photo p12</text>' not in visible
+            assert '<clipPath id="detail-mini-p12">' in visible
+            thumbnails=[node for node in root.iter(SVG+'use') if node.get('href')=='#fixture1']
+            assert len(thumbnails)==2, 'Hero and source card must reuse exact same p12 fixture'
         elif name=='collections':
             assert len(images)==3
             order=[('Rainbows','p12','261'),('Golden Hour','p08','411'),('Patterns','p15','561')]
