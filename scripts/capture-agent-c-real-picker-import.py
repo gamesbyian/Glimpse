@@ -74,6 +74,7 @@ def main(out):
                            "files/picker-fixture-original.jpg", binary=True)
     assert hashlib.sha256(source_data).hexdigest() == record["sourceSHA256"]
     assert len(source_data) == record["sourceBytes"]
+    (out / "published-fixture-original.jpg").write_bytes(source_data)
     print("Published one synthetic Android MediaStore JPEG:", record["sourceUri"], flush=True)
     base.click_label("Add photos")
     time.sleep(2.0)
@@ -166,22 +167,36 @@ def main(out):
                    and node.attrib.get("text") == "Add (1)"]
         assert len(buttons) == 1, "Second picker confirmation was not uniquely Add (1)"
         tap_node(buttons[0])
-    limit = time.monotonic()+32
-    repeated = None
-    while time.monotonic() < limit:
-        candidate = base.hierarchy()
-        if ("Photos: 1" in candidate and "duplicates 1" in candidate
-                and "imported 0" in candidate):
-            repeated = candidate
-            break
-        time.sleep(.6)
-    if not repeated:
-        raise RuntimeError("Second real picker selection did not confirm Photos: 1, imported 0, duplicates 1")
+    top_after_repeat = wait_for_photo_count(1, timeout=32)
+    if not top_after_repeat:
+        raise RuntimeError("Repeat picker action failed to return to a one-photo Glimpse collection")
+    base.capture("04-after-repeat-real-picker-photo-count",
+                 "Repeat actual OS picker selection still shows exactly Photos: 1")
+    # The import report lives *below* the reel and is outside the initial
+    # 1080x2340 first fold. UIAutomator excludes off-screen Compose text.
+    # Check identity at the top and the duplicate notice in separate
+    # truthful, visible UI states; do not demand both from one hierarchy.
+    notice = None
+    for _ in range(3):
+        base.swipe("up")
+        for _ in range(6):
+            visible = base.hierarchy()
+            if "duplicates 1" in visible and "imported 0" in visible:
+                notice = visible
+                break
+            time.sleep(.5)
+        if notice is not None: break
+    if notice is None:
+        raise RuntimeError("Real picker repeat selection lacks visible imported 0 / duplicates 1 report after scrolling")
+    base.capture("05-after-repeat-real-picker-duplicate-report",
+                 "Scrolled actual Glimpse view confirms imported 0; duplicates 1")
+    for _ in range(3):
+        base.swipe("down")
+    if not wait_for_photo_count(1, timeout=8):
+        raise RuntimeError("Failed to restore Photos: 1 view after checking duplicate report")
     assert base.adb("exec-out","run-as",APP,"cat",
                     "files/originals/"+record["sourceSHA256"]+".jpg",
                     binary=True) == source_data
-    base.capture("04-after-repeat-real-picker-deduplication",
-                 "Second actual OS picker selection preserved Photos 1, imported 0, duplicates 1")
     # Follow the same photograph through public source removal and a complete
     # Android app-process restart. Only our exact MediaStore URI is deleted by
     # the debug-only emulator activity, never a user's photograph.
@@ -207,13 +222,16 @@ def main(out):
                          "files/originals/" + record["sourceSHA256"] + ".jpg",
                          binary=True)
     assert persisted == source_data, "Offline original bytes changed after deleting public MediaStore image"
-    base.capture("05-after-media-source-deleted-and-process-restart",
+    (out / "private-after-restart.jpg").write_bytes(persisted)
+    base.capture("06-after-media-source-deleted-and-process-restart",
                  "Glimpse still previews the exact private JPEG after public MediaStore deletion and app restart")
     receipt = {
         "sourceIdentity": record["sourceSHA256"],
         "sourceUriScheme": "content",
         "sourceProvider": "Android MediaStore via OS Photo Picker",
         "sourceBytes": record["sourceBytes"],
+        "sourceFixtureArtifact": "published-fixture-original.jpg",
+        "privateAfterRestartArtifact": "private-after-restart.jpg",
         "sourceEqualsPrivateCopy": True,
         "sameSourceReimportDeduplicated": True,
         "secondPickerImportCount": 0,

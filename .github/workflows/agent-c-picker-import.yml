@@ -3,6 +3,7 @@ on:
   pull_request:
     paths:
       - scripts/capture-agent-c-real-picker-import.py
+      - scripts/validate-agent-c-real-picker-evidence.py
       - app/src/debug/java/io/github/gamesbyian/glimpse/debug/PickerMediaFixtureLauncher.kt
       - app/src/debug/AndroidManifest.xml
       - .github/workflows/agent-c-picker-import.yml
@@ -31,7 +32,7 @@ jobs:
           fi
       - name: Build actual debug APK and check picker harness syntax
         run: |
-          python3 -m py_compile scripts/capture-agent-c-real-picker-import.py
+          python3 -m py_compile scripts/capture-agent-c-real-picker-import.py scripts/validate-agent-c-real-picker-evidence.py
           ./gradlew --no-daemon :app:assembleDebug
       - name: Allow emulator KVM
         run: |
@@ -50,6 +51,9 @@ jobs:
           script: |
             adb install -r app/build/outputs/apk/debug/app-debug.apk
             python3 scripts/capture-agent-c-real-picker-import.py --out artifacts/agent-c-real-picker-import
+      - name: Independently verify raw picker, source/private JPEG bytes and six real screens
+        if: always()
+        run: python3 scripts/validate-agent-c-real-picker-evidence.py --artifacts artifacts/agent-c-real-picker-import
       - name: Preserve OS Photo Picker source and imported image evidence
         if: always()
         uses: actions/upload-artifact@v4
