@@ -114,6 +114,12 @@ jobs:
               cropped=Image.open(io.BytesIO(rawpng)).convert('RGB').crop((15,14,416,904))
               assert cropped.size==(401,890)
               cropped.save(out/('cc0-consistent-'+name+'.png'))
+          # Two actual-pixel magnifications for independent correction acceptance:
+          # p07 label contrast vs sunflower background, and p12 source card.
+          grid_study=Image.open(out/'cc0-consistent-grid-3column.png').convert('RGB')
+          grid_study.crop((150,260,265,307)).resize((690,282),resample=Image.Resampling.NEAREST).save(out/'grid-p07-id-optical-6x.png')
+          detail_study=Image.open(out/'cc0-consistent-detail.png').convert('RGB')
+          detail_study.crop((36,548,388,669)).resize((704,242),resample=Image.Resampling.NEAREST).save(out/'detail-p12-credit-optical-2x.png')
           photo_names=('home','reel','grid-3column','detail','collections','share')
           sheet=Image.new('RGB',(3*417+16,2*930+16),'#E9E3D9')
           marker=ImageDraw.Draw(sheet)
