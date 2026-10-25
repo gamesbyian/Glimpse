@@ -23,6 +23,7 @@ EXPECTED={
         "explicitHomeCommandAgreesWithImmediateOsWallpaperIdReadback",
         "pendingUncertainOperationBlocksApplyWithoutCallingOs",
         "decodableButChangedPixelsNeverReachAndroidWallpaperManager",
+        "exceptionAtOsBoundaryPreservesPendingAndNeverRetries",
     },
 }
 def main():
