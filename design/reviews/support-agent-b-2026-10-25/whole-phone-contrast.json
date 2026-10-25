@@ -3,9 +3,9 @@
   "sourceStates": 34,
   "sourceStoryboardFrames": 137,
   "wholePhone": true,
-  "measuredTextElements": 2427,
-  "belowAA": 615,
-  "unknownCases": 4,
+  "measuredTextElements": 2431,
+  "belowAA": 617,
+  "unknownCases": 0,
   "groupedFailureStates": {
     "design/proposals/advanced-storyboards/x13/01-original.svg": 5,
     "design/proposals/advanced-storyboards/x13/02-edited.svg": 5,
@@ -140,7 +140,7 @@
     "design/proposals/storyboards/x11/06-use-now.svg": 5,
     "design/proposals/storyboards/x11/07-cancel-undo.svg": 5,
     "design/proposals/storyboards/x12/01-reel-touch-regions.svg": 3,
-    "design/proposals/storyboards/x12/02-safe-area-navigation.svg": 1,
+    "design/proposals/storyboards/x12/02-safe-area-navigation.svg": 3,
     "design/proposals/storyboards/x12/03-keyboard-compose.svg": 5,
     "design/proposals/storyboards/x12/04-talkback-focus.svg": 3,
     "design/proposals/storyboards/x12/05-error-dialog-focus.svg": 5
@@ -4311,6 +4311,30 @@
       "passed": false
     },
     {
+      "state": "design/proposals/storyboards/x12/02-safe-area-navigation.svg",
+      "kind": "text-contrast",
+      "text": "Home",
+      "fontSize": 12.0,
+      "weight": "500",
+      "foreground": "#667975",
+      "background": "#ead9bd",
+      "ratio": 3.327,
+      "minimum": 4.5,
+      "passed": false
+    },
+    {
+      "state": "design/proposals/storyboards/x12/02-safe-area-navigation.svg",
+      "kind": "text-contrast",
+      "text": "Collections",
+      "fontSize": 12.0,
+      "weight": "500",
+      "foreground": "#667975",
+      "background": "#ead9bd",
+      "ratio": 3.327,
+      "minimum": 4.5,
+      "passed": false
+    },
+    {
       "state": "design/proposals/storyboards/x12/03-keyboard-compose.svg",
       "kind": "text-contrast",
       "text": "Collection rename with IME",
@@ -7527,35 +7551,6 @@
       "passed": false
     }
   ],
-  "uncertainties": [
-    {
-      "state": "design/proposals/storyboards/x12/02-safe-area-navigation.svg",
-      "kind": "non-solid-background",
-      "text": "Home",
-      "color": null,
-      "opacity": 1.0
-    },
-    {
-      "state": "design/proposals/storyboards/x12/02-safe-area-navigation.svg",
-      "kind": "non-solid-background",
-      "text": "Discover",
-      "color": null,
-      "opacity": 1.0
-    },
-    {
-      "state": "design/proposals/storyboards/x12/02-safe-area-navigation.svg",
-      "kind": "non-solid-background",
-      "text": "Collections",
-      "color": null,
-      "opacity": 1.0
-    },
-    {
-      "state": "design/proposals/storyboards/x12/02-safe-area-navigation.svg",
-      "kind": "non-solid-background",
-      "text": "Automation",
-      "color": null,
-      "opacity": 1.0
-    }
-  ],
+  "uncertainties": [],
   "limitations": "Solid SVG source color against latest covering rectangle at glyph mid-ascent only; not pixel-composited, text wrapping, alpha, Android rendering, 320dp, TalkBack or human acceptance."
 }
