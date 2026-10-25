@@ -31,10 +31,10 @@
 <rect x="263.28993532094626" y="767.2623792124926" width="68" height="101" rx="10" fill="#F6F0E6" stroke="#C4B7A4" stroke-width="1"/>
 <circle cx="215" cy="704" r="63" fill="#DCC7AD" stroke="#9F8B70" stroke-width="8"/><circle cx="215" cy="704" r="29" fill="#FFFCF6"/></g>
 <text x="205" y="473" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="750" fill="#E8876C">▼</text>
-<rect x="42" y="756" width="150" height="43" rx="17" fill="#FFFCF6" stroke="#C4B7A4" stroke-width="1"/>
-<text x="55" y="783" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="650" fill="#153F46">Previous</text>
-<rect x="204" y="756" width="181" height="43" rx="17" fill="#FFFCF6" stroke="#C4B7A4" stroke-width="1"/>
-<text x="217" y="783" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="650" fill="#153F46">Next photo</text>
+<rect x="42" y="756" width="150" height="48" rx="17" fill="#FFFCF6" stroke="#C4B7A4" stroke-width="1" aria-disabled="true" data-control="previous-unavailable" data-hit-height="48"/>
+<text x="55" y="783" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="650" fill="#153F46">No previous</text>
+<rect x="204" y="756" width="181" height="48" rx="17" fill="#FFFCF6" stroke="#C4B7A4" stroke-width="1" aria-disabled="true" data-control="next-unavailable" data-hit-height="48"/>
+<text x="217" y="783" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="650" fill="#153F46">No next</text>
 <path d="M30 823 H402" stroke="#C4B7A4"/>
 <text x="39" y="851" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="500" fill="#667975">Home</text>
 <text x="134" y="851" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="500" fill="#667975">Discover</text>

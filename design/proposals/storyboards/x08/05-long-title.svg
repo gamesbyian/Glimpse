@@ -9,7 +9,7 @@
 <rect x="41" y="154" width="343" height="99" rx="16" fill="#FFFCF6" stroke="#C4B7A4"/>
 <rect x="52" y="166" width="76" height="76" rx="13" fill="#EAD9BD" stroke="none"/>
 <circle cx="90" cy="203" r="28" fill="#D78D68"/><circle cx="90" cy="203" r="11" fill="#FFFCF6"/>
-<text x="143" y="188" font-family="Arial,Helvetica,sans-serif" font-size="17" font-weight="700" fill="#153F46">Our favourite holiday photographs...</text>
+<text x="143" y="188" font-family="Arial,Helvetica,sans-serif" font-size="17" font-weight="700" fill="#153F46" aria-label="Our favourite holiday photographs and travels">Our favourite holiday…</text>
 <text x="143" y="211" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="400" fill="#667975">22 photographs</text>
 <text x="143" y="237" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="650" fill="#1D5960">Browse →</text>
 <rect x="41" y="268" width="343" height="99" rx="16" fill="#FFFCF6" stroke="#C4B7A4"/>

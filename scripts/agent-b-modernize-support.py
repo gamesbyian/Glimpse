@@ -64,6 +64,42 @@ def remove_crash_recovery_duplicate_cta(source: str, name: str) -> str:
     assert phone.count('>Continue</text>') == 1, name
     return phone + divider + notes
 
+def clarify_share_chooser_outcome(source: str, name: str) -> str:
+    """Closing Android Sharesheet is not reliable proof of final recipient delivery."""
+    if name != "external-handler-fallback--chooser-cancelled":
+        return source
+    source = source.replace("Sharing cancelled", "Share chooser closed")
+    source = source.replace("No recipient selected; nothing was sent",
+                            "Delivery not confirmed by Android")
+    source = source.replace("No recipient received your draft from this",
+                            "Delivery status cannot be verified for this")
+    # Existing continuation reads "attempt", retaining the non-claim.
+    return source
+
+def clarify_diagnostic_inclusion(source: str, name: str) -> str:
+    """An ON control must not still describe itself as off; forbidden photos are labels."""
+    if name not in ("report-problem--with-diagnostics",
+                    "diagnostic-preview--minimal","diagnostic-preview--expanded"):
+        return source
+    phone, divider, notes = source.partition('<rect x="440"')
+    assert divider
+    if name == "report-problem--with-diagnostics":
+        phone = phone.replace("Off by default, inspect before sharing",
+                              "ON · review fields before sharing")
+        phone = phone.replace("Selected; check exact fields before sharing",
+                              "ON · review fields before sharing")
+    if name == "diagnostic-preview--expanded":
+        phone = phone.replace("Off by default: review before sending",
+                              "ON · technical fields included")
+        phone = phone.replace("Selected for this sample; inspect details",
+                              "ON · technical fields included")
+    if name.startswith("diagnostic-preview--"):
+        phone = phone.replace(">Include photographs</text>",
+                              ">Photographs excluded</text>")
+        phone = phone.replace("Never included in diagnostic reports",
+                              "Image bytes never enter diagnostics")
+    return phone + divider + notes
+
 def enforce_provisional_a_tokens(source: str) -> str:
     """B challenge of A revision 0.1: 48px study hit regions and AA body tone.
 
@@ -73,6 +109,20 @@ def enforce_provisional_a_tokens(source: str) -> str:
     phone, divider, notes = source.partition('<rect x="440"')
     assert divider, "missing proposal notes divider"
     phone = phone.replace('fill="#667975"', 'fill="#566861"')
+    # Old dense support sources used 12px helper text and 13px actions.
+    # Enforce >=14px for visible in-app content, excluding non-app labels
+    # (status, evidence footer, and the side explanatory proposal desk).
+    def enlarge_small_content_text(match):
+        element = match.group(0)
+        ymatch = re.search(r'\by="([0-9.]+)"', element)
+        size = re.search(r'font-size="([0-9.]+)"', element)
+        if not ymatch or not size:
+            return element
+        y = float(ymatch.group(1))
+        if 195 <= y < 810 and float(size.group(1)) < 14:
+            element = element.replace(size.group(0), 'font-size="14"', 1)
+        return element
+    phone = re.sub(r'<text\b[^>]*>[^<]*</text>', enlarge_small_content_text, phone)
     phone = phone.replace('x="29" y="59" width="91" height="44"',
                           'x="29" y="57" width="91" height="48"')
     phone = phone.replace('data-hit-height="44"', 'data-hit-height="48"')
@@ -94,7 +144,7 @@ def enforce_provisional_a_tokens(source: str) -> str:
 
 def modernize(name: str, original: str) -> str:
     if '<g id="support-body"' in original:
-        return enforce_provisional_a_tokens(remove_crash_recovery_duplicate_cta(original, name))
+        return enforce_provisional_a_tokens(clarify_share_chooser_outcome(clarify_diagnostic_inclusion(remove_crash_recovery_duplicate_cta(original, name),name), name))
     source, count = BANNER.subn('<g id="support-body" transform="translate(0,-24)">\n', original, count=1)
     assert count == 1, (name, "missing decorative proposal banner")
     assert source.count(FOOTER) == 1
@@ -124,7 +174,7 @@ def modernize(name: str, original: str) -> str:
             assert needle in source
             source = source.replace(needle, new, 1)
     ET.fromstring(source)
-    return enforce_provisional_a_tokens(remove_crash_recovery_duplicate_cta(source, name))
+    return enforce_provisional_a_tokens(clarify_share_chooser_outcome(clarify_diagnostic_inclusion(remove_crash_recovery_duplicate_cta(source, name),name), name))
 
 def main() -> None:
     parser = argparse.ArgumentParser()

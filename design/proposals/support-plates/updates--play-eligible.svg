@@ -8,15 +8,15 @@
 <text x="37" y="129" font-family="Arial,Helvetica,sans-serif" fill="#153F46" font-size="28" font-weight="700">App updates</text>
 <text x="38" y="155" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="15" font-weight="400">Choose your release channel</text>
 <g id="support-body" transform="translate(0,-24)">
-<rect x="40" y="223" width="348" height="100" rx="13" fill="#FFFCF6" stroke="#C8B7A1" stroke-width="1"/>
+<rect data-control="card-view-build-info" data-focus-order="2" data-hit-width="348" data-hit-height="100" data-action-label="View build info" x="40" y="223" width="348" height="100" rx="13" fill="#FFFCF6" stroke="#C8B7A1" stroke-width="1"/>
 <text x="53" y="249" font-family="Arial,Helvetica,sans-serif" fill="#153F46" font-size="17" font-weight="650">Installed build</text>
 <text x="53" y="272" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="14" font-weight="400">Google Play distribution</text>
-<text x="53" y="311" font-family="Arial,Helvetica,sans-serif" fill="#1D5960" font-size="13" font-weight="650">View build info</text>
-<rect x="40" y="338" width="348" height="100" rx="13" fill="#FFFCF6" stroke="#C8B7A1" stroke-width="1"/>
+<text x="53" y="311" font-family="Arial,Helvetica,sans-serif" fill="#1D5960" font-size="14" font-weight="650">View build info</text>
+<rect data-control="card-learn-more" data-focus-order="3" data-hit-width="348" data-hit-height="100" data-action-label="Learn more" x="40" y="338" width="348" height="100" rx="13" fill="#FFFCF6" stroke="#C8B7A1" stroke-width="1"/>
 <text x="53" y="364" font-family="Arial,Helvetica,sans-serif" fill="#153F46" font-size="17" font-weight="650">How updates work</text>
 <text x="53" y="387" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="14" font-weight="400">Use the supported Play update pathway</text>
-<text x="53" y="426" font-family="Arial,Helvetica,sans-serif" fill="#1D5960" font-size="13" font-weight="650">Learn more</text>
-<rect x="42" y="637" width="338" height="48" rx="20" fill="#1D5960" stroke="#1D5960" stroke-width="1"/>
+<text x="53" y="426" font-family="Arial,Helvetica,sans-serif" fill="#1D5960" font-size="14" font-weight="650">Learn more</text>
+<rect x="42" y="637" width="338" height="48" rx="20" fill="#1D5960" stroke="#1D5960" stroke-width="1" data-control="task-open-update-source" data-focus-order="10" data-hit-width="338" data-hit-height="48" data-action-label="Open update source"/>
 <text x="57" y="664" font-family="Arial,Helvetica,sans-serif" fill="#FFFFFF" font-size="14" font-weight="650">Open update source</text>
 </g>
 <path d="M29 817h373" stroke="#C8B7A1"/>

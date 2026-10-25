@@ -12,20 +12,20 @@
 <circle cx="91" cy="275" r="32" fill="#EAD9BD" stroke="#C8B7A1" stroke-width="3"/><circle cx="91" cy="275" r="12" fill="#F6F0E6"/>
 <text x="139" y="264" font-family="Arial,Helvetica,sans-serif" fill="#153F46" font-size="22" font-weight="700">Glimpse</text>
 <text x="139" y="290" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="14" font-weight="400">0.1 development • sideload</text>
-<rect x="40" y="349" width="348" height="100" rx="13" fill="#FFFCF6" stroke="#C8B7A1" stroke-width="1"/>
+<rect data-control="card-copy-build-id" data-focus-order="2" data-hit-width="348" data-hit-height="100" data-action-label="Copy build ID" x="40" y="349" width="348" height="100" rx="13" fill="#FFFCF6" stroke="#C8B7A1" stroke-width="1"/>
 <text x="53" y="375" font-family="Arial,Helvetica,sans-serif" fill="#153F46" font-size="17" font-weight="650">Build information</text>
 <text x="53" y="398" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="14" font-weight="400">Version code, build SHA, support</text>
 <text x="53" y="417" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="14" font-weight="400">eligibility</text>
-<text x="53" y="437" font-family="Arial,Helvetica,sans-serif" fill="#1D5960" font-size="13" font-weight="650">Copy build ID</text>
-<rect x="40" y="464" width="348" height="100" rx="13" fill="#FFFCF6" stroke="#C8B7A1" stroke-width="1"/>
+<text x="53" y="437" font-family="Arial,Helvetica,sans-serif" fill="#1D5960" font-size="14" font-weight="650">Copy build ID</text>
+<rect data-control="card-view-details" data-focus-order="3" data-hit-width="348" data-hit-height="100" data-action-label="View details" x="40" y="464" width="348" height="100" rx="13" fill="#FFFCF6" stroke="#C8B7A1" stroke-width="1"/>
 <text x="53" y="490" font-family="Arial,Helvetica,sans-serif" fill="#153F46" font-size="17" font-weight="650">Privacy and licences</text>
 <text x="53" y="513" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="14" font-weight="400">How photos are held and who made the</text>
 <text x="53" y="532" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="14" font-weight="400">components</text>
-<text x="53" y="552" font-family="Arial,Helvetica,sans-serif" fill="#1D5960" font-size="13" font-weight="650">View details</text>
-<rect x="40" y="579" width="348" height="100" rx="13" fill="#FFFCF6" stroke="#C8B7A1" stroke-width="1"/>
+<text x="53" y="552" font-family="Arial,Helvetica,sans-serif" fill="#1D5960" font-size="14" font-weight="650">View details</text>
+<rect data-control="card-open-help" data-focus-order="4" data-hit-width="348" data-hit-height="100" data-action-label="Open help" x="40" y="579" width="348" height="100" rx="13" fill="#FFFCF6" stroke="#C8B7A1" stroke-width="1"/>
 <text x="53" y="605" font-family="Arial,Helvetica,sans-serif" fill="#153F46" font-size="17" font-weight="650">Help and contact</text>
 <text x="53" y="628" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="14" font-weight="400">Troubleshooting, report a problem, feedback</text>
-<text x="53" y="667" font-family="Arial,Helvetica,sans-serif" fill="#1D5960" font-size="13" font-weight="650">Open help</text>
+<text x="53" y="667" font-family="Arial,Helvetica,sans-serif" fill="#1D5960" font-size="14" font-weight="650">Open help</text>
 </g>
 <path d="M29 817h373" stroke="#C8B7A1"/>
 <g id="support-navigation" aria-label="Four tab destinations; static touch region proposal only">

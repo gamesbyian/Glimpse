@@ -147,7 +147,7 @@
         {
           "frameId": "05-paused",
           "path": "design/proposals/storyboards/x04/05-paused.svg",
-          "sha256": "869513368b9023e14563ca7a1d32cdd90db06df2027cbb888d8e05e7e3980b47",
+          "sha256": "47a7e730af6da976bbfade46bafd5669f07f55bf0556f440e381f9f03cea2e07",
           "crop": [
             15,
             14,
@@ -172,7 +172,7 @@
         {
           "frameId": "07-interrupted",
           "path": "design/proposals/storyboards/x05/07-interrupted.svg",
-          "sha256": "9c8c5c102c8d4a39c93767e32d9424f3b5c62e6d480f5628ecfd4e6106792eae",
+          "sha256": "b09188850d18b5567e69e0d0c7d87d0824c942109fc5459bbb69f0aa4eabcfd6",
           "crop": [
             15,
             14,
@@ -187,7 +187,7 @@
         {
           "frameId": "08-last",
           "path": "design/proposals/storyboards/x05/08-last.svg",
-          "sha256": "d4e9d2940c30ae25e7f3421c2dc811634c99df03ab5f7914675abdc258e532d8",
+          "sha256": "d0e7c44d62678fea2eed7843b72d119ab328f02e89aea1f0981c3c4e40c7eddb",
           "crop": [
             15,
             14,
@@ -292,7 +292,7 @@
         {
           "frameId": "01-home-active",
           "path": "design/proposals/storyboards/x08/01-home-active.svg",
-          "sha256": "c1648ff062496adc85f8c29acecbc6ca2905df6ee3a32dc7bc1df75f94a681dd",
+          "sha256": "63ba7fb8669f25282fd3f7b9785e5432a18887459e892c58789326c578cf7410",
           "crop": [
             15,
             14,
@@ -307,7 +307,7 @@
         {
           "frameId": "06-status-collapsed",
           "path": "design/proposals/storyboards/x08/06-status-collapsed.svg",
-          "sha256": "770d72cdb8d239e39ae4326945ec74d7c1de5f46e0213f373020e5c846335253",
+          "sha256": "b72c3c0e74a9cedfee62d10f009ba8139eca03ccd4c8e93d70d983eed17ca5c1",
           "crop": [
             15,
             14,
@@ -572,7 +572,7 @@
         {
           "frameId": "04-confirm-exclude",
           "path": "design/proposals/advanced-storyboards/x15/04-confirm-exclude.svg",
-          "sha256": "23d3e4c316131d60e8545f046c6eabc615908fb44064d8d21b02bba9f2b50be9",
+          "sha256": "ae8828994891ccb0231135ad1bc9bfef152fa05d8960ec2c75215ec4d1efacf8",
           "crop": [
             15,
             14,
@@ -587,7 +587,7 @@
         {
           "frameId": "05-restore",
           "path": "design/proposals/advanced-storyboards/x15/05-restore.svg",
-          "sha256": "36b5a6bb4ac29cdbebe71eb2c81d3161995ff7938a282d181a2c64b598848619",
+          "sha256": "683d6a0c1dea0cae1616a84be580e6de1e026e0da53ade86a1020d38d4d3f48a",
           "crop": [
             15,
             14,
@@ -612,7 +612,7 @@
         {
           "frameId": "02-conflict",
           "path": "design/proposals/advanced-storyboards/x16/02-conflict.svg",
-          "sha256": "9acd2741697d643b9a4b25abbed85a71b739c92906b9f12a0c87388b1e5ec719",
+          "sha256": "721f78788a94e29cffe807c62ce699209c63706d1d9521ec3e65d8334ffcc298",
           "crop": [
             15,
             14,
@@ -627,7 +627,7 @@
         {
           "frameId": "05-simulate",
           "path": "design/proposals/advanced-storyboards/x16/05-simulate.svg",
-          "sha256": "18da9ac81abbbd86a92195e55bab70a999d03b5241b8d6a8ca1850c7a226d8c9",
+          "sha256": "fa144a9f5d7781b0230e95be4630942f8bd912f814ffaebab34278553daf227b",
           "crop": [
             15,
             14,
@@ -747,7 +747,7 @@
         {
           "frameId": "05-restore-result",
           "path": "design/proposals/advanced-storyboards/x19/05-restore-result.svg",
-          "sha256": "6bd12f9ac5886b542510cadc1ae0ae61233f4d9bf48385c5d089e4349c11dd52",
+          "sha256": "3781d6def895ffb1f5e538ef0c6ac2e4b0f82d4600574294694b7fd657547a33",
           "crop": [
             15,
             14,
@@ -928,12 +928,12 @@
   "contacts": [
     {
       "name": "journey-pair-contact-01.jpg",
-      "sha256": "e408a1e5a0d1fd929fe6f1c5d69cd2547a2c44dc9fb737d72b27afe11c61af31",
+      "sha256": "eea1afc3e1e153764b428d0f886f22b2e5613c3963d3a7fda0426aae79ca6ae9",
       "pairs": 4
     },
     {
       "name": "journey-pair-contact-02.jpg",
-      "sha256": "5eaad8f55ca6c6780a7d5b1022e18063465f30849e5703ea3b3d5ebfc992121f",
+      "sha256": "5c4f10cf35ff83384f8e9bd4a41d6da90164f7801abdf62577e81fca4019b352",
       "pairs": 4
     },
     {
@@ -943,12 +943,12 @@
     },
     {
       "name": "journey-pair-contact-04.jpg",
-      "sha256": "da7f5411f7f9d498e170248d39cda565eeda3df960fa2be97c8fa43c0e6c5d2f",
+      "sha256": "dbf25752651a77fee2577d5525dd1e6476562e5cfd0361af9ae69f143ae0b249",
       "pairs": 4
     },
     {
       "name": "journey-pair-contact-05.jpg",
-      "sha256": "2156a2d0cd29af4f0d6d741a27147c6898d6f53acc1b6a0dcd4f3c17b5bc0e43",
+      "sha256": "5689e21f1f68788c25e61a7e7ec9b36a77fa19634eefb3f2f51ab186edf10d40",
       "pairs": 4
     },
     {

@@ -11,13 +11,13 @@
 <rect x="40" y="225" width="348" height="100" rx="13" fill="#FFFCF6" stroke="#C8B7A1" stroke-width="1"/>
 <text x="53" y="251" font-family="Arial,Helvetica,sans-serif" fill="#153F46" font-size="17" font-weight="650">Rate on Google Play</text>
 <text x="53" y="274" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="14" font-weight="400">Opens the verified public Play listing</text>
-<text x="53" y="313" font-family="Arial,Helvetica,sans-serif" fill="#1D5960" font-size="13" font-weight="650">About this</text>
+<text x="53" y="313" font-family="Arial,Helvetica,sans-serif" fill="#1D5960" font-size="14" font-weight="650">About this</text>
 <rect x="40" y="344" width="348" height="100" rx="13" fill="#FFFCF6" stroke="#C8B7A1" stroke-width="1"/>
 <text x="53" y="370" font-family="Arial,Helvetica,sans-serif" fill="#153F46" font-size="17" font-weight="650">Feedback is independent</text>
 <text x="53" y="393" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="14" font-weight="400">You can report a problem without leaving a</text>
 <text x="53" y="412" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="14" font-weight="400">rating</text>
-<text x="53" y="432" font-family="Arial,Helvetica,sans-serif" fill="#1D5960" font-size="13" font-weight="650">Contact developer</text>
-<rect x="43" y="631" width="338" height="48" rx="20" fill="#1D5960" stroke="#1D5960" stroke-width="1"/>
+<text x="53" y="432" font-family="Arial,Helvetica,sans-serif" fill="#1D5960" font-size="14" font-weight="650">Contact developer</text>
+<rect x="43" y="631" width="338" height="48" rx="20" fill="#1D5960" stroke="#1D5960" stroke-width="1" data-control="task-open-google-play" data-focus-order="10" data-hit-width="338" data-hit-height="48" data-action-label="Open Google Play"/>
 <text x="58" y="658" font-family="Arial,Helvetica,sans-serif" fill="#FFFFFF" font-size="14" font-weight="650">Open Google Play</text>
 </g>
 <path d="M29 817h373" stroke="#C8B7A1"/>
