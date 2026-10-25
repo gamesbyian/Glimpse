@@ -5,6 +5,8 @@ import android.graphics.Bitmap
 import android.graphics.Color
 import android.net.Uri
 import android.os.Build
+import android.content.ContentValues
+import android.provider.MediaStore
 import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -198,6 +200,57 @@ class PhotoImporterDeviceTest {
                 " for Glimpse's UID"
         )
     }
+
+    @Test fun realAndroidMediaStoreImageRemainsOfflineAfterPublicDeletion() =
+        withDatabase { dao ->
+            val source = sourceFixture(106)
+            var publicUri: Uri? = null
+            try {
+                val bytes = source.readBytes()
+                val expectedSha = sha256(source)
+                val values = ContentValues().apply {
+                    put(MediaStore.Images.Media.DISPLAY_NAME,
+                        "glimpse-agent-c-" + UUID.randomUUID() + ".jpg")
+                    put(MediaStore.Images.Media.MIME_TYPE, "image/jpeg")
+                    put(MediaStore.Images.Media.RELATIVE_PATH, "Pictures/GlimpseAgentCQA/")
+                    put(MediaStore.Images.Media.IS_PENDING, 1)
+                }
+                val provider = context.contentResolver
+                publicUri = requireNotNull(provider.insert(
+                    MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values
+                )) { "Android MediaStore refused disposable image fixture" }
+                requireNotNull(provider.openOutputStream(publicUri, "w")).use {
+                    it.write(bytes)
+                }
+                val published = ContentValues().apply {
+                    put(MediaStore.Images.Media.IS_PENDING, 0)
+                }
+                assertEquals(1, provider.update(publicUri, published, null, null))
+                dao.insertCollection(CollectionRecord("mediastore", "MediaStore", 1L))
+                val imported = PhotoImporter(context, dao).import(
+                    listOf(publicUri), "mediastore"
+                )
+                assertEquals(1, imported.selected)
+                assertEquals(1, imported.imported)
+                assertEquals(0, imported.failures)
+                val privateCopy = dao.photosIn("mediastore").single()
+                assertEquals(expectedSha, privateCopy.id)
+                assertEquals(expectedSha, privateCopy.sha256)
+                assertArrayEquals(bytes, File(privateCopy.localPath).readBytes())
+                // Remove only the uniquely named image this disposable emulator
+                // test inserted; this never queries or deletes personal media.
+                assertEquals(1, provider.delete(publicUri, null, null))
+                publicUri = null
+                source.delete()
+                assertEquals(expectedSha, sha256(File(privateCopy.localPath)))
+                assertEquals(privateCopy.id, dao.findPhoto(privateCopy.id)?.id)
+            } finally {
+                publicUri?.let {
+                    runCatching { context.contentResolver.delete(it, null, null) }
+                }
+                source.delete()
+            }
+        }
 
     @Test fun controlledContentProviderGrantCanExpireAfterOfflineImport() =
         withDatabase { dao ->

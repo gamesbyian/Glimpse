@@ -8,6 +8,8 @@ import io.github.gamesbyian.glimpse.data.GlimpseDao
 import io.github.gamesbyian.glimpse.data.PhotoRecord
 import io.github.gamesbyian.glimpse.data.RotationRecord
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.CancellationException
+import kotlinx.coroutines.NonCancellable
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 import kotlinx.coroutines.withContext
@@ -169,6 +171,22 @@ class WallpaperCommands(
                 "Android acknowledged the Home wallpaper update."
             }
         } catch (failure: Exception) {
+            if (failure is CancellationException) {
+                // A caller can be cancelled even while setBitmap's synchronous
+                // OS call continues. Save a durable *uncertain* transaction in
+                // a non-cancellable context, then propagate cancellation.
+                // This deliberately errs on the safe side if cancellation
+                // happened just before the OS call.
+                withContext(NonCancellable) {
+                    dao.saveRotation(previous.copy(
+                        pendingPhotoId = photo.id,
+                        lastAttemptAt = started,
+                        active = false,
+                        outcome = "Wallpaper outcome uncertain after cancellation; inspect Home wallpaper"
+                    ))
+                }
+                throw failure
+            }
             if (osMutationEntered) {
                 dao.saveRotation(previous.copy(
                     pendingPhotoId = photo.id,

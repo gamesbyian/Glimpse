@@ -18,12 +18,14 @@ EXPECTED={
         "sameUriWithMutatedPixelsCreatesDifferentImmutableIdentity",
         "corruptedPrivateCopyIsAtomicallyRestoredBeforeReusingHashId",
         "controlledContentProviderGrantCanExpireAfterOfflineImport",
+        "realAndroidMediaStoreImageRemainsOfflineAfterPublicDeletion",
     },
     "io.github.gamesbyian.glimpse.domain.WallpaperGatewayDeviceTest": {
         "explicitHomeCommandAgreesWithImmediateOsWallpaperIdReadback",
         "pendingUncertainOperationBlocksApplyWithoutCallingOs",
         "decodableButChangedPixelsNeverReachAndroidWallpaperManager",
         "exceptionAtOsBoundaryPreservesPendingAndNeverRetries",
+        "cancellationAtOsBoundaryPersistsPauseAndPropagatesCancellation",
     },
 }
 def main():

@@ -197,6 +197,50 @@ class WallpaperGatewayDeviceTest {
         }
     }
 
+    @Test fun cancellationAtOsBoundaryPersistsPauseAndPropagatesCancellation() = runBlocking {
+        val image = testBitmapFile()
+        val db = Room.inMemoryDatabaseBuilder(context, GlimpseDatabase::class.java).build()
+        try {
+            val dao = db.dao()
+            dao.insertCollection(CollectionRecord("cancel", "Cancel", 1L))
+            val id = sha(image)
+            dao.attach(PhotoRecord(
+                id = id, sha256 = id, localPath = image.absolutePath,
+                mime = "image/jpeg", width = 320, height = 560,
+                byteLength = image.length(), importedAt = 1L
+            ), "cancel")
+            dao.saveRotation(RotationRecord(
+                collectionId = "cancel", active = true,
+                remainingJson = "[\"do-not-advance\"]",
+                outcome = "Active before OS cancellation"
+            ))
+            val invocations = java.util.concurrent.atomic.AtomicInteger()
+            val commands = WallpaperCommands(context, dao, setHomeWallpaper = {
+                invocations.incrementAndGet()
+                throw kotlinx.coroutines.CancellationException("Simulated activity canceled")
+            })
+            try {
+                commands.applySelected(id)
+                throw AssertionError("Cancelled OS operation must propagate cancellation")
+            } catch (_: kotlinx.coroutines.CancellationException) {
+                // Caller sees cancellation, and the DB still has the explicit
+                // durable uncertainty despite the canceled coroutine context.
+            }
+            assertEquals(1, invocations.get())
+            val saved = requireNotNull(dao.readRotation())
+            assertEquals(id, saved.pendingPhotoId)
+            assertEquals(false, saved.active)
+            assertNull(saved.lastAcknowledgedPhotoId)
+            assertEquals("[\"do-not-advance\"]", saved.remainingJson)
+            assertTrue(saved.outcome.contains("uncertain"))
+            assertTrue(commands.applySelected(id).contains("uncertain", ignoreCase = true))
+            assertEquals(1, invocations.get())
+        } finally {
+            db.close()
+            image.delete()
+        }
+    }
+
     @Test fun pendingUncertainOperationBlocksApplyWithoutCallingOs() = runBlocking {
         val database = Room.inMemoryDatabaseBuilder(
             context, GlimpseDatabase::class.java
