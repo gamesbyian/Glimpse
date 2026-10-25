@@ -27,7 +27,14 @@ import java.security.MessageDigest
 class WallpaperCommands(
     private val context: Context,
     private val dao: GlimpseDao,
-    private val now: () -> Long = System::currentTimeMillis
+    private val now: () -> Long = System::currentTimeMillis,
+    // Test seam for a throw *at* the OS mutation boundary; production always
+    // invokes the actual Home WallpaperManager API.
+    private val setHomeWallpaper: (android.graphics.Bitmap) -> Int = { bitmap ->
+        WallpaperManager.getInstance(context).setBitmap(
+            bitmap, null, true, WallpaperManager.FLAG_SYSTEM
+        )
+    }
 ) {
     private val mutex = Mutex()
     private val intervalMillis = 5 * 60 * 1000L
@@ -125,13 +132,16 @@ class WallpaperCommands(
             lastAttemptAt = started,
             outcome = "Attempting to apply Home wallpaper"
         ))
+        // Once an irreversible OS call has been entered, even an exception
+        // does not prove that the wallpaper remained unchanged. Preserve the
+        // pending attempt and pause rather than risking a duplicate retry.
+        var osMutationEntered = false
         return try {
             val wallpaperId = withContext(Dispatchers.IO) {
                 val bitmap = decodeForWallpaper(photo)
                 try {
-                    WallpaperManager.getInstance(context).setBitmap(
-                        bitmap, null, true, WallpaperManager.FLAG_SYSTEM
-                    )
+                    osMutationEntered = true
+                    setHomeWallpaper(bitmap)
                 } finally {
                     bitmap.recycle()
                 }
@@ -159,13 +169,25 @@ class WallpaperCommands(
                 "Android acknowledged the Home wallpaper update."
             }
         } catch (failure: Exception) {
-            dao.saveRotation(previous.copy(
-                pendingPhotoId = null,
-                lastAttemptAt = started,
-                nextEligibleAt = if (previous.active) now() + intervalMillis else previous.nextEligibleAt,
-                outcome = "Apply failed: " + failure.javaClass.simpleName
-            ))
-            "Wallpaper application failed. The rotation cursor has not advanced."
+            if (osMutationEntered) {
+                dao.saveRotation(previous.copy(
+                    pendingPhotoId = photo.id,
+                    lastAttemptAt = started,
+                    active = false,
+                    outcome = "Wallpaper outcome uncertain after OS call: " +
+                        failure.javaClass.simpleName + "; inspect Home wallpaper"
+                ))
+                "Wallpaper outcome uncertain; automatic rotation paused."
+            } else {
+                dao.saveRotation(previous.copy(
+                    pendingPhotoId = null,
+                    lastAttemptAt = started,
+                    active = false,
+                    outcome = "Apply failed before OS call: " +
+                        failure.javaClass.simpleName
+                ))
+                "Wallpaper application failed before Android was called; rotation paused."
+            }
         }
     }
 
