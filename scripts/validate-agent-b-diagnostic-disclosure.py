@@ -4,10 +4,14 @@
 This measures SVG proposed coordinates, not Android layout, focus or hit testing.
 """
 from pathlib import Path
+import argparse
 import xml.etree.ElementTree as ET
 
 ROOT = Path(__file__).resolve().parents[1]
-PATH = ROOT / "design/proposals/support-plates/diagnostic-preview--expanded.svg"
+parser = argparse.ArgumentParser()
+parser.add_argument("--source", type=Path, default=ROOT / "design/proposals/support-plates/diagnostic-preview--expanded.svg")
+args = parser.parse_args()
+PATH = args.source
 NS = "{http://www.w3.org/2000/svg}"
 tree = ET.parse(PATH).getroot()
 body = next(x for x in tree.iter(f"{NS}g") if x.get("id") == "support-body")
@@ -28,6 +32,8 @@ assert find("Attempt: copy • Result: interrupted") < find(heading)
 assert find("Exception type: sanitised • IDs redacted") < find(heading)
 buttons = {e.get("data-control"): e for e in body.iter(f"{NS}rect") if (e.get("data-control") or "").startswith("task-")}
 assert set(buttons) == {"task-copy", "task-save", "task-share"}
+assert all(indices[id(texts[privacy])] < indices[id(b)] for b in buttons.values()), "Disclosure must precede every action in DOM"
+assert all(indices[id(texts[heading])] < indices[id(b)] for b in buttons.values()), "Action heading must precede every control in DOM"
 assert all(float(b.get("height")) >= 48 for b in buttons.values())
 action_top = min(float(b.get("y")) for b in buttons.values())
 assert find(heading) < action_top, "Actions must follow their heading"
