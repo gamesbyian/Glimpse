@@ -175,9 +175,9 @@
     },
     {
       "sourcePath": "design/proposals/whole-product-candidates/cc0-consistent-20261024/detail.svg",
-      "sourceSHA256": "a2958974c25a520b3f3574866432671ad44379cb35ce976dd1cbcb568be38303",
+      "sourceSHA256": "801edb288a7e4ad32e8c48727c481e5b8b49681892a794439a1184d7f73425d6",
       "rasterPath": "design/system/reviews/ci-renders/cc0-consistent-detail.png",
-      "rasterSHA256": "f7fe91443fde13dbe3017f8eb870c843ab96fa6d4dd2b23e56fe2f521d82a482",
+      "rasterSHA256": "904ac1d2d7b8b0bf2ce410de78e7f889c94af7a0814905279c3603f157b70a31",
       "status": "UNSELECTED",
       "AndroidNativeVerified": false,
       "ownerApproved": false
