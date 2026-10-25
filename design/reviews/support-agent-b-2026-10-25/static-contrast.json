@@ -2,6 +2,7 @@
   "status": "UNAPPROVED_STATIC_DESK_AUDIT_NOT_NATIVE",
   "sourceStates": 34,
   "sourceStoryboardFrames": 0,
+  "wholePhone": false,
   "measuredTextElements": 416,
   "belowAA": 0,
   "unknownCases": 0,
