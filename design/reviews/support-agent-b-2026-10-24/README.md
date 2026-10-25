@@ -77,6 +77,12 @@ Direct scan of the larger content regions showed further unlabeled interactivity
 
 **Boundary:** these annotated SVG rectangles are documentation of expected native actions, not real Android accessibility node semantics, keyboard traversal, TalkBack speech, pointer targets in dp, working external intents, modal focus trap, or `fontScale=2` reflow. Issue [#13](https://github.com/gamesbyian/Glimpse/issues/13) remains open. Native engineers must implement the described actions rather than merely reproducing their labels, and independently test return focus, IME, 320dp layout and device permissions. No user approval or new owner IA decision follows from this sweep.
 
+## Pixel-observed diagnostics disclosure spacing repair
+
+A fresh direct opening of [support contact sheet 02](support-phone-contact-02.jpg) after the 36/42/7 focus annotations exposed an overly long ON disclosure line running into the small switch's visual breathing room on `report-problem--with-diagnostics`; the expanded technical-details ON line was also cramped. Changed the actual source art using the idempotent generator to **“ON · review fields before sharing”** and **“ON · technical fields included”** respectively. The guarded wording remains distinct from OFF; the report still says **selected, not sent** and shows real payload preview as a separate required step. The source validator now rejects the previous crowded phrases.
+
+Directly reopened the regenerated **401×890 exact-source contact JPEG** after [focused CI #40154239255](https://github.com/gamesbyian/Glimpse/actions/runs/40154239255) succeeded. Both shortened labels sit cleanly to the left of the ON controls at nominal scale; no change to default privacy or unsupported native claims. Exact latest contact Git blob `15339bc6d3a9e4d1d46ddc088fb36f380f17a5f0` (read image/source SHA-256 from current [source ledger](source-ledger.json), not Git blob SHA). The exercise demonstrates why all-green structural tests must be supplemented with actual raster inspection.
+
 ## Focused developer replay
 
 ```sh
