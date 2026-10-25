@@ -1,6 +1,6 @@
 {
   "contract": "glimpse-production-a",
-  "revision": "0.1.1",
+  "revision": "0.1.2",
   "status": "DRAFT_PENDING_INTEGRATION_LOCK",
   "canvas": {
     "study": [
@@ -114,10 +114,33 @@
   },
   "contractChangeLog": [
     {
+      "revision": "0.1.2",
+      "kind": "provisional-visible-focus-affordance",
+      "reason": "B independent support control scan identified 238 low-contrast source-painted control candidates; provide non-color-only 4-unit focus ring contract without claiming each is a WCAG violation.",
+      "ownerApproval": false
+    },
+    {
       "revision": "0.1.1",
       "kind": "provisional-contextual-tint-contrast",
       "reason": "Independent B static AA audit found secondary #566861 at 4.272:1 on tan; use contextual #445851, preserving original paper secondary.",
       "ownerApproval": false
     }
-  ]
+  ],
+  "focusVisible": {
+    "indicatorColor": "#1D5960",
+    "minimumContrastAgainstPaper": 3,
+    "strokePxNominal": 4,
+    "offsetPxNominal": 2,
+    "appliesTo": [
+      "keyboard",
+      "D-pad",
+      "switch-navigation-focus"
+    ],
+    "rules": [
+      "Visible outline around the currently focused actionable region, never color-only focus indication.",
+      "Maintain indicator contrast against the adjacent actual painted surface; focus shape must remain evident when card borders are low contrast.",
+      "Do not use a focus border to imply selection, successful apply, or current Android wallpaper state.",
+      "Native semantics, focus restoration and TalkBack require independent device verification."
+    ]
+  }
 }
