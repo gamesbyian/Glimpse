@@ -109,6 +109,14 @@
       "phoneRasterSHA256": "8df6b49ef5d1dd11b9b557e59fefab79dc752f8db6e6d4b566fecaeb21c4f21d"
     }
   ],
+  "focusBeforeAfter": {
+    "contactPath": "design/system/reviews/ci-renders/accessibility-focus-before-after.jpg",
+    "contactSHA256": "443ee79e7fc81eea1d7a1bac289568d49eff5723b2e6434e30ebcd62057eed8b",
+    "defaultSourceSHA256": "a62db6dab0849ac9bfdeaa76e3809a9e359f5d9762524a2945702b2ee00591cd",
+    "focusedSourceSHA256": "4c18210da552445fbbffb2ad572cdb06ba7919631978fba9ba1450f3acb26d1f",
+    "changedRegion": "phone x=0..401, y=300..400 only",
+    "independentlyOpticallyInspected": false
+  },
   "unselectedCandidates": [
     {
       "sourcePath": "design/proposals/whole-product-candidates/home-p04-photographic-cc0.svg",
