@@ -22,9 +22,9 @@
 <text x="53" y="519" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="14" font-weight="400">Inspect technical details; do not send</text>
 <text x="53" y="538" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="14" font-weight="400">automatically</text>
 <text x="53" y="558" font-family="Arial,Helvetica,sans-serif" fill="#1D5960" font-size="14" font-weight="650">Review report</text>
-<rect x="43" y="685" width="180" height="48" rx="20" fill="#1D5960" stroke="#1D5960" stroke-width="1"/>
+<rect x="43" y="685" width="180" height="48" rx="20" fill="#1D5960" stroke="#1D5960" stroke-width="1" data-control="task-continue" data-focus-order="10" data-hit-width="180" data-hit-height="48" data-action-label="Continue"/>
 <text x="58" y="712" font-family="Arial,Helvetica,sans-serif" fill="#FFFFFF" font-size="14" font-weight="650">Continue</text>
-<rect x="236" y="685" width="147" height="48" rx="20" fill="#FFFCF6" stroke="#C8B7A1" stroke-width="1"/>
+<rect x="236" y="685" width="147" height="48" rx="20" fill="#FFFCF6" stroke="#C8B7A1" stroke-width="1" data-control="task-not-now" data-focus-order="11" data-hit-width="147" data-hit-height="48" data-action-label="Not now"/>
 <text x="251" y="712" font-family="Arial,Helvetica,sans-serif" fill="#153F46" font-size="14" font-weight="650">Not now</text>
 </g>
 <path d="M29 817h373" stroke="#C8B7A1"/>

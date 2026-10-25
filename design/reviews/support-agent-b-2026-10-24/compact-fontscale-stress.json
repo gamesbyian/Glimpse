@@ -18,7 +18,7 @@
     },
     {
       "source": "design/proposals/support-plates/report-problem--with-diagnostics.svg",
-      "sourceSHA256": "5786f44765502cbdb7f68db5ad66471eeff0982caf7ddcbfb25b4281963fd314",
+      "sourceSHA256": "e80d986244981890afda3387fb014264569568d98ed73f81e0ce9bbbc31aca29",
       "scaledPhonePixels": [
         320,
         710
@@ -32,7 +32,7 @@
     },
     {
       "source": "design/proposals/support-plates/diagnostic-preview--expanded.svg",
-      "sourceSHA256": "108e0966ed0622332f2fea14cabe5084781f5f83f373bc7f4ab015c954e24e52",
+      "sourceSHA256": "250aebad0cba69d3d1e95117c7254c55e8b039188a4cf51191b3121f63e405cc",
       "scaledPhonePixels": [
         320,
         710
@@ -74,7 +74,7 @@
     },
     {
       "source": "design/proposals/support-plates/external-handler-fallback--chooser-cancelled.svg",
-      "sourceSHA256": "e39c6f631b8a51eebc25b793f59e2415dddc6fea9c264bbb94b652dbaeb6563b",
+      "sourceSHA256": "442a3af65790bfb7148e233d175ed28fa4e83adc0048daa37d9aaa7518e234b7",
       "scaledPhonePixels": [
         320,
         710

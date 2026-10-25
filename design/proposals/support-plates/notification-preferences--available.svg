@@ -23,7 +23,7 @@
 <text x="53" y="485" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="14" font-weight="400">Events remain visible in Activity</text>
 <rect x="328" y="457" width="45" height="25" rx="15" fill="#C8B7A1" stroke="none" stroke-width="1"/>
 <circle cx="344" cy="469.5" r="10" fill="#FFFCF6"/>
-<rect x="44" y="652" width="336" height="48" rx="20" fill="#FFFCF6" stroke="#C8B7A1" stroke-width="1"/>
+<rect x="44" y="652" width="336" height="48" rx="20" fill="#FFFCF6" stroke="#C8B7A1" stroke-width="1" data-control="task-return-to-settings" data-focus-order="10" data-hit-width="336" data-hit-height="48" data-action-label="Return to settings"/>
 <text x="59" y="679" font-family="Arial,Helvetica,sans-serif" fill="#153F46" font-size="14" font-weight="650">Return to settings</text>
 </g>
 <path d="M29 817h373" stroke="#C8B7A1"/>

@@ -24,7 +24,7 @@
 <text x="53" y="568" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="14" font-weight="400">Tap Set wallpaper, select an available</text>
 <text x="53" y="588" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="14" font-weight="400">Android target, then check the result.</text>
 <text x="53" y="619" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="14" font-weight="400">Browsing never applies automatically</text>
-<rect x="43" y="685" width="336" height="48" rx="22" fill="#1D5960"/>
+<rect x="43" y="685" width="336" height="48" rx="22" fill="#1D5960" data-control="task-back-to-help-topics" data-focus-order="10" data-hit-width="336" data-hit-height="48" data-action-label="Back to help topics"/>
 <text x="59" y="714" font-family="Arial,Helvetica,sans-serif" fill="#FFFFFF" font-size="15" font-weight="700">Back to help topics</text>
 </g>
 <path d="M29 817h373" stroke="#C8B7A1"/>

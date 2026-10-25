@@ -21,7 +21,7 @@
 <text x="53" y="499" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="14" font-weight="400">Shows exact affected collections before</text>
 <text x="53" y="518" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="14" font-weight="400">commit</text>
 <text x="53" y="538" font-family="Arial,Helvetica,sans-serif" fill="#1D5960" font-size="14" font-weight="650">Review removal</text>
-<rect x="43" y="713" width="336" height="48" rx="20" fill="#1D5960" stroke="#1D5960" stroke-width="1"/>
+<rect x="43" y="713" width="336" height="48" rx="20" fill="#1D5960" stroke="#1D5960" stroke-width="1" data-control="task-review-storage-options" data-focus-order="10" data-hit-width="336" data-hit-height="48" data-action-label="Review storage options"/>
 <text x="58" y="740" font-family="Arial,Helvetica,sans-serif" fill="#FFFFFF" font-size="14" font-weight="650">Review storage options</text>
 </g>
 <path d="M29 817h373" stroke="#C8B7A1"/>
