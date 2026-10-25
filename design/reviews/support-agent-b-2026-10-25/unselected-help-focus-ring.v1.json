@@ -1,0 +1,17 @@
+{
+  "status": "UNSELECTED_STATIC_ACCESSIBILITY_STUDY_NOT_NATIVE_OR_OWNER_APPROVAL",
+  "source": "design/proposals/support-plates/help--topics.svg",
+  "sourceSHA256": "6e882267c10e7ecc8c79eea6b3ba5da6a68f068ffd6c5fb2b2e3516593232fec",
+  "candidate": "design/reviews/support-agent-b-2026-10-25/unselected-help-focus-ring.v1.svg",
+  "candidateSHA256": "dd1a2a3aff0c69587058f8c8bb5af476cf61d429a73d2ea68a0ab4f6120e938e",
+  "contact": "unselected-help-focus-ring.v1.jpg",
+  "contactSHA256": "578bf7cc625d08e76dd6d243b657878c513fe4fe4aca0368aa26b616a086c8aa",
+  "control": "card-read-import-guide",
+  "defaultOutlineRatio": 1.724,
+  "focusedOutlineRatio": 6.99,
+  "staticTarget": [
+    348,
+    100
+  ],
+  "limitations": "Demonstrates one proposed visually focused card; neither Android keyboard or TalkBack focus movement, pressed/disabled state nor 48dp native targets verified."
+}
