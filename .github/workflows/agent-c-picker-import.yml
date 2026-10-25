@@ -1,0 +1,60 @@
+name: Agent C real OS Photo Picker import
+on:
+  pull_request:
+    paths:
+      - scripts/capture-agent-c-real-picker-import.py
+      - app/src/debug/java/io/github/gamesbyian/glimpse/debug/PickerMediaFixtureLauncher.kt
+      - app/src/debug/AndroidManifest.xml
+      - .github/workflows/agent-c-picker-import.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: agent-c-picker-import-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  real-picker-to-offline:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+      - uses: gradle/actions/setup-gradle@v4
+      - name: Prepare Android 37 SDK
+        run: |
+          printf 'y\n' | "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --channel=3 "platforms;android-37.0" "build-tools;36.0.0"
+          if [ -d "$ANDROID_HOME/platforms/android-37.0" ] && [ ! -e "$ANDROID_HOME/platforms/android-37" ]; then
+            ln -s "$ANDROID_HOME/platforms/android-37.0" "$ANDROID_HOME/platforms/android-37"
+          fi
+      - name: Build actual debug APK and check picker harness syntax
+        run: |
+          python3 -m py_compile scripts/capture-agent-c-real-picker-import.py
+          ./gradlew --no-daemon :app:assembleDebug
+      - name: Allow emulator KVM
+        run: |
+          if test -e /dev/kvm; then sudo chmod a+rw /dev/kvm; fi
+      - name: Select photo in actual Android OS Photo Picker and prove private SHA
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 34
+          arch: x86_64
+          profile: pixel_5
+          cores: 2
+          ram-size: 3072
+          emulator-boot-timeout: 360
+          disable-animations: true
+          emulator-options: -no-window -gpu swiftshader_indirect -no-snapshot -noaudio -no-boot-anim
+          script: |
+            adb install -r app/build/outputs/apk/debug/app-debug.apk
+            python3 scripts/capture-agent-c-real-picker-import.py --out artifacts/agent-c-real-picker-import
+      - name: Preserve OS Photo Picker source and imported image evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: glimpse-c-real-android-picker-import-api34
+          path: artifacts/agent-c-real-picker-import/
+          retention-days: 14
+          if-no-files-found: warn
