@@ -16,7 +16,7 @@ on:
       - design/system/reviews/ci-renders/ci-raster-ledger.json
       - design/reviews/support-agent-b-2026-10-24/**
       - scripts/test-agent-b-contrast.py
-      - scripts/validate-agent-b-storyboard-contrast.py
+      - scripts/validate-agent-b-support-contrast.py
   workflow_dispatch:
 permissions:
   contents: read
@@ -33,6 +33,7 @@ jobs:
         run: |
           python3 scripts/validate-integration-source-freeze.py
           python3 scripts/validate-integrated-optical-ledger.py
+          python3 scripts/test-agent-b-contrast.py
       - name: Preserve owner approval boundary
         run: |
           python3 - <<'PY'
