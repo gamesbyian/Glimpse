@@ -42,7 +42,7 @@ def main():
 
     requires("external-handler-fallback--chooser-cancelled",
              ["Sharing cancelled", "You closed the share chooser",
-              "Delivery unverified", "Try sharing again", "Save locally"],
+              "No recipient selected; nothing was sent", "Try sharing again", "Save locally"],
              ["No supported app found"])
     requires("external-handler-fallback--email-missing", ["No supported app found"])
     requires("credits-licences--rights-warning",
