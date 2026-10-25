@@ -5,6 +5,7 @@ on:
     paths:
       - scripts/validate-agent-b-support-contrast.py
       - scripts/fix-agent-b-storyboard-contrast.py
+      - scripts/render-agent-b-contrast-contact.py
       - design/proposals/support-plates/**
       - design/proposals/storyboards/**
       - design/proposals/advanced-storyboards/**
@@ -44,9 +45,26 @@ jobs:
           assert y['belowAA']==0
           print('137-frame desk audit:', y['measuredTextElements'], 'solid texts;', y['belowAA'], 'low contrast and', y['unknownCases'], 'unresolved')
           PY
+      - name: Directly render six repaired illustrative phone candidates
+        run: |
+          python3 -m pip install --quiet cairosvg pillow
+          python3 scripts/render-agent-b-contrast-contact.py
+          cp /tmp/glimpse-b-contrast/static-contrast.json design/reviews/support-agent-b-2026-10-25/
+          cp /tmp/glimpse-b-contrast/whole-journey-contrast.json design/reviews/support-agent-b-2026-10-25/
+          python3 - <<'PY'
+          import json,pathlib,hashlib
+          root=pathlib.Path('.')
+          path=root/'design/reviews/support-agent-b-2026-10-25'
+          l=json.loads((path/'contrast-repaired-6-phones.json').read_text())
+          assert l['totalPhones']==6 and not any(x['ownerApproved'] or x['nativeVerified'] for x in l['sources'])
+          assert hashlib.sha256((path/l['contact']).read_bytes()).hexdigest()==l['contactSHA256']
+          assert all(hashlib.sha256((root/x['path']).read_bytes()).hexdigest()==x['sourceSHA256'] for x in l['sources'])
+          report=json.loads((path/'whole-journey-contrast.json').read_text())
+          assert report['belowAA']==0 and report['sourceStoryboardFrames']==137
+          PY
       - name: Preserve source-only contrast repairs on this B branch
         run: |
-          git add design/proposals/storyboards/ design/proposals/advanced-storyboards/
+          git add design/proposals/storyboards/ design/proposals/advanced-storyboards/ design/reviews/support-agent-b-2026-10-25/
           if ! git diff --cached --quiet; then
             git config user.name 'github-actions[bot]'
             git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
@@ -61,5 +79,7 @@ jobs:
       - uses: actions/upload-artifact@v4
         with:
           name: b-support-contrast-${{ github.sha }}
-          path: /tmp/glimpse-b-contrast/
+          path: |
+            /tmp/glimpse-b-contrast/
+            design/reviews/support-agent-b-2026-10-25/
           retention-days: 14
