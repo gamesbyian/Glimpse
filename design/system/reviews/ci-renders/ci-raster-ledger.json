@@ -166,9 +166,9 @@
     },
     {
       "sourcePath": "design/proposals/whole-product-candidates/cc0-consistent-20261024/grid-3column.svg",
-      "sourceSHA256": "59a22728243ef80b3f1393927b8cca12f4bbbe7559bc937ce514e789a1d098af",
+      "sourceSHA256": "b7b3698dbbf388f11909f3ffd4339727342134303c3879c2c37e75c4595e1abb",
       "rasterPath": "design/system/reviews/ci-renders/cc0-consistent-grid-3column.png",
-      "rasterSHA256": "f90a6938e58fd6f7b9e38710dc9b96b1d51e703b540c77c4093486657f38fb02",
+      "rasterSHA256": "0eb2702839e920a9ad7ce7a23dac7b562e292149174fda9e94f1ade6847dd914",
       "status": "UNSELECTED",
       "AndroidNativeVerified": false,
       "ownerApproved": false
