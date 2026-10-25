@@ -2,7 +2,7 @@ name: Glimpse | Agent B support-source and journey optical challenge
 
 on:
   push:
-    branches: [agent/support-journey-a11y-20261024, agent/production-b-postintegration-20261024]
+    branches: [agent/support-journey-a11y-20261024, agent/production-b-postintegration-20261024, agent/production-b-restack-20261024]
     paths:
       - scripts/agent-b-modernize-support.py
       - scripts/validate-agent-b-support-journeys.py
