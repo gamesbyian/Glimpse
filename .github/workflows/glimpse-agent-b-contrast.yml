@@ -32,7 +32,7 @@ jobs:
           python3 scripts/test-agent-b-contrast.py
           python3 scripts/fix-agent-b-storyboard-contrast.py --apply > /tmp/glimpse-b-contrast/targeted-edits.json
           python3 scripts/fix-agent-b-storyboard-contrast.py
-          python3 scripts/fix-agent-b-storyboard-contrast.py --whole-phone --apply > /tmp/glimpse-b-contrast/whole-phone-targeted-edits.json
+          python3 scripts/fix-agent-b-storyboard-contrast.py --whole-phone --apply | tee /tmp/glimpse-b-contrast/whole-phone-targeted-edits.json
           python3 scripts/fix-agent-b-storyboard-contrast.py --whole-phone
           python3 scripts/validate-agent-b-support-contrast.py --fail-low-contrast --report /tmp/glimpse-b-contrast/static-contrast.json
           python3 scripts/validate-agent-b-support-contrast.py --include-storyboards --fail-low-contrast --report /tmp/glimpse-b-contrast/whole-journey-contrast.json
