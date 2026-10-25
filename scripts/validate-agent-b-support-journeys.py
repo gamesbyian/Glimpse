@@ -93,10 +93,10 @@ for family in support["screens"]:
             if not shape.get("data-focus-order"):errors.append(f"{p}:{key} absent focus proposal")
         if 'fill="#667975"' in phone: errors.append(f"{p}: low-contrast legacy secondary color")
         if name=="report-problem--with-diagnostics":
-            if "Selected; check exact fields before sharing" not in phone:
+            if "ON · review fields before sharing" not in phone:
                 errors.append(f"{p}: ON diagnostic still says default-off")
         if name=="diagnostic-preview--expanded":
-            if "Selected for this sample; inspect details" not in phone:
+            if "ON · technical fields included" not in phone:
                 errors.append(f"{p}: technical detail toggle and subtitle conflict")
         if name in ("diagnostic-preview--expanded","diagnostic-preview--minimal"):
             if "Photographs excluded" not in phone or "Image bytes never enter diagnostics" not in phone:
