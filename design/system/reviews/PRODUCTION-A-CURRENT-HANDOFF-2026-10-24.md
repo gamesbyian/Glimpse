@@ -1,5 +1,19 @@
 # Production A · Source-exact integration handoff · October 24, 2026
 
+## Post-C independent optical redline · corrective delta
+
+Agent C independently opened the actual six-screen raster contact and 401×890 Grid candidate ([C review in #7](https://github.com/gamesbyian/Glimpse/issues/7)). It correctly observed a semantic design flaw: tiny per-photo `CC0` labels are misleading because reuse rights belong to specific source assets, not every future user photograph. On magnification C **withdrew its initial literal p07 clipping claim**: the white ID plate was intact, but the pale sunflower background gave poor visual separation.
+
+Agent A corrected the actual editable [three-column Grid candidate](../../proposals/whole-product-candidates/cc0-consistent-20261024/grid-3column.svg) from Git blob `ecd84db6c16f03f7ab8e21219db9c10bc723c868` to **`48c49141988b6e7f545c6bade97fda5989994169`**, eliminating ten tiny CC0 UI badges, narrowing/tinting all twelve photographic IDs into individually outlined 56×23 source labels, and putting rights information in the manifest/editorial panel. The exact 13 JPEGs and photo IDs remain unchanged. The migration validator now rejects reintroduced visible CC0 tags and missing label keylines.
+
+Agent A also corrected the source [p12 Photo Detail candidate](../../proposals/whole-product-candidates/cc0-consistent-20261024/detail.svg), from Git blob `a0ae6521c49c74119daf782d5df963b2c509ec13` to **`2767f6fcc420e9b7dc4dbe0d84c588e1da98f010`**: the generic flower glyph was replaced by an actual second use of the **same embedded p12 fixture**, with Sporlo attribution and a Source and rights route; no new independent image/identity was invented. The validator checks exact fixture reuse and rights-credit semantics.
+
+A's focused workflow now produces `grid-p07-id-optical-6x.png` and `detail-p12-credit-optical-2x.png` from the actual CairoSVG raster, in addition to full-screen and contact files, for independent pixel challenge. **Current changed branch SHA and latest CI must be checked live.** Never claim these later changes passed the historical green run `#40141439176`: that run precedes the corrective SVGs. A source-level validator inspection was performed, but a current-head CI result remains unconfirmed here.
+
+### Integration collision warning
+
+PR #6 has advanced past the PR #11 initial stack and already contains **earlier versions of seven Agent A paths**, including the two edited SVGs, their PNGs, their machine ledger, and the cross-surface validator. Do **not** blindly restack or force-copy the entire A branch. The two source fixes above are intentional newer changes that need an explicit re-render, independent optical check, and integration reconciliation. Compare Git blob SHA-1 fingerprints, recompute source/raster SHA-256, update the exact selected reviewer/atlas source once jointly accepted. PR #6 remains integration-owned and draft. The six-screen package is still **unselected and unapproved**.
+
 ## Current post-migration handoff · 13 distinct CC0 photo identities, 6 surfaces
 
 Agent A's newest **unselected** all-CC0 candidate package consists of six source-editable, directly rendered 401×890 primary screens: **Home, Reel, three-column Grid, Photo Detail, Collections, and Share**. These preserve thirteen distinct source-identified p04 and p06–p17 JPEG photographs obtained and independently recorded by C #12 as uploader-declared CC0, with exact derived SHA-256 and original-source URLs. The inherited selected six-screen reference set still embeds rights-unverified art1–art6 in some places; **do not mix old selected files and new replacements while claiming continuity**.
