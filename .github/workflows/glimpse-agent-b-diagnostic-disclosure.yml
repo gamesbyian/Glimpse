@@ -5,6 +5,7 @@ on:
     paths:
       - design/proposals/support-plates/diagnostic-preview--expanded.svg
       - scripts/validate-agent-b-diagnostic-disclosure.py
+      - scripts/test-agent-b-diagnostic-disclosure.py
       - .github/workflows/glimpse-agent-b-diagnostic-disclosure.yml
   workflow_dispatch:
 permissions:
@@ -22,7 +23,9 @@ jobs:
         with:
           python-version: '3.12'
       - name: Check disclosure before Share, 48px actions and footer safety
-        run: python3 scripts/validate-agent-b-diagnostic-disclosure.py
+        run: |
+          python3 scripts/validate-agent-b-diagnostic-disclosure.py
+          python3 scripts/test-agent-b-diagnostic-disclosure.py
       - name: Rasterize source-exact expanded diagnostic state and record SHA
         run: |
           python3 -m pip install --quiet cairosvg pillow
