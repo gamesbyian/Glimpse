@@ -12,12 +12,12 @@
 <text x="53" y="250" font-family="Arial,Helvetica,sans-serif" fill="#153F46" font-size="17" font-weight="650">What felt strange?</text>
 <text x="53" y="273" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="14" font-weight="400">Your words matter more than telemetry</text>
 <text x="53" y="312" font-family="Arial,Helvetica,sans-serif" fill="#1D5960" font-size="14" font-weight="650">Describe experience</text>
-<rect x="40" y="340" width="348" height="69" rx="12" fill="#FFFCF6" stroke="#C8B7A1" stroke-width="1"/>
+<rect data-control="toggle-attach-a-screenshot" data-focus-order="2" data-hit-width="348" data-hit-height="69" data-action-label="Attach a screenshot" x="40" y="340" width="348" height="69" rx="12" fill="#FFFCF6" stroke="#C8B7A1" stroke-width="1"/>
 <text x="53" y="365" font-family="Arial,Helvetica,sans-serif" fill="#153F46" font-size="16" font-weight="650">Attach a screenshot</text>
 <text x="53" y="387" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="14" font-weight="400">Only one you explicitly select</text>
 <rect x="328" y="359" width="45" height="25" rx="15" fill="#C8B7A1" stroke="none" stroke-width="1"/>
 <circle cx="344" cy="371.5" r="10" fill="#FFFCF6"/>
-<rect x="40" y="426" width="348" height="69" rx="12" fill="#FFFCF6" stroke="#C8B7A1" stroke-width="1"/>
+<rect data-control="toggle-attach-diagnostics" data-focus-order="3" data-hit-width="348" data-hit-height="69" data-action-label="Attach diagnostics" x="40" y="426" width="348" height="69" rx="12" fill="#FFFCF6" stroke="#C8B7A1" stroke-width="1"/>
 <text x="53" y="451" font-family="Arial,Helvetica,sans-serif" fill="#153F46" font-size="16" font-weight="650">Attach diagnostics</text>
 <text x="53" y="473" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="14" font-weight="400">Inspect content first</text>
 <rect x="328" y="445" width="45" height="25" rx="15" fill="#C8B7A1" stroke="none" stroke-width="1"/>

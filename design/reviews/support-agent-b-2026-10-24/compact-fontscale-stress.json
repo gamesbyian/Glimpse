@@ -4,7 +4,7 @@
   "cases": [
     {
       "source": "design/proposals/support-plates/help--topics.svg",
-      "sourceSHA256": "c89b1c7233fd789fa65e5185ff7e62e70a5695d748f4c53991099c2282e7fe3c",
+      "sourceSHA256": "6e882267c10e7ecc8c79eea6b3ba5da6a68f068ffd6c5fb2b2e3516593232fec",
       "scaledPhonePixels": [
         320,
         710
@@ -18,7 +18,7 @@
     },
     {
       "source": "design/proposals/support-plates/report-problem--with-diagnostics.svg",
-      "sourceSHA256": "e80d986244981890afda3387fb014264569568d98ed73f81e0ce9bbbc31aca29",
+      "sourceSHA256": "c095c316521e300eab9ba4b6f14d95edc1a034c5a67519a4601d47f5ba102f4c",
       "scaledPhonePixels": [
         320,
         710
@@ -60,7 +60,7 @@
     },
     {
       "source": "design/proposals/support-plates/beta-feedback--share-preview.svg",
-      "sourceSHA256": "b1a8e7dff37f323019e11b9cf1ee4c410653f7d04f8f740e61374cb55ec4966b",
+      "sourceSHA256": "20338af1e745ebf24015e4557f0cbc706ef7c0f9d3d403d7ce47b8015c5ca60f",
       "scaledPhonePixels": [
         320,
         710

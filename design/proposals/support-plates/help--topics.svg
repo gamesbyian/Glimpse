@@ -8,20 +8,20 @@
 <text x="37" y="129" font-family="Arial,Helvetica,sans-serif" fill="#153F46" font-size="28" font-weight="700">Help</text>
 <text x="38" y="155" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="15" font-weight="400">How Glimpse works</text>
 <g id="support-body" transform="translate(0,-24)">
-<rect x="40" y="221" width="348" height="100" rx="13" fill="#FFFCF6" stroke="#C8B7A1" stroke-width="1"/>
+<rect data-control="card-read-import-guide" data-focus-order="2" data-hit-width="348" data-hit-height="100" data-action-label="Read import guide" x="40" y="221" width="348" height="100" rx="13" fill="#FFFCF6" stroke="#C8B7A1" stroke-width="1"/>
 <text x="53" y="247" font-family="Arial,Helvetica,sans-serif" fill="#153F46" font-size="17" font-weight="650">Get photos into Glimpse</text>
 <text x="53" y="270" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="14" font-weight="400">Use Android Photo Picker or a supported</text>
 <text x="53" y="289" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="14" font-weight="400">share action</text>
 <text x="53" y="309" font-family="Arial,Helvetica,sans-serif" fill="#1D5960" font-size="14" font-weight="650">Read import guide</text>
-<rect x="40" y="336" width="348" height="100" rx="13" fill="#FFFCF6" stroke="#C8B7A1" stroke-width="1"/>
+<rect data-control="card-learn-the-reel" data-focus-order="3" data-hit-width="348" data-hit-height="100" data-action-label="Learn the reel" x="40" y="336" width="348" height="100" rx="13" fill="#FFFCF6" stroke="#C8B7A1" stroke-width="1"/>
 <text x="53" y="362" font-family="Arial,Helvetica,sans-serif" fill="#153F46" font-size="17" font-weight="650">Browse without changing wallpaper</text>
 <text x="53" y="385" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="14" font-weight="400">The reel and Grid select a preview only</text>
 <text x="53" y="424" font-family="Arial,Helvetica,sans-serif" fill="#1D5960" font-size="14" font-weight="650">Learn the reel</text>
-<rect x="40" y="451" width="348" height="100" rx="13" fill="#FFFCF6" stroke="#C8B7A1" stroke-width="1"/>
+<rect data-control="card-what-changes" data-focus-order="4" data-hit-width="348" data-hit-height="100" data-action-label="What changes?" x="40" y="451" width="348" height="100" rx="13" fill="#FFFCF6" stroke="#C8B7A1" stroke-width="1"/>
 <text x="53" y="477" font-family="Arial,Helvetica,sans-serif" fill="#153F46" font-size="17" font-weight="650">Apply a wallpaper</text>
 <text x="53" y="500" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="14" font-weight="400">Choose Home or Lock where supported</text>
 <text x="53" y="539" font-family="Arial,Helvetica,sans-serif" fill="#1D5960" font-size="14" font-weight="650">What changes?</text>
-<rect x="40" y="566" width="348" height="100" rx="13" fill="#FFFCF6" stroke="#C8B7A1" stroke-width="1"/>
+<rect data-control="card-fix-a-problem" data-focus-order="5" data-hit-width="348" data-hit-height="100" data-action-label="Fix a problem" x="40" y="566" width="348" height="100" rx="13" fill="#FFFCF6" stroke="#C8B7A1" stroke-width="1"/>
 <text x="53" y="592" font-family="Arial,Helvetica,sans-serif" fill="#153F46" font-size="17" font-weight="650">Rotation and Android restrictions</text>
 <text x="53" y="615" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="14" font-weight="400">Why five minutes means eligible, not</text>
 <text x="53" y="634" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="14" font-weight="400">guaranteed</text>
