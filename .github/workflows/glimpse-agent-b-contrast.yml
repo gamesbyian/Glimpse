@@ -5,6 +5,8 @@ on:
     paths:
       - scripts/validate-agent-b-support-contrast.py
       - design/proposals/support-plates/**
+      - design/proposals/storyboards/**
+      - design/proposals/advanced-storyboards/**
       - .github/workflows/glimpse-agent-b-contrast.yml
   workflow_dispatch:
 permissions:
@@ -24,7 +26,8 @@ jobs:
       - name: Independently measure source-author contrast without declaring native proof
         run: |
           mkdir -p /tmp/glimpse-b-contrast
-          python3 scripts/validate-agent-b-support-contrast.py --report /tmp/glimpse-b-contrast/static-contrast.json
+          python3 scripts/validate-agent-b-support-contrast.py --fail-low-contrast --report /tmp/glimpse-b-contrast/static-contrast.json
+          python3 scripts/validate-agent-b-support-contrast.py --include-storyboards --report /tmp/glimpse-b-contrast/whole-journey-contrast.json
           python3 - <<'PY'
           import json
           x=json.load(open('/tmp/glimpse-b-contrast/static-contrast.json'))
@@ -32,9 +35,13 @@ jobs:
           assert x['status']=='UNAPPROVED_STATIC_DESK_AUDIT_NOT_NATIVE'
           print('Source contrast measurements:', x['measuredTextElements'])
           print('AA low contrast:', x['belowAA'], 'Unknown backgrounds:', x['unknownCases'])
+          assert x['belowAA']==0 and x['unknownCases']==0
+          y=json.load(open('/tmp/glimpse-b-contrast/whole-journey-contrast.json'))
+          assert y['sourceStoryboardFrames']==137
+          print('137-frame desk audit:', y['measuredTextElements'], 'solid texts;', y['belowAA'], 'low contrast and', y['unknownCases'], 'unresolved')
           PY
       - uses: actions/upload-artifact@v4
         with:
           name: b-support-contrast-${{ github.sha }}
-          path: /tmp/glimpse-b-contrast/static-contrast.json
+          path: /tmp/glimpse-b-contrast/
           retention-days: 14
