@@ -8,11 +8,11 @@
 <text x="37" y="129" font-family="Arial,Helvetica,sans-serif" fill="#153F46" font-size="28" font-weight="700">App updates</text>
 <text x="38" y="155" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="15" font-weight="400">Choose your release channel</text>
 <g id="support-body" transform="translate(0,-24)">
-<rect x="40" y="223" width="348" height="100" rx="13" fill="#FFFCF6" stroke="#C8B7A1" stroke-width="1"/>
+<rect data-control="card-view-build-info" data-focus-order="2" data-hit-width="348" data-hit-height="100" data-action-label="View build info" x="40" y="223" width="348" height="100" rx="13" fill="#FFFCF6" stroke="#C8B7A1" stroke-width="1"/>
 <text x="53" y="249" font-family="Arial,Helvetica,sans-serif" fill="#153F46" font-size="17" font-weight="650">Installed build</text>
 <text x="53" y="272" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="14" font-weight="400">Sideload development build</text>
 <text x="53" y="311" font-family="Arial,Helvetica,sans-serif" fill="#1D5960" font-size="14" font-weight="650">View build info</text>
-<rect x="40" y="338" width="348" height="100" rx="13" fill="#FFFCF6" stroke="#C8B7A1" stroke-width="1"/>
+<rect data-control="card-learn-more" data-focus-order="3" data-hit-width="348" data-hit-height="100" data-action-label="Learn more" x="40" y="338" width="348" height="100" rx="13" fill="#FFFCF6" stroke="#C8B7A1" stroke-width="1"/>
 <text x="53" y="364" font-family="Arial,Helvetica,sans-serif" fill="#153F46" font-size="17" font-weight="650">How updates work</text>
 <text x="53" y="387" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="14" font-weight="400">Review signed GitHub release manually</text>
 <text x="53" y="426" font-family="Arial,Helvetica,sans-serif" fill="#1D5960" font-size="14" font-weight="650">Learn more</text>

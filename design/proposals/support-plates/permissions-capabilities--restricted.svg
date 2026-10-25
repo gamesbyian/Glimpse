@@ -8,16 +8,16 @@
 <text x="37" y="129" font-family="Arial,Helvetica,sans-serif" fill="#153F46" font-size="28" font-weight="700">Device capabilities</text>
 <text x="38" y="155" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="15" font-weight="400">What Android can and cannot do</text>
 <g id="support-body" transform="translate(0,-24)">
-<rect x="40" y="221" width="348" height="100" rx="13" fill="#FFFCF6" stroke="#C8B7A1" stroke-width="1"/>
+<rect data-control="card-check-availability" data-focus-order="2" data-hit-width="348" data-hit-height="100" data-action-label="Check availability" x="40" y="221" width="348" height="100" rx="13" fill="#FFFCF6" stroke="#C8B7A1" stroke-width="1"/>
 <text x="53" y="247" font-family="Arial,Helvetica,sans-serif" fill="#153F46" font-size="17" font-weight="650">Photo Picker</text>
 <text x="53" y="270" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="14" font-weight="400">System picker; narrow access; no</text>
 <text x="53" y="289" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="14" font-weight="400">photo-library scan</text>
 <text x="53" y="309" font-family="Arial,Helvetica,sans-serif" fill="#1D5960" font-size="14" font-weight="650">Check availability</text>
-<rect x="40" y="333" width="348" height="100" rx="13" fill="#FFFCF6" stroke="#C8B7A1" stroke-width="1"/>
+<rect data-control="card-check-target-support" data-focus-order="3" data-hit-width="348" data-hit-height="100" data-action-label="Check target support" x="40" y="333" width="348" height="100" rx="13" fill="#FFFCF6" stroke="#C8B7A1" stroke-width="1"/>
 <text x="53" y="359" font-family="Arial,Helvetica,sans-serif" fill="#153F46" font-size="17" font-weight="650">Home and Lock support</text>
 <text x="53" y="382" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="14" font-weight="400">Lock target: unsupported or unknown</text>
 <text x="53" y="421" font-family="Arial,Helvetica,sans-serif" fill="#1D5960" font-size="14" font-weight="650">Check target support</text>
-<rect x="40" y="447" width="348" height="100" rx="13" fill="#FFFCF6" stroke="#C8B7A1" stroke-width="1"/>
+<rect data-control="card-why-not-exact" data-focus-order="4" data-hit-width="348" data-hit-height="100" data-action-label="Why not exact?" x="40" y="447" width="348" height="100" rx="13" fill="#FFFCF6" stroke="#C8B7A1" stroke-width="1"/>
 <text x="53" y="473" font-family="Arial,Helvetica,sans-serif" fill="#153F46" font-size="17" font-weight="650">Background scheduling</text>
 <text x="53" y="496" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="14" font-weight="400">Android may delay the next eligible</text>
 <text x="53" y="515" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="14" font-weight="400">wallpaper</text>

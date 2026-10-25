@@ -8,7 +8,7 @@
       "family": "about",
       "state": "sideload",
       "source": "design/proposals/support-plates/about--sideload.svg",
-      "sourceSHA256": "ae727eb29b246d79c044072f89d1dde3342af8b24a1044b15eb0dd90720cb87a",
+      "sourceSHA256": "3034c8197eb1e520f3f2e21721fb2b0ffd1741abe499dd214a2b361593f5d046",
       "phoneCrop": [
         15,
         14,
@@ -28,7 +28,7 @@
       "family": "about",
       "state": "play-release",
       "source": "design/proposals/support-plates/about--play-release.svg",
-      "sourceSHA256": "4d94a67c8fd251845994fb6409fbc1b047c8122784f0194c09a2ca07d1db2de6",
+      "sourceSHA256": "bd445c367720953d1c520aa84ff10172e904dcb376649450949c94cf626bb273",
       "phoneCrop": [
         15,
         14,
@@ -288,7 +288,7 @@
       "family": "updates",
       "state": "sideload",
       "source": "design/proposals/support-plates/updates--sideload.svg",
-      "sourceSHA256": "d6b8d9ed6090631223ed945f5a633b56881f7cfcf3ea8df79b8e70185afd861b",
+      "sourceSHA256": "8d33585ae83edd401e3b587d85e1b75d11d36689ccf90cc1c6cd4102f0aa422e",
       "phoneCrop": [
         15,
         14,
@@ -328,7 +328,7 @@
       "family": "updates",
       "state": "offline",
       "source": "design/proposals/support-plates/updates--offline.svg",
-      "sourceSHA256": "8476e982f08e272ad862076a53d8269d51785fdba6164b218a49c0b3cdae591d",
+      "sourceSHA256": "cf405bfd616b9ab139612c91024182bb107631309528ebe077aa1bb6b23551a2",
       "phoneCrop": [
         15,
         14,
@@ -388,7 +388,7 @@
       "family": "privacy",
       "state": "local-only",
       "source": "design/proposals/support-plates/privacy--local-only.svg",
-      "sourceSHA256": "339015b7ba452f9b0f64915a29bdfc0c8085c3cd58edfddee2cc2d3701807e98",
+      "sourceSHA256": "d445eb653afd4400478ba0cf2b415341e4b2f63940b5367be75913740cee79e3",
       "phoneCrop": [
         15,
         14,
@@ -408,7 +408,7 @@
       "family": "privacy",
       "state": "diagnostics-opt-in",
       "source": "design/proposals/support-plates/privacy--diagnostics-opt-in.svg",
-      "sourceSHA256": "8925b1d7c6ef1ca8e5e126c5338af8a783588f01d310451972f934d4e45c13c2",
+      "sourceSHA256": "93ecad9a349645f821e879e864299bce5acd19a847706cba62bec572da498f41",
       "phoneCrop": [
         15,
         14,
@@ -468,7 +468,7 @@
       "family": "storage-management",
       "state": "low-storage",
       "source": "design/proposals/support-plates/storage-management--low-storage.svg",
-      "sourceSHA256": "a43874a468cf0e2eeaca5bb62efc13ffc927c9ec85f73cdf63e7139451d3f8ba",
+      "sourceSHA256": "9145a41195215e67b56fea1a910478f972eacbbdcd2bff86e8b3dcc334d757bd",
       "phoneCrop": [
         15,
         14,
@@ -488,7 +488,7 @@
       "family": "permissions-capabilities",
       "state": "available",
       "source": "design/proposals/support-plates/permissions-capabilities--available.svg",
-      "sourceSHA256": "b744fc319ed67fd069ccab053d0d5e7aaefa4908b40d5c5e9d8325cecf4c1d66",
+      "sourceSHA256": "20c30504e2f60ce0911ef5b4d507b28726c96402f38592b83be9e1f31d26cb3d",
       "phoneCrop": [
         15,
         14,
@@ -508,7 +508,7 @@
       "family": "permissions-capabilities",
       "state": "restricted",
       "source": "design/proposals/support-plates/permissions-capabilities--restricted.svg",
-      "sourceSHA256": "9d0fb7b02301b72de80b332ea8d7262c0feedf2c2a77b317c8d2ccc9a39c1bdc",
+      "sourceSHA256": "3fe252c60acd2e475bf5e92d6a58f492d99d912b4ba1172eaef63d4ad682beae",
       "phoneCrop": [
         15,
         14,

@@ -8,15 +8,15 @@
 <text x="37" y="129" font-family="Arial,Helvetica,sans-serif" fill="#153F46" font-size="28" font-weight="700">Storage</text>
 <text x="38" y="155" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="15" font-weight="400">Your collection and its space</text>
 <g id="support-body" transform="translate(0,-24)">
-<rect x="40" y="223" width="348" height="100" rx="13" fill="#FFFCF6" stroke="#C8B7A1" stroke-width="1"/>
+<rect data-control="card-view-collections" data-focus-order="2" data-hit-width="348" data-hit-height="100" data-action-label="View collections" x="40" y="223" width="348" height="100" rx="13" fill="#FFFCF6" stroke="#C8B7A1" stroke-width="1"/>
 <text x="53" y="249" font-family="Arial,Helvetica,sans-serif" fill="#153F46" font-size="17" font-weight="650">Imported photographs</text>
 <text x="53" y="272" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="14" font-weight="400">22 images • size measured on your phone</text>
 <text x="53" y="311" font-family="Arial,Helvetica,sans-serif" fill="#1D5960" font-size="14" font-weight="650">View collections</text>
-<rect x="40" y="336" width="348" height="100" rx="13" fill="#FFFCF6" stroke="#C8B7A1" stroke-width="1"/>
+<rect data-control="card-clear-cache" data-focus-order="3" data-hit-width="348" data-hit-height="100" data-action-label="Clear cache" x="40" y="336" width="348" height="100" rx="13" fill="#FFFCF6" stroke="#C8B7A1" stroke-width="1"/>
 <text x="53" y="362" font-family="Arial,Helvetica,sans-serif" fill="#153F46" font-size="17" font-weight="650">Clear cached previews</text>
 <text x="53" y="385" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="14" font-weight="400">Does not delete original imports</text>
 <text x="53" y="424" font-family="Arial,Helvetica,sans-serif" fill="#1D5960" font-size="14" font-weight="650">Clear cache</text>
-<rect x="40" y="450" width="348" height="100" rx="13" fill="#FFFCF6" stroke="#C8B7A1" stroke-width="1"/>
+<rect data-control="card-review-removal" data-focus-order="4" data-hit-width="348" data-hit-height="100" data-action-label="Review removal" x="40" y="450" width="348" height="100" rx="13" fill="#FFFCF6" stroke="#C8B7A1" stroke-width="1"/>
 <text x="53" y="476" font-family="Arial,Helvetica,sans-serif" fill="#153F46" font-size="17" font-weight="650">Delete app-owned copies</text>
 <text x="53" y="499" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="14" font-weight="400">Shows exact affected collections before</text>
 <text x="53" y="518" font-family="Arial,Helvetica,sans-serif" fill="#566861" font-size="14" font-weight="400">commit</text>
