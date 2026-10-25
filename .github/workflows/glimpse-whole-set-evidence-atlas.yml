@@ -21,6 +21,7 @@ on:
       - design/proposals/whole-product-review-selection.v1.json
       - scripts/validate-whole-product-review-selection.py
       - scripts/validate-integration-source-freeze.py
+      - scripts/validate-integrated-optical-ledger.py
       - scripts/validate-primary-task-action-review.py
       - scripts/validate-support-state-truth.py
       - scripts/validate-primary-context-truth.py
@@ -78,6 +79,7 @@ jobs:
           python3 scripts/build-whole-product-review-viewer.py
           python3 scripts/build-whole-product-review-viewer.py --check
           python3 scripts/validate-integration-source-freeze.py
+          python3 scripts/validate-integrated-optical-ledger.py
           python3 - <<'PY'
           from pathlib import Path
           html=Path("design/atlas/whole-product-review-selection.html").read_text()
