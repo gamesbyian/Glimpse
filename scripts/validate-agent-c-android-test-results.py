@@ -11,6 +11,16 @@ from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
 RESULTS=ROOT/"app/build/outputs/androidTest-results/connected"
 EXPECTED={
+    "io.github.gamesbyian.glimpse.domain.ForegroundRotationDeviceTest": {
+        "noApplyBeforeFiveMinutesAndOneApplyAtEligibility",
+        "foregroundReturnAfterMissedHoursDoesNotReplayMissedIntervals",
+        "pauseAndPendingUncertainPreventAnyForegroundAutomaticMutation",
+        "onePhotoNeverRepeatsAtAnyFiveMinuteBoundary",
+        "noDuplicatesInsideThreePhotoCycleOrAtBoundary",
+        "gatewayRecreationPreservesRoomDeadlineAndShuffleCursor",
+        "emptyCollectionNeverStartsOrCallsAndroidSetter",
+        "onDiskRoomReopenRetainsDeadlineAndRemainingPhotoIds",
+    },
     "io.github.gamesbyian.glimpse.data.PhotoBitmapsDeviceTest": {
         "cameraRotate90SwapsPreviewDimensionsWithoutChangingStoredJpeg",
         "cameraRotate270AlsoSwapsOutputAndSmallBoundedSampleWorks",
