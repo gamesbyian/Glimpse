@@ -70,6 +70,17 @@ def paint(svg_text: str, name: str):
                 regions.append(r)
             except ValueError:
                 audit.append({"state":name,"kind":"invalid-rect"})
+        elif node.tag in (NS+"image", NS+"use"):
+            # Bitmap pixels and image-backed fixture references are not
+            # solid rect backgrounds. Mark occlusion unknown, not AA pass.
+            try:
+                regions.append({"x":float(node.get("x",0))+dx,
+                                "y":float(node.get("y",0))+dy,
+                                "w":float(node.get("width",0)),
+                                "h":float(node.get("height",0)),
+                                "color":None,"opacity":1.0})
+            except ValueError:
+                audit.append({"state":name,"kind":"image-region-unresolved"})
         elif node.tag == NS+"text":
             try:
                 x,y = float(node.attrib["x"])+dx,float(node.attrib["y"])+dy
@@ -119,6 +130,7 @@ def main():
     p=argparse.ArgumentParser()
     p.add_argument("--report",type=Path)
     p.add_argument("--fail-low-contrast",action="store_true")
+    p.add_argument("--include-storyboards",action="store_true")
     args=p.parse_args()
     inv=json.loads((ROOT/"design/proposals/support-coverage.v1.json").read_text())
     states=[f"{g['id']}--{s}" for g in inv["screens"] for s in g["states"]]
@@ -127,12 +139,23 @@ def main():
     for state in states:
         file=ROOT/"design/proposals/support-plates"/(state+".svg")
         data.extend(paint(file.read_text(encoding="utf8"),state))
+    frame_count=0
+    if args.include_storyboards:
+        for manifest in ("storyboard-coverage.v1.json",
+                         "advanced-storyboard-coverage.v1.json"):
+            groups=json.loads((ROOT/"design/proposals"/manifest).read_text())
+            for group in groups["groups"]:
+                for frame in group["frames"]:
+                    rel=frame["path"]
+                    data.extend(paint((ROOT/rel).read_text(encoding="utf8"),rel))
+                    frame_count+=1
+        assert frame_count==137
     checks=[x for x in data if x["kind"]=="text-contrast"]
     failures=[x for x in checks if not x["passed"]]
     uncertainty=[x for x in data if x["kind"]!="text-contrast"]
     findings={
         "status":"UNAPPROVED_STATIC_DESK_AUDIT_NOT_NATIVE",
-        "sourceStates":len(states),"measuredTextElements":len(checks),
+        "sourceStates":len(states),"sourceStoryboardFrames":frame_count,"measuredTextElements":len(checks),
         "belowAA":len(failures),"unknownCases":len(uncertainty),
         "groupedFailureStates":dict(sorted(Counter(x["state"] for x in failures).items())),
         "failures":failures,"uncertainties":uncertainty,
