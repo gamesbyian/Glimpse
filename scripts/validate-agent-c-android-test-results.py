@@ -15,6 +15,10 @@ EXPECTED={
         "noApplyBeforeFiveMinutesAndOneApplyAtEligibility",
         "foregroundReturnAfterMissedHoursDoesNotReplayMissedIntervals",
         "pauseAndPendingUncertainPreventAnyForegroundAutomaticMutation",
+        "onePhotoNeverRepeatsAtAnyFiveMinuteBoundary",
+        "noDuplicatesInsideThreePhotoCycleOrAtBoundary",
+        "gatewayRecreationPreservesRoomDeadlineAndShuffleCursor",
+        "emptyCollectionNeverStartsOrCallsAndroidSetter",
     },
     "io.github.gamesbyian.glimpse.data.PhotoBitmapsDeviceTest": {
         "cameraRotate90SwapsPreviewDimensionsWithoutChangingStoredJpeg",
