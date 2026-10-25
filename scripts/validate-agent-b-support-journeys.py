@@ -34,6 +34,7 @@ def content_font_floor(phone):
 errors=[]
 sources={}
 task_buttons=0
+card_buttons=0
 for family in support["screens"]:
     for state in family["states"]:
         name=f"{family['id']}--{state}"
@@ -46,6 +47,14 @@ for family in support["screens"]:
         phone=rel_phone(raw)
         assert 'SCREEN PROPOSAL • NOT USER-APPROVED' in phone
         controls={r.get("data-control"):r for r in root.iter(NS+"rect") if r.get("data-control")}
+        study_cards=[r for r in root.iter(NS+"rect") if (r.get("data-control") or "").startswith("card-")]
+        card_buttons+=len(study_cards)
+        for card in study_cards:
+            label=card.get("data-action-label","")
+            if f">{label}</text>" not in phone or not label:
+                errors.append(f"{p}: focusable task card lacks visible action label: {label}")
+            if float(card.get("data-hit-width","0"))<48 or float(card.get("data-hit-height","0"))<48:
+                errors.append(f"{p}: task card has sub-48 study hit area: {label}")
         study_actions=[r for r in root.iter(NS+"rect") if (r.get("data-control") or "").startswith("task-")]
         task_buttons+=len(study_actions)
         if name!="storage-management--delete-confirm":
@@ -245,6 +254,7 @@ for state in ("03-range-selection","04-confirm-exclude","05-restore"):
     if ">✓</text>" in phone:
         errors.append(f"{path}: unsupported text-glyph selection marker")
 if task_buttons!=36:errors.append(f"Expected 36 visible support task-pill controls, found {task_buttons}")
+if card_buttons!=15:errors.append(f"Expected 15 action-captioned full-height task cards, found {card_buttons}")
 ss=scenarios["scenarios"]
 if len(ss)!=56:errors.append("Unexpected audit scenario count")
 for sc in ss:
@@ -255,7 +265,7 @@ for sc in ss:
 small=[(k,v["minBodyFont"]) for k,v in sources.items() if v["minBodyFont"] is not None and v["minBodyFont"]<14]
 if small:errors.append("Support body fonts under 14px: "+str(small))
 print(json.dumps({"scope":"Agent B unapproved source-only audit",
- "supportStates":len(sources),"supportTaskControls":task_buttons,"journeys":len(groups),"storyboardFrames":len(frames),"illustratedScenarios":len(ss),
+ "supportStates":len(sources),"supportTaskControls":task_buttons,"supportTaskCards":card_buttons,"journeys":len(groups),"storyboardFrames":len(frames),"illustratedScenarios":len(ss),
  "supportMinimumBodyFontBelow14":len(small),
  "fontScaleVerdict":"320dp/200% real Android reflow unverified: source fonts and targets are only static reference geometry",
  "navigationVerdict":"data-control rectangles are visual geometry proposals, not native semantics/focus tests",
