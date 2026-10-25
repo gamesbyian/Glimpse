@@ -91,7 +91,9 @@ def main():
                       "rewrittenTextElements":sum(n for _,n in modified),
                       "stillBelowAA":len(residual),
                       "paths":modified},indent=2))
-    if residual: raise SystemExit("unresolved storyboard contrast failures")
+    if residual:
+        print("UNRESOLVED FIRST 20:",json.dumps(residual[:20],ensure_ascii=False,indent=2))
+        raise SystemExit(f"unresolved storyboard contrast failures: {len(residual)}")
     if modified and not args.apply:
         raise SystemExit("Storyboard contrast sources still need --apply")
 if __name__=="__main__":main()
