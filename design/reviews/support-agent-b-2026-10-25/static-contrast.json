@@ -1,0 +1,12 @@
+{
+  "status": "UNAPPROVED_STATIC_DESK_AUDIT_NOT_NATIVE",
+  "sourceStates": 34,
+  "sourceStoryboardFrames": 0,
+  "measuredTextElements": 416,
+  "belowAA": 0,
+  "unknownCases": 0,
+  "groupedFailureStates": {},
+  "failures": [],
+  "uncertainties": [],
+  "limitations": "Solid SVG source color against latest covering rectangle at glyph mid-ascent only; not pixel-composited, text wrapping, alpha, Android rendering, 320dp, TalkBack or human acceptance."
+}
