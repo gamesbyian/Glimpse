@@ -40,14 +40,15 @@ def changed_source(path:Path):
     if not problems:
         return source,0,[]
     bad=set((f["text"],f["foreground"]) for f in problems)
-    phone,divider,notes=source.partition('<rect x="442"')
-    if not divider:
-        phone,divider,notes=source.partition('<rect x="440"')
-    if not divider:
-        raise AssertionError((path,"no phone/annotation partition"))
     changed=[0]
     def convert(match):
         text=match.group(0)
+        xmatch=re.search(r'\bx="([0-9.]+)"',text)
+        ymatch=re.search(r'\by="([0-9.]+)"',text)
+        if not xmatch or not ymatch:
+            return text
+        if not (15<=float(xmatch.group(1))<416 and 190<=float(ymatch.group(1))<=810):
+            return text  # non-app desk/status text is never modified
         raw=html.unescape(re.search(r">([^<]*)</text>",text).group(1))
         fill=FILL.search(text)
         if not fill or (raw,fill.group(1).lower()) not in bad:
@@ -61,7 +62,7 @@ def changed_source(path:Path):
             raise AssertionError((path,raw,old,"unexpected low-contrast palette"))
         changed[0]+=1
         return text.replace(fill.group(0),f'fill="{new}"',1)
-    updated=TEXT.sub(convert,phone)+divider+notes
+    updated=TEXT.sub(convert,source)
     if changed[0]==0:
         raise AssertionError((path,"low contrast detected but no source edit"))
     failures=[x for x in audit.paint(updated,str(path.relative_to(ROOT)))
