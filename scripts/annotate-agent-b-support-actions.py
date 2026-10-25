@@ -27,6 +27,18 @@ CARD_ACTIONS={
     "help--topics":[(221,"Read import guide"),(336,"Learn the reel"),(451,"What changes?"),(566,"Fix a problem")],
     "storage-management--overview":[(223,"View collections"),(336,"Clear cache"),(450,"Review removal")],
     "updates--play-eligible":[(223,"View build info"),(338,"Learn more")],
+    "updates--sideload":[(223,"View build info"),(338,"Learn more")],
+    "updates--offline":[(223,"View build info"),(338,"Learn more")],
+    "privacy--local-only":[(224,"Storage details"),(337,"How it works"),
+                           (451,"Report privacy"),(567,"Read policy")],
+    "privacy--diagnostics-opt-in":[(224,"Storage details"),(337,"How it works"),
+                                   (451,"Report privacy"),(567,"Read policy")],
+    "permissions-capabilities--available":[(221,"Check availability"),(333,"More details"),
+                                            (447,"Why not exact?")],
+    "permissions-capabilities--restricted":[(221,"Check availability"),(333,"Check target support"),
+                                             (447,"Why not exact?")],
+    "about--play-release":[(349,"Copy build ID"),(464,"View details"),(579,"Open help")],
+    "about--sideload":[(349,"Copy build ID"),(464,"View details"),(579,"Open help")],
 }
 def annotate_task_cards(source,name):
     actions=CARD_ACTIONS.get(name,[])
