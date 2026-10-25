@@ -67,7 +67,8 @@ def paint(svg_text: str, name: str, whole_phone: bool = False):
                      "h":float(node.get("height",0)),
                      "color":hexcolor(node.get("fill")),
                      "opacity":float(node.get("opacity",1))*float(node.get("fill-opacity",1))}
-                regions.append(r)
+                if node.get("fill","").lower() != "none":
+                    regions.append(r)
             except ValueError:
                 audit.append({"state":name,"kind":"invalid-rect"})
         elif node.tag == NS+"circle":
