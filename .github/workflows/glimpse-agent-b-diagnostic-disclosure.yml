@@ -1,0 +1,50 @@
+name: Glimpse | B diagnostic disclosure order
+on:
+  push:
+    branches: [agent/b-diagnostic-disclosure-order-20261025]
+    paths:
+      - design/proposals/support-plates/diagnostic-preview--expanded.svg
+      - scripts/validate-agent-b-diagnostic-disclosure.py
+      - .github/workflows/glimpse-agent-b-diagnostic-disclosure.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: glimpse-b-diagnostic-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  diagnostic-disclosure:
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Check disclosure before Share, 48px actions and footer safety
+        run: python3 scripts/validate-agent-b-diagnostic-disclosure.py
+      - name: Rasterize source-exact expanded diagnostic state and record SHA
+        run: |
+          python3 -m pip install --quiet cairosvg pillow
+          mkdir -p /tmp/glimpse-b-diagnostic
+          python3 - <<'PY'
+          import hashlib,json,pathlib
+          import cairosvg
+          from PIL import Image
+          p=pathlib.Path('design/proposals/support-plates/diagnostic-preview--expanded.svg')
+          out=pathlib.Path('/tmp/glimpse-b-diagnostic')
+          cairosvg.svg2png(url=str(p),write_to=str(out/'full.svg.png'))
+          with Image.open(out/'full.svg.png') as img:
+              img.crop((15,14,416,904)).save(out/'expanded-phone-401x890.png')
+          digest=lambda x:hashlib.sha256(x.read_bytes()).hexdigest()
+          (out/'source-hashes.json').write_text(json.dumps(dict(
+              source=str(p),sourceSHA256=digest(p),phonePNG='expanded-phone-401x890.png',
+              phoneSHA256=digest(out/'expanded-phone-401x890.png'),
+              acceptance='STATIC_RENDER_ONLY_NATIVE_AND_OWNER_PENDING'),indent=2))
+          print((out/'source-hashes.json').read_text())
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: b-diagnostic-disclosure-${{ github.sha }}
+          path: /tmp/glimpse-b-diagnostic/
+          retention-days: 14
