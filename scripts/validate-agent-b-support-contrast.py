@@ -52,7 +52,7 @@ def paint(svg_text: str, name: str):
                 # Support art only uses translation in the actual in-app body.
                 # Unsupported transforms are excluded from inference, never
                 # silently treated as if they were untranslated.
-                if node.tag in (NS + "g", NS + "text"):
+                if any(n.tag == NS+"text" for n in node.iter()):
                     audit.append({"state":name,"kind":"unknown-transform",
                                   "element":node.tag.split("}")[-1],
                                   "transform":raw_trans})
@@ -70,6 +70,18 @@ def paint(svg_text: str, name: str):
                 regions.append(r)
             except ValueError:
                 audit.append({"state":name,"kind":"invalid-rect"})
+        elif node.tag == NS+"circle":
+            # The painted 20px check backgrounds are circles, not rectangle
+            # occluders; evaluate their solid center for checkbox text.
+            try:
+                cx=float(node.get("cx",0))+dx
+                cy=float(node.get("cy",0))+dy
+                r=float(node.get("r",0))
+                regions.append({"x":cx-r,"y":cy-r,"w":2*r,"h":2*r,
+                                "color":hexcolor(node.get("fill")),
+                                "opacity":float(node.get("opacity",1))})
+            except ValueError:
+                audit.append({"state":name,"kind":"invalid-circle"})
         elif node.tag in (NS+"image", NS+"use"):
             # Bitmap pixels and image-backed fixture references are not
             # solid rect backgrounds. Mark occlusion unknown, not AA pass.
