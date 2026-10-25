@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - agent/production-a-primary-system-20261024
+      - agent/production-a-postmerge-optical-20261024
     paths:
       - .github/workflows/glimpse-agent-a-primary-proof.yml
       - design/proposals/plates/**
@@ -50,6 +51,8 @@ jobs:
         run: python3 -m pip install --disable-pip-version-check --quiet Pillow CairoSVG
       - name: Check main proposal XML and source contracts
         run: python3 scripts/validate-visual-spec.py
+      - name: Verify provisional tinted-surface AA contrast and all 22 primary caption fixes
+        run: python3 design/system/validate-contextual-contrast.py
       - name: Check A primary semantics, geometry and all exact raster sources
         run: python3 design/system/validate-production-a.py --render-output /tmp/glimpse-agent-a/phone-crops
       - name: Check actual p04 CC0 JPEG bytes, IDs and unknown Android state
@@ -123,6 +126,20 @@ jobs:
               sheet.paste(rendered,(xx,yy))
               marker.text((xx,yy-16),name,fill='#153F46')
           sheet.save(out/'cc0-consistent-six-screen-contact.jpg',quality=94,subsampling=0)
+          sourceSvg=migration/'source-p12.svg'
+          sourcePng=cairosvg.svg2png(bytestring=sourceSvg.read_bytes(),output_width=1160,output_height=920)
+          sourceCrop=Image.open(io.BytesIO(sourcePng)).convert('RGB').crop((15,14,416,904))
+          assert sourceCrop.size==(401,890)
+          sourceCrop.save(out/'cc0-consistent-source-p12.png')
+          seven=Image.new('RGB',(4*417+16,2*930+16),'#E9E3D9')
+          sevenPen=ImageDraw.Draw(seven)
+          for i,name in enumerate((*photo_names,'source-p12')):
+              rendering=Image.open(out/('cc0-consistent-'+name+'.png')).convert('RGB')
+              x=16+(i%4)*417; z=24+(i//4)*930
+              seven.paste(rendering,(x,z))
+              sevenPen.text((x,z-16),name,fill='#153F46')
+          seven.save(out/'cc0-consistent-seven-flow-contact.jpg',quality=94,subsampling=0)
+
 
 
           ledger=[]
@@ -141,6 +158,7 @@ jobs:
           ]
           for name in ('home','reel','grid-3column','detail','collections','share'):
               comparisons.append(('cc0-consistent-'+name+'.png','cc0-consistent-20261024/'+name+'.svg'))
+          comparisons.append(('cc0-consistent-source-p12.png','cc0-consistent-20261024/source-p12.svg'))
           candidates=[]
           for rastername,svgname in comparisons:
               svg=Path('design/proposals/whole-product-candidates')/svgname

@@ -1,6 +1,6 @@
 {
   "contract": "glimpse-production-a",
-  "revision": "0.1.0",
+  "revision": "0.1.1",
   "status": "DRAFT_PENDING_INTEGRATION_LOCK",
   "canvas": {
     "study": [
@@ -41,7 +41,14 @@
     "border": "#C8B7A1",
     "warning": "#A5482D",
     "selected": "#E9E0F5",
-    "onAccent": "#FFFFFF"
+    "onAccent": "#FFFFFF",
+    "secondaryOnTint": "#445851",
+    "attentionText": "#703B27",
+    "tintLavender": "#E9E0F5",
+    "tintBlush": "#F5DDDA",
+    "tintTan": "#EAD9BD",
+    "tintSage": "#DAEDE1",
+    "tintSand": "#F5E6D1"
   },
   "typographyPx": {
     "display": 32,
@@ -98,5 +105,19 @@
     "TalkBack",
     "48dp-hitbox",
     "gesture-and-focus-return"
+  ],
+  "textColorUsage": {
+    "secondary": "Normal secondary text on paper or near-white surface only; test against actual painted fill.",
+    "secondaryOnTint": "Small normal text on lavender, blush, tan, sage, and sand; ≥4.5:1 contrast.",
+    "attentionText": "Small text, including stateful pointer glyphs, on paper and all listed tints; ≥4.5:1 contrast.",
+    "onAccent": "Normal white foreground only against accent teal, not against light pastel accents."
+  },
+  "contractChangeLog": [
+    {
+      "revision": "0.1.1",
+      "kind": "provisional-contextual-tint-contrast",
+      "reason": "Independent B static AA audit found secondary #566861 at 4.272:1 on tan; use contextual #445851, preserving original paper secondary.",
+      "ownerApproval": false
+    }
   ]
 }
