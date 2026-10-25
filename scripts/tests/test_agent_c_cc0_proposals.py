@@ -70,7 +70,27 @@ class ExactPhotographAuditTest(unittest.TestCase):
                 count += 1
         self.assertGreater(count, 0)
         ET.ElementTree(root).write(path, encoding="unicode")
-        with self.assertRaisesRegex(ValueError, "share lacks complete genuine p12"):
+        with self.assertRaisesRegex(ValueError, "share includes missing or unauthorized"):
+            audit.validate(self.root)
+
+    def test_extra_authorized_image_in_wrong_screen_role_is_rejected(self):
+        # Even a legitimately sourced p04 image cannot be quietly injected
+        # into a p12-only Share screen: role truth is part of source integrity.
+        import xml.etree.ElementTree as ET
+        path = self.root / self.aa["sourcePaths"]["share"]
+        tree = ET.parse(path)
+        root = tree.getroot()
+        p04 = next(p for p in self.ca["requestedIndependentPhotos"]
+                   if p["photoId"] == "p04")
+        source = base64.b64encode(
+            (self.root / p04["assetPath"]).read_bytes()
+        ).decode("ascii")
+        ET.SubElement(root, "{http://www.w3.org/2000/svg}image", {
+            "href": "data:image/jpeg;base64," + source,
+            "x": "0", "y": "0", "width": "10", "height": "10"
+        })
+        tree.write(path, encoding="unicode")
+        with self.assertRaisesRegex(ValueError, "share includes missing or unauthorized"):
             audit.validate(self.root)
 
     def test_two_stable_photo_ids_aliasing_same_jpeg_is_rejected(self):
