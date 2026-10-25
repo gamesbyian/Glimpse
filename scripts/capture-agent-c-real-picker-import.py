@@ -136,12 +136,41 @@ def main(out):
     assert hashlib.sha256(copied).hexdigest() == record["sourceSHA256"]
     assert "Previewing 1 of 1" in ui or "Photos: 1" in ui
     assert "No images yet." not in ui
+    # Follow the same photograph through public source removal and a complete
+    # Android app-process restart. Only our exact MediaStore URI is deleted by
+    # the debug-only emulator activity, never a user's photograph.
+    base.adb("shell", "am", "start", "-n", FIXTURE, "--ez", "cleanup", "true")
+    cleanup = None
+    for _ in range(30):
+        payload = base.adb("shell", "run-as", APP, "cat",
+                           "files/picker-fixture-cleanup.json", check=False)
+        if payload.startswith("{"):
+            cleanup = json.loads(payload)
+            break
+        time.sleep(.5)
+    assert cleanup and cleanup.get("deleted") == 1, (
+        "Synthetic source removal not confirmed: " + str(cleanup)
+    )
+    assert cleanup.get("sourceSHA256") == record["sourceSHA256"]
+    base.adb("shell", "am", "force-stop", APP)
+    base.adb("shell", "am", "start", "-n", APP + "/.MainActivity")
+    restarted = wait_for_photo_count(1, timeout=30)
+    if not restarted:
+        raise RuntimeError("Private imported photograph missing after public deletion and app restart")
+    persisted = base.adb("exec-out", "run-as", APP, "cat",
+                         "files/originals/" + record["sourceSHA256"] + ".jpg",
+                         binary=True)
+    assert persisted == source_data, "Offline original bytes changed after deleting public MediaStore image"
+    base.capture("04-after-media-source-deleted-and-process-restart",
+                 "Glimpse still previews the exact private JPEG after public MediaStore deletion and app restart")
     receipt = {
         "sourceIdentity": record["sourceSHA256"],
         "sourceUriScheme": "content",
         "sourceProvider": "Android MediaStore via OS Photo Picker",
         "sourceBytes": record["sourceBytes"],
         "sourceEqualsPrivateCopy": True,
+        "sourceDeletedFromMediaStore": True,
+        "exactPrivateCopySurvivedProcessRestart": True,
         "pickerPackageObserved": "com.android.providers.media.module",
         "uiImportedPhotoCount": 1,
         "noWallpaperActionTaken": True,
