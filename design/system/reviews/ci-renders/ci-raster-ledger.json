@@ -208,6 +208,15 @@
       "status": "UNSELECTED",
       "AndroidNativeVerified": false,
       "ownerApproved": false
+    },
+    {
+      "sourcePath": "design/proposals/whole-product-candidates/accessibility-keyboard-focus-visual.v1.svg",
+      "sourceSHA256": "4c18210da552445fbbffb2ad572cdb06ba7919631978fba9ba1450f3acb26d1f",
+      "rasterPath": "design/system/reviews/ci-renders/accessibility-keyboard-focus-visual.png",
+      "rasterSHA256": "8ae325f044e2677e4e0fa41059187ec9d4e5f4604fa1ea1e7756c61fd066d25d",
+      "status": "UNSELECTED",
+      "AndroidNativeVerified": false,
+      "ownerApproved": false
     }
   ],
   "AndroidNativeVerified": false,
