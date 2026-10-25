@@ -19,6 +19,36 @@ TEXT=re.compile(r'<text\b[^>]*>[^<]*</text>')
 ATTR=re.compile(r'([\w-]+)="([^"]*)"')
 def attr(node):
     return dict(ATTR.findall(node))
+# Full-height task cards with explicit in-card navigation/action captions.
+# These are clickable *design proposals*, not runtime Android hit targets.
+CARD_ACTIONS={
+    "contact-feedback--available":[(222,"Create a report"),(338,"Write feedback"),(454,"Open issues")],
+    "contact-feedback--no-handler":[(222,"Create a report"),(338,"Write feedback"),(454,"Open issues")],
+    "help--topics":[(221,"Read import guide"),(336,"Learn the reel"),(451,"What changes?"),(566,"Fix a problem")],
+    "storage-management--overview":[(223,"View collections"),(336,"Clear cache"),(450,"Review removal")],
+    "updates--play-eligible":[(223,"View build info"),(338,"Learn more")],
+}
+def annotate_task_cards(source,name):
+    actions=CARD_ACTIONS.get(name,[])
+    if not actions:return source
+    phone,divider,notes=source.partition('<rect x="440"')
+    assert divider,name
+    existing=set(re.findall(r'data-control="([^"]+)"',phone))
+    for idx,(y,label) in enumerate(actions,2):
+        key="card-"+re.sub(r"[^a-z0-9]+","-",label.lower()).strip("-")
+        # The first use installs metadata; all subsequent runs are stable.
+        if key in existing:continue
+        assert f">{label}</text>" in phone,(name,label)
+        pattern=(f'<rect x="40" y="{y}" width="348" height="100" rx="13"')
+        if phone.count(pattern)!=1:raise AssertionError((name,y,"task card shape changed"))
+        replacement=(f'<rect data-control="{key}" data-focus-order="{idx}"'
+                     f' data-hit-width="348" data-hit-height="100"'
+                     f' data-action-label="{label}" x="40" y="{y}"'
+                     f' width="348" height="100" rx="13"')
+        phone=phone.replace(pattern,replacement,1)
+        existing.add(key)
+    return phone+divider+notes
+
 def annotated(raw,name):
     if name=="storage-management--delete-confirm":
         # A blocking scrim replaces prior page actions. Its own Cancel and
@@ -60,7 +90,7 @@ def annotated(raw,name):
         changes.append((match.start(),match.end(),old[:-2]+extra+"/>"))
     for start,end,new in sorted(changes,reverse=True):
         phone=phone[:start]+new+phone[end:]
-    whole=phone+divider+notes
+    whole=annotate_task_cards(phone+divider+notes,name)
     ET.fromstring(whole)
     return whole
 def main():
