@@ -1,5 +1,15 @@
 # Production A · Source-exact integration handoff · October 24, 2026
 
+## October 25 recovery delta · source changes awaiting fresh raster acceptance
+
+Two optical refinements landed *after* the last confirmed successful six-screen CI snapshot. Treat older machine `ci-raster-ledger.json` source/raster digests for Grid and Detail as historical, not current accepted evidence.
+
+- **Grid** source Git blob `48c49141988b6e7f545c6bade97fda5989994169`: all twelve sample IDs now sit on readable 56×23 light keyline plates; tiny red license-label claims were removed from tiles, with rights provenance left in the detail/manifest. Photo bytes/IDs remain unchanged.
+- **Detail** source Git blob `2767f6fcc420e9b7dc4dbe0d84c588e1da98f010`: replaces its generic ornamental circle with a visible reuse of the actual p12 JPEG as source card thumbnail; credits Sporlo and offers Source and rights. p12 source URL matches C's independently recorded Commons source.
+- The current six-screen validator Git blob `58b3243a1f6f09b79bd55382d3729c072ebd7cf6` asserts the Grid label and Detail thumbnail/creator relationships in addition to JPEG identity continuity.
+- **Verification disposition:** source modifications confirmed on branch; the prior successful [CI #40141035276](https://github.com/gamesbyian/Glimpse/actions/runs/40141035276) predates these changes. A fresh independent source/raster checkout of the current branch is required before integration freezes the latest SVG hashes. Do not copy old raster fingerprints into current status.
+
+
 ## Post-C independent optical redline · corrective delta
 
 Agent C independently opened the actual six-screen raster contact and 401×890 Grid candidate ([C review in #7](https://github.com/gamesbyian/Glimpse/issues/7)). It correctly observed a semantic design flaw: tiny per-photo `CC0` labels are misleading because reuse rights belong to specific source assets, not every future user photograph. On magnification C **withdrew its initial literal p07 clipping claim**: the white ID plate was intact, but the pale sunflower background gave poor visual separation.
