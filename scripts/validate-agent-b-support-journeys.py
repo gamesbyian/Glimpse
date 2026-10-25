@@ -33,6 +33,7 @@ def content_font_floor(phone):
 
 errors=[]
 sources={}
+task_buttons=0
 for family in support["screens"]:
     for state in family["states"]:
         name=f"{family['id']}--{state}"
@@ -45,6 +46,21 @@ for family in support["screens"]:
         phone=rel_phone(raw)
         assert 'SCREEN PROPOSAL • NOT USER-APPROVED' in phone
         controls={r.get("data-control"):r for r in root.iter(NS+"rect") if r.get("data-control")}
+        study_actions=[r for r in root.iter(NS+"rect") if (r.get("data-control") or "").startswith("task-")]
+        task_buttons+=len(study_actions)
+        if name!="storage-management--delete-confirm":
+            if len({r.get("data-control") for r in study_actions})!=len(study_actions):
+                errors.append(f"{p}: duplicate painted CTA identity")
+            if len({r.get("data-focus-order") for r in controls.values()})!=len(controls):
+                errors.append(f"{p}: duplicate focus order")
+            for r in study_actions:
+                label=r.get("data-action-label","")
+                if not label or f">{label}</text>" not in phone:
+                    errors.append(f"{p}: CTA has no matching visible label: {label}")
+                if int(r.get("data-hit-width","0"))!=round(float(r.get("width","0"))) or int(r.get("data-hit-height","0"))!=round(float(r.get("height","0"))):
+                    errors.append(f"{p}: study hit geometry disagrees with painted CTA")
+        elif study_actions:
+            errors.append(f"{p}: blocked deletion page must not leave legacy task CTAs focusable")
         is_modal=name=="storage-management--delete-confirm"
         required={"cancel-delete","confirm-delete"} if is_modal else {"back","nav-home","nav-discover","nav-collections","nav-automation"}
         if not required<=controls.keys():errors.append(f"{p}: absent required focus/hit regions {required-controls.keys()}")
@@ -228,6 +244,7 @@ for state in ("03-range-selection","04-confirm-exclude","05-restore"):
         errors.append(f"{path}: expected three vector selected badges")
     if ">✓</text>" in phone:
         errors.append(f"{path}: unsupported text-glyph selection marker")
+if task_buttons!=36:errors.append(f"Expected 36 visible support task-pill controls, found {task_buttons}")
 ss=scenarios["scenarios"]
 if len(ss)!=56:errors.append("Unexpected audit scenario count")
 for sc in ss:
@@ -238,7 +255,7 @@ for sc in ss:
 small=[(k,v["minBodyFont"]) for k,v in sources.items() if v["minBodyFont"] is not None and v["minBodyFont"]<14]
 if small:errors.append("Support body fonts under 14px: "+str(small))
 print(json.dumps({"scope":"Agent B unapproved source-only audit",
- "supportStates":len(sources),"journeys":len(groups),"storyboardFrames":len(frames),"illustratedScenarios":len(ss),
+ "supportStates":len(sources),"supportTaskControls":task_buttons,"journeys":len(groups),"storyboardFrames":len(frames),"illustratedScenarios":len(ss),
  "supportMinimumBodyFontBelow14":len(small),
  "fontScaleVerdict":"320dp/200% real Android reflow unverified: source fonts and targets are only static reference geometry",
  "navigationVerdict":"data-control rectangles are visual geometry proposals, not native semantics/focus tests",
