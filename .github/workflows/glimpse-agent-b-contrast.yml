@@ -43,6 +43,7 @@ jobs:
           y=json.load(open('/tmp/glimpse-b-contrast/whole-journey-contrast.json'))
           assert y['sourceStoryboardFrames']==137
           assert y['belowAA']==0
+          assert y['unknownCases']==0
           print('137-frame desk audit:', y['measuredTextElements'], 'solid texts;', y['belowAA'], 'low contrast and', y['unknownCases'], 'unresolved')
           PY
       - name: Directly render six repaired illustrative phone candidates
