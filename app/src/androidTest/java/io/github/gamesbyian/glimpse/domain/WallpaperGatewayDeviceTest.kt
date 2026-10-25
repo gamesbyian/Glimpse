@@ -144,6 +144,59 @@ class WallpaperGatewayDeviceTest {
         }
     }
 
+    @Test fun exceptionAtOsBoundaryPreservesPendingAndNeverRetries() = runBlocking {
+        val image = testBitmapFile()
+        val database = Room.inMemoryDatabaseBuilder(
+            context, GlimpseDatabase::class.java
+        ).build()
+        try {
+            val dao = database.dao()
+            dao.insertCollection(CollectionRecord("os-uncertain", "OS uncertain", 1L))
+            val id = sha(image)
+            dao.attach(PhotoRecord(
+                id = id, sha256 = id, localPath = image.absolutePath,
+                mime = "image/jpeg", width = 320, height = 560,
+                byteLength = image.length(), importedAt = 1L
+            ), "os-uncertain")
+            val previousBag = "[\"prior-photo-in-bag\"]"
+            dao.saveRotation(RotationRecord(
+                collectionId = "os-uncertain", active = true,
+                remainingJson = previousBag,
+                nextEligibleAt = 987654L,
+                outcome = "Rotation enabled"
+            ))
+            val invocations = java.util.concurrent.atomic.AtomicInteger(0)
+            // This *simulates* the OS throwing at an irreversible boundary.
+            // It does not assert whether Android actually changed wallpaper.
+            val commands = WallpaperCommands(context, dao, setHomeWallpaper = {
+                invocations.incrementAndGet()
+                throw IllegalStateException("Simulated unknown OS outcome")
+            })
+            val outcome = commands.applySelected(id)
+            assertTrue(outcome, outcome.contains("uncertain", ignoreCase = true))
+            assertEquals(1, invocations.get())
+            val pending = requireNotNull(dao.readRotation())
+            assertEquals(id, pending.pendingPhotoId)
+            assertEquals(false, pending.active)
+            assertNull(pending.lastAcknowledgedPhotoId)
+            assertEquals(previousBag, pending.remainingJson)
+            assertEquals(987654L, pending.nextEligibleAt)
+            assertTrue(pending.outcome.contains("uncertain"))
+            val retry = commands.applySelected(id)
+            assertTrue(retry, retry.contains("uncertain", ignoreCase = true))
+            assertEquals("No implicit retry of an uncertain OS operation", 1, invocations.get())
+            commands.acknowledgeUncertain()
+            val resolved = requireNotNull(dao.readRotation())
+            assertNull(resolved.pendingPhotoId)
+            assertEquals(false, resolved.active)
+            assertNull(resolved.lastAcknowledgedPhotoId)
+            assertEquals(previousBag, resolved.remainingJson)
+        } finally {
+            database.close()
+            image.delete()
+        }
+    }
+
     @Test fun pendingUncertainOperationBlocksApplyWithoutCallingOs() = runBlocking {
         val database = Room.inMemoryDatabaseBuilder(
             context, GlimpseDatabase::class.java
