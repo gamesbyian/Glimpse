@@ -135,6 +135,14 @@ jobs:
           pair_pen.text((8,6),'DEFAULT | no keyboard focus',fill='#153F46')
           pair_pen.text((425,6),'UNSELECTED | Prefer Grid focused',fill='#153F46')
           pair.save(out/'accessibility-focus-before-after.jpg',quality=95,subsampling=0)
+          # Measure the exact source change: only the intended focus outline
+          # and explicit state annotation may differ inside the 401x890 phone.
+          import PIL.ImageChops
+          delta=PIL.ImageChops.difference(default_image,focus_image)
+          assert delta.getbbox() is not None, 'Focus state must differ from default'
+          regions=[(0,0,401,300),(0,300,401,400),(0,400,401,890)]
+          changed=[PIL.ImageChops.difference(default_image.crop(q),focus_image.crop(q)).getbbox() is not None for q in regions]
+          assert changed == [False,True,False], f'Focus candidate changed unrelated screen areas: {changed}'
           photo_names=('home','reel','grid-3column','detail','collections','share')
           sheet=Image.new('RGB',(3*417+16,2*930+16),'#E9E3D9')
           marker=ImageDraw.Draw(sheet)
@@ -186,7 +194,14 @@ jobs:
               candidates.append({'sourcePath':str(svg), 'sourceSHA256':hashlib.sha256(svg.read_bytes()).hexdigest(),
                   'rasterPath':str(png), 'rasterSHA256':hashlib.sha256(png.read_bytes()).hexdigest(),
                   'status':'UNSELECTED', 'AndroidNativeVerified':False, 'ownerApproved':False})
+          paired=out/'accessibility-focus-before-after.jpg'
+          assert paired.is_file()
           (out/'ci-raster-ledger.json').write_text(json.dumps({'screens':ledger,
+              'focusBeforeAfter':{'contactPath':str(paired),'contactSHA256':hashlib.sha256(paired.read_bytes()).hexdigest(),
+                                  'defaultSourceSHA256':hashlib.sha256(default_source.read_bytes()).hexdigest(),
+                                  'focusedSourceSHA256':hashlib.sha256(focused_source.read_bytes()).hexdigest(),
+                                  'changedRegion':'phone x=0..401, y=300..400 only',
+                                  'independentlyOpticallyInspected':False},
               'unselectedCandidates':candidates, 'AndroidNativeVerified':False,
               'independentlyOpticallyInspected':False,'ownerApproved':False},indent=2)+'\n')
           assert len(ledger)==18
