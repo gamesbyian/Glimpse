@@ -58,6 +58,10 @@ def changed_source(path:Path, whole_phone: bool = False):
             new="#445851"  # AA even against beige, lavender, soft error pink
         elif old=="#e8876c" and raw=="▼":
             new="#703B27"  # visible pointer glyph over cream
+        elif old=="#445851" and whole_phone:
+            # A selected muted-green Reel panel crosses behind two bottom
+            # labels in X08/03: 4.075:1 against #a9c4b5 needs stronger ink.
+            new="#3C504A"  # 4.61:1 on the actual pale green card
         else:
             raise AssertionError((path,raw,old,"unexpected low-contrast palette"))
         changed[0]+=1
