@@ -22,7 +22,7 @@ COLORS = {
     "white": "#ffffff", "black": "#000000",
 }
 RGB = re.compile(r"^#[0-9a-fA-F]{6}$")
-TR = re.compile(r"translate\\(\\s*(-?[0-9.]+)(?:[ ,]+(-?[0-9.]+))?\\s*\\)")
+TR = re.compile(r"translate\(\s*(-?[0-9.]+)(?:[ ,]+(-?[0-9.]+))?\s*\)")
 def hexcolor(value: str | None) -> str | None:
     if value is None:
         return None
@@ -138,7 +138,7 @@ def main():
         "failures":failures,"uncertainties":uncertainty,
         "limitations":"Solid SVG source color against latest covering rectangle at glyph mid-ascent only; not pixel-composited, text wrapping, alpha, Android rendering, 320dp, TalkBack or human acceptance."
     }
-    output=json.dumps(findings,indent=2,ensure_ascii=False)+"\\n"
+    output=json.dumps(findings,indent=2,ensure_ascii=False)+"\n"
     if args.report:
         args.report.parent.mkdir(parents=True,exist_ok=True)
         args.report.write_text(output,encoding="utf8")
