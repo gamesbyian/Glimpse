@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Fail-closed verification of four *unselected* cross-surface CC0 candidates.
+"""Fail-closed verification of six *unselected* cross-surface CC0 candidates.
 
 Checks actual embedded JPEG SHA256, immutable ID semantics, metadata and visible
 single-photo selection. Not a license grant, Android behavior, owner approval or
@@ -111,6 +111,21 @@ def check():
             assert state['p12FixtureSHA256']==EXPECTED['p12']
             visible=path.read_text()
             assert 'NO PHOTO</text>' not in visible and 'RIGHTS?</text>' not in visible
+            assert '>CC0</text>' not in visible, 'Tiny visible license tags misleadingly generalize collection contents'
+            assert 'Sample-photo provenance</text>' in visible
+            assert 'Per-photo rights are not inferred for arbitrary imports.</text>' in visible
+            # Twelve strong-keyline label plates are intentionally source geometry;
+            # every sample ID remains readable without a tiny license badge.
+            for j,pid in enumerate(GRID_ORDER):
+                xx=43+(j%3)*118; yy=277+(j//3)*112
+                plate=next((e for e in root.iter(SVG+'rect')
+                    if e.get('x')==str(xx) and e.get('y')==str(yy)),None)
+                assert plate is not None and plate.get('width')=='56'
+                assert plate.get('height')=='23' and plate.get('stroke')=='#1D5960'
+                assert float(plate.get('stroke-width','0'))>=1.25
+                label=next((e for e in root.iter(SVG+'text')
+                    if e.get('x')==str(xx+7) and e.get('y')==str(yy+16)),None)
+                assert label is not None and label.text==pid.upper(),pid
         elif name=='detail':
             assert len(images)==1
             assert_jpeg('p12',images[0])
