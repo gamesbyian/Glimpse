@@ -13,6 +13,7 @@ on:
       - design/proposals/whole-product-candidates/compact-320dp-200pct-sections-sheet.svg
       - design/proposals/whole-product-candidates/grid-3column-native-aligned-p12.svg
       - design/proposals/whole-product-candidates/cc0-consistent-20261024/**
+      - design/proposals/whole-product-candidates/accessibility-keyboard-focus-visual.v1.svg
       - design/system/*.py
       - design/system/tokens.v0.1.json
   pull_request:
@@ -117,6 +118,14 @@ jobs:
               cropped=Image.open(io.BytesIO(rawpng)).convert('RGB').crop((15,14,416,904))
               assert cropped.size==(401,890)
               cropped.save(out/('cc0-consistent-'+name+'.png'))
+          focused_source=Path('design/proposals/whole-product-candidates/accessibility-keyboard-focus-visual.v1.svg')
+          focus_text=focused_source.read_text(encoding='utf-8')
+          assert 'y="329" width="362" height="66" rx="14" fill="#FFFCF6" stroke="#1D5960" stroke-width="4"' in focus_text
+          assert 'Prefer Grid' in focus_text and '200% design target; test pending' in focus_text
+          focus_raw=cairosvg.svg2png(bytestring=focused_source.read_bytes(),output_width=1160,output_height=920)
+          focus_image=Image.open(io.BytesIO(focus_raw)).convert('RGB').crop((15,14,416,904))
+          assert focus_image.size==(401,890)
+          focus_image.save(out/'accessibility-keyboard-focus-visual.png')
           photo_names=('home','reel','grid-3column','detail','collections','share')
           sheet=Image.new('RGB',(3*417+16,2*930+16),'#E9E3D9')
           marker=ImageDraw.Draw(sheet)
@@ -159,6 +168,7 @@ jobs:
           for name in ('home','reel','grid-3column','detail','collections','share'):
               comparisons.append(('cc0-consistent-'+name+'.png','cc0-consistent-20261024/'+name+'.svg'))
           comparisons.append(('cc0-consistent-source-p12.png','cc0-consistent-20261024/source-p12.svg'))
+          comparisons.append(('accessibility-keyboard-focus-visual.png', 'accessibility-keyboard-focus-visual.v1.svg'))
           candidates=[]
           for rastername,svgname in comparisons:
               svg=Path('design/proposals/whole-product-candidates')/svgname
