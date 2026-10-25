@@ -85,10 +85,14 @@ def clarify_diagnostic_inclusion(source: str, name: str) -> str:
     assert divider
     if name == "report-problem--with-diagnostics":
         phone = phone.replace("Off by default, inspect before sharing",
-                              "Selected; check exact fields before sharing")
+                              "ON · review fields before sharing")
+        phone = phone.replace("Selected; check exact fields before sharing",
+                              "ON · review fields before sharing")
     if name == "diagnostic-preview--expanded":
         phone = phone.replace("Off by default: review before sending",
-                              "Selected for this sample; inspect details")
+                              "ON · technical fields included")
+        phone = phone.replace("Selected for this sample; inspect details",
+                              "ON · technical fields included")
     if name.startswith("diagnostic-preview--"):
         phone = phone.replace(">Include photographs</text>",
                               ">Photographs excluded</text>")
