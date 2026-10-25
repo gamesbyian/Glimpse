@@ -19,5 +19,6 @@ jobs:
       - uses: actions/checkout@v4
       - name: Fail on mixed photographic source selection and false owner approval
         run: |
+          python3 scripts/validate-agent-c-cc0-proposals.py
           python3 scripts/validate-agent-c-review-selection.py
           python3 -m unittest discover -s scripts/tests -p 'test_agent_c_review_selection.py' -v
