@@ -5,6 +5,7 @@ on:
       - app/src/debug/AndroidManifest.xml
       - app/src/debug/java/io/github/gamesbyian/glimpse/debug/PickerBatchFixtureLauncher.kt
       - scripts/capture-agent-c-real-picker-batch.py
+      - scripts/validate-agent-c-real-picker-batch-evidence.py
       - .github/workflows/agent-c-real-picker-batch.yml
   workflow_dispatch:
 permissions:
@@ -28,7 +29,7 @@ jobs:
           fi
       - name: Build actual debug APK and check batch harness syntax
         run: |
-          python3 -m py_compile scripts/capture-agent-c-real-picker-batch.py
+          python3 -m py_compile scripts/capture-agent-c-real-picker-batch.py scripts/validate-agent-c-real-picker-batch-evidence.py
           ./gradlew --no-daemon :app:assembleDebug
       - name: Grant emulator KVM
         run: |
@@ -47,6 +48,9 @@ jobs:
           script: |
             adb install -r app/build/outputs/apk/debug/app-debug.apk
             python3 scripts/capture-agent-c-real-picker-batch.py --out artifacts/agent-c-real-picker-batch
+      - name: Independently inspect original JPEG hashes and all four Android PNG/XML stages
+        if: always()
+        run: python3 scripts/validate-agent-c-real-picker-batch-evidence.py --artifacts artifacts/agent-c-real-picker-batch
       - name: Preserve native Android batch picker PNG/XML and exact JPEG bytes
         if: always()
         uses: actions/upload-artifact@v4
