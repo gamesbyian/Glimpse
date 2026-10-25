@@ -111,7 +111,7 @@
   ],
   "focusBeforeAfter": {
     "contactPath": "design/system/reviews/ci-renders/accessibility-focus-before-after.jpg",
-    "contactSHA256": "443ee79e7fc81eea1d7a1bac289568d49eff5723b2e6434e30ebcd62057eed8b",
+    "contactSHA256": "905d838fed6fc66b08f4bf988d3f732132899858c0256929c363f85b1dcb54ac",
     "defaultSourceSHA256": "a62db6dab0849ac9bfdeaa76e3809a9e359f5d9762524a2945702b2ee00591cd",
     "focusedSourceSHA256": "4c18210da552445fbbffb2ad572cdb06ba7919631978fba9ba1450f3acb26d1f",
     "changedRegion": "phone x=0..401, y=300..400 only",
