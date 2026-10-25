@@ -53,6 +53,12 @@ def main():
     outside=svg('<rect x="0" y="0" width="1160" height="920" fill="#ffffff"/>'
                 '<text x="450" y="300" fill="#aaaaaa" font-size="16">Review notes only</text>')
     assert not any(z["kind"]=="text-contrast" for z in kinds(outside))
+    outline=svg('<rect x="0" y="0" width="420" height="900" fill="#f6f0e6"/>'
+                '<rect x="22" y="801" width="383" height="88" fill="none" stroke="#e8876c"/>'
+                '<text x="40" y="851" font-size="13" fill="#445851">Home</text>')
+    observed=[z for z in c.paint(outline,"synthetic",whole_phone=True)
+              if z["kind"]=="text-contrast"]
+    assert len(observed)==1 and observed[0]["passed"], observed
     header=svg('<rect x="0" y="0" width="420" height="900" fill="#f6f0e6"/>'
                '<text x="40" y="110" font-size="16" fill="#aaaaaa">Header</text>'
                '<text x="40" y="851" font-size="13" fill="#aaaaaa">Bottom nav</text>')
