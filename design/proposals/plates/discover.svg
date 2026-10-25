@@ -36,7 +36,7 @@
 <rect x="35" y="608" width="362" height="66" rx="13" fill="#F5E6D1" stroke="none"/>
 <rect x="47" y="618" width="4" height="46" rx="2" fill="#1D5960" stroke="none"/>
 <text x="61" y="634" fill="#153F46" font-size="15" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="start">Review each original</text>
-<text x="61" y="656" fill="#566861" font-size="13" font-weight="500" font-family="Arial,Helvetica,sans-serif" text-anchor="start">Source, creator and rights before import.</text>
+<text x="61" y="656" fill="#445851" font-size="13" font-weight="500" font-family="Arial,Helvetica,sans-serif" text-anchor="start">Source, creator and rights before import.</text>
 <rect x="35" y="740" width="362" height="54" rx="18" fill="#1D5960" stroke="none"/>
 <text x="216" y="775" fill="#FFFFFF" font-size="16" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="middle">Choose photos to import</text>
 <rect x="24" y="823" width="384" height="56" rx="0" fill="#FFFCF6" stroke="none"/>

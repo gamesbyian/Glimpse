@@ -11,7 +11,7 @@
 <rect x="35" y="162" width="362" height="66" rx="13" fill="#F5E6D1" stroke="none"/>
 <rect x="47" y="172" width="4" height="46" rx="2" fill="#1D5960" stroke="none"/>
 <text x="61" y="188" fill="#153F46" font-size="15" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="start">Hypothetical sequence only</text>
-<text x="61" y="210" fill="#566861" font-size="13" font-weight="500" font-family="Arial,Helvetica,sans-serif" text-anchor="start">No Android operations will run.</text>
+<text x="61" y="210" fill="#445851" font-size="13" font-weight="500" font-family="Arial,Helvetica,sans-serif" text-anchor="start">No Android operations will run.</text>
 <text x="36" y="269" fill="#153F46" font-size="20" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="start">Simulation inputs</text>
 <rect x="35" y="283" width="362" height="66" rx="14" fill="#FFFCF6" stroke="#C8B7A1"/>
 <rect x="47" y="296" width="42" height="40" rx="12" fill="#DAEDE1" stroke="none"/>

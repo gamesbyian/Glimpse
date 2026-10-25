@@ -43,7 +43,7 @@
 <rect x="35" y="710" width="362" height="66" rx="13" fill="#F5E6D1" stroke="none"/>
 <rect x="47" y="720" width="4" height="46" rx="2" fill="#1D5960" stroke="none"/>
 <text x="61" y="736" fill="#153F46" font-size="15" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="start">Proposed, not native proof</text>
-<text x="61" y="758" fill="#566861" font-size="13" font-weight="500" font-family="Arial,Helvetica,sans-serif" text-anchor="start">Focus and size require device review.</text>
+<text x="61" y="758" fill="#445851" font-size="13" font-weight="500" font-family="Arial,Helvetica,sans-serif" text-anchor="start">Focus and size require device review.</text>
 <rect x="24" y="823" width="384" height="56" rx="0" fill="#FFFCF6" stroke="none"/>
 <path d="M24 823 L408 823" fill="none" stroke="#C8B7A1"/>
 <rect x="31" y="829" width="80" height="40" rx="13" fill="#DAEDE1" stroke="none"/>

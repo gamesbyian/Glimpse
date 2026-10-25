@@ -29,11 +29,11 @@
 <rect x="35" y="550" width="362" height="65" rx="12" fill="#F5E6D1" stroke="none"/>
 <rect x="47" y="560" width="4" height="45" rx="2" fill="#1D5960" stroke="none"/>
 <text x="61" y="575" fill="#153F46" font-size="15" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="start">Requested: every 5 minutes</text>
-<text x="61" y="597" fill="#566861" font-size="13" font-weight="500" font-family="Arial,Helvetica,sans-serif" text-anchor="start">Doze or battery policy may delay changes.</text>
+<text x="61" y="597" fill="#445851" font-size="13" font-weight="500" font-family="Arial,Helvetica,sans-serif" text-anchor="start">Doze or battery policy may delay changes.</text>
 <rect x="35" y="630" width="362" height="65" rx="12" fill="#F5E6D1" stroke="none"/>
 <rect x="47" y="640" width="4" height="45" rx="2" fill="#1D5960" stroke="none"/>
 <text x="61" y="655" fill="#153F46" font-size="15" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="start">Background timing is best effort</text>
-<text x="61" y="677" fill="#566861" font-size="13" font-weight="500" font-family="Arial,Helvetica,sans-serif" text-anchor="start">Foreground eligibility is more reliable.</text>
+<text x="61" y="677" fill="#445851" font-size="13" font-weight="500" font-family="Arial,Helvetica,sans-serif" text-anchor="start">Foreground eligibility is more reliable.</text>
 <rect x="35" y="720" width="362" height="54" rx="18" fill="#1D5960" stroke="none"/>
 <text x="216" y="755" fill="#FFFFFF" font-size="17" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="middle">Start rotation</text>
 <text x="37" y="800" fill="#566861" font-size="12" font-weight="500" font-family="Arial,Helvetica,sans-serif" text-anchor="start">Cancel returns without applying a wallpaper.</text>

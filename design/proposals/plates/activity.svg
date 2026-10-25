@@ -11,7 +11,7 @@
 <rect x="35" y="164" width="362" height="66" rx="13" fill="#F5E6D1" stroke="none"/>
 <rect x="47" y="174" width="4" height="46" rx="2" fill="#1D5960" stroke="none"/>
 <text x="61" y="190" fill="#153F46" font-size="15" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="start">Home acknowledged; device may differ</text>
-<text x="61" y="212" fill="#566861" font-size="13" font-weight="500" font-family="Arial,Helvetica,sans-serif" text-anchor="start">p04; Android current wallpaper unknown.</text>
+<text x="61" y="212" fill="#445851" font-size="13" font-weight="500" font-family="Arial,Helvetica,sans-serif" text-anchor="start">p04; Android current wallpaper unknown.</text>
 <text x="36" y="271" fill="#153F46" font-size="20" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="start">Recent events</text>
 <rect x="42" y="298" width="15" height="15" rx="8" fill="#DAEDE1" stroke="#1D5960"/>
 <path d="M49 315 L49 365" fill="none" stroke="#C8B7A1"/>
@@ -37,7 +37,7 @@
 <rect x="35" y="658" width="362" height="66" rx="13" fill="#F5E6D1" stroke="none"/>
 <rect x="47" y="668" width="4" height="46" rx="2" fill="#1D5960" stroke="none"/>
 <text x="61" y="684" fill="#153F46" font-size="15" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="start">Review before retrying</text>
-<text x="61" y="706" fill="#566861" font-size="13" font-weight="500" font-family="Arial,Helvetica,sans-serif" text-anchor="start">An unverified state is not success.</text>
+<text x="61" y="706" fill="#445851" font-size="13" font-weight="500" font-family="Arial,Helvetica,sans-serif" text-anchor="start">An unverified state is not success.</text>
 <rect x="35" y="745" width="362" height="54" rx="18" fill="#1D5960" stroke="none"/>
 <text x="216" y="780" fill="#FFFFFF" font-size="16" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="middle">Review p04</text>
 <rect x="24" y="823" width="384" height="56" rx="0" fill="#FFFCF6" stroke="none"/>

@@ -10,13 +10,13 @@
 <rect x="0" y="0" width="1160" height="920" rx="0" fill="#E9E2D6" stroke="none"/>
 <rect x="15" y="14" width="401" height="890" rx="22" fill="#F6F0E6" stroke="#C4B7A4"/>
 <text x="38" y="44" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="700" fill="#153F46">9:41</text>
-<circle cx="354" cy="38" r="3" fill="#667975"/>
-<rect x="365" y="32" width="14" height="9" rx="2" fill="none" stroke="#667975"/>
-<rect x="379" y="35" width="3" height="3" rx="1" fill="#667975"/>
+<circle cx="354" cy="38" r="3" fill="#566861"/>
+<rect x="365" y="32" width="14" height="9" rx="2" fill="none" stroke="#566861"/>
+<rect x="379" y="35" width="3" height="3" rx="1" fill="#566861"/>
 <text x="38" y="100" font-family="Arial,Helvetica,sans-serif" font-size="30" font-weight="700" fill="#153F46">Collections</text>
 <text x="39" y="131" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="500" fill="#536F70">Keep your favorite photographs together</text>
 <rect x="39" y="153" width="353" height="49" rx="13" fill="#FFFCF6" stroke="#C4B7A4"/>
-<text x="57" y="184" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="500" fill="#667975">Search collections</text>
+<text x="57" y="184" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="500" fill="#566861">Search collections</text>
 <circle cx="358" cy="176" r="7" stroke="#537174" stroke-width="2" fill="none"/>
 <path d="M364 182l8 8" stroke="#537174" stroke-width="2"/>
 <text x="40" y="229" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="700" fill="#153F46">3 collections · locally saved</text>
@@ -40,7 +40,7 @@
 <path d="M53 498q10 13 32 18H53z" fill="#F4E4CF" fill-opacity=".65"/>
 <text x="176" y="436" font-family="Arial,Helvetica,sans-serif" font-size="19" font-weight="700" fill="#153F46">Golden Hour</text>
 <text x="176" y="462" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="500" fill="#536F70">50 photographs</text>
-<text x="176" y="491" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="500" fill="#667975">Saved collection</text>
+<text x="176" y="491" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="500" fill="#566861">Saved collection</text>
 <text x="176" y="517" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="700" fill="#1D5960">Open collection</text>
 <path d="M336 511 l12 0 -5 -5 m5 5 -5 5" fill="none" stroke="#1D5960" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
 <rect x="39" y="545" width="353" height="139" rx="13" fill="#FFFCF6" stroke="#C4B7A4"/>
@@ -50,7 +50,7 @@
 <path d="M53 648q10 13 32 18H53z" fill="#F4E4CF" fill-opacity=".65"/>
 <text x="176" y="586" font-family="Arial,Helvetica,sans-serif" font-size="19" font-weight="700" fill="#153F46">Patterns</text>
 <text x="176" y="612" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="500" fill="#536F70">3 photographs</text>
-<text x="176" y="641" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="500" fill="#667975">Saved collection</text>
+<text x="176" y="641" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="500" fill="#566861">Saved collection</text>
 <text x="176" y="667" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="700" fill="#1D5960">Open collection</text>
 <path d="M336 661 l12 0 -5 -5 m5 5 -5 5" fill="none" stroke="#1D5960" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
 <rect x="39" y="711" width="173" height="55" rx="13" fill="#1D5960" stroke="#C4B7A4"/>
@@ -59,10 +59,10 @@
 <text x="236" y="745" font-family="Arial,Helvetica,sans-serif" font-size="16" font-weight="700" fill="#153F46">New collection</text>
 <rect x="24" y="820" width="384" height="60" rx="0" fill="#FFFCF6" stroke="none"/>
 <path d="M24 820H408" stroke="#C4B7A4"/>
-<text x="39" y="856" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="500" fill="#667975">Home</text>
-<text x="127" y="856" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="500" fill="#667975">Discover</text>
+<text x="39" y="856" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="500" fill="#566861">Home</text>
+<text x="127" y="856" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="500" fill="#566861">Discover</text>
 <text x="223" y="856" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="700" fill="#1D5960">Collections</text>
-<text x="331" y="856" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="500" fill="#667975">Automation</text>
+<text x="331" y="856" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="500" fill="#566861">Automation</text>
 <text x="39" y="895" font-family="Arial,Helvetica,sans-serif" font-size="10" font-weight="700" fill="#944B3E">DRAFT · TAP COVER OPENS, DOES NOT SPIN</text>
 <rect x="438" y="14" width="707" height="890" rx="18" fill="#FFFCF6" stroke="#C4B7A4"/>
 <text x="467" y="61" font-family="Arial,Helvetica,sans-serif" font-size="23" font-weight="700" fill="#153F46">COLLECTIONS · current visual candidate</text>
