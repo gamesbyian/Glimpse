@@ -54,3 +54,7 @@ Agent C #12 now supplies verified uploader-described CC0 source records and exac
 
 The original four-column Grid aesthetic alternative is preserved; C's actual API34 native prototype shows three columns. Do not freeze column count without owner/integration review. The actual 320dp/200%-font native issues and explicit owner choices remain gating.
 
+
+## Provisional 0.1.2 focus-visible control (2026-10-25)
+
+Independent Production B control-affordance scan flagged **238 of 258** annotated support hit regions with sampled source-painted fills/outlines below 3:1. These are *review candidates*, not 238 established accessibility failures: text, visible focus and native semantics can clarify actions. The existing sand-outline card border is approximately 1.72:1 against cream; the tested teal `#1D5960` outline is approximately 6.99:1 against paper. As a provisional cross-lane contract, show an external **4-unit teal focus ring with 2-unit offset** on the currently keyboard/D-pad/switch-focused actionable element. Do not conflate focus with selection, apply acknowledgement, or verified Android state. Preserve explicit labels and 48dp native target intent. Check the actual adjacent fill, clipping at screen boundaries, tap semantics, focus traversal and return on-device. This change defines a token and regression check; it does **not** retrofit every support SVG, claim TalkBack acceptance, or freeze the owner's style decisions. B owns support-state application; integration #10 owns contract lock.
