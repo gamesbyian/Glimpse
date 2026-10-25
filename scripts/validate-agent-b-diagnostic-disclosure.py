@@ -20,6 +20,10 @@ privacy = "No images, source URIs or account tokens"
 preview = "Extra included field examples"
 heading = "Choose your action"
 assert find(preview) < find(privacy) < find(heading), "Disclosure/privacy copy must precede actions"
+children = list(body)
+indices = {id(element): i for i, element in enumerate(children)}
+assert indices[id(texts[preview])] < indices[id(texts[heading])], "SVG document reading order must put disclosure before action heading"
+assert indices[id(texts[privacy])] < indices[id(texts[heading])], "Privacy exclusion must precede action heading in DOM"
 assert find("Attempt: copy • Result: interrupted") < find(heading)
 assert find("Exception type: sanitised • IDs redacted") < find(heading)
 buttons = {e.get("data-control"): e for e in body.iter(f"{NS}rect") if (e.get("data-control") or "").startswith("task-")}
