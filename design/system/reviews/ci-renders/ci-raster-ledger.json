@@ -3,68 +3,68 @@
     {
       "screen": "accessibility-preferences",
       "sourcePath": "design/proposals/plates/accessibility-preferences.svg",
-      "sourceSHA256": "9804c614aab05177dcba76c1a688ebd7da80dda3c368702cae16834fc7081bed",
-      "phoneRasterSHA256": "08c454c740bf56c3539d2814f5ce04dfe5c1a0d4061e729166d089f8864d67ca"
+      "sourceSHA256": "a62db6dab0849ac9bfdeaa76e3809a9e359f5d9762524a2945702b2ee00591cd",
+      "phoneRasterSHA256": "9a2bbc943dd2e5b288767fe2fc526dfa19db3931d3bc5cc8a94d5c61bdbae8d8"
     },
     {
       "screen": "activity",
       "sourcePath": "design/proposals/plates/activity.svg",
-      "sourceSHA256": "286377bb558373e01240f67a55c45e3c36f7652efafa77b617f7b225a3d33cd3",
-      "phoneRasterSHA256": "3c5414cadc474c615fea27e3692a21cba388f3ec882213e3123fb4a8ffd96b95"
+      "sourceSHA256": "f8deb52445a4beb92151100469056521380163e813dd2d7e8687f38ff12bffa6",
+      "phoneRasterSHA256": "cd7c9a0c99ac9685d253e12bb0ce27ea033e868b9cdc048eb778c0b7ac8e1c1c"
     },
     {
       "screen": "automation-editor",
       "sourcePath": "design/proposals/plates/automation-editor.svg",
-      "sourceSHA256": "bd9a4bdedb0d4457412a4a426bb7cd844bc0e3e7c98f1b785f031155435d3cf8",
-      "phoneRasterSHA256": "244ca03074f8cabc16172d995a78dfbe005016dcc2712a01b09b1ced057dbd27"
+      "sourceSHA256": "db66e8698cd701dd864a26382101def200cfc905e056eab3d8e5f6346356d186",
+      "phoneRasterSHA256": "30e3756f622088e142c7b09a0f8c9bde0a9ecc20be18bfda4ddf9ba9bc40b099"
     },
     {
       "screen": "automation",
       "sourcePath": "design/proposals/plates/automation.svg",
-      "sourceSHA256": "cc5964d646fed03c39abc337582d2b0f53cfeccfeecfe375f4d78dcd6b80f97f",
-      "phoneRasterSHA256": "f73afe2b1c8d688624e42b2c2c9814bb0b594a5fe3c14164cd0c23a2080f2156"
+      "sourceSHA256": "5869d2fc6dccfa72a33749336e58a384601e1a974c6158e304970dd5a0a8c0c7",
+      "phoneRasterSHA256": "d4676d71b1860679758541bc8908dc5916166a172cef08e3c8934d10041c457e"
     },
     {
       "screen": "backup-and-restore",
       "sourcePath": "design/proposals/plates/backup-and-restore.svg",
-      "sourceSHA256": "3a306d36c9c1b124939f06a8f96d33bf54b7918bc76007b98477156bfff1d377",
-      "phoneRasterSHA256": "c8323444888652ac0dd7e3955f69f6022e93565506ffc037717f44a080616fe6"
+      "sourceSHA256": "f348cd77eefe4a1f5123341e08f80df2167ab0c766c64bd59204268989bce2ab",
+      "phoneRasterSHA256": "bd014ffed6f3e09e1e51a959218b5289f4aad221a983ab639024aed4dadecf6b"
     },
     {
       "screen": "destinations",
       "sourcePath": "design/proposals/plates/destinations.svg",
-      "sourceSHA256": "bc2da412df3c3ca53607c483a0757e1498585d3b9fbdb759e338b038be67c107",
-      "phoneRasterSHA256": "d5e92e03119d2f5b2dd644e4c016f3d490b7e85d889798936be9cd97d0411fd5"
+      "sourceSHA256": "b1c3b2ce79942b95085a51de44e25c75b1070678b3b1ee5239c81399f31040a2",
+      "phoneRasterSHA256": "a5269caf7591cd955e03cc6c1d5dda42e1228a2a77a221a0a18407ab1dd6d050"
     },
     {
       "screen": "diagnostics",
       "sourcePath": "design/proposals/plates/diagnostics.svg",
-      "sourceSHA256": "2ec27e25e4375039f6ce7a729674cf889b269f357caf87abe2f8ec0f338ffc76",
-      "phoneRasterSHA256": "dcbf2c4ea940cb1df96d70148f4bd006c9edc226ed27dd3b40ad4f8eafd0980f"
+      "sourceSHA256": "701bf110a79592e7725bb019ff762615e6a33883ee2f00f3b2edb271f58e06ab",
+      "phoneRasterSHA256": "5bf53c99c6a74aaa5f1282b0f86fc9f6bf772ac0bea63deebf46dffe15f17dca"
     },
     {
       "screen": "discover",
       "sourcePath": "design/proposals/plates/discover.svg",
-      "sourceSHA256": "b2b92b6ae7cdaeb2c2eb7052ecc0579f203dd52a33d30fb8f5b88e03105a0e68",
-      "phoneRasterSHA256": "37e6f8122b257777e47ff700012951d7c91bf6d6f3d63919ff85cfab924bfc34"
+      "sourceSHA256": "a576ec31198c902c61951e71ad119be98ee3f10c9b5c54a6bc6d06cbdb9f194f",
+      "phoneRasterSHA256": "990774ee9f9ee2d704d44a02acee82c57c18ffd751b7cd2045cb8b9df40f1355"
     },
     {
       "screen": "error-empty-permission",
       "sourcePath": "design/proposals/plates/error-empty-permission.svg",
-      "sourceSHA256": "7e0a79132c292352464d85e50f0a32bfe22c47d22a5eabf5917e3f04db67880d",
-      "phoneRasterSHA256": "677b731159c44d416af783d02fb648eb946100e4380bd94c24d9f70562adce18"
+      "sourceSHA256": "93b809e59bcae3770cf915a1487bc03400fb52ea025acc3898c761ab0ab3a273",
+      "phoneRasterSHA256": "a674514eae50b21a6e828b527131c7b64c3775bf5760f9d6919c59bda876c7e7"
     },
     {
       "screen": "image-editor",
       "sourcePath": "design/proposals/plates/image-editor.svg",
-      "sourceSHA256": "04cd81ac63c5ab92098af17f62dc2cb9e49b5c9f155051e75ab32f6bdb323f48",
-      "phoneRasterSHA256": "a3ca82f93ec5646b4f5a78f54d653ca6039d1d967af205bc695acf3990adb7de"
+      "sourceSHA256": "e61e17ac8febe825864513245a4957c51ad8aab0f97d731bee53cd7c73e161e0",
+      "phoneRasterSHA256": "44ffb3075679d8d19ab569241a8fdece7cdaa26c29093ab1aa07da4816152a6b"
     },
     {
       "screen": "onboarding",
       "sourcePath": "design/proposals/plates/onboarding.svg",
-      "sourceSHA256": "ba6d900665e19405ce3ba725b3c578bd6b0e2f084c8d314b563a951d90ef937a",
-      "phoneRasterSHA256": "c5f9c90282049c9a6e8a6eca8cdc7f9c915f3df46c98e0c62995bdb1a7bffabd"
+      "sourceSHA256": "f9a4a4c4875dd564d2ab8d68869623185ec3748e033e1054c5125823f6c73692",
+      "phoneRasterSHA256": "88b24e00a1b7c7153f24c2a44bdd79242665e4cbdceed3c0c9e213c5e32d9c14"
     },
     {
       "screen": "quick-import",
@@ -75,20 +75,20 @@
     {
       "screen": "quick-settings-and-shortcuts",
       "sourcePath": "design/proposals/plates/quick-settings-and-shortcuts.svg",
-      "sourceSHA256": "db3e585bd076538f191c682d87f7f3c0889cca80d4d3f9ec5945c9dafc54336b",
-      "phoneRasterSHA256": "78b60a00bc760399b17e34e07e55ec5ef34e4d4f2d0cd3219d2980925e9b59a3"
+      "sourceSHA256": "967f81e88e12496b7a168cbbd96787e781d60f7b61d40c509328532ba0418b82",
+      "phoneRasterSHA256": "76dcbe579d2f50562b9bb31fc521dfeb212ddf299398bb82c12c607536d01273"
     },
     {
       "screen": "quickstart",
       "sourcePath": "design/proposals/plates/quickstart.svg",
-      "sourceSHA256": "c703b20c763f663151ebadaa0fa14b29b0241afbc688a3818b216415a3e5910c",
-      "phoneRasterSHA256": "4765ecf634a79bf46e81f8b661b9fae7fc75ab21078ad4156dab9ca828ca175b"
+      "sourceSHA256": "327701ca9390cae6c350910e7d34a98ef15d79e9d14d0747b123057da585a873",
+      "phoneRasterSHA256": "d37d34838ad3e48cdf2fffae7728f65e898ef6a0421d62db651b31fb9512cab1"
     },
     {
       "screen": "schedule-simulator",
       "sourcePath": "design/proposals/plates/schedule-simulator.svg",
-      "sourceSHA256": "67f4aba1c3f2a6c42a4337a10a44df9931b06fbdb5c26294431ccc0b39cf5a5b",
-      "phoneRasterSHA256": "a62cf9a481c27a79a9f6023e12866dc38b6bb8db7cb636053c8e76505f6326c7"
+      "sourceSHA256": "50b9c1f70b648e4a1b323eaa4753e22de54955844202cb05e1ad8dbd927d5287",
+      "phoneRasterSHA256": "c75aee9c82bdbb256866adb0e9a6c2e069f34dcf5c49676e976e4d742b4b5266"
     },
     {
       "screen": "settings",
@@ -99,14 +99,14 @@
     {
       "screen": "source-detail",
       "sourcePath": "design/proposals/plates/source-detail.svg",
-      "sourceSHA256": "5e6dec1cf8cb8503b5d33a59e13956c63182269ae249bae6085a6ca0c8d84bf3",
-      "phoneRasterSHA256": "392b935f68b561aa74acd57cb042e9dcfb9233ca5ec5fd7a7aba356de5b4893c"
+      "sourceSHA256": "96aa319cc91c7a79bc98bc6c9a8cafe6e16dc703261583c9dacbb29d2694d00e",
+      "phoneRasterSHA256": "e653f50d9000fd98ee8affdaada8d91a54d9eb19d898a95d8ec9e196180668e8"
     },
     {
       "screen": "widgets",
       "sourcePath": "design/proposals/plates/widgets.svg",
-      "sourceSHA256": "76063da0380c74d7f659d3cda0d4fe44bdb81a066368d97b648c1a77813f78a2",
-      "phoneRasterSHA256": "e8d2e66a1c3df9474abb9fed824a2399f85874182004313883aa8bcbe0d531c5"
+      "sourceSHA256": "7840d9bc715a800347ff8dd73d22d8381dbc42033750f89ccb0c31c9410c3a20",
+      "phoneRasterSHA256": "8df6b49ef5d1dd11b9b557e59fefab79dc752f8db6e6d4b566fecaeb21c4f21d"
     }
   ],
   "unselectedCandidates": [
@@ -148,45 +148,45 @@
     },
     {
       "sourcePath": "design/proposals/whole-product-candidates/cc0-consistent-20261024/home.svg",
-      "sourceSHA256": "b436a27959c0b78e81d2d66c342d8bca605595904b5ff97530ea9331062f33d8",
+      "sourceSHA256": "9a2b7da1954e84322556ebb8636bfe6ca9ff37574e23098b77f8de05dc2b4ffa",
       "rasterPath": "design/system/reviews/ci-renders/cc0-consistent-home.png",
-      "rasterSHA256": "342d81ce3d5396e49feb3a9b5ba1b331441d79e327fb2d4992114f92bcd50ff9",
+      "rasterSHA256": "f8465cd3d025d7d04ebf713abb2580398a3c56191d5280f1d0bd62d50529cb4a",
       "status": "UNSELECTED",
       "AndroidNativeVerified": false,
       "ownerApproved": false
     },
     {
       "sourcePath": "design/proposals/whole-product-candidates/cc0-consistent-20261024/reel.svg",
-      "sourceSHA256": "5d562b3f8420170e537ac27e5d10416414747028f2af2924f4ff87ceaa51400e",
+      "sourceSHA256": "ea5e608a809bfc555b29c1ea4575d4ac78987fb55f77129dc7baa1aeca12faf5",
       "rasterPath": "design/system/reviews/ci-renders/cc0-consistent-reel.png",
-      "rasterSHA256": "ef6111ff9cd660bb4dae5b954e5d95bcdaaf0e4ab6c5ac779ab50fa14070224c",
+      "rasterSHA256": "a1f4cc4c5595a87a3650853971a9f9c79273e874f44954ab44ce090b494d99a9",
       "status": "UNSELECTED",
       "AndroidNativeVerified": false,
       "ownerApproved": false
     },
     {
       "sourcePath": "design/proposals/whole-product-candidates/cc0-consistent-20261024/grid-3column.svg",
-      "sourceSHA256": "59a22728243ef80b3f1393927b8cca12f4bbbe7559bc937ce514e789a1d098af",
+      "sourceSHA256": "b7b3698dbbf388f11909f3ffd4339727342134303c3879c2c37e75c4595e1abb",
       "rasterPath": "design/system/reviews/ci-renders/cc0-consistent-grid-3column.png",
-      "rasterSHA256": "f90a6938e58fd6f7b9e38710dc9b96b1d51e703b540c77c4093486657f38fb02",
+      "rasterSHA256": "0eb2702839e920a9ad7ce7a23dac7b562e292149174fda9e94f1ade6847dd914",
       "status": "UNSELECTED",
       "AndroidNativeVerified": false,
       "ownerApproved": false
     },
     {
       "sourcePath": "design/proposals/whole-product-candidates/cc0-consistent-20261024/detail.svg",
-      "sourceSHA256": "a2958974c25a520b3f3574866432671ad44379cb35ce976dd1cbcb568be38303",
+      "sourceSHA256": "b01ab749736eaa6688ed17dee66ccdf0c3c59a14531599b6ea8526aecbcf28f1",
       "rasterPath": "design/system/reviews/ci-renders/cc0-consistent-detail.png",
-      "rasterSHA256": "f7fe91443fde13dbe3017f8eb870c843ab96fa6d4dd2b23e56fe2f521d82a482",
+      "rasterSHA256": "f8214ad2c31e0ae914e9b063fe9daf4dd42dc43db433c02770428be6795c398f",
       "status": "UNSELECTED",
       "AndroidNativeVerified": false,
       "ownerApproved": false
     },
     {
       "sourcePath": "design/proposals/whole-product-candidates/cc0-consistent-20261024/collections.svg",
-      "sourceSHA256": "a738f6cc22cee1ed40f30d0efb1703cecefe771bf519d28da205d15049e54339",
+      "sourceSHA256": "049be37072c1bd66a23312ac2fd6a89982d5c05e095d85ad10d3a7e2e3e5fe66",
       "rasterPath": "design/system/reviews/ci-renders/cc0-consistent-collections.png",
-      "rasterSHA256": "5a5d19efc765768847e023f570d3f24c2758c110f64ccba79af9bf14510b32c9",
+      "rasterSHA256": "d4c14554618a0e05131a620a1de274bbe545238c1e130503f7dfc733ed91757c",
       "status": "UNSELECTED",
       "AndroidNativeVerified": false,
       "ownerApproved": false
@@ -196,6 +196,15 @@
       "sourceSHA256": "e379e1e5941ca293a4e6a776b2682b3470d2cd6f912b8a07cc6d23d4b78e491c",
       "rasterPath": "design/system/reviews/ci-renders/cc0-consistent-share.png",
       "rasterSHA256": "5cca4ab2d837a4fa3670393cf2143d4c0beb12290da1f627e636ac54494e9d9b",
+      "status": "UNSELECTED",
+      "AndroidNativeVerified": false,
+      "ownerApproved": false
+    },
+    {
+      "sourcePath": "design/proposals/whole-product-candidates/cc0-consistent-20261024/source-p12.svg",
+      "sourceSHA256": "7245145272281b8cface4bf31975a14bbb8c32449c37b624f3acc3d5e4ef03fb",
+      "rasterPath": "design/system/reviews/ci-renders/cc0-consistent-source-p12.png",
+      "rasterSHA256": "4f21a0a660e9c1ac7c437eb9d56f3cbc78104cc93f45ba929f21e1aad50e28cc",
       "status": "UNSELECTED",
       "AndroidNativeVerified": false,
       "ownerApproved": false
