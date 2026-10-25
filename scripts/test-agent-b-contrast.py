@@ -66,5 +66,26 @@ def main():
     whole=c.paint(header,"synthetic",whole_phone=True)
     assert [z["text"] for z in whole if z["kind"]=="text-contrast"]==["Header","Bottom nav"]
     assert all(not z["passed"] for z in whole)
+    # Cross-branch contract: PR20 no-handler privacy truth must survive PR22
+    # AA color hardening. Test source content and actual phone text colors,
+    # independent of the integrations' eventual source digest updates.
+    handoff=(HERE.parent/"design/proposals/advanced-storyboards/x22/05-absent.svg").read_text()
+    for phrase in (
+        "Example build v0.1 · API 34",
+        "Sample only; review actual bytes before sharing",
+        "No compatible handler; keep draft for copy or save",
+        "Diagnostic report handoff",
+        "Photo bytes: excluded",
+        "No automatic upload",
+    ):
+        assert phrase in handoff, "PR20/22 semantic merge regression: "+phrase
+    for invalid in ("App v0.1 · Android API 34", "Exact outgoing payload",
+                    "Report automatically uploaded"):
+        assert invalid not in handoff, "Unverified claim reintroduced: "+invalid
+    focus=c.paint(handoff,"x22/05-absent",whole_phone=True)
+    navigation=[x for x in focus if x["kind"]=="text-contrast"
+                and x["text"] in ("Home","Discover","Collections","Automation")]
+    assert len(navigation)==4, navigation
+    assert all(x["passed"] for x in navigation), navigation
     print("PASS: low contrast, size, circles, images, alpha, transforms, body and full-phone boundaries")
 if __name__=="__main__":main()
