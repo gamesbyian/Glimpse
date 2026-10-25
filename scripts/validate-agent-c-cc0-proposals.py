@@ -80,6 +80,9 @@ def validate(root=ROOT):
     accepted = 0
     for role, ids in REQUIRED.items():
         images = embedded_hashes(root / aa["sourcePaths"][role])
+        expected = {hashes[name] for name in ids}
+        check(images == expected,
+              f"{role} includes missing or unauthorized photographic source bytes")
         for name in sorted(ids):
             check(hashes[name] in images, f"{role} lacks complete genuine {name} JPEG")
             accepted += 1
