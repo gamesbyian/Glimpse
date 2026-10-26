@@ -1,0 +1,71 @@
+name: Glimpse | Deploy draft review via Pages
+run-name: Glimpse Pages · trusted main publisher
+on:
+  push:
+    branches: [main]
+    paths: [.github/workflows/glimpse-pages-publisher.yml]
+  workflow_dispatch:
+  workflow_run:
+    workflows: ["Glimpse | Build complete draft visual evidence atlas"]
+    types: [completed]
+    branches: [agent/visual-state-reconciliation-20261023]
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: glimpse-review-pages-main
+  cancel-in-progress: true
+jobs:
+  publish:
+    if: github.event_name != 'workflow_run' || (github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.head_repository.full_name == 'gamesbyian/Glimpse' && github.event.workflow_run.head_branch == 'agent/visual-state-reconciliation-20261023')
+    runs-on: ubuntu-latest
+    timeout-minutes: 14
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Check out unmerged owner-review candidate
+        uses: actions/checkout@v4
+        with:
+          ref: agent/visual-state-reconciliation-20261023
+          persist-credentials: false
+      - name: Validate current source-exact owner-review candidate
+        run: |
+          python3 scripts/validate-integration-source-freeze.py
+          python3 scripts/validate-agent-c-review-selection.py
+          python3 scripts/validate-owner-review-readiness.py
+          python3 scripts/validate-integrated-optical-ledger.py
+          python3 scripts/test-review-studio.py
+          node --check review/app.js
+      - name: Stage source-complete interactive review
+        run: |
+          mkdir -p _site
+          cp -a design review _site/
+          touch _site/.nojekyll
+          cat > _site/index.html <<'HTML'
+          <!doctype html><html lang="en"><head><meta charset="utf-8">
+          <meta name="viewport" content="width=device-width,initial-scale=1">
+          <title>Glimpse · Review Studio</title>
+          <meta http-equiv="refresh" content="0;url=review/">
+          </head><body><a href="review/">Open the Glimpse design review</a></body></html>
+          HTML
+          python3 - <<'PY'
+          import pathlib, subprocess, json
+          sha=subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip()
+          path=pathlib.Path('_site/review/build.json')
+          path.write_text(json.dumps({'repository':'gamesbyian/Glimpse',
+              'branch':'agent/visual-state-reconciliation-20261023',
+              'sha':sha,'reviewStatus':'DRAFT_NOT_OWNER_APPROVED',
+              'sourceSnapshot':'design/atlas/whole-product-review-snapshot.v1.json',
+              'publisherWorkflow':'main'},indent=2)+'\n')
+          assert pathlib.Path('_site/design/atlas/whole-product-review-snapshot.v1.json').is_file()
+          print('PASS: staging source-pinned reviewer from unmerged draft',sha)
+          PY
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v4
