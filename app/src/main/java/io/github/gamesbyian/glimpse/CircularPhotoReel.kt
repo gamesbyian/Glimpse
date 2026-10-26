@@ -142,6 +142,7 @@ fun CircularPhotoReel(
         animatorScale <= 0f || powerSave
     }
     val renderedAngle = if (dragging) dragAngle else angle.value
+    val updatedAngle by rememberUpdatedState(renderedAngle)
     val thumbnailFiles = slots.filterNotNull().mapNotNull { local[it]?.localPath }
     val thumbs by produceState(
         initialValue = emptyMap<String, Bitmap>(),
@@ -206,11 +207,11 @@ fun CircularPhotoReel(
                     .semantics {
                         contentDescription = "Paper photo reel. Swipe left for next photo, right for previous. Previous and Next buttons are also available."
                     }
-                    .pointerInput(ids, anchorId, renderedAngle) {
+                    .pointerInput(ids, anchorId) {
                         detectTapGestures { position ->
                             // Prevent rotating an already moving paper window as a
                             // tap target. Fixed Previous/Next remain available.
-                            if (dragging || abs(renderedAngle) > 1f) return@detectTapGestures
+                            if (dragging || abs(updatedAngle) > 1f) return@detectTapGestures
                             ReelWindow.tapOffset(
                                 position.x, position.y,
                                 size.width.toFloat(), size.height.toFloat()
