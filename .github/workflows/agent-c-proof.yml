@@ -15,6 +15,9 @@ on:
       - app/src/androidTest/**
       - app/build.gradle.kts
       - .github/workflows/agent-c-proof.yml
+      - scripts/validate-owner-review-readiness.py
+      - scripts/validate-integration-source-freeze.py
+      - scripts/validate-integrated-optical-ledger.py
   workflow_dispatch:
 permissions:
   contents: read
@@ -31,6 +34,11 @@ jobs:
         run: |
           python3 -m unittest discover -s scripts/tests -p test_agent_c_asset_integrity.py -v
           python3 scripts/validate-agent-c-asset-integrity.py
+      - name: Validate integrated draft reviewer sources and eight pending decisions
+        run: |
+          python3 scripts/validate-integration-source-freeze.py
+          python3 scripts/validate-integrated-optical-ledger.py
+          python3 scripts/validate-owner-review-readiness.py
       - name: Verify native harness syntax only
         run: python3 -m py_compile scripts/capture-agent-c-native.py scripts/capture-agent-c-native-picker.py scripts/validate-agent-c-android-test-results.py
 
