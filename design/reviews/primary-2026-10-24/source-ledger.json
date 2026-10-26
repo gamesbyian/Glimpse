@@ -5,8 +5,8 @@
   "sourceRows": [
     {
       "surfaceId": "home",
-      "path": "design/proposals/audit-revisions/r03-home-primary-actions-p04.svg",
-      "sourceSHA256": "77e652b3bb0320f0e6f989770d6f565f602508f7840048a2b6238adc5eba1a5a",
+      "path": "design/proposals/whole-product-candidates/cc0-consistent-20261024/home.svg",
+      "sourceSHA256": "9a2b7da1954e84322556ebb8636bfe6ca9ff37574e23098b77f8de05dc2b4ffa",
       "phonePixels": [
         401,
         890
@@ -18,8 +18,8 @@
     },
     {
       "surfaceId": "collections",
-      "path": "design/proposals/whole-product-candidates/collections-photo-covers.svg",
-      "sourceSHA256": "e318dbbfa331fde235102430e2ccb750cca8acb340fa2b3e0b6af3ba65e31daa",
+      "path": "design/proposals/whole-product-candidates/cc0-consistent-20261024/collections.svg",
+      "sourceSHA256": "049be37072c1bd66a23312ac2fd6a89982d5c05e095d85ad10d3a7e2e3e5fe66",
       "phonePixels": [
         401,
         890
@@ -31,8 +31,8 @@
     },
     {
       "surfaceId": "reel",
-      "path": "design/proposals/audit-revisions/r01-photo-primary-wallpaper-action.svg",
-      "sourceSHA256": "9b9a0f18723340cdecec8eec38751f8c2e58b5678b53ec5ef05e20ab20a9852b",
+      "path": "design/proposals/whole-product-candidates/cc0-consistent-20261024/reel.svg",
+      "sourceSHA256": "ea5e608a809bfc555b29c1ea4575d4ac78987fb55f77129dc7baa1aeca12faf5",
       "phonePixels": [
         401,
         890
@@ -44,8 +44,8 @@
     },
     {
       "surfaceId": "grid",
-      "path": "design/proposals/audit-revisions/r02-grid-primary-actions-p12.svg",
-      "sourceSHA256": "d07b44d764c1b17c43b9d02a6973185e1c95122d18b2ae82ffbdd2f3fea416e4",
+      "path": "design/proposals/whole-product-candidates/cc0-consistent-20261024/grid-3column.svg",
+      "sourceSHA256": "b7b3698dbbf388f11909f3ffd4339727342134303c3879c2c37e75c4595e1abb",
       "phonePixels": [
         401,
         890
@@ -70,8 +70,8 @@
     },
     {
       "surfaceId": "share",
-      "path": "design/proposals/audit-revisions/r02-share-choice.svg",
-      "sourceSHA256": "7bf97fb1f15d508097c3cd62ce928065abf82fb2e7f88c53517b7ea16e323685",
+      "path": "design/proposals/whole-product-candidates/cc0-consistent-20261024/share.svg",
+      "sourceSHA256": "e379e1e5941ca293a4e6a776b2682b3470d2cd6f912b8a07cc6d23d4b78e491c",
       "phonePixels": [
         401,
         890
@@ -174,8 +174,8 @@
     },
     {
       "surfaceId": "photo-detail",
-      "path": "design/proposals/audit-revisions/r02-photo-detail-actions-p12.svg",
-      "sourceSHA256": "4d894bd3a70114dd7d23f4cbfc7d935f82810b382f89a4bc458ae1e30ad7173d",
+      "path": "design/proposals/whole-product-candidates/cc0-consistent-20261024/detail.svg",
+      "sourceSHA256": "b01ab749736eaa6688ed17dee66ccdf0c3c59a14531599b6ea8526aecbcf28f1",
       "phonePixels": [
         401,
         890
@@ -319,7 +319,7 @@
   "sheets": [
     {
       "name": "selected-primary-contact-01.jpg",
-      "sha256": "5ac22450d46574e250d4739a6f3da2aef3050a93f753a0d289560c6e4c49fe1a",
+      "sha256": "7eb1a11a219fefb02dce490f9ab3812f1b1985bb11f03f76a13a3d578a4ba3ad",
       "count": 6
     },
     {
@@ -329,7 +329,7 @@
     },
     {
       "name": "selected-primary-contact-03.jpg",
-      "sha256": "9ef2070ba317c276544be15ff28cee107dc73ee184f0b463a4edc46b01686ca3",
+      "sha256": "d9dea8528c6bd661950b04b53cbedec75ef8af645f8de263d105f6407a77c454",
       "count": 6
     },
     {
