@@ -69,6 +69,17 @@ try:
         assert page.evaluate("document.body.classList.contains('focus-mode')")
         page.locator("#focusMode").click()
         assert not page.evaluate("document.body.classList.contains('focus-mode')")
+        page.locator("#zoomIn").click()
+        assert page.locator("#zoomPercent").inner_text()=="125%"
+        assert "scale(1.25)" in page.locator("#screens").get_attribute("style")
+        frame_zoom=page.locator(".frame").first.bounding_box()
+        page.mouse.move(frame_zoom["x"]+frame_zoom["width"]/2,frame_zoom["y"]+frame_zoom["height"]/2)
+        page.mouse.down()
+        page.mouse.move(frame_zoom["x"]+frame_zoom["width"]/2+34,frame_zoom["y"]+frame_zoom["height"]/2+20,steps=4)
+        page.mouse.up()
+        assert "translate(" in page.locator("#screens").get_attribute("style")
+        page.locator("#zoomReset").click()
+        assert page.locator("#zoomPercent").inner_text()=="100%"
         page.locator('[data-status="accepted"]').click()
         assert '"status":"accepted"' in page.evaluate("localStorage.getItem('glimpse.review.v1.gamesbyian.Glimpse')")
         page.locator("#startPin").click()
