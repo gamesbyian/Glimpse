@@ -71,3 +71,11 @@
 .journey-timeline .map-thumb{width:27px;height:60px;margin:auto}
 .journey-timeline .map-thumb img{width:289.276808%;height:103.370787%;max-width:none}
 #setMapDialog .set-map-card .map-thumb{width:min(100%,105px)}
+
+/* Zoom uses CSS transformations on the already-cropped source. All options share scale. */
+#zoomPercent{font-size:11px;font-variant-numeric:tabular-nums;white-space:nowrap;min-width:36px;text-align:center;font-weight:750;color:#2a5b61}
+#zoomOut,#zoomIn{min-width:33px;padding:5px}
+.canvas-stage.zoom-active{overflow:hidden;touch-action:none}
+.canvas-stage.zoom-active .frame{touch-action:none;cursor:grab}
+.canvas-stage.zoom-active .frame:active{cursor:grabbing}
+.canvas-stage.zoom-active .screens{will-change:transform}
