@@ -5,7 +5,7 @@ These are strict SOURCE semantic/fixture checks, not optical, native Android,
 gesture, accessibility, delivery or owner approval tests. A phone text assertion
 reads only x <= 415, never right-side designer notes.
 """
-import base64,hashlib,json
+import base64,hashlib,json,runpy
 from pathlib import Path
 import xml.etree.ElementTree as ET
 
@@ -58,7 +58,10 @@ def main():
     review=json.loads((ROOT/"design/proposals/whole-product-review-selection.v1.json").read_text(encoding="utf-8"))
     assert review["approval"]["ownerApproved"] is False
     choices={x["surfaceId"]:x["reviewCandidatePath"] for x in review["primarySurfaces"]}
-    assert all(choices[key]==path for key,path in P.items()),"Preferred source changed: re-audit"
+    migration=json.loads((ROOT/"design/proposals/whole-product-candidates/cc0-consistent-20261024/migration-manifest.v1.json").read_text(encoding="utf-8"))
+    assert all(choices[role]==path for role,path in migration["sourcePaths"].items()),"Six-screen CC0 draft preference must remain atomic"
+    assert runpy.run_path(str(ROOT/"scripts/validate-agent-c-review-selection.py"))["validate"]()=="ATOMIC_CC0_SIX_UNAPPROVED"
+    # Preserve the old four task-action proposals as independently checked alternatives.
     observed={}
     for family,path in P.items():
         svg,info,phone=load(path)
@@ -95,10 +98,10 @@ def main():
     assert grid["fixtureArtworkByPhotoId"]["p15"]=="art6"
     assert len(set(grid["photoFixtureSHA256"].values()))==6
     assert len(review["primarySurfaces"])==24
-    print("PASS: four selected draft primary screens have essential phone-side controls; "
+    print("PASS: coordinated six-screen draft preference passes atomic source guard; four historical task-action alternatives preserve controls; "
           "p12 byte-identical across Home/Reel/Grid/Detail; six Grid fixtures distinct; "
           "OS current state unknown and all owner approvals absent")
-    print("NOTE: 200% font, native touch, visual quality, four extra Grid schematic rows "
+    print("NOTE: 200% font, native touch, current selected visual optical review "
           "and source-verified p04 still require separate evidence")
 
 if __name__=="__main__":main()
