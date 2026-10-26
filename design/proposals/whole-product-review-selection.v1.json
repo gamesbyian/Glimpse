@@ -32,8 +32,9 @@
   "primarySurfaces": [
     {
       "surfaceId": "home",
-      "reviewCandidatePath": "design/proposals/audit-revisions/r03-home-primary-actions-p04.svg",
+      "reviewCandidatePath": "design/proposals/whole-product-candidates/cc0-consistent-20261024/home.svg",
       "alternativesToDecide": [
+        "design/proposals/audit-revisions/r03-home-primary-actions-p04.svg",
         "design/proposals/audit-revisions/r03-home-last-ack-p04.svg",
         "design/proposals/audit-revisions/r01-photo-home-crescent.svg",
         "design/proposals/plates/home.svg"
@@ -53,16 +54,17 @@
         "exact-background-five-minute-guarantee",
         "unlabeled-tiny-reel-pretends-to-be-draggable"
       ],
-      "candidateState": "UNAPPROVED_PHOTOGRAPHIC_TASK_ACTION_RECONCILIATION_NEEDS_ANDROID_AND_OWNER_REVIEW",
+      "candidateState": "UNAPPROVED_ATOMIC_CC0_SIX_SOURCE_EDITORIAL_PREFERENCE",
       "ownerChoice": null,
       "exactOwnerApprovalSHA256": null,
-      "visualEvidence": "Complete 4-task Home default with last Glimpse p04 acknowledgement vs preview p12, explicit Change Home now (active shuffle), Pause shuffle, Open Rainbows, Share saved p04, and Activity route. p04 hero is illustrative vector, NOT source-verified photo. Real native current wallpaper state remains unknown.",
-      "reviewWarning": "Review gate: p04 Home artwork is illustrative only; the current Android wallpaper may differ from the last app acknowledgement."
+      "visualEvidence": "Provisional coordinated six-screen photographic candidate with distinct C provenance-tracked sample IDs; all six roles change together. Not owner-approved, not Android fidelity proof.",
+      "reviewWarning": "CC0 p04 shows last Glimpse acknowledgement, not verified current Android wallpaper; p12 remains a separate preview."
     },
     {
       "surfaceId": "collections",
-      "reviewCandidatePath": "design/proposals/whole-product-candidates/collections-photo-covers.svg",
+      "reviewCandidatePath": "design/proposals/whole-product-candidates/cc0-consistent-20261024/collections.svg",
       "alternativesToDecide": [
+        "design/proposals/whole-product-candidates/collections-photo-covers.svg",
         "design/proposals/plates/collections.svg"
       ],
       "requiredSemanticElements": [
@@ -74,16 +76,17 @@
       "forbiddenSemanticElements": [
         "faked-image-copies-to-fill-five-windows"
       ],
-      "candidateState": "UNAPPROVED_SOURCE_PHOTOGRAPHIC_CURRENT_GENERATION_NOT_NATIVE_ACCEPTED",
+      "candidateState": "UNAPPROVED_ATOMIC_CC0_SIX_SOURCE_EDITORIAL_PREFERENCE",
       "ownerChoice": null,
       "exactOwnerApprovalSHA256": null,
-      "visualEvidence": "Static source-backed photo-paper covers with conventional list navigation, not draggable fake micro reels. Real runtime list and 200 percent scale unverified.",
-      "reviewWarning": "Review gate: photo covers are static tap targets, not a second draggable reel; target of Add photographs needs human decision."
+      "visualEvidence": "Provisional coordinated six-screen photographic candidate with distinct C provenance-tracked sample IDs; all six roles change together. Not owner-approved, not Android fidelity proof.",
+      "reviewWarning": "Coordinated CC0 photographic sample only; inspect crops, actions, navigation, source identities and Android caveats before choosing."
     },
     {
       "surfaceId": "reel",
-      "reviewCandidatePath": "design/proposals/audit-revisions/r01-photo-primary-wallpaper-action.svg",
+      "reviewCandidatePath": "design/proposals/whole-product-candidates/cc0-consistent-20261024/reel.svg",
       "alternativesToDecide": [
+        "design/proposals/audit-revisions/r01-photo-primary-wallpaper-action.svg",
         "design/proposals/audit-revisions/r01-photo-rest-22.svg",
         "design/proposals/audit-revisions/r01-photo-three-3.svg",
         "design/proposals/audit-revisions/r01-photo-five-5.svg",
@@ -116,16 +119,17 @@
         "reel-hit-target-beneath-bottom-nav",
         "inferred-whole-album-synchronization"
       ],
-      "candidateState": "UNAPPROVED_SOURCE_GENERATED_PHOTOGRAPHIC_REEL_ACTION_FIX_NOT_OPTICALLY_OR_NATIVE_ACCEPTED",
+      "candidateState": "UNAPPROVED_ATOMIC_CC0_SIX_SOURCE_EDITORIAL_PREFERENCE",
       "ownerChoice": null,
       "exactOwnerApprovalSHA256": null,
-      "visualEvidence": "Preferred source retains exact R01 p12 JPEG and five-window paper reel; visible 47px View all and Set wallpaper chooser-entry actions. The chooser must demand Home/Lock choice and later confirmation; preview, drag and Grid do not call WallpaperManager. Source/raster run 40125088857 passed; exact pixel inspection and Android behavior remain outstanding.",
-      "reviewWarning": "Review gate: five-wheel paper geometry and target chooser require real touch, text-scale and Android confirmation."
+      "visualEvidence": "Provisional coordinated six-screen photographic candidate with distinct C provenance-tracked sample IDs; all six roles change together. Not owner-approved, not Android fidelity proof.",
+      "reviewWarning": "Coordinated CC0 photographic sample only; inspect crops, actions, navigation, source identities and Android caveats before choosing."
     },
     {
       "surfaceId": "grid",
-      "reviewCandidatePath": "design/proposals/audit-revisions/r02-grid-primary-actions-p12.svg",
+      "reviewCandidatePath": "design/proposals/whole-product-candidates/cc0-consistent-20261024/grid-3column.svg",
       "alternativesToDecide": [
+        "design/proposals/audit-revisions/r02-grid-primary-actions-p12.svg",
         "design/proposals/storyboards/x07/02-grid-focus.svg",
         "design/proposals/plates/grid.svg"
       ],
@@ -144,11 +148,11 @@
         "render-all-10000-fullres-images",
         "add-to-rotation-without-explaining-target-queue-effect"
       ],
-      "candidateState": "UNAPPROVED_PHOTOGRAPHIC_TASK_ACTION_RECONCILIATION_NEEDS_ANDROID_AND_OWNER_REVIEW",
+      "candidateState": "UNAPPROVED_ATOMIC_CC0_SIX_SOURCE_EDITORIAL_PREFERENCE",
       "ownerChoice": null,
       "exactOwnerApprovalSHA256": null,
-      "visualEvidence": "Selected p12 JPEG identical to Reel/Detail. Adjacent known IDs p10/p11/p13/p14/p15 reuse exact distinct checked-in R01 JPEG bytes, Search/jump, Share p12 and multi-select have visible separate commands. Remaining p06..p09/p16..p17 are explicitly schematic tiles. No native list scaling or accessibility evidence.",
-      "reviewWarning": "Review gate: p10–p15 are source-verified photos; p06–p09 and p16–p17 remain schematic placeholders."
+      "visualEvidence": "Provisional coordinated six-screen photographic candidate with distinct C provenance-tracked sample IDs; all six roles change together. Not owner-approved, not Android fidelity proof.",
+      "reviewWarning": "Editorial 3-column Grid comparison: 4-column historical version remains available; collection photos are samples, never blanket CC0 user-photo rights."
     },
     {
       "surfaceId": "quick-import",
@@ -176,8 +180,9 @@
     },
     {
       "surfaceId": "share",
-      "reviewCandidatePath": "design/proposals/audit-revisions/r02-share-choice.svg",
+      "reviewCandidatePath": "design/proposals/whole-product-candidates/cc0-consistent-20261024/share.svg",
       "alternativesToDecide": [
+        "design/proposals/audit-revisions/r02-share-choice.svg",
         "design/proposals/plates/share.svg",
         "design/proposals/audit-revisions/r06-share-dismissed.svg"
       ],
@@ -190,10 +195,11 @@
         "share-changes-rotation",
         "assume-lens-or-chatgpt-intent-always-exists"
       ],
-      "candidateState": "UNAPPROVED_PARTIAL_PAPER_AND_PIXEL_PROPOSAL",
+      "candidateState": "UNAPPROVED_ATOMIC_CC0_SIX_SOURCE_EDITORIAL_PREFERENCE",
       "ownerChoice": null,
       "exactOwnerApprovalSHA256": null,
-      "reviewWarning": "Optical corrective pass: split four footer destinations into individual labels. p12/p12c are distinct share selections; recipient and Android return unverified."
+      "reviewWarning": "Coordinated CC0 photographic sample only; inspect crops, actions, navigation, source identities and Android caveats before choosing.",
+      "visualEvidence": "Provisional coordinated six-screen photographic candidate with distinct C provenance-tracked sample IDs; all six roles change together. Not owner-approved, not Android fidelity proof."
     },
     {
       "surfaceId": "automation",
@@ -338,8 +344,9 @@
     },
     {
       "surfaceId": "photo-detail",
-      "reviewCandidatePath": "design/proposals/audit-revisions/r02-photo-detail-actions-p12.svg",
+      "reviewCandidatePath": "design/proposals/whole-product-candidates/cc0-consistent-20261024/detail.svg",
       "alternativesToDecide": [
+        "design/proposals/audit-revisions/r02-photo-detail-actions-p12.svg",
         "design/proposals/storyboards/x07/03-photo-detail.svg",
         "design/proposals/plates/photo-detail.svg"
       ],
@@ -354,11 +361,11 @@
       "forbiddenSemanticElements": [
         "silent-apply-on-open"
       ],
-      "candidateState": "UNAPPROVED_PHOTOGRAPHIC_PHOTO_DETAIL_WITH_SEPARATE_ACTIONS_NOT_NATIVE_ACCEPTED",
+      "candidateState": "UNAPPROVED_ATOMIC_CC0_SIX_SOURCE_EDITORIAL_PREFERENCE",
       "ownerChoice": null,
       "exactOwnerApprovalSHA256": null,
-      "visualEvidence": "Photo detail source-matched to p12 in X07 Reel/Grid and R01/R02. Separate 48px-height Back to Grid, Set wallpaper chooser, Share photo and Edit copy actions; no silent Android API invoke. Successful Actions run 40125360202 rasterized; no independent inspection or owner decision.",
-      "reviewWarning": "Review gate: visible Set / Share / Edit controls still require native transaction and focus testing."
+      "visualEvidence": "Provisional coordinated six-screen photographic candidate with distinct C provenance-tracked sample IDs; all six roles change together. Not owner-approved, not Android fidelity proof.",
+      "reviewWarning": "Coordinated CC0 photographic sample only; inspect crops, actions, navigation, source identities and Android caveats before choosing."
     },
     {
       "surfaceId": "quickstart",
