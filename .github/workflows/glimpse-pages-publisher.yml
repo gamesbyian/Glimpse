@@ -69,3 +69,20 @@ jobs:
       - name: Deploy
         id: deployment
         uses: actions/deploy-pages@v4
+      - name: Probe live HTML, app JS and exact deployed SHA
+        run: |
+          wanted="$(git rev-parse HEAD)"
+          for attempt in 1 2 3 4 5 6 7 8 9 10; do
+            if curl --fail --silent --show-error --location --max-time 12 "https://gamesbyian.github.io/Glimpse/review/build.json?probe=${GITHUB_RUN_ID}" -o /tmp/glimpse-review-build.json && \
+               curl --fail --silent --show-error --location --max-time 12 "https://gamesbyian.github.io/Glimpse/review/?probe=${GITHUB_RUN_ID}" -o /tmp/glimpse-review-index.html; then
+              if python3 -c 'import json,sys;assert json.load(open("/tmp/glimpse-review-build.json"))["sha"]==sys.argv[1]' "$wanted" && \
+                 grep -q "Review Studio" /tmp/glimpse-review-index.html; then
+                echo "PASS: published reviewer HTML and build identity match $wanted"
+                exit 0
+              fi
+            fi
+            echo "Pages CDN not yet serving current build (attempt $attempt)"
+            sleep 5
+          done
+          echo "::error::Live Pages content does not match the published source SHA"
+          exit 1
