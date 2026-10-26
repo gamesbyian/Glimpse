@@ -132,6 +132,13 @@ fun CircularPhotoReel(
     var dragAngle by remember { mutableFloatStateOf(0f) }
     var settleJob by remember { mutableStateOf<Job?>(null) }
     val context = LocalContext.current
+    // Baked material face: real raster fiber, bevel/edge light and five transparent
+    // windows. Cached once; dynamic photos remain distinct bitmaps beneath it.
+    val paperFace = remember(context) {
+        BitmapFactory.decodeResource(context.resources, R.drawable.glimpse_paper_reel_face,
+            BitmapFactory.Options().apply { inScaled = false })
+    }
+    val facePaint = remember { Paint(Paint.ANTI_ALIAS_FLAG or Paint.FILTER_BITMAP_FLAG) }
     val reducedMotion = remember(context) {
         val animatorScale = runCatching {
             Settings.Global.getFloat(context.contentResolver, Settings.Global.ANIMATOR_DURATION_SCALE, 1f)
@@ -309,8 +316,16 @@ fun CircularPhotoReel(
                     native.drawPath(wedge, stroke)
                     if (offset == 0 && id != null) native.drawPath(wedge, selectedStroke)
                 }
-                native.drawCircle(cx, cy, inner * 1.02f, rim)
-                native.drawCircle(cx, cy, inner * .62f, empty)
+                // Photo cutouts are painted first. The prepared translucent face
+                // supplies actual material lighting, recessed cutout edges and hub.
+                // It turns in exactly the same coordinate space as the photos.
+                if (paperFace != null) {
+                    native.drawBitmap(paperFace, null,
+                        RectF(cx - r, cy - r, cx + r, cy + r), facePaint)
+                } else {
+                    native.drawCircle(cx, cy, inner * 1.02f, rim)
+                    native.drawCircle(cx, cy, inner * .62f, empty)
+                }
                 native.restore()
                 val pointer = Path().apply {
                     moveTo(cx - 14.dp.toPx(), 1.dp.toPx())
