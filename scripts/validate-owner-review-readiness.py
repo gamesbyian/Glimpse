@@ -22,7 +22,7 @@ assert [q["id"] for q in questions]==[f"D{i:02d}" for i in range(1,9)],"Eight ow
 txt=guide.read_text(encoding="utf-8")
 for q in questions:
     assert q["id"] in txt, f"Missing review decision {q['id']}"
-assert migration["status"]=="UNSELECTED_SOURCE_EDITABLE_MIGRATION"
+assert migration["status"]=="EDITORIAL_CC0_SIX_REVIEW_CANDIDATE_NOT_OWNER_APPROVED"
 assert migration["androidWallpaperCurrentVerified"] is False
 assert migration["selectedId"]=="p12" and migration["lastGlimpseAcknowledgedId"]=="p04"
 assert len(migration["sourcePaths"])==len(migration["currentSelectedPaths"])==6
