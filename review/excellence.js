@@ -183,6 +183,7 @@ function bind(){
  $("canvasStage").addEventListener("pointercancel",panEnd);
  for(const id of ["compare","fullSource","startPin"]){
   $(id).addEventListener("click",()=>{
+   if(id==="startPin")resetCamera();
    if(lens.mode!=="off"){
     lens.mode="off";
     $("comparisonControls").hidden=true;
