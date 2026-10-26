@@ -1,0 +1,44 @@
+name: Glimpse | Chromium owner reviewer interaction QA
+on:
+  push:
+    branches: [agent/visual-state-reconciliation-20261023]
+    paths:
+      - review/index.html
+      - review/app.js
+      - review/style.css
+      - scripts/test-review-studio-browser.py
+      - .github/workflows/glimpse-review-browser-qa.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: glimpse-review-browser-qa
+  cancel-in-progress: true
+jobs:
+  desktop-and-mobile:
+    runs-on: ubuntu-latest
+    timeout-minutes: 14
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Browser dependencies
+        run: |
+          python3 -m pip install --quiet playwright
+          if command -v google-chrome >/dev/null 2>&1; then
+            echo GLIMPSE_CHROME_CHANNEL=chrome >> "$GITHUB_ENV"
+            google-chrome --version
+          else
+            python3 -m playwright install chromium --with-deps
+          fi
+      - name: Desktop, mobile, pin and export acceptance
+        run: python3 scripts/test-review-studio-browser.py
+      - name: Preserve actual browser screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: glimpse-review-studio-chromium-screens
+          path: review/browser-evidence/*.png
+          if-no-files-found: warn
+          retention-days: 14
