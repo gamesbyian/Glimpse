@@ -35,27 +35,24 @@ assert len(support["sources"]) == 34
 assert sum(len(g["frames"]) for g in journeys["groups"]) == 137
 assert len(primary["screens"]) == 18
 assert len(expected) == 189
-# A single B-owned diagnostic disclosure source was corrected after the prior optical
-# ledger. Its newer automated 401x890 raster/source hash is known, but has not been
-# independently signed off against the historical contact. Do not silently score it.
-optical_pending = {
-    "design/proposals/support-plates/diagnostic-preview--expanded.svg":
-        "6d9b0c31377f18fcddb5f66452ab507f34f20b55212db7719bc92f9f0c248e85"
-}
-bad = []
-pending = []
-for p, sha in expected.items():
-    actual = selected.get(p, {}).get("sourceSHA256")
-    if actual == sha:
-        continue
-    if p in optical_pending and actual == optical_pending[p]:
-        pending.append(p)
-    else:
-        bad.append(f"{p}: ledger={sha} snapshot={actual}")
-if bad or set(pending) != set(optical_pending):
-    raise SystemExit("FAIL integrated optical source ledger mismatch or unacknowledged optical delta:\\n" +
-                     "\\n".join(bad + ["Pending mismatch set: " + ", ".join(pending)]))
-print(f"PASS {len(expected)-len(pending)}/{len(expected)} current A/B optical SHA pairs match; "
-      f"{len(pending)} specifically pinned support update has automated raster evidence but "
-      "independent current-source optical inspection remains PENDING; "
-      f"{len(selected)-len(expected)} extra draft reference sources outside this historical ledger")
+# Generated B contacts/ledgers are rebuilt from current sources by the atlas job.
+# Source and JPEG SHA-256 parity is required; optical/human approval remains separate.
+bad = [f"{p}: ledger={sha} snapshot={selected.get(p, {}).get('sourceSHA256')}"
+       for p, sha in expected.items()
+       if p not in selected or selected[p]["sourceSHA256"] != sha]
+if bad:
+    raise SystemExit("FAIL current source/raster input ledger mismatch:\\n" + "\\n".join(bad))
+import hashlib
+def sha(path):
+    return hashlib.sha256((root / path).read_bytes()).hexdigest()
+for card in support["contacts"]:
+    rel = "design/reviews/support-agent-b-2026-10-24/" + card["name"]
+    assert sha(rel) == card["SHA256"], rel
+for group in journeys["groups"]:
+    rel = "design/reviews/support-agent-b-2026-10-24/full-journey-corpus/" + group["contact"]
+    assert sha(rel) == group["contactSHA256"], rel
+    assert group["generatedOnly"] is True
+    assert group["independentlyOpticallyInspected"] is False
+print(f"PASS: {len(expected)}/{len(expected)} current source-hashed A/B raster input pairs "
+      f"and 6+23 current contact JPEG digests; {len(selected)-len(expected)} other "
+      "draft referenced source versions. Generated pixels only; no new owner/native/optical approval.")
