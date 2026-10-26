@@ -1,0 +1,82 @@
+name: Glimpse R06-R08 | focused draft phone raster proof
+
+# Intentionally one-shot on introduction and manually opt-in thereafter.
+# Seven affected source files only (five new + X13/X19 fixes); no 203-image render or source-writing CI side effects.
+on:
+  push:
+    branches: [agent/visual-state-reconciliation-20261023]
+    paths: [.github/workflows/glimpse-audit-r06-r08-optical.yml]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: glimpse-r06-r08-optical-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  five-phone-crops:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install matching raster libraries
+        run: python -m pip install --disable-pip-version-check 'cairosvg==2.8.2' 'pillow==12.3.0'
+      - name: Validate and rasterize five draft decisions only
+        run: |
+          set -euo pipefail
+          python3 scripts/validate-audit-r06-r08.py --render --output-dir /tmp/glimpse-r06-r08
+          python3 - <<'PY'
+          from PIL import Image, ImageStat, ImageChops
+          from pathlib import Path
+          root=Path("/tmp/glimpse-r06-r08")
+          files=sorted(root.glob("*.phone.png"))
+          assert len(files) == 5, files
+          images=[]
+          for p in files:
+              img=Image.open(p).convert("RGB")
+              assert img.size == (401,890), (p, img.size)
+              assert sum(ImageStat.Stat(img).stddev) > 45, (p, "suspicious blank render")
+              images.append(img)
+          for i in range(len(images)):
+              for j in range(i+1,len(images)):
+                  assert ImageChops.difference(images[i],images[j]).getbbox() is not None, (i,j,"duplicate state")
+          print("Five 401×890 nonblank distinct source-backed draft phone PNGs. Not an optical human review or native test.")
+          PY
+      - name: Render two corrected P1 handoff/result scenes for optical inspection
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          from PIL import Image, ImageStat
+          import cairosvg, io, hashlib, json
+          root=Path('/tmp/glimpse-r06-r08')
+          for filename in (
+              'design/proposals/advanced-storyboards/x13/04-cancel.svg',
+              'design/proposals/advanced-storyboards/x19/05-restore-result.svg',
+          ):
+              source=Path(filename)
+              raw=source.read_bytes()
+              png=cairosvg.svg2png(bytestring=raw,output_width=1160,output_height=920)
+              image=Image.open(io.BytesIO(png)).convert('RGB').crop((15,14,416,904))
+              assert image.size==(401,890)
+              assert sum(ImageStat.Stat(image).stddev)>45, filename
+              dest=root/(source.parent.name+'-'+source.stem+'.phone.png')
+              image.save(dest)
+              print(json.dumps({
+                  'source':filename,'source_sha256':hashlib.sha256(raw).hexdigest(),
+                  'crop':str(dest),'crop_sha256':hashlib.sha256(dest.read_bytes()).hexdigest(),
+                  'note':'raster generated; human optical inspection not automated'
+              }))
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: glimpse-r06-r08-five-phone-sources-${{ github.sha }}
+          path: /tmp/glimpse-r06-r08
+          if-no-files-found: warn
+          retention-days: 14

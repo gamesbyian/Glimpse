@@ -1,0 +1,73 @@
+name: Glimpse | photograph detail task-action reference
+# Corrected phone-only action text validator (exclude metadata labels).
+
+on:
+  push:
+    branches: [agent/visual-state-reconciliation-20261023]
+    paths:
+      - .github/workflows/glimpse-r02-photo-detail-actions.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: glimpse-r02-detail-actions-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  source-photo-detail:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Generate and compare source derived photo detail
+        run: |
+          python3 scripts/build-r02-photo-detail-actions.py --write
+          python3 scripts/build-r02-photo-detail-actions.py
+      - name: Render one source-hashed source-photo phone crop
+        run: |
+          python3 -m pip install --quiet cairosvg pillow
+          python3 - <<'PY'
+          from pathlib import Path
+          import hashlib,json,os,xml.etree.ElementTree as ET
+          from PIL import Image,ImageStat
+          from cairosvg import svg2png
+          src=Path('design/proposals/audit-revisions/r02-photo-detail-actions-p12.svg')
+          out=Path('/tmp/glimpse-r02-photo-detail')
+          out.mkdir(parents=True,exist_ok=True)
+          svg=ET.parse(src).getroot()
+          m=json.loads(svg.find('{http://www.w3.org/2000/svg}metadata').text)
+          assert m['selectedAssetId']=='p12' and m['appliedStatus']=='unchanged'
+          assert len(m['userActions'])==4
+          svg2png(bytestring=src.read_bytes(),write_to=str(out/'full.png'),output_width=1160,output_height=920)
+          with Image.open(out/'full.png') as full:
+              phone=full.crop((15,14,416,904)).convert('RGB')
+              assert phone.size==(401,890) and sum(ImageStat.Stat(phone).stddev)>45
+              phone.save(out/'phone-401x890.png')
+          (out/'evidence.json').write_text(json.dumps({
+              'sourceCommit':os.environ['GITHUB_SHA'],
+              'sourceSHA256':hashlib.sha256(src.read_bytes()).hexdigest(),
+              'phoneSHA256':hashlib.sha256((out/'phone-401x890.png').read_bytes()).hexdigest(),
+              'generated':True,'visuallyReviewed':False,
+              'testedOnAndroid':False,'ownerApproved':False
+          },indent=2)+'\n')
+          print('PASS: photographic p12 detail with distinct Grid, Set, Share, Edit candidates')
+          PY
+      - name: Commit source drawing only
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add design/proposals/audit-revisions/r02-photo-detail-actions-p12.svg
+          if ! git diff --cached --quiet; then
+            git commit -m "design: source-linked photographic photo detail task actions"
+            git push origin HEAD:"${GITHUB_REF_NAME}"
+          fi
+      - uses: actions/upload-artifact@v4
+        with:
+          name: glimpse-r02-photo-detail-${{ github.sha }}
+          path: /tmp/glimpse-r02-photo-detail/
+          retention-days: 14

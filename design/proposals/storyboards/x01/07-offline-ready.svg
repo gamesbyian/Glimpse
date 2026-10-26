@@ -10,7 +10,7 @@
 <path d="M 30 59 L 401 59" stroke="#BCA990" stroke-width="1" fill="none"/>
 <text x="38" y="92" text-anchor="start" font-family="Arial,Helvetica,sans-serif" font-size="22" font-weight="700" fill="#153F46">Glimpse</text>
 <text x="38" y="125" text-anchor="start" font-family="Arial,Helvetica,sans-serif" font-size="23" font-weight="700" fill="#153F46">Rainbows</text>
-<text x="38" y="151" text-anchor="start" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="400" fill="#667975">20 local images · airplane-mode example</text>
+<text x="38" y="151" text-anchor="start" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="400" fill="#445851">20 local images · airplane-mode example</text>
 <clipPath id="clip-50-206"><rect x="50" y="206" width="140" height="196" rx="12"/></clipPath>
 <g clip-path="url(#clip-50-206)"><use href="#fixture2" transform="translate(50 206) scale(0.2917 0.2722)"/></g>
 <rect x="50" y="206" width="140" height="196" rx="12" fill="none" stroke="#B8A78E" stroke-width="1"/>
@@ -18,7 +18,7 @@
 <text x="64" y="390" text-anchor="start" font-family="Arial,Helvetica,sans-serif" font-size="11" font-weight="650" fill="#153F46">LOCAL COPY</text>
 <rect x="44" y="426" width="333" height="107" rx="13" fill="#E9E0F5" stroke="none" stroke-width="1"/>
 <text x="58" y="455" text-anchor="start" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="700" fill="#153F46">Available offline</text>
-<text x="58" y="482" text-anchor="start" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="400" fill="#667975">20 local images · airplane-mode example</text>
+<text x="58" y="482" text-anchor="start" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="400" fill="#445851">20 local images · airplane-mode example</text>
 <clipPath id="clip-217-206"><rect x="217" y="206" width="140" height="196" rx="12"/></clipPath>
 <g clip-path="url(#clip-217-206)"><use href="#fixture3" transform="translate(217 206) scale(0.2917 0.2722)"/></g>
 <rect x="217" y="206" width="140" height="196" rx="12" fill="none" stroke="#B8A78E" stroke-width="1"/>
@@ -27,10 +27,10 @@
 <rect x="48" y="654" width="324" height="42" rx="17" fill="#1D5960" stroke="#1D5960" stroke-width="1"/>
 <text x="210" y="681" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="650" fill="#FFFFFF">Preview image</text>
 <path d="M 27 822 L 405 822" stroke="#BCA990" stroke-width="1" fill="none"/>
-<text x="36" y="851" text-anchor="start" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="600" fill="#667975">Home</text>
-<text x="133" y="851" text-anchor="start" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="600" fill="#667975">Discover</text>
-<text x="230" y="851" text-anchor="start" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="600" fill="#667975">Collections</text>
-<text x="327" y="851" text-anchor="start" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="600" fill="#667975">Automation</text>
+<text x="36" y="851" text-anchor="start" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="600" fill="#445851">Home</text>
+<text x="133" y="851" text-anchor="start" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="600" fill="#445851">Discover</text>
+<text x="230" y="851" text-anchor="start" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="600" fill="#445851">Collections</text>
+<text x="327" y="851" text-anchor="start" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="600" fill="#445851">Automation</text>
 <text x="38" y="894" text-anchor="start" font-family="Arial,Helvetica,sans-serif" font-size="11" font-weight="650" fill="#667975">DRAFT STORYBOARD · X01 / offline-ready</text>
 <rect x="439" y="14" width="707" height="890" rx="18" fill="#FCF9F3" stroke="#C4B7A4" stroke-width="2"/>
 <text x="466" y="53" text-anchor="start" font-family="Arial,Helvetica,sans-serif" font-size="24" font-weight="700" fill="#153F46">X01 · Google Photos → durable import</text>

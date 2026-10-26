@@ -5,7 +5,7 @@
 <text x="348" y="43" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="550" fill="#667975">● ▰</text>
 <path d="M31 57 H400" stroke="#C4B7A4"/>
 <text x="37" y="95" font-family="Arial,Helvetica,sans-serif" font-size="28" font-weight="700" fill="#153F46">Glimpse</text>
-<text x="39" y="130" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="550" fill="#667975">System insets and navigation</text>
+<text x="39" y="130" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="550" fill="#445851">System insets and navigation</text>
 <rect x="42" y="174" width="340" height="305" rx="12" fill="#161A27" stroke="none" stroke-width="1"/>
 <path d="M55.6 210.6 Q198.4 177.05 368.4 235" stroke="#EE4640" stroke-width="14.335" fill="none" stroke-linecap="round"/>
 <path d="M55.6 259.4 Q198.4 228.9 368.4 280.75" stroke="#F0AF38" stroke-width="14.335" fill="none" stroke-linecap="round"/>
@@ -61,9 +61,9 @@
 <rect x="22" y="801" width="383" height="88" fill="none" stroke="#E8876C" stroke-width="3"/><rect x="21" y="14" width="384" height="43" fill="none" stroke="#E8876C" stroke-width="3"/>
 <text x="45" y="783" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="700" fill="#153F46">Avoid gesture navigation overlap</text>
 <path d="M30 823 H402" stroke="#C4B7A4"/>
-<text x="39" y="851" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="500" fill="#667975">Home</text>
+<text x="39" y="851" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="500" fill="#445851">Home</text>
 <text x="134" y="851" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="500" fill="#667975">Discover</text>
-<text x="229" y="851" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="500" fill="#667975">Collections</text>
+<text x="229" y="851" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="500" fill="#445851">Collections</text>
 <text x="324" y="851" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="500" fill="#667975">Automation</text>
 <rect x="182" y="874" width="70" height="5" rx="4" fill="#153F46" stroke="none" stroke-width="1"/>
 <rect x="439" y="14" width="706" height="890" rx="18" fill="#FFFCF6" stroke="#C4B7A4" stroke-width="1"/>

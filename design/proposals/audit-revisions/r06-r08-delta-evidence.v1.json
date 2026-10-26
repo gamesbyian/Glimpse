@@ -1,0 +1,182 @@
+{
+  "schemaVersion": 1,
+  "status": "DRAFT_SOURCE_SHA_MATCHED_OPTICAL_REVIEWED_NOT_NATIVE_OR_OWNER_APPROVED",
+  "sourceSpec": "docs/planning/AUDIT-CANDIDATE-C-SHARE-SCHEDULE-RECOVERY.md",
+  "auditBaseline": {
+    "pass": 18,
+    "issue": 8,
+    "unverified": 34,
+    "changedScores": 0
+  },
+  "notes": [
+    "Five unique missing decision screens, existing shared states explicitly reused",
+    "No native source/app modification; 401x890 crop is intended at x=15,y=14",
+    "Photo-bearing R02 reference remains the photographic authority; these recovery/status screens are non-photo UI states",
+    "Independent 401×890 raster review complete for five exact current source hashes; no Android or owner approval"
+  ],
+  "scenarios": [
+    {
+      "id": "R06-dismissed",
+      "source": "design/proposals/audit-revisions/r06-share-dismissed.svg",
+      "before": "design/proposals/audit-revisions/r02-return-dismiss.svg",
+      "questions": [
+        "GUX-16",
+        "GUX-17"
+      ],
+      "phoneCrop": {
+        "x": 15,
+        "y": 14,
+        "width": 401,
+        "height": 890
+      },
+      "illustratedInDraft": true,
+      "sourceReadbackChecked": true,
+      "opticallyReviewedFromExactSourceSHA": true,
+      "verifiedOnAndroid": false,
+      "ownerApprovedExactSourceSHA": false,
+      "opticalEvidence": {
+        "review": "docs/design/R06-R08-OPTICAL-INSPECTION-2026-10-23.md",
+        "gitBlobSHA1": "e3acbb13e4111cad1ab4d26ad6d09bc6ca9fc160",
+        "sourceSHA256": "ff4b900b877c7136edd6746fbfbd1dd9dad314b66bc122b67efb4082b7a282e4",
+        "phonePNG_SHA256": "202001fadffc83bff04b8de488ccc436f799d19da0cc18e28b72999d0bb2a539",
+        "outputSize": [
+          401,
+          890
+        ],
+        "renderer": "CairoSVG 2.8.2 + Pillow 12.3.0",
+        "reviewMethod": "Rendered actual 1160×920 at native dimensions, cropped 15,14–416,904, directly viewed five-panel actual PNG and checked text fit/semantics after correction"
+      }
+    },
+    {
+      "id": "R07-battery-restricted",
+      "source": "design/proposals/audit-revisions/r07-battery-restricted.svg",
+      "before": "design/proposals/audit-revisions/../state-refinements/automation-delayed.svg",
+      "questions": [
+        "GUX-26",
+        "GUX-27",
+        "GUX-28"
+      ],
+      "phoneCrop": {
+        "x": 15,
+        "y": 14,
+        "width": 401,
+        "height": 890
+      },
+      "illustratedInDraft": true,
+      "sourceReadbackChecked": true,
+      "opticallyReviewedFromExactSourceSHA": true,
+      "verifiedOnAndroid": false,
+      "ownerApprovedExactSourceSHA": false,
+      "opticalEvidence": {
+        "review": "docs/design/R06-R08-OPTICAL-INSPECTION-2026-10-23.md",
+        "gitBlobSHA1": "d014b73e01e81e523421474d6317af0bfbf765cf",
+        "sourceSHA256": "203cd7a5ab8938fea15c5f2e53db755a00c4ba9a49af1fd3fc74fdcd6cc4856a",
+        "phonePNG_SHA256": "6b35c52d9bbce569d3808b5f7f7547f87922eeba034cd91d8174ca506bd4635b",
+        "outputSize": [
+          401,
+          890
+        ],
+        "renderer": "CairoSVG 2.8.2 + Pillow 12.3.0",
+        "reviewMethod": "Rendered actual 1160×920 at native dimensions, cropped 15,14–416,904, directly viewed five-panel actual PNG and checked text fit/semantics after correction"
+      }
+    },
+    {
+      "id": "R07-outcome-unknown",
+      "source": "design/proposals/audit-revisions/r07-unknown-after-attempt.svg",
+      "before": "design/proposals/audit-revisions/../state-refinements/activity-uncertain.svg",
+      "questions": [
+        "GUX-27",
+        "GUX-29"
+      ],
+      "phoneCrop": {
+        "x": 15,
+        "y": 14,
+        "width": 401,
+        "height": 890
+      },
+      "illustratedInDraft": true,
+      "sourceReadbackChecked": true,
+      "opticallyReviewedFromExactSourceSHA": true,
+      "verifiedOnAndroid": false,
+      "ownerApprovedExactSourceSHA": false,
+      "opticalEvidence": {
+        "review": "docs/design/R06-R08-OPTICAL-INSPECTION-2026-10-23.md",
+        "gitBlobSHA1": "e9c57d448db2af2e5a274114848ea94c7152fb6e",
+        "sourceSHA256": "8eae212323629804960cf6ab753d46781830f6debdafe45f9d20b620691e4ad7",
+        "phonePNG_SHA256": "5062fba57f1fa3517a400f0313a848d70d058a3a6c323faa0d053318bd8f10df",
+        "outputSize": [
+          401,
+          890
+        ],
+        "renderer": "CairoSVG 2.8.2 + Pillow 12.3.0",
+        "reviewMethod": "Rendered actual 1160×920 at native dimensions, cropped 15,14–416,904, directly viewed five-panel actual PNG and checked text fit/semantics after correction"
+      }
+    },
+    {
+      "id": "R08-revoked",
+      "source": "design/proposals/audit-revisions/r08-source-revoked.svg",
+      "before": "design/proposals/audit-revisions/../state-refinements/source-detail-offline.svg",
+      "questions": [
+        "GUX-41",
+        "GUX-43",
+        "GUX-44"
+      ],
+      "phoneCrop": {
+        "x": 15,
+        "y": 14,
+        "width": 401,
+        "height": 890
+      },
+      "illustratedInDraft": true,
+      "sourceReadbackChecked": true,
+      "opticallyReviewedFromExactSourceSHA": true,
+      "verifiedOnAndroid": false,
+      "ownerApprovedExactSourceSHA": false,
+      "opticalEvidence": {
+        "review": "docs/design/R06-R08-OPTICAL-INSPECTION-2026-10-23.md",
+        "gitBlobSHA1": "112021a04098d6bc45be44ddac7061e174c15bce",
+        "sourceSHA256": "fbc6cf0bcf52d5d5889cc951545ff776fcd630ce8b3284cc118819dcb4498fc8",
+        "phonePNG_SHA256": "3306242e1aadf020b0305e7f43232644a048ebbf04b70477204cd352e8a1114c",
+        "outputSize": [
+          401,
+          890
+        ],
+        "renderer": "CairoSVG 2.8.2 + Pillow 12.3.0",
+        "reviewMethod": "Rendered actual 1160×920 at native dimensions, cropped 15,14–416,904, directly viewed five-panel actual PNG and checked text fit/semantics after correction"
+      }
+    },
+    {
+      "id": "R08-restore-conflict",
+      "source": "design/proposals/audit-revisions/r08-restore-conflict-choice.svg",
+      "before": "design/proposals/audit-revisions/../state-refinements/backup-and-restore-restore.svg",
+      "questions": [
+        "GUX-46",
+        "GUX-47",
+        "GUX-50"
+      ],
+      "phoneCrop": {
+        "x": 15,
+        "y": 14,
+        "width": 401,
+        "height": 890
+      },
+      "illustratedInDraft": true,
+      "sourceReadbackChecked": true,
+      "opticallyReviewedFromExactSourceSHA": true,
+      "verifiedOnAndroid": false,
+      "ownerApprovedExactSourceSHA": false,
+      "opticalEvidence": {
+        "review": "docs/design/R06-R08-OPTICAL-INSPECTION-2026-10-23.md",
+        "gitBlobSHA1": "9e813b14f71dd9af03952cc611b644f60c6e7295",
+        "sourceSHA256": "8be4e307620c0129ee402976f1af19b0284c830dad7dd433be6f956d18d9f438",
+        "phonePNG_SHA256": "3167f7b5be17d4042c12b664958a3de289564b9943ce9f1d03663fc3024d5997",
+        "outputSize": [
+          401,
+          890
+        ],
+        "renderer": "CairoSVG 2.8.2 + Pillow 12.3.0",
+        "reviewMethod": "Rendered actual 1160×920 at native dimensions, cropped 15,14–416,904, directly viewed five-panel actual PNG and checked text fit/semantics after correction"
+      }
+    }
+  ]
+}

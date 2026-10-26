@@ -1,0 +1,82 @@
+name: Glimpse R03 | repair photographic p12 truth
+# Verify user-facing Home acknowledgement copy after photo identity reconciliation
+# Independent second scoped execution of exact-fixture restoration
+on:
+  push:
+    branches: [agent/visual-state-reconciliation-20261023]
+    paths: [.github/workflows/glimpse-r03-photo-truth.yml]
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: glimpse-r03-photo-truth-v2-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  source-and-pixel-identity:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Replace p12 vector impostor with exact Reel JPEG, preserve OS truth
+        run: |
+          python3 scripts/build-r03-photographic-truth.py --write
+          python3 scripts/build-r03-photographic-truth.py
+      - name: Verify decoded real fixture identities and render phone crops
+        run: |
+          python3 -m pip install --quiet cairosvg pillow
+          python3 - <<'PY'
+          import base64,hashlib,json,os,re
+          from pathlib import Path
+          from xml.etree import ElementTree as ET
+          from cairosvg import svg2png
+          from PIL import Image
+          out=Path('/tmp/glimpse-r03-photo-truth');out.mkdir(parents=True,exist_ok=True)
+          src=Path('design/proposals/audit-revisions')
+          baseline=(src/'r01-photo-rest-22.svg').read_text()
+          match=re.search(r'<image id="fixture1"[^>]+href="data:image/jpeg;base64,([^"]+)"',baseline)
+          assert match
+          actual=hashlib.sha256(base64.b64decode(match.group(1))).hexdigest()
+          entries=[]
+          for stem,status in (('r03-preview-not-applied','unchanged'),
+                              ('r03-unknown-after-request','unknown')):
+            file=src/(stem+'.svg')
+            raw=file.read_bytes()
+            root=ET.fromstring(raw)
+            data=json.loads(root.find('{http://www.w3.org/2000/svg}metadata').text)
+            assert data['selectedPhotoJPEGFixtureSHA256']==actual
+            assert data['selectedAssetId']=='p12'
+            assert data['lastConfirmedAppliedAssetId']=='p04'
+            assert data['appliedStatus']==status
+            assert data['ownerApproved'] is False
+            svg2png(bytestring=raw,write_to=str(out/(stem+'-full.png')),
+                    output_width=1160,output_height=920)
+            with Image.open(out/(stem+'-full.png')) as img:
+              phone=img.crop((15,14,416,904)).convert('RGB')
+              assert phone.size==(401,890)
+              assert len(phone.getcolors(401*890) or [])>100
+              phone.save(out/(stem+'-phone.png'))
+            entries.append({'name':stem,'sourceSHA256':hashlib.sha256(raw).hexdigest(),
+              'jpegFixtureSHA256':actual})
+          (out/'index.json').write_text(json.dumps({
+            'runId':os.environ['GITHUB_RUN_ID'],'sourceCommit':os.environ['GITHUB_SHA'],
+            'independentOpticalReview':False,'nativeOrOwnerApproval':False,'frames':entries
+          },indent=2)+'\n')
+          print('PASS: R03 p12 JPEG matches Reel exactly, state truth preserved')
+          PY
+      - name: Commit the two repaired semantic draft sources
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add design/proposals/audit-revisions/r03-preview-not-applied.svg design/proposals/audit-revisions/r03-unknown-after-request.svg
+          if ! git diff --cached --quiet; then
+            git commit -m "design: align R03 p12 displayed photo with Reel/Grid identity"
+            git push origin HEAD:"${GITHUB_REF_NAME}"
+          fi
+      - uses: actions/upload-artifact@v4
+        with:
+          name: glimpse-r03-p12-photographic-repair-${{ github.sha }}
+          path: /tmp/glimpse-r03-photo-truth/
+          retention-days: 14

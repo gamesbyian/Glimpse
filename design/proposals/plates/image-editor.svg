@@ -1,36 +1,50 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1160" height="920" viewBox="0 0 1160 920" role="img" aria-label="Proposed Glimpse image-editor annotated layout, default state, not yet approved"><rect width="1160" height="920" fill="#E9E3D9"/>
-<rect x="15" y="14" width="401" height="890" rx="22" fill="#F6F0E6" stroke="#C4B7A4" stroke-width="2"/>
-<text x="40" y="44" fill="#153F46" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="650" text-anchor="start">9:41</text>
-<text x="391" y="44" fill="#667975" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="400" text-anchor="end">● ▰ ▴</text>
-<path d="M31 56 L400 56" stroke="#C8B7A1" stroke-width="1" fill="none"/>
-<text x="36" y="99" fill="#153F46" font-family="Arial,Helvetica,sans-serif" font-size="32" font-weight="700" text-anchor="start">Edit composition</text>
-<text x="38" y="125" fill="#667975" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="400" text-anchor="start">Original stays unchanged</text>
-<rect x="43" y="159" width="339" height="294" rx="13" fill="#DFB087" stroke="none" stroke-width="1"/>
-<clipPath id="photo-43-159"><rect x="43" y="159" width="339" height="294" rx="13"/></clipPath><g clip-path="url(#photo-43-159)"><rect x="43" y="159" width="339" height="294" fill="#EDB783"/><circle cx="304.03000000000003" cy="241.32" r="47.04" fill="#F8DEAA"/><path d="M43 382.44 Q120.97 223.68 212.5 364.79999999999995 T382 306 L382 453 H43Z" fill="#447983"/><path d="M43 429.48 Q117.58 317.76 212.5 414.78 T382 367.74 L382 453 H43Z" fill="#254D62"/></g>
-<rect x="52" y="425" width="150" height="21" rx="7" fill="#FFFCF6" stroke="none" stroke-width="1"/>
-<text x="61" y="440" fill="#153F46" font-family="Arial,Helvetica,sans-serif" font-size="11" font-weight="600" text-anchor="start">CROP PREVIEW</text>
-<rect x="104" y="214" width="215" height="175" fill="none" stroke="#FFF9EC" stroke-dasharray="9 7" stroke-width="4"/>
-<rect x="45" y="478" width="155" height="31" rx="12" fill="#E9E0F5" stroke="#E9E0F5" stroke-width="1"/>
-<text x="122.5" y="499" fill="#153F46" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="600" text-anchor="middle">Home crop</text>
-<rect x="210" y="478" width="172" height="31" rx="12" fill="#FFFCF6" stroke="#C8B7A1" stroke-width="1"/>
-<text x="296" y="499" fill="#153F46" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="600" text-anchor="middle">Lock crop</text>
-<rect x="41" y="536" width="334" height="105" rx="13" fill="#FFFCF6" stroke="#C8B7A1" stroke-width="1"/>
-<text x="55" y="562" fill="#153F46" font-family="Arial,Helvetica,sans-serif" font-size="17" font-weight="650" text-anchor="start">Reversible changes</text>
-<text x="55" y="584" fill="#667975" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="400" text-anchor="start">Position · Zoom · Blur extension</text>
-<text x="55" y="624" fill="#1D5960" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="650" text-anchor="start">Reset / Undo</text>
-<rect x="43" y="680" width="337" height="42" rx="18" fill="#1D5960" stroke="#1D5960" stroke-width="1"/>
-<text x="211.5" y="707" fill="#FFFFFF" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="650" text-anchor="middle">Save without applying</text>
-<rect x="24" y="823" width="384" height="56" rx="0" fill="#FFFCF6" stroke="none" stroke-width="1"/>
-<path d="M24 823 L408 823" stroke="#CEBC9F" stroke-width="1" fill="none"/>
-<text x="71" y="857" fill="#667975" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="600" text-anchor="middle">Home</text>
-<text x="167" y="857" fill="#667975" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="600" text-anchor="middle">Discover</text>
-<text x="263" y="857" fill="#667975" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="600" text-anchor="middle">Collections</text>
-<text x="359" y="857" fill="#667975" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="600" text-anchor="middle">Automation</text>
-<text x="35" y="897" fill="#667975" font-family="Arial,Helvetica,sans-serif" font-size="11" font-weight="650" text-anchor="start">PROPOSAL / NOT APPROVED</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="1160" height="920" viewBox="0 0 1160 920" role="img" aria-label="Proposed Glimpse image-editor annotated layout, default state, not yet approved"><rect x="0" y="0" width="1160" height="920" rx="0" fill="#E9E3D9" stroke="none"/>
+<rect x="15" y="14" width="401" height="890" rx="22" fill="#F6F0E6" stroke="#C4B7A4"/>
+<text x="39" y="44" fill="#153F46" font-size="14" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="start">9:41</text>
+<text x="390" y="44" fill="#566861" font-size="13" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="end">●  ●  ●</text>
+<path d="M31 56 L400 56" fill="none" stroke="#C8B7A1"/>
+<path d="M31 146 L400 146" fill="none" stroke="#C8B7A1"/>
+<rect x="30" y="64" width="48" height="48" rx="24" fill="#FFFCF6" stroke="#C8B7A1"/>
+<text x="54" y="95" fill="#153F46" font-size="29" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="middle">‹</text>
+<text x="86" y="99" fill="#153F46" font-size="28" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="start">Edit a copy</text>
+<text x="36" y="132" fill="#566861" font-size="14" font-weight="500" font-family="Arial,Helvetica,sans-serif" text-anchor="start">Preserve the original photograph</text>
+<rect x="35" y="160" width="362" height="250" rx="17" fill="#EDBE90" stroke="none"/>
+<circle cx="321" cy="233" r="43" fill="#F8DEA9"/>
+<path d="M35 335 Q130 196 236 338 T397 286 V410 H35Z" fill="#5C897B"/>
+<path d="M35 380 Q150 258 240 368 T397 320 V410 H35Z" fill="#245269"/>
+<rect x="49" y="173" width="190" height="26" rx="10" fill="#FFFCF6" stroke="none"/>
+<text x="58" y="191" fill="#153F46" font-size="12" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="start">ILLUSTRATIVE SAMPLE</text>
+<text x="36" y="465" fill="#153F46" font-size="20" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="start">Edit controls</text>
+<rect x="35" y="482" width="172" height="49" rx="22" fill="#1D5960" stroke="none"/>
+<rect x="217" y="482" width="180" height="49" rx="22" fill="#FFFCF6" stroke="#C8B7A1"/>
+<text x="121" y="512" fill="#FFFFFF" font-size="14" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="middle">Crop</text>
+<text x="307" y="512" fill="#153F46" font-size="14" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="middle">Rotate</text>
+<rect x="35" y="562" width="362" height="66" rx="14" fill="#FFFCF6" stroke="#C8B7A1"/>
+<rect x="47" y="575" width="42" height="40" rx="12" fill="#DAEDE1" stroke="none"/>
+<text x="68" y="601" fill="#1D5960" font-size="17" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="middle">F</text>
+<text x="103" y="588" fill="#153F46" font-size="16" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="start">Crop bounds</text>
+<text x="103" y="610" fill="#566861" font-size="13" font-weight="500" font-family="Arial,Helvetica,sans-serif" text-anchor="start">Portrait fit · preview only</text>
+<text x="382" y="601" fill="#1D5960" font-size="23" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="middle">›</text>
+<rect x="35" y="651" width="362" height="66" rx="13" fill="#F5E6D1" stroke="none"/>
+<rect x="47" y="661" width="4" height="46" rx="2" fill="#1D5960" stroke="none"/>
+<text x="61" y="677" fill="#153F46" font-size="15" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="start">Saving does not apply wallpaper</text>
+<text x="61" y="699" fill="#445851" font-size="13" font-weight="500" font-family="Arial,Helvetica,sans-serif" text-anchor="start">New copy receives a distinct ID.</text>
+<rect x="35" y="740" width="173" height="52" rx="16" fill="#1D5960" stroke="none"/>
+<rect x="218" y="740" width="179" height="52" rx="16" fill="#FFFCF6" stroke="#C8B7A1"/>
+<text x="121" y="773" fill="#FFFFFF" font-size="14" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="middle">Save new copy</text>
+<text x="307" y="773" fill="#153F46" font-size="14" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="middle">Cancel</text>
+<rect x="24" y="823" width="384" height="56" rx="0" fill="#FFFCF6" stroke="none"/>
+<path d="M24 823 L408 823" fill="none" stroke="#C8B7A1"/>
+<text x="71" y="856" fill="#566861" font-size="13" font-weight="600" font-family="Arial,Helvetica,sans-serif" text-anchor="middle">Home</text>
+<text x="167" y="856" fill="#566861" font-size="13" font-weight="600" font-family="Arial,Helvetica,sans-serif" text-anchor="middle">Discover</text>
+<rect x="223" y="829" width="80" height="40" rx="13" fill="#DAEDE1" stroke="none"/>
+<text x="263" y="856" fill="#1D5960" font-size="13" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="middle">Collections</text>
+<text x="359" y="856" fill="#566861" font-size="12" font-weight="600" font-family="Arial,Helvetica,sans-serif" text-anchor="middle">Automation</text>
+<text x="35" y="898" fill="#566861" font-size="10" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="start">PROPOSAL / NOT APPROVED</text>
 <rect x="439" y="14" width="707" height="890" rx="17" fill="#FCF9F3" stroke="#C4B7A4" stroke-width="2"/>
-<text x="462" y="47" fill="#153F46" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="700" text-anchor="start">VISUAL COVERAGE PLATE</text>
+<text x="462" y="47" fill="#153F46" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="700" text-anchor="start">PRIMARY SURFACE · PRODUCTION A</text>
 <text x="462" y="78" fill="#1D5960" font-family="Arial,Helvetica,sans-serif" font-size="22" font-weight="700" text-anchor="start">IMAGE-EDITOR · default</text>
-<text x="462" y="106" fill="#667975" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="400" text-anchor="start">Coherent screen-family schematic; not a user-approved screenshot</text>
+<text x="462" y="106" fill="#667975" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="400" text-anchor="start">Editable task-driven proposal; native and owner review pending</text>
 <path d="M453 124 L1130 124" stroke="#C8B7A1" stroke-width="1" fill="none"/>
 <text x="463" y="151" fill="#1D5960" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="700" text-anchor="start">REQUIRED ON THIS SURFACE</text>
 <text x="463" y="177" fill="#153F46" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="400" text-anchor="start">• source- preserved</text>

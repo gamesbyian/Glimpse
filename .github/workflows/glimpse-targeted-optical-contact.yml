@@ -1,0 +1,87 @@
+name: Glimpse | targeted source-hashed optical review contact sheets
+# Second optical contact capture after source corrections.
+# Refresh R03 p12 photographic proof after human-facing acknowledgement copy repair
+on:
+  push:
+    branches: [agent/visual-state-reconciliation-20261023]
+    paths: [.github/workflows/glimpse-targeted-optical-contact.yml]
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: glimpse-optical-contact-revised-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  contact:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Render 18 phone-size source-hashed comparison cases
+        run: |
+          python3 -m pip install --quiet cairosvg pillow
+          python3 - <<'PY'
+          import hashlib,json,os
+          from pathlib import Path
+          from io import BytesIO
+          from PIL import Image,ImageDraw,ImageFont
+          from cairosvg import svg2png
+          path=Path('design/proposals/audit-revisions')
+          output=Path('design/reviews/targeted-2026-10-24')
+          output.mkdir(parents=True,exist_ok=True)
+          rows=[
+            ('finite',["r01-photo-three-3","r01-photo-five-5","r01-photo-sixty-60"]),
+            ('edge-and-scale',["r01-photo-first-22","r01-photo-home-crescent","r01-photo-large-type"]),
+            ('truth-and-return',["r03-home-last-ack-p04","r04-import-offline-17-of-22","r08-skip-return-rainbows"]),
+            ('empty-single-unknown',["r01-photo-empty-0","r01-photo-single-1","r03-unknown-after-request"]),
+            ('motion',["r01-photo-tap-p13-pressed","r01-photo-tap-p13-settled","r01-photo-drag-36"]),
+            ('p12-truth',["r01-photo-rest-22","r03-preview-not-applied","r03-unknown-after-request"])
+          ]
+          manifest={'sourceCommit':os.environ['GITHUB_SHA'],
+                    'runId':os.environ['GITHUB_RUN_ID'],
+                    'scope':'source-derived images, not Android screenshots or owner approvals',
+                    'pixelReview':'not-yet-independently-viewed',
+                    'groups':[]}
+          font=ImageFont.truetype('/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf',15)
+          for group,names in rows:
+            sheet=Image.new('RGB',(1263,982),'#f2ece4')
+            draw=ImageDraw.Draw(sheet)
+            details=[]
+            for i,name in enumerate(names):
+              file=path/(name+'.svg')
+              source=file.read_bytes()
+              raw=svg2png(bytestring=source,output_width=1160,output_height=920)
+              with Image.open(BytesIO(raw)) as im:
+                phone=im.crop((15,14,416,904)).convert('RGB')
+                assert phone.size==(401,890)
+                assert len(phone.getcolors(401*890) or [])>100
+                sheet.paste(phone,(i*421+10,66))
+              sha=hashlib.sha256(source).hexdigest()
+              draw.text((i*421+12,10),name,fill='#153f46',font=font)
+              draw.text((i*421+12,38),'SVG SHA256 '+sha[:15],fill='#944b3e',font=font)
+              details.append({'source':str(file),'sourceSHA256':sha})
+            jpeg=output/(group+'.jpg')
+            sheet.save(jpeg,quality=88,optimize=True,subsampling=0)
+            manifest['groups'].append({'id':group,'image':jpeg.name,
+                'imageSHA256':hashlib.sha256(jpeg.read_bytes()).hexdigest(),
+                'phones':details,'atNaturalPixelSize':True})
+          (output/'source-ledger.json').write_text(json.dumps(manifest,indent=2)+'\n')
+          print('PASS: six comparison sheets, eighteen exact 401x890 phone samples')
+          PY
+      - name: Commit limited-size JPEG review sheets and exact ledger
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add design/reviews/targeted-2026-10-24/
+          if ! git diff --cached --quiet; then
+            git commit -m "design: preserve 12 native-size draft source optical review images"
+            git push origin HEAD:"${GITHUB_REF_NAME}"
+          fi
+      - uses: actions/upload-artifact@v4
+        with:
+          name: glimpse-eighteen-phone-optical-contact-${{ github.sha }}
+          path: design/reviews/targeted-2026-10-24/
+          retention-days: 14

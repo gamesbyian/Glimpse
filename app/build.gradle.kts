@@ -21,9 +21,10 @@ android {
         compose = true
     }
 
-    // Fixed research artwork in debug APK only, not user photo collections.
+    // Verified Commons CC0 photo sources for synthetic debug-only image records.
+    // Legacy research art1..art6 rights are unknown: never package those.
     sourceSets.getByName("debug").assets.srcDir(
-        "../design/research/reel-layout/fixtures/source"
+        "../design/assets/cc0"
     )
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
@@ -59,4 +60,9 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.10.2")
 
     testImplementation("junit:junit:4.13.2")
+
+    // Production C: test real Room + private Photo Picker snapshots on API34 emulator.
+    androidTestImplementation("androidx.test:runner:1.7.0")
+    androidTestImplementation("androidx.test.ext:junit:1.3.0")
+    androidTestImplementation("androidx.test:core:1.7.0")
 }

@@ -1,16 +1,56 @@
-# Glimpse mobile visual review atlas
+# Glimpse draft visual evidence atlas
 
-Open `design/atlas/index.html` from a locally served repository checkout:
+**2026-10-24 checkpoint · Draft PR #6. Every design here remains unapproved.** This is an offline-browser reference system, not an Android screenshot gallery or proof of real-world UX acceptance.
+
+To browse from a checkout:
 
 ```sh
 python3 -m http.server 8000
-# Visit http://localhost:8000/design/atlas/
+# Open http://localhost:8000/design/atlas/whole-set-evidence-atlas.html
 ```
 
-Alternatively, download and unzip the `glimpse-visual-proposals` artifact from the **Validate Glimpse proposal-reference structure** GitHub Action. Open `design/atlas/index.html` in a browser. The standalone artifact retains image paths and works without the internet, except GitHub source links.
+## Which viewer should I open?
 
-The **original-screen tab contains 66 references**: 24 original screens, eight critical reel states, 34 support-state variants, searchable by ID, route, workflow or title. The complete image and a copyable reference are available from every card. This is a **draft design atlas** and does not claim the images have been approved, inspected on a device, or implemented in the native app. See [audit](../../docs/design/reference-gap-audit.md).
+| Viewer | Purpose | Evidence boundary |
+| --- | --- | --- |
+| [Whole-product review candidate](whole-product-review-selection.html) | 24 current review choices, 34 support variants, 23 journey links and eight unresolved owner questions | Editable selection, not final approval; [source-hashed draft snapshot](whole-product-review-snapshot.v1.json) |
+| [Whole-set evidence atlas](whole-set-evidence-atlas.html) | All **276 unique currently checked-in draft SVGs**, searchable with a two-phone side-by-side comparison tray | Source discovery and browser SVG rendering, **not** 271 optical passes or one approved design |
+| [39-source preliminary preferred review spine](canonical-review-spine.html) | Human task-order journey through the intended visual language | Incomplete selection, not final specification |
+| [Original reference atlas](index.html) | 66 original designs: 24 core, 8 critical reel, 34 support states | Original design families; not extra additions |
+| [P0 connected storyboard viewer](storyboards.html) | 82 P0 frames X01–X12 | Interaction drawings, not working Android flows |
+| [Named-state contact sheet](core-state-contact-sheet.html) | The **34 originally missing named states**, now 34/34 structurally pictured with exact source paths | Phone-side same-surface presence only, not optical/human validation |
+| [Representative flow comparisons](representative-flows.html) | 60 selected entries linking high-risk transitions | Useful visual reconnaissance, not complete audit |
 
-The companion [**connected storyboard viewer**](storyboards.html) includes **82 new supplementary P0 frames** (X01–X12), with per-journey timeline, source paths and frame navigation. The offline CI ZIP includes both viewers, the storyboard JSON coverage manifest and the public research fixtures needed by existing SVGs. See the [P0 production record](../../docs/design/proposal-mockup-coverage-gaps-2026-10-23.md); these remain proposals, not user-approved or runtime-captured UI.
+The full count is **203 baseline** (66 original + 82 P0 + 55 P1), plus **25 separately classified refinements**, plus **47 audit-driven revision studies**, plus **one Collections candidate** after the N=3/5/60 photographic additions. The source inventory is computed rather than manually transcribed: [SHA-256 index](whole-set-evidence-index.json). The 39-source preferred tour and 34 state names are **views into** those sources, not extra assets to add to 276.
 
-**Maintenance:** entries are generated from the two JSON coverage manifests; regenerate the file when manifests change. A single canonical path is used in documentation, copied references and GitHub. Keep the separate Android emulator screenshot atlas distinct: those are actual implementation screenshots, not design targets.
+[All 56 audit-revision scenarios](../proposals/audit-scenario-evidence.v1.json) are now mapped to source evidence as **56 directly pictured, 0 partial, 0 missing-specific**. The formerly missing-specific 320×640 compact-phone case is now illustrated with the exact R01 photographic paper-wheel geometry; its [focused CI proof](https://github.com/gamesbyian/Glimpse/actions/runs/40070030469) generated real pixels, but no independent optical or Android acceptance is implied. These numbers describe *illustration availability*, not native correctness, optical acceptance or progress against the 60-question scored UX audit. The 60-question cycle A scores stay **18 source-level PASS / 8 ISSUE / 34 UNVERIFIED**.
+
+## Rebuild and verify without expensive emulator CI
+
+```sh
+python3 scripts/validate-visual-spec.py
+python3 scripts/validate-storyboard-coverage.py
+python3 scripts/validate-core-state-evidence.py
+python3 scripts/validate-storyboard-semantics.py
+python3 scripts/validate-audit-scenario-trace.py
+python3 scripts/build-whole-set-evidence-atlas.py --check
+python3 scripts/validate-whole-product-review-selection.py
+python3 scripts/build-whole-product-review-viewer.py --check
+python3 scripts/build-whole-set-evidence-atlas.py
+```
+
+The new [scoped atlas workflow](../../.github/workflows/glimpse-whole-set-evidence-atlas.yml) validates sources and generates the full atlas and the draft owner-review selection/snapshot only after intentional manifest/generator/workflow changes or a manual dispatch. Every SHA-256 describes its exact SVG source bytes. **Changing a mockup without regenerating the index leaves a valid historical snapshot, not a claim about current HEAD.** Link the source commit and regenerating Actions run when sharing a review packet.
+
+Native optical proof is separate. The [finite N=3/5/60 R01 workflow](../../.github/workflows/glimpse-r01-finite-size-proof.yml) commits editable source and emits 401×890 PNGs. Those automated renders are not individually inspected just because they exist. Other targeted R01, R04, R05 and R06–R08 optical logs distinguish actual agent-visible PNG inspection from mere pixel generation. See [review gates](../../docs/design/LATEST-GENERATION-HUMAN-REVIEW-GATES-2026-10-23.md) and the [running handoff](../../docs/planning/HANDOFF-2026-10-23-VISUAL-RECONCILIATION.md).
+
+**Rule for approval:** the owner explicitly chooses and approves one coherent set of exact SVG versions. Historic alternatives remain identifiable and accessible; neither CI nor inclusion in an atlas promotes them. Real Android screenshots, font-scale/focus measurements, Photo Picker and Sharesheet outcomes, wallpaper targeting, and scheduler behavior require separate evidence.
+
+The [R01 first-item photographic paper-disc candidate](../proposals/audit-revisions/r01-photo-first-22.svg) now complements the finite-last p22 candidate; its [targeted source/raster workflow](https://github.com/gamesbyian/Glimpse/actions/runs/40070370730) succeeded with three genuine filled apertures and two empty leading slots. The new crop still needs independent visual inspection and native navigation tests.
+
+R04 now also includes [a same-surface offline partial-import draft](../proposals/audit-revisions/r04-import-offline-17-of-22.svg): 17 verified local copies usable, five provider items pending, Resume disabled offline, no automatic wallpaper change. [Focused five-state raster run #40070821890](https://github.com/gamesbyian/Glimpse/actions/runs/40070821890) succeeded. Neither the new offline SVG nor its screenshot has been independently visually inspected in this continuation; an actual provider interruption and resume remain untested natively.
+
+**Latest current-generation reconciliation:** [271-source and whole-product review handoff](../../docs/planning/HANDOFF-2026-10-24-WHOLE-PRODUCT-REVIEW.md) records the 56/56 source-illustration coverage and 18 current generation phone crops in [six optical comparison sheets](../reviews/targeted-2026-10-24/), plus the discovered real p12-source inconsistency and focused repair. Human selection, Android runtime and accessibility proof remain separate.
+
+**October 24 support optical refinement:** [all 34 original support variants, before/after visual observations](../../docs/design/SUPPORT-STATE-OPTICAL-REVIEW-2026-10-24.md), [six regenerated directly inspected contact JPEGs and source hashes](../reviews/support-2026-10-24/source-ledger.json), [focused successful CI #40127564296](https://github.com/gamesbyian/Glimpse/actions/runs/40127564296). Thirteen draft sources corrected; no native/human/owner approval. The four key photographic primary action choices remain provisional. The current exact 276-source census replaces older 271-file historical notes above where they conflict.
+
+**24 exact currently selected primary screen optical corpus:** [four source-indexed phone contact sheets](../reviews/primary-2026-10-24/), [all 24 per-source direct visual findings and SHA-256](../../docs/design/PRIMARY-24-OPTICAL-REVIEW-2026-10-24.md), [successful source/raster CI #40128549862](https://github.com/gamesbyian/Glimpse/actions/runs/40128549862). Five edited source plates fix meaningful task-action and truth problems, but no native/user/owner claim follows. The generated selection browser displays exact per-source SHA-256 at each 24+34 card as an independent editorial aid; the JSON snapshot remains authoritative for machine reconciliation.

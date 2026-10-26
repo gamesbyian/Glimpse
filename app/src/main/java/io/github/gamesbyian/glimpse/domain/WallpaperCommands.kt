@@ -2,16 +2,21 @@ package io.github.gamesbyian.glimpse.domain
 
 import android.app.WallpaperManager
 import android.content.Context
-import android.graphics.BitmapFactory
 import androidx.annotation.VisibleForTesting
 import io.github.gamesbyian.glimpse.data.GlimpseDao
 import io.github.gamesbyian.glimpse.data.PhotoRecord
 import io.github.gamesbyian.glimpse.data.RotationRecord
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.CancellationException
+import kotlinx.coroutines.NonCancellable
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 import kotlinx.coroutines.withContext
 import org.json.JSONArray
+import java.io.File
+import java.nio.file.Files
+import java.nio.file.LinkOption
+import java.security.MessageDigest
 
 /**
  * Single serialized side-effect gateway. Browsing never calls this class.
@@ -23,7 +28,14 @@ import org.json.JSONArray
 class WallpaperCommands(
     private val context: Context,
     private val dao: GlimpseDao,
-    private val now: () -> Long = System::currentTimeMillis
+    private val now: () -> Long = System::currentTimeMillis,
+    // Test seam for a throw *at* the OS mutation boundary; production always
+    // invokes the actual Home WallpaperManager API.
+    private val setHomeWallpaper: (android.graphics.Bitmap) -> Int = { bitmap ->
+        WallpaperManager.getInstance(context).setBitmap(
+            bitmap, null, true, WallpaperManager.FLAG_SYSTEM
+        )
+    }
 ) {
     private val mutex = Mutex()
     private val intervalMillis = 5 * 60 * 1000L
@@ -121,13 +133,16 @@ class WallpaperCommands(
             lastAttemptAt = started,
             outcome = "Attempting to apply Home wallpaper"
         ))
+        // Once an irreversible OS call has been entered, even an exception
+        // does not prove that the wallpaper remained unchanged. Preserve the
+        // pending attempt and pause rather than risking a duplicate retry.
+        var osMutationEntered = false
         return try {
             val wallpaperId = withContext(Dispatchers.IO) {
                 val bitmap = decodeForWallpaper(photo)
                 try {
-                    WallpaperManager.getInstance(context).setBitmap(
-                        bitmap, null, true, WallpaperManager.FLAG_SYSTEM
-                    )
+                    osMutationEntered = true
+                    setHomeWallpaper(bitmap)
                 } finally {
                     bitmap.recycle()
                 }
@@ -155,29 +170,72 @@ class WallpaperCommands(
                 "Android acknowledged the Home wallpaper update."
             }
         } catch (failure: Exception) {
-            dao.saveRotation(previous.copy(
-                pendingPhotoId = null,
-                lastAttemptAt = started,
-                nextEligibleAt = if (previous.active) now() + intervalMillis else previous.nextEligibleAt,
-                outcome = "Apply failed: " + failure.javaClass.simpleName
-            ))
-            "Wallpaper application failed. The rotation cursor has not advanced."
+            if (failure is CancellationException) {
+                // A caller can be cancelled even while setBitmap's synchronous
+                // OS call continues. Save a durable *uncertain* transaction in
+                // a non-cancellable context, then propagate cancellation.
+                // This deliberately errs on the safe side if cancellation
+                // happened just before the OS call.
+                withContext(NonCancellable) {
+                    dao.saveRotation(previous.copy(
+                        pendingPhotoId = photo.id,
+                        lastAttemptAt = started,
+                        active = false,
+                        outcome = "Wallpaper outcome uncertain after cancellation; inspect Home wallpaper"
+                    ))
+                }
+                throw failure
+            }
+            if (osMutationEntered) {
+                dao.saveRotation(previous.copy(
+                    pendingPhotoId = photo.id,
+                    lastAttemptAt = started,
+                    active = false,
+                    outcome = "Wallpaper outcome uncertain after OS call: " +
+                        failure.javaClass.simpleName + "; inspect Home wallpaper"
+                ))
+                "Wallpaper outcome uncertain; automatic rotation paused."
+            } else {
+                dao.saveRotation(previous.copy(
+                    pendingPhotoId = null,
+                    lastAttemptAt = started,
+                    active = false,
+                    outcome = "Apply failed before OS call: " +
+                        failure.javaClass.simpleName
+                ))
+                "Wallpaper application failed before Android was called; rotation paused."
+            }
         }
     }
 
     private fun decodeForWallpaper(photo: PhotoRecord): android.graphics.Bitmap {
-        val bound = BitmapFactory.Options().apply { inJustDecodeBounds = true }
-        BitmapFactory.decodeFile(photo.localPath, bound)
-        require(bound.outWidth > 0 && bound.outHeight > 0) { "Image missing or corrupt" }
-        var sample = 1
-        while (bound.outWidth / sample > 3200 || bound.outHeight / sample > 3200) {
-            sample *= 2
+        // A decodable but corrupted private copy must never be applied under
+        // a stable SHA-derived ImageAssetId. Validate the *present* source
+        // bytes immediately before the irreversible Android OS side-effect.
+        val local = File(photo.localPath)
+        require(Files.isRegularFile(local.toPath(), LinkOption.NOFOLLOW_LINKS)) {
+            "Original offline file is missing or not a regular file"
+        }
+        require(photo.id == photo.sha256 && photo.byteLength in 1..(50L * 1024 * 1024) &&
+                local.length() == photo.byteLength) {
+            "Original offline file identity or length changed"
+        }
+        val digest = MessageDigest.getInstance("SHA-256")
+        local.inputStream().use { stream ->
+            val chunk = ByteArray(64 * 1024)
+            while (true) {
+                val count = stream.read(chunk)
+                if (count < 0) break
+                if (count > 0) digest.update(chunk, 0, count)
+            }
+        }
+        require(digest.digest().joinToString("") { "%02x".format(it) } == photo.sha256) {
+            "Original offline file SHA-256 mismatch"
         }
         return requireNotNull(
-            BitmapFactory.decodeFile(photo.localPath, BitmapFactory.Options().apply {
-                inSampleSize = sample
-            })
-        ) { "Unable to decode offline image" }
+            io.github.gamesbyian.glimpse.data.PhotoBitmaps
+                .decodeOriented(photo.localPath, maxSide = 3200)
+        ) { "Unable to decode original image with its EXIF orientation" }
     }
 
     private fun decodeBag(raw: String): List<String> = try {

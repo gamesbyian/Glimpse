@@ -44,18 +44,40 @@ class VisualFixtureLauncher : ComponentActivity() {
         val dao = GlimpseDatabase.open(applicationContext).dao()
         val collectionId = "visual-atlas-$count"
         dao.insertCollection(CollectionRecord(collectionId,
-            "ATLAS FIXTURE · $count photos", 1_700_000_000_000L))
+            // The collection name must not freeze a photo count: this fixture
+            // starts at N=0 but real Photo Picker tests add items afterward.
+            // Live membership counts are reported separately by MainActivity.
+            "ATLAS FIXTURE", 1_700_000_000_000L))
         val folder = File(filesDir, "visual-atlas").apply { mkdirs() }
+        val licensedSources = listOf(
+            "p04-philsacor-landscape-900w.jpg",
+            "p06-grid-photo.jpg",
+            "p07-grid-photo.jpg"
+        )
         repeat(count) { index ->
-            // Vary six fixed photos with a unique number overlay so 22 thumbnails
-            // have distinct bytes and verified content hashes.
+            // Only uploader-described CC0 photographic references are packaged
+            // in debug. The distinct numbered images are synthetic derivatives,
+            // NOT 22 separately sourced user photographs.
             val source = requireNotNull(
-                assets.open("art" + (index % 6 + 1) + ".jpg").use(BitmapFactory::decodeStream)
+                assets.open(licensedSources[index % licensedSources.size])
+                    .use(BitmapFactory::decodeStream)
             )
             val image = Bitmap.createBitmap(480, 720, Bitmap.Config.ARGB_8888)
             val canvas = Canvas(image)
             val paint = Paint(Paint.ANTI_ALIAS_FLAG or Paint.FILTER_BITMAP_FLAG)
-            canvas.drawBitmap(source, null, Rect(0, 0, 480, 720), paint)
+            // Exact source aspect ratio is preserved by deterministic center
+            // crop. Stretching a 900x675 landscape into a 480x720 portrait
+            // previously made native screenshot "photo proof" misleading.
+            val crop = if (source.width * 720 > source.height * 480) {
+                val cropWidth = source.height * 480 / 720
+                val left = (source.width - cropWidth) / 2
+                Rect(left, 0, left + cropWidth, source.height)
+            } else {
+                val cropHeight = source.width * 720 / 480
+                val top = (source.height - cropHeight) / 2
+                Rect(0, top, source.width, top + cropHeight)
+            }
+            canvas.drawBitmap(source, crop, Rect(0, 0, 480, 720), paint)
             paint.color = Color.argb(225, 245, 238, 222)
             canvas.drawRoundRect(RectF(18f, 18f, 138f, 92f), 14f, 14f, paint)
             paint.color = Color.rgb(22, 70, 78)

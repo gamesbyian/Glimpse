@@ -1,0 +1,146 @@
+{
+  "contract": "glimpse-production-a",
+  "revision": "0.1.2",
+  "status": "DRAFT_PENDING_INTEGRATION_LOCK",
+  "canvas": {
+    "study": [
+      1160,
+      920
+    ],
+    "phone": {
+      "x": 15,
+      "y": 14,
+      "width": 401,
+      "height": 890
+    },
+    "regions": {
+      "status": [
+        14,
+        56
+      ],
+      "header": [
+        56,
+        146
+      ],
+      "body": [
+        146,
+        806
+      ],
+      "nav": [
+        823,
+        879
+      ]
+    }
+  },
+  "color": {
+    "paper": "#F6F0E6",
+    "surface": "#FFFCF6",
+    "ink": "#153F46",
+    "accent": "#1D5960",
+    "secondary": "#566861",
+    "border": "#C8B7A1",
+    "warning": "#A5482D",
+    "selected": "#E9E0F5",
+    "onAccent": "#FFFFFF",
+    "secondaryOnTint": "#445851",
+    "attentionText": "#703B27",
+    "tintLavender": "#E9E0F5",
+    "tintBlush": "#F5DDDA",
+    "tintTan": "#EAD9BD",
+    "tintSage": "#DAEDE1",
+    "tintSand": "#F5E6D1"
+  },
+  "typographyPx": {
+    "display": 32,
+    "section": 22,
+    "row": 18,
+    "body": 16,
+    "secondary": 15,
+    "metadata": 13
+  },
+  "spacingPx": [
+    4,
+    8,
+    12,
+    16,
+    20,
+    24,
+    32
+  ],
+  "radiiPx": {
+    "panel": 16,
+    "pill": 24
+  },
+  "targets": {
+    "nativeMinDp": 48,
+    "svgNominalMinPx": 48
+  },
+  "focusSequence": [
+    "back-or-close",
+    "scene-status-and-details",
+    "contextual-controls",
+    "primary-action",
+    "secondary-actions",
+    "destination-navigation"
+  ],
+  "invariants": [
+    "finite-five-aperture-reel",
+    "grid-prev-next-parity",
+    "preview-not-apply",
+    "explicit-home-lock-target",
+    "os-state-unknown-unless-verified",
+    "best-effort-scheduling",
+    "photo-id-and-rights-traceable",
+    "OS-owned-controls-not-recreated"
+  ],
+  "evidenceLevels": [
+    "source",
+    "optical-render",
+    "Android-native",
+    "human-owner"
+  ],
+  "requiresNativeChecks": [
+    "320dp",
+    "fontScale=2",
+    "TalkBack",
+    "48dp-hitbox",
+    "gesture-and-focus-return"
+  ],
+  "textColorUsage": {
+    "secondary": "Normal secondary text on paper or near-white surface only; test against actual painted fill.",
+    "secondaryOnTint": "Small normal text on lavender, blush, tan, sage, and sand; ≥4.5:1 contrast.",
+    "attentionText": "Small text, including stateful pointer glyphs, on paper and all listed tints; ≥4.5:1 contrast.",
+    "onAccent": "Normal white foreground only against accent teal, not against light pastel accents."
+  },
+  "contractChangeLog": [
+    {
+      "revision": "0.1.2",
+      "kind": "provisional-visible-focus-affordance",
+      "reason": "B independent support control scan identified 238 low-contrast source-painted control candidates; provide non-color-only 4-unit focus ring contract without claiming each is a WCAG violation.",
+      "ownerApproval": false
+    },
+    {
+      "revision": "0.1.1",
+      "kind": "provisional-contextual-tint-contrast",
+      "reason": "Independent B static AA audit found secondary #566861 at 4.272:1 on tan; use contextual #445851, preserving original paper secondary.",
+      "ownerApproval": false
+    }
+  ],
+  "focusVisible": {
+    "indicatorColor": "#1D5960",
+    "minimumContrastAgainstPaper": 3,
+    "strokePxNominal": 4,
+    "offsetPxNominal": 2,
+    "appliesTo": [
+      "keyboard",
+      "D-pad",
+      "switch-navigation-focus"
+    ],
+    "rules": [
+      "Visible outline around the currently focused actionable region, never color-only focus indication.",
+      "Maintain indicator contrast against the adjacent actual painted surface; focus shape must remain evident when card borders are low contrast.",
+      "Do not use a focus border to imply selection, successful apply, or current Android wallpaper state.",
+      "Native semantics, focus restoration and TalkBack require independent device verification."
+    ]
+  }
+}

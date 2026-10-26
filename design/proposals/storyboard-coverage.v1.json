@@ -444,7 +444,64 @@
           "sourceAssetId": "public-research-photos-external"
         }
       ],
-      "transitions": []
+      "transitions": [
+        {
+          "from": "01-rest",
+          "to": "02-touch-down",
+          "action": "Finger contacts paper rim",
+          "selectedBefore": "p12",
+          "selectedAfter": "p12",
+          "sideEffect": "none; preview only"
+        },
+        {
+          "from": "02-touch-down",
+          "to": "03-drag-18",
+          "action": "Drag 18° without reaching commitment",
+          "selectedBefore": "p12",
+          "selectedAfter": "p12",
+          "sideEffect": "none; preview only"
+        },
+        {
+          "from": "03-drag-18",
+          "to": "04-drag-36",
+          "action": "Continue drag 36°",
+          "selectedBefore": "p12",
+          "selectedAfter": "p12",
+          "sideEffect": "none; preview only"
+        },
+        {
+          "from": "04-drag-36",
+          "to": "05-snap-72",
+          "action": "Release and settle one index",
+          "selectedBefore": "p12",
+          "selectedAfter": "p13",
+          "sideEffect": "selection change only; wallpaper unchanged"
+        },
+        {
+          "from": "05-snap-72",
+          "to": "06-reverse-18",
+          "action": "Reverse finger direction",
+          "selectedBefore": "p13",
+          "selectedAfter": "p13",
+          "sideEffect": "none until settled"
+        },
+        {
+          "from": "06-reverse-18",
+          "to": "07-interrupted",
+          "action": "Interrupt movement and settle",
+          "selectedBefore": "p13",
+          "selectedAfter": "p13",
+          "sideEffect": "selection retained; no wallpaper apply"
+        },
+        {
+          "from": "07-interrupted",
+          "to": "08-last",
+          "action": "Jump via explicit position control to finite last item (not a single swipe)",
+          "selectedBefore": "p13",
+          "selectedAfter": "p22",
+          "sideEffect": "selection change only; next disabled"
+        }
+      ]
     },
     {
       "id": "x06",

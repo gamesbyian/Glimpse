@@ -4,7 +4,7 @@
 <text x="38" y="43" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="650" fill="#153F46">9:41</text>
 <text x="352" y="43" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="450" fill="#667975">● ▰ ▴</text>
 <text x="38" y="99" font-family="Arial,Helvetica,sans-serif" font-size="24" font-weight="700" fill="#153F46">Select a group</text>
-<text x="39" y="130" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="500" fill="#667975">12 selected of 1,284</text>
+<text x="39" y="130" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="500" fill="#445851">12 selected of 1,284</text>
 <rect x="39" y="186" width="79" height="95" fill="#161926" rx="13" stroke="none"/>
 <path d="M44 193.6 Q78.5 187.9 113 207.85" stroke="#D63E4F" stroke-width="4.085" fill="none"/>
 <path d="M44 210.7 Q78.5 204.05 113 224.95" stroke="#D98F39" stroke-width="4.085" fill="none"/>
@@ -22,7 +22,8 @@
 <rect x="134" y="254" width="65" height="20" fill="#FFFCF6" rx="6" stroke="none"/>
 <text x="142" y="269" font-family="Arial,Helvetica,sans-serif" font-size="11" font-weight="700" fill="#153F46">p02</text>
 <rect x="128" y="187" width="77" height="93" fill="none" rx="11" stroke="#1D5960"/>
-<text x="180" y="206" font-family="Arial,Helvetica,sans-serif" font-size="17" font-weight="700" fill="white">✓</text>
+<circle cx="188" cy="201" r="11" fill="#1D5960" stroke="#FFFCF6" stroke-width="1.5" aria-label="Selected"/>
+<path d="M182 201 l4 4 8 -9" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
 <rect x="215" y="186" width="79" height="95" fill="#161926" rx="13" stroke="none"/>
 <path d="M220 193.6 Q254.5 187.9 289 207.85" stroke="#D63E4F" stroke-width="4.085" fill="none"/>
 <path d="M220 210.7 Q254.5 204.05 289 224.95" stroke="#D98F39" stroke-width="4.085" fill="none"/>
@@ -48,7 +49,8 @@
 <rect x="46" y="356" width="65" height="20" fill="#FFFCF6" rx="6" stroke="none"/>
 <text x="54" y="371" font-family="Arial,Helvetica,sans-serif" font-size="11" font-weight="700" fill="#153F46">p05</text>
 <rect x="40" y="289" width="77" height="93" fill="none" rx="11" stroke="#1D5960"/>
-<text x="92" y="308" font-family="Arial,Helvetica,sans-serif" font-size="17" font-weight="700" fill="white">✓</text>
+<circle cx="100" cy="303" r="11" fill="#1D5960" stroke="#FFFCF6" stroke-width="1.5" aria-label="Selected"/>
+<path d="M94 303 l4 4 8 -9" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
 <rect x="127" y="288" width="79" height="95" fill="#161926" rx="13" stroke="none"/>
 <path d="M132 295.6 Q166.5 289.9 201 309.85" stroke="#D63E4F" stroke-width="4.085" fill="none"/>
 <path d="M132 312.7 Q166.5 306.05 201 326.95" stroke="#D98F39" stroke-width="4.085" fill="none"/>
@@ -90,7 +92,8 @@
 <rect x="134" y="458" width="65" height="20" fill="#FFFCF6" rx="6" stroke="none"/>
 <text x="142" y="473" font-family="Arial,Helvetica,sans-serif" font-size="11" font-weight="700" fill="#153F46">p10</text>
 <rect x="128" y="391" width="77" height="93" fill="none" rx="11" stroke="#1D5960"/>
-<text x="180" y="410" font-family="Arial,Helvetica,sans-serif" font-size="17" font-weight="700" fill="white">✓</text>
+<circle cx="188" cy="405" r="11" fill="#1D5960" stroke="#FFFCF6" stroke-width="1.5" aria-label="Selected"/>
+<path d="M182 405 l4 4 8 -9" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
 <rect x="215" y="390" width="79" height="95" fill="#161926" rx="13" stroke="none"/>
 <path d="M220 397.6 Q254.5 391.9 289 411.85" stroke="#D63E4F" stroke-width="4.085" fill="none"/>
 <path d="M220 414.7 Q254.5 408.05 289 428.95" stroke="#D98F39" stroke-width="4.085" fill="none"/>
@@ -143,10 +146,10 @@
 <rect x="44" y="669" width="336" height="45" fill="#1D5960" rx="18" stroke="#1D5960"/>
 <text x="58" y="697" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="700" fill="white">Exclude selected</text>
 <path d="M30 822 H403" stroke="#C4B7A4"/>
-<text x="40" y="851" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="500" fill="#667975">Home</text>
-<text x="135" y="851" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="500" fill="#667975">Discover</text>
-<text x="230" y="851" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="500" fill="#667975">Collections</text>
-<text x="325" y="851" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="500" fill="#667975">Automation</text>
+<text x="40" y="851" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="500" fill="#445851">Home</text>
+<text x="135" y="851" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="500" fill="#445851">Discover</text>
+<text x="230" y="851" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="500" fill="#445851">Collections</text>
+<text x="325" y="851" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="500" fill="#445851">Automation</text>
 <text x="37" y="891" font-family="Arial,Helvetica,sans-serif" font-size="11" font-weight="700" fill="#667975">P1 DRAFT · NOT APPROVED</text>
 <rect x="441" y="15" width="705" height="890" fill="#FFFCF6" rx="18" stroke="#C4B7A4"/>
 <text x="465" y="55" font-family="Arial,Helvetica,sans-serif" font-size="22" font-weight="700" fill="#153F46">X15 / Large library operations</text>

@@ -1,0 +1,108 @@
+name: Production C asset integrity and Android fidelity
+on:
+  pull_request:
+    paths:
+      - design/assets/**
+      - scripts/validate-agent-c-asset-integrity.py
+      - scripts/tests/test_agent_c_asset_integrity.py
+      - scripts/capture-agent-c-native.py
+      - scripts/validate-agent-c-android-test-results.py
+      - scripts/run-agent-c-native-evidence.sh
+      - scripts/capture-agent-c-native-picker.py
+      - app/src/main/**
+      - app/src/debug/**
+      - app/src/test/java/io/github/gamesbyian/glimpse/domain/AgentCFiniteIdentityTest.kt
+      - app/src/androidTest/**
+      - app/build.gradle.kts
+      - .github/workflows/agent-c-proof.yml
+      - scripts/validate-owner-review-readiness.py
+      - scripts/validate-integration-source-freeze.py
+      - scripts/validate-integrated-optical-ledger.py
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: agent-c-proof-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  source-integrity:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run negative proof cases and checked-in JPEG/SVG SHA verifier
+        run: |
+          python3 -m unittest discover -s scripts/tests -p test_agent_c_asset_integrity.py -v
+          python3 scripts/validate-agent-c-asset-integrity.py
+      - name: Validate integrated draft reviewer sources and eight pending decisions
+        run: |
+          python3 scripts/validate-integration-source-freeze.py
+          python3 scripts/validate-integrated-optical-ledger.py
+          python3 scripts/validate-owner-review-readiness.py
+      - name: Verify native harness syntax only
+        run: python3 -m py_compile scripts/capture-agent-c-native.py scripts/capture-agent-c-native-picker.py scripts/validate-agent-c-android-test-results.py
+
+  native-emulator:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    needs: source-integrity
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+      - uses: gradle/actions/setup-gradle@v4
+      - name: Install Android 37 SDK
+        run: |
+          printf 'y\n' | "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --channel=3 "platforms;android-37.0" "build-tools;36.0.0"
+          if [ -d "$ANDROID_HOME/platforms/android-37.0" ] && [ ! -e "$ANDROID_HOME/platforms/android-37" ]; then
+            ln -s "$ANDROID_HOME/platforms/android-37.0" "$ANDROID_HOME/platforms/android-37"
+          fi
+      - name: Focused native unit tests and actual debug APK
+        run: ./gradlew --no-daemon :app:testDebugUnitTest --tests '*AgentCFiniteIdentityTest*' :app:assembleDebug
+      - name: Grant emulator KVM
+        run: |
+          if test -e /dev/kvm; then sudo chmod a+rw /dev/kvm; fi
+      - name: Real MainActivity emulator sweep
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 34
+          arch: x86_64
+          profile: pixel_5
+          cores: 2
+          ram-size: 3072
+          emulator-boot-timeout: 360
+          disable-animations: true
+          emulator-options: -no-window -gpu swiftshader_indirect -no-snapshot -noaudio -no-boot-anim
+          script: bash scripts/run-agent-c-native-evidence.sh
+      - name: Require complete non-skipped native instrumentation evidence
+        if: always()
+        run: python3 scripts/validate-agent-c-android-test-results.py
+      - name: Preserve native Android JUnit evidence even on failure
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: glimpse-agent-c-native-junit-api34
+          path: |
+            app/build/outputs/androidTest-results/connected/
+            app/build/reports/androidTests/connected/
+            app/build/test-results/testDebugUnitTest/
+          retention-days: 14
+          if-no-files-found: warn
+      - name: Preserve actual Android platform Photo Picker/chooser screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: glimpse-agent-c-android-photo-picker-api34
+          path: artifacts/agent-c-native-picker/
+          retention-days: 14
+          if-no-files-found: warn
+      - name: Preserve real screenshot/hierarchy evidence even on failure
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: glimpse-agent-c-native-real-api34
+          path: artifacts/agent-c-native/
+          retention-days: 14
+          if-no-files-found: warn

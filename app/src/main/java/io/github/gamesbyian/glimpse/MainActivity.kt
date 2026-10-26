@@ -1,6 +1,5 @@
 package io.github.gamesbyian.glimpse
 
-import android.graphics.BitmapFactory
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.rememberLauncherForActivityResult
@@ -20,6 +19,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
@@ -154,8 +154,19 @@ private fun GlimpseScreen(model: GlimpseModel) {
                     horizontalArrangement = Arrangement.SpaceBetween
                 ) {
                     Text("Collections", fontWeight = FontWeight.SemiBold)
-                    TextButton(onClick = { showNewCollection = !showNewCollection }) {
-                        Text(if (showNewCollection) "Cancel" else "New collection")
+                    TextButton(
+                        modifier = Modifier.heightIn(min = 48.dp).semantics {
+                            contentDescription = if (showNewCollection) {
+                                "Cancel new collection"
+                            } else {
+                                "New collection"
+                            }
+                        },
+                        onClick = { showNewCollection = !showNewCollection }
+                    ) {
+                        // The enclosing Collections heading supplies context.
+                        // "New collection" breaks into three lines at 320dp/200%.
+                        Text(if (showNewCollection) "Cancel" else "New")
                     }
                 }
                 LazyRow(
@@ -164,6 +175,7 @@ private fun GlimpseScreen(model: GlimpseModel) {
                 ) {
                     items(state.collections, key = { it.id }) { group ->
                         FilterChip(
+                            modifier = Modifier.heightIn(min = 48.dp),
                             selected = activeCollection == group.id,
                             onClick = { model.browseCollection(group.id) },
                             label = { Text(group.title) }
@@ -171,6 +183,7 @@ private fun GlimpseScreen(model: GlimpseModel) {
                     }
                 }
                 OutlinedButton(
+                    modifier = Modifier.heightIn(min = 48.dp),
                     onClick = {
                         picker.launch(
                             PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly)
@@ -188,11 +201,13 @@ private fun GlimpseScreen(model: GlimpseModel) {
                 )
                 Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                     FilterChip(
+                        modifier = Modifier.heightIn(min = 48.dp),
                         selected = !state.grid,
                         onClick = { if (state.grid) model.toggleGrid() },
                         label = { Text("Reel") }
                     )
                     FilterChip(
+                        modifier = Modifier.heightIn(min = 48.dp),
                         selected = state.grid,
                         onClick = { if (!state.grid) model.toggleGrid() },
                         label = { Text("View all · Grid") }
@@ -296,15 +311,8 @@ private fun PhotoPreview(photo: PhotoRecord?, modifier: Modifier, label: String)
     val image by produceState<ImageBitmap?>(initialValue = null, key1 = path) {
         value = if (path == null) null else withContext(Dispatchers.IO) {
             try {
-                val bounds = BitmapFactory.Options().apply { inJustDecodeBounds = true }
-                BitmapFactory.decodeFile(path, bounds)
-                if (bounds.outWidth <= 0 || bounds.outHeight <= 0) return@withContext null
-                var sample = 1
-                while (bounds.outWidth / sample > 1024 || bounds.outHeight / sample > 1024) sample *= 2
-                BitmapFactory.decodeFile(
-                    path,
-                    BitmapFactory.Options().apply { inSampleSize = sample }
-                )?.asImageBitmap()
+                io.github.gamesbyian.glimpse.data.PhotoBitmaps
+                    .decodeOriented(path, maxSide = 1024)?.asImageBitmap()
             } catch (_: Exception) {
                 null
             }

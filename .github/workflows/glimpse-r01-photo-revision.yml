@@ -1,0 +1,106 @@
+name: R01 photographic reference generation | one-shot
+
+# Targeted Grid icon proof: replace missing northeast glyph with actual SVG arrow in six real-photo reels.
+# Generate corrected photographic paper-reel audit sources only on an intentional
+# workflow edit or manual dispatch. Do not launch from every ordinary repo push.
+on:
+  push:
+    branches:
+      - agent/visual-state-reconciliation-20261023
+    paths:
+      - .github/workflows/glimpse-r01-photo-revision.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: glimpse-r01-photo-one-shot-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  generate-photo-reel:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Generate six real-photo paper-reel SVGs deterministically
+        run: |
+          set -euo pipefail
+          python3 scripts/build-audit-r01-photo-variants.py --write
+          python3 scripts/build-audit-r01-photo-variants.py
+      - name: Native crop and contact-sheet optical artifact
+        run: |
+          set -euo pipefail
+          python3 -m pip install --quiet cairosvg pillow
+          python3 scripts/render-visual-reference-sheets.py \
+            --set audit-r01-photo-backed --native \
+            --output /tmp/glimpse-r01-photo-reference
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.loads(Path("/tmp/glimpse-r01-photo-reference/index.json").read_text())
+          assert len(d["nativePhoneFiles"]) == 6, len(d["nativePhoneFiles"])
+          print("Six photo-backed R01 native reference crops rendered; optical review pending")
+          PY
+      - name: Commit generated source images to the visual PR branch
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add design/proposals/audit-revisions/r01-photo-*.svg
+          if ! git diff --cached --quiet; then
+            git commit -m "design: produce source-linked photographic five-aperture R01 comparisons"
+            git push origin "HEAD:${GITHUB_REF_NAME}"
+          fi
+          python3 scripts/build-audit-r01-photo-variants.py
+      - name: Record exact six-frame draft source proof
+        if: success()
+        run: |
+          set -euo pipefail
+          mkdir -p docs/design
+          python3 - <<'PY'
+          import json, os
+          from pathlib import Path
+          idx=json.loads(Path("/tmp/glimpse-r01-photo-reference/index.json").read_text())
+          files=idx["nativePhoneFiles"]
+          assert len(files)==6, len(files)
+          lines=[
+            "# R01 six-frame photo reference source proof",
+            "",
+            "**Automatic SVG source and native-sized PNG render only. Not optical/device/owner approval.**",
+            "",
+            "- Run ID: `"+os.environ["GITHUB_RUN_ID"]+"`",
+            "- Run URL: https://github.com/"+os.environ["GITHUB_REPOSITORY"]+"/actions/runs/"+os.environ["GITHUB_RUN_ID"],
+            "- Workflow source SHA: `"+os.environ["GITHUB_SHA"]+"`",
+            "- All six exact source-editable SVGs regenerated and checked deterministically",
+            "- Six corresponding 401×890 phone PNGs: generated successfully",
+            "- Artifact name: `glimpse-r01-real-photography-"+os.environ["GITHUB_SHA"]+"`",
+            "",
+            "No runtime screenshots, visual approval, accessibility verification or user acceptance.",
+          ]
+          Path("docs/design/r01-photo-generator-evidence.md").write_text("\n".join(lines)+"\n")
+          PY
+          git add docs/design/r01-photo-generator-evidence.md
+          if ! git diff --cached --quiet; then
+            git commit -m "ci: record exact R01 paper wheel 6-frame source and render proof"
+            for attempt in 1 2 3; do
+              git fetch origin "+refs/heads/${GITHUB_REF_NAME}:refs/remotes/origin/${GITHUB_REF_NAME}"
+              git rebase "origin/${GITHUB_REF_NAME}"
+              if git push origin "HEAD:${GITHUB_REF_NAME}"; then
+                break
+              fi
+              if [[ "${attempt}" = 3 ]]; then exit 1; fi
+            done
+          fi
+      - name: Upload six draft images and source hash ledger
+        uses: actions/upload-artifact@v4
+        with:
+          name: glimpse-r01-real-photography-${{ github.sha }}
+          path: /tmp/glimpse-r01-photo-reference/
+          retention-days: 14

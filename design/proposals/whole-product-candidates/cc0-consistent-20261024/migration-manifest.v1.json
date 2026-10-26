@@ -1,0 +1,175 @@
+{
+  "schemaVersion": 1,
+  "status": "EDITORIAL_CC0_SIX_REVIEW_CANDIDATE_NOT_OWNER_APPROVED",
+  "generatedOn": "2026-10-24",
+  "assetSourceContract": "Agent C #12, production-c-provenance.v1.json",
+  "selectedId": "p12",
+  "lastGlimpseAcknowledgedId": "p04",
+  "androidWallpaperCurrentVerified": false,
+  "changeScope": "Six synchronized surfaces preferred for draft owner review; historical selected screens preserved as alternatives. No owner approval or Android acceptance.",
+  "sourcePaths": {
+    "home": "design/proposals/whole-product-candidates/cc0-consistent-20261024/home.svg",
+    "reel": "design/proposals/whole-product-candidates/cc0-consistent-20261024/reel.svg",
+    "grid": "design/proposals/whole-product-candidates/cc0-consistent-20261024/grid-3column.svg",
+    "photo-detail": "design/proposals/whole-product-candidates/cc0-consistent-20261024/detail.svg",
+    "collections": "design/proposals/whole-product-candidates/cc0-consistent-20261024/collections.svg",
+    "share": "design/proposals/whole-product-candidates/cc0-consistent-20261024/share.svg"
+  },
+  "currentSelectedPaths": {
+    "home": "design/proposals/audit-revisions/r03-home-primary-actions-p04.svg",
+    "collections": "design/proposals/whole-product-candidates/collections-photo-covers.svg",
+    "reel": "design/proposals/audit-revisions/r01-photo-primary-wallpaper-action.svg",
+    "grid": "design/proposals/audit-revisions/r02-grid-primary-actions-p12.svg",
+    "share": "design/proposals/audit-revisions/r02-share-choice.svg",
+    "photo-detail": "design/proposals/audit-revisions/r02-photo-detail-actions-p12.svg"
+  },
+  "sourceMode": "rights-verified-replacements",
+  "verifiedIndependentPhotos": [
+    {
+      "id": "p04",
+      "assetPath": "design/assets/cc0/p04-philsacor-landscape-900w.jpg",
+      "derivedSHA256": "20d6a8dab7e5eed0fbbbb0d98de799487512264aa7d0cf7ced701944683e2bd0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Random_landscape_photo_I_took.jpg",
+      "creator": "Philsacor",
+      "license": "CC0 1.0 Universal",
+      "rightsDescription": "Uploader-identified CC0; reviewed source and bytes; no legal guarantee"
+    },
+    {
+      "id": "p06",
+      "assetPath": "design/assets/cc0/p06-grid-photo.jpg",
+      "derivedSHA256": "c5902098629b2ce85686a94204ea011a88711ac6d65308aa48323d9052a8dc1a",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Mountain_near_lake.jpg",
+      "creator": "K.M.YOGESH",
+      "license": "CC0 1.0 Universal",
+      "rightsDescription": "Uploader-identified CC0; reviewed source and bytes; no legal guarantee"
+    },
+    {
+      "id": "p07",
+      "assetPath": "design/assets/cc0/p07-grid-photo.jpg",
+      "derivedSHA256": "a64e072f62f72b5ebd167bea0ad44f64e6d51a7d07a7dc78d01c0c0fc0160e59",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Sunflower_in_the_garden.JPG",
+      "creator": "Stefan Bellini",
+      "license": "CC0 1.0 Universal",
+      "rightsDescription": "Uploader-identified CC0; reviewed source and bytes; no legal guarantee"
+    },
+    {
+      "id": "p08",
+      "assetPath": "design/assets/cc0/p08-grid-photo.jpg",
+      "derivedSHA256": "68a2e5c556be1db5a3ac6abdf60a8e2c2eaa8773aae84f48a3bf600a9c73e656",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Sunset_in_the_City_01.jpg",
+      "creator": "PagesAndPathsPH",
+      "license": "CC0 1.0 Universal",
+      "rightsDescription": "Uploader-identified CC0; reviewed source and bytes; no legal guarantee"
+    },
+    {
+      "id": "p09",
+      "assetPath": "design/assets/cc0/p09-grid-photo.jpg",
+      "derivedSHA256": "7a01f8b4f1ab6a6a28cf85b4b4387f0df9a8734186eb322568e273a5174cc00d",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Purple_Night_sky.jpg",
+      "creator": "Kanimozhi Vennila",
+      "license": "CC0 1.0 Universal",
+      "rightsDescription": "Uploader-identified CC0; reviewed source and bytes; no legal guarantee"
+    },
+    {
+      "id": "p16",
+      "assetPath": "design/assets/cc0/p16-grid-photo.jpg",
+      "derivedSHA256": "92d30c89130514f15bcb82539db6b31c9ae5f6175a73c13d02aa6c04161c4d48",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Boston_Common_at_sunset.jpg",
+      "creator": "Drgage25",
+      "license": "CC0 1.0 Universal",
+      "rightsDescription": "Uploader-identified CC0; reviewed source and bytes; no legal guarantee"
+    },
+    {
+      "id": "p17",
+      "assetPath": "design/assets/cc0/p17-grid-photo.jpg",
+      "derivedSHA256": "ab0010efc6ebed8ada9cefc3ea0f246ef0a4de4437ea9efc8a6ebf83b0524d8e",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Night_sky_and_trees.jpg",
+      "creator": "Cristian Butacu",
+      "license": "CC0 1.0 Universal",
+      "rightsDescription": "Uploader-identified CC0; reviewed source and bytes; no legal guarantee"
+    },
+    {
+      "id": "p10",
+      "assetPath": "design/assets/cc0/p10-replacement.jpg",
+      "derivedSHA256": "8baff97c5dc73daa533bde70ac7bb3bd08e767a93d316894c9b9f1161d9331b9",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Sunny_beach_ocean.jpg",
+      "creator": "Pinguinguy",
+      "license": "CC0 1.0 Universal",
+      "rightsDescription": "Uploader-identified CC0; reviewed source and bytes; no legal guarantee"
+    },
+    {
+      "id": "p11",
+      "assetPath": "design/assets/cc0/p11-replacement.jpg",
+      "derivedSHA256": "658b7e6b88eb1d28b922042427e7eceac7f7fbef88454e0919666980096d645a",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Landscape_of_a_wild_forest.jpg",
+      "creator": "SpessiG",
+      "license": "CC0 1.0 Universal",
+      "rightsDescription": "Uploader-identified CC0; reviewed source and bytes; no legal guarantee"
+    },
+    {
+      "id": "p12",
+      "assetPath": "design/assets/cc0/p12-replacement.jpg",
+      "derivedSHA256": "e781fb03f2fd56a97e409118009524fe79be4dd68f1b871108fe7073e36d15be",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Chive_flower_close-up.jpg",
+      "creator": "Sporlo",
+      "license": "CC0 1.0 Universal",
+      "rightsDescription": "Uploader-identified CC0; reviewed source and bytes; no legal guarantee"
+    },
+    {
+      "id": "p13",
+      "assetPath": "design/assets/cc0/p13-replacement.jpg",
+      "derivedSHA256": "c62038af15c3cc41b0ca607cf144fdb4069d1bbc8dc349014f87b6a63c14badf",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Still_and_clear_sea.jpg",
+      "creator": "Jdszekeres",
+      "license": "CC0 1.0 Universal",
+      "rightsDescription": "Uploader-identified CC0; reviewed source and bytes; no legal guarantee"
+    },
+    {
+      "id": "p14",
+      "assetPath": "design/assets/cc0/p14-replacement.jpg",
+      "derivedSHA256": "3fe5b70cfc9d7994a7ac0732413e4a19b9167d7f6ba5b47cda386208e0c6350e",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Starry_sky1.jpg",
+      "creator": "TBOE PC Ohm",
+      "license": "CC0 1.0 Universal",
+      "rightsDescription": "Uploader-identified CC0; reviewed source and bytes; no legal guarantee"
+    },
+    {
+      "id": "p15",
+      "assetPath": "design/assets/cc0/p15-replacement.jpg",
+      "derivedSHA256": "5b0f2e0e7afcfcae31f0641409819087fe3d69611912d1430ebdd804783ded74",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Pinwheel_flower_close-up_shot.jpg",
+      "creator": "Villager3222",
+      "license": "CC0 1.0 Universal",
+      "rightsDescription": "Uploader-identified CC0; reviewed source and bytes; no legal guarantee"
+    }
+  ],
+  "derivedPreview": {
+    "id": "p12c",
+    "sourceId": "p12",
+    "transform": "crop-scale-150-percent",
+    "sharesheetDeliveryConfirmed": false
+  },
+  "gridColumns": {
+    "candidate": 3,
+    "currentNativeObserved": 3,
+    "currentSelectedReference": 4,
+    "ownerDecision": "pending"
+  },
+  "nativeAcceptance": false,
+  "ownerApproved": false,
+  "subjectAndLicenseSelection": "pending human review",
+  "unresolved": [
+    "physical Android 320dp/fontScale2/TalkBack",
+    "native OS Photo Picker/chooser focus",
+    "owner selection of 13 photo subjects and 3-vs-4-column Grid",
+    "eight design choice questions"
+  ],
+  "supplementalUnselectedSourceDetail": {
+    "path": "design/proposals/whole-product-candidates/cc0-consistent-20261024/source-p12.svg",
+    "from": "design/proposals/whole-product-candidates/cc0-consistent-20261024/detail.svg",
+    "sourcePhotoId": "p12",
+    "purpose": "Source and rights route; not a seventh required atomic selection",
+    "nativeVerified": false,
+    "ownerApproved": false
+  }
+}

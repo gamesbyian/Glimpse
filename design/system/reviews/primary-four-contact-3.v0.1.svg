@@ -1,0 +1,178 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1720" height="953" viewBox="0 0 1720 953" role="img" aria-label="Source-exact backup onboarding empty recovery and accessibility"><rect width="1720" height="953" fill="#E9E3D9"/><g transform="translate(1,21)"><rect x="0" y="0" width="1160" height="920" rx="0" fill="#E9E3D9" stroke="none"/>
+<rect x="15" y="14" width="401" height="890" rx="22" fill="#F6F0E6" stroke="#C4B7A4"/>
+<text x="39" y="44" fill="#153F46" font-size="14" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="start">9:41</text>
+<text x="390" y="44" fill="#566861" font-size="13" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="end">●  ●  ●</text>
+<path d="M31 56 L400 56" fill="none" stroke="#C8B7A1"/>
+<path d="M31 146 L400 146" fill="none" stroke="#C8B7A1"/>
+<rect x="30" y="64" width="48" height="48" rx="24" fill="#FFFCF6" stroke="#C8B7A1"/>
+<text x="54" y="95" fill="#153F46" font-size="29" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="middle">‹</text>
+<text x="86" y="99" fill="#153F46" font-size="28" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="start">Backup &amp; restore</text>
+<text x="36" y="132" fill="#566861" font-size="14" font-weight="500" font-family="Arial,Helvetica,sans-serif" text-anchor="start">Your settings, on your terms</text>
+<rect x="35" y="163" width="362" height="66" rx="13" fill="#F5E6D1" stroke="none"/>
+<rect x="47" y="173" width="4" height="46" rx="2" fill="#1D5960" stroke="none"/>
+<text x="61" y="189" fill="#153F46" font-size="15" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="start">Preview before any restore</text>
+<text x="61" y="211" fill="#566861" font-size="13" font-weight="500" font-family="Arial,Helvetica,sans-serif" text-anchor="start">No import or conflict resolution yet.</text>
+<text x="36" y="273" fill="#153F46" font-size="20" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="start">Create backup</text>
+<rect x="35" y="287" width="362" height="66" rx="14" fill="#FFFCF6" stroke="#C8B7A1"/>
+<rect x="47" y="300" width="42" height="40" rx="12" fill="#DAEDE1" stroke="none"/>
+<text x="68" y="326" fill="#1D5960" font-size="17" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="middle">E</text>
+<text x="103" y="313" fill="#153F46" font-size="16" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="start">Export Glimpse settings</text>
+<text x="103" y="335" fill="#566861" font-size="13" font-weight="500" font-family="Arial,Helvetica,sans-serif" text-anchor="start">Collection names, recipes, policy</text>
+<text x="382" y="326" fill="#1D5960" font-size="23" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="middle">›</text>
+<rect x="35" y="371" width="362" height="69" rx="13" fill="#FFFCF6" stroke="#C8B7A1"/>
+<rect x="48" y="391" width="26" height="26" rx="13" fill="#FFFCF6" stroke="#C8B7A1"/>
+<text x="87" y="400" fill="#153F46" font-size="17" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="start">Include photograph files</text>
+<text x="87" y="422" fill="#566861" font-size="13" font-weight="500" font-family="Arial,Helvetica,sans-serif" text-anchor="start">Off by default for privacy</text>
+<rect x="35" y="458" width="362" height="54" rx="18" fill="#1D5960" stroke="none"/>
+<text x="216" y="493" fill="#FFFFFF" font-size="16" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="middle">Choose backup destination...</text>
+<text x="36" y="572" fill="#153F46" font-size="20" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="start">Restore carefully</text>
+<rect x="35" y="585" width="362" height="66" rx="14" fill="#FFFCF6" stroke="#C8B7A1"/>
+<rect x="47" y="598" width="42" height="40" rx="12" fill="#DAEDE1" stroke="none"/>
+<text x="68" y="624" fill="#1D5960" font-size="17" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="middle">R</text>
+<text x="103" y="611" fill="#153F46" font-size="16" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="start">Inspect a backup</text>
+<text x="103" y="633" fill="#566861" font-size="13" font-weight="500" font-family="Arial,Helvetica,sans-serif" text-anchor="start">Compare and resolve each conflict</text>
+<text x="382" y="624" fill="#1D5960" font-size="23" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="middle">›</text>
+<rect x="35" y="673" width="362" height="66" rx="13" fill="#F5E6D1" stroke="none"/>
+<rect x="47" y="683" width="4" height="46" rx="2" fill="#1D5960" stroke="none"/>
+<text x="61" y="699" fill="#153F46" font-size="15" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="start">Keep / replace / skip</text>
+<text x="61" y="721" fill="#566861" font-size="13" font-weight="500" font-family="Arial,Helvetica,sans-serif" text-anchor="start">Existing originals are not overwritten.</text>
+<text x="38" y="785" fill="#566861" font-size="12" font-weight="500" font-family="Arial,Helvetica,sans-serif" text-anchor="start">Do not restore automatically after preview.</text>
+<rect x="24" y="823" width="384" height="56" rx="0" fill="#FFFCF6" stroke="none"/>
+<path d="M24 823 L408 823" fill="none" stroke="#C8B7A1"/>
+<rect x="31" y="829" width="80" height="40" rx="13" fill="#DAEDE1" stroke="none"/>
+<text x="71" y="856" fill="#1D5960" font-size="13" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="middle">Home</text>
+<text x="167" y="856" fill="#566861" font-size="13" font-weight="600" font-family="Arial,Helvetica,sans-serif" text-anchor="middle">Discover</text>
+<text x="263" y="856" fill="#566861" font-size="13" font-weight="600" font-family="Arial,Helvetica,sans-serif" text-anchor="middle">Collections</text>
+<text x="359" y="856" fill="#566861" font-size="12" font-weight="600" font-family="Arial,Helvetica,sans-serif" text-anchor="middle">Automation</text>
+<text x="35" y="898" fill="#566861" font-size="10" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="start">PROPOSAL / NOT APPROVED</text></g><text x="216" y="24" font-family="Arial,Helvetica,sans-serif" font-size="14" fill="#153F46" font-weight="700" text-anchor="middle">backup-and-restore</text>
+<g transform="translate(431,21)"><rect x="0" y="0" width="1160" height="920" rx="0" fill="#E9E3D9" stroke="none"/>
+<rect x="15" y="14" width="401" height="890" rx="22" fill="#F6F0E6" stroke="#C4B7A4"/>
+<text x="39" y="44" fill="#153F46" font-size="14" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="start">9:41</text>
+<text x="390" y="44" fill="#566861" font-size="13" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="end">●  ●  ●</text>
+<path d="M31 56 L400 56" fill="none" stroke="#C8B7A1"/>
+<path d="M31 146 L400 146" fill="none" stroke="#C8B7A1"/>
+<rect x="30" y="64" width="48" height="48" rx="24" fill="#FFFCF6" stroke="#C8B7A1"/>
+<text x="54" y="95" fill="#153F46" font-size="29" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="middle">‹</text>
+<text x="86" y="99" fill="#153F46" font-size="28" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="start">Welcome to Glimpse</text>
+<text x="36" y="132" fill="#566861" font-size="14" font-weight="500" font-family="Arial,Helvetica,sans-serif" text-anchor="start">Wallpaper photography, your choice</text>
+<rect x="35" y="159" width="362" height="250" rx="17" fill="#EDBE90" stroke="none"/>
+<circle cx="321" cy="232" r="43" fill="#F8DEA9"/>
+<path d="M35 334 Q130 195 236 337 T397 285 V409 H35Z" fill="#5C897B"/>
+<path d="M35 379 Q150 257 240 367 T397 319 V409 H35Z" fill="#245269"/>
+<rect x="49" y="172" width="190" height="26" rx="10" fill="#FFFCF6" stroke="none"/>
+<text x="58" y="190" fill="#153F46" font-size="12" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="start">YOUR PHOTOS · SAMPLE</text>
+<text x="36" y="464" fill="#153F46" font-size="20" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="start">Browse however you prefer</text>
+<rect x="35" y="482" width="172" height="49" rx="22" fill="#1D5960" stroke="none"/>
+<rect x="217" y="482" width="180" height="49" rx="22" fill="#FFFCF6" stroke="#C8B7A1"/>
+<text x="121" y="512" fill="#FFFFFF" font-size="14" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="middle">Paper reel</text>
+<text x="307" y="512" fill="#153F46" font-size="14" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="middle">Simple Grid</text>
+<rect x="35" y="572" width="362" height="66" rx="13" fill="#F5E6D1" stroke="none"/>
+<rect x="47" y="582" width="4" height="46" rx="2" fill="#1D5960" stroke="none"/>
+<text x="61" y="598" fill="#153F46" font-size="15" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="start">Selecting is safe</text>
+<text x="61" y="620" fill="#566861" font-size="13" font-weight="500" font-family="Arial,Helvetica,sans-serif" text-anchor="start">Apply requires a separate decision.</text>
+<rect x="35" y="653" width="362" height="66" rx="13" fill="#F5E6D1" stroke="none"/>
+<rect x="47" y="663" width="4" height="46" rx="2" fill="#1D5960" stroke="none"/>
+<text x="61" y="679" fill="#153F46" font-size="15" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="start">Your library stays yours</text>
+<text x="61" y="701" fill="#566861" font-size="13" font-weight="500" font-family="Arial,Helvetica,sans-serif" text-anchor="start">No proprietary cloud or account.</text>
+<rect x="35" y="743" width="362" height="54" rx="18" fill="#1D5960" stroke="none"/>
+<text x="216" y="778" fill="#FFFFFF" font-size="16" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="middle">Choose your first photos...</text>
+<rect x="24" y="823" width="384" height="56" rx="0" fill="#FFFCF6" stroke="none"/>
+<path d="M24 823 L408 823" fill="none" stroke="#C8B7A1"/>
+<rect x="31" y="829" width="80" height="40" rx="13" fill="#DAEDE1" stroke="none"/>
+<text x="71" y="856" fill="#1D5960" font-size="13" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="middle">Home</text>
+<text x="167" y="856" fill="#566861" font-size="13" font-weight="600" font-family="Arial,Helvetica,sans-serif" text-anchor="middle">Discover</text>
+<text x="263" y="856" fill="#566861" font-size="13" font-weight="600" font-family="Arial,Helvetica,sans-serif" text-anchor="middle">Collections</text>
+<text x="359" y="856" fill="#566861" font-size="12" font-weight="600" font-family="Arial,Helvetica,sans-serif" text-anchor="middle">Automation</text>
+<text x="35" y="898" fill="#566861" font-size="10" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="start">PROPOSAL / NOT APPROVED</text></g><text x="646" y="24" font-family="Arial,Helvetica,sans-serif" font-size="14" fill="#153F46" font-weight="700" text-anchor="middle">onboarding</text>
+<g transform="translate(861,21)"><rect x="0" y="0" width="1160" height="920" rx="0" fill="#E9E3D9" stroke="none"/>
+<rect x="15" y="14" width="401" height="890" rx="22" fill="#F6F0E6" stroke="#C4B7A4"/>
+<text x="39" y="44" fill="#153F46" font-size="14" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="start">9:41</text>
+<text x="390" y="44" fill="#566861" font-size="13" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="end">●  ●  ●</text>
+<path d="M31 56 L400 56" fill="none" stroke="#C8B7A1"/>
+<path d="M31 146 L400 146" fill="none" stroke="#C8B7A1"/>
+<rect x="30" y="64" width="48" height="48" rx="24" fill="#FFFCF6" stroke="#C8B7A1"/>
+<text x="54" y="95" fill="#153F46" font-size="29" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="middle">‹</text>
+<text x="86" y="99" fill="#153F46" font-size="28" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="start">No photos yet</text>
+<text x="36" y="132" fill="#566861" font-size="14" font-weight="500" font-family="Arial,Helvetica,sans-serif" text-anchor="start">Start with a few images</text>
+<rect x="35" y="156" width="362" height="250" rx="17" fill="#EDBE90" stroke="none"/>
+<circle cx="321" cy="229" r="43" fill="#F8DEA9"/>
+<path d="M35 331 Q130 192 236 334 T397 282 V406 H35Z" fill="#5C897B"/>
+<path d="M35 376 Q150 254 240 364 T397 316 V406 H35Z" fill="#245269"/>
+<rect x="49" y="169" width="190" height="26" rx="10" fill="#FFFCF6" stroke="none"/>
+<text x="58" y="187" fill="#153F46" font-size="12" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="start">EMPTY LIBRARY STUDY</text>
+<text x="36" y="463" fill="#153F46" font-size="20" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="start">Your collection is empty</text>
+<rect x="35" y="481" width="362" height="66" rx="13" fill="#F5E6D1" stroke="none"/>
+<rect x="47" y="491" width="4" height="46" rx="2" fill="#1D5960" stroke="none"/>
+<text x="61" y="507" fill="#153F46" font-size="15" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="start">Choose photos to begin</text>
+<text x="61" y="529" fill="#566861" font-size="13" font-weight="500" font-family="Arial,Helvetica,sans-serif" text-anchor="start">Android picker protects originals.</text>
+<rect x="35" y="588" width="362" height="54" rx="18" fill="#1D5960" stroke="none"/>
+<text x="216" y="623" fill="#FFFFFF" font-size="16" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="middle">Choose photos...</text>
+<rect x="35" y="671" width="362" height="66" rx="14" fill="#FFFCF6" stroke="#C8B7A1"/>
+<rect x="47" y="684" width="42" height="40" rx="12" fill="#DAEDE1" stroke="none"/>
+<text x="68" y="710" fill="#1D5960" font-size="17" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="middle">?</text>
+<text x="103" y="697" fill="#153F46" font-size="16" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="start">Cannot open the picker?</text>
+<text x="103" y="719" fill="#566861" font-size="13" font-weight="500" font-family="Arial,Helvetica,sans-serif" text-anchor="start">Try supported provider alternatives</text>
+<text x="382" y="710" fill="#1D5960" font-size="23" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="middle">›</text>
+<text x="38" y="784" fill="#566861" font-size="12" font-weight="500" font-family="Arial,Helvetica,sans-serif" text-anchor="start">Offline and permission errors have separate variants.</text>
+<rect x="24" y="823" width="384" height="56" rx="0" fill="#FFFCF6" stroke="none"/>
+<path d="M24 823 L408 823" fill="none" stroke="#C8B7A1"/>
+<text x="71" y="856" fill="#566861" font-size="13" font-weight="600" font-family="Arial,Helvetica,sans-serif" text-anchor="middle">Home</text>
+<text x="167" y="856" fill="#566861" font-size="13" font-weight="600" font-family="Arial,Helvetica,sans-serif" text-anchor="middle">Discover</text>
+<rect x="223" y="829" width="80" height="40" rx="13" fill="#DAEDE1" stroke="none"/>
+<text x="263" y="856" fill="#1D5960" font-size="13" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="middle">Collections</text>
+<text x="359" y="856" fill="#566861" font-size="12" font-weight="600" font-family="Arial,Helvetica,sans-serif" text-anchor="middle">Automation</text>
+<text x="35" y="898" fill="#566861" font-size="10" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="start">PROPOSAL / NOT APPROVED</text></g><text x="1076" y="24" font-family="Arial,Helvetica,sans-serif" font-size="14" fill="#153F46" font-weight="700" text-anchor="middle">error-empty-permission</text>
+<g transform="translate(1291,21)"><rect x="0" y="0" width="1160" height="920" rx="0" fill="#E9E3D9" stroke="none"/>
+<rect x="15" y="14" width="401" height="890" rx="22" fill="#F6F0E6" stroke="#C4B7A4"/>
+<text x="39" y="44" fill="#153F46" font-size="14" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="start">9:41</text>
+<text x="390" y="44" fill="#566861" font-size="13" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="end">●  ●  ●</text>
+<path d="M31 56 L400 56" fill="none" stroke="#C8B7A1"/>
+<path d="M31 146 L400 146" fill="none" stroke="#C8B7A1"/>
+<rect x="30" y="64" width="48" height="48" rx="24" fill="#FFFCF6" stroke="#C8B7A1"/>
+<text x="54" y="95" fill="#153F46" font-size="29" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="middle">‹</text>
+<text x="86" y="99" fill="#153F46" font-size="28" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="start">Accessibility</text>
+<text x="36" y="132" fill="#566861" font-size="14" font-weight="500" font-family="Arial,Helvetica,sans-serif" text-anchor="start">Choose comfortable navigation</text>
+<text x="36" y="182" fill="#153F46" font-size="20" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="start">Movement</text>
+<rect x="35" y="197" width="362" height="69" rx="13" fill="#FFFCF6" stroke="#C8B7A1"/>
+<rect x="48" y="217" width="26" height="26" rx="13" fill="#1D5960" stroke="#1D5960"/>
+<path d="M54 231 L59 236 L68 224" fill="none" stroke="#FFFFFF" stroke-width="2.6" stroke-linecap="round"/>
+<text x="87" y="226" fill="#153F46" font-size="17" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="start">Reduce reel animation</text>
+<text x="87" y="248" fill="#566861" font-size="13" font-weight="500" font-family="Arial,Helvetica,sans-serif" text-anchor="start">Direct transitions instead of spin</text>
+<text x="36" y="316" fill="#153F46" font-size="20" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="start">Navigation</text>
+<rect x="35" y="329" width="362" height="66" rx="14" fill="#FFFCF6" stroke="#C8B7A1"/>
+<rect x="47" y="342" width="42" height="40" rx="12" fill="#DAEDE1" stroke="none"/>
+<text x="68" y="368" fill="#1D5960" font-size="17" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="middle">G</text>
+<text x="103" y="355" fill="#153F46" font-size="16" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="start">Prefer Grid</text>
+<text x="103" y="377" fill="#566861" font-size="13" font-weight="500" font-family="Arial,Helvetica,sans-serif" text-anchor="start">Full alternative to the reel</text>
+<text x="382" y="368" fill="#1D5960" font-size="23" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="middle">›</text>
+<rect x="35" y="406" width="362" height="66" rx="14" fill="#FFFCF6" stroke="#C8B7A1"/>
+<rect x="47" y="419" width="42" height="40" rx="12" fill="#DAEDE1" stroke="none"/>
+<text x="68" y="445" fill="#1D5960" font-size="17" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="middle">N</text>
+<text x="103" y="432" fill="#153F46" font-size="16" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="start">Previous and Next</text>
+<text x="103" y="454" fill="#566861" font-size="13" font-weight="500" font-family="Arial,Helvetica,sans-serif" text-anchor="start">No gesture required</text>
+<text x="382" y="445" fill="#1D5960" font-size="23" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="middle">›</text>
+<text x="36" y="522" fill="#153F46" font-size="20" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="start">Reading and focus</text>
+<rect x="35" y="537" width="362" height="66" rx="14" fill="#FFFCF6" stroke="#C8B7A1"/>
+<rect x="47" y="550" width="42" height="40" rx="12" fill="#DAEDE1" stroke="none"/>
+<text x="68" y="576" fill="#1D5960" font-size="17" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="middle">Aa</text>
+<text x="103" y="563" fill="#153F46" font-size="16" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="start">Follow Android text size</text>
+<text x="103" y="585" fill="#566861" font-size="13" font-weight="500" font-family="Arial,Helvetica,sans-serif" text-anchor="start">200% design target; test pending</text>
+<text x="382" y="576" fill="#1D5960" font-size="23" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="middle">›</text>
+<rect x="35" y="614" width="362" height="66" rx="14" fill="#FFFCF6" stroke="#C8B7A1"/>
+<rect x="47" y="627" width="42" height="40" rx="12" fill="#DAEDE1" stroke="none"/>
+<text x="68" y="653" fill="#1D5960" font-size="17" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="middle">F</text>
+<text x="103" y="640" fill="#153F46" font-size="16" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="start">TalkBack focus order</text>
+<text x="103" y="662" fill="#566861" font-size="13" font-weight="500" font-family="Arial,Helvetica,sans-serif" text-anchor="start">ID, index and state read clearly</text>
+<text x="382" y="653" fill="#1D5960" font-size="23" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="middle">›</text>
+<rect x="35" y="710" width="362" height="66" rx="13" fill="#F5E6D1" stroke="none"/>
+<rect x="47" y="720" width="4" height="46" rx="2" fill="#1D5960" stroke="none"/>
+<text x="61" y="736" fill="#153F46" font-size="15" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="start">Proposed, not native proof</text>
+<text x="61" y="758" fill="#566861" font-size="13" font-weight="500" font-family="Arial,Helvetica,sans-serif" text-anchor="start">Focus and size require device review.</text>
+<rect x="24" y="823" width="384" height="56" rx="0" fill="#FFFCF6" stroke="none"/>
+<path d="M24 823 L408 823" fill="none" stroke="#C8B7A1"/>
+<rect x="31" y="829" width="80" height="40" rx="13" fill="#DAEDE1" stroke="none"/>
+<text x="71" y="856" fill="#1D5960" font-size="13" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="middle">Home</text>
+<text x="167" y="856" fill="#566861" font-size="13" font-weight="600" font-family="Arial,Helvetica,sans-serif" text-anchor="middle">Discover</text>
+<text x="263" y="856" fill="#566861" font-size="13" font-weight="600" font-family="Arial,Helvetica,sans-serif" text-anchor="middle">Collections</text>
+<text x="359" y="856" fill="#566861" font-size="12" font-weight="600" font-family="Arial,Helvetica,sans-serif" text-anchor="middle">Automation</text>
+<text x="35" y="898" fill="#566861" font-size="10" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="start">PROPOSAL / NOT APPROVED</text></g><text x="1506" y="24" font-family="Arial,Helvetica,sans-serif" font-size="14" fill="#153F46" font-weight="700" text-anchor="middle">accessibility-preferences</text><text x="16" y="946" font-family="Arial,Helvetica,sans-serif" font-size="11" fill="#153F46">SOURCE EXACT PHONE CONTACT · 401x890 · source/optical proof only · no Android or human approval</text></svg>

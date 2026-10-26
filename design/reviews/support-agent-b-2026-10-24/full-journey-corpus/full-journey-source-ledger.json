@@ -1,0 +1,2514 @@
+{
+  "schemaVersion": 1,
+  "kind": "B_UNAPPROVED_FULL_STORYBOARD_OPTICAL_CHALLENGE",
+  "sources": [
+    "design/proposals/storyboard-coverage.v1.json",
+    "design/proposals/advanced-storyboard-coverage.v1.json"
+  ],
+  "groups": [
+    {
+      "group": "x01",
+      "title": "Bulk Google Photos import",
+      "count": 7,
+      "contact": "x01-all-07-phones.jpg",
+      "contactSHA256": "6555042dea5b1119c45e3b03a8a0562d6e7d7e100a2afaf9e112c47b614b3607",
+      "frames": [
+        {
+          "ordinal": 1,
+          "id": "01-collection-entry",
+          "source": "design/proposals/storyboards/x01/01-collection-entry.svg",
+          "sha256": "6ef7504d0c6f45c198b300fa592319d8321d51c57b50e0acdde43e5e7c8613b5",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        },
+        {
+          "ordinal": 2,
+          "id": "02-system-picker",
+          "source": "design/proposals/storyboards/x01/02-system-picker.svg",
+          "sha256": "1236e5fba7c110df9402bc2bac3315a7f12b0aa709fb6feea03c878a1b844f5d",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        },
+        {
+          "ordinal": 3,
+          "id": "03-cloud-pending",
+          "source": "design/proposals/storyboards/x01/03-cloud-pending.svg",
+          "sha256": "fb5aa36e6edac2a38c394aee6b4a629c380833dfbd1a0b07cace2b3e9a343946",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        },
+        {
+          "ordinal": 4,
+          "id": "04-copy-progress",
+          "source": "design/proposals/storyboards/x01/04-copy-progress.svg",
+          "sha256": "6841b68550f06436a80e098db66822d21300f8d874c2163ae848d6d238091c71",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        },
+        {
+          "ordinal": 5,
+          "id": "05-partial-recovery",
+          "source": "design/proposals/storyboards/x01/05-partial-recovery.svg",
+          "sha256": "998af60a8ca75268d96e2fa1b54b55dc6361a2cd23f6266508ae2d1f5b573d7c",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        },
+        {
+          "ordinal": 6,
+          "id": "06-import-result",
+          "source": "design/proposals/storyboards/x01/06-import-result.svg",
+          "sha256": "2b6b6031d1477f036fbe41e699b0d8e351c4a646ee55dc5a8e0422afb51e405d",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        },
+        {
+          "ordinal": 7,
+          "id": "07-offline-ready",
+          "source": "design/proposals/storyboards/x01/07-offline-ready.svg",
+          "sha256": "e88a19bb10348ed9da123ea4fbc76d924ec2c802b8646f228d79e86b5b758d36",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        }
+      ],
+      "generatedOnly": true,
+      "independentlyOpticallyInspected": false,
+      "nativeAndroidVerified": false,
+      "ownerApproved": false
+    },
+    {
+      "group": "x02",
+      "title": "Collection creation and management",
+      "count": 6,
+      "contact": "x02-all-06-phones.jpg",
+      "contactSHA256": "a51bc9c2a9e37e593790b29f55e82f3cfbcc93e6842ad92350e457cffbfccdc4",
+      "frames": [
+        {
+          "ordinal": 1,
+          "id": "01-collection-list",
+          "source": "design/proposals/storyboards/x02/01-collection-list.svg",
+          "sha256": "9f0ba2930ac0d98ad66ec3df1a8377203487059b83d5031ec26329336f17eaf4",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        },
+        {
+          "ordinal": 2,
+          "id": "02-create-sheet",
+          "source": "design/proposals/storyboards/x02/02-create-sheet.svg",
+          "sha256": "807c73635fc26f26a82b79a543a235a1b1d51a53b241e0982c327403c846e905",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        },
+        {
+          "ordinal": 3,
+          "id": "03-import-target",
+          "source": "design/proposals/storyboards/x02/03-import-target.svg",
+          "sha256": "d0f91cc688b648cdf0621581a377acbe0327434befcf5937ef49b07469394968",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        },
+        {
+          "ordinal": 4,
+          "id": "04-rename",
+          "source": "design/proposals/storyboards/x02/04-rename.svg",
+          "sha256": "b67e94939d2dda2ec6fce5abfb2ef55c2e31604ad9679b3b7bfecfe93ba04c0f",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        },
+        {
+          "ordinal": 5,
+          "id": "05-delete-confirm",
+          "source": "design/proposals/storyboards/x02/05-delete-confirm.svg",
+          "sha256": "a6667ea41f5802938f6a6f1bfca0a913df7f9360e18fb090cd85a540db24b7b6",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        },
+        {
+          "ordinal": 6,
+          "id": "06-empty-after-removal",
+          "source": "design/proposals/storyboards/x02/06-empty-after-removal.svg",
+          "sha256": "d74320b844e9253db0cc20b6b0be46c091e7141f646aa4f83be9dde413b8880f",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        }
+      ],
+      "generatedOnly": true,
+      "independentlyOpticallyInspected": false,
+      "nativeAndroidVerified": false,
+      "ownerApproved": false
+    },
+    {
+      "group": "x03",
+      "title": "Wallpaper application transaction",
+      "count": 7,
+      "contact": "x03-all-07-phones.jpg",
+      "contactSHA256": "0a962d58edf7e4db71af230c8ba89a0679ff13298b173df0bd4506709c4ecb59",
+      "frames": [
+        {
+          "ordinal": 1,
+          "id": "01-preview",
+          "source": "design/proposals/storyboards/x03/01-preview.svg",
+          "sha256": "aeca2b1a0d8994964ece0e13bcda07cbd5602616d6dae1b9b976f8f0a6395f5c",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        },
+        {
+          "ordinal": 2,
+          "id": "02-choose-target",
+          "source": "design/proposals/storyboards/x03/02-choose-target.svg",
+          "sha256": "709e9eb1c885fac6dbdf5a50dfc4303ae147257de64c02b891da03581fe35ba1",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        },
+        {
+          "ordinal": 3,
+          "id": "03-pending",
+          "source": "design/proposals/storyboards/x03/03-pending.svg",
+          "sha256": "fdd4365b1fe310aa81724a6d29d282b7d3362aa4dd4a4e50d426cd57505c2caf",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        },
+        {
+          "ordinal": 4,
+          "id": "04-acknowledged",
+          "source": "design/proposals/storyboards/x03/04-acknowledged.svg",
+          "sha256": "0696fc21c4d36bc05a7ff35a3c409c6b4d56d6e0fd76568bb86491a6a4afdb8e",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        },
+        {
+          "ordinal": 5,
+          "id": "05-uncertain",
+          "source": "design/proposals/storyboards/x03/05-uncertain.svg",
+          "sha256": "2b39c0a3f637bc0ffdcdf125297ce692f3a9e4cd6b4aafb29bc614c9acfd3a8d",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        },
+        {
+          "ordinal": 6,
+          "id": "06-failed",
+          "source": "design/proposals/storyboards/x03/06-failed.svg",
+          "sha256": "35c3dbe6abfb1584b90d28d677f87239f9d1fde214abfb87122d035c7490a848",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        },
+        {
+          "ordinal": 7,
+          "id": "07-unsupported",
+          "source": "design/proposals/storyboards/x03/07-unsupported.svg",
+          "sha256": "da22da56314f8d4a1240fcef988bd2fc9b4171adbc78aa04599cf39e1db3af18",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        }
+      ],
+      "generatedOnly": true,
+      "independentlyOpticallyInspected": false,
+      "nativeAndroidVerified": false,
+      "ownerApproved": false
+    },
+    {
+      "group": "x04",
+      "title": "Active-use shuffle lifecycle",
+      "count": 7,
+      "contact": "x04-all-07-phones.jpg",
+      "contactSHA256": "3bded5418929480fc0cad3224fd5d6ec62423e7cbe0d63ccfa7de290ce0d234d",
+      "frames": [
+        {
+          "ordinal": 1,
+          "id": "01-ready",
+          "source": "design/proposals/storyboards/x04/01-ready.svg",
+          "sha256": "255fe27865fd2c6e2e1dba7ad219fdd36fd41740d37c6f1d9deb8324aa7a1215",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        },
+        {
+          "ordinal": 2,
+          "id": "02-start",
+          "source": "design/proposals/storyboards/x04/02-start.svg",
+          "sha256": "765eec99a0848c15664be18ea469fbe50ff90cfc5db6b3090d11ed05b66c1977",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        },
+        {
+          "ordinal": 3,
+          "id": "03-active",
+          "source": "design/proposals/storyboards/x04/03-active.svg",
+          "sha256": "8023d4457d99b75d51118647a910661cccfe949066687f9ee4a8e9f3444d9d66",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        },
+        {
+          "ordinal": 4,
+          "id": "04-delayed",
+          "source": "design/proposals/storyboards/x04/04-delayed.svg",
+          "sha256": "9eb5b0e26460f67cb01f661899cb62630d7f9f11c4bc67de848c8f19799db2e3",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        },
+        {
+          "ordinal": 5,
+          "id": "05-paused",
+          "source": "design/proposals/storyboards/x04/05-paused.svg",
+          "sha256": "166b1ea49d941af80b97241ca0f01c7811d2922db34829f8c7122c7dc78339b3",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        },
+        {
+          "ordinal": 6,
+          "id": "06-resumed",
+          "source": "design/proposals/storyboards/x04/06-resumed.svg",
+          "sha256": "b8f44d301e9ed0d3a36df00fbf32890732af5eb8e74d01f90ef14f38d654624a",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        },
+        {
+          "ordinal": 7,
+          "id": "07-stopped",
+          "source": "design/proposals/storyboards/x04/07-stopped.svg",
+          "sha256": "781f48473a1a8f751ab31c5241448af0a84c4a576e4b79947e210b312e4a977f",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        }
+      ],
+      "generatedOnly": true,
+      "independentlyOpticallyInspected": false,
+      "nativeAndroidVerified": false,
+      "ownerApproved": false
+    },
+    {
+      "group": "x05",
+      "title": "Paper-reel physical motion",
+      "count": 8,
+      "contact": "x05-all-08-phones.jpg",
+      "contactSHA256": "b5addb75f55c270686ea7e1cbeaf9bca0f787a8e27c1fe3a787b295c5c9fa662",
+      "frames": [
+        {
+          "ordinal": 1,
+          "id": "01-rest",
+          "source": "design/proposals/storyboards/x05/01-rest.svg",
+          "sha256": "dee8c7a9029634af42477584b9afe795e180fc71fa0b26fe625c15f6268679e4",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        },
+        {
+          "ordinal": 2,
+          "id": "02-touch-down",
+          "source": "design/proposals/storyboards/x05/02-touch-down.svg",
+          "sha256": "c0f4017c50c64a371f5854cac7523d984cd8b9781a1386237a9f8507d54b5026",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        },
+        {
+          "ordinal": 3,
+          "id": "03-drag-18",
+          "source": "design/proposals/storyboards/x05/03-drag-18.svg",
+          "sha256": "cce556c91d558c46d0d00f458a4b3c0bc93acf3b55c2603bf16be96d6ff72e84",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        },
+        {
+          "ordinal": 4,
+          "id": "04-drag-36",
+          "source": "design/proposals/storyboards/x05/04-drag-36.svg",
+          "sha256": "81015900882488e4b91ab37ffc0ef12d5d35906a78ef50b9619d23cc2bb489ee",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        },
+        {
+          "ordinal": 5,
+          "id": "05-snap-72",
+          "source": "design/proposals/storyboards/x05/05-snap-72.svg",
+          "sha256": "325c09d4e4d2b52489629f9ef6e1219a5bc82bec6419eafd6e5e4091ec8c9ab3",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        },
+        {
+          "ordinal": 6,
+          "id": "06-reverse-18",
+          "source": "design/proposals/storyboards/x05/06-reverse-18.svg",
+          "sha256": "29ad0f1d6aa0dc1ee7ddc1ae111ba74d047dbd380c0a093777a79effbb54c986",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        },
+        {
+          "ordinal": 7,
+          "id": "07-interrupted",
+          "source": "design/proposals/storyboards/x05/07-interrupted.svg",
+          "sha256": "c233699dc867ac296b2e77a1541cc700c227f60528d91539abbc069863f1cf2b",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        },
+        {
+          "ordinal": 8,
+          "id": "08-last",
+          "source": "design/proposals/storyboards/x05/08-last.svg",
+          "sha256": "dfd2e96da271d5aed6ae54f15728ebc605c3fc831919a658361461cc5246a019",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        }
+      ],
+      "generatedOnly": true,
+      "independentlyOpticallyInspected": false,
+      "nativeAndroidVerified": false,
+      "ownerApproved": false
+    },
+    {
+      "group": "x06",
+      "title": "Finite reel edge and scale",
+      "count": 7,
+      "contact": "x06-all-07-phones.jpg",
+      "contactSHA256": "73bdda8b6758daba86aeb21a0e75976f0b9215ad9aa673a622769a5e094a1e26",
+      "frames": [
+        {
+          "ordinal": 1,
+          "id": "01-first",
+          "source": "design/proposals/storyboards/x06/01-first.svg",
+          "sha256": "1ef011d224b648be8e4ddaeb51efddefb00b66dc2c7fb6fb43fd49952d6213b8",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        },
+        {
+          "ordinal": 2,
+          "id": "02-single",
+          "source": "design/proposals/storyboards/x06/02-single.svg",
+          "sha256": "7581d9869d30b4617bb5c4e93ddc8e68f0be101b473d7cd80d5d18d1d5fa1d89",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        },
+        {
+          "ordinal": 3,
+          "id": "03-three",
+          "source": "design/proposals/storyboards/x06/03-three.svg",
+          "sha256": "4d6661de05fe2eb32dc192939e6a90a9fa37d26ac4cfbd761c8216db2cb606dd",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        },
+        {
+          "ordinal": 4,
+          "id": "04-exact-five",
+          "source": "design/proposals/storyboards/x06/04-exact-five.svg",
+          "sha256": "27c12307035b0b0405a5a493ae180cab8fd658774da2ed6090d38e5fee635803",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        },
+        {
+          "ordinal": 5,
+          "id": "05-twenty-two",
+          "source": "design/proposals/storyboards/x06/05-twenty-two.svg",
+          "sha256": "e55d629d3599c3d1cda3086799ccececfd1353caa6215181409bc83d01cdaa1e",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        },
+        {
+          "ordinal": 6,
+          "id": "06-sixty",
+          "source": "design/proposals/storyboards/x06/06-sixty.svg",
+          "sha256": "234423e7a0f7fde8ab7227efbad06e7d3d5448c28dc73c99ac412cbcec6fd2a1",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        },
+        {
+          "ordinal": 7,
+          "id": "07-last",
+          "source": "design/proposals/storyboards/x06/07-last.svg",
+          "sha256": "dc0971f1ac66b0b9f1059d873abe901c8c17d095b7875b36156ecb8249f375f0",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        }
+      ],
+      "generatedOnly": true,
+      "independentlyOpticallyInspected": false,
+      "nativeAndroidVerified": false,
+      "ownerApproved": false
+    },
+    {
+      "group": "x07",
+      "title": "Reel / Grid / photo detail continuity",
+      "count": 7,
+      "contact": "x07-all-07-phones.jpg",
+      "contactSHA256": "87d8ac8b6fe64e5b9e02f3754c1bbfa15a38ae8a20632a61cf25e189a92ce394",
+      "frames": [
+        {
+          "ordinal": 1,
+          "id": "01-reel-focus",
+          "source": "design/proposals/storyboards/x07/01-reel-focus.svg",
+          "sha256": "56fe29be3a5684433fff24611afbff0aa7d09e6a411864336d5c68110402f7cc",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        },
+        {
+          "ordinal": 2,
+          "id": "02-grid-focus",
+          "source": "design/proposals/storyboards/x07/02-grid-focus.svg",
+          "sha256": "61c6844ec1140c88ac9b1627d8bc37c2eb57561c8e1beab7c11fad4ea44a906a",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        },
+        {
+          "ordinal": 3,
+          "id": "03-photo-detail",
+          "source": "design/proposals/storyboards/x07/03-photo-detail.svg",
+          "sha256": "e2422dea9d73540fa39e029d31a4090554320ab4dbfded4e43dcc362284b5047",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        },
+        {
+          "ordinal": 4,
+          "id": "04-back-reel",
+          "source": "design/proposals/storyboards/x07/04-back-reel.svg",
+          "sha256": "133220a16b50cc103b5d33c499d3a054ce415131f580dc09355ed1f97f49fd06",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        },
+        {
+          "ordinal": 5,
+          "id": "05-switch-collection",
+          "source": "design/proposals/storyboards/x07/05-switch-collection.svg",
+          "sha256": "8caa50dd98ac257c0086c70e16e4857b48900421c0e6862417635cb2bf2895a3",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        },
+        {
+          "ordinal": 6,
+          "id": "06-return-original",
+          "source": "design/proposals/storyboards/x07/06-return-original.svg",
+          "sha256": "07f52933fc34e65efc0c192e68b374a62496f19b5ed5002f7de08a82beb9d72a",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        },
+        {
+          "ordinal": 7,
+          "id": "07-multi-select",
+          "source": "design/proposals/storyboards/x07/07-multi-select.svg",
+          "sha256": "415d45b74ab2681e05bf9a01f708f897c7e61737eb88f696702317779d809590",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        }
+      ],
+      "generatedOnly": true,
+      "independentlyOpticallyInspected": false,
+      "nativeAndroidVerified": false,
+      "ownerApproved": false
+    },
+    {
+      "group": "x08",
+      "title": "Compact handset information hierarchy",
+      "count": 6,
+      "contact": "x08-all-06-phones.jpg",
+      "contactSHA256": "1d448bd269d16c23ee6dda7677e3c4cca4f76205c80755f5b354602cc3e7bddb",
+      "frames": [
+        {
+          "ordinal": 1,
+          "id": "01-home-active",
+          "source": "design/proposals/storyboards/x08/01-home-active.svg",
+          "sha256": "cd2b3736afaf39ed5465429b4c17da82abdad2632a21df8df477aa8d4b7f55d9",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        },
+        {
+          "ordinal": 2,
+          "id": "02-collections",
+          "source": "design/proposals/storyboards/x08/02-collections.svg",
+          "sha256": "5e7177a795c0e66df0a131981170fc2f74ad8f6ebb9eb55851442223dcef8a02",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        },
+        {
+          "ordinal": 3,
+          "id": "03-reel-hero",
+          "source": "design/proposals/storyboards/x08/03-reel-hero.svg",
+          "sha256": "d450db3fe730c96753ed4c729eab010f25314c3fdd41b23b83aca365f27e772b",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        },
+        {
+          "ordinal": 4,
+          "id": "04-grid-dense",
+          "source": "design/proposals/storyboards/x08/04-grid-dense.svg",
+          "sha256": "87e3a896512c145bb39c55e9db76798c6e14a2397dfbb8b4487665ffcc099961",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        },
+        {
+          "ordinal": 5,
+          "id": "05-long-title",
+          "source": "design/proposals/storyboards/x08/05-long-title.svg",
+          "sha256": "42bb2d81ce3aa939f611130b24b32939a8caec413b8c13d4071f68c1abc45f80",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        },
+        {
+          "ordinal": 6,
+          "id": "06-status-collapsed",
+          "source": "design/proposals/storyboards/x08/06-status-collapsed.svg",
+          "sha256": "9d6535b0bc00596321b5d475787f0aba19bd04f25e73e535528489b74b7679e6",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        }
+      ],
+      "generatedOnly": true,
+      "independentlyOpticallyInspected": false,
+      "nativeAndroidVerified": false,
+      "ownerApproved": false
+    },
+    {
+      "group": "x09",
+      "title": "Large text, high contrast and motion stress",
+      "count": 8,
+      "contact": "x09-all-08-phones.jpg",
+      "contactSHA256": "1fa7728e02deec0d3ee64fd2427404e55866498c7417e59326da79659d1622ca",
+      "frames": [
+        {
+          "ordinal": 1,
+          "id": "01-home-200-text",
+          "source": "design/proposals/storyboards/x09/01-home-200-text.svg",
+          "sha256": "ab1fa919328cad8e7620a9940c3a92ac16554375eab0f2cbf15933a9ac0dc409",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        },
+        {
+          "ordinal": 2,
+          "id": "02-collections-long-name",
+          "source": "design/proposals/storyboards/x09/02-collections-long-name.svg",
+          "sha256": "70f49fc78e377bf494f7f175c6e79f8dbb8192cbc2980f1fbe5caeea0812d38c",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        },
+        {
+          "ordinal": 3,
+          "id": "03-reel-200-text",
+          "source": "design/proposals/storyboards/x09/03-reel-200-text.svg",
+          "sha256": "4a91bd26692fb1d701973c8cd0c2d45fdaa00543d9471303251dac68f8bb9927",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        },
+        {
+          "ordinal": 4,
+          "id": "04-grid-large-type",
+          "source": "design/proposals/storyboards/x09/04-grid-large-type.svg",
+          "sha256": "e68f17c0e3714fdb5534d83ff05835d234b5d836ebcab7038a2f41234516512a",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        },
+        {
+          "ordinal": 5,
+          "id": "05-import-200-text",
+          "source": "design/proposals/storyboards/x09/05-import-200-text.svg",
+          "sha256": "20a5660ca81e0288fafe9d3bd82b7666a831bed21a684f6311d8d47b0712f358",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        },
+        {
+          "ordinal": 6,
+          "id": "06-apply-high-contrast",
+          "source": "design/proposals/storyboards/x09/06-apply-high-contrast.svg",
+          "sha256": "cc7afcce33e29f3ef02e06065cb9032b7cc6e5cc8531e448fea394e2d3c95a26",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        },
+        {
+          "ordinal": 7,
+          "id": "07-error-compact",
+          "source": "design/proposals/storyboards/x09/07-error-compact.svg",
+          "sha256": "fdb257778795c985d25b2e2904f7bf05fd4b994c110ff82c142caebb48be2563",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        },
+        {
+          "ordinal": 8,
+          "id": "08-help-dialog",
+          "source": "design/proposals/storyboards/x09/08-help-dialog.svg",
+          "sha256": "daeb5095cd28e6eeaca7fb217550dd27a6206dca7245e325abb2636ba53cdc2d",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        }
+      ],
+      "generatedOnly": true,
+      "independentlyOpticallyInspected": false,
+      "nativeAndroidVerified": false,
+      "ownerApproved": false
+    },
+    {
+      "group": "x10",
+      "title": "Failures and interruption recovery",
+      "count": 7,
+      "contact": "x10-all-07-phones.jpg",
+      "contactSHA256": "a836f01770fb09221fc2da490dc4bc557604257e2251977fb4830dc51f92b759",
+      "frames": [
+        {
+          "ordinal": 1,
+          "id": "01-cloud-pending",
+          "source": "design/proposals/storyboards/x10/01-cloud-pending.svg",
+          "sha256": "4d0fe634855f74e5f146bce9553881888ab621d9c838ce1dccd47412ec7525a7",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        },
+        {
+          "ordinal": 2,
+          "id": "02-uri-revoked",
+          "source": "design/proposals/storyboards/x10/02-uri-revoked.svg",
+          "sha256": "bc73008a1139f0bcc805c0fae53a5696234c460cfefe39bb499ed46c3e8fd201",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        },
+        {
+          "ordinal": 3,
+          "id": "03-apply-unknown",
+          "source": "design/proposals/storyboards/x10/03-apply-unknown.svg",
+          "sha256": "24c5002f0edd9f6b8cddf4dee1bb1715e7f674368d69dd71711f100ea5e1d389",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        },
+        {
+          "ordinal": 4,
+          "id": "04-storage-full",
+          "source": "design/proposals/storyboards/x10/04-storage-full.svg",
+          "sha256": "64702fdea5b2005fb87568337c51f7a1de5a90ce4b305e71f14419ce7a616e5a",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        },
+        {
+          "ordinal": 5,
+          "id": "05-no-photos",
+          "source": "design/proposals/storyboards/x10/05-no-photos.svg",
+          "sha256": "fef486294c927ea168baef4ebb920df15f98e31f61147113eba3c4cc60603e3a",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        },
+        {
+          "ordinal": 6,
+          "id": "06-rotation-delayed",
+          "source": "design/proposals/storyboards/x10/06-rotation-delayed.svg",
+          "sha256": "6df150ae05d77508b494be75ad82e41bd9a883f4eb9c8731b90f8df07fa14d29",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        },
+        {
+          "ordinal": 7,
+          "id": "07-retry-explicit",
+          "source": "design/proposals/storyboards/x10/07-retry-explicit.svg",
+          "sha256": "91ec2444c81db535bfb8614ed692ba8f8e508ed57ff50c2c864d9f1f0e1e86c5",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        }
+      ],
+      "generatedOnly": true,
+      "independentlyOpticallyInspected": false,
+      "nativeAndroidVerified": false,
+      "ownerApproved": false
+    },
+    {
+      "group": "x11",
+      "title": "Screenshot intake and editing",
+      "count": 7,
+      "contact": "x11-all-07-phones.jpg",
+      "contactSHA256": "4cdf2c954f46e315bca5174e484e27ef216651c1deaf080054e8a1a2e0aef248",
+      "frames": [
+        {
+          "ordinal": 1,
+          "id": "01-inbound-original",
+          "source": "design/proposals/storyboards/x11/01-inbound-original.svg",
+          "sha256": "d845d5cc67571afe938d2476048d76b9b37e5d352768696c3a0526e9f44111b5",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        },
+        {
+          "ordinal": 2,
+          "id": "02-rotate",
+          "source": "design/proposals/storyboards/x11/02-rotate.svg",
+          "sha256": "e1ca6cd74094b513933d42174738901865632858e292da1b813eaf816c94cce2",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        },
+        {
+          "ordinal": 3,
+          "id": "03-crop",
+          "source": "design/proposals/storyboards/x11/03-crop.svg",
+          "sha256": "184c855590b7b994994bafa43c337a051464d5fbdb89422e0578363b14311d4f",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        },
+        {
+          "ordinal": 4,
+          "id": "04-save-only",
+          "source": "design/proposals/storyboards/x11/04-save-only.svg",
+          "sha256": "1a565767010014e52cf093da39628835055addca8adce70eeca4bc7919d8ccfb",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        },
+        {
+          "ordinal": 5,
+          "id": "05-show-next",
+          "source": "design/proposals/storyboards/x11/05-show-next.svg",
+          "sha256": "72c35eed39c0d96df1af16dc1db539dbdcc2193dc8f8c2b8ebba4204706d9982",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        },
+        {
+          "ordinal": 6,
+          "id": "06-use-now",
+          "source": "design/proposals/storyboards/x11/06-use-now.svg",
+          "sha256": "dee9af0f31ae8fa1fb0f289ab94270af836258e4dbf469a30dba40d81633b5c4",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        },
+        {
+          "ordinal": 7,
+          "id": "07-cancel-undo",
+          "source": "design/proposals/storyboards/x11/07-cancel-undo.svg",
+          "sha256": "9c262b41c2343b84e12d408110c09c930cee537c0a21f22c701ecc1fe00e24b4",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        }
+      ],
+      "generatedOnly": true,
+      "independentlyOpticallyInspected": false,
+      "nativeAndroidVerified": false,
+      "ownerApproved": false
+    },
+    {
+      "group": "x12",
+      "title": "Touch, inset and accessible focus anatomy",
+      "count": 5,
+      "contact": "x12-all-05-phones.jpg",
+      "contactSHA256": "0c6e29893174b1de96ceba2184aa11a073da48c452118c0f6fea6173c3adfa81",
+      "frames": [
+        {
+          "ordinal": 1,
+          "id": "01-reel-touch-regions",
+          "source": "design/proposals/storyboards/x12/01-reel-touch-regions.svg",
+          "sha256": "08c6337a705834a24917942d428a815eb75a11f6e024f0167e0e960a0a0d2498",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        },
+        {
+          "ordinal": 2,
+          "id": "02-safe-area-navigation",
+          "source": "design/proposals/storyboards/x12/02-safe-area-navigation.svg",
+          "sha256": "f8aa7a9d429abcae2746cffb88e2f54ef2c697cffd4e77c292455e5309b20962",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        },
+        {
+          "ordinal": 3,
+          "id": "03-keyboard-compose",
+          "source": "design/proposals/storyboards/x12/03-keyboard-compose.svg",
+          "sha256": "d0905566cce08ce4eebfbc2af4854f7dc7e89d829bf3840fbfba1a056a5e4342",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        },
+        {
+          "ordinal": 4,
+          "id": "04-talkback-focus",
+          "source": "design/proposals/storyboards/x12/04-talkback-focus.svg",
+          "sha256": "a045763a03d096928051cabf188134fdf6bb1c7320ca354a9d91c39b5fa5797f",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        },
+        {
+          "ordinal": 5,
+          "id": "05-error-dialog-focus",
+          "source": "design/proposals/storyboards/x12/05-error-dialog-focus.svg",
+          "sha256": "63d2cc7f6c1dba96e31904896222aa07db85b68351ee777b95c0379581a328de",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        }
+      ],
+      "generatedOnly": true,
+      "independentlyOpticallyInspected": false,
+      "nativeAndroidVerified": false,
+      "ownerApproved": false
+    },
+    {
+      "group": "x13",
+      "title": "Android sharing and return",
+      "count": 5,
+      "contact": "x13-all-05-phones.jpg",
+      "contactSHA256": "f139e136a38f3963e8c77cc6dcb2bdcf0e63548eeb1135c624ade90cbd1eda7a",
+      "frames": [
+        {
+          "ordinal": 1,
+          "id": "01-original",
+          "source": "design/proposals/advanced-storyboards/x13/01-original.svg",
+          "sha256": "c3eb18cdd75b264133520f15d7b53598bd3c4086fd727f1a528da6b43ccbcd62",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        },
+        {
+          "ordinal": 2,
+          "id": "02-edited",
+          "source": "design/proposals/advanced-storyboards/x13/02-edited.svg",
+          "sha256": "8dfd18461105318ada552df5696b557f29a0f778ea94460701e93a96b43d6eb5",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        },
+        {
+          "ordinal": 3,
+          "id": "03-chooser",
+          "source": "design/proposals/advanced-storyboards/x13/03-chooser.svg",
+          "sha256": "bc18dc73647d812a302ea69db0ceb641e5b97458ad5d4bd76dae0b2fde540aab",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        },
+        {
+          "ordinal": 4,
+          "id": "04-cancel",
+          "source": "design/proposals/advanced-storyboards/x13/04-cancel.svg",
+          "sha256": "89985fdd0fd0b7744722f2b9df86c56eb3d2256740370dfba9dd436fb2c9f484",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        },
+        {
+          "ordinal": 5,
+          "id": "05-unavailable",
+          "source": "design/proposals/advanced-storyboards/x13/05-unavailable.svg",
+          "sha256": "b7b890675f7374d33ff03e5d52d0ec57520b63f8c95401eede01a32251664211",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        }
+      ],
+      "generatedOnly": true,
+      "independentlyOpticallyInspected": false,
+      "nativeAndroidVerified": false,
+      "ownerApproved": false
+    },
+    {
+      "group": "x14",
+      "title": "Target-aware crop and capabilities",
+      "count": 5,
+      "contact": "x14-all-05-phones.jpg",
+      "contactSHA256": "891e38548c902556a75adc7daab30c84f41d23ce562272786f8d6c55bffbb449",
+      "frames": [
+        {
+          "ordinal": 1,
+          "id": "01-home",
+          "source": "design/proposals/advanced-storyboards/x14/01-home.svg",
+          "sha256": "123cb5a24cde1f99401751c62b33f8668e8fd311962a67921431f081f09c4111",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        },
+        {
+          "ordinal": 2,
+          "id": "02-lock",
+          "source": "design/proposals/advanced-storyboards/x14/02-lock.svg",
+          "sha256": "722815d3ffa1aa1ba466395d52cb476471a6f7d952daaaf93797d116ac8095b5",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        },
+        {
+          "ordinal": 3,
+          "id": "03-side-by-side",
+          "source": "design/proposals/advanced-storyboards/x14/03-side-by-side.svg",
+          "sha256": "dc045a2e7ea3c785e888597f97d3c3800eba8e436a3575870d7bc05b896bbc1b",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        },
+        {
+          "ordinal": 4,
+          "id": "04-unsupported",
+          "source": "design/proposals/advanced-storyboards/x14/04-unsupported.svg",
+          "sha256": "b5f50b8ce37ae2775bc9709a3058bf57e74e3fde1c138a336375ceff4453f1ba",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        },
+        {
+          "ordinal": 5,
+          "id": "05-apply-both",
+          "source": "design/proposals/advanced-storyboards/x14/05-apply-both.svg",
+          "sha256": "3804e0bc9ff3f216c49c165ab180cca94491c6353903a5582971d334a30b64bc",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        }
+      ],
+      "generatedOnly": true,
+      "independentlyOpticallyInspected": false,
+      "nativeAndroidVerified": false,
+      "ownerApproved": false
+    },
+    {
+      "group": "x15",
+      "title": "Large library operations",
+      "count": 5,
+      "contact": "x15-all-05-phones.jpg",
+      "contactSHA256": "f21dd0460d8abaad58d45176b8ee37eb00e11ae8bebedd6f72cd1b1ad6b75e87",
+      "frames": [
+        {
+          "ordinal": 1,
+          "id": "01-library",
+          "source": "design/proposals/advanced-storyboards/x15/01-library.svg",
+          "sha256": "aba033f7bd8b74458b595a6f46bbfc93954d5564113b70ccfe44513e44822d74",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        },
+        {
+          "ordinal": 2,
+          "id": "02-filter",
+          "source": "design/proposals/advanced-storyboards/x15/02-filter.svg",
+          "sha256": "e187669b639ef1f7dcd6356edae973dc563a2c413aa7e01fce4b25c3cc688d4b",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        },
+        {
+          "ordinal": 3,
+          "id": "03-range-selection",
+          "source": "design/proposals/advanced-storyboards/x15/03-range-selection.svg",
+          "sha256": "66709b963f20f76b7787e9023a49cf2366c61a93032036ad420fb5bf7353e284",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        },
+        {
+          "ordinal": 4,
+          "id": "04-confirm-exclude",
+          "source": "design/proposals/advanced-storyboards/x15/04-confirm-exclude.svg",
+          "sha256": "4216172b9b1e645f90c17712cbb0d94e4c1e1d682f7978ec625fb478fb496c9a",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        },
+        {
+          "ordinal": 5,
+          "id": "05-restore",
+          "source": "design/proposals/advanced-storyboards/x15/05-restore.svg",
+          "sha256": "9428704f8242ea1805c07ae630c435a9327282420be85b1198f48bd299d9deee",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        }
+      ],
+      "generatedOnly": true,
+      "independentlyOpticallyInspected": false,
+      "nativeAndroidVerified": false,
+      "ownerApproved": false
+    },
+    {
+      "group": "x16",
+      "title": "Rule conflict and simulation",
+      "count": 5,
+      "contact": "x16-all-05-phones.jpg",
+      "contactSHA256": "9062bb5a700976580d9ec037ec10f36c69f1f1304824a8c0adddbc1e5c2b1787",
+      "frames": [
+        {
+          "ordinal": 1,
+          "id": "01-rules",
+          "source": "design/proposals/advanced-storyboards/x16/01-rules.svg",
+          "sha256": "233c1fc9bb7d363e1cadc1c791f78a80d3a28bee3ee56468a62a19dd7f4edb6c",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        },
+        {
+          "ordinal": 2,
+          "id": "02-conflict",
+          "source": "design/proposals/advanced-storyboards/x16/02-conflict.svg",
+          "sha256": "7840ffd66b0a1d12c368ef3a4d2524dcf4a28dac9e472f9fab1c0c202f8febdd",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        },
+        {
+          "ordinal": 3,
+          "id": "03-precedence",
+          "source": "design/proposals/advanced-storyboards/x16/03-precedence.svg",
+          "sha256": "670fb858e42bfd116969b5af6e1b227aef12a984b559698f9dcfe6dc00696f88",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        },
+        {
+          "ordinal": 4,
+          "id": "04-nested",
+          "source": "design/proposals/advanced-storyboards/x16/04-nested.svg",
+          "sha256": "6d505ea421b19e43cfff13ee31eb1b2306503557ff30a0e05bc1394602e15f8e",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        },
+        {
+          "ordinal": 5,
+          "id": "05-simulate",
+          "source": "design/proposals/advanced-storyboards/x16/05-simulate.svg",
+          "sha256": "1828ac26eac800bc90fd582db231d7876bcddce23e9a394b34158ec924d4211c",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        }
+      ],
+      "generatedOnly": true,
+      "independentlyOpticallyInspected": false,
+      "nativeAndroidVerified": false,
+      "ownerApproved": false
+    },
+    {
+      "group": "x17",
+      "title": "Source rights and network consequences",
+      "count": 5,
+      "contact": "x17-all-05-phones.jpg",
+      "contactSHA256": "29782dd1ea830bd19f98b827ce2032f91368be0d828ba203ace2c6e5a8c6d220",
+      "frames": [
+        {
+          "ordinal": 1,
+          "id": "01-providers",
+          "source": "design/proposals/advanced-storyboards/x17/01-providers.svg",
+          "sha256": "dc73f63695efebab73cccda4c74bc11e34ff52418f4089af2b889e5bf759f8b1",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        },
+        {
+          "ordinal": 2,
+          "id": "02-provider-detail",
+          "source": "design/proposals/advanced-storyboards/x17/02-provider-detail.svg",
+          "sha256": "1307c6bc713dd11e468ec5265c6b1f1ff246968090de6bdd853106249898f778",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        },
+        {
+          "ordinal": 3,
+          "id": "03-image-licence",
+          "source": "design/proposals/advanced-storyboards/x17/03-image-licence.svg",
+          "sha256": "9cba5c43600f85244e5a5de34807f3ff2071b3d300aa6b3fee38d5a256e7fd05",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        },
+        {
+          "ordinal": 4,
+          "id": "04-offline",
+          "source": "design/proposals/advanced-storyboards/x17/04-offline.svg",
+          "sha256": "3186eb904fe4f37e5476e5bbde3741fb0cb68e51823cfbf1cc6215fdaba31f06",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        },
+        {
+          "ordinal": 5,
+          "id": "05-partial-import",
+          "source": "design/proposals/advanced-storyboards/x17/05-partial-import.svg",
+          "sha256": "5628f4976bc7c46859d5410f447989766716ee3b7c993ccc4fb0af5a793150f7",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        }
+      ],
+      "generatedOnly": true,
+      "independentlyOpticallyInspected": false,
+      "nativeAndroidVerified": false,
+      "ownerApproved": false
+    },
+    {
+      "group": "x18",
+      "title": "History, diagnosis and reapply",
+      "count": 5,
+      "contact": "x18-all-05-phones.jpg",
+      "contactSHA256": "64b33d0559781e906385f641bca3418da821f09985d78dbf82dc0fb01841454f",
+      "frames": [
+        {
+          "ordinal": 1,
+          "id": "01-activity",
+          "source": "design/proposals/advanced-storyboards/x18/01-activity.svg",
+          "sha256": "c7d8289b153fe4d6aafd536b39700c9d89291e5f58faf58a40dfc823aebc2e03",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        },
+        {
+          "ordinal": 2,
+          "id": "02-unknown",
+          "source": "design/proposals/advanced-storyboards/x18/02-unknown.svg",
+          "sha256": "106c0e94bb48c28f853442731cc3bd432bc3bed4c331a4bb9fef669fb896751e",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        },
+        {
+          "ordinal": 3,
+          "id": "03-delayed",
+          "source": "design/proposals/advanced-storyboards/x18/03-delayed.svg",
+          "sha256": "b158e24f5ce9da1620941fff31493253697ae2ab5ade5f9933db9731fef20522",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        },
+        {
+          "ordinal": 4,
+          "id": "04-retry",
+          "source": "design/proposals/advanced-storyboards/x18/04-retry.svg",
+          "sha256": "614a99b4d908ebce8ddcbf30ce5121e2e1fd475b698121092f8dcc6119daafe7",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        },
+        {
+          "ordinal": 5,
+          "id": "05-previous",
+          "source": "design/proposals/advanced-storyboards/x18/05-previous.svg",
+          "sha256": "e4622750e29592f8ff820f43141975cd3cef6e3cfebf28aff952b1cf73b0ac24",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        }
+      ],
+      "generatedOnly": true,
+      "independentlyOpticallyInspected": false,
+      "nativeAndroidVerified": false,
+      "ownerApproved": false
+    },
+    {
+      "group": "x19",
+      "title": "Backup and restore integrity",
+      "count": 5,
+      "contact": "x19-all-05-phones.jpg",
+      "contactSHA256": "3ba7cb171957477eb3d700edceb08c61f9a39a21125af12c3025d76286dce480",
+      "frames": [
+        {
+          "ordinal": 1,
+          "id": "01-export-scope",
+          "source": "design/proposals/advanced-storyboards/x19/01-export-scope.svg",
+          "sha256": "349933405886bda14cac6445f74181cf38d6043707f5c95493b5cbba46a3c937",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        },
+        {
+          "ordinal": 2,
+          "id": "02-export-confirm",
+          "source": "design/proposals/advanced-storyboards/x19/02-export-confirm.svg",
+          "sha256": "7fb82bd7088d5090533abac3716ba495e996431e14df16f21a19e211f3a08461",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        },
+        {
+          "ordinal": 3,
+          "id": "03-restore-review",
+          "source": "design/proposals/advanced-storyboards/x19/03-restore-review.svg",
+          "sha256": "221207b5b9664cb76ef5f5e94625b52d7558e9853bc7b0bfc07f3afe3cfdea54",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        },
+        {
+          "ordinal": 4,
+          "id": "04-restore-conflict",
+          "source": "design/proposals/advanced-storyboards/x19/04-restore-conflict.svg",
+          "sha256": "6c953c09660b7f51791983421251c233e80dd044b75ac4c5a2dfdada93c0fc2a",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        },
+        {
+          "ordinal": 5,
+          "id": "05-restore-result",
+          "source": "design/proposals/advanced-storyboards/x19/05-restore-result.svg",
+          "sha256": "9bf13d5bd5f9b6b2b187896408e11cb86f02ec43efac9d43a18b01e062b07870",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        }
+      ],
+      "generatedOnly": true,
+      "independentlyOpticallyInspected": false,
+      "nativeAndroidVerified": false,
+      "ownerApproved": false
+    },
+    {
+      "group": "x20",
+      "title": "External Android-hosted controls",
+      "count": 5,
+      "contact": "x20-all-05-phones.jpg",
+      "contactSHA256": "7d1ce3d7c6d82a81b23f1460024ce2e9a4841ac8c449e6288fda0779721fa4ef",
+      "frames": [
+        {
+          "ordinal": 1,
+          "id": "01-launcher-widget",
+          "source": "design/proposals/advanced-storyboards/x20/01-launcher-widget.svg",
+          "sha256": "11e3ca48af4b9a831a4df1792499f0c477d3bd9aee727b1bfe9899df73bba794",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        },
+        {
+          "ordinal": 2,
+          "id": "02-widget-resize",
+          "source": "design/proposals/advanced-storyboards/x20/02-widget-resize.svg",
+          "sha256": "3cb357bb2b9296d3bdda5fb3bba01c58c74cd93dcecc7b3568afb21372f221f0",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        },
+        {
+          "ordinal": 3,
+          "id": "03-quick-tile",
+          "source": "design/proposals/advanced-storyboards/x20/03-quick-tile.svg",
+          "sha256": "405141d34aad188f6f0d63638e8035f666b0508c91ab0569d72e17a1b988d40c",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        },
+        {
+          "ordinal": 4,
+          "id": "04-shortcut",
+          "source": "design/proposals/advanced-storyboards/x20/04-shortcut.svg",
+          "sha256": "602840ff61c46f62b9ff47ccc7a743de105454e36cce27f19d3a1cc409b0bda3",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        },
+        {
+          "ordinal": 5,
+          "id": "05-unavailable",
+          "source": "design/proposals/advanced-storyboards/x20/05-unavailable.svg",
+          "sha256": "dc8e6979409738bba470db3e73106cb32b181a885b119964ecbec4af07f44fc8",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        }
+      ],
+      "generatedOnly": true,
+      "independentlyOpticallyInspected": false,
+      "nativeAndroidVerified": false,
+      "ownerApproved": false
+    },
+    {
+      "group": "x21",
+      "title": "Settings, help and return",
+      "count": 5,
+      "contact": "x21-all-05-phones.jpg",
+      "contactSHA256": "32b2cabe8821e29b9f340c642eb3db80c0970e99f9db3fac5d78af578b88197a",
+      "frames": [
+        {
+          "ordinal": 1,
+          "id": "01-enter",
+          "source": "design/proposals/advanced-storyboards/x21/01-enter.svg",
+          "sha256": "5003f7a01e3b40b299fe68ade4afaf386a4d296fe75ecaf879a62d5cfe52cd4e",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        },
+        {
+          "ordinal": 2,
+          "id": "02-about-help",
+          "source": "design/proposals/advanced-storyboards/x21/02-about-help.svg",
+          "sha256": "ad2c7938f6b0a3ad0a569c1990b8d32073e4cb521cb981ad6ef0be64d731c5fe",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        },
+        {
+          "ordinal": 3,
+          "id": "03-permissions",
+          "source": "design/proposals/advanced-storyboards/x21/03-permissions.svg",
+          "sha256": "d080d51e8227ab5e5e274180c2f0736647791b67e919aa22377dfe68c9984119",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        },
+        {
+          "ordinal": 4,
+          "id": "04-report",
+          "source": "design/proposals/advanced-storyboards/x21/04-report.svg",
+          "sha256": "2b6faae642b53d15e82632b44c167fdfbb94c4463ba1ccb92ee4b97ab82f304b",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        },
+        {
+          "ordinal": 5,
+          "id": "05-return",
+          "source": "design/proposals/advanced-storyboards/x21/05-return.svg",
+          "sha256": "ccfe45c3f9d5e219c018e4edefd6dfbbfaf804082235c1612977929bafd0a57e",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        }
+      ],
+      "generatedOnly": true,
+      "independentlyOpticallyInspected": false,
+      "nativeAndroidVerified": false,
+      "ownerApproved": false
+    },
+    {
+      "group": "x22",
+      "title": "Exact diagnostic report handoff",
+      "count": 5,
+      "contact": "x22-all-05-phones.jpg",
+      "contactSHA256": "4daf210a6395f70b35b99a6df76eb4ed066c9087c10f4639fbbe26b7b0ec7245",
+      "frames": [
+        {
+          "ordinal": 1,
+          "id": "01-draft",
+          "source": "design/proposals/advanced-storyboards/x22/01-draft.svg",
+          "sha256": "9fb5e09eb5f03d7dd70494b6065dd8217210377f1b4c47d51a365df6fbd77780",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        },
+        {
+          "ordinal": 2,
+          "id": "02-redacted",
+          "source": "design/proposals/advanced-storyboards/x22/02-redacted.svg",
+          "sha256": "543af7c31922853821685c5722133943d7b0d993cc375fbb2331f8b234bd61a4",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        },
+        {
+          "ordinal": 3,
+          "id": "03-consent",
+          "source": "design/proposals/advanced-storyboards/x22/03-consent.svg",
+          "sha256": "f37947d200f3b291bc0968d2db8c57194e4baddcc3be09687c86a95df831d0a8",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        },
+        {
+          "ordinal": 4,
+          "id": "04-chooser",
+          "source": "design/proposals/advanced-storyboards/x22/04-chooser.svg",
+          "sha256": "8474c1089a2286c3a3e63ea8b25fd519203b563d52d65aa33cb664db1fc113ea",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        },
+        {
+          "ordinal": 5,
+          "id": "05-absent",
+          "source": "design/proposals/advanced-storyboards/x22/05-absent.svg",
+          "sha256": "f61bea1714276783f7448bb9cc2885b52ba5843a3baf39fcdedaa33721ea4f05",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        }
+      ],
+      "generatedOnly": true,
+      "independentlyOpticallyInspected": false,
+      "nativeAndroidVerified": false,
+      "ownerApproved": false
+    },
+    {
+      "group": "x23",
+      "title": "Adverse asynchronous input states",
+      "count": 5,
+      "contact": "x23-all-05-phones.jpg",
+      "contactSHA256": "5b233b7a19c02c66233af02e7b3685a97ca8602ac332db23daa2ae21d733ad14",
+      "frames": [
+        {
+          "ordinal": 1,
+          "id": "01-loading",
+          "source": "design/proposals/advanced-storyboards/x23/01-loading.svg",
+          "sha256": "6b9ccdc3da98b26455db3edf586b5589caf6ed908826ccf520643d65e4c8283b",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        },
+        {
+          "ordinal": 2,
+          "id": "02-cloud-placeholder",
+          "source": "design/proposals/advanced-storyboards/x23/02-cloud-placeholder.svg",
+          "sha256": "c1471275d19361584b32a311ab74d44aaa936e9e28592807afb2b9a5aa1e6996",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        },
+        {
+          "ordinal": 3,
+          "id": "03-long-names",
+          "source": "design/proposals/advanced-storyboards/x23/03-long-names.svg",
+          "sha256": "8932dc3c3016dd1ea8e682e90b3180bb18acb2907ee6dabfe2c9ca1cb6887e83",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        },
+        {
+          "ordinal": 4,
+          "id": "04-duplicates",
+          "source": "design/proposals/advanced-storyboards/x23/04-duplicates.svg",
+          "sha256": "2442a08413f03745361b4098a75eb22ba56ce6cf422fba8916e3872a61e09968",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        },
+        {
+          "ordinal": 5,
+          "id": "05-batch-error",
+          "source": "design/proposals/advanced-storyboards/x23/05-batch-error.svg",
+          "sha256": "4363f942efee72a8063e2403bbc77995f7ba2f9951a2721a18e963ba03573c67",
+          "crop": [
+            15,
+            14,
+            416,
+            904
+          ],
+          "pixels": [
+            401,
+            890
+          ]
+        }
+      ],
+      "generatedOnly": true,
+      "independentlyOpticallyInspected": false,
+      "nativeAndroidVerified": false,
+      "ownerApproved": false
+    }
+  ],
+  "countGroups": 23,
+  "countUniquePhones": 137,
+  "contactCrop": [
+    15,
+    14,
+    416,
+    904
+  ],
+  "phonePixels": [
+    401,
+    890
+  ],
+  "limitations": "CairoSVG output only; direct optical inspection is a separate manual event. Not native Android or human acceptance."
+}

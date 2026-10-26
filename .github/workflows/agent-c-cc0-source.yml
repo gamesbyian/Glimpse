@@ -1,0 +1,23 @@
+name: Agent C exact licensed image continuity
+on:
+  pull_request:
+    paths:
+      - design/assets/cc0/**
+      - design/assets/production-c-provenance.v1.json
+      - design/proposals/whole-product-candidates/cc0-consistent-20261024/**
+      - scripts/validate-agent-c-cc0-proposals.py
+      - scripts/tests/test_agent_c_cc0_proposals.py
+      - .github/workflows/agent-c-cc0-source.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  exact-independent-byte-proof:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - name: Independently verify 13 CC0 image origins and six A SVGs
+        run: |
+          python3 scripts/validate-agent-c-cc0-proposals.py
+          python3 -m unittest discover -s scripts/tests -p test_agent_c_cc0_proposals.py -v

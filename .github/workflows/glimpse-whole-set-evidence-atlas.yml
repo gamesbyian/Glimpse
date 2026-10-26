@@ -1,0 +1,155 @@
+name: Glimpse | Build complete draft visual evidence atlas
+
+on:
+  push:
+    branches:
+      - agent/visual-state-reconciliation-20261023
+    paths:
+      - .github/workflows/glimpse-whole-set-evidence-atlas.yml
+      - scripts/build-whole-set-evidence-atlas.py
+      - scripts/validate-audit-scenario-trace.py
+      - design/proposals/audit-revisions/r05-photo-reel-narrow-short-320.svg
+      - design/proposals/audit-revisions/r01-photo-drag-36.svg
+      - design/proposals/audit-revisions/r03-preview-not-applied.svg
+      - design/proposals/audit-revisions/r03-unknown-after-request.svg
+      - design/proposals/canonical-review-spine.v1.json
+      - design/proposals/core-state-evidence.v1.json
+      - design/proposals/advanced-storyboard-coverage.v1.json
+      - design/proposals/storyboard-coverage.v1.json
+      - docs/design/screen-contract.json
+      - design/proposals/audit-scenario-evidence.v1.json
+      - design/proposals/whole-product-review-selection.v1.json
+      - scripts/validate-whole-product-review-selection.py
+      - scripts/validate-integration-source-freeze.py
+      - scripts/validate-integrated-optical-ledger.py
+      - scripts/validate-primary-task-action-review.py
+      - scripts/validate-support-state-truth.py
+      - scripts/validate-primary-context-truth.py
+      - design/proposals/plates/quick-import.svg
+      - design/proposals/plates/automation.svg
+      - design/proposals/plates/activity.svg
+      - design/proposals/plates/accessibility-preferences.svg
+      - design/proposals/audit-revisions/r02-share-choice.svg
+      - design/proposals/plates/**
+      - design/assets/production-c-provenance.v1.json
+      - design/assets/cc0/**
+      - design/proposals/whole-product-candidates/cc0-consistent-20261024/**
+      - design/proposals/support-plates/**
+      - design/proposals/advanced-storyboards/**
+      - design/proposals/storyboards/**
+      - scripts/build-whole-product-review-viewer.py
+      - design/proposals/whole-product-candidates/collections-photo-covers.svg
+      - docs/design/glimpse-ux-audit-cycle-b-evidence-triage.v1.json
+      - scripts/validate-audit-cycle-b-evidence-triage.py
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: glimpse-evidence-atlas-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  index-draft-source-evidence:
+    if: github.ref == 'refs/heads/agent/visual-state-reconciliation-20261023'
+    runs-on: ubuntu-latest
+    timeout-minutes: 14
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate manifest to source traceability
+        run: |
+          python3 scripts/validate-audit-scenario-trace.py
+          python3 scripts/validate-primary-task-action-review.py
+          python3 scripts/validate-support-state-truth.py
+          python3 scripts/validate-primary-context-truth.py
+          python3 scripts/validate-audit-cycle-b-evidence-triage.py
+          python3 scripts/build-whole-set-evidence-atlas.py --check
+      - name: Generate offline browser index and SHA256 evidence manifest
+        run: python3 scripts/build-whole-set-evidence-atlas.py
+      - name: Refresh source-exact 34 support and 137 journey raster proof
+        run: |
+          python3 -m pip install --quiet cairosvg pillow
+          python3 scripts/render-support-review-corpus.py
+          cp design/reviews/support-2026-10-24/source-ledger.json design/reviews/support-agent-b-2026-10-24/source-ledger.json
+          cp design/reviews/support-2026-10-24/support-phone-contact-*.jpg design/reviews/support-agent-b-2026-10-24/
+          python3 scripts/render-agent-b-all-journeys.py
+      - name: Validate and hash the coherent owner-review candidate registry
+        run: |
+          python3 scripts/validate-whole-product-review-selection.py \
+            --emit design/atlas/whole-product-review-snapshot.v1.json
+          python3 scripts/build-whole-product-review-viewer.py
+          python3 scripts/build-whole-product-review-viewer.py --check
+          python3 scripts/validate-integration-source-freeze.py
+          python3 scripts/validate-integrated-optical-ledger.py
+          python3 - <<'PY'
+          from pathlib import Path
+          html=Path("design/atlas/whole-product-review-selection.html").read_text()
+          assert html.count("Source SHA-256:")>=58
+          assert 'NOT USER-APPROVED' in html or 'no owner approval' in html
+          print("PASS: per-source SHA-256 shown with all 58 primary/support draft phone candidates")
+          PY
+      - name: Verify generated browser links and category counts
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.loads(Path('design/atlas/whole-set-evidence-index.json').read_text())
+          html=Path('design/atlas/whole-set-evidence-atlas.html').read_text()
+          assert d['counts']['baseline']==203 and d['counts']['supplemental']==25
+          assert d['counts']['preferredRoute']==39 and d['counts']['namedStateSlots']==34
+          assert len({s['path'] for c in d['chapters'] for s in c['items']})==d['counts']['uniqueEvidenceSources']
+          assert 'All draft. None owner-approved.' in html
+          assert 'source SHA-256' in html or 'Source hashes' in html
+          print('PASS: exhaustive evidence index and unapproved-only browser gate')
+          PY
+      - name: Commit updated reviewer files only when changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add design/atlas/whole-set-evidence-atlas.html design/atlas/whole-set-evidence-index.json design/atlas/whole-product-review-snapshot.v1.json design/atlas/whole-product-review-selection.html design/reviews/support-2026-10-24/ design/reviews/support-agent-b-2026-10-24/source-ledger.json design/reviews/support-agent-b-2026-10-24/support-phone-contact-*.jpg design/reviews/support-agent-b-2026-10-24/full-journey-corpus/
+          if git diff --cached --quiet; then
+            echo "No source changes to generated reviewer files"
+            exit 0
+          fi
+          git commit -m "docs: regenerate exhaustive draft optical evidence atlas"
+          # Never rebase generated sourceCommit/SHA atlases over a newer run.
+          # A newer push has its own source-keyed atlas workflow invocation.
+          git fetch origin "${GITHUB_REF_NAME}"
+          remote_sha="$(git rev-parse FETCH_HEAD)"
+          if [ "${remote_sha}" != "${GITHUB_SHA}" ]; then
+            echo "::warning::Review branch advanced; discard this stale atlas publication rather than conflicting with current evidence."
+            exit 0
+          fi
+          git push origin HEAD:"${GITHUB_REF_NAME}"
+
+      - name: Package a portable owner-review archive
+        run: |
+          cat > REVIEW-OPEN-FIRST.txt <<'EOF'
+          GLIMPSE / OCTOBER 25, 2026 / PROVISIONAL OWNER VISUAL REVIEW
+          This is a draft proposal, not a decision, final approval, or Android release certificate.
+          Extract this ZIP, then open design/atlas/whole-product-review-selection.html
+          in Chrome or another desktop browser. The 24 primary screens lead, followed
+          by 34 support states, 23 linked journeys and eight owner questions.
+          The synchronized photographic six-screen sample is the editorial
+          preference only; older reference screens remain available as alternatives.
+          The exact source SHA-256 is shown adjacent to each reviewer card.
+          Read docs/planning/OWNER-REVIEW-2026-10-25-DRAFT-DECISION-GUIDE.md.
+          Physical-device/TalkBack/Doze and human approvals remain outstanding.
+          EOF
+          zip -q -r /tmp/glimpse-owner-review-draft.zip REVIEW-OPEN-FIRST.txt \
+            design/atlas design/proposals design/assets \
+            design/system/reviews/ci-renders \
+            design/reviews/support-agent-b-2026-10-24 \
+            docs/planning/OWNER-REVIEW-2026-10-25-DRAFT-DECISION-GUIDE.md
+          unzip -tq /tmp/glimpse-owner-review-draft.zip
+      - uses: actions/upload-artifact@v4
+        with:
+          name: glimpse-owner-review-draft-offline
+          path: /tmp/glimpse-owner-review-draft.zip
+          retention-days: 30

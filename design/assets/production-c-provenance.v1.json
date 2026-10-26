@@ -1,0 +1,385 @@
+{
+  "schemaVersion": 1,
+  "generatedOn": "2026-10-24",
+  "evidenceLevel": "source-bytes-only; 13 distinct Commons CC0 photographed sources identified/byte-hashed; six original research JPEGs remain rights-unverified; Android and human proof separate",
+  "photoIdRule": "IDs are semantic identities. Reusing source fixture bytes for distinct simultaneous photo IDs is forbidden; derived copies receive new IDs.",
+  "priorFixtureSet": {
+    "basePath": "design/research/reel-layout/fixtures/source",
+    "role": "research-only",
+    "copyrightDisposition": "rights-unverified-not-for-new-redistribution",
+    "assets": [
+      {
+        "file": "art1.jpg",
+        "sha256": "6ab0cfafca534be77192041b78c763dc315fedf97cbd21cdcf9f69138129c905",
+        "rightsStatus": "unverified",
+        "creator": null,
+        "originalUrl": null,
+        "license": null
+      },
+      {
+        "file": "art2.jpg",
+        "sha256": "26320b6f0324734ef00c1d359ab2bbeb01063048a3b4760a6d72c3caaae916ab",
+        "rightsStatus": "unverified",
+        "creator": null,
+        "originalUrl": null,
+        "license": null
+      },
+      {
+        "file": "art3.jpg",
+        "sha256": "2b2aefbdee4a4934e6ce8476d6019cfda422a45f85ac417e29f629f863119891",
+        "rightsStatus": "unverified",
+        "creator": null,
+        "originalUrl": null,
+        "license": null
+      },
+      {
+        "file": "art4.jpg",
+        "sha256": "9bd8d1c812c278572df94547c6e22e9e3b68c9e2ea56b9d2090d8109802ae2d4",
+        "rightsStatus": "unverified",
+        "creator": null,
+        "originalUrl": null,
+        "license": null
+      },
+      {
+        "file": "art5.jpg",
+        "sha256": "4f728e108d60f3ac6940e26043179841f6433fdd93afddb0a929aea05c80ada2",
+        "rightsStatus": "unverified",
+        "creator": null,
+        "originalUrl": null,
+        "license": null
+      },
+      {
+        "file": "art6.jpg",
+        "sha256": "cc6bf8f1766e8f4c3a09d3780c753b76c1ee448a847a9582cb07df4f40010346",
+        "rightsStatus": "unverified",
+        "creator": null,
+        "originalUrl": null,
+        "license": null
+      }
+    ]
+  },
+  "activeResearchMapping": {
+    "p10": "art2.jpg",
+    "p11": "art3.jpg",
+    "p12": "art1.jpg",
+    "p13": "art4.jpg",
+    "p14": "art5.jpg",
+    "p15": "art6.jpg"
+  },
+  "requestedIndependentPhotos": [
+    {
+      "photoId": "p04",
+      "sourceStatus": "available-not-integrated",
+      "rightsStatus": "verified",
+      "assetPath": "design/assets/cc0/p04-philsacor-landscape-900w.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Random_landscape_photo_I_took.jpg",
+      "creator": "Philsacor",
+      "license": "CC0 1.0 Universal",
+      "verifiedAt": "2026-10-24",
+      "sha256": "20d6a8dab7e5eed0fbbbb0d98de799487512264aa7d0cf7ced701944683e2bd0",
+      "visualFallback": "Current PR #6 Home still contains schematic p04 illustration; integration by A pending",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "originalSHA256": "65d727e89ee6aae0ae1ce9e1b79429495c3a7b993cc53333fffb76e176ffecf8",
+      "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f0/Random_landscape_photo_I_took.jpg",
+      "originalBytes": 2383594,
+      "derivativeBytes": 68374,
+      "derivativeDimensions": [
+        900,
+        675
+      ]
+    },
+    {
+      "photoId": "p06",
+      "sourceStatus": "available-not-integrated",
+      "rightsStatus": "verified",
+      "assetPath": "design/assets/cc0/p06-grid-photo.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Mountain_near_lake.jpg",
+      "creator": "K.M.YOGESH",
+      "license": "CC0 1.0 Universal",
+      "verifiedAt": "2026-10-24",
+      "sha256": "c5902098629b2ce85686a94204ea011a88711ac6d65308aa48323d9052a8dc1a",
+      "visualFallback": "Source available; A owns placement in Grid source SVG",
+      "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/7/7e/Mountain_near_lake.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "originalSHA256": "b6a4f0bc20d868e2f8bb4ebaa79c267ee3e5e1b5d2012b586878ce052dada268",
+      "originalBytes": 76286,
+      "derivativeBytes": 58415,
+      "derivativeDimensions": [
+        675,
+        900
+      ]
+    },
+    {
+      "photoId": "p07",
+      "sourceStatus": "available-not-integrated",
+      "rightsStatus": "verified",
+      "assetPath": "design/assets/cc0/p07-grid-photo.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Sunflower_in_the_garden.JPG",
+      "creator": "Stefan Bellini",
+      "license": "CC0 1.0 Universal",
+      "verifiedAt": "2026-10-24",
+      "sha256": "a64e072f62f72b5ebd167bea0ad44f64e6d51a7d07a7dc78d01c0c0fc0160e59",
+      "visualFallback": "Source available; A owns placement in Grid source SVG",
+      "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/a/ac/Sunflower_in_the_garden.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "originalSHA256": "0a87e2a9cf90e96fbdb4b222f0e1e7b5366ecd25039f7033bafb981736882acf",
+      "originalBytes": 6348131,
+      "derivativeBytes": 77791,
+      "derivativeDimensions": [
+        675,
+        900
+      ]
+    },
+    {
+      "photoId": "p08",
+      "sourceStatus": "available-not-integrated",
+      "rightsStatus": "verified",
+      "assetPath": "design/assets/cc0/p08-grid-photo.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Sunset_in_the_City_01.jpg",
+      "creator": "PagesAndPathsPH",
+      "license": "CC0 1.0 Universal",
+      "verifiedAt": "2026-10-24",
+      "sha256": "68a2e5c556be1db5a3ac6abdf60a8e2c2eaa8773aae84f48a3bf600a9c73e656",
+      "visualFallback": "Original nonphotographic alternate remains historical; independently licensed photo has not yet been inserted into A-owned Grid proposal",
+      "visualFallbackPath": "design/assets/fallbacks/p08.svg",
+      "fallbackGitBlobSha": "999613c9428f0152ce08a8fb93d19e32f225210c",
+      "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/c/c5/Sunset_in_the_City_01.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "originalSHA256": "fe0c7d71c0ecae08fc8d43e4779ad96fd7aab7f8e60fe13990b1c711b6724a4b",
+      "originalBytes": 2207507,
+      "derivativeBytes": 53532,
+      "derivativeDimensions": [
+        900,
+        415
+      ]
+    },
+    {
+      "photoId": "p09",
+      "sourceStatus": "available-not-integrated",
+      "rightsStatus": "verified",
+      "assetPath": "design/assets/cc0/p09-grid-photo.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Purple_Night_sky.jpg",
+      "creator": "Kanimozhi Vennila",
+      "license": "CC0 1.0 Universal",
+      "verifiedAt": "2026-10-24",
+      "sha256": "7a01f8b4f1ab6a6a28cf85b4b4387f0df9a8734186eb322568e273a5174cc00d",
+      "visualFallback": "Original nonphotographic alternate remains historical; independently licensed photo has not yet been inserted into A-owned Grid proposal",
+      "visualFallbackPath": "design/assets/fallbacks/p09.svg",
+      "fallbackGitBlobSha": "eacb5418903a5074126709e0de5a863e78434089",
+      "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/2/24/Purple_Night_sky.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "originalSHA256": "5a92b083c344d250eb2a2cde87a139685634df651b5548dfd738a7730aa33f2d",
+      "originalBytes": 113563,
+      "derivativeBytes": 62635,
+      "derivativeDimensions": [
+        900,
+        677
+      ]
+    },
+    {
+      "photoId": "p16",
+      "sourceStatus": "available-not-integrated",
+      "rightsStatus": "verified",
+      "assetPath": "design/assets/cc0/p16-grid-photo.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Boston_Common_at_sunset.jpg",
+      "creator": "Drgage25",
+      "license": "CC0 1.0 Universal",
+      "verifiedAt": "2026-10-24",
+      "sha256": "92d30c89130514f15bcb82539db6b31c9ae5f6175a73c13d02aa6c04161c4d48",
+      "visualFallback": "Original nonphotographic alternate remains historical; independently licensed photo has not yet been inserted into A-owned Grid proposal",
+      "visualFallbackPath": "design/assets/fallbacks/p16.svg",
+      "fallbackGitBlobSha": "bd06af271f25dde081f9805d9547bc02461df363",
+      "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/9/96/Boston_Common_at_sunset.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "originalSHA256": "5db123fdfc43f99995efc30a81ab607d49723e101ebc0efc250cb2751fedb675",
+      "originalBytes": 952984,
+      "derivativeBytes": 201542,
+      "derivativeDimensions": [
+        706,
+        900
+      ]
+    },
+    {
+      "photoId": "p17",
+      "sourceStatus": "available-not-integrated",
+      "rightsStatus": "verified",
+      "assetPath": "design/assets/cc0/p17-grid-photo.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Night_sky_and_trees.jpg",
+      "creator": "Cristian Butacu",
+      "license": "CC0 1.0 Universal",
+      "verifiedAt": "2026-10-24",
+      "sha256": "ab0010efc6ebed8ada9cefc3ea0f246ef0a4de4437ea9efc8a6ebf83b0524d8e",
+      "visualFallback": "Original nonphotographic alternate remains historical; independently licensed photo has not yet been inserted into A-owned Grid proposal",
+      "visualFallbackPath": "design/assets/fallbacks/p17.svg",
+      "fallbackGitBlobSha": "b8ccfe7da3d1e03343720d6a67ac00dd7a2e749f",
+      "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/7/7f/Night_sky_and_trees.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "originalSHA256": "779cb91584e92fccb0e0ab278310bd812564b5e2e57c266bad923dcf1b9801b2",
+      "originalBytes": 91427,
+      "derivativeBytes": 51969,
+      "derivativeDimensions": [
+        900,
+        405
+      ]
+    }
+  ],
+  "photographicLeads": [
+    {
+      "proposedFor": "p04",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Random_landscape_photo_I_took.jpg",
+      "observedCreator": "Philsacor",
+      "observedLicense": "CC0 1.0 Universal",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "sourceType": "uploader-labeled own-work photograph",
+      "checkedOn": "2026-10-24",
+      "verificationStatus": "source-CC0-page-observed-and-actual-file-bytes-hashed; primary Home drawing NOT updated",
+      "assetPath": "design/assets/cc0/p04-philsacor-landscape-900w.jpg",
+      "sha256": "20d6a8dab7e5eed0fbbbb0d98de799487512264aa7d0cf7ced701944683e2bd0",
+      "note": "CC0 source authored by Philsacor. Original source and derived fixture SHA recorded. Derived JPEG strips metadata including location EXIF. Illustration on selected Home plate remains unchanged until A integrates true p04 image.",
+      "originalSHA256": "65d727e89ee6aae0ae1ce9e1b79429495c3a7b993cc53333fffb76e176ffecf8",
+      "verifiedBytesOn": "2026-10-24"
+    }
+  ],
+  "crossSurfaceProofTarget": {
+    "selectedId": "p12",
+    "lastGlimpseAcknowledgedId": "p04",
+    "osCurrentWallpaperVerified": false,
+    "requiredSourcePaths": {
+      "home": "design/proposals/audit-revisions/r03-home-primary-actions-p04.svg",
+      "reel": "design/proposals/audit-revisions/r01-photo-primary-wallpaper-action.svg",
+      "grid": "design/proposals/audit-revisions/r02-grid-primary-actions-p12.svg",
+      "detail": "design/proposals/audit-revisions/r02-photo-detail-actions-p12.svg"
+    },
+    "photoSourceMode": "legacy-research"
+  },
+  "acquisitionCaveat": "All seven originally missing p04 + p06-09 + p16-17 source identities now have verified independent photographed JPEG fixtures; old six p10-p15 research JPEG reuse rights remain unresolved.",
+  "verifiedReplacementPhotos": [
+    {
+      "photoId": "p10",
+      "rightsStatus": "verified",
+      "sourceStatus": "verified-source-pending-cross-surface-insertion",
+      "assetPath": "design/assets/cc0/p10-replacement.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Sunny_beach_ocean.jpg",
+      "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/5/56/Sunny_beach_ocean.jpg",
+      "creator": "Pinguinguy",
+      "license": "CC0 1.0 Universal",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "verifiedAt": "2026-10-24",
+      "sha256": "8baff97c5dc73daa533bde70ac7bb3bd08e767a93d316894c9b9f1161d9331b9",
+      "originalSHA256": "df65be8b4adf7feb7b6101ea1331470bba08bb44b51ed5b11fba8d1a5f246f1a",
+      "originalBytes": 941161,
+      "derivativeBytes": 114815,
+      "derivativeDimensions": [
+        900,
+        675
+      ],
+      "transform": "EXIF transpose; strip metadata; longest side max 900px; JPEG quality 82"
+    },
+    {
+      "photoId": "p11",
+      "rightsStatus": "verified",
+      "sourceStatus": "verified-source-pending-cross-surface-insertion",
+      "assetPath": "design/assets/cc0/p11-replacement.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Landscape_of_a_wild_forest.jpg",
+      "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/c/c9/Landscape_of_a_wild_forest.jpg",
+      "creator": "SpessiG",
+      "license": "CC0 1.0 Universal",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "verifiedAt": "2026-10-24",
+      "sha256": "658b7e6b88eb1d28b922042427e7eceac7f7fbef88454e0919666980096d645a",
+      "originalSHA256": "2f9f01326230bf9166eec430eb6d14cac69412d6cf6e2ecc7a25970683e4ddea",
+      "originalBytes": 4978501,
+      "derivativeBytes": 179173,
+      "derivativeDimensions": [
+        900,
+        600
+      ],
+      "transform": "EXIF transpose; strip metadata; longest side max 900px; JPEG quality 82"
+    },
+    {
+      "photoId": "p12",
+      "rightsStatus": "verified",
+      "sourceStatus": "verified-source-pending-cross-surface-insertion",
+      "assetPath": "design/assets/cc0/p12-replacement.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Chive_flower_close-up.jpg",
+      "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f3/Chive_flower_close-up.jpg",
+      "creator": "Sporlo",
+      "license": "CC0 1.0 Universal",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "verifiedAt": "2026-10-24",
+      "sha256": "e781fb03f2fd56a97e409118009524fe79be4dd68f1b871108fe7073e36d15be",
+      "originalSHA256": "64bc3b00142c4d7eeb4d69f2560e8ab33e1c2ce465a91e51505c9677d5cb2f90",
+      "originalBytes": 3823028,
+      "derivativeBytes": 59966,
+      "derivativeDimensions": [
+        900,
+        675
+      ],
+      "transform": "EXIF transpose; strip metadata; longest side max 900px; JPEG quality 82"
+    },
+    {
+      "photoId": "p13",
+      "rightsStatus": "verified",
+      "sourceStatus": "verified-source-pending-cross-surface-insertion",
+      "assetPath": "design/assets/cc0/p13-replacement.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Still_and_clear_sea.jpg",
+      "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/6/66/Still_and_clear_sea.jpg",
+      "creator": "Jdszekeres",
+      "license": "CC0 1.0 Universal",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "verifiedAt": "2026-10-24",
+      "sha256": "c62038af15c3cc41b0ca607cf144fdb4069d1bbc8dc349014f87b6a63c14badf",
+      "originalSHA256": "f8029c4d2527ccecbfb9790cf9c53febfb480022cd5d731c447838a8f8d84959",
+      "originalBytes": 2920264,
+      "derivativeBytes": 154399,
+      "derivativeDimensions": [
+        900,
+        675
+      ],
+      "transform": "EXIF transpose; strip metadata; longest side max 900px; JPEG quality 82"
+    },
+    {
+      "photoId": "p14",
+      "rightsStatus": "verified",
+      "sourceStatus": "verified-source-pending-cross-surface-insertion",
+      "assetPath": "design/assets/cc0/p14-replacement.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Starry_sky1.jpg",
+      "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/0/0c/Starry_sky1.jpg",
+      "creator": "TBOE PC Ohm",
+      "license": "CC0 1.0 Universal",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "verifiedAt": "2026-10-24",
+      "sha256": "3fe5b70cfc9d7994a7ac0732413e4a19b9167d7f6ba5b47cda386208e0c6350e",
+      "originalSHA256": "54afb257ff417e01af2d7cb2e814e989182954ad7b76229f795dad7cc5cb810b",
+      "originalBytes": 1563156,
+      "derivativeBytes": 26590,
+      "derivativeDimensions": [
+        405,
+        900
+      ],
+      "transform": "EXIF transpose; strip metadata; longest side max 900px; JPEG quality 82"
+    },
+    {
+      "photoId": "p15",
+      "rightsStatus": "verified",
+      "sourceStatus": "verified-source-pending-cross-surface-insertion",
+      "assetPath": "design/assets/cc0/p15-replacement.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Pinwheel_flower_close-up_shot.jpg",
+      "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/7/7c/Pinwheel_flower_close-up_shot.jpg",
+      "creator": "Villager3222",
+      "license": "CC0 1.0 Universal",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "verifiedAt": "2026-10-24",
+      "sha256": "5b0f2e0e7afcfcae31f0641409819087fe3d69611912d1430ebdd804783ded74",
+      "originalSHA256": "e43581664abb002f7686815b871829270142f6e6cb285bcfe6d82b6b369b468d",
+      "originalBytes": 1573575,
+      "derivativeBytes": 56043,
+      "derivativeDimensions": [
+        900,
+        675
+      ],
+      "transform": "EXIF transpose; strip metadata; longest side max 900px; JPEG quality 82"
+    }
+  ],
+  "legacyRightsHandoff": "Current selected p10-p15 and p12 cross-surface SVG assets still use rights-unverified art1..art6. All six exact-ID independent CC0 source replacements now exist in the C branch, but must be inserted and audited as ONE four-surface synchronized migration before switching photoSourceMode to rights-verified-replacements."
+}

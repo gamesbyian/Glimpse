@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 720" width="480" height="720" role="img" aria-labelledby="title description">
+<title id="title">p17: tree-leaf concept. Schematic source placeholder.</title>
+<desc id="description">Original non-photographic Glimpse placeholder. Do not treat as a rights-cleared user photograph.</desc>
+<metadata>{"photoId":"p17","assetClass":"ORIGINAL_NONPHOTOGRAPHIC_PLACEHOLDER","sourcePhotograph":false,"assetRights":"project-authored geometric SVG","photographicClearance":"blocked","ownerApproved":false}</metadata>
+<defs><linearGradient id="wash" x1="0" y1="0" x2=".9" y2="1"><stop offset="0" stop-color="#d3e3ef"/><stop offset="1" stop-color="#4c7685"/></linearGradient></defs>
+<rect width="480" height="720" fill="url(#wash)"/>
+<path d="M40 550 V200 M205 550 V158 M393 550 V181" stroke="#463e69" stroke-width="29"/><g fill="#49665e"><ellipse cx="85" cy="211" rx="107" ry="174" transform="rotate(-24 85 211)"/><ellipse cx="246" cy="195" rx="91" ry="166" transform="rotate(25 246 195)"/><ellipse cx="419" cy="230" rx="110" ry="161" transform="rotate(31 419 230)"/></g><path d="M0 488 Q130 443 250 507 Q360 472 480 492 V548 H0 Z" fill="#293d50"/>
+<path d="M0 0 H480 V720 H0 Z" fill="none" stroke="#d8c6db" stroke-width="16"/>
+<rect x="0" y="545" width="480" height="175" fill="#101d2a"/>
+<text x="24" y="603" font-family="sans-serif" font-size="44" font-weight="700" fill="#fff">P17 · DEMO</text>
+<text x="24" y="645" font-family="sans-serif" font-size="30" font-weight="700" fill="#ffe1b0">NO SOURCE PHOTO</text>
+<text x="24" y="680" font-family="sans-serif" font-size="23" fill="#fff">Non-photographic placeholder</text>
+</svg>

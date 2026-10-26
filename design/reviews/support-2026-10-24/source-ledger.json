@@ -1,0 +1,720 @@
+{
+  "schemaVersion": 1,
+  "evidenceType": "SVG_SOURCE_EQUIVALENT_DRAFT_RASTER",
+  "total": 34,
+  "reviewStatus": "CONTACT_GENERATED_OPTICAL_REVIEW_NOT_AUTOMATIC",
+  "sources": [
+    {
+      "family": "about",
+      "state": "sideload",
+      "source": "design/proposals/support-plates/about--sideload.svg",
+      "sourceSHA256": "3034c8197eb1e520f3f2e21721fb2b0ffd1741abe499dd214a2b361593f5d046",
+      "phoneCrop": [
+        15,
+        14,
+        416,
+        904
+      ],
+      "phonePixels": [
+        401,
+        890
+      ],
+      "automatedRenderPassed": true,
+      "independentlyOpticallyReviewed": false,
+      "nativeAndroidVerified": false,
+      "ownerApproved": false
+    },
+    {
+      "family": "about",
+      "state": "play-release",
+      "source": "design/proposals/support-plates/about--play-release.svg",
+      "sourceSHA256": "bd445c367720953d1c520aa84ff10172e904dcb376649450949c94cf626bb273",
+      "phoneCrop": [
+        15,
+        14,
+        416,
+        904
+      ],
+      "phonePixels": [
+        401,
+        890
+      ],
+      "automatedRenderPassed": true,
+      "independentlyOpticallyReviewed": false,
+      "nativeAndroidVerified": false,
+      "ownerApproved": false
+    },
+    {
+      "family": "help",
+      "state": "topics",
+      "source": "design/proposals/support-plates/help--topics.svg",
+      "sourceSHA256": "6e882267c10e7ecc8c79eea6b3ba5da6a68f068ffd6c5fb2b2e3516593232fec",
+      "phoneCrop": [
+        15,
+        14,
+        416,
+        904
+      ],
+      "phonePixels": [
+        401,
+        890
+      ],
+      "automatedRenderPassed": true,
+      "independentlyOpticallyReviewed": false,
+      "nativeAndroidVerified": false,
+      "ownerApproved": false
+    },
+    {
+      "family": "help",
+      "state": "article",
+      "source": "design/proposals/support-plates/help--article.svg",
+      "sourceSHA256": "0b672b63c744331fafe9e7e670e304c50e38c33da7b8c91f620ad3cda22b7cab",
+      "phoneCrop": [
+        15,
+        14,
+        416,
+        904
+      ],
+      "phonePixels": [
+        401,
+        890
+      ],
+      "automatedRenderPassed": true,
+      "independentlyOpticallyReviewed": false,
+      "nativeAndroidVerified": false,
+      "ownerApproved": false
+    },
+    {
+      "family": "contact-feedback",
+      "state": "available",
+      "source": "design/proposals/support-plates/contact-feedback--available.svg",
+      "sourceSHA256": "20ede5064801420bf3592262dabdb40d63c73a8fc6b064312cb0e828c6be8595",
+      "phoneCrop": [
+        15,
+        14,
+        416,
+        904
+      ],
+      "phonePixels": [
+        401,
+        890
+      ],
+      "automatedRenderPassed": true,
+      "independentlyOpticallyReviewed": false,
+      "nativeAndroidVerified": false,
+      "ownerApproved": false
+    },
+    {
+      "family": "contact-feedback",
+      "state": "no-handler",
+      "source": "design/proposals/support-plates/contact-feedback--no-handler.svg",
+      "sourceSHA256": "28586b2b8edb7f4b18a91efdef362811bd873aa347453c6722ff671b3585bbcc",
+      "phoneCrop": [
+        15,
+        14,
+        416,
+        904
+      ],
+      "phonePixels": [
+        401,
+        890
+      ],
+      "automatedRenderPassed": true,
+      "independentlyOpticallyReviewed": false,
+      "nativeAndroidVerified": false,
+      "ownerApproved": false
+    },
+    {
+      "family": "report-problem",
+      "state": "draft",
+      "source": "design/proposals/support-plates/report-problem--draft.svg",
+      "sourceSHA256": "100de0745a921e71a4d378d69bbce3c1f1b97dab53fb5c0841f6750d589425d5",
+      "phoneCrop": [
+        15,
+        14,
+        416,
+        904
+      ],
+      "phonePixels": [
+        401,
+        890
+      ],
+      "automatedRenderPassed": true,
+      "independentlyOpticallyReviewed": false,
+      "nativeAndroidVerified": false,
+      "ownerApproved": false
+    },
+    {
+      "family": "report-problem",
+      "state": "with-diagnostics",
+      "source": "design/proposals/support-plates/report-problem--with-diagnostics.svg",
+      "sourceSHA256": "58a512659e673c1b3e1724485a72324dabe9c4df2e83ce82334bb95dcafb6f4f",
+      "phoneCrop": [
+        15,
+        14,
+        416,
+        904
+      ],
+      "phonePixels": [
+        401,
+        890
+      ],
+      "automatedRenderPassed": true,
+      "independentlyOpticallyReviewed": false,
+      "nativeAndroidVerified": false,
+      "ownerApproved": false
+    },
+    {
+      "family": "crash-recovery",
+      "state": "suspected-crash",
+      "source": "design/proposals/support-plates/crash-recovery--suspected-crash.svg",
+      "sourceSHA256": "4d8b5472f988d9c586bed62eb8a4851007ff4d273eace935b48d90f737df1794",
+      "phoneCrop": [
+        15,
+        14,
+        416,
+        904
+      ],
+      "phonePixels": [
+        401,
+        890
+      ],
+      "automatedRenderPassed": true,
+      "independentlyOpticallyReviewed": false,
+      "nativeAndroidVerified": false,
+      "ownerApproved": false
+    },
+    {
+      "family": "crash-recovery",
+      "state": "normal-exit",
+      "source": "design/proposals/support-plates/crash-recovery--normal-exit.svg",
+      "sourceSHA256": "72dcc6930bbdbd5ae205f565fc9244c0f07cdbf9d7805c35c8536b43574152f2",
+      "phoneCrop": [
+        15,
+        14,
+        416,
+        904
+      ],
+      "phonePixels": [
+        401,
+        890
+      ],
+      "automatedRenderPassed": true,
+      "independentlyOpticallyReviewed": false,
+      "nativeAndroidVerified": false,
+      "ownerApproved": false
+    },
+    {
+      "family": "diagnostic-preview",
+      "state": "minimal",
+      "source": "design/proposals/support-plates/diagnostic-preview--minimal.svg",
+      "sourceSHA256": "45b6de9ad59ffb54aabf01494518104193e7171826a8a47a5dea01df27086f55",
+      "phoneCrop": [
+        15,
+        14,
+        416,
+        904
+      ],
+      "phonePixels": [
+        401,
+        890
+      ],
+      "automatedRenderPassed": true,
+      "independentlyOpticallyReviewed": false,
+      "nativeAndroidVerified": false,
+      "ownerApproved": false
+    },
+    {
+      "family": "diagnostic-preview",
+      "state": "expanded",
+      "source": "design/proposals/support-plates/diagnostic-preview--expanded.svg",
+      "sourceSHA256": "6d9b0c31377f18fcddb5f66452ab507f34f20b55212db7719bc92f9f0c248e85",
+      "phoneCrop": [
+        15,
+        14,
+        416,
+        904
+      ],
+      "phonePixels": [
+        401,
+        890
+      ],
+      "automatedRenderPassed": true,
+      "independentlyOpticallyReviewed": false,
+      "nativeAndroidVerified": false,
+      "ownerApproved": false
+    },
+    {
+      "family": "whats-new",
+      "state": "latest",
+      "source": "design/proposals/support-plates/whats-new--latest.svg",
+      "sourceSHA256": "28f9d464494814f1d8c3735e8f69844b221a9b628a17244af3a0b4c821e77792",
+      "phoneCrop": [
+        15,
+        14,
+        416,
+        904
+      ],
+      "phonePixels": [
+        401,
+        890
+      ],
+      "automatedRenderPassed": true,
+      "independentlyOpticallyReviewed": false,
+      "nativeAndroidVerified": false,
+      "ownerApproved": false
+    },
+    {
+      "family": "whats-new",
+      "state": "no-notes",
+      "source": "design/proposals/support-plates/whats-new--no-notes.svg",
+      "sourceSHA256": "c7652d6a236ef73ca58f7e6538275649864a9dc8487936a0c7716f0a9c4f6894",
+      "phoneCrop": [
+        15,
+        14,
+        416,
+        904
+      ],
+      "phonePixels": [
+        401,
+        890
+      ],
+      "automatedRenderPassed": true,
+      "independentlyOpticallyReviewed": false,
+      "nativeAndroidVerified": false,
+      "ownerApproved": false
+    },
+    {
+      "family": "updates",
+      "state": "sideload",
+      "source": "design/proposals/support-plates/updates--sideload.svg",
+      "sourceSHA256": "8d33585ae83edd401e3b587d85e1b75d11d36689ccf90cc1c6cd4102f0aa422e",
+      "phoneCrop": [
+        15,
+        14,
+        416,
+        904
+      ],
+      "phonePixels": [
+        401,
+        890
+      ],
+      "automatedRenderPassed": true,
+      "independentlyOpticallyReviewed": false,
+      "nativeAndroidVerified": false,
+      "ownerApproved": false
+    },
+    {
+      "family": "updates",
+      "state": "play-eligible",
+      "source": "design/proposals/support-plates/updates--play-eligible.svg",
+      "sourceSHA256": "22a5797c0e6b2ebe76c30507cca28ea17f258c75aae95db470b592c662b51419",
+      "phoneCrop": [
+        15,
+        14,
+        416,
+        904
+      ],
+      "phonePixels": [
+        401,
+        890
+      ],
+      "automatedRenderPassed": true,
+      "independentlyOpticallyReviewed": false,
+      "nativeAndroidVerified": false,
+      "ownerApproved": false
+    },
+    {
+      "family": "updates",
+      "state": "offline",
+      "source": "design/proposals/support-plates/updates--offline.svg",
+      "sourceSHA256": "cf405bfd616b9ab139612c91024182bb107631309528ebe077aa1bb6b23551a2",
+      "phoneCrop": [
+        15,
+        14,
+        416,
+        904
+      ],
+      "phonePixels": [
+        401,
+        890
+      ],
+      "automatedRenderPassed": true,
+      "independentlyOpticallyReviewed": false,
+      "nativeAndroidVerified": false,
+      "ownerApproved": false
+    },
+    {
+      "family": "rate-review",
+      "state": "not-available",
+      "source": "design/proposals/support-plates/rate-review--not-available.svg",
+      "sourceSHA256": "06754eafedf424455c1800bb01000a5be9e50a81d0e6729ec46cda93aac219ae",
+      "phoneCrop": [
+        15,
+        14,
+        416,
+        904
+      ],
+      "phonePixels": [
+        401,
+        890
+      ],
+      "automatedRenderPassed": true,
+      "independentlyOpticallyReviewed": false,
+      "nativeAndroidVerified": false,
+      "ownerApproved": false
+    },
+    {
+      "family": "rate-review",
+      "state": "play-listing",
+      "source": "design/proposals/support-plates/rate-review--play-listing.svg",
+      "sourceSHA256": "93b2a480868c1ce2c6cf4d9371a0125adfd4dea2f4e457ff6cb72ef52bf01131",
+      "phoneCrop": [
+        15,
+        14,
+        416,
+        904
+      ],
+      "phonePixels": [
+        401,
+        890
+      ],
+      "automatedRenderPassed": true,
+      "independentlyOpticallyReviewed": false,
+      "nativeAndroidVerified": false,
+      "ownerApproved": false
+    },
+    {
+      "family": "privacy",
+      "state": "local-only",
+      "source": "design/proposals/support-plates/privacy--local-only.svg",
+      "sourceSHA256": "d445eb653afd4400478ba0cf2b415341e4b2f63940b5367be75913740cee79e3",
+      "phoneCrop": [
+        15,
+        14,
+        416,
+        904
+      ],
+      "phonePixels": [
+        401,
+        890
+      ],
+      "automatedRenderPassed": true,
+      "independentlyOpticallyReviewed": false,
+      "nativeAndroidVerified": false,
+      "ownerApproved": false
+    },
+    {
+      "family": "privacy",
+      "state": "diagnostics-opt-in",
+      "source": "design/proposals/support-plates/privacy--diagnostics-opt-in.svg",
+      "sourceSHA256": "93ecad9a349645f821e879e864299bce5acd19a847706cba62bec572da498f41",
+      "phoneCrop": [
+        15,
+        14,
+        416,
+        904
+      ],
+      "phonePixels": [
+        401,
+        890
+      ],
+      "automatedRenderPassed": true,
+      "independentlyOpticallyReviewed": false,
+      "nativeAndroidVerified": false,
+      "ownerApproved": false
+    },
+    {
+      "family": "storage-management",
+      "state": "overview",
+      "source": "design/proposals/support-plates/storage-management--overview.svg",
+      "sourceSHA256": "7c54f7fb7c194d7fed3264ec0db10a660ed8d92b06b4c2f6f896a92c6f348db4",
+      "phoneCrop": [
+        15,
+        14,
+        416,
+        904
+      ],
+      "phonePixels": [
+        401,
+        890
+      ],
+      "automatedRenderPassed": true,
+      "independentlyOpticallyReviewed": false,
+      "nativeAndroidVerified": false,
+      "ownerApproved": false
+    },
+    {
+      "family": "storage-management",
+      "state": "delete-confirm",
+      "source": "design/proposals/support-plates/storage-management--delete-confirm.svg",
+      "sourceSHA256": "7518d6daf41a5f7a0731a1f5e1323b946adedc5962036a7f71afa383f6420af9",
+      "phoneCrop": [
+        15,
+        14,
+        416,
+        904
+      ],
+      "phonePixels": [
+        401,
+        890
+      ],
+      "automatedRenderPassed": true,
+      "independentlyOpticallyReviewed": false,
+      "nativeAndroidVerified": false,
+      "ownerApproved": false
+    },
+    {
+      "family": "storage-management",
+      "state": "low-storage",
+      "source": "design/proposals/support-plates/storage-management--low-storage.svg",
+      "sourceSHA256": "9145a41195215e67b56fea1a910478f972eacbbdcd2bff86e8b3dcc334d757bd",
+      "phoneCrop": [
+        15,
+        14,
+        416,
+        904
+      ],
+      "phonePixels": [
+        401,
+        890
+      ],
+      "automatedRenderPassed": true,
+      "independentlyOpticallyReviewed": false,
+      "nativeAndroidVerified": false,
+      "ownerApproved": false
+    },
+    {
+      "family": "permissions-capabilities",
+      "state": "available",
+      "source": "design/proposals/support-plates/permissions-capabilities--available.svg",
+      "sourceSHA256": "20c30504e2f60ce0911ef5b4d507b28726c96402f38592b83be9e1f31d26cb3d",
+      "phoneCrop": [
+        15,
+        14,
+        416,
+        904
+      ],
+      "phonePixels": [
+        401,
+        890
+      ],
+      "automatedRenderPassed": true,
+      "independentlyOpticallyReviewed": false,
+      "nativeAndroidVerified": false,
+      "ownerApproved": false
+    },
+    {
+      "family": "permissions-capabilities",
+      "state": "restricted",
+      "source": "design/proposals/support-plates/permissions-capabilities--restricted.svg",
+      "sourceSHA256": "3fe252c60acd2e475bf5e92d6a58f492d99d912b4ba1172eaef63d4ad682beae",
+      "phoneCrop": [
+        15,
+        14,
+        416,
+        904
+      ],
+      "phonePixels": [
+        401,
+        890
+      ],
+      "automatedRenderPassed": true,
+      "independentlyOpticallyReviewed": false,
+      "nativeAndroidVerified": false,
+      "ownerApproved": false
+    },
+    {
+      "family": "credits-licences",
+      "state": "components",
+      "source": "design/proposals/support-plates/credits-licences--components.svg",
+      "sourceSHA256": "56dd6caecc63332902fdd1afa989e7f9e659c194e1eb1b404a8757bf9dfd96c4",
+      "phoneCrop": [
+        15,
+        14,
+        416,
+        904
+      ],
+      "phonePixels": [
+        401,
+        890
+      ],
+      "automatedRenderPassed": true,
+      "independentlyOpticallyReviewed": false,
+      "nativeAndroidVerified": false,
+      "ownerApproved": false
+    },
+    {
+      "family": "credits-licences",
+      "state": "rights-warning",
+      "source": "design/proposals/support-plates/credits-licences--rights-warning.svg",
+      "sourceSHA256": "2e654255185db9db8c6b0b489ca7d582a6a17348d46940dbca9e62c43dac0dd2",
+      "phoneCrop": [
+        15,
+        14,
+        416,
+        904
+      ],
+      "phonePixels": [
+        401,
+        890
+      ],
+      "automatedRenderPassed": true,
+      "independentlyOpticallyReviewed": false,
+      "nativeAndroidVerified": false,
+      "ownerApproved": false
+    },
+    {
+      "family": "beta-feedback",
+      "state": "invitation",
+      "source": "design/proposals/support-plates/beta-feedback--invitation.svg",
+      "sourceSHA256": "048eecd494dcc6809a7f00a1471438c36e10085eb235e2cdb444b33ccb0a7b34",
+      "phoneCrop": [
+        15,
+        14,
+        416,
+        904
+      ],
+      "phonePixels": [
+        401,
+        890
+      ],
+      "automatedRenderPassed": true,
+      "independentlyOpticallyReviewed": false,
+      "nativeAndroidVerified": false,
+      "ownerApproved": false
+    },
+    {
+      "family": "beta-feedback",
+      "state": "share-preview",
+      "source": "design/proposals/support-plates/beta-feedback--share-preview.svg",
+      "sourceSHA256": "20338af1e745ebf24015e4557f0cbc706ef7c0f9d3d403d7ce47b8015c5ca60f",
+      "phoneCrop": [
+        15,
+        14,
+        416,
+        904
+      ],
+      "phonePixels": [
+        401,
+        890
+      ],
+      "automatedRenderPassed": true,
+      "independentlyOpticallyReviewed": false,
+      "nativeAndroidVerified": false,
+      "ownerApproved": false
+    },
+    {
+      "family": "notification-preferences",
+      "state": "not-implemented",
+      "source": "design/proposals/support-plates/notification-preferences--not-implemented.svg",
+      "sourceSHA256": "35c1785ba67efac206037fc98bf4b20e98a33c67dfa77b610201f2f0fafa9152",
+      "phoneCrop": [
+        15,
+        14,
+        416,
+        904
+      ],
+      "phonePixels": [
+        401,
+        890
+      ],
+      "automatedRenderPassed": true,
+      "independentlyOpticallyReviewed": false,
+      "nativeAndroidVerified": false,
+      "ownerApproved": false
+    },
+    {
+      "family": "notification-preferences",
+      "state": "available",
+      "source": "design/proposals/support-plates/notification-preferences--available.svg",
+      "sourceSHA256": "37211fb9da53e049b56c17217de9882d2d70f390e09ae5350d5266d53d7071a8",
+      "phoneCrop": [
+        15,
+        14,
+        416,
+        904
+      ],
+      "phonePixels": [
+        401,
+        890
+      ],
+      "automatedRenderPassed": true,
+      "independentlyOpticallyReviewed": false,
+      "nativeAndroidVerified": false,
+      "ownerApproved": false
+    },
+    {
+      "family": "external-handler-fallback",
+      "state": "email-missing",
+      "source": "design/proposals/support-plates/external-handler-fallback--email-missing.svg",
+      "sourceSHA256": "1253dc7722519c900eaa4a04fb2c91e28a0b18b9d0c94c86c4a0e71a947975c3",
+      "phoneCrop": [
+        15,
+        14,
+        416,
+        904
+      ],
+      "phonePixels": [
+        401,
+        890
+      ],
+      "automatedRenderPassed": true,
+      "independentlyOpticallyReviewed": false,
+      "nativeAndroidVerified": false,
+      "ownerApproved": false
+    },
+    {
+      "family": "external-handler-fallback",
+      "state": "chooser-cancelled",
+      "source": "design/proposals/support-plates/external-handler-fallback--chooser-cancelled.svg",
+      "sourceSHA256": "442a3af65790bfb7148e233d175ed28fa4e83adc0048daa37d9aaa7518e234b7",
+      "phoneCrop": [
+        15,
+        14,
+        416,
+        904
+      ],
+      "phonePixels": [
+        401,
+        890
+      ],
+      "automatedRenderPassed": true,
+      "independentlyOpticallyReviewed": false,
+      "nativeAndroidVerified": false,
+      "ownerApproved": false
+    }
+  ],
+  "contacts": [
+    {
+      "name": "support-phone-contact-01.jpg",
+      "SHA256": "09b5c5a85f12ced23b573fd54d9f2e7a6602778484b77cb265dd5f8503fe3c6e",
+      "sourceCount": 6
+    },
+    {
+      "name": "support-phone-contact-02.jpg",
+      "SHA256": "55a1cfbe686067c003f5f483dba3e982eea9feffa75f98c1dc01d7e7806ce820",
+      "sourceCount": 6
+    },
+    {
+      "name": "support-phone-contact-03.jpg",
+      "SHA256": "5f7604baa8430c40f98ec187d9c3da563f9a507a669d1cf05bf75d913c4ab4da",
+      "sourceCount": 6
+    },
+    {
+      "name": "support-phone-contact-04.jpg",
+      "SHA256": "99f6aa3ae993c974b054a15ce5471d6015b5013a21b88a04887ecaa5a2226e8f",
+      "sourceCount": 6
+    },
+    {
+      "name": "support-phone-contact-05.jpg",
+      "SHA256": "773e98ef5d4123122d8694d078480a45f173ba66f99ede0c06ec92bb34a5ff88",
+      "sourceCount": 6
+    },
+    {
+      "name": "support-phone-contact-06.jpg",
+      "SHA256": "7bafa6767f11c124dfef89f55a7204dc9f2e970c6bc5809df5c7a5f892e424b7",
+      "sourceCount": 4
+    }
+  ]
+}

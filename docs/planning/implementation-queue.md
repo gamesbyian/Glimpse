@@ -21,9 +21,18 @@ A real installation successfully imported **22 Google Photos images** through th
 - [x] The [12 P0 packages X01–X12](../design/proposal-mockup-coverage-gaps-2026-10-23.md) now have **82 connected supplementary SVG frames**, separate from the 66 original proposals. See [storyboard source index](../../design/proposals/storyboard-coverage.v1.json).
 - [x] [Searchable mobile P0 storyboard atlas](../../design/atlas/storyboards.html) with frame progression, photo/state identity, source paths and offline packaging.
 - [x] [Run 39938085295](https://github.com/gamesbyian/Glimpse/actions/runs/39938085295): 82-frame XML integrity, complete manifest mapping, offline packaging, 36 representative PNG renders and artifact upload passed.
+- [x] Add six representative [browser-rendered flow sheets](../../design/atlas/representative-flows.html) (60 source-frame entries), eight X05 pose identities/transitions, source-level tests and an optional CairoSVG PNG contact-sheet generator. **Do not call this completed optical inspection.**
 - [ ] Inspect the full **visual content** of X01–X12 against every required control, especially native Android picker/chooser fidelity, hero/wheel physical consistency, editable crop outcomes and 200% type reflow. Rendered SVGs are not an approved design.
-- [ ] Map each of the [34 missing declared core state variants](../design/proposal-mockup-coverage-gaps-2026-10-23.md) to a *visually sufficient* storyboard frame or create targeted dedicated state art where reuse is inadequate. Do not close by filename matching.
-- [ ] Produce/verify the 11 P1 storyboard groups X13–X23 (external shares, crops, large libraries, rules, rights, diagnostics, restore, Android integrations, Help, exact outgoing bytes and adverse input) before a truly comprehensive product-proposal audit.
+- [x] Map exact SVG source paths for all [34 originally missing named core state variants](../../design/proposals/core-state-evidence.v1.json), distinguishing 34 structurally phone-pictured, 0 partial and 0 related-only, with twenty-five targeted supplemental refinements and a [visual contact sheet](../../design/atlas/core-state-contact-sheet.html). This is **source evidence only**, not 34 optical acceptances.
+- [x] Draw the 15 formerly partial/related-only named states on the correct phone surface, with local status and user action. No optical signoff implied.
+- [ ] Optically inspect the 25 supplemental state drawings at native scale and judge their action outcomes, fit and distinctness.
+- [ ] Confirm each of the [34 named state variants](../../design/proposals/core-state-evidence.v1.json) is **visually sufficient** after direct raster inspection, including 15 newly illustrated formerly partial/related-only states; evidence-path assignment alone is already done and is not a signoff.
+- [x] Produce the 11 P1 storyboard groups X13–X23: **55 source-editable draft frames** covering external shares, crops, large libraries, rules, rights, diagnostics, restore, Android integrations, Help, outgoing data and adverse input. Not optically approved.
+- [x] Replace X07's mismatched p12 reel/hero/detail reference with the same public photograph and five-window X05 disc geometry (source correction, optical pending).
+- [x] Correct original Source Detail baseline phone (formerly duplicated Discover listing) with a specific provider detail and explicit source-scoped next steps. Still draft.
+- [ ] Raster-check revised Source Detail and its dedicated offline variant.
+- [ ] Raster-check revised X07, X06 photo/window continuity and run the new source-level fixture integrity checks.
+- [ ] Inspect all 55 P1 phone drawings and Android-owned handoffs, correct contradictions and prove flow outcomes before any comprehensive product-proposal audit.
 - [ ] Preserve four conditional P2 scenario families as future/explicitly gated.
 - [ ] Freeze explicit owner-approved whole-set hashes (V2) before full application visual conformity testing (V3).
 
@@ -73,3 +82,126 @@ A real installation successfully imported **22 Google Photos images** through th
 Only adopt secondary reels when uncoached evidence demonstrates added usefulness over conventional selectors. Keep owner-reviewed references separate from experimental layouts.
 
 **Not a release:** current layout is a semantic prototype; there is a first-hand owner report from a real installed phone, but no comprehensive physical-device acceptance or signed release, and no guarantee of five-minute background updates.
+
+- [x] Extend opt-in raster tool with source-hashed native phone crops, 25 state refinements, 34 named state sheets and corrected Source Detail/type groups. **Prepared only**, no fresh branch raster test.
+
+- [x] Add distinct visual mechanisms to eight structurally pictured states (large collections, supported/unsupported Lock, nested conditions, per-photo exclusions, restore conflicts, failed and uncertain activity). Source illustrations only.
+
+- [x] Render and contact-inspect **all 203 baseline SVG phone previews** (66 original, 82 P0, 55 P1) using source SHA-256 provenance in Actions run 40023670567. No wholesale blank layouts, but not individual native DPI or 60-question UX audit signoff.
+- [x] Repair final-reel p22 photograph duplicate (distinct public architectural fixture4 in hero and selected aperture) and three small X08/X10 status chip overflow defects; add specific source/identity regressions.
+- [ ] Confirm final p22 and status chip changes in fresh CI PNG and inspect new source-hashed native crops.
+
+- [x] Visually differentiate cropped share p12c from unedited source p12 in X13's phone image geometry; assert the transform in storyboard-semantic regression checks. Final branch rerasterization requested.
+
+- [ ] Close the five precise post-atlas asset verification gaps listed in [POST-ATLAS-VERIFICATION-2026-10-23.md](../design/POST-ATLAS-VERIFICATION-2026-10-23.md) using source-sha-matched native phone PNGs. Do not substitute the earlier 203-render success.
+
+
+## Audit-driven next wave (owner authorized)
+
+- [x] Author [60-question instrument](../design/glimpse-ux-audit-60.v1.json), perform honest [cycle-A source-level grading](../design/glimpse-ux-audit-cycle-a.v1.json) and document [findings](../design/GLIMPSE-AUDIT-CYCLE-A-REPORT.md). 18 draft source PASS / 8 ISSUE / 34 UNVERIFIED, no native acceptance inferred.
+- [x] Draft [finite-reel and wallpaper state-truth candidate A1](AUDIT-CANDIDATE-A1-REEL-AND-STATE-TRUTH.md).
+- [x] Specify [R01–R08 exact mockup revision and proof packet](../../design/proposals/audit-driven-revision-plan.v1.json) with 56 named scenarios.
+- [ ] Capture/verify post-atlas five updated source images, native reel screenshots, 200%-text and focus hierarchy evidence before promoting unresolved questions.
+- [ ] Implement and raster-inspect next-round R01–R08 comparison mockups in separate unapproved source category; attach before/after and source hash.
+- [ ] Rerun all 60 audit questions on matching updated sources/native traces, document changed scores and unresolved gaps, request owner approval separately.
+
+
+## Latest audit delta (2026-10-23, R01/R04/R05)
+
+- [x] Independently render and inspect regenerated R01 photo-backed reel with **portable Grid vector arrow**. Source regeneration guard and [successful six-frame Actions #40048643795](https://github.com/gamesbyian/Glimpse/actions/runs/40048643795), actual phone crop inspected.
+- [x] Add R04 [bulk import evidence matrix](../../design/proposals/audit-revisions/r04-import-evidence.v1.json), explicit cancellation and low-storage proposal sources, [candidate B specification](AUDIT-CANDIDATE-B-IMPORT-RECOVERY.md), [source-hashed successful targeted Actions #40048067960](https://github.com/gamesbyian/Glimpse/actions/runs/40048067960) and [optical review](../design/R04-IMPORT-OPTICAL-INSPECTION-2026-10-23.md).
+- [x] Complete R05 [two draft diagrams plus photograph-backed focus overlay](../../design/proposals/audit-revisions/r05-accessibility-evidence.v1.json), source-fixture parity, proposed 48dp Grid touch outline and [successful optical Actions #40049026265](https://github.com/gamesbyian/Glimpse/actions/runs/40049026265).
+- [x] Illustrate R04 dedicated zero-item and 17-of-22 verified-progress/cancel contexts; [run 40049428896](https://github.com/gamesbyian/Glimpse/actions/runs/40049428896) rendered all four R04 draft cases, independently inspected. Other X01 offline/completion reference and real native import behaviour remain to be verified.
+- [ ] Capture real native R01 finite reel and R05 focus/200% text/target bounds/TalkBack traces using the existing emulator/hierarchy collector; compare exact actual screenshots against the stronger photo-backed paper reel, then re-score only evidence-supported GUX items.
+- [ ] Resolve R04 native cancellation/storage/retained-byte behaviour, source URI expiry, and partial Room memberships with interrupted transaction checks; keep original provider images untouched.
+
+
+## Safe interrupted-session handoff (2026-10-23)
+
+The newest recovered priority/evidence snapshot is [HANDOFF-2026-10-23-SESSION-RECOVERY-AND-NEXT-AGENT.md](HANDOFF-2026-10-23-SESSION-RECOVERY-AND-NEXT-AGENT.md). Treat full one-shot 40041023803 and later targeted R01/R04/R05 checks separately. The next agent should prioritize genuine Android screenshots/hierarchy and native trace collection, not more unchecked reference counts. Cycle-A audit remains 18 PASS / 8 ISSUE / 34 UNVERIFIED; all visual work remains draft.
+
+
+## R06–R08 follow-through (2026-10-23; still draft)
+
+- [x] Commit [candidate C](AUDIT-CANDIDATE-C-SHARE-SCHEDULE-RECOVERY.md) covering normative share-return, scheduling uncertainty, local-copy retention and non-destructive restore conflict decisions.
+- [x] Add five distinct draft phone-screen sources for share dismissal, battery restriction, unknown apply, revoked provider access and restore conflict choice. See [source-evidence manifest](../../design/proposals/audit-revisions/r06-r08-delta-evidence.v1.json); source-readback checks succeeded, **no optical acceptance inferred**.
+- [x] Source-hash reproduce, rasterize and directly inspect **all five** R06–R08 native-sized 401×890 phone crops; corrected five semantic/copy defects and three-choice restore control. Exact SHA256 evidence and remaining limitations: [optical review](../design/R06-R08-OPTICAL-INSPECTION-2026-10-23.md). Previous same-surface candidates need additional side-by-side optical inspection.
+- [ ] Add the smallest viable transition and accessibility-equivalence checks; confirm actual 48dp touch bounds, 200% layout, TalkBack order and external activity returns on Android.
+- [ ] Examine remaining R03 pending/partial per-target apply and R06 share preparation/no-handler state before declaring a complete human-review candidate.
+- [ ] Run comprehensive cross-screen optical and command-semantic review, then arrange **explicit human whole-set approval** with version/hash freeze. Cycle-A scores remain 18/8/34 until new audit evidence supports a change.
+
+- [x] Cross-audit existing P1 X13/X18/X19 against the new R06–R08 states; fix false categorical recipient-delivery copy in `x13/04-cancel.svg` and contradictory no-action-committed text in `x19/05-restore-result.svg`. These two modified older frames still need freshly raster-inspected phone crops.
+- [x] Add an opt-in, **five-source only** [R06–R08 optical CI workflow](../../.github/workflows/glimpse-audit-r06-r08-optical.yml) with strict source-SHA contract and optional renderer-specific pixel-hash comparison. Do not infer CI execution from the workflow's presence.
+- [ ] Confirm updated X13 and X19 actual pixels are readable, align X19's restore review/choice/result route with the dedicated R08 three-decision screen, then close only question-specific visual evidence gaps.
+
+## Whole-set human-review spine and cross-storyboard truth (2026-10-23 late)
+
+- [x] Assemble [39 source-linked candidate phone frames](../../design/proposals/canonical-review-spine.v1.json) in eight task-order groups with a [phone-only, annotation-clipped HTML review spine](../../design/atlas/canonical-review-spine.html). **All 39 GitHub source paths independently existed at check; this is still a partial tour, not 39 approvals or the whole 203-image acceptance gate.**
+- [x] Add [spine source/HTML validator](../../scripts/validate-canonical-review-spine.py) with opt-in source-hash snapshot for later whole-set human signoff. Validator committed, not yet executed on an intact checkout.
+- [x] Reconcile P1 X13 share return and X19 restore result against R06 and R08 and repair two materially false/contradictory copy claims. See [cross-storyboard audit](../design/CROSS-STORYBOARD-TRUTH-RECONCILIATION-2026-10-23.md).
+- [x] Extend the opt-in seven-source optical CI workflow to produce the five R06–R08 changed-phone crops plus the two corrected P1 original phone crops, without the expensive 203-image render. Workflow execution outcome remains unverified.
+- [ ] Complete a reviewer-readable **full reference selection** beyond this 39-frame spine, covering every mandatory screen/control/error state, and distinguish optional variants and obsolete sketches in a versioned reference decision ledger.
+- [x] Independently reconstruct exact current X13 04 and X19 05 SVGs from GitHub blob-equivalent source, render/open their 401×890 cropped pixels, record SHA256 and preserve design findings in [X13/X19 optical log](../design/X13-X19-POST-FIX-OPTICAL-INSPECTION-2026-10-23.md).
+- [ ] Review the full 203 baseline and 25 refinements at actual rendered scale for cross-screen typography, and freeze final whole-set source hashes only after explicit human approval.
+
+## Visual reference integration checkpoint (2026-10-24; current source truth)
+
+- [x] Create [full source-hashed visual evidence atlas](../../design/atlas/whole-set-evidence-atlas.html), reproducible [generator](../../scripts/build-whole-set-evidence-atlas.py), [262+ one-per-source SHA index](../../design/atlas/whole-set-evidence-index.json) and [scoped successful CI](https://github.com/gamesbyian/Glimpse/actions/runs/40070796564). Current count **264** = 203 baseline + 25 refinements + 36 audit-specific alternatives, not 264 owner-approved or optically reviewed frames.
+- [x] Trace all [56 R01–R08 scenarios](../../design/proposals/audit-scenario-evidence.v1.json) with exact file IDs: **50 structurally pictured / 6 partial / 0 without specific illustration**. Keep **60-question cycle A = 18 draft-source PASS / 8 ISSUE / 34 UNVERIFIED**, distinct from the source-illustration coverage metric.
+- [x] Add photographed five-wedge N=3/5/60 draft states, finite-first p01 of 22 state with two blank leading apertures and disabled Previous, and compact 320×640 photo-reel study. All generated by source-derived scripts and individually source-hashed/rasterized via [R01 3/5/60 CI](https://github.com/gamesbyian/Glimpse/actions/runs/40069418838), [first boundary CI](https://github.com/gamesbyian/Glimpse/actions/runs/40070370730) and [compact CI](https://github.com/gamesbyian/Glimpse/actions/runs/40070030469). **Their new pixels are generated, not agent-opened/optically accepted or Android-tested.**
+- [x] Add same-surface [R04 offline 17-of-22 recovery SVG](../../design/proposals/audit-revisions/r04-import-offline-17-of-22.svg) and verify source truth (17 durable, five pending, no wallpaper change, Resume unavailable offline). The [five-R04-source raster run](https://github.com/gamesbyian/Glimpse/actions/runs/40070821890) succeeded. Native provider failure/transaction recovery and direct new-image optical review remain open.
+- [x] Recover the **existing historical real emulator screenshot set**, [native gallery run #39926620822](https://github.com/gamesbyian/Glimpse/actions/runs/39926620822), capturing seven 1440×3120 provisional first-slice scenes with hierarchy counts. See [audit-safe provenance](../quality/NATIVE-ATLAS-DISCOVERY-2026-10-24.md). Screenshots were **not opened in this continuation** and their rounded rectangular pseudo-reel is not the new Glimpse proposal; preserve artifact separately from source SVG raster proofs.
+- [ ] Individually **open and compare at full size** the new R01 N=3/5/60/first, R05 compact, R04 offline and changed R03 UNKNOWN raster crops; record source SHA, visible clipping and readability, crop rendering, actual text metrics and pending proof. No CI-green shortcut to optical PASS.
+- [ ] Fill the **six remaining partial visual transition cases**: R01 Home crescent + full reel relationship, photo tap-to-focus, photographic 36° drag, photographic large-font; R03 truthful Home last-acknowledged state; R08 return-to-context following recovery. Prefer same-fixture paired source-editable phone screens, not generic labelled cards. Use exact [case paths and next proofs](../../design/proposals/audit-scenario-evidence.v1.json).
+- [ ] Review and choose a full preferred route beyond the [39-screen preliminary spine](../../design/atlas/canonical-review-spine.html). Resolve competing candidate layouts, preserve untouched alternatives in appendix, test Android provenance separately, and seek owner's explicit approval of exact compatible source SHAs. **PR #6 is draft and must not merge yet.**
+- [ ] Download and optically inspect the historical native emulator artifact and Android XML before claiming any native vs visual mismatch. Use the existing native gallery before spending new emulator CI runner time, but remember it predates the paper disc.
+
+[Single canonical continuation handoff](HANDOFF-2026-10-24-VISUAL-PACKET-CONTINUATION.md) records exact source states, run IDs, evidence-class boundaries, blockers and reproduction commands. This checkpoint supersedes older incomplete counts without rewriting their historical chronology.
+
+## 2026-10-24 whole-product audit candidate, independent optical iteration
+
+The newer [whole-product handoff](HANDOFF-2026-10-24-WHOLE-PRODUCT-REVIEW.md) is authoritative over the older 264/50-of-56 counts above. The [full source index](../../design/atlas/whole-set-evidence-index.json) now contains **271 unique draft SVGs = 203 baseline + 25 named-state refinements + 43 R01–R08 audit variants**. All **56/56 audit-revision scenarios are directly pictured** in [the scenario manifest](../../design/proposals/audit-scenario-evidence.v1.json). **This is illustration-source availability, not native/optical proof or release completion**. The separate 60-question audited outcomes remain **18 source PASS, 8 ISSUE, 34 UNVERIFIED**.
+
+- [x] Complete photo-backed R01 36-degree mid-drag and tap-p13 pressed/settled source continuity with p12→p13 commit only on settle and no Home wallpaper mutation; [successful targeted generation/raster #40115632444](https://github.com/gamesbyian/Glimpse/actions/runs/40115632444).
+- [x] Illustrate current Home app-last-acknowledged p04 separately from p12 selection, and safe Return from skipped restore conflict without mutation; [focused CI #40114890526](https://github.com/gamesbyian/Glimpse/actions/runs/40114890526).
+- [x] Create Home Rainbows tap-only clipped paper crescent candidate and source-photographic large-type / Grid / Prev / Next candidate; [focused CI #40115223639](https://github.com/gamesbyian/Glimpse/actions/runs/40115223639), not native 200%-font evidence.
+- [x] Actually open and inspect [twelve](../design/OPTICAL-REVIEW-2026-10-24-TARGETED-12.md) and then [eighteen](../design/OPTICAL-REVIEW-2026-10-24-TARGETED-18.md) 401×890 source-hashed phone-image entries, not merely record CI-generated PNGs. Source-hash contact sheets are under [targeted review gallery](../../design/reviews/targeted-2026-10-24/).
+- [x] Repair optically found **R03 p12 vector impersonation** in preview/UNKNOWN by exact common p12 public original JPEG bytes from the photographed reel, preserve separate Home last Glimpse acknowledgement, and confirm source/phone raster [#40116237813](https://github.com/gamesbyian/Glimpse/actions/runs/40116237813).
+- [x] Repair optically found **half-clipped p11/p14 numeric photo badges** in R01 36° mid-drag, without removing the underlying photographic apertures; generator/source proof [successful #40116826508](https://github.com/gamesbyian/Glimpse/actions/runs/40116826508). Follow-up **direct optical inspection of repaired source pixels** is separately pending.
+- [x] Build [whole-product owner candidate viewer](../../design/atlas/whole-product-review-selection.html), [24 primary / 34 support / 23 journey selection manifest](../../design/proposals/whole-product-review-selection.v1.json), [253-unique-path SHA snapshot](../../design/atlas/whole-product-review-snapshot.v1.json) and strong no-approval validator. [Full atlas/selection generation #40116367838](https://github.com/gamesbyian/Glimpse/actions/runs/40116367838) passed. These are preliminary editorial choices, not exact human acceptance.
+- [ ] Directly inspect the **latest post-fix** 36° phone image and update the targeted-18 optical log at its revised SHA. The source-hash ledger has been rebuilt at [successful #40117064804](https://github.com/gamesbyian/Glimpse/actions/runs/40117064804).
+- [ ] Audit and improve high-fidelity **visual consistency** across all 24 proposed primary screens and 34 support-state variants. Some current source choices still use old schematic card designs; no sense in declaring a whole-set visual freeze merely because all surfaces are inventoried.
+- [ ] Review eight unresolved owner product choices in the candidate viewer, after side-by-side alternatives and full phone-scale image review, then obtain explicit owner approval of exact image SHA-256 inventory. Keep draft PR #6 unmerged and `design/approved/` untouched.
+- [ ] Collect real current-generation Android screenshots, 0/1/3/5/22/60 finite reachability, 320dp/200%-font native reflow, 48dp bounds, TalkBack route, wallpaper acknowledge/UNKNOWN, picker/provider/restore and best-effort cadence. The old real [seven-state emulator gallery #39926620822](https://github.com/gamesbyian/Glimpse/actions/runs/39926620822) is a comparator for the rejected native pseudo-reel, not evidence current art has been implemented.
+
+## Core current-generation task-action reconciliation · October 24
+
+- [x] Explicitly repair missing Home/Reel/Grid/Photo Detail primary jobs in draft current-generation references. Four source-generated visual candidates now cover exact 401×890 phone-side Change Home/Pause/Share/Open, finite Reel View all/Set wallpaper chooser/Prev/Next, Grid Search/Share/Multi-select/Back, Photo Detail Grid/Set/Share/Edit. Selected in the [24-primary whole-product candidate](../../design/proposals/whole-product-review-selection.v1.json).
+- [x] Preserve **p12 exact JPEG identity across all four** and same real source artwork for Grid/Reel p10/p11/p13/p14/p15; p04 Home is deliberately labeled last app acknowledgement, with present device state unknown. Remaining Grid p06–p09/p16–p17 artwork is schematic; do not pretend all 12 are source verified.
+- [x] Source-hash and **actually inspect** the revised four 401×890 phone crops. [Successful CI #40125933149](https://github.com/gamesbyian/Glimpse/actions/runs/40125933149), [direct optical findings](../design/CORE-FOUR-ACTION-OPTICAL-REVIEW-2026-10-24.md) and [review image](../../design/reviews/primary-actions-2026-10-24/home-reel-grid-detail.jpg) pin four exact current-version references. No obvious normal-size overlap or clipping in these four, yet no native/human/a11y acceptance.
+- [x] Install [primary-source contract validator](../../scripts/validate-primary-task-action-review.py) into lean whole-set atlas workflow; [CI #40126233952](https://github.com/gamesbyian/Glimpse/actions/runs/40126233952) succeeded. The complete draft source census is now **276** (203 baseline, 25 state refinements, 47 audit studies, one whole-product Collections candidate).
+- [ ] Source genuine independent p04 Home photo and remaining Grid photo IDs with explicit licence/source and stable asset IDs. Avoid inventing image provenance.
+- [ ] Continue current-generation photo/art direction consistency across remaining **20 primary** and **34 support** scene candidates, including transitions/OS-owned surfaces, without treating old schematic drawings as final.
+- [ ] Collect actual Android behavior/hierarchy/large-text/gesture/OS source, apply and Sharesheet proof, then require explicit human approval of one exact compatible whole-set visual reference SHA inventory.
+
+[Current continuation handoff](HANDOFF-2026-10-24-CORE-TASK-ACTIONS.md) supersedes earlier 271-source status, with exact source files, optical evidence and pending gates. The first scored 60-question audit remains **18 source PASS / 8 ISSUE / 34 UNVERIFIED**; PR #6 remains **draft and unmerged**.
+
+## Support-state direct optical reconciliation · October 24
+
+- [x] Open **all six original source-hashed support contact JPEGs**, inspect each 401×890 phone image, record 34 distinct observations with pre-repair source SHA-256 ([review log](../design/SUPPORT-STATE-OPTICAL-REVIEW-2026-10-24.md)).
+- [x] Correct 13 actual misleading SVG state variants (cancelled chooser distinct from unavailable email, notifications available vs not implemented, explicit safe deletion with 22-copy example/Cancel, opt-in diagnostics, low-storage warning, actionable Help content, unsupported Lock target and artwork rights), preserving editable sources.
+- [x] Add narrow source-truth regression guard and trigger rerender of six contact sheets on support-plate changes. [CI #40127564296](https://github.com/gamesbyian/Glimpse/actions/runs/40127564296) PASS; directly inspect **all six corrected raster contacts** (completed). These are *draft optical checks*, not native or owner acceptance.
+- [ ] Unify typography, controls, and use of negative space in remaining original support/primary reference art; show readable exact outgoing report contents in diagnostic minimal and expanded states; include usable native 200%-font and 320dp examples.
+- [ ] Source real p04 photo, remaining Grid identities p06–09/p16–17 with genuine provenance/rights and show no invented photo identity.
+- [ ] Capture selected current native app scenes and compare with reference, 0/1/3/5/22/60 Reel, chooser/share/apply/unknown outcomes, permission, backup, accessibility and timing.
+- [ ] Ask human to choose **one exact-source-hashed coherent 24-primary/34-support/23-journey set**, or revise; do not promote to `design/approved/` before explicit decision.
+
+All selected references remain editorial candidates: **276 editable proposals**, **56/56 pictured scenarios**, **18 source PASS / 8 ISSUE / 34 UNVERIFIED** in independent scored cycle A.
+
+## Direct 24-primary optical pass and action fixes · October 24
+
+- [x] Generate source-hashed contact corpus for all **24 selected primary** candidates ([four original and latest source JPEG sheets](../../design/reviews/primary-2026-10-24/)); independently open **all four** and record an exact path + SHA-256 observation for each ([review report](../design/PRIMARY-24-OPTICAL-REVIEW-2026-10-24.md)).
+- [x] Correct actual source defects in five selected primaries: Quick Import editing hit-height/sample provenance/explicit wallpaper choice, compressed Share footer, Automation foreground eligibility and separate actions, Activity acknowledgement/review-before-reapply, Accessibility 200% claim. Source-truth validator and [focused successful CI #40128549862](https://github.com/gamesbyian/Glimpse/actions/runs/40128549862); re-open changed source contact sheets **01/02/04**.
+- [x] Require generated human reviewer to show per-card current source SHA-256, not only a link to separate machine snapshot. Keep all editorial choices null/unapproved.
+- [ ] Reconcile earlier-generation schematics against photographic Home/Reel/Grid/Detail visual language and readable/scalable typography. Direct 401px inspection did not test 320dp, native TalkBack focus, touch hitboxes or composited system windows.
+- [ ] Source rights-cleared independently identified p04 and p06–09/p16–17 images. Prove current Android wallpaper and best-effort 5-minute delivery, not just requested/app-acknowledged state.

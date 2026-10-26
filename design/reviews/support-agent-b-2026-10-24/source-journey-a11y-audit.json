@@ -1,0 +1,512 @@
+{
+  "scope": "Agent B unapproved source-only audit",
+  "supportStates": 34,
+  "supportTaskControls": 36,
+  "supportTaskCards": 42,
+  "supportToggleRows": 7,
+  "journeys": 23,
+  "storyboardFrames": 137,
+  "illustratedScenarios": 56,
+  "supportMinimumBodyFontBelow14": 0,
+  "fontScaleVerdict": "320dp/200% real Android reflow unverified: source fonts and targets are only static reference geometry",
+  "navigationVerdict": "data-control rectangles are visual geometry proposals, not native semantics/focus tests",
+  "sourceSHA256": {
+    "design/proposals/support-plates/about--sideload.svg": {
+      "sha256": "3034c8197eb1e520f3f2e21721fb2b0ffd1741abe499dd214a2b361593f5d046",
+      "actions": [
+        "back",
+        "card-copy-build-id",
+        "card-open-help",
+        "card-view-details",
+        "nav-automation",
+        "nav-collections",
+        "nav-discover",
+        "nav-home"
+      ],
+      "modal": false,
+      "minBodyFont": 14.0
+    },
+    "design/proposals/support-plates/about--play-release.svg": {
+      "sha256": "bd445c367720953d1c520aa84ff10172e904dcb376649450949c94cf626bb273",
+      "actions": [
+        "back",
+        "card-copy-build-id",
+        "card-open-help",
+        "card-view-details",
+        "nav-automation",
+        "nav-collections",
+        "nav-discover",
+        "nav-home"
+      ],
+      "modal": false,
+      "minBodyFont": 14.0
+    },
+    "design/proposals/support-plates/help--topics.svg": {
+      "sha256": "6e882267c10e7ecc8c79eea6b3ba5da6a68f068ffd6c5fb2b2e3516593232fec",
+      "actions": [
+        "back",
+        "card-fix-a-problem",
+        "card-learn-the-reel",
+        "card-read-import-guide",
+        "card-what-changes",
+        "nav-automation",
+        "nav-collections",
+        "nav-discover",
+        "nav-home"
+      ],
+      "modal": false,
+      "minBodyFont": 14.0
+    },
+    "design/proposals/support-plates/help--article.svg": {
+      "sha256": "0b672b63c744331fafe9e7e670e304c50e38c33da7b8c91f620ad3cda22b7cab",
+      "actions": [
+        "back",
+        "nav-automation",
+        "nav-collections",
+        "nav-discover",
+        "nav-home",
+        "task-back-to-help-topics"
+      ],
+      "modal": false,
+      "minBodyFont": 14.0
+    },
+    "design/proposals/support-plates/contact-feedback--available.svg": {
+      "sha256": "20ede5064801420bf3592262dabdb40d63c73a8fc6b064312cb0e828c6be8595",
+      "actions": [
+        "back",
+        "card-create-a-report",
+        "card-open-issues",
+        "card-write-feedback",
+        "nav-automation",
+        "nav-collections",
+        "nav-discover",
+        "nav-home",
+        "task-copy-feedback"
+      ],
+      "modal": false,
+      "minBodyFont": 14.0
+    },
+    "design/proposals/support-plates/contact-feedback--no-handler.svg": {
+      "sha256": "28586b2b8edb7f4b18a91efdef362811bd873aa347453c6722ff671b3585bbcc",
+      "actions": [
+        "back",
+        "card-create-a-report",
+        "card-open-issues",
+        "card-write-feedback",
+        "nav-automation",
+        "nav-collections",
+        "nav-discover",
+        "nav-home",
+        "task-copy-feedback"
+      ],
+      "modal": false,
+      "minBodyFont": 14.0
+    },
+    "design/proposals/support-plates/report-problem--draft.svg": {
+      "sha256": "100de0745a921e71a4d378d69bbce3c1f1b97dab53fb5c0841f6750d589425d5",
+      "actions": [
+        "back",
+        "nav-automation",
+        "nav-collections",
+        "nav-discover",
+        "nav-home",
+        "task-review-report"
+      ],
+      "modal": false,
+      "minBodyFont": 14.0
+    },
+    "design/proposals/support-plates/report-problem--with-diagnostics.svg": {
+      "sha256": "58a512659e673c1b3e1724485a72324dabe9c4df2e83ce82334bb95dcafb6f4f",
+      "actions": [
+        "back",
+        "nav-automation",
+        "nav-collections",
+        "nav-discover",
+        "nav-home",
+        "task-review-report",
+        "toggle-include-diagnostics"
+      ],
+      "modal": false,
+      "minBodyFont": 14.0
+    },
+    "design/proposals/support-plates/crash-recovery--suspected-crash.svg": {
+      "sha256": "4d8b5472f988d9c586bed62eb8a4851007ff4d273eace935b48d90f737df1794",
+      "actions": [
+        "back",
+        "nav-automation",
+        "nav-collections",
+        "nav-discover",
+        "nav-home",
+        "task-continue",
+        "task-not-now"
+      ],
+      "modal": false,
+      "minBodyFont": 14.0
+    },
+    "design/proposals/support-plates/crash-recovery--normal-exit.svg": {
+      "sha256": "72dcc6930bbdbd5ae205f565fc9244c0f07cdbf9d7805c35c8536b43574152f2",
+      "actions": [
+        "back",
+        "nav-automation",
+        "nav-collections",
+        "nav-discover",
+        "nav-home",
+        "task-continue",
+        "task-not-now"
+      ],
+      "modal": false,
+      "minBodyFont": 14.0
+    },
+    "design/proposals/support-plates/diagnostic-preview--minimal.svg": {
+      "sha256": "45b6de9ad59ffb54aabf01494518104193e7171826a8a47a5dea01df27086f55",
+      "actions": [
+        "back",
+        "include-error-summary",
+        "include-technical-details",
+        "nav-automation",
+        "nav-collections",
+        "nav-discover",
+        "nav-home",
+        "task-copy",
+        "task-save",
+        "task-share"
+      ],
+      "modal": false,
+      "minBodyFont": 14.0
+    },
+    "design/proposals/support-plates/diagnostic-preview--expanded.svg": {
+      "sha256": "6652e464238a7b07f3582d266f52c886f1e3642c965cbcf9616fbc2fc3f1410c",
+      "actions": [
+        "back",
+        "include-error-summary",
+        "include-technical-details",
+        "nav-automation",
+        "nav-collections",
+        "nav-discover",
+        "nav-home",
+        "task-copy",
+        "task-save",
+        "task-share"
+      ],
+      "modal": false,
+      "minBodyFont": 14.0
+    },
+    "design/proposals/support-plates/whats-new--latest.svg": {
+      "sha256": "28f9d464494814f1d8c3735e8f69844b221a9b628a17244af3a0b4c821e77792",
+      "actions": [
+        "back",
+        "nav-automation",
+        "nav-collections",
+        "nav-discover",
+        "nav-home",
+        "task-back-to-glimpse"
+      ],
+      "modal": false,
+      "minBodyFont": 14.0
+    },
+    "design/proposals/support-plates/whats-new--no-notes.svg": {
+      "sha256": "c7652d6a236ef73ca58f7e6538275649864a9dc8487936a0c7716f0a9c4f6894",
+      "actions": [
+        "back",
+        "nav-automation",
+        "nav-collections",
+        "nav-discover",
+        "nav-home",
+        "task-back-to-glimpse"
+      ],
+      "modal": false,
+      "minBodyFont": 14.0
+    },
+    "design/proposals/support-plates/updates--sideload.svg": {
+      "sha256": "8d33585ae83edd401e3b587d85e1b75d11d36689ccf90cc1c6cd4102f0aa422e",
+      "actions": [
+        "back",
+        "card-learn-more",
+        "card-view-build-info",
+        "nav-automation",
+        "nav-collections",
+        "nav-discover",
+        "nav-home",
+        "task-open-update-source"
+      ],
+      "modal": false,
+      "minBodyFont": 14.0
+    },
+    "design/proposals/support-plates/updates--play-eligible.svg": {
+      "sha256": "22a5797c0e6b2ebe76c30507cca28ea17f258c75aae95db470b592c662b51419",
+      "actions": [
+        "back",
+        "card-learn-more",
+        "card-view-build-info",
+        "nav-automation",
+        "nav-collections",
+        "nav-discover",
+        "nav-home",
+        "task-open-update-source"
+      ],
+      "modal": false,
+      "minBodyFont": 14.0
+    },
+    "design/proposals/support-plates/updates--offline.svg": {
+      "sha256": "cf405bfd616b9ab139612c91024182bb107631309528ebe077aa1bb6b23551a2",
+      "actions": [
+        "back",
+        "card-learn-more",
+        "card-view-build-info",
+        "nav-automation",
+        "nav-collections",
+        "nav-discover",
+        "nav-home",
+        "task-retry-check"
+      ],
+      "modal": false,
+      "minBodyFont": 14.0
+    },
+    "design/proposals/support-plates/rate-review--not-available.svg": {
+      "sha256": "06754eafedf424455c1800bb01000a5be9e50a81d0e6729ec46cda93aac219ae",
+      "actions": [
+        "back",
+        "nav-automation",
+        "nav-collections",
+        "nav-discover",
+        "nav-home"
+      ],
+      "modal": false,
+      "minBodyFont": 14.0
+    },
+    "design/proposals/support-plates/rate-review--play-listing.svg": {
+      "sha256": "93b2a480868c1ce2c6cf4d9371a0125adfd4dea2f4e457ff6cb72ef52bf01131",
+      "actions": [
+        "back",
+        "nav-automation",
+        "nav-collections",
+        "nav-discover",
+        "nav-home",
+        "task-open-google-play"
+      ],
+      "modal": false,
+      "minBodyFont": 14.0
+    },
+    "design/proposals/support-plates/privacy--local-only.svg": {
+      "sha256": "d445eb653afd4400478ba0cf2b415341e4b2f63940b5367be75913740cee79e3",
+      "actions": [
+        "back",
+        "card-how-it-works",
+        "card-read-policy",
+        "card-report-privacy",
+        "card-storage-details",
+        "nav-automation",
+        "nav-collections",
+        "nav-discover",
+        "nav-home"
+      ],
+      "modal": false,
+      "minBodyFont": 14.0
+    },
+    "design/proposals/support-plates/privacy--diagnostics-opt-in.svg": {
+      "sha256": "93ecad9a349645f821e879e864299bce5acd19a847706cba62bec572da498f41",
+      "actions": [
+        "back",
+        "card-how-it-works",
+        "card-read-policy",
+        "card-report-privacy",
+        "card-storage-details",
+        "nav-automation",
+        "nav-collections",
+        "nav-discover",
+        "nav-home"
+      ],
+      "modal": false,
+      "minBodyFont": 14.0
+    },
+    "design/proposals/support-plates/storage-management--overview.svg": {
+      "sha256": "7c54f7fb7c194d7fed3264ec0db10a660ed8d92b06b4c2f6f896a92c6f348db4",
+      "actions": [
+        "back",
+        "card-clear-cache",
+        "card-review-removal",
+        "card-view-collections",
+        "nav-automation",
+        "nav-collections",
+        "nav-discover",
+        "nav-home",
+        "task-review-storage-options"
+      ],
+      "modal": false,
+      "minBodyFont": 14.0
+    },
+    "design/proposals/support-plates/storage-management--delete-confirm.svg": {
+      "sha256": "7518d6daf41a5f7a0731a1f5e1323b946adedc5962036a7f71afa383f6420af9",
+      "actions": [
+        "back",
+        "cancel-delete",
+        "confirm-delete"
+      ],
+      "modal": true,
+      "minBodyFont": 14.0
+    },
+    "design/proposals/support-plates/storage-management--low-storage.svg": {
+      "sha256": "9145a41195215e67b56fea1a910478f972eacbbdcd2bff86e8b3dcc334d757bd",
+      "actions": [
+        "back",
+        "card-clear-cache",
+        "card-review-removal",
+        "card-view-collections",
+        "nav-automation",
+        "nav-collections",
+        "nav-discover",
+        "nav-home",
+        "task-free-storage-safely"
+      ],
+      "modal": false,
+      "minBodyFont": 14.0
+    },
+    "design/proposals/support-plates/permissions-capabilities--available.svg": {
+      "sha256": "20c30504e2f60ce0911ef5b4d507b28726c96402f38592b83be9e1f31d26cb3d",
+      "actions": [
+        "back",
+        "card-check-availability",
+        "card-more-details",
+        "card-why-not-exact",
+        "nav-automation",
+        "nav-collections",
+        "nav-discover",
+        "nav-home",
+        "task-open-device-settings"
+      ],
+      "modal": false,
+      "minBodyFont": 14.0
+    },
+    "design/proposals/support-plates/permissions-capabilities--restricted.svg": {
+      "sha256": "3fe252c60acd2e475bf5e92d6a58f492d99d912b4ba1172eaef63d4ad682beae",
+      "actions": [
+        "back",
+        "card-check-availability",
+        "card-check-target-support",
+        "card-why-not-exact",
+        "nav-automation",
+        "nav-collections",
+        "nav-discover",
+        "nav-home",
+        "task-open-device-settings"
+      ],
+      "modal": false,
+      "minBodyFont": 14.0
+    },
+    "design/proposals/support-plates/credits-licences--components.svg": {
+      "sha256": "56dd6caecc63332902fdd1afa989e7f9e659c194e1eb1b404a8757bf9dfd96c4",
+      "actions": [
+        "back",
+        "nav-automation",
+        "nav-collections",
+        "nav-discover",
+        "nav-home",
+        "task-copy-licence-summary"
+      ],
+      "modal": false,
+      "minBodyFont": 14.0
+    },
+    "design/proposals/support-plates/credits-licences--rights-warning.svg": {
+      "sha256": "2e654255185db9db8c6b0b489ca7d582a6a17348d46940dbca9e62c43dac0dd2",
+      "actions": [
+        "back",
+        "nav-automation",
+        "nav-collections",
+        "nav-discover",
+        "nav-home",
+        "task-copy-licence-summary"
+      ],
+      "modal": false,
+      "minBodyFont": 14.0
+    },
+    "design/proposals/support-plates/beta-feedback--invitation.svg": {
+      "sha256": "048eecd494dcc6809a7f00a1471438c36e10085eb235e2cdb444b33ccb0a7b34",
+      "actions": [
+        "back",
+        "nav-automation",
+        "nav-collections",
+        "nav-discover",
+        "nav-home",
+        "task-preview-feedback",
+        "toggle-attach-a-screenshot",
+        "toggle-attach-diagnostics"
+      ],
+      "modal": false,
+      "minBodyFont": 14.0
+    },
+    "design/proposals/support-plates/beta-feedback--share-preview.svg": {
+      "sha256": "20338af1e745ebf24015e4557f0cbc706ef7c0f9d3d403d7ce47b8015c5ca60f",
+      "actions": [
+        "back",
+        "nav-automation",
+        "nav-collections",
+        "nav-discover",
+        "nav-home",
+        "share-reviewed-feedback",
+        "toggle-attach-a-screenshot",
+        "toggle-attach-diagnostics"
+      ],
+      "modal": false,
+      "minBodyFont": 14.0
+    },
+    "design/proposals/support-plates/notification-preferences--not-implemented.svg": {
+      "sha256": "35c1785ba67efac206037fc98bf4b20e98a33c67dfa77b610201f2f0fafa9152",
+      "actions": [
+        "back",
+        "nav-automation",
+        "nav-collections",
+        "nav-discover",
+        "nav-home",
+        "task-return-to-settings"
+      ],
+      "modal": false,
+      "minBodyFont": 14.0
+    },
+    "design/proposals/support-plates/notification-preferences--available.svg": {
+      "sha256": "37211fb9da53e049b56c17217de9882d2d70f390e09ae5350d5266d53d7071a8",
+      "actions": [
+        "back",
+        "nav-automation",
+        "nav-collections",
+        "nav-discover",
+        "nav-home",
+        "task-return-to-settings",
+        "toggle-important-rotation-problems",
+        "toggle-source-or-import-failures"
+      ],
+      "modal": false,
+      "minBodyFont": 14.0
+    },
+    "design/proposals/support-plates/external-handler-fallback--email-missing.svg": {
+      "sha256": "1253dc7722519c900eaa4a04fb2c91e28a0b18b9d0c94c86c4a0e71a947975c3",
+      "actions": [
+        "back",
+        "nav-automation",
+        "nav-collections",
+        "nav-discover",
+        "nav-home",
+        "task-copy-details",
+        "task-return-to-glimpse",
+        "task-save-locally"
+      ],
+      "modal": false,
+      "minBodyFont": 14.0
+    },
+    "design/proposals/support-plates/external-handler-fallback--chooser-cancelled.svg": {
+      "sha256": "442a3af65790bfb7148e233d175ed28fa4e83adc0048daa37d9aaa7518e234b7",
+      "actions": [
+        "back",
+        "nav-automation",
+        "nav-collections",
+        "nav-discover",
+        "nav-home",
+        "task-return-to-glimpse",
+        "task-save-locally",
+        "task-try-sharing-again"
+      ],
+      "modal": false,
+      "minBodyFont": 14.0
+    }
+  },
+  "errors": []
+}

@@ -1,35 +1,54 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1160" height="920" viewBox="0 0 1160 920" role="img" aria-label="Proposed Glimpse quickstart annotated layout, default state, not yet approved"><rect width="1160" height="920" fill="#E9E3D9"/>
-<rect x="15" y="14" width="401" height="890" rx="22" fill="#F6F0E6" stroke="#C4B7A4" stroke-width="2"/>
-<text x="40" y="44" fill="#153F46" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="650" text-anchor="start">9:41</text>
-<text x="391" y="44" fill="#667975" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="400" text-anchor="end">● ▰ ▴</text>
-<path d="M31 56 L400 56" stroke="#C8B7A1" stroke-width="1" fill="none"/>
-<text x="36" y="99" fill="#153F46" font-family="Arial,Helvetica,sans-serif" font-size="32" font-weight="700" text-anchor="start">Start shuffle</text>
-<text x="38" y="125" fill="#667975" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="400" text-anchor="start">Rainbows · 22 photos</text>
-<rect x="41" y="166" width="334" height="105" rx="13" fill="#FFFCF6" stroke="#C8B7A1" stroke-width="1"/>
-<text x="55" y="192" fill="#153F46" font-family="Arial,Helvetica,sans-serif" font-size="17" font-weight="650" text-anchor="start">Choose collection</text>
-<text x="55" y="214" fill="#667975" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="400" text-anchor="start">Rainbows · 22 offline photos</text>
-<text x="55" y="254" fill="#1D5960" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="650" text-anchor="start">Change</text>
-<rect x="41" y="314" width="334" height="105" rx="13" fill="#FFFCF6" stroke="#C8B7A1" stroke-width="1"/>
-<text x="55" y="340" fill="#153F46" font-family="Arial,Helvetica,sans-serif" font-size="17" font-weight="650" text-anchor="start">Destination</text>
-<text x="55" y="362" fill="#667975" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="400" text-anchor="start">Home wallpaper only</text>
-<text x="55" y="402" fill="#1D5960" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="650" text-anchor="start">Change target</text>
-<rect x="41" y="462" width="334" height="105" rx="13" fill="#FFFCF6" stroke="#C8B7A1" stroke-width="1"/>
-<text x="55" y="488" fill="#153F46" font-family="Arial,Helvetica,sans-serif" font-size="17" font-weight="650" text-anchor="start">Shuffle policy</text>
-<text x="55" y="510" fill="#667975" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="400" text-anchor="start">No repeats · five- minute eligibility</text>
-<text x="55" y="550" fill="#1D5960" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="650" text-anchor="start">Platform limits</text>
-<rect x="42" y="737" width="342" height="42" rx="18" fill="#1D5960" stroke="#1D5960" stroke-width="1"/>
-<text x="213" y="764" fill="#FFFFFF" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="650" text-anchor="middle">Start rotation</text>
-<rect x="24" y="823" width="384" height="56" rx="0" fill="#FFFCF6" stroke="none" stroke-width="1"/>
-<path d="M24 823 L408 823" stroke="#CEBC9F" stroke-width="1" fill="none"/>
-<text x="71" y="857" fill="#667975" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="600" text-anchor="middle">Home</text>
-<text x="167" y="857" fill="#667975" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="600" text-anchor="middle">Discover</text>
-<text x="263" y="857" fill="#667975" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="600" text-anchor="middle">Collections</text>
-<text x="359" y="857" fill="#667975" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="600" text-anchor="middle">Automation</text>
-<text x="35" y="897" fill="#667975" font-family="Arial,Helvetica,sans-serif" font-size="11" font-weight="650" text-anchor="start">PROPOSAL / NOT APPROVED</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="1160" height="920" viewBox="0 0 1160 920" role="img" aria-label="Proposed Glimpse quickstart annotated layout, default state, not yet approved"><rect x="0" y="0" width="1160" height="920" rx="0" fill="#E9E3D9" stroke="none"/>
+<rect x="15" y="14" width="401" height="890" rx="22" fill="#F6F0E6" stroke="#C4B7A4"/>
+<text x="39" y="44" fill="#153F46" font-size="14" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="start">9:41</text>
+<text x="390" y="44" fill="#566861" font-size="13" font-weight="600" font-family="Arial,Helvetica,sans-serif" text-anchor="end">●  ●  ●</text>
+<path d="M31 56 H400 M31 146 H400" stroke="#C8B7A1" stroke-width="1"/>
+<rect x="30" y="64" width="48" height="48" rx="24" fill="#FFFCF6" stroke="#C8B7A1"/>
+<text x="54" y="95" fill="#153F46" font-size="29" font-weight="600" font-family="Arial,Helvetica,sans-serif" text-anchor="middle">‹</text>
+<text x="86" y="99" fill="#153F46" font-size="28" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="start">Start rotation</text>
+<text x="36" y="132" fill="#566861" font-size="14" font-weight="500" font-family="Arial,Helvetica,sans-serif" text-anchor="start">Rainbows · 22 locally saved photos</text>
+<rect x="35" y="164" width="362" height="39" rx="17" fill="#DAEDE1" stroke="none"/>
+<text x="216" y="189" fill="#1D5960" font-size="13" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="middle">COLLECTION → TARGET → TIMING</text>
+<text x="36" y="247" fill="#153F46" font-size="21" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="start">Choose collection</text>
+<rect x="35" y="259" width="362" height="66" rx="15" fill="#FFFCF6" stroke="#C8B7A1"/>
+<rect x="47" y="272" width="42" height="40" rx="11" fill="#DAEDE1" stroke="none"/>
+<text x="68" y="298" fill="#1D5960" font-size="17" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="middle">R</text>
+<text x="103" y="285" fill="#153F46" font-size="17" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="start">Rainbows</text>
+<text x="103" y="307" fill="#566861" font-size="13" font-weight="500" font-family="Arial,Helvetica,sans-serif" text-anchor="start">22 verified local copies</text>
+<text x="382" y="298" fill="#1D5960" font-size="23" font-weight="600" font-family="Arial,Helvetica,sans-serif" text-anchor="middle">›</text>
+<text x="36" y="370" fill="#153F46" font-size="21" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="start">Destination</text>
+<rect x="35" y="384" width="362" height="69" rx="13" fill="#FFFCF6" stroke="#C8B7A1"/>
+<rect x="48" y="405" width="25" height="25" rx="13" fill="#1D5960" stroke="#1D5960"/>
+<path d="M53 417 L59 423 L69 411" fill="none" stroke="#FFFFFF" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="86" y="412" fill="#153F46" font-size="18" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="start">Home screen</text>
+<text x="86" y="435" fill="#566861" font-size="13" font-weight="500" font-family="Arial,Helvetica,sans-serif" text-anchor="start">Selected target</text>
+<rect x="35" y="466" width="362" height="69" rx="13" fill="#FFFCF6" stroke="#C8B7A1"/>
+<rect x="48" y="487" width="25" height="25" rx="13" fill="#FFFCF6" stroke="#C8B7A1"/>
+<text x="86" y="494" fill="#153F46" font-size="18" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="start">Lock screen</text>
+<text x="86" y="517" fill="#566861" font-size="13" font-weight="500" font-family="Arial,Helvetica,sans-serif" text-anchor="start">Check device support first</text>
+<rect x="35" y="550" width="362" height="65" rx="12" fill="#F5E6D1" stroke="none"/>
+<rect x="47" y="560" width="4" height="45" rx="2" fill="#1D5960" stroke="none"/>
+<text x="61" y="575" fill="#153F46" font-size="15" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="start">Requested: every 5 minutes</text>
+<text x="61" y="597" fill="#445851" font-size="13" font-weight="500" font-family="Arial,Helvetica,sans-serif" text-anchor="start">Doze or battery policy may delay changes.</text>
+<rect x="35" y="630" width="362" height="65" rx="12" fill="#F5E6D1" stroke="none"/>
+<rect x="47" y="640" width="4" height="45" rx="2" fill="#1D5960" stroke="none"/>
+<text x="61" y="655" fill="#153F46" font-size="15" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="start">Background timing is best effort</text>
+<text x="61" y="677" fill="#445851" font-size="13" font-weight="500" font-family="Arial,Helvetica,sans-serif" text-anchor="start">Foreground eligibility is more reliable.</text>
+<rect x="35" y="720" width="362" height="54" rx="18" fill="#1D5960" stroke="none"/>
+<text x="216" y="755" fill="#FFFFFF" font-size="17" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="middle">Start rotation</text>
+<text x="37" y="800" fill="#566861" font-size="12" font-weight="500" font-family="Arial,Helvetica,sans-serif" text-anchor="start">Cancel returns without applying a wallpaper.</text>
+<rect x="24" y="823" width="384" height="56" rx="0" fill="#FFFCF6" stroke="none"/>
+<path d="M24 823 H408" stroke="#C8B7A1"/>
+<text x="71" y="856" fill="#566861" font-size="13" font-weight="600" font-family="Arial,Helvetica,sans-serif" text-anchor="middle">Home</text>
+<text x="167" y="856" fill="#566861" font-size="13" font-weight="600" font-family="Arial,Helvetica,sans-serif" text-anchor="middle">Discover</text>
+<text x="263" y="856" fill="#566861" font-size="13" font-weight="600" font-family="Arial,Helvetica,sans-serif" text-anchor="middle">Collections</text>
+<rect x="319" y="829" width="80" height="40" rx="13" fill="#DAEDE1" stroke="none"/>
+<text x="359" y="856" fill="#1D5960" font-size="12" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="middle">Automation</text>
+<text x="35" y="898" fill="#566861" font-size="10" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="start">PROPOSAL / NOT APPROVED</text>
 <rect x="439" y="14" width="707" height="890" rx="17" fill="#FCF9F3" stroke="#C4B7A4" stroke-width="2"/>
-<text x="462" y="47" fill="#153F46" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="700" text-anchor="start">VISUAL COVERAGE PLATE</text>
+<text x="462" y="47" fill="#153F46" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="700" text-anchor="start">PRIMARY SURFACE · PRODUCTION A</text>
 <text x="462" y="78" fill="#1D5960" font-family="Arial,Helvetica,sans-serif" font-size="22" font-weight="700" text-anchor="start">QUICKSTART · default</text>
-<text x="462" y="106" fill="#667975" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="400" text-anchor="start">Coherent screen-family schematic; not a user-approved screenshot</text>
+<text x="462" y="106" fill="#667975" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="400" text-anchor="start">Editable task-driven proposal; native and owner review pending</text>
 <path d="M453 124 L1130 124" stroke="#C8B7A1" stroke-width="1" fill="none"/>
 <text x="463" y="151" fill="#1D5960" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="700" text-anchor="start">REQUIRED ON THIS SURFACE</text>
 <text x="463" y="177" fill="#153F46" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="400" text-anchor="start">• named- source- collection</text>

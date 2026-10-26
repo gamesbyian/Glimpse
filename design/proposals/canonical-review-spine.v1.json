@@ -1,0 +1,260 @@
+{
+  "schemaVersion": 1,
+  "status": "PRELIMINARY_HUMAN_REVIEW_SPINE_NOT_COMPLETE_OR_APPROVED",
+  "auditBaseline": {
+    "PASS": 18,
+    "ISSUE": 8,
+    "UNVERIFIED": 34
+  },
+  "sourceDirectory": "design/proposals",
+  "approved": false,
+  "notes": [
+    "39 selected sources are a task-by-task human review spine, not all 203 baseline and supplemental required states",
+    "A source selected in this gallery remains draft until complete optical/native requirement checks and exact whole-set owner approval",
+    "Current first-generation round-window R01 variants and competing historical dual-reel studies must not be promoted as canonical",
+    "An annotated SVG is cropped to its phone viewport in the atlas; full source remains editable and explanatory annotations separate",
+    "Some pages are optical-reviewed, some only draft; do not infer uniform proof or freeze from inclusion"
+  ],
+  "groups": [
+    {
+      "title": "Home and first use",
+      "items": [
+        {
+          "path": "design/proposals/plates/home.svg",
+          "reviewStatus": "draft-unapproved",
+          "exactOwnerApprovedSourceSHA": null
+        },
+        {
+          "path": "design/proposals/plates/collections.svg",
+          "reviewStatus": "draft-unapproved",
+          "exactOwnerApprovedSourceSHA": null
+        },
+        {
+          "path": "design/proposals/plates/quick-import.svg",
+          "reviewStatus": "draft-unapproved",
+          "exactOwnerApprovedSourceSHA": null
+        }
+      ]
+    },
+    {
+      "title": "Finite photographic reel",
+      "items": [
+        {
+          "path": "design/proposals/audit-revisions/r01-photo-empty-0.svg",
+          "reviewStatus": "draft-unapproved",
+          "exactOwnerApprovedSourceSHA": null
+        },
+        {
+          "path": "design/proposals/audit-revisions/r01-photo-single-1.svg",
+          "reviewStatus": "draft-unapproved",
+          "exactOwnerApprovedSourceSHA": null
+        },
+        {
+          "path": "design/proposals/audit-revisions/r01-photo-rest-22.svg",
+          "reviewStatus": "draft-unapproved",
+          "exactOwnerApprovedSourceSHA": null
+        },
+        {
+          "path": "design/proposals/audit-revisions/r01-photo-drag-18.svg",
+          "reviewStatus": "draft-unapproved",
+          "exactOwnerApprovedSourceSHA": null
+        },
+        {
+          "path": "design/proposals/audit-revisions/r01-photo-snap-13.svg",
+          "reviewStatus": "draft-unapproved",
+          "exactOwnerApprovedSourceSHA": null
+        },
+        {
+          "path": "design/proposals/audit-revisions/r01-photo-last-22.svg",
+          "reviewStatus": "draft-unapproved",
+          "exactOwnerApprovedSourceSHA": null
+        }
+      ]
+    },
+    {
+      "title": "Grid, edit and share",
+      "items": [
+        {
+          "path": "design/proposals/storyboards/x07/02-grid-focus.svg",
+          "reviewStatus": "draft-unapproved",
+          "exactOwnerApprovedSourceSHA": null
+        },
+        {
+          "path": "design/proposals/storyboards/x07/03-photo-detail.svg",
+          "reviewStatus": "draft-unapproved",
+          "exactOwnerApprovedSourceSHA": null
+        },
+        {
+          "path": "design/proposals/audit-revisions/r02-crop-pending.svg",
+          "reviewStatus": "draft-unapproved",
+          "exactOwnerApprovedSourceSHA": null
+        },
+        {
+          "path": "design/proposals/audit-revisions/r02-copy-saved.svg",
+          "reviewStatus": "draft-unapproved",
+          "exactOwnerApprovedSourceSHA": null
+        },
+        {
+          "path": "design/proposals/audit-revisions/r02-share-choice.svg",
+          "reviewStatus": "draft-unapproved",
+          "exactOwnerApprovedSourceSHA": null
+        },
+        {
+          "path": "design/proposals/audit-revisions/r06-share-dismissed.svg",
+          "reviewStatus": "draft-unapproved",
+          "exactOwnerApprovedSourceSHA": null
+        },
+        {
+          "path": "design/proposals/advanced-storyboards/x13/04-cancel.svg",
+          "reviewStatus": "draft-unapproved",
+          "exactOwnerApprovedSourceSHA": null
+        }
+      ]
+    },
+    {
+      "title": "Import trust",
+      "items": [
+        {
+          "path": "design/proposals/audit-revisions/r04-import-empty.svg",
+          "reviewStatus": "draft-unapproved",
+          "exactOwnerApprovedSourceSHA": null
+        },
+        {
+          "path": "design/proposals/audit-revisions/r04-import-17-of-22.svg",
+          "reviewStatus": "draft-unapproved",
+          "exactOwnerApprovedSourceSHA": null
+        },
+        {
+          "path": "design/proposals/audit-revisions/r04-import-cancel.svg",
+          "reviewStatus": "draft-unapproved",
+          "exactOwnerApprovedSourceSHA": null
+        },
+        {
+          "path": "design/proposals/audit-revisions/r04-import-no-space.svg",
+          "reviewStatus": "draft-unapproved",
+          "exactOwnerApprovedSourceSHA": null
+        }
+      ]
+    },
+    {
+      "title": "Wallpaper truth",
+      "items": [
+        {
+          "path": "design/proposals/audit-revisions/r03-preview-not-applied.svg",
+          "reviewStatus": "draft-unapproved",
+          "exactOwnerApprovedSourceSHA": null
+        },
+        {
+          "path": "design/proposals/audit-revisions/r03-unknown-after-request.svg",
+          "reviewStatus": "draft-unapproved",
+          "exactOwnerApprovedSourceSHA": null
+        },
+        {
+          "path": "design/proposals/advanced-storyboards/x14/05-apply-both.svg",
+          "reviewStatus": "draft-unapproved",
+          "exactOwnerApprovedSourceSHA": null
+        }
+      ]
+    },
+    {
+      "title": "Rotation",
+      "items": [
+        {
+          "path": "design/proposals/storyboards/x04/03-active.svg",
+          "reviewStatus": "draft-unapproved",
+          "exactOwnerApprovedSourceSHA": null
+        },
+        {
+          "path": "design/proposals/storyboards/x04/05-paused.svg",
+          "reviewStatus": "draft-unapproved",
+          "exactOwnerApprovedSourceSHA": null
+        },
+        {
+          "path": "design/proposals/state-refinements/automation-delayed.svg",
+          "reviewStatus": "draft-unapproved",
+          "exactOwnerApprovedSourceSHA": null
+        },
+        {
+          "path": "design/proposals/audit-revisions/r07-battery-restricted.svg",
+          "reviewStatus": "draft-unapproved",
+          "exactOwnerApprovedSourceSHA": null
+        },
+        {
+          "path": "design/proposals/audit-revisions/r07-unknown-after-attempt.svg",
+          "reviewStatus": "draft-unapproved",
+          "exactOwnerApprovedSourceSHA": null
+        },
+        {
+          "path": "design/proposals/storyboards/x04/06-resumed.svg",
+          "reviewStatus": "draft-unapproved",
+          "exactOwnerApprovedSourceSHA": null
+        }
+      ]
+    },
+    {
+      "title": "Provider, storage and restore",
+      "items": [
+        {
+          "path": "design/proposals/advanced-storyboards/x17/04-offline.svg",
+          "reviewStatus": "draft-unapproved",
+          "exactOwnerApprovedSourceSHA": null
+        },
+        {
+          "path": "design/proposals/audit-revisions/r08-source-revoked.svg",
+          "reviewStatus": "draft-unapproved",
+          "exactOwnerApprovedSourceSHA": null
+        },
+        {
+          "path": "design/proposals/state-refinements/destinations-unsupported.svg",
+          "reviewStatus": "draft-unapproved",
+          "exactOwnerApprovedSourceSHA": null
+        },
+        {
+          "path": "design/proposals/audit-revisions/r08-restore-conflict-choice.svg",
+          "reviewStatus": "draft-unapproved",
+          "exactOwnerApprovedSourceSHA": null
+        },
+        {
+          "path": "design/proposals/advanced-storyboards/x19/05-restore-result.svg",
+          "reviewStatus": "draft-unapproved",
+          "exactOwnerApprovedSourceSHA": null
+        }
+      ]
+    },
+    {
+      "title": "Accessible routes",
+      "items": [
+        {
+          "path": "design/proposals/audit-revisions/r05-photo-reel-focus-overlay.svg",
+          "reviewStatus": "draft-unapproved",
+          "exactOwnerApprovedSourceSHA": null
+        },
+        {
+          "path": "design/proposals/audit-revisions/r05-reduced-motion.svg",
+          "reviewStatus": "draft-unapproved",
+          "exactOwnerApprovedSourceSHA": null
+        },
+        {
+          "path": "design/proposals/audit-revisions/r05-talkback-route.svg",
+          "reviewStatus": "draft-unapproved",
+          "exactOwnerApprovedSourceSHA": null
+        },
+        {
+          "path": "design/proposals/critical-reel/reel-large-text.svg",
+          "reviewStatus": "draft-unapproved",
+          "exactOwnerApprovedSourceSHA": null
+        },
+        {
+          "path": "design/proposals/state-refinements/accessibility-high-contrast.svg",
+          "reviewStatus": "draft-unapproved",
+          "exactOwnerApprovedSourceSHA": null
+        }
+      ]
+    }
+  ],
+  "checks": {
+    "totalLinkedSVGs": 39,
+    "all39PathsVerifiedOnDraftBranch": true,
+    "verificationType": "GitHub file existence + blob SHA response, not visual or approval proof"
+  }
+}

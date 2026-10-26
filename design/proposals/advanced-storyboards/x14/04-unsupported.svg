@@ -4,20 +4,20 @@
 <text x="38" y="43" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="650" fill="#153F46">9:41</text>
 <text x="352" y="43" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="450" fill="#667975">● ▰ ▴</text>
 <text x="38" y="99" font-family="Arial,Helvetica,sans-serif" font-size="24" font-weight="700" fill="#153F46">Lock unsupported</text>
-<text x="39" y="130" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="500" fill="#667975">Device does not support separate target</text>
+<text x="39" y="130" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="500" fill="#445851">Device does not support separate target</text>
 <rect x="40" y="213" width="346" height="93" fill="#E9E0F5" rx="13" stroke="#E8876C"/>
 <text x="54" y="242" font-family="Arial,Helvetica,sans-serif" font-size="16" font-weight="700" fill="#153F46">Lock target unavailable</text>
-<text x="54" y="273" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="450" fill="#667975">Device cannot set it separately</text>
+<text x="54" y="273" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="450" fill="#445851">Device cannot set it separately</text>
 <rect x="40" y="328" width="346" height="93" fill="#FFFCF6" rx="13" stroke="#C4B7A4"/>
 <text x="54" y="357" font-family="Arial,Helvetica,sans-serif" font-size="16" font-weight="700" fill="#153F46">Keep Home available</text>
 <text x="54" y="388" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="450" fill="#667975">No claim of Lock success</text>
 <rect x="43" y="673" width="335" height="45" fill="#1D5960" rx="18" stroke="#1D5960"/>
 <text x="57" y="701" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="700" fill="white">Choose Home</text>
 <path d="M30 822 H403" stroke="#C4B7A4"/>
-<text x="40" y="851" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="500" fill="#667975">Home</text>
-<text x="135" y="851" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="500" fill="#667975">Discover</text>
-<text x="230" y="851" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="500" fill="#667975">Collections</text>
-<text x="325" y="851" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="500" fill="#667975">Automation</text>
+<text x="40" y="851" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="500" fill="#445851">Home</text>
+<text x="135" y="851" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="500" fill="#445851">Discover</text>
+<text x="230" y="851" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="500" fill="#445851">Collections</text>
+<text x="325" y="851" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="500" fill="#445851">Automation</text>
 <text x="37" y="891" font-family="Arial,Helvetica,sans-serif" font-size="11" font-weight="700" fill="#667975">P1 DRAFT · NOT APPROVED</text>
 <rect x="441" y="15" width="705" height="890" fill="#FFFCF6" rx="18" stroke="#C4B7A4"/>
 <text x="465" y="55" font-family="Arial,Helvetica,sans-serif" font-size="22" font-weight="700" fill="#153F46">X14 / Target-aware crop and capabilities</text>

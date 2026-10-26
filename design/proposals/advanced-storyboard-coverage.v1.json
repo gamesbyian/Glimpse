@@ -311,7 +311,7 @@
           "id": "04-restore-conflict",
           "path": "design/proposals/advanced-storyboards/x19/04-restore-conflict.svg",
           "caption": "Resolve conflict",
-          "action": "Choose safe merge",
+          "action": "Confirm safe merge",
           "invariant": "Keep existing user data until chosen",
           "ordinal": 4
         },
@@ -441,16 +441,16 @@
           "id": "03-consent",
           "path": "design/proposals/advanced-storyboards/x22/03-consent.svg",
           "caption": "Choose report scope",
-          "action": "Enable selected fields",
+          "action": "Review outgoing example",
           "invariant": "Consent granular and reversible",
           "ordinal": 3
         },
         {
           "id": "04-chooser",
           "path": "design/proposals/advanced-storyboards/x22/04-chooser.svg",
-          "caption": "Choose destination",
-          "action": "Copy / Save / Share",
-          "invariant": "Chooser display is not a successful submission",
+          "caption": "Choose copy, local save or Android Sharesheet",
+          "action": "Open Android Sharesheet",
+          "invariant": "Outgoing payload is a sample, native implementation must show exact bytes; chooser is not successful delivery",
           "ordinal": 4
         },
         {

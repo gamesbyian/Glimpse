@@ -1,0 +1,380 @@
+{
+  "schemaVersion": 1,
+  "status": "NEXT_ROUND_REQUIREMENTS_NOT_OWNER_APPROVED",
+  "date": "2026-10-23",
+  "sourceAudit": "docs/design/glimpse-ux-audit-cycle-a.v1.json",
+  "revisionSpec": "docs/planning/AUDIT-CANDIDATE-A1-REEL-AND-STATE-TRUTH.md",
+  "rules": [
+    "Before/after SVG and native screenshot pairs keep identical viewport and IDs",
+    "Do not fake native/system screens, success or owner signoff",
+    "All new proposal SVGs stay outside the 66/82/55 baseline class and declare category",
+    "Visual acceptance is independent from source and native behavior",
+    "Every scenario must include annotation-free phone crop and an accessibility/focus overlay where relevant"
+  ],
+  "lanes": [
+    {
+      "id": "R01",
+      "priority": "P0",
+      "questions": [
+        "GUX-02",
+        "GUX-03",
+        "GUX-06",
+        "GUX-07",
+        "GUX-09",
+        "GUX-32"
+      ],
+      "datasetSizes": [
+        0,
+        1,
+        3,
+        5,
+        22,
+        60
+      ],
+      "requiredScenarios": [
+        "disc-full-and-crescent",
+        "tap-to-focus",
+        "drag-18",
+        "drag-36",
+        "settled-snap",
+        "first-last",
+        "interrupted",
+        "reduced-motion",
+        "large-type"
+      ],
+      "deliverables": [
+        "source-editable 1160x920 full proposed SVG per scenario",
+        "401x890 annotation-free phone crop, SHA256 logged",
+        "named state ID, selected/applied/source asset IDs",
+        "same-framed BEFORE and AFTER comparison sheet",
+        "normative spec delta and source reference",
+        "applicable Android screenshot/hierarchy fixture or marked unverified",
+        "audit finding closure verification"
+      ],
+      "disposition": "Six source-generated distinct-photo paper reel files; Grid vector glyph optically fixed, native unverified",
+      "initialSourceDrafts": [
+        "design/proposals/audit-revisions/r01-idle-22.svg",
+        "design/proposals/audit-revisions/r01-drag-18.svg",
+        "design/proposals/audit-revisions/r01-settled-snap.svg",
+        "design/proposals/audit-revisions/r01-last-22.svg",
+        "design/proposals/audit-revisions/r01-empty-0.svg",
+        "design/proposals/audit-revisions/r01-single-1.svg"
+      ],
+      "photographicRevisionSources": [
+        "design/proposals/audit-revisions/r01-photo-rest-22.svg",
+        "design/proposals/audit-revisions/r01-photo-drag-18.svg",
+        "design/proposals/audit-revisions/r01-photo-snap-13.svg",
+        "design/proposals/audit-revisions/r01-photo-last-22.svg",
+        "design/proposals/audit-revisions/r01-photo-empty-0.svg",
+        "design/proposals/audit-revisions/r01-photo-single-1.svg"
+      ],
+      "photographicSourceGenerator": "scripts/build-audit-r01-photo-variants.py",
+      "photoFixturePolicy": "six checked-in JPEGs; visible neighbouring photo IDs have distinct bytes, not proof of all 22 unique real collection items",
+      "photoRevisionExplanation": "X05 source reel wedge geometry + original checked-in six photo fixtures; zero and single retain empty paper apertures",
+      "latestTargetedEvidenceRun": 40048643795
+    },
+    {
+      "id": "R02",
+      "priority": "P0",
+      "questions": [
+        "GUX-04",
+        "GUX-08",
+        "GUX-15",
+        "GUX-17",
+        "GUX-53"
+      ],
+      "datasetSizes": [
+        22
+      ],
+      "requiredScenarios": [
+        "reel-p12",
+        "grid-p12",
+        "detail-p12",
+        "crop-p12c",
+        "share-original",
+        "share-edited",
+        "return-to-reel"
+      ],
+      "deliverables": [
+        "source-editable 1160x920 full proposed SVG per scenario",
+        "401x890 annotation-free phone crop, SHA256 logged",
+        "named state ID, selected/applied/source asset IDs",
+        "same-framed BEFORE and AFTER comparison sheet",
+        "normative spec delta and source reference",
+        "applicable Android screenshot/hierarchy fixture or marked unverified",
+        "audit finding closure verification"
+      ],
+      "disposition": "four proposed crop/save/share/return phone screens now embed the original p12 JPEG fixture; cropped p12c is a distinct transform but Android save/share is still unverified",
+      "connectedSourceManifest": "design/proposals/audit-revisions/r02-identity-chain.v1.json",
+      "initialSourceDrafts": [
+        "design/proposals/audit-revisions/r02-crop-pending.svg",
+        "design/proposals/audit-revisions/r02-copy-saved.svg",
+        "design/proposals/audit-revisions/r02-share-choice.svg",
+        "design/proposals/audit-revisions/r02-return-dismiss.svg"
+      ],
+      "photographicFixtureSource": "design/proposals/storyboards/x07/02-grid-focus.svg#fixture1"
+    },
+    {
+      "id": "R03",
+      "priority": "P0",
+      "questions": [
+        "GUX-21",
+        "GUX-22",
+        "GUX-23",
+        "GUX-30",
+        "GUX-59"
+      ],
+      "datasetSizes": [
+        22
+      ],
+      "requiredScenarios": [
+        "home-last-confirmed",
+        "preview-not-applied",
+        "apply-pending",
+        "apply-failed",
+        "apply-unknown",
+        "lock-unsupported",
+        "activity-trace"
+      ],
+      "deliverables": [
+        "source-editable 1160x920 full proposed SVG per scenario",
+        "401x890 annotation-free phone crop, SHA256 logged",
+        "named state ID, selected/applied/source asset IDs",
+        "same-framed BEFORE and AFTER comparison sheet",
+        "normative spec delta and source reference",
+        "applicable Android screenshot/hierarchy fixture or marked unverified",
+        "audit finding closure verification"
+      ],
+      "disposition": "2 initial draft states illustrated; remaining requested comparison frames pending",
+      "initialSourceDrafts": [
+        "design/proposals/audit-revisions/r03-preview-not-applied.svg",
+        "design/proposals/audit-revisions/r03-unknown-after-request.svg"
+      ]
+    },
+    {
+      "id": "R04",
+      "priority": "P1",
+      "questions": [
+        "GUX-12",
+        "GUX-13",
+        "GUX-14",
+        "GUX-25"
+      ],
+      "datasetSizes": [
+        22
+      ],
+      "requiredScenarios": [
+        "import-empty",
+        "import-17-of-22-disabled",
+        "import-100-pct",
+        "import-cancel",
+        "import-offline",
+        "import-no-space"
+      ],
+      "deliverables": [
+        "source-editable 1160x920 full proposed SVG per scenario",
+        "401x890 annotation-free phone crop, SHA256 logged",
+        "named state ID, selected/applied/source asset IDs",
+        "same-framed BEFORE and AFTER comparison sheet",
+        "normative spec delta and source reference",
+        "applicable Android screenshot/hierarchy fixture or marked unverified",
+        "audit finding closure verification"
+      ],
+      "disposition": "Four dedicated source-sha-matched draft bulk-import states optically inspected; two other X01 flow states need review, native unverified",
+      "evidenceManifest": "design/proposals/audit-revisions/r04-import-evidence.v1.json",
+      "initialSourceDrafts": [
+        "design/proposals/audit-revisions/r04-import-cancel.svg",
+        "design/proposals/audit-revisions/r04-import-no-space.svg",
+        "design/proposals/audit-revisions/r04-import-empty.svg",
+        "design/proposals/audit-revisions/r04-import-17-of-22.svg"
+      ],
+      "latestTargetedEvidenceRun": 40049428896
+    },
+    {
+      "id": "R05",
+      "priority": "P0",
+      "questions": [
+        "GUX-31",
+        "GUX-32",
+        "GUX-33",
+        "GUX-34",
+        "GUX-35",
+        "GUX-36",
+        "GUX-37",
+        "GUX-38",
+        "GUX-39"
+      ],
+      "datasetSizes": [
+        3,
+        22
+      ],
+      "requiredScenarios": [
+        "standard",
+        "text-200-pct",
+        "narrow-short",
+        "high-contrast",
+        "reduced-motion",
+        "focus-overlay",
+        "hit-target-overlay"
+      ],
+      "deliverables": [
+        "source-editable 1160x920 full proposed SVG per scenario",
+        "401x890 annotation-free phone crop, SHA256 logged",
+        "named state ID, selected/applied/source asset IDs",
+        "same-framed BEFORE and AFTER comparison sheet",
+        "normative spec delta and source reference",
+        "applicable Android screenshot/hierarchy fixture or marked unverified",
+        "audit finding closure verification"
+      ],
+      "disposition": "Three source-sha-matched accessibility illustrations incl photo-backed focus overlay optically inspected; 48dp target proposed only, native unverified",
+      "evidenceManifest": "design/proposals/audit-revisions/r05-accessibility-evidence.v1.json",
+      "nativeProofProtocol": "docs/design/R05-ACCESSIBILITY-NATIVE-ACCEPTANCE.md",
+      "initialSourceDrafts": [
+        "design/proposals/audit-revisions/r05-reduced-motion.svg",
+        "design/proposals/audit-revisions/r05-talkback-route.svg",
+        "design/proposals/audit-revisions/r05-photo-reel-focus-overlay.svg"
+      ],
+      "latestTargetedEvidenceRun": 40049026265
+    },
+    {
+      "id": "R06",
+      "priority": "P1",
+      "questions": [
+        "GUX-15",
+        "GUX-16",
+        "GUX-17",
+        "GUX-18"
+      ],
+      "datasetSizes": [
+        22
+      ],
+      "requiredScenarios": [
+        "original-p12",
+        "edited-p12c",
+        "crop-frame",
+        "share-original",
+        "share-edited",
+        "os-share-return",
+        "os-share-dismiss"
+      ],
+      "deliverables": [
+        "source-editable 1160x920 full proposed SVG per scenario",
+        "401x890 annotation-free phone crop, SHA256 logged",
+        "named state ID, selected/applied/source asset IDs",
+        "same-framed BEFORE and AFTER comparison sheet",
+        "normative spec delta and source reference",
+        "applicable Android screenshot/hierarchy fixture or marked unverified",
+        "audit finding closure verification"
+      ],
+      "disposition": "Draft reference coverage spans X13/R02 and a source-hash optically inspected return-without-delivery-confirmation screen; native Android share outcomes and owner selection unverified.",
+      "candidateSources": [
+        "design/proposals/advanced-storyboards/x13/01-original.svg",
+        "design/proposals/advanced-storyboards/x13/02-edited.svg",
+        "design/proposals/advanced-storyboards/x13/03-chooser.svg",
+        "design/proposals/advanced-storyboards/x13/04-cancel.svg",
+        "design/proposals/advanced-storyboards/x13/05-unavailable.svg",
+        "design/proposals/audit-revisions/r02-share-choice.svg",
+        "design/proposals/audit-revisions/r06-share-dismissed.svg"
+      ],
+      "evidence": "design/proposals/audit-revisions/r06-r08-delta-evidence.v1.json",
+      "opticalReview": "docs/design/R06-R08-OPTICAL-INSPECTION-2026-10-23.md",
+      "androidProof": "unverified",
+      "ownerDecision": "not-requested"
+    },
+    {
+      "id": "R07",
+      "priority": "P1",
+      "questions": [
+        "GUX-24",
+        "GUX-25",
+        "GUX-26",
+        "GUX-27",
+        "GUX-28",
+        "GUX-29"
+      ],
+      "datasetSizes": [
+        22
+      ],
+      "requiredScenarios": [
+        "waiting",
+        "eligible",
+        "paused",
+        "delayed",
+        "battery-restricted",
+        "resumed",
+        "unknown"
+      ],
+      "deliverables": [
+        "source-editable 1160x920 full proposed SVG per scenario",
+        "401x890 annotation-free phone crop, SHA256 logged",
+        "named state ID, selected/applied/source asset IDs",
+        "same-framed BEFORE and AFTER comparison sheet",
+        "normative spec delta and source reference",
+        "applicable Android screenshot/hierarchy fixture or marked unverified",
+        "audit finding closure verification"
+      ],
+      "disposition": "X04 and existing delayed/paused frames retained; battery restriction and unknown-attempt candidates source-hash optically inspected. No exact five-minute Android guarantee, native evidence or approval.",
+      "candidateSources": [
+        "design/proposals/storyboards/x04/01-ready.svg",
+        "design/proposals/storyboards/x04/03-active.svg",
+        "design/proposals/storyboards/x04/04-delayed.svg",
+        "design/proposals/storyboards/x04/05-paused.svg",
+        "design/proposals/storyboards/x04/06-resumed.svg",
+        "design/proposals/audit-revisions/r07-battery-restricted.svg",
+        "design/proposals/audit-revisions/r07-unknown-after-attempt.svg"
+      ],
+      "evidence": "design/proposals/audit-revisions/r06-r08-delta-evidence.v1.json",
+      "opticalReview": "docs/design/R06-R08-OPTICAL-INSPECTION-2026-10-23.md",
+      "androidProof": "unverified",
+      "ownerDecision": "not-requested"
+    },
+    {
+      "id": "R08",
+      "priority": "P1",
+      "questions": [
+        "GUX-41",
+        "GUX-43",
+        "GUX-44",
+        "GUX-45",
+        "GUX-46",
+        "GUX-47",
+        "GUX-49",
+        "GUX-50"
+      ],
+      "datasetSizes": [
+        3,
+        22
+      ],
+      "requiredScenarios": [
+        "source-offline",
+        "source-revoked",
+        "storage-full",
+        "restore-conflict",
+        "wallpaper-unsupported",
+        "recovery-back"
+      ],
+      "deliverables": [
+        "source-editable 1160x920 full proposed SVG per scenario",
+        "401x890 annotation-free phone crop, SHA256 logged",
+        "named state ID, selected/applied/source asset IDs",
+        "same-framed BEFORE and AFTER comparison sheet",
+        "normative spec delta and source reference",
+        "applicable Android screenshot/hierarchy fixture or marked unverified",
+        "audit finding closure verification"
+      ],
+      "disposition": "Reuse source-offline/storage/unsupported/restore references. Revoked permission and explicit keep/import/skip restore conflict screens source-hash optically inspected; native recovery and owner decision unverified.",
+      "candidateSources": [
+        "design/proposals/state-refinements/source-detail-offline.svg",
+        "design/proposals/state-refinements/error-empty-permission-storage.svg",
+        "design/proposals/state-refinements/destinations-unsupported.svg",
+        "design/proposals/state-refinements/backup-and-restore-restore.svg",
+        "design/proposals/audit-revisions/r08-source-revoked.svg",
+        "design/proposals/audit-revisions/r08-restore-conflict-choice.svg"
+      ],
+      "evidence": "design/proposals/audit-revisions/r06-r08-delta-evidence.v1.json",
+      "opticalReview": "docs/design/R06-R08-OPTICAL-INSPECTION-2026-10-23.md",
+      "androidProof": "unverified",
+      "ownerDecision": "not-requested"
+    }
+  ]
+}

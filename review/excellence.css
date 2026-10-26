@@ -1,0 +1,81 @@
+
+/* Glimpse Review Studio · clarity-first inspection enhancements */
+.comparison-controls{display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;padding:5px 12px;background:#e1ece8;border-block:1px solid #c4d8cf;font-size:11px;min-height:42px}
+.comparison-controls[hidden],.journey-player[hidden],.journey-timeline[hidden],.journey-acceptance[hidden]{display:none!important}
+.comparison-controls label{margin:0;font-size:11px;white-space:nowrap}.comparison-controls input[type=range]{flex:1;max-width:330px;min-width:95px;accent-color:#14616c;padding:0;cursor:ew-resize}
+.comparison-controls output{font-variant-numeric:tabular-nums;min-width:35px}.comparison-controls span{font-size:10px;color:#465e5f}
+.screens.difference-mode{width:100%;height:100%;max-width:100%;position:relative;display:flex;justify-content:center}
+.difference-frame{position:relative!important;height:100%;max-height:100%;flex:none;overflow:hidden;touch-action:pan-y}
+.difference-frame .diff-bottom,.difference-frame .diff-top{position:absolute;inset:0}
+.difference-frame .diff-top{clip-path:inset(0 50% 0 0)}
+.difference-frame .diff-image{position:absolute;width:289.276808%;height:103.370787%;max-width:none;left:-3.740648%;top:-1.573034%;pointer-events:none;user-select:none;-webkit-user-drag:none}
+.diff-divider{position:absolute;left:50%;top:0;bottom:0;width:2px;background:#fff;box-shadow:0 0 0 1px #1c6265,0 0 9px #13272a99;pointer-events:none}
+.diff-divider:after{content:'↔';display:grid;place-items:center;position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:38px;height:38px;background:#fffdf9;border:2px solid #175d63;border-radius:50%;color:#175d63;font-size:23px}
+.diff-corner{position:absolute;bottom:9px;z-index:4;background:#123c43da;color:white;font-size:10px;font-weight:750;padding:4px 7px;border-radius:7px;pointer-events:none}.diff-corner.left{left:9px}.diff-corner.right{right:9px}
+.frame.is-zoomed{cursor:grab}.frame.is-zoomed.is-panning{cursor:grabbing}
+.focus-mode .workspace{grid-template-columns:1fr!important}.focus-mode .browse,.focus-mode .inspector{display:none!important}
+.focus-mode .screen-heading p{display:none}.focus-mode .viewer-toolbar{padding-top:2px}.focus-mode .viewtop{padding-block:5px}
+.focus-mode .stage{margin:0 5px}.focus-mode .bottom-strip{height:22px}
+.focus-mode .mast{height:48px}.focus-mode .workspace{height:calc(100dvh - 48px)}
+.focus-mode #focusMode{background:#184f59;color:white}
+.journey-player{background:#f5f0e5;border-block:1px solid #dacdbf;flex:none;min-width:0;padding:4px 12px}
+.journey-controls{display:flex;gap:6px;align-items:center;justify-content:center}
+.journey-controls button{min-height:30px;padding:4px 10px;font-size:11px}
+#journeyPlay[aria-pressed=true]{background:#195e64;color:white}
+#journeyPosition{font-size:12px;flex:1;min-width:0;text-align:center;color:#34595b;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.journey-progress{display:flex;gap:3px;align-items:center;margin-top:5px;width:100%;min-height:7px}
+.journey-progress button{height:7px;min-height:7px;padding:0;border:none;border-radius:7px;flex:1;background:#d3c8b6}
+.journey-progress button.active{background:#1b6167}.journey-progress button:focus-visible{outline-offset:6px!important}
+.journey-progress button.visited{background:#7da4a0}
+.journey-timeline{display:flex;overflow-x:auto;gap:6px;padding:9px 0 5px;scroll-snap-type:x mandatory}
+.journey-timeline button{padding:4px;min-height:48px;min-width:82px;max-width:105px;display:flex;flex-direction:column;gap:4px;scroll-snap-align:center;background:#fff9ef;border-radius:8px;border-color:#d1c6b8}
+.journey-timeline button[aria-current=true]{border:2px solid #145d65;background:#def0ec}
+.journey-timeline img{display:block;aspect-ratio:401/890;height:70px;max-width:100%;object-fit:cover;object-position:0 0}
+.journey-timeline span{font-size:10px;line-height:1.15}
+.journey-acceptance{background:#eef4ed;border:1px solid #d0ddd1;border-radius:12px;padding:12px;margin:10px 0}
+.journey-acceptance p{margin-bottom:8px}
+.journey-acceptance label.check-label{display:flex;align-items:flex-start;gap:8px;font-size:12px;line-height:1.35;font-weight:550;margin:8px 0}
+.journey-acceptance input[type=checkbox]{width:20px;height:20px;flex:none;accent-color:#195d62}
+.journey-acceptance button{margin-top:6px}
+.evidence-truth{margin-top:14px;padding:10px;border-radius:10px;border:1px solid #d4cbbf;background:#f5f2eb}
+.evidence-truth p{margin:5px 0;font-size:11px;line-height:1.45}
+.evidence-lamp{display:inline-block;width:7px;height:7px;border-radius:50%;background:#a4a69c;margin-right:5px}
+.evidence-lamp.yes{background:#32876f}.evidence-lamp.unknown{background:#d4a05d}
+#targetedIssue,#copyFeedback{margin-top:7px;font-size:12px}
+#setMapDialog{width:min(1200px,96vw);max-height:92dvh}.set-map-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:12px;margin-top:15px}
+.map-filters{display:flex;gap:8px;margin:14px 0}
+.set-map-card{display:flex;flex-direction:column;align-items:center;text-align:center;gap:5px;background:#fff8ef;border:1px solid #c7bcae;border-radius:11px;padding:8px;min-width:0}
+.set-map-card:hover{background:#e6f0e8}.set-map-card img{width:min(100%,105px);aspect-ratio:401/890;object-fit:cover;object-position:0 0;display:block;border-radius:6px;background:#f6f0e6}
+.set-map-card strong{font-size:11px;line-height:1.3;overflow-wrap:anywhere}
+.set-map-card small{font-size:10px;color:#566a69}
+#setMapDialog .dialog-heading{position:sticky;top:-22px;background:#fffaf2;z-index:2;padding:11px 0 7px}
+.shortcut-table{width:100%;border-collapse:collapse}.shortcut-table td,.shortcut-table th{border-bottom:1px solid #eadfce;padding:7px;text-align:left;font-size:13px}.shortcut-table th{font-family:monospace;white-space:nowrap}
+#helpDialog{max-width:560px}
+@media(max-width:1100px){.viewer-modes{max-width:60%;overflow-x:auto;scrollbar-width:thin}.viewer-modes button{white-space:nowrap}}
+@media(max-width:900px){.focus-mode .browse,.focus-mode .inspector{display:flex!important}.focus-mode .browse{transform:translateX(-110%)}.focus-mode .inspector{transform:translateX(110%)}.focus-mode.browse-open .browse{transform:translateX(0)}.focus-mode.inspector-open .inspector{transform:translateX(0)}}
+@media(max-width:570px){
+ .mast #openSetMap{display:none}
+ .viewer-modes{max-width:100%;justify-content:flex-start;overflow-x:auto;scrollbar-width:thin;padding-bottom:3px}
+ .viewer-modes button{font-size:10px;min-height:33px;padding:5px 8px;flex:none}
+ .comparison-controls{padding:5px 7px;gap:4px}.comparison-controls span{display:none}
+ .journey-player{padding:3px 7px}.journey-controls{justify-content:space-between}
+ .journey-timeline img{height:50px}
+ .focus-mode .mast{height:42px}.focus-mode .workspace{height:calc(100dvh - 42px)}
+ #setMapDialog{padding:12px}.set-map-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
+}
+@media(prefers-reduced-motion:reduce){.journey-progress button{transition:none}}
+
+/* All thumbnails use exactly the same physical phone crop as the large viewer. */
+.map-thumb{position:relative;display:block;width:min(100%,108px);aspect-ratio:401/890;overflow:hidden;border-radius:7px;background:#f7f0e7;box-shadow:0 1px 5px #123b4325;flex:none}
+.map-thumb img,.set-map-card .map-thumb img{position:absolute;left:-3.740648%;top:-1.573034%;width:289.276808%;height:103.370787%;max-width:none;object-fit:unset;object-position:initial;aspect-ratio:auto;border-radius:0}
+.journey-timeline .map-thumb{width:27px;height:60px;margin:auto}
+.journey-timeline .map-thumb img{width:289.276808%;height:103.370787%;max-width:none}
+#setMapDialog .set-map-card .map-thumb{width:min(100%,105px)}
+
+/* Zoom uses CSS transformations on the already-cropped source. All options share scale. */
+#zoomPercent{font-size:11px;font-variant-numeric:tabular-nums;white-space:nowrap;min-width:36px;text-align:center;font-weight:750;color:#2a5b61}
+#zoomOut,#zoomIn{min-width:33px;padding:5px}
+.canvas-stage.zoom-active{overflow:hidden;touch-action:none}
+.canvas-stage.zoom-active .frame{touch-action:none;cursor:grab}
+.canvas-stage.zoom-active .frame:active{cursor:grabbing}
+.canvas-stage.zoom-active .screens{will-change:transform}

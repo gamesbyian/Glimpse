@@ -4,8 +4,8 @@
 <text x="39" y="43" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="700" fill="#153F46">9:41</text>
 <text x="348" y="43" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="550" fill="#667975">● ▰</text>
 <path d="M31 57 H400" stroke="#C4B7A4"/>
-<text x="37" y="95" font-family="Arial,Helvetica,sans-serif" font-size="23" font-weight="700" fill="#153F46">Glimpse</text>
-<text x="39" y="130" font-family="Arial,Helvetica,sans-serif" font-size="17" font-weight="550" fill="#667975">200% text • Reel</text>
+<text x="37" y="95" font-family="Arial,Helvetica,sans-serif" font-size="34" font-weight="700" fill="#153F46">Glimpse</text>
+<text x="39" y="130" font-family="Arial,Helvetica,sans-serif" font-size="20" font-weight="550" fill="#445851">200% text • Reel</text>
 <rect x="43" y="169" width="341" height="212" rx="12" fill="#161A27" stroke="none" stroke-width="1"/>
 <path d="M56.64 194.44 Q199.86 171.12 370.36 211.4" stroke="#EE4640" stroke-width="9.964" fill="none" stroke-linecap="round"/>
 <path d="M56.64 228.36 Q199.86 207.16 370.36 243.2" stroke="#F0AF38" stroke-width="9.964" fill="none" stroke-linecap="round"/>
@@ -13,8 +13,8 @@
 <path d="M56.64 296.2 Q199.86 279.24 370.36 306.79999999999995" stroke="#55B78D" stroke-width="9.964" fill="none" stroke-linecap="round"/>
 <path d="M56.64 330.12 Q199.86 315.28 370.36 338.6" stroke="#4C70C4" stroke-width="9.964" fill="none" stroke-linecap="round"/>
 <rect x="50" y="355" width="84" height="20" rx="6" fill="#FFFCF6" stroke="none" stroke-width="1"/>
-<text x="56" y="370" font-family="Arial,Helvetica,sans-serif" font-size="11" font-weight="700" fill="#153F46">p12</text>
-<text x="40" y="427" font-family="Arial,Helvetica,sans-serif" font-size="20" font-weight="700" fill="#153F46">Photo 12 of 22</text>
+<text x="56" y="370" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="700" fill="#153F46">p12</text>
+<text x="40" y="427" font-family="Arial,Helvetica,sans-serif" font-size="25" font-weight="700" fill="#153F46">Photo 12 of 22</text>
 <clipPath id="wheel"><rect x="15" y="485" width="399" height="265"/></clipPath><g clip-path="url(#wheel)"><circle cx="215" cy="704" r="226" fill="#EAD9BD" stroke="#B6A48D" stroke-width="5"/>
 <rect x="98.71006467905374" y="767.2623792124926" width="68" height="101" rx="12" fill="#161A27" stroke="none" stroke-width="1"/>
 <path d="M101.43006467905374 779.3823792124927 Q129.99006467905375 768.2723792124926 163.99006467905375 787.4623792124927" stroke="#EE4640" stroke-width="4.747" fill="none" stroke-linecap="round"/>
@@ -31,7 +31,7 @@
 <path d="M50.57208771867852 671.3376207875074 Q79.13208771867852 663.2576207875073 113.13208771867852 676.3876207875073" stroke="#55B78D" stroke-width="4.747" fill="none" stroke-linecap="round"/>
 <path d="M50.57208771867852 687.4976207875073 Q79.13208771867852 680.4276207875074 113.13208771867852 691.5376207875074" stroke="#4C70C4" stroke-width="4.747" fill="none" stroke-linecap="round"/>
 <rect x="54.85208771867852" y="685.7376207875074" width="55" height="20" rx="6" fill="#FFFCF6" stroke="none" stroke-width="1"/>
-<text x="60.85208771867852" y="700.7376207875074" font-family="Arial,Helvetica,sans-serif" font-size="11" font-weight="700" fill="#153F46">p11</text>
+<text x="60.85208771867852" y="700.7376207875074" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="700" fill="#153F46">p11</text>
 <rect x="181" y="514" width="68" height="101" rx="12" fill="#161A27" stroke="none" stroke-width="1"/>
 <path d="M183.72 526.12 Q212.28 515.01 246.28 534.2" stroke="#EE4640" stroke-width="4.747" fill="none" stroke-linecap="round"/>
 <path d="M183.72 542.28 Q212.28 532.18 246.28 549.35" stroke="#F0AF38" stroke-width="4.747" fill="none" stroke-linecap="round"/>
@@ -39,7 +39,7 @@
 <path d="M183.72 574.6 Q212.28 566.52 246.28 579.65" stroke="#55B78D" stroke-width="4.747" fill="none" stroke-linecap="round"/>
 <path d="M183.72 590.76 Q212.28 583.69 246.28 594.8" stroke="#4C70C4" stroke-width="4.747" fill="none" stroke-linecap="round"/>
 <rect x="188" y="589" width="55" height="20" rx="6" fill="#FFFCF6" stroke="none" stroke-width="1"/>
-<text x="194" y="604" font-family="Arial,Helvetica,sans-serif" font-size="11" font-weight="700" fill="#153F46">p12</text>
+<text x="194" y="604" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="700" fill="#153F46">p12</text>
 <rect x="178" y="511" width="74" height="107" rx="11" fill="none" stroke="#1D5960" stroke-width="4"/>
 <rect x="314.1479122813215" y="610.7376207875074" width="68" height="101" rx="12" fill="#161A27" stroke="none" stroke-width="1"/>
 <path d="M316.86791228132154 622.8576207875074 Q345.4279122813215 611.7476207875073 379.4279122813215 630.9376207875074" stroke="#EE4640" stroke-width="4.747" fill="none" stroke-linecap="round"/>
@@ -48,7 +48,7 @@
 <path d="M316.86791228132154 671.3376207875074 Q345.4279122813215 663.2576207875073 379.4279122813215 676.3876207875073" stroke="#55B78D" stroke-width="4.747" fill="none" stroke-linecap="round"/>
 <path d="M316.86791228132154 687.4976207875073 Q345.4279122813215 680.4276207875074 379.4279122813215 691.5376207875074" stroke="#4C70C4" stroke-width="4.747" fill="none" stroke-linecap="round"/>
 <rect x="321.1479122813215" y="685.7376207875074" width="55" height="20" rx="6" fill="#FFFCF6" stroke="none" stroke-width="1"/>
-<text x="327.1479122813215" y="700.7376207875074" font-family="Arial,Helvetica,sans-serif" font-size="11" font-weight="700" fill="#153F46">p13</text>
+<text x="327.1479122813215" y="700.7376207875074" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="700" fill="#153F46">p13</text>
 <rect x="263.28993532094626" y="767.2623792124926" width="68" height="101" rx="12" fill="#161A27" stroke="none" stroke-width="1"/>
 <path d="M266.0099353209463 779.3823792124927 Q294.56993532094623 768.2723792124926 328.56993532094623 787.4623792124927" stroke="#EE4640" stroke-width="4.747" fill="none" stroke-linecap="round"/>
 <path d="M266.0099353209463 795.5423792124926 Q294.56993532094623 785.4423792124926 328.56993532094623 802.6123792124927" stroke="#F0AF38" stroke-width="4.747" fill="none" stroke-linecap="round"/>
@@ -58,17 +58,17 @@
 <rect x="270.28993532094626" y="842.2623792124926" width="55" height="20" rx="6" fill="#FFFCF6" stroke="none" stroke-width="1"/>
 <text x="276.28993532094626" y="857.2623792124926" font-family="Arial,Helvetica,sans-serif" font-size="11" font-weight="700" fill="#153F46">p14</text>
 <circle cx="215" cy="704" r="63" fill="#DCC7AD" stroke="#9F8B70" stroke-width="8"/><circle cx="215" cy="704" r="29" fill="#FFFCF6"/></g>
-<text x="205" y="473" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="750" fill="#E8876C">▼</text>
-<rect x="45" y="756" width="155" height="43" rx="17" fill="#FFFCF6" stroke="#C4B7A4" stroke-width="1"/>
-<text x="58" y="783" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="650" fill="#153F46">Previous</text>
-<rect x="208" y="756" width="175" height="43" rx="17" fill="#1D5960" stroke="#1D5960" stroke-width="1"/>
-<text x="221" y="783" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="650" fill="white">Next photo</text>
-<path d="M30 823 H402" stroke="#C4B7A4"/>
-<text x="39" y="851" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="500" fill="#667975">Home</text>
-<text x="134" y="851" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="500" fill="#667975">Discover</text>
-<text x="229" y="851" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="500" fill="#667975">Collections</text>
-<text x="324" y="851" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="500" fill="#667975">Automation</text>
-<rect x="182" y="874" width="70" height="5" rx="4" fill="#153F46" stroke="none" stroke-width="1"/>
+<text x="205" y="473" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="750" fill="#703B27">▼</text>
+<rect x="45" y="756" width="155" height="52" rx="15" fill="#FFFCF6" stroke="#C4B7A4" stroke-width="1"/>
+<text x="58" y="783" font-family="Arial,Helvetica,sans-serif" font-size="21" font-weight="650" fill="#153F46">Previous</text>
+<rect x="208" y="756" width="175" height="52" rx="15" fill="#1D5960" stroke="#1D5960" stroke-width="1"/>
+<text x="221" y="783" font-family="Arial,Helvetica,sans-serif" font-size="21" font-weight="650" fill="white">Next photo</text>
+<path d="M30 814 H402" stroke="#C4B7A4"/>
+<text x="44" y="837" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="600" fill="#1D5960">Home</text>
+<text x="225" y="837" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="600" fill="#445851">Discover</text>
+<text x="44" y="867" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="600" fill="#445851">Collections</text>
+<text x="225" y="867" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="600" fill="#445851">Automation</text>
+<rect x="182" y="891" width="70" height="5" rx="4" fill="#153F46" stroke="none" stroke-width="1"/>
 <rect x="439" y="14" width="706" height="890" rx="18" fill="#FFFCF6" stroke="#C4B7A4" stroke-width="1"/>
 <text x="463" y="54" font-family="Arial,Helvetica,sans-serif" font-size="22" font-weight="700" fill="#153F46">X09 / Accessibility and environment stress</text>
 <text x="463" y="91" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="700" fill="#1D5960">03-REEL-200-TEXT</text>

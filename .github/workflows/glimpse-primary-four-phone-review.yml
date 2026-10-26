@@ -1,0 +1,103 @@
+name: Glimpse | current generation four-screen task proof
+# Rerun after six-photo Grid identity parity and four separate Reel nav labels.
+
+on:
+  push:
+    branches: [agent/visual-state-reconciliation-20261023]
+    paths:
+      - .github/workflows/glimpse-primary-four-phone-review.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: glimpse-primary-four-phone-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  four-phone-reference:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Build four coherent source-derived candidates
+        run: |
+          set -euo pipefail
+          for name in build-r03-home-primary-actions build-r01-primary-reel-action build-r02-grid-primary-actions build-r02-photo-detail-actions; do
+            python3 scripts/"$name".py --write
+            python3 scripts/"$name".py
+          done
+      - name: Render one exact-source four-phone comparison contact
+        run: |
+          python3 -m pip install --quiet cairosvg pillow
+          python3 - <<'PY'
+          import hashlib,io,json,os
+          from pathlib import Path
+          from PIL import Image,ImageDraw,ImageFont,ImageStat
+          from cairosvg import svg2png
+          items=[
+           ('HOME · acknowledge vs preview',
+            'design/proposals/audit-revisions/r03-home-primary-actions-p04.svg'),
+           ('REEL · finite p12 & set target',
+            'design/proposals/audit-revisions/r01-photo-primary-wallpaper-action.svg'),
+           ('GRID · search share select',
+            'design/proposals/audit-revisions/r02-grid-primary-actions-p12.svg'),
+           ('DETAIL · set share edit',
+            'design/proposals/audit-revisions/r02-photo-detail-actions-p12.svg'),
+          ]
+          out=Path('design/reviews/primary-actions-2026-10-24')
+          out.mkdir(parents=True,exist_ok=True)
+          gap=14;top=58
+          sheet=Image.new('RGB',(4*401+5*gap,890+top+gap),'#ede7db')
+          draw=ImageDraw.Draw(sheet)
+          try:font=ImageFont.truetype('/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf',15)
+          except OSError:font=ImageFont.load_default()
+          records=[]
+          for i,(label,path) in enumerate(items):
+            f=Path(path)
+            full=svg2png(bytestring=f.read_bytes(),output_width=1160,output_height=920)
+            with Image.open(io.BytesIO(full)) as im:
+              phone=im.crop((15,14,416,904)).convert('RGB')
+            assert phone.size==(401,890) and sum(ImageStat.Stat(phone).stddev)>45
+            x=gap+i*(401+gap)
+            sheet.paste(phone,(x,top))
+            draw.text((x,17),label,fill='#153f46',font=font)
+            records.append({'source':path,'SHA256':hashlib.sha256(f.read_bytes()).hexdigest(),
+               'pixelCrop':[15,14,416,904],'currentSourceRender':True,
+               'independentlyOpticallyInspected':False,'deviceVerified':False,
+               'humanApproved':False})
+          target=out/'home-reel-grid-detail.jpg'
+          sheet.save(target,quality=92,optimize=True)
+          (out/'four-source-ledger.json').write_text(json.dumps({
+            'sourceCommit':os.environ['GITHUB_SHA'],
+            'runId':os.environ['GITHUB_RUN_ID'],
+            'contactSHA256':hashlib.sha256(target.read_bytes()).hexdigest(),
+            'evidenceClass':'SVG source-equivalent raster (not Android)',
+            'phonePixels':[401,890],
+            'sources':records
+          },indent=2)+'\n')
+          print('PASS: four 401x890 source-matched draft phone rasters generated')
+          PY
+      - name: Commit all four source drawings and review contact (draft)
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add design/proposals/audit-revisions/r03-home-primary-actions-p04.svg
+          git add design/proposals/audit-revisions/r01-photo-primary-wallpaper-action.svg
+          git add design/proposals/audit-revisions/r02-grid-primary-actions-p12.svg
+          git add design/proposals/audit-revisions/r02-photo-detail-actions-p12.svg
+          git add design/reviews/primary-actions-2026-10-24/home-reel-grid-detail.jpg
+          git add design/reviews/primary-actions-2026-10-24/four-source-ledger.json
+          if ! git diff --cached --quiet; then
+            git commit -m "design: harden four core task flows and preserve optical contact evidence"
+            git push origin HEAD:"${GITHUB_REF_NAME}"
+          fi
+      - uses: actions/upload-artifact@v4
+        with:
+          name: glimpse-core-four-source-phones-${{ github.sha }}
+          path: design/reviews/primary-actions-2026-10-24/
+          retention-days: 14

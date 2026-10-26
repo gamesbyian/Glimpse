@@ -1,39 +1,56 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1160" height="920" viewBox="0 0 1160 920" role="img" aria-label="Proposed Glimpse automation-editor annotated layout, default state, not yet approved"><rect width="1160" height="920" fill="#E9E3D9"/>
-<rect x="15" y="14" width="401" height="890" rx="22" fill="#F6F0E6" stroke="#C4B7A4" stroke-width="2"/>
-<text x="40" y="44" fill="#153F46" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="650" text-anchor="start">9:41</text>
-<text x="391" y="44" fill="#667975" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="400" text-anchor="end">● ▰ ▴</text>
-<path d="M31 56 L400 56" stroke="#C8B7A1" stroke-width="1" fill="none"/>
-<text x="36" y="99" fill="#153F46" font-family="Arial,Helvetica,sans-serif" font-size="32" font-weight="700" text-anchor="start">Rule editor</text>
-<text x="38" y="125" fill="#667975" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="400" text-anchor="start">Choose when and what</text>
-<rect x="41" y="166" width="334" height="105" rx="13" fill="#FFFCF6" stroke="#C8B7A1" stroke-width="1"/>
-<text x="55" y="192" fill="#153F46" font-family="Arial,Helvetica,sans-serif" font-size="17" font-weight="650" text-anchor="start">Trigger</text>
-<text x="55" y="214" fill="#667975" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="400" text-anchor="start">Weekdays · 8 am–5 pm</text>
-<text x="55" y="254" fill="#1D5960" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="650" text-anchor="start">Edit trigger</text>
-<rect x="41" y="294" width="334" height="105" rx="13" fill="#FFFCF6" stroke="#C8B7A1" stroke-width="1"/>
-<text x="55" y="320" fill="#153F46" font-family="Arial,Helvetica,sans-serif" font-size="17" font-weight="650" text-anchor="start">Wallpaper source</text>
-<text x="55" y="342" fill="#667975" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="400" text-anchor="start">Rainbows · 22 photos</text>
-<text x="55" y="382" fill="#1D5960" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="650" text-anchor="start">Choose source</text>
-<rect x="41" y="422" width="334" height="105" rx="13" fill="#FFFCF6" stroke="#C8B7A1" stroke-width="1"/>
-<text x="55" y="448" fill="#153F46" font-family="Arial,Helvetica,sans-serif" font-size="17" font-weight="650" text-anchor="start">Destination and priority</text>
-<text x="55" y="470" fill="#667975" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="400" text-anchor="start">Home · Priority 5</text>
-<text x="55" y="510" fill="#1D5960" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="650" text-anchor="start">Explain conflicts</text>
-<rect x="41" y="550" width="334" height="105" rx="13" fill="#FFFCF6" stroke="#C8B7A1" stroke-width="1"/>
-<text x="55" y="576" fill="#153F46" font-family="Arial,Helvetica,sans-serif" font-size="17" font-weight="650" text-anchor="start">Simulation</text>
-<text x="55" y="598" fill="#667975" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="400" text-anchor="start">Preview only, no apply</text>
-<text x="55" y="638" fill="#1D5960" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="650" text-anchor="start">Test rule</text>
-<rect x="42" y="737" width="342" height="42" rx="18" fill="#1D5960" stroke="#1D5960" stroke-width="1"/>
-<text x="213" y="764" fill="#FFFFFF" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="650" text-anchor="middle">Save rule</text>
-<rect x="24" y="823" width="384" height="56" rx="0" fill="#FFFCF6" stroke="none" stroke-width="1"/>
-<path d="M24 823 L408 823" stroke="#CEBC9F" stroke-width="1" fill="none"/>
-<text x="71" y="857" fill="#667975" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="600" text-anchor="middle">Home</text>
-<text x="167" y="857" fill="#667975" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="600" text-anchor="middle">Discover</text>
-<text x="263" y="857" fill="#667975" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="600" text-anchor="middle">Collections</text>
-<text x="359" y="857" fill="#667975" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="600" text-anchor="middle">Automation</text>
-<text x="35" y="897" fill="#667975" font-family="Arial,Helvetica,sans-serif" font-size="11" font-weight="650" text-anchor="start">PROPOSAL / NOT APPROVED</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="1160" height="920" viewBox="0 0 1160 920" role="img" aria-label="Proposed Glimpse automation-editor annotated layout, default state, not yet approved"><rect x="0" y="0" width="1160" height="920" rx="0" fill="#E9E3D9" stroke="none"/>
+<rect x="15" y="14" width="401" height="890" rx="22" fill="#F6F0E6" stroke="#C4B7A4"/>
+<text x="39" y="44" fill="#153F46" font-size="14" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="start">9:41</text>
+<text x="390" y="44" fill="#566861" font-size="13" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="end">●  ●  ●</text>
+<path d="M31 56 L400 56" fill="none" stroke="#C8B7A1"/>
+<path d="M31 146 L400 146" fill="none" stroke="#C8B7A1"/>
+<rect x="30" y="64" width="48" height="48" rx="24" fill="#FFFCF6" stroke="#C8B7A1"/>
+<text x="54" y="95" fill="#153F46" font-size="29" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="middle">‹</text>
+<text x="86" y="99" fill="#153F46" font-size="28" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="start">Edit a rule</text>
+<text x="36" y="132" fill="#566861" font-size="14" font-weight="500" font-family="Arial,Helvetica,sans-serif" text-anchor="start">Build and review each condition</text>
+<rect x="35" y="162" width="362" height="56" rx="14" fill="#FFFCF6" stroke="#C8B7A1"/>
+<text x="52" y="182" fill="#566861" font-size="12" font-weight="600" font-family="Arial,Helvetica,sans-serif" text-anchor="start">Rule name</text><text x="52" y="205" fill="#153F46" font-size="16" font-weight="500" font-family="Arial,Helvetica,sans-serif" text-anchor="start">Untitled rotation rule</text><path d="M354 202 L368 188 L373 193 L359 207 L353 208 Z" fill="none" stroke="#1D5960" stroke-width="1.8" stroke-linejoin="round"/>
+<text x="36" y="255" fill="#153F46" font-size="20" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="start">When this happens</text>
+<rect x="35" y="270" width="362" height="66" rx="14" fill="#FFFCF6" stroke="#C8B7A1"/>
+<rect x="47" y="283" width="42" height="40" rx="12" fill="#DAEDE1" stroke="none"/>
+<text x="68" y="309" fill="#1D5960" font-size="17" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="middle">T</text>
+<text x="103" y="296" fill="#153F46" font-size="16" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="start">Time or foreground event</text>
+<text x="103" y="318" fill="#566861" font-size="13" font-weight="500" font-family="Arial,Helvetica,sans-serif" text-anchor="start">No exact background guarantee</text>
+<text x="382" y="309" fill="#1D5960" font-size="23" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="middle">›</text>
+<rect x="35" y="344" width="362" height="66" rx="14" fill="#FFFCF6" stroke="#C8B7A1"/>
+<rect x="47" y="357" width="42" height="40" rx="12" fill="#DAEDE1" stroke="none"/>
+<text x="68" y="383" fill="#1D5960" font-size="17" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="middle">R</text>
+<text x="103" y="370" fill="#153F46" font-size="16" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="start">Source: Rainbows</text>
+<text x="103" y="392" fill="#566861" font-size="13" font-weight="500" font-family="Arial,Helvetica,sans-serif" text-anchor="start">22 accessible local photos</text>
+<text x="382" y="383" fill="#1D5960" font-size="23" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="middle">›</text>
+<text x="36" y="458" fill="#153F46" font-size="20" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="start">Do this</text>
+<rect x="35" y="472" width="362" height="66" rx="14" fill="#FFFCF6" stroke="#C8B7A1"/>
+<rect x="47" y="485" width="42" height="40" rx="12" fill="#DAEDE1" stroke="none"/>
+<text x="68" y="511" fill="#1D5960" font-size="17" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="middle">H</text>
+<text x="103" y="498" fill="#153F46" font-size="16" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="start">Request Home wallpaper</text>
+<text x="103" y="520" fill="#566861" font-size="13" font-weight="500" font-family="Arial,Helvetica,sans-serif" text-anchor="start">Only once rule is activated</text>
+<text x="382" y="511" fill="#1D5960" font-size="23" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="middle">›</text>
+<rect x="35" y="575" width="362" height="66" rx="13" fill="#F5E6D1" stroke="none"/>
+<rect x="47" y="585" width="4" height="46" rx="2" fill="#1D5960" stroke="none"/>
+<text x="61" y="601" fill="#153F46" font-size="15" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="start">Conflict review required</text>
+<text x="61" y="623" fill="#445851" font-size="13" font-weight="500" font-family="Arial,Helvetica,sans-serif" text-anchor="start">Simulate other active rules first.</text>
+<rect x="35" y="734" width="173" height="52" rx="16" fill="#1D5960" stroke="none"/>
+<rect x="218" y="734" width="179" height="52" rx="16" fill="#FFFCF6" stroke="#C8B7A1"/>
+<text x="121" y="767" fill="#FFFFFF" font-size="14" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="middle">Simulate</text>
+<text x="307" y="767" fill="#153F46" font-size="14" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="middle">Save draft</text>
+<text x="38" y="802" fill="#566861" font-size="12" font-weight="500" font-family="Arial,Helvetica,sans-serif" text-anchor="start">Saving a draft never applies wallpaper.</text>
+<rect x="24" y="823" width="384" height="56" rx="0" fill="#FFFCF6" stroke="none"/>
+<path d="M24 823 L408 823" fill="none" stroke="#C8B7A1"/>
+<text x="71" y="856" fill="#566861" font-size="13" font-weight="600" font-family="Arial,Helvetica,sans-serif" text-anchor="middle">Home</text>
+<text x="167" y="856" fill="#566861" font-size="13" font-weight="600" font-family="Arial,Helvetica,sans-serif" text-anchor="middle">Discover</text>
+<text x="263" y="856" fill="#566861" font-size="13" font-weight="600" font-family="Arial,Helvetica,sans-serif" text-anchor="middle">Collections</text>
+<rect x="319" y="829" width="80" height="40" rx="13" fill="#DAEDE1" stroke="none"/>
+<text x="359" y="856" fill="#1D5960" font-size="12" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="middle">Automation</text>
+<text x="35" y="898" fill="#566861" font-size="10" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="start">PROPOSAL / NOT APPROVED</text>
 <rect x="439" y="14" width="707" height="890" rx="17" fill="#FCF9F3" stroke="#C4B7A4" stroke-width="2"/>
-<text x="462" y="47" fill="#153F46" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="700" text-anchor="start">VISUAL COVERAGE PLATE</text>
+<text x="462" y="47" fill="#153F46" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="700" text-anchor="start">PRIMARY SURFACE · PRODUCTION A</text>
 <text x="462" y="78" fill="#1D5960" font-family="Arial,Helvetica,sans-serif" font-size="22" font-weight="700" text-anchor="start">AUTOMATION-EDITOR · default</text>
-<text x="462" y="106" fill="#667975" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="400" text-anchor="start">Coherent screen-family schematic; not a user-approved screenshot</text>
+<text x="462" y="106" fill="#667975" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="400" text-anchor="start">Editable task-driven proposal; native and owner review pending</text>
 <path d="M453 124 L1130 124" stroke="#C8B7A1" stroke-width="1" fill="none"/>
 <text x="463" y="151" fill="#1D5960" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="700" text-anchor="start">REQUIRED ON THIS SURFACE</text>
 <text x="463" y="177" fill="#153F46" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="400" text-anchor="start">• typed- trigger</text>

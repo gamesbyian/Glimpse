@@ -1,0 +1,229 @@
+name: Glimpse | Production A exact primary pixel proof
+
+on:
+  push:
+    branches:
+      - agent/production-a-primary-system-20261024
+      - agent/production-a-postmerge-optical-20261024
+    paths:
+      - .github/workflows/glimpse-agent-a-primary-proof.yml
+      - design/proposals/plates/**
+      - design/proposals/whole-product-candidates/home-p04-photographic-cc0.svg
+      - design/proposals/whole-product-candidates/grid-photography-provenance-p12.svg
+      - design/proposals/whole-product-candidates/compact-320dp-200pct-sections-sheet.svg
+      - design/proposals/whole-product-candidates/grid-3column-native-aligned-p12.svg
+      - design/proposals/whole-product-candidates/cc0-consistent-20261024/**
+      - design/proposals/whole-product-candidates/accessibility-keyboard-focus-visual.v1.svg
+      - design/system/*.py
+      - design/system/tokens.v0.1.json
+  pull_request:
+    branches:
+      - agent/visual-state-reconciliation-20261023
+    paths:
+      - .github/workflows/glimpse-agent-a-primary-proof.yml
+      - design/proposals/plates/**
+      - design/system/*.py
+      - design/proposals/whole-product-candidates/home-p04-photographic-cc0.svg
+      - design/proposals/whole-product-candidates/grid-photography-provenance-p12.svg
+      - design/proposals/whole-product-candidates/compact-320dp-200pct-sections-sheet.svg
+      - design/proposals/whole-product-candidates/grid-3column-native-aligned-p12.svg
+      - design/proposals/whole-product-candidates/cc0-consistent-20261024/**
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: glimpse-production-a-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  source-and-optical:
+    runs-on: ubuntu-latest
+    timeout-minutes: 16
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install lightweight offline image renderer
+        run: python3 -m pip install --disable-pip-version-check --quiet Pillow CairoSVG
+      - name: Check main proposal XML and source contracts
+        run: python3 scripts/validate-visual-spec.py
+      - name: Verify provisional tinted-surface AA contrast and all 22 primary caption fixes
+        run: python3 design/system/validate-contextual-contrast.py
+      - name: Check A primary semantics, geometry and all exact raster sources
+        run: python3 design/system/validate-production-a.py --render-output /tmp/glimpse-agent-a/phone-crops
+      - name: Check actual p04 CC0 JPEG bytes, IDs and unknown Android state
+        run: python3 design/system/validate-home-photo-candidate.py
+      - name: Verify exact p06/p07 photographs and four visibly blocked Grid slots
+        run: python3 design/system/validate-grid-identity-candidate.py
+      - name: Validate native-aligned three-column alternative exactly
+        run: python3 design/system/validate-grid-three-column.py
+      - name: Check thirteen distinct C-verified CC0 photos in six unselected proposal screens
+        run: python3 design/system/validate-cross-surface-cc0-migration.py
+      - name: Render all current screens, four historical alternatives and six CC0 migration proposals
+        run: |
+          python3 - <<'PY'
+          import hashlib, io, json
+          from pathlib import Path
+          from PIL import Image, ImageDraw, ImageFont
+          import cairosvg
+
+          base = Path('/tmp/glimpse-agent-a/phone-crops')
+          out = Path('design/system/reviews/ci-renders')
+          out.mkdir(parents=True, exist_ok=True)
+          src = sorted(base.glob('*.phone.png'))
+          assert len(src) == 18, f'Expected all eighteen edited screens, got {len(src)}'
+          samples = []
+          for p in src:
+              im = Image.open(p).convert('RGB')
+              assert im.size == (401, 890)
+              samples.append((p.stem.removesuffix('.phone'), im))
+          for group in range(3):
+              chosen = samples[group*6:group*6+6]
+              sheet = Image.new('RGB', (3*417+16, 2*930+16), '#E9E3D9')
+              pen = ImageDraw.Draw(sheet)
+              for j, (name, im) in enumerate(chosen):
+                  x = 16+(j%3)*417; y = 24+(j//3)*930
+                  sheet.paste(im,(x,y))
+                  pen.text((x,y-16),name,fill='#153F46')
+              sheet.save(out/f'primary-a-contact-{group+1}.jpg',quality=91,subsampling=0)
+          alternate=Path('design/proposals/whole-product-candidates/home-p04-photographic-cc0.svg')
+          raw=cairosvg.svg2png(bytestring=alternate.read_bytes(),output_width=1160,output_height=920)
+          home=Image.open(io.BytesIO(raw)).convert('RGB').crop((15,14,416,904))
+          assert home.size==(401,890)
+          home.save(out/'home-p04-photographic-candidate.png')
+          alt=Path('design/proposals/whole-product-candidates/grid-photography-provenance-p12.svg')
+          altpng=cairosvg.svg2png(bytestring=alt.read_bytes(),output_width=1160,output_height=920)
+          grid=Image.open(io.BytesIO(altpng)).convert('RGB').crop((15,14,416,904))
+          assert grid.size==(401,890)
+          grid.save(out/'grid-photography-provenance-p12.png')
+          v3=Path('design/proposals/whole-product-candidates/grid-3column-native-aligned-p12.svg')
+          v3png=cairosvg.svg2png(bytestring=v3.read_bytes(),output_width=1160,output_height=920)
+          v3im=Image.open(io.BytesIO(v3png)).convert('RGB').crop((15,14,416,904))
+          assert v3im.size==(401,890)
+          v3im.save(out/'grid-native-three-column-p12.png')
+          compact=Path('design/proposals/whole-product-candidates/compact-320dp-200pct-sections-sheet.svg')
+          compraw=cairosvg.svg2png(bytestring=compact.read_bytes(),output_width=1180,output_height=832)
+          cmp=Image.open(io.BytesIO(compraw)).convert('RGB')
+          assert cmp.size==(1180,832)
+          cmp.save(out/'compact-320dp-fontscale2-unselected.png')
+          migration=Path('design/proposals/whole-product-candidates/cc0-consistent-20261024')
+          for name in ('home','reel','grid-3column','detail','collections','share'):
+              photo_path=migration/(name+'.svg')
+              rawpng=cairosvg.svg2png(bytestring=photo_path.read_bytes(),output_width=1160,output_height=920)
+              cropped=Image.open(io.BytesIO(rawpng)).convert('RGB').crop((15,14,416,904))
+              assert cropped.size==(401,890)
+              cropped.save(out/('cc0-consistent-'+name+'.png'))
+          focused_source=Path('design/proposals/whole-product-candidates/accessibility-keyboard-focus-visual.v1.svg')
+          focus_text=focused_source.read_text(encoding='utf-8')
+          assert 'y="329" width="362" height="66" rx="14" fill="#FFFCF6" stroke="#1D5960" stroke-width="4"' in focus_text
+          assert 'Prefer Grid' in focus_text and '200% design target; test pending' in focus_text
+          focus_raw=cairosvg.svg2png(bytestring=focused_source.read_bytes(),output_width=1160,output_height=920)
+          focus_image=Image.open(io.BytesIO(focus_raw)).convert('RGB').crop((15,14,416,904))
+          assert focus_image.size==(401,890)
+          focus_image.save(out/'accessibility-keyboard-focus-visual.png')
+          default_source=Path('design/proposals/plates/accessibility-preferences.svg')
+          default_raw=cairosvg.svg2png(bytestring=default_source.read_bytes(),output_width=1160,output_height=920)
+          default_image=Image.open(io.BytesIO(default_raw)).convert('RGB').crop((15,14,416,904))
+          pair=Image.new('RGB',(834,930),'#E9E3D9')
+          pair.paste(default_image,(8,24)); pair.paste(focus_image,(425,24))
+          pair_pen=ImageDraw.Draw(pair)
+          pair_pen.text((8,6),'DEFAULT: no keyboard focus',fill='#153F46')
+          pair_pen.text((425,6),'UNSELECTED: Prefer Grid focused',fill='#153F46')
+          pair.save(out/'accessibility-focus-before-after.jpg',quality=95,subsampling=0)
+          # Measure the exact source change: only the intended focus outline
+          # and explicit state annotation may differ inside the 401x890 phone.
+          import PIL.ImageChops
+          delta=PIL.ImageChops.difference(default_image,focus_image)
+          assert delta.getbbox() is not None, 'Focus state must differ from default'
+          regions=[(0,0,401,300),(0,300,401,400),(0,400,401,890)]
+          changed=[PIL.ImageChops.difference(default_image.crop(q),focus_image.crop(q)).getbbox() is not None for q in regions]
+          assert changed == [False,True,False], f'Focus candidate changed unrelated screen areas: {changed}'
+          photo_names=('home','reel','grid-3column','detail','collections','share')
+          sheet=Image.new('RGB',(3*417+16,2*930+16),'#E9E3D9')
+          marker=ImageDraw.Draw(sheet)
+          for i,name in enumerate(photo_names):
+              rendered=Image.open(out/('cc0-consistent-'+name+'.png')).convert('RGB')
+              xx=16+(i%3)*417; yy=24+(i//3)*930
+              sheet.paste(rendered,(xx,yy))
+              marker.text((xx,yy-16),name,fill='#153F46')
+          sheet.save(out/'cc0-consistent-six-screen-contact.jpg',quality=94,subsampling=0)
+          sourceSvg=migration/'source-p12.svg'
+          sourcePng=cairosvg.svg2png(bytestring=sourceSvg.read_bytes(),output_width=1160,output_height=920)
+          sourceCrop=Image.open(io.BytesIO(sourcePng)).convert('RGB').crop((15,14,416,904))
+          assert sourceCrop.size==(401,890)
+          sourceCrop.save(out/'cc0-consistent-source-p12.png')
+          seven=Image.new('RGB',(4*417+16,2*930+16),'#E9E3D9')
+          sevenPen=ImageDraw.Draw(seven)
+          for i,name in enumerate((*photo_names,'source-p12')):
+              rendering=Image.open(out/('cc0-consistent-'+name+'.png')).convert('RGB')
+              x=16+(i%4)*417; z=24+(i//4)*930
+              seven.paste(rendering,(x,z))
+              sevenPen.text((x,z-16),name,fill='#153F46')
+          seven.save(out/'cc0-consistent-seven-flow-contact.jpg',quality=94,subsampling=0)
+
+
+
+          ledger=[]
+          for name,im in samples:
+              png=base/(name+'.phone.png')
+              source=Path('design/proposals/plates')/(name+'.svg')
+              assert source.exists()
+              ledger.append({'screen':name,'sourcePath':str(source),
+                  'sourceSHA256':hashlib.sha256(source.read_bytes()).hexdigest(),
+                  'phoneRasterSHA256':hashlib.sha256(png.read_bytes()).hexdigest()})
+          comparisons = [
+              ('home-p04-photographic-candidate.png', 'home-p04-photographic-cc0.svg'),
+              ('grid-photography-provenance-p12.png', 'grid-photography-provenance-p12.svg'),
+              ('grid-native-three-column-p12.png', 'grid-3column-native-aligned-p12.svg'),
+              ('compact-320dp-fontscale2-unselected.png', 'compact-320dp-200pct-sections-sheet.svg'),
+          ]
+          for name in ('home','reel','grid-3column','detail','collections','share'):
+              comparisons.append(('cc0-consistent-'+name+'.png','cc0-consistent-20261024/'+name+'.svg'))
+          comparisons.append(('cc0-consistent-source-p12.png','cc0-consistent-20261024/source-p12.svg'))
+          comparisons.append(('accessibility-keyboard-focus-visual.png', 'accessibility-keyboard-focus-visual.v1.svg'))
+          candidates=[]
+          for rastername,svgname in comparisons:
+              svg=Path('design/proposals/whole-product-candidates')/svgname
+              png=out/rastername
+              assert svg.is_file() and png.is_file()
+              candidates.append({'sourcePath':str(svg), 'sourceSHA256':hashlib.sha256(svg.read_bytes()).hexdigest(),
+                  'rasterPath':str(png), 'rasterSHA256':hashlib.sha256(png.read_bytes()).hexdigest(),
+                  'status':'UNSELECTED', 'AndroidNativeVerified':False, 'ownerApproved':False})
+          paired=out/'accessibility-focus-before-after.jpg'
+          assert paired.is_file()
+          (out/'ci-raster-ledger.json').write_text(json.dumps({'screens':ledger,
+              'focusBeforeAfter':{'contactPath':str(paired),'contactSHA256':hashlib.sha256(paired.read_bytes()).hexdigest(),
+                                  'defaultSourceSHA256':hashlib.sha256(default_source.read_bytes()).hexdigest(),
+                                  'focusedSourceSHA256':hashlib.sha256(focused_source.read_bytes()).hexdigest(),
+                                  'changedRegion':'phone x=0..401, y=300..400 only',
+                                  'independentlyOpticallyInspected':False},
+              'unselectedCandidates':candidates, 'AndroidNativeVerified':False,
+              'independentlyOpticallyInspected':False,'ownerApproved':False},indent=2)+'\n')
+          assert len(ledger)==18
+          print('PASS: 18 cropped source raster checks + 3 sheets + unselected p04 and Grid candidates.')
+          PY
+      - name: Save focused source-exact review artifacts without replacing proposal sources
+        uses: actions/upload-artifact@v4
+        with:
+          name: glimpse-agent-a-primary-${{ github.sha }}
+          path: design/system/reviews/ci-renders/
+          retention-days: 14
+      - name: Preserve raster inputs on A review branch (CI evidence, not acceptance)
+        if: github.event_name == 'push'
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add design/system/reviews/ci-renders/
+          if git diff --cached --quiet; then
+            echo "Raster inputs unchanged."
+            exit 0
+          fi
+          git commit -m "review(primary): archive actual A CI phone raster contacts"
+          git fetch origin "${GITHUB_REF_NAME}"
+          git rebase "origin/${GITHUB_REF_NAME}"
+          git push origin HEAD:"${GITHUB_REF_NAME}"

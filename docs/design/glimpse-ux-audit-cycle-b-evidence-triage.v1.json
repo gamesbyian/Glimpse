@@ -1,0 +1,246 @@
+{
+  "schemaVersion": 1,
+  "status": "SOURCE_DELTA_TRIAGE_NOT_NEW_SCORE",
+  "asOf": "2026-10-24",
+  "cycleARef": "docs/design/glimpse-ux-audit-cycle-a.v1.json",
+  "auditQuestions": 60,
+  "unchangedCycleA": {
+    "PASS": 18,
+    "ISSUE": 8,
+    "UNVERIFIED": 34,
+    "NOT_APPLICABLE": 0
+  },
+  "wholeProductCandidate": "design/proposals/whole-product-review-selection.v1.json",
+  "wholeProductAtlas": "design/atlas/whole-product-review-selection.html",
+  "sourceRenderedEvidence": "design/reviews/targeted-2026-10-24/source-ledger.json",
+  "rules": [
+    "Only directly observed pixels or static source/metadata count as source evidence",
+    "No new GUX PASS or ISSUE without matching question acceptance gate",
+    "Do not equate 56 pictured revision scenes with all 60 UX questions passed",
+    "Preserve owner native rectangular pseudo-reel report as a real historical observed ISSUE",
+    "No 200 percent font, TalkBack, real Android wallpaper, OS sharesheet or provider results inferred from SVG"
+  ],
+  "candidateEvidenceDeltas": [
+    {
+      "id": "GUX-01",
+      "weight": 5,
+      "cycleA": "UNVERIFIED",
+      "cycleB": "EVIDENCE_ADDED_DO_NOT_RESCORE",
+      "referenceSources": [
+        "design/proposals/audit-revisions/r03-home-last-ack-p04.svg",
+        "design/proposals/audit-revisions/r01-photo-home-crescent.svg"
+      ],
+      "observedOrProposedFinding": "Current Home draft explains last Glimpse ack, OS uncertainty and browse p12; owner/task comprehension and native Home now remain unverified.",
+      "missingGate": "current-generation Android physical interaction, accessibility and/or whole-product human acceptance as specified per GUX question"
+    },
+    {
+      "id": "GUX-02",
+      "weight": 5,
+      "cycleA": "ISSUE",
+      "cycleB": "EVIDENCE_ADDED_DO_NOT_RESCORE",
+      "referenceSources": [
+        "design/proposals/audit-revisions/r01-photo-rest-22.svg",
+        "design/proposals/audit-revisions/r01-photo-three-3.svg",
+        "design/proposals/audit-revisions/r01-photo-sixty-60.svg"
+      ],
+      "observedOrProposedFinding": "Directly viewed circular five-window photographic paper disc in draft, while the owner-rejected native rectangular selector is unchanged.",
+      "missingGate": "current-generation Android physical interaction, accessibility and/or whole-product human acceptance as specified per GUX question"
+    },
+    {
+      "id": "GUX-05",
+      "weight": 5,
+      "cycleA": "UNVERIFIED",
+      "cycleB": "EVIDENCE_ADDED_DO_NOT_RESCORE",
+      "referenceSources": [
+        "design/proposals/audit-revisions/r01-photo-tap-p13-pressed.svg",
+        "design/proposals/audit-revisions/r01-photo-tap-p13-settled.svg",
+        "design/proposals/audit-revisions/r01-photo-drag-36.svg"
+      ],
+      "observedOrProposedFinding": "Source-matched p12 stationary hero during press/drag and p13 hero after settle. Native motion/selected ID reducer not tested.",
+      "missingGate": "current-generation Android physical interaction, accessibility and/or whole-product human acceptance as specified per GUX question"
+    },
+    {
+      "id": "GUX-06",
+      "weight": 5,
+      "cycleA": "UNVERIFIED",
+      "cycleB": "EVIDENCE_ADDED_DO_NOT_RESCORE",
+      "referenceSources": [
+        "design/proposals/audit-revisions/r01-photo-tap-p13-pressed.svg",
+        "design/proposals/audit-revisions/r01-photo-tap-p13-settled.svg",
+        "design/proposals/audit-revisions/r01-photo-drag-36.svg"
+      ],
+      "observedOrProposedFinding": "Pressed, dragged and settled illustration IDs consistent; Previous/Next native parity and gesture commit semantics still unknown.",
+      "missingGate": "current-generation Android physical interaction, accessibility and/or whole-product human acceptance as specified per GUX question"
+    },
+    {
+      "id": "GUX-08",
+      "weight": 5,
+      "cycleA": "UNVERIFIED",
+      "cycleB": "EVIDENCE_ADDED_DO_NOT_RESCORE",
+      "referenceSources": [
+        "design/proposals/audit-revisions/r01-photo-rest-22.svg",
+        "design/proposals/audit-revisions/r02-return-dismiss.svg"
+      ],
+      "observedOrProposedFinding": "Proposals connect R01 p12 to R02 identity but no instrumented native Grid/Detail round-trip state or click tests.",
+      "missingGate": "current-generation Android physical interaction, accessibility and/or whole-product human acceptance as specified per GUX question"
+    },
+    {
+      "id": "GUX-12",
+      "weight": 4,
+      "cycleA": "UNVERIFIED",
+      "cycleB": "EVIDENCE_ADDED_DO_NOT_RESCORE",
+      "referenceSources": [
+        "design/proposals/audit-revisions/r04-import-17-of-22.svg",
+        "design/proposals/audit-revisions/r04-import-offline-17-of-22.svg"
+      ],
+      "observedOrProposedFinding": "Visible verified 17 of 22, pending five and Resume disabled offline; actual byte verification/cancel/SAF source uncertain.",
+      "missingGate": "current-generation Android physical interaction, accessibility and/or whole-product human acceptance as specified per GUX question"
+    },
+    {
+      "id": "GUX-13",
+      "weight": 4,
+      "cycleA": "UNVERIFIED",
+      "cycleB": "EVIDENCE_ADDED_DO_NOT_RESCORE",
+      "referenceSources": [
+        "design/proposals/audit-revisions/r04-import-offline-17-of-22.svg",
+        "design/proposals/audit-revisions/r08-source-revoked.svg"
+      ],
+      "observedOrProposedFinding": "Source-drawn provider offline/revoked states are actionable, source pixels optically reviewed for R04, no real provider fault test.",
+      "missingGate": "current-generation Android physical interaction, accessibility and/or whole-product human acceptance as specified per GUX question"
+    },
+    {
+      "id": "GUX-15",
+      "weight": 4,
+      "cycleA": "UNVERIFIED",
+      "cycleB": "EVIDENCE_ADDED_DO_NOT_RESCORE",
+      "referenceSources": [
+        "design/proposals/audit-revisions/r02-crop-pending.svg",
+        "design/proposals/audit-revisions/r02-copy-saved.svg"
+      ],
+      "observedOrProposedFinding": "Original p12 and cropped p12c proposals use different image transformations, but actual native copy bytes unverified.",
+      "missingGate": "current-generation Android physical interaction, accessibility and/or whole-product human acceptance as specified per GUX question"
+    },
+    {
+      "id": "GUX-18",
+      "weight": 4,
+      "cycleA": "UNVERIFIED",
+      "cycleB": "EVIDENCE_ADDED_DO_NOT_RESCORE",
+      "referenceSources": [
+        "design/proposals/audit-revisions/r06-share-dismissed.svg",
+        "design/proposals/audit-revisions/r02-return-dismiss.svg"
+      ],
+      "observedOrProposedFinding": "Share return draft does not assert recipient delivery; Android Sharesheet contract untested.",
+      "missingGate": "current-generation Android physical interaction, accessibility and/or whole-product human acceptance as specified per GUX question"
+    },
+    {
+      "id": "GUX-27",
+      "weight": 5,
+      "cycleA": "UNVERIFIED",
+      "cycleB": "EVIDENCE_ADDED_DO_NOT_RESCORE",
+      "referenceSources": [
+        "design/proposals/audit-revisions/r07-battery-restricted.svg",
+        "design/proposals/audit-revisions/r07-unknown-after-attempt.svg"
+      ],
+      "observedOrProposedFinding": "Drawings label battery restrictions and unknown attempt separately; no native Doze/Battery Saver telemetry.",
+      "missingGate": "current-generation Android physical interaction, accessibility and/or whole-product human acceptance as specified per GUX question"
+    },
+    {
+      "id": "GUX-32",
+      "weight": 5,
+      "cycleA": "UNVERIFIED",
+      "cycleB": "EVIDENCE_ADDED_DO_NOT_RESCORE",
+      "referenceSources": [
+        "design/proposals/audit-revisions/r01-photo-rest-22.svg",
+        "design/proposals/audit-revisions/r01-photo-large-type.svg"
+      ],
+      "observedOrProposedFinding": "Visible Grid, Previous and Next alternatives at normal and large type; actual accessible hit/focus equivalence unverified.",
+      "missingGate": "current-generation Android physical interaction, accessibility and/or whole-product human acceptance as specified per GUX question"
+    },
+    {
+      "id": "GUX-35",
+      "weight": 5,
+      "cycleA": "ISSUE",
+      "cycleB": "EVIDENCE_ADDED_DO_NOT_RESCORE",
+      "referenceSources": [
+        "design/proposals/audit-revisions/r01-photo-large-type.svg",
+        "design/proposals/audit-revisions/r05-photo-reel-narrow-short-320.svg"
+      ],
+      "observedOrProposedFinding": "Source-rendered proposed large type and compact 320x640 candidate show obvious controls, no native Android 200% scale proof.",
+      "missingGate": "current-generation Android physical interaction, accessibility and/or whole-product human acceptance as specified per GUX question"
+    },
+    {
+      "id": "GUX-46",
+      "weight": 4,
+      "cycleA": "UNVERIFIED",
+      "cycleB": "EVIDENCE_ADDED_DO_NOT_RESCORE",
+      "referenceSources": [
+        "design/proposals/audit-revisions/r08-restore-conflict-choice.svg",
+        "design/proposals/audit-revisions/r08-skip-return-rainbows.svg"
+      ],
+      "observedOrProposedFinding": "Illustrated Keep/Separate/Skip options and return without commit, no native Room transaction test.",
+      "missingGate": "current-generation Android physical interaction, accessibility and/or whole-product human acceptance as specified per GUX question"
+    },
+    {
+      "id": "GUX-50",
+      "weight": 4,
+      "cycleA": "UNVERIFIED",
+      "cycleB": "EVIDENCE_ADDED_DO_NOT_RESCORE",
+      "referenceSources": [
+        "design/proposals/audit-revisions/r08-skip-return-rainbows.svg",
+        "design/proposals/audit-revisions/r04-import-offline-17-of-22.svg"
+      ],
+      "observedOrProposedFinding": "Explicit return to Rainbows selected p12 after skipped restore; actual Android back stack untested.",
+      "missingGate": "current-generation Android physical interaction, accessibility and/or whole-product human acceptance as specified per GUX question"
+    },
+    {
+      "id": "GUX-53",
+      "weight": 3,
+      "cycleA": "UNVERIFIED",
+      "cycleB": "EVIDENCE_ADDED_DO_NOT_RESCORE",
+      "referenceSources": [
+        "design/proposals/audit-revisions/r01-photo-rest-22.svg",
+        "design/proposals/audit-revisions/r03-preview-not-applied.svg",
+        "design/proposals/audit-revisions/r03-unknown-after-request.svg"
+      ],
+      "observedOrProposedFinding": "Independent source-render contact visibly confirms same p12 original JPEG in Reel and R03 different-aspect crops, but full Grid/Detail/native not yet tested.",
+      "missingGate": "current-generation Android physical interaction, accessibility and/or whole-product human acceptance as specified per GUX question"
+    },
+    {
+      "id": "GUX-54",
+      "weight": 3,
+      "cycleA": "ISSUE",
+      "cycleB": "EVIDENCE_ADDED_DO_NOT_RESCORE",
+      "referenceSources": [
+        "design/proposals/audit-revisions/r01-photo-drag-36.svg",
+        "design/proposals/audit-revisions/r01-photo-large-type.svg"
+      ],
+      "observedOrProposedFinding": "Direct visual review found half-clipped p11/p14 badge during 36 degree motion; source/CI fix exists, post-fix direct optical inspection remains pending. Full corpus typography not accepted.",
+      "missingGate": "current-generation Android physical interaction, accessibility and/or whole-product human acceptance as specified per GUX question"
+    },
+    {
+      "id": "GUX-59",
+      "weight": 3,
+      "cycleA": "ISSUE",
+      "cycleB": "EVIDENCE_ADDED_DO_NOT_RESCORE",
+      "referenceSources": [
+        "design/proposals/audit-revisions/r01-photo-rest-22.svg",
+        "design/proposals/audit-revisions/r01-photo-home-crescent.svg"
+      ],
+      "observedOrProposedFinding": "Explicit split between new paper reel proposals and historical first-person rejection of native pseudo-reel; cannot close owner ISSUE by publishing SVGs.",
+      "missingGate": "current-generation Android physical interaction, accessibility and/or whole-product human acceptance as specified per GUX question"
+    },
+    {
+      "id": "GUX-60",
+      "weight": 3,
+      "cycleA": "UNVERIFIED",
+      "cycleB": "EVIDENCE_ADDED_DO_NOT_RESCORE",
+      "referenceSources": [
+        "design/proposals/audit-revisions/r03-preview-not-applied.svg",
+        "design/proposals/audit-revisions/r01-photo-tap-p13-settled.svg",
+        "design/proposals/audit-revisions/r08-skip-return-rainbows.svg"
+      ],
+      "observedOrProposedFinding": "Scenario matrix covers 56/56 and before/after sources, but not all 60 questions have individually matched native/optical acceptance and user decision.",
+      "missingGate": "current-generation Android physical interaction, accessibility and/or whole-product human acceptance as specified per GUX question"
+    }
+  ]
+}

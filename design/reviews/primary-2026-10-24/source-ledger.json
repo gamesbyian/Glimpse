@@ -1,0 +1,343 @@
+{
+  "schemaVersion": 1,
+  "evidenceType": "SVG_SELECTION_EXACT_SOURCE_RASTER_NO_OPTICAL_INFERENCE",
+  "sourceCount": 24,
+  "sourceRows": [
+    {
+      "surfaceId": "home",
+      "path": "design/proposals/whole-product-candidates/cc0-consistent-20261024/home.svg",
+      "sourceSHA256": "9a2b7da1954e84322556ebb8636bfe6ca9ff37574e23098b77f8de05dc2b4ffa",
+      "phonePixels": [
+        401,
+        890
+      ],
+      "rendered": true,
+      "agentOpticallyInspected": false,
+      "nativeVerified": false,
+      "ownerApproved": false
+    },
+    {
+      "surfaceId": "collections",
+      "path": "design/proposals/whole-product-candidates/cc0-consistent-20261024/collections.svg",
+      "sourceSHA256": "049be37072c1bd66a23312ac2fd6a89982d5c05e095d85ad10d3a7e2e3e5fe66",
+      "phonePixels": [
+        401,
+        890
+      ],
+      "rendered": true,
+      "agentOpticallyInspected": false,
+      "nativeVerified": false,
+      "ownerApproved": false
+    },
+    {
+      "surfaceId": "reel",
+      "path": "design/proposals/whole-product-candidates/cc0-consistent-20261024/reel.svg",
+      "sourceSHA256": "ea5e608a809bfc555b29c1ea4575d4ac78987fb55f77129dc7baa1aeca12faf5",
+      "phonePixels": [
+        401,
+        890
+      ],
+      "rendered": true,
+      "agentOpticallyInspected": false,
+      "nativeVerified": false,
+      "ownerApproved": false
+    },
+    {
+      "surfaceId": "grid",
+      "path": "design/proposals/whole-product-candidates/cc0-consistent-20261024/grid-3column.svg",
+      "sourceSHA256": "b7b3698dbbf388f11909f3ffd4339727342134303c3879c2c37e75c4595e1abb",
+      "phonePixels": [
+        401,
+        890
+      ],
+      "rendered": true,
+      "agentOpticallyInspected": false,
+      "nativeVerified": false,
+      "ownerApproved": false
+    },
+    {
+      "surfaceId": "quick-import",
+      "path": "design/proposals/plates/quick-import.svg",
+      "sourceSHA256": "48670018420d33aa7de4b33348fd0032cf20e00a1e52ffeb26950c9bf24d763a",
+      "phonePixels": [
+        401,
+        890
+      ],
+      "rendered": true,
+      "agentOpticallyInspected": false,
+      "nativeVerified": false,
+      "ownerApproved": false
+    },
+    {
+      "surfaceId": "share",
+      "path": "design/proposals/whole-product-candidates/cc0-consistent-20261024/share.svg",
+      "sourceSHA256": "e379e1e5941ca293a4e6a776b2682b3470d2cd6f912b8a07cc6d23d4b78e491c",
+      "phonePixels": [
+        401,
+        890
+      ],
+      "rendered": true,
+      "agentOpticallyInspected": false,
+      "nativeVerified": false,
+      "ownerApproved": false
+    },
+    {
+      "surfaceId": "automation",
+      "path": "design/proposals/plates/automation.svg",
+      "sourceSHA256": "5869d2fc6dccfa72a33749336e58a384601e1a974c6158e304970dd5a0a8c0c7",
+      "phonePixels": [
+        401,
+        890
+      ],
+      "rendered": true,
+      "agentOpticallyInspected": false,
+      "nativeVerified": false,
+      "ownerApproved": false
+    },
+    {
+      "surfaceId": "discover",
+      "path": "design/proposals/plates/discover.svg",
+      "sourceSHA256": "a576ec31198c902c61951e71ad119be98ee3f10c9b5c54a6bc6d06cbdb9f194f",
+      "phonePixels": [
+        401,
+        890
+      ],
+      "rendered": true,
+      "agentOpticallyInspected": false,
+      "nativeVerified": false,
+      "ownerApproved": false
+    },
+    {
+      "surfaceId": "destinations",
+      "path": "design/proposals/plates/destinations.svg",
+      "sourceSHA256": "b1c3b2ce79942b95085a51de44e25c75b1070678b3b1ee5239c81399f31040a2",
+      "phonePixels": [
+        401,
+        890
+      ],
+      "rendered": true,
+      "agentOpticallyInspected": false,
+      "nativeVerified": false,
+      "ownerApproved": false
+    },
+    {
+      "surfaceId": "image-editor",
+      "path": "design/proposals/plates/image-editor.svg",
+      "sourceSHA256": "e61e17ac8febe825864513245a4957c51ad8aab0f97d731bee53cd7c73e161e0",
+      "phonePixels": [
+        401,
+        890
+      ],
+      "rendered": true,
+      "agentOpticallyInspected": false,
+      "nativeVerified": false,
+      "ownerApproved": false
+    },
+    {
+      "surfaceId": "activity",
+      "path": "design/proposals/plates/activity.svg",
+      "sourceSHA256": "f8deb52445a4beb92151100469056521380163e813dd2d7e8687f38ff12bffa6",
+      "phonePixels": [
+        401,
+        890
+      ],
+      "rendered": true,
+      "agentOpticallyInspected": false,
+      "nativeVerified": false,
+      "ownerApproved": false
+    },
+    {
+      "surfaceId": "automation-editor",
+      "path": "design/proposals/plates/automation-editor.svg",
+      "sourceSHA256": "db66e8698cd701dd864a26382101def200cfc905e056eab3d8e5f6346356d186",
+      "phonePixels": [
+        401,
+        890
+      ],
+      "rendered": true,
+      "agentOpticallyInspected": false,
+      "nativeVerified": false,
+      "ownerApproved": false
+    },
+    {
+      "surfaceId": "source-detail",
+      "path": "design/proposals/plates/source-detail.svg",
+      "sourceSHA256": "96aa319cc91c7a79bc98bc6c9a8cafe6e16dc703261583c9dacbb29d2694d00e",
+      "phonePixels": [
+        401,
+        890
+      ],
+      "rendered": true,
+      "agentOpticallyInspected": false,
+      "nativeVerified": false,
+      "ownerApproved": false
+    },
+    {
+      "surfaceId": "photo-detail",
+      "path": "design/proposals/whole-product-candidates/cc0-consistent-20261024/detail.svg",
+      "sourceSHA256": "b01ab749736eaa6688ed17dee66ccdf0c3c59a14531599b6ea8526aecbcf28f1",
+      "phonePixels": [
+        401,
+        890
+      ],
+      "rendered": true,
+      "agentOpticallyInspected": false,
+      "nativeVerified": false,
+      "ownerApproved": false
+    },
+    {
+      "surfaceId": "quickstart",
+      "path": "design/proposals/plates/quickstart.svg",
+      "sourceSHA256": "327701ca9390cae6c350910e7d34a98ef15d79e9d14d0747b123057da585a873",
+      "phonePixels": [
+        401,
+        890
+      ],
+      "rendered": true,
+      "agentOpticallyInspected": false,
+      "nativeVerified": false,
+      "ownerApproved": false
+    },
+    {
+      "surfaceId": "schedule-simulator",
+      "path": "design/proposals/plates/schedule-simulator.svg",
+      "sourceSHA256": "50b9c1f70b648e4a1b323eaa4753e22de54955844202cb05e1ad8dbd927d5287",
+      "phonePixels": [
+        401,
+        890
+      ],
+      "rendered": true,
+      "agentOpticallyInspected": false,
+      "nativeVerified": false,
+      "ownerApproved": false
+    },
+    {
+      "surfaceId": "diagnostics",
+      "path": "design/proposals/plates/diagnostics.svg",
+      "sourceSHA256": "701bf110a79592e7725bb019ff762615e6a33883ee2f00f3b2edb271f58e06ab",
+      "phonePixels": [
+        401,
+        890
+      ],
+      "rendered": true,
+      "agentOpticallyInspected": false,
+      "nativeVerified": false,
+      "ownerApproved": false
+    },
+    {
+      "surfaceId": "widgets",
+      "path": "design/proposals/plates/widgets.svg",
+      "sourceSHA256": "7840d9bc715a800347ff8dd73d22d8381dbc42033750f89ccb0c31c9410c3a20",
+      "phonePixels": [
+        401,
+        890
+      ],
+      "rendered": true,
+      "agentOpticallyInspected": false,
+      "nativeVerified": false,
+      "ownerApproved": false
+    },
+    {
+      "surfaceId": "quick-settings-and-shortcuts",
+      "path": "design/proposals/plates/quick-settings-and-shortcuts.svg",
+      "sourceSHA256": "967f81e88e12496b7a168cbbd96787e781d60f7b61d40c509328532ba0418b82",
+      "phonePixels": [
+        401,
+        890
+      ],
+      "rendered": true,
+      "agentOpticallyInspected": false,
+      "nativeVerified": false,
+      "ownerApproved": false
+    },
+    {
+      "surfaceId": "settings",
+      "path": "design/proposals/plates/settings.svg",
+      "sourceSHA256": "38759466ffd4a7c5d0b8534a536db8b46e495507ce73e123760f273b692e9b95",
+      "phonePixels": [
+        401,
+        890
+      ],
+      "rendered": true,
+      "agentOpticallyInspected": false,
+      "nativeVerified": false,
+      "ownerApproved": false
+    },
+    {
+      "surfaceId": "backup-and-restore",
+      "path": "design/proposals/plates/backup-and-restore.svg",
+      "sourceSHA256": "f348cd77eefe4a1f5123341e08f80df2167ab0c766c64bd59204268989bce2ab",
+      "phonePixels": [
+        401,
+        890
+      ],
+      "rendered": true,
+      "agentOpticallyInspected": false,
+      "nativeVerified": false,
+      "ownerApproved": false
+    },
+    {
+      "surfaceId": "onboarding",
+      "path": "design/proposals/plates/onboarding.svg",
+      "sourceSHA256": "f9a4a4c4875dd564d2ab8d68869623185ec3748e033e1054c5125823f6c73692",
+      "phonePixels": [
+        401,
+        890
+      ],
+      "rendered": true,
+      "agentOpticallyInspected": false,
+      "nativeVerified": false,
+      "ownerApproved": false
+    },
+    {
+      "surfaceId": "error-empty-permission",
+      "path": "design/proposals/plates/error-empty-permission.svg",
+      "sourceSHA256": "93b809e59bcae3770cf915a1487bc03400fb52ea025acc3898c761ab0ab3a273",
+      "phonePixels": [
+        401,
+        890
+      ],
+      "rendered": true,
+      "agentOpticallyInspected": false,
+      "nativeVerified": false,
+      "ownerApproved": false
+    },
+    {
+      "surfaceId": "accessibility-preferences",
+      "path": "design/proposals/plates/accessibility-preferences.svg",
+      "sourceSHA256": "a62db6dab0849ac9bfdeaa76e3809a9e359f5d9762524a2945702b2ee00591cd",
+      "phonePixels": [
+        401,
+        890
+      ],
+      "rendered": true,
+      "agentOpticallyInspected": false,
+      "nativeVerified": false,
+      "ownerApproved": false
+    }
+  ],
+  "sheets": [
+    {
+      "name": "selected-primary-contact-01.jpg",
+      "sha256": "7eb1a11a219fefb02dce490f9ab3812f1b1985bb11f03f76a13a3d578a4ba3ad",
+      "count": 6
+    },
+    {
+      "name": "selected-primary-contact-02.jpg",
+      "sha256": "f742e5f390a7e106e1a87dc1adaf8a3185a6d5dd39dbf3c209a1a367c523cdf9",
+      "count": 6
+    },
+    {
+      "name": "selected-primary-contact-03.jpg",
+      "sha256": "d9dea8528c6bd661950b04b53cbedec75ef8af645f8de263d105f6407a77c454",
+      "count": 6
+    },
+    {
+      "name": "selected-primary-contact-04.jpg",
+      "sha256": "19e5b788ed5a39fe71905e20d7f3cc5be34064e29431bc033cc75fb25c878745",
+      "count": 6
+    }
+  ],
+  "ownerApproved": false,
+  "nativeVerified": false
+}
