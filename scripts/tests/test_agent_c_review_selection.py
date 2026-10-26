@@ -23,7 +23,7 @@ class PhotoSelectionTests(unittest.TestCase):
         return copy.deepcopy((self.selection, self.migration, self.provenance))
 
     def test_current_six_accepted_with_caveat(self):
-        self.assertEqual(mod.evaluate(*self.example()), "HISTORICAL_SIX_WITH_DISCLOSED_PHOTO_GAPS")
+        self.assertEqual(mod.evaluate(*self.example()), "ATOMIC_CC0_SIX_UNAPPROVED")
 
     def test_atomic_six_supported_as_unapproved_alternative(self):
         selection, migration, provenance = self.example()
@@ -32,9 +32,16 @@ class PhotoSelectionTests(unittest.TestCase):
                 item["reviewCandidatePath"] = migration["sourcePaths"][item["surfaceId"]]
         self.assertEqual(mod.evaluate(selection,migration,provenance), "ATOMIC_CC0_SIX_UNAPPROVED")
 
+    def test_historical_six_alternative_remains_supported(self):
+        selection, migration, provenance = self.example()
+        for item in selection["primarySurfaces"]:
+            if item["surfaceId"] in mod.ROLES:
+                item["reviewCandidatePath"] = migration["currentSelectedPaths"][item["surfaceId"]]
+        self.assertEqual(mod.evaluate(selection,migration,provenance), "HISTORICAL_SIX_WITH_DISCLOSED_PHOTO_GAPS")
+
     def test_partial_migration_rejected(self):
         selection,migration,provenance = self.example()
-        next(x for x in selection["primarySurfaces"] if x["surfaceId"] == "home")["reviewCandidatePath"] = migration["sourcePaths"]["home"]
+        next(x for x in selection["primarySurfaces"] if x["surfaceId"] == "home")["reviewCandidatePath"] = migration["currentSelectedPaths"]["home"]
         with self.assertRaisesRegex(ValueError, "mixed or unknown"):
             mod.evaluate(selection,migration,provenance)
 
