@@ -41,9 +41,10 @@ def main():
     assert '<rect x="328" y="365"' not in s and '<rect x="328" y="457"' not in s
 
     requires("external-handler-fallback--chooser-cancelled",
-             ["Sharing cancelled", "You closed the share chooser",
-              "No recipient selected; nothing was sent", "Try sharing again", "Save locally"],
-             ["No supported app found"])
+             ["Share chooser closed", "You closed the share chooser",
+              "Delivery not confirmed by Android", "Try sharing again", "Save locally"],
+             ["No supported app found", "No recipient selected; nothing was sent",
+              "No recipient received"])
     requires("external-handler-fallback--email-missing", ["No supported app found"])
     requires("credits-licences--rights-warning",
              ["Image rights need checking", "without verified reuse terms."])
