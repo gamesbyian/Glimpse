@@ -5,7 +5,7 @@ const $=id=>document.getElementById(id);
 const api=()=>window.GlimpseReview;
 const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const criteria=[["entry","Entry, goal and primary action are recognizable"],["continuity","Choices and visual continuity are coherent"],["recovery","Errors, interruption and cancellation are explained"],["exit","Successful finish, Back and non-gesture paths are clear"]];
-const lens={mode:"off",value:50},visited={};
+const lens={mode:"off",value:50},camera={scale:1,x:0,y:0,drag:null},visited={};
 let lastKey="",playing=null,timeline=false,mapKind="primary";
 function ctx(){const g=api();if(!g?.ready)return null;const it=g.currentRecord();return it?{g,it,key:it.kind+":"+it.id}:null}
 function stop(){if(playing){clearInterval(playing);playing=null}$("journeyPlay").textContent="▶ Play";$("journeyPlay").setAttribute("aria-pressed","false")}
@@ -131,10 +131,42 @@ function copyMarkdown(){
  const t=markdown();if(navigator.clipboard?.writeText)navigator.clipboard.writeText(t).then(()=>api().notify("Source-bound feedback copied")).catch(()=>fallback(t));else fallback(t);
 }
 function fallback(text){const e=document.createElement("textarea");e.value=text;document.body.append(e);e.select();try{document.execCommand("copy");api().notify("Copied")}catch(err){api().notify("Clipboard unavailable")}e.remove()}
+function drawCamera(){
+ const screens=$("screens"),stage=$("canvasStage");if(!screens||!stage)return;
+ screens.style.transformOrigin="center center";
+ screens.style.transform="translate("+camera.x+"px,"+camera.y+"px) scale("+camera.scale+")";
+ $("zoomPercent").textContent=Math.round(camera.scale*100)+"%";
+ $("zoomOut").disabled=camera.scale<=1;
+ $("zoomIn").disabled=camera.scale>=3;
+ stage.classList.toggle("zoom-active",camera.scale>1);
+}
+function resetCamera(){
+ camera.scale=1;camera.x=0;camera.y=0;camera.drag=null;drawCamera();
+}
+function zoom(delta){
+ const next=Math.max(1,Math.min(3,Math.round((camera.scale+delta)*4)/4));
+ camera.scale=next;
+ if(next===1){camera.x=0;camera.y=0}
+ drawCamera();
+}
+function panStart(e){
+ if(camera.scale<=1||e.button!==0||e.target.closest("button"))return;
+ camera.drag={id:e.pointerId,atX:e.clientX,atY:e.clientY,x:camera.x,y:camera.y};
+ $("canvasStage").setPointerCapture?.(e.pointerId);
+ e.preventDefault();
+}
+function panMove(e){
+ const d=camera.drag;if(!d||d.id!==e.pointerId)return;
+ const limitX=$("canvasStage").clientWidth*(camera.scale-1)/2,limitY=$("canvasStage").clientHeight*(camera.scale-1)/2;
+ camera.x=Math.max(-limitX,Math.min(limitX,d.x+e.clientX-d.atX));
+ camera.y=Math.max(-limitY,Math.min(limitY,d.y+e.clientY-d.atY));
+ drawCamera();
+}
+function panEnd(e){if(camera.drag?.id!==e.pointerId)return;camera.drag=null}
 function update(){
  const c=ctx();if(!c)return;
- if(c.key!==lastKey){lastKey=c.key;stop();lens.mode="off"}
- paintLens();journeyDraw();
+ if(c.key!==lastKey){lastKey=c.key;stop();lens.mode="off";resetCamera()}
+ paintLens();journeyDraw();drawCamera();
 }
 function bind(){
  $("diffWipe").addEventListener("click",()=>setLens("wipe"));
@@ -142,6 +174,13 @@ function bind(){
  $("comparisonSlider").addEventListener("input",e=>{lens.value=Number(e.target.value);applyLens()});
  $("resetDiff").addEventListener("click",()=>{lens.value=50;$("comparisonSlider").value="50";applyLens()});
  $("focusMode").addEventListener("click",setFocus);
+ $("zoomIn").addEventListener("click",()=>zoom(.25));
+ $("zoomOut").addEventListener("click",()=>zoom(-.25));
+ $("zoomReset").addEventListener("click",resetCamera);
+ $("canvasStage").addEventListener("pointerdown",panStart);
+ $("canvasStage").addEventListener("pointermove",panMove);
+ $("canvasStage").addEventListener("pointerup",panEnd);
+ $("canvasStage").addEventListener("pointercancel",panEnd);
  for(const id of ["compare","fullSource","startPin"]){
   $(id).addEventListener("click",()=>{
    if(lens.mode!=="off"){
@@ -184,6 +223,11 @@ function bind(){
  $("targetedIssue").addEventListener("click",issue);
  $("copyFeedback").addEventListener("click",copyMarkdown);
  document.addEventListener("keydown",e=>{
+  if(!e.target.closest("textarea,input,select,[contenteditable]")&&!$("overviewDialog").open){
+   if(e.key==="+"){e.preventDefault();zoom(.25)}
+   if(e.key==="-"){e.preventDefault();zoom(-.25)}
+   if(e.key==="0"){e.preventDefault();resetCamera()}
+  }
   if(e.key==="?"&&!e.target.closest("textarea,input,select,[contenteditable]")&&!$("overviewDialog").open&&!$("helpDialog").open){e.preventDefault();$("helpDialog").showModal()}
  });
  document.addEventListener("visibilitychange",()=>{if(document.hidden)stop()});
