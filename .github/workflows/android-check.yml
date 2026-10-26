@@ -9,6 +9,7 @@ on:
       - "gradle/**"
       - "gradle.properties"
       - ".github/workflows/android-check.yml"
+      - "scripts/verify-reel-material.py"
   pull_request:
     paths:
       - "app/**"
@@ -16,6 +17,7 @@ on:
       - "gradle/**"
       - "gradle.properties"
       - ".github/workflows/android-check.yml"
+      - "scripts/verify-reel-material.py"
 permissions:
   contents: read
 concurrency:
@@ -38,6 +40,8 @@ jobs:
           if [ -d "$ANDROID_HOME/platforms/android-37.0" ] && [ ! -e "$ANDROID_HOME/platforms/android-37" ]; then
             ln -s "$ANDROID_HOME/platforms/android-37.0" "$ANDROID_HOME/platforms/android-37"
           fi
+      - name: Validate baked paper material geometry
+        run: python3 scripts/verify-reel-material.py
       - name: Compile and test
         run: ./gradlew --no-daemon :app:assembleDebug :app:testDebugUnitTest
       - uses: actions/upload-artifact@v4
