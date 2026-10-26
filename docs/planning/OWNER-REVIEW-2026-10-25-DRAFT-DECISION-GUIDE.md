@@ -16,6 +16,19 @@ The single integration proposal remains [draft PR #6](https://github.com/gamesby
 
 [Independent desktop + mobile Chromium interaction acceptance](https://github.com/gamesbyian/Glimpse/actions/runs/40254307142) exercised option switching, 2-up comparison, screen pins, locally saved choices, D01, a source-bound JSON export and a 393px mobile drawer, with screenshot artifacts. Passing this browser test does not imply design approval.
 
+## Review Studio enhancements (October 25 · current)
+
+The live site remains **https://gamesbyian.github.io/Glimpse/review/** and publishes from the unmerged integration draft via the trusted `main` workflow. This is an editorial workstation rather than a certificate of native implementation.
+
+- **Fast differences:** choose any screen variant, then use **Wipe** for a precise moving split or **Blend** for a transparent overlay against its recommended baseline. The on-screen percentage slider changes only how the images are displayed; it never changes SVG source. **Focus** hides side panels; **Side by side**, **Hold A/B** and annotated-full-SVG inspection are complementary modes.
+- **Whole-product contact wall:** **Set map** previews all 24 primary screens, 34 support states or 23 connected journeys. Each item is a direct jump to its maximum-area review, with a local review-status label. Contact previews use the same source-space phone crop as the main viewer.
+- **Real journey review:** for X01–X23, use **Previous / Next**, timeline scrubber and opt-in playback to inspect every frame. A journey can be accepted only after four explicit checks: entry/action, sequence coherence, recovery/cancellation, and exit/non-gesture path. Journey acceptance is pinned to the ordered SHA-256 list of its storyboard frames and becomes stale after a source change. General and frame-pinned comments remain separate.
+- **Actionable GitHub feedback:** a screen-level **Prepare GitHub issue** action opens GitHub's new-issue composer containing the exact source URL, SHA, option, status, comments and pin coordinates. You must explicitly confirm leaving the reviewer and submit the issue yourself; nothing is posted automatically. **Copy screen feedback as Markdown** works for review handoffs without GitHub access.
+- **Final acceptance gate:** all **58 primary/support selections**, **23 source-current journeys** and **eight design decisions** must be reviewed coherently before an explicit whole-set approval-*request* export can be authorized. Revisions, blocking comments, stale hashes and mixed six-screen photographic selections prevent readiness. The exported packet remains a request only; no PR, `design/approved/` file or Android release flag is modified.
+- **Privacy and recovery:** all comments, statuses and selections remain in the browser's local storage until deliberate export, import, clipboard or GitHub issue submission. Export JSON regularly to preserve work across devices. GitHub Pages receives normal hosting requests for public draft artwork, not the browser's private review records.
+
+[Chromium browser QA](https://github.com/gamesbyian/Glimpse/actions/workflows/glimpse-review-browser-qa.yml) now covers visual difference mode, source map, screen pins, journaled journey review, desktop/mobile viewport behavior and export. **This does not prove TalkBack, 200% text, real Android OS chooser semantics or physical-device behavior.**
+
 ## Open these first
 
 1. [Curated whole-product reviewer](../../design/atlas/whole-product-review-selection.html): **24 primary screens**, **34 support states**, **23 linked journeys (137 storyboard frames)** and **eight questions**. Each selected source has its SHA-256 printed beside its card. **Open a generated reviewer only after its validation workflow has regenerated the exact current source snapshot.**
