@@ -50,7 +50,8 @@ try:
         page.locator("#diffWipe").click()
         assert page.locator("#comparisonControls").is_visible()
         assert page.locator(".difference-frame").count()==1
-        page.locator("#comparisonSlider").fill("72")
+        slider=page.locator("#comparisonSlider")
+        slider.evaluate("(el) => {el.value='72'; el.dispatchEvent(new Event('input',{bubbles:true}));}")
         assert "72%" in page.locator("#comparisonValue").inner_text()
         assert "28%" in page.locator(".diff-top").get_attribute("style")
         page.locator("#diffBlend").click()
