@@ -3,6 +3,19 @@
 **October 25, 2026 · editorial review candidate · NOT APPROVED.**
 The single integration proposal remains [draft PR #6](https://github.com/gamesbyian/Glimpse/pull/6), unmerged into `main`. No file in `design/approved/` is changed. Every candidate remains subject to your choice.
 
+## Interactive Pages review studio (recommended first)
+
+**Live reviewer:** https://gamesbyian.github.io/Glimpse/review/ . The [Pages publisher workflow](https://github.com/gamesbyian/Glimpse/actions/workflows/glimpse-pages-publisher.yml) runs from trusted `main` while checking out the **unmerged review candidate branch**. Its build metadata records the exact draft source commit. This publishing path does **not** approve a design or merge PR #6.
+
+- **Large screen / fast comparisons:** a phone-cropped maximized canvas, variant chips, hold-to-peek A/B, side-by-side mode, full annotated SVG, browser fullscreen. Use Left/Right to change options, J/K to step screens, Space to peek, F to maximize. The control panels become drawers on mobile.
+- **Browse and judge everything:** 24 primary screens; 34 distinct support states; 23 sequential journeys (137 storyboard frames); exhaustive source artwork; and D01–D08 decisions. Source hash and file path follow each displayed version.
+- **Individual review:** choose a preferred screen source, Accept / Revise / Defer, add general notes, or pin an issue with priority directly on the phone crop. Each pin records its exact SVG path and SHA-256. Changes to a source invalidate stale visual acceptance records.
+- **Whole-set review:** live counts, eight distinct decision prompts, source-choice compatibility safeguards across the six photographic screens, outstanding feedback and blocking pins. Whole-set approval *request* is a separate explicit action that cannot be activated with unresolved revisions, incompatible design selections, or missing acceptance.
+- **Data retention:** review input is automatically stored **in this browser's localStorage only**. It is not sent to GitHub, its authors or a server. Browser storage is not a cross-device backup. **Export the JSON review file** to preserve/share it, and import it on another browser or attach it to a GitHub issue / the chat. The GitHub issue action pre-fills a short summary only. No actual repository approval is claimed by clicking a browser button.
+- **Boundaries:** browser proposals are static SVG studies; not native 320dp/200%-font acceptance, TalkBack/navigation verification, Android picker/Doze result proof, or a signed app release.
+
+[Independent desktop + mobile Chromium interaction acceptance](https://github.com/gamesbyian/Glimpse/actions/runs/40254307142) exercised option switching, 2-up comparison, screen pins, locally saved choices, D01, a source-bound JSON export and a 393px mobile drawer, with screenshot artifacts. Passing this browser test does not imply design approval.
+
 ## Open these first
 
 1. [Curated whole-product reviewer](../../design/atlas/whole-product-review-selection.html): **24 primary screens**, **34 support states**, **23 linked journeys (137 storyboard frames)** and **eight questions**. Each selected source has its SHA-256 printed beside its card. **Open a generated reviewer only after its validation workflow has regenerated the exact current source snapshot.**
