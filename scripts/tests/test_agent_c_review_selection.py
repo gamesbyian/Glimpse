@@ -44,6 +44,18 @@ class PhotoSelectionTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "aliased"):
             mod.evaluate(selection,migration,provenance)
 
+    def test_missing_creator_rejected(self):
+        selection,migration,provenance = self.example()
+        provenance["requestedIndependentPhotos"][0]["creator"] = ""
+        with self.assertRaisesRegex(ValueError, "creator or source page"):
+            mod.evaluate(selection,migration,provenance)
+
+    def test_unverified_license_rejected(self):
+        selection,migration,provenance = self.example()
+        provenance["verifiedReplacementPhotos"][0]["rightsStatus"] = "unverified"
+        with self.assertRaisesRegex(ValueError, "license evidence"):
+            mod.evaluate(selection,migration,provenance)
+
     def test_false_approval_rejected(self):
         selection,migration,provenance = self.example()
         selection["approval"]["ownerApproved"] = True
