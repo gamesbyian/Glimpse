@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Independently check exact embedded photo bytes in A's six unselected SVGs.
+"""Independently check exact embedded photo bytes in A's six unapproved SVGs.
 
 This is source/rights-provenance acceptance, not optical, native or owner approval.
 """
@@ -48,11 +48,11 @@ def embedded_hashes(path):
 def validate(root=ROOT):
     ca = json.loads((root / C).read_text())
     aa = json.loads((root / A).read_text())
-    check(aa.get("status") == "UNSELECTED_SOURCE_EDITABLE_MIGRATION"
+    check(aa.get("status") == "EDITORIAL_CC0_SIX_REVIEW_CANDIDATE_NOT_OWNER_APPROVED"
           and aa.get("ownerApproved") is False
           and aa.get("androidWallpaperCurrentVerified") is False
           and aa.get("sourceMode") == "rights-verified-replacements",
-          "Unselected A candidate claims acceptance or lacks rights mode")
+          "Provisional A candidate claims acceptance or lacks rights mode")
     check(aa.get("selectedId") == "p12"
           and aa.get("lastGlimpseAcknowledgedId") == "p04",
           "Selected photo and historical applied photo conflate identities")
@@ -87,7 +87,7 @@ def validate(root=ROOT):
             check(hashes[name] in images, f"{role} lacks complete genuine {name} JPEG")
             accepted += 1
         check(not images.intersection(old), f"{role} embeds old rights-blocked art")
-    print(f"PASS: {accepted} exact photo-role checks in six UNSELECTED SVGs; "
+    print(f"PASS: {accepted} exact photo-role checks in six UNAPPROVED SVGs; "
           "13 uniquely SHA-verified CC0 sample identities; p12 continuous. "
           "Not visual, Android or human acceptance.")
     return accepted
