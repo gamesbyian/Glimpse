@@ -228,7 +228,7 @@
       "family": "diagnostic-preview",
       "state": "expanded",
       "source": "design/proposals/support-plates/diagnostic-preview--expanded.svg",
-      "sourceSHA256": "6652e464238a7b07f3582d266f52c886f1e3642c965cbcf9616fbc2fc3f1410c",
+      "sourceSHA256": "6d9b0c31377f18fcddb5f66452ab507f34f20b55212db7719bc92f9f0c248e85",
       "phoneCrop": [
         15,
         14,
@@ -693,7 +693,7 @@
     },
     {
       "name": "support-phone-contact-02.jpg",
-      "SHA256": "b4bdded35519a0463659b0e0a551b8929976a0f6e23a1808a743a6b2ec57971e",
+      "SHA256": "55a1cfbe686067c003f5f483dba3e982eea9feffa75f98c1dc01d7e7806ce820",
       "sourceCount": 6
     },
     {

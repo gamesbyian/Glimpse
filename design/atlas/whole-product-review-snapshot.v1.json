@@ -9,281 +9,281 @@
     "revisionScenarios": 56
   },
   "referenceManifest": "design/proposals/whole-product-review-selection.v1.json",
-  "uniqueReferencedSources": 258,
+  "uniqueReferencedSources": 264,
   "sources": [
     {
       "path": "design/proposals/advanced-storyboards/x13/01-original.svg",
-      "sourceSHA256": "7233f8e0fd85f990ac885e82f3580d74e5aa93dd5b7a0ea3e98cf18073a04744",
+      "sourceSHA256": "c3eb18cdd75b264133520f15d7b53598bd3c4086fd727f1a528da6b43ccbcd62",
       "ownerApproved": false
     },
     {
       "path": "design/proposals/advanced-storyboards/x13/02-edited.svg",
-      "sourceSHA256": "afa5556e0c205034e95d488112c99f6159b0bbbdcf50d140575e571f4359c8bd",
+      "sourceSHA256": "8dfd18461105318ada552df5696b557f29a0f778ea94460701e93a96b43d6eb5",
       "ownerApproved": false
     },
     {
       "path": "design/proposals/advanced-storyboards/x13/03-chooser.svg",
-      "sourceSHA256": "652010a429b3cd206a00283d2df77da6b15b7750c1fa3241a7342f1883868254",
+      "sourceSHA256": "bc18dc73647d812a302ea69db0ceb641e5b97458ad5d4bd76dae0b2fde540aab",
       "ownerApproved": false
     },
     {
       "path": "design/proposals/advanced-storyboards/x13/04-cancel.svg",
-      "sourceSHA256": "95776a8fb56f66eb3ae477c6f6393eafb7d834348f7e4adc325641bde4bcfca7",
+      "sourceSHA256": "89985fdd0fd0b7744722f2b9df86c56eb3d2256740370dfba9dd436fb2c9f484",
       "ownerApproved": false
     },
     {
       "path": "design/proposals/advanced-storyboards/x13/05-unavailable.svg",
-      "sourceSHA256": "2c4ba6a823043b60c68eae318a75f9aa4b5ebf903181148ec2852712eb8426af",
+      "sourceSHA256": "b7b890675f7374d33ff03e5d52d0ec57520b63f8c95401eede01a32251664211",
       "ownerApproved": false
     },
     {
       "path": "design/proposals/advanced-storyboards/x14/01-home.svg",
-      "sourceSHA256": "d0a6ece18dc82d719958047e75eecc43d08f8834393099e962eb5646f0efd9aa",
+      "sourceSHA256": "123cb5a24cde1f99401751c62b33f8668e8fd311962a67921431f081f09c4111",
       "ownerApproved": false
     },
     {
       "path": "design/proposals/advanced-storyboards/x14/02-lock.svg",
-      "sourceSHA256": "c81cf29115e27bb88db47f3d050e85687e240fa0ad6d770cd61fcd137ce8455f",
+      "sourceSHA256": "722815d3ffa1aa1ba466395d52cb476471a6f7d952daaaf93797d116ac8095b5",
       "ownerApproved": false
     },
     {
       "path": "design/proposals/advanced-storyboards/x14/03-side-by-side.svg",
-      "sourceSHA256": "d323d8fd461efb9bf18672deea05be8c0b7d0c52b31c66095363f34a7ceeaa87",
+      "sourceSHA256": "dc045a2e7ea3c785e888597f97d3c3800eba8e436a3575870d7bc05b896bbc1b",
       "ownerApproved": false
     },
     {
       "path": "design/proposals/advanced-storyboards/x14/04-unsupported.svg",
-      "sourceSHA256": "43206f7b91e196dcbd6b13ad0263cea92d2b3d6d26203c820d3ff49f76feeb7a",
+      "sourceSHA256": "b5f50b8ce37ae2775bc9709a3058bf57e74e3fde1c138a336375ceff4453f1ba",
       "ownerApproved": false
     },
     {
       "path": "design/proposals/advanced-storyboards/x14/05-apply-both.svg",
-      "sourceSHA256": "0074519312ffc6242d7548a464185e991f15762de565bb47f233ebba1fc9e7e0",
+      "sourceSHA256": "3804e0bc9ff3f216c49c165ab180cca94491c6353903a5582971d334a30b64bc",
       "ownerApproved": false
     },
     {
       "path": "design/proposals/advanced-storyboards/x15/01-library.svg",
-      "sourceSHA256": "edff686a3562e4d14f73add09d1e5f41e9c0abeb51d1603d609515f59a4a5235",
+      "sourceSHA256": "aba033f7bd8b74458b595a6f46bbfc93954d5564113b70ccfe44513e44822d74",
       "ownerApproved": false
     },
     {
       "path": "design/proposals/advanced-storyboards/x15/02-filter.svg",
-      "sourceSHA256": "0625d28d04448a2f48009000096ad92d67011c83f2e8d1d61bad9aed9adb0e83",
+      "sourceSHA256": "e187669b639ef1f7dcd6356edae973dc563a2c413aa7e01fce4b25c3cc688d4b",
       "ownerApproved": false
     },
     {
       "path": "design/proposals/advanced-storyboards/x15/03-range-selection.svg",
-      "sourceSHA256": "9f54bfec40e9a2d3a8f898222c748b08a6114a8c506ff73743c0aec6ca99b416",
+      "sourceSHA256": "66709b963f20f76b7787e9023a49cf2366c61a93032036ad420fb5bf7353e284",
       "ownerApproved": false
     },
     {
       "path": "design/proposals/advanced-storyboards/x15/04-confirm-exclude.svg",
-      "sourceSHA256": "ae8828994891ccb0231135ad1bc9bfef152fa05d8960ec2c75215ec4d1efacf8",
+      "sourceSHA256": "4216172b9b1e645f90c17712cbb0d94e4c1e1d682f7978ec625fb478fb496c9a",
       "ownerApproved": false
     },
     {
       "path": "design/proposals/advanced-storyboards/x15/05-restore.svg",
-      "sourceSHA256": "683d6a0c1dea0cae1616a84be580e6de1e026e0da53ade86a1020d38d4d3f48a",
+      "sourceSHA256": "9428704f8242ea1805c07ae630c435a9327282420be85b1198f48bd299d9deee",
       "ownerApproved": false
     },
     {
       "path": "design/proposals/advanced-storyboards/x16/01-rules.svg",
-      "sourceSHA256": "6728677986d6cab23ee5c4717f2a3535ecbb450d0203d2efa37af90b85b954e0",
+      "sourceSHA256": "233c1fc9bb7d363e1cadc1c791f78a80d3a28bee3ee56468a62a19dd7f4edb6c",
       "ownerApproved": false
     },
     {
       "path": "design/proposals/advanced-storyboards/x16/02-conflict.svg",
-      "sourceSHA256": "721f78788a94e29cffe807c62ce699209c63706d1d9521ec3e65d8334ffcc298",
+      "sourceSHA256": "7840ffd66b0a1d12c368ef3a4d2524dcf4a28dac9e472f9fab1c0c202f8febdd",
       "ownerApproved": false
     },
     {
       "path": "design/proposals/advanced-storyboards/x16/03-precedence.svg",
-      "sourceSHA256": "1d781626d315436d8d4a41ec3ae6b35748f2aeba8844add83d881932683329f7",
+      "sourceSHA256": "670fb858e42bfd116969b5af6e1b227aef12a984b559698f9dcfe6dc00696f88",
       "ownerApproved": false
     },
     {
       "path": "design/proposals/advanced-storyboards/x16/04-nested.svg",
-      "sourceSHA256": "fac67dc96e02fd42d19c9e7f79cbb547b64aaae70877c5fe4c4d0bce3269db24",
+      "sourceSHA256": "6d505ea421b19e43cfff13ee31eb1b2306503557ff30a0e05bc1394602e15f8e",
       "ownerApproved": false
     },
     {
       "path": "design/proposals/advanced-storyboards/x16/05-simulate.svg",
-      "sourceSHA256": "fa144a9f5d7781b0230e95be4630942f8bd912f814ffaebab34278553daf227b",
+      "sourceSHA256": "1828ac26eac800bc90fd582db231d7876bcddce23e9a394b34158ec924d4211c",
       "ownerApproved": false
     },
     {
       "path": "design/proposals/advanced-storyboards/x17/01-providers.svg",
-      "sourceSHA256": "2c63b6c71b29a0168a1fcb8268a2ec35c8324c630c8f0e67a86f249ba9c29821",
+      "sourceSHA256": "dc73f63695efebab73cccda4c74bc11e34ff52418f4089af2b889e5bf759f8b1",
       "ownerApproved": false
     },
     {
       "path": "design/proposals/advanced-storyboards/x17/02-provider-detail.svg",
-      "sourceSHA256": "4f2bde393e8367c264de997c5cffb86540c1673e3cb28fda435f139ca4ff734c",
+      "sourceSHA256": "1307c6bc713dd11e468ec5265c6b1f1ff246968090de6bdd853106249898f778",
       "ownerApproved": false
     },
     {
       "path": "design/proposals/advanced-storyboards/x17/03-image-licence.svg",
-      "sourceSHA256": "f573fa4168ce16e03328179533b88d84174997dd0a5a4437a9044cff6c367b0c",
+      "sourceSHA256": "9cba5c43600f85244e5a5de34807f3ff2071b3d300aa6b3fee38d5a256e7fd05",
       "ownerApproved": false
     },
     {
       "path": "design/proposals/advanced-storyboards/x17/04-offline.svg",
-      "sourceSHA256": "d6eec7631868935ffd3b942046ca21238a32b0b839f17d1b45b53bfb088bb3d7",
+      "sourceSHA256": "3186eb904fe4f37e5476e5bbde3741fb0cb68e51823cfbf1cc6215fdaba31f06",
       "ownerApproved": false
     },
     {
       "path": "design/proposals/advanced-storyboards/x17/05-partial-import.svg",
-      "sourceSHA256": "d189efe4937031b9bfc6b958250a2c262328e9f025ac867801c3af2619312b95",
+      "sourceSHA256": "5628f4976bc7c46859d5410f447989766716ee3b7c993ccc4fb0af5a793150f7",
       "ownerApproved": false
     },
     {
       "path": "design/proposals/advanced-storyboards/x18/01-activity.svg",
-      "sourceSHA256": "502f5e4bee23fdccdcfb6acf8957d730ec3e89ceb56f692fcce800a62661e7c3",
+      "sourceSHA256": "c7d8289b153fe4d6aafd536b39700c9d89291e5f58faf58a40dfc823aebc2e03",
       "ownerApproved": false
     },
     {
       "path": "design/proposals/advanced-storyboards/x18/02-unknown.svg",
-      "sourceSHA256": "ac1cdbb7f869bc06d111e5ae0f1c995b4ebbeb8f47195df822a9f1cf69af9dec",
+      "sourceSHA256": "106c0e94bb48c28f853442731cc3bd432bc3bed4c331a4bb9fef669fb896751e",
       "ownerApproved": false
     },
     {
       "path": "design/proposals/advanced-storyboards/x18/03-delayed.svg",
-      "sourceSHA256": "48ad43311b943baba5a2378be540183ff66c7ab8edf8e2cff1b6a5fa427c9b33",
+      "sourceSHA256": "b158e24f5ce9da1620941fff31493253697ae2ab5ade5f9933db9731fef20522",
       "ownerApproved": false
     },
     {
       "path": "design/proposals/advanced-storyboards/x18/04-retry.svg",
-      "sourceSHA256": "65e92912619a7f89b5be52deb79695efaba077be6b44a92e93955c924737df59",
+      "sourceSHA256": "614a99b4d908ebce8ddcbf30ce5121e2e1fd475b698121092f8dcc6119daafe7",
       "ownerApproved": false
     },
     {
       "path": "design/proposals/advanced-storyboards/x18/05-previous.svg",
-      "sourceSHA256": "5ff4939f552fe11e8636b9d5a2f70796a7ded788f727508fbd6013f1c76dab44",
+      "sourceSHA256": "e4622750e29592f8ff820f43141975cd3cef6e3cfebf28aff952b1cf73b0ac24",
       "ownerApproved": false
     },
     {
       "path": "design/proposals/advanced-storyboards/x19/01-export-scope.svg",
-      "sourceSHA256": "8a9cdc62d24f0d85bee43f058a8f89e62b3663618cbf6b4afd6423356e8513b4",
+      "sourceSHA256": "349933405886bda14cac6445f74181cf38d6043707f5c95493b5cbba46a3c937",
       "ownerApproved": false
     },
     {
       "path": "design/proposals/advanced-storyboards/x19/02-export-confirm.svg",
-      "sourceSHA256": "b0e9a5be500a5d8d7406011f3f4ae4bb55de3f82b01f38688e6deb95134176a9",
+      "sourceSHA256": "7fb82bd7088d5090533abac3716ba495e996431e14df16f21a19e211f3a08461",
       "ownerApproved": false
     },
     {
       "path": "design/proposals/advanced-storyboards/x19/03-restore-review.svg",
-      "sourceSHA256": "43a82f3e6860679cef2f630817290856c415ec15737b8c0c7192f61155b66fb0",
+      "sourceSHA256": "221207b5b9664cb76ef5f5e94625b52d7558e9853bc7b0bfc07f3afe3cfdea54",
       "ownerApproved": false
     },
     {
       "path": "design/proposals/advanced-storyboards/x19/04-restore-conflict.svg",
-      "sourceSHA256": "b9acde4b856fc34b282b35e6ba52b6ae0bb80e786c18e6eb26d3d829e2533dac",
+      "sourceSHA256": "6c953c09660b7f51791983421251c233e80dd044b75ac4c5a2dfdada93c0fc2a",
       "ownerApproved": false
     },
     {
       "path": "design/proposals/advanced-storyboards/x19/05-restore-result.svg",
-      "sourceSHA256": "3781d6def895ffb1f5e538ef0c6ac2e4b0f82d4600574294694b7fd657547a33",
+      "sourceSHA256": "9bf13d5bd5f9b6b2b187896408e11cb86f02ec43efac9d43a18b01e062b07870",
       "ownerApproved": false
     },
     {
       "path": "design/proposals/advanced-storyboards/x20/01-launcher-widget.svg",
-      "sourceSHA256": "ca6f63d281ecccc9f48ef1d1f61b0558e792b778f942405c26408a52e875eb3e",
+      "sourceSHA256": "11e3ca48af4b9a831a4df1792499f0c477d3bd9aee727b1bfe9899df73bba794",
       "ownerApproved": false
     },
     {
       "path": "design/proposals/advanced-storyboards/x20/02-widget-resize.svg",
-      "sourceSHA256": "e0700f23466847d49d87ff3d0839f78422fc334f4b792d92c5aa8ac0f8caa95b",
+      "sourceSHA256": "3cb357bb2b9296d3bdda5fb3bba01c58c74cd93dcecc7b3568afb21372f221f0",
       "ownerApproved": false
     },
     {
       "path": "design/proposals/advanced-storyboards/x20/03-quick-tile.svg",
-      "sourceSHA256": "9933caa71f871908ae088e1b3186cf140518107135ad6716872e4d163b2276dc",
+      "sourceSHA256": "405141d34aad188f6f0d63638e8035f666b0508c91ab0569d72e17a1b988d40c",
       "ownerApproved": false
     },
     {
       "path": "design/proposals/advanced-storyboards/x20/04-shortcut.svg",
-      "sourceSHA256": "e2bb3b48b685dc5de51adabd828755816b37d3cf92bcf388862c914fd7d39c45",
+      "sourceSHA256": "602840ff61c46f62b9ff47ccc7a743de105454e36cce27f19d3a1cc409b0bda3",
       "ownerApproved": false
     },
     {
       "path": "design/proposals/advanced-storyboards/x20/05-unavailable.svg",
-      "sourceSHA256": "278162f75a6790e9aad2c74efbbac46f988dc8153f26486d5d7750d66e2e8507",
+      "sourceSHA256": "dc8e6979409738bba470db3e73106cb32b181a885b119964ecbec4af07f44fc8",
       "ownerApproved": false
     },
     {
       "path": "design/proposals/advanced-storyboards/x21/01-enter.svg",
-      "sourceSHA256": "14fced3d69f1bec72f1acbc22726fbb6be80b8a3cd8a9457ba3ed53203198c70",
+      "sourceSHA256": "5003f7a01e3b40b299fe68ade4afaf386a4d296fe75ecaf879a62d5cfe52cd4e",
       "ownerApproved": false
     },
     {
       "path": "design/proposals/advanced-storyboards/x21/02-about-help.svg",
-      "sourceSHA256": "d999848c90d140b7e5c049ca7b61235b0600cf3395927857843c85130498761f",
+      "sourceSHA256": "ad2c7938f6b0a3ad0a569c1990b8d32073e4cb521cb981ad6ef0be64d731c5fe",
       "ownerApproved": false
     },
     {
       "path": "design/proposals/advanced-storyboards/x21/03-permissions.svg",
-      "sourceSHA256": "142202f408c33b7c8592f603d54c3bda6026ccb07c5353311de20ec6203e51ee",
+      "sourceSHA256": "d080d51e8227ab5e5e274180c2f0736647791b67e919aa22377dfe68c9984119",
       "ownerApproved": false
     },
     {
       "path": "design/proposals/advanced-storyboards/x21/04-report.svg",
-      "sourceSHA256": "549440153d6186e7efe7d8f6a0748abb5eed54d9077f0923f519fc10c9de9f9c",
+      "sourceSHA256": "2b6faae642b53d15e82632b44c167fdfbb94c4463ba1ccb92ee4b97ab82f304b",
       "ownerApproved": false
     },
     {
       "path": "design/proposals/advanced-storyboards/x21/05-return.svg",
-      "sourceSHA256": "5a5b8c7199fd2cbc0c7c7151afa686d793649e316f56bf3d061599ae672c47a2",
+      "sourceSHA256": "ccfe45c3f9d5e219c018e4edefd6dfbbfaf804082235c1612977929bafd0a57e",
       "ownerApproved": false
     },
     {
       "path": "design/proposals/advanced-storyboards/x22/01-draft.svg",
-      "sourceSHA256": "41a77f74631bd7f8f7968b2ec2b1bf3c654038c04da0dca6a8c654872747baac",
+      "sourceSHA256": "9fb5e09eb5f03d7dd70494b6065dd8217210377f1b4c47d51a365df6fbd77780",
       "ownerApproved": false
     },
     {
       "path": "design/proposals/advanced-storyboards/x22/02-redacted.svg",
-      "sourceSHA256": "2c7e57489539949af1670a6c900f45d4d128e38271df5c743d166bbbbcbf4824",
+      "sourceSHA256": "543af7c31922853821685c5722133943d7b0d993cc375fbb2331f8b234bd61a4",
       "ownerApproved": false
     },
     {
       "path": "design/proposals/advanced-storyboards/x22/03-consent.svg",
-      "sourceSHA256": "3ef34cf5a4dd7a9a90c889a0e170bb06283811bcae1cf0ae498bf56599fefcdd",
+      "sourceSHA256": "f37947d200f3b291bc0968d2db8c57194e4baddcc3be09687c86a95df831d0a8",
       "ownerApproved": false
     },
     {
       "path": "design/proposals/advanced-storyboards/x22/04-chooser.svg",
-      "sourceSHA256": "3b0a9bdaac22ddc71d6566d6b6cf84bde8aaf29d7edf482d450db137f85d72f0",
+      "sourceSHA256": "8474c1089a2286c3a3e63ea8b25fd519203b563d52d65aa33cb664db1fc113ea",
       "ownerApproved": false
     },
     {
       "path": "design/proposals/advanced-storyboards/x22/05-absent.svg",
-      "sourceSHA256": "485f06d31f2f9afb9774b43adb847e43ebfbe35a782b41d7da57f71c211a8631",
+      "sourceSHA256": "f61bea1714276783f7448bb9cc2885b52ba5843a3baf39fcdedaa33721ea4f05",
       "ownerApproved": false
     },
     {
       "path": "design/proposals/advanced-storyboards/x23/01-loading.svg",
-      "sourceSHA256": "5ca06144bc1b9b2690549b15627cb03506935d215db1a627f4aa3e5e43ee3d0b",
+      "sourceSHA256": "6b9ccdc3da98b26455db3edf586b5589caf6ed908826ccf520643d65e4c8283b",
       "ownerApproved": false
     },
     {
       "path": "design/proposals/advanced-storyboards/x23/02-cloud-placeholder.svg",
-      "sourceSHA256": "4c6160e697ed39583e9fba5c9818afc1f55f01bca3a0a10fe7ae40de7f81104e",
+      "sourceSHA256": "c1471275d19361584b32a311ab74d44aaa936e9e28592807afb2b9a5aa1e6996",
       "ownerApproved": false
     },
     {
       "path": "design/proposals/advanced-storyboards/x23/03-long-names.svg",
-      "sourceSHA256": "4dc9f6b43052ce34a88ec8a7b125fafe80fb0ac5ac48c844500e217e8de270b5",
+      "sourceSHA256": "8932dc3c3016dd1ea8e682e90b3180bb18acb2907ee6dabfe2c9ca1cb6887e83",
       "ownerApproved": false
     },
     {
       "path": "design/proposals/advanced-storyboards/x23/04-duplicates.svg",
-      "sourceSHA256": "b8cccccd73d31a852808a58b972445033b5519c3dfa93971b411f21ba3b2b2be",
+      "sourceSHA256": "2442a08413f03745361b4098a75eb22ba56ce6cf422fba8916e3872a61e09968",
       "ownerApproved": false
     },
     {
       "path": "design/proposals/advanced-storyboards/x23/05-batch-error.svg",
-      "sourceSHA256": "9484a8a3680f3e280c3f04b4f4064edd90aa9a913ab5684c7d21b4771078f028",
+      "sourceSHA256": "4363f942efee72a8063e2403bbc77995f7ba2f9951a2721a18e963ba03573c67",
       "ownerApproved": false
     },
     {
@@ -478,27 +478,27 @@
     },
     {
       "path": "design/proposals/plates/accessibility-preferences.svg",
-      "sourceSHA256": "9804c614aab05177dcba76c1a688ebd7da80dda3c368702cae16834fc7081bed",
+      "sourceSHA256": "a62db6dab0849ac9bfdeaa76e3809a9e359f5d9762524a2945702b2ee00591cd",
       "ownerApproved": false
     },
     {
       "path": "design/proposals/plates/activity.svg",
-      "sourceSHA256": "286377bb558373e01240f67a55c45e3c36f7652efafa77b617f7b225a3d33cd3",
+      "sourceSHA256": "f8deb52445a4beb92151100469056521380163e813dd2d7e8687f38ff12bffa6",
       "ownerApproved": false
     },
     {
       "path": "design/proposals/plates/automation-editor.svg",
-      "sourceSHA256": "bd9a4bdedb0d4457412a4a426bb7cd844bc0e3e7c98f1b785f031155435d3cf8",
+      "sourceSHA256": "db66e8698cd701dd864a26382101def200cfc905e056eab3d8e5f6346356d186",
       "ownerApproved": false
     },
     {
       "path": "design/proposals/plates/automation.svg",
-      "sourceSHA256": "cc5964d646fed03c39abc337582d2b0f53cfeccfeecfe375f4d78dcd6b80f97f",
+      "sourceSHA256": "5869d2fc6dccfa72a33749336e58a384601e1a974c6158e304970dd5a0a8c0c7",
       "ownerApproved": false
     },
     {
       "path": "design/proposals/plates/backup-and-restore.svg",
-      "sourceSHA256": "3a306d36c9c1b124939f06a8f96d33bf54b7918bc76007b98477156bfff1d377",
+      "sourceSHA256": "f348cd77eefe4a1f5123341e08f80df2167ab0c766c64bd59204268989bce2ab",
       "ownerApproved": false
     },
     {
@@ -508,22 +508,22 @@
     },
     {
       "path": "design/proposals/plates/destinations.svg",
-      "sourceSHA256": "bc2da412df3c3ca53607c483a0757e1498585d3b9fbdb759e338b038be67c107",
+      "sourceSHA256": "b1c3b2ce79942b95085a51de44e25c75b1070678b3b1ee5239c81399f31040a2",
       "ownerApproved": false
     },
     {
       "path": "design/proposals/plates/diagnostics.svg",
-      "sourceSHA256": "2ec27e25e4375039f6ce7a729674cf889b269f357caf87abe2f8ec0f338ffc76",
+      "sourceSHA256": "701bf110a79592e7725bb019ff762615e6a33883ee2f00f3b2edb271f58e06ab",
       "ownerApproved": false
     },
     {
       "path": "design/proposals/plates/discover.svg",
-      "sourceSHA256": "b2b92b6ae7cdaeb2c2eb7052ecc0579f203dd52a33d30fb8f5b88e03105a0e68",
+      "sourceSHA256": "a576ec31198c902c61951e71ad119be98ee3f10c9b5c54a6bc6d06cbdb9f194f",
       "ownerApproved": false
     },
     {
       "path": "design/proposals/plates/error-empty-permission.svg",
-      "sourceSHA256": "7e0a79132c292352464d85e50f0a32bfe22c47d22a5eabf5917e3f04db67880d",
+      "sourceSHA256": "93b809e59bcae3770cf915a1487bc03400fb52ea025acc3898c761ab0ab3a273",
       "ownerApproved": false
     },
     {
@@ -538,12 +538,12 @@
     },
     {
       "path": "design/proposals/plates/image-editor.svg",
-      "sourceSHA256": "04cd81ac63c5ab92098af17f62dc2cb9e49b5c9f155051e75ab32f6bdb323f48",
+      "sourceSHA256": "e61e17ac8febe825864513245a4957c51ad8aab0f97d731bee53cd7c73e161e0",
       "ownerApproved": false
     },
     {
       "path": "design/proposals/plates/onboarding.svg",
-      "sourceSHA256": "ba6d900665e19405ce3ba725b3c578bd6b0e2f084c8d314b563a951d90ef937a",
+      "sourceSHA256": "f9a4a4c4875dd564d2ab8d68869623185ec3748e033e1054c5125823f6c73692",
       "ownerApproved": false
     },
     {
@@ -558,17 +558,17 @@
     },
     {
       "path": "design/proposals/plates/quick-settings-and-shortcuts.svg",
-      "sourceSHA256": "db3e585bd076538f191c682d87f7f3c0889cca80d4d3f9ec5945c9dafc54336b",
+      "sourceSHA256": "967f81e88e12496b7a168cbbd96787e781d60f7b61d40c509328532ba0418b82",
       "ownerApproved": false
     },
     {
       "path": "design/proposals/plates/quickstart.svg",
-      "sourceSHA256": "c703b20c763f663151ebadaa0fa14b29b0241afbc688a3818b216415a3e5910c",
+      "sourceSHA256": "327701ca9390cae6c350910e7d34a98ef15d79e9d14d0747b123057da585a873",
       "ownerApproved": false
     },
     {
       "path": "design/proposals/plates/schedule-simulator.svg",
-      "sourceSHA256": "67f4aba1c3f2a6c42a4337a10a44df9931b06fbdb5c26294431ccc0b39cf5a5b",
+      "sourceSHA256": "50b9c1f70b648e4a1b323eaa4753e22de54955844202cb05e1ad8dbd927d5287",
       "ownerApproved": false
     },
     {
@@ -583,12 +583,12 @@
     },
     {
       "path": "design/proposals/plates/source-detail.svg",
-      "sourceSHA256": "5e6dec1cf8cb8503b5d33a59e13956c63182269ae249bae6085a6ca0c8d84bf3",
+      "sourceSHA256": "96aa319cc91c7a79bc98bc6c9a8cafe6e16dc703261583c9dacbb29d2694d00e",
       "ownerApproved": false
     },
     {
       "path": "design/proposals/plates/widgets.svg",
-      "sourceSHA256": "76063da0380c74d7f659d3cda0d4fe44bdb81a066368d97b648c1a77813f78a2",
+      "sourceSHA256": "7840d9bc715a800347ff8dd73d22d8381dbc42033750f89ccb0c31c9410c3a20",
       "ownerApproved": false
     },
     {
@@ -718,412 +718,412 @@
     },
     {
       "path": "design/proposals/storyboards/x01/01-collection-entry.svg",
-      "sourceSHA256": "a93e6443c1f87f378057993a823c65614c60cfce7353dc8daa0978887c0e21c0",
+      "sourceSHA256": "6ef7504d0c6f45c198b300fa592319d8321d51c57b50e0acdde43e5e7c8613b5",
       "ownerApproved": false
     },
     {
       "path": "design/proposals/storyboards/x01/02-system-picker.svg",
-      "sourceSHA256": "861ef64956887499b59f23783dbd146f4961c231c857622ded5ac76f6b088c10",
+      "sourceSHA256": "1236e5fba7c110df9402bc2bac3315a7f12b0aa709fb6feea03c878a1b844f5d",
       "ownerApproved": false
     },
     {
       "path": "design/proposals/storyboards/x01/03-cloud-pending.svg",
-      "sourceSHA256": "05de22ea80b84ec82a74f1243dc067fea5384eb751c166aa04d25b6fd9156a44",
+      "sourceSHA256": "fb5aa36e6edac2a38c394aee6b4a629c380833dfbd1a0b07cace2b3e9a343946",
       "ownerApproved": false
     },
     {
       "path": "design/proposals/storyboards/x01/04-copy-progress.svg",
-      "sourceSHA256": "2ed61dacbf1c4318aebc94fd8c23aa69bf48cd4dde395a2e3a3f073b56b09257",
+      "sourceSHA256": "6841b68550f06436a80e098db66822d21300f8d874c2163ae848d6d238091c71",
       "ownerApproved": false
     },
     {
       "path": "design/proposals/storyboards/x01/05-partial-recovery.svg",
-      "sourceSHA256": "0d3849f9f6263821b66575b5f07d5ecffecc9ac7a62338d69f55e8da801fcfc8",
+      "sourceSHA256": "998af60a8ca75268d96e2fa1b54b55dc6361a2cd23f6266508ae2d1f5b573d7c",
       "ownerApproved": false
     },
     {
       "path": "design/proposals/storyboards/x01/06-import-result.svg",
-      "sourceSHA256": "c5073f036743b82465b92abf281b22e5907d345c6a98800243f1cc8f874f6411",
+      "sourceSHA256": "2b6b6031d1477f036fbe41e699b0d8e351c4a646ee55dc5a8e0422afb51e405d",
       "ownerApproved": false
     },
     {
       "path": "design/proposals/storyboards/x01/07-offline-ready.svg",
-      "sourceSHA256": "165734f0177e81d1495716adc8f39e045b4a3e9a64a274e292385822759aeb8a",
+      "sourceSHA256": "e88a19bb10348ed9da123ea4fbc76d924ec2c802b8646f228d79e86b5b758d36",
       "ownerApproved": false
     },
     {
       "path": "design/proposals/storyboards/x02/01-collection-list.svg",
-      "sourceSHA256": "5dbf0915b951a52b5e3e3a7fa0989dc58001204e80d81f52dcb0b139ab7a4eef",
+      "sourceSHA256": "9f0ba2930ac0d98ad66ec3df1a8377203487059b83d5031ec26329336f17eaf4",
       "ownerApproved": false
     },
     {
       "path": "design/proposals/storyboards/x02/02-create-sheet.svg",
-      "sourceSHA256": "0ccea1dd80a8e10e7a327ed976d6590b293803a11372bf529e08812981130847",
+      "sourceSHA256": "807c73635fc26f26a82b79a543a235a1b1d51a53b241e0982c327403c846e905",
       "ownerApproved": false
     },
     {
       "path": "design/proposals/storyboards/x02/03-import-target.svg",
-      "sourceSHA256": "2aad904f7ae067695102471aa208aeb7a0b39f9755412aa81cbe7759126eecec",
+      "sourceSHA256": "d0f91cc688b648cdf0621581a377acbe0327434befcf5937ef49b07469394968",
       "ownerApproved": false
     },
     {
       "path": "design/proposals/storyboards/x02/04-rename.svg",
-      "sourceSHA256": "b697c39fe06ab5c3f651afe3b40c4130067b97c9492ab22e621538ace7f6a895",
+      "sourceSHA256": "b67e94939d2dda2ec6fce5abfb2ef55c2e31604ad9679b3b7bfecfe93ba04c0f",
       "ownerApproved": false
     },
     {
       "path": "design/proposals/storyboards/x02/05-delete-confirm.svg",
-      "sourceSHA256": "38ead1cdd2ef4fb0c819bdd0aaecd83ad07bb0310ce0cd943c9f10c6934d74d4",
+      "sourceSHA256": "a6667ea41f5802938f6a6f1bfca0a913df7f9360e18fb090cd85a540db24b7b6",
       "ownerApproved": false
     },
     {
       "path": "design/proposals/storyboards/x02/06-empty-after-removal.svg",
-      "sourceSHA256": "2e37d4ecb3a22e91cc4b771043de9c6406b202fb8955243f85a153bc3644343d",
+      "sourceSHA256": "d74320b844e9253db0cc20b6b0be46c091e7141f646aa4f83be9dde413b8880f",
       "ownerApproved": false
     },
     {
       "path": "design/proposals/storyboards/x03/01-preview.svg",
-      "sourceSHA256": "ab14d57d0aa9e2e64fda33bf6d61a00cae440d4e375b860354df33433778a680",
+      "sourceSHA256": "aeca2b1a0d8994964ece0e13bcda07cbd5602616d6dae1b9b976f8f0a6395f5c",
       "ownerApproved": false
     },
     {
       "path": "design/proposals/storyboards/x03/02-choose-target.svg",
-      "sourceSHA256": "4adaccd8fdb49e8cd5c312e8d2cd6d3ef03a27144da5f6a5ea8d4b37448b3368",
+      "sourceSHA256": "709e9eb1c885fac6dbdf5a50dfc4303ae147257de64c02b891da03581fe35ba1",
       "ownerApproved": false
     },
     {
       "path": "design/proposals/storyboards/x03/03-pending.svg",
-      "sourceSHA256": "6821c9207ee901c9a2b3a73cee5bcd538e65f13662b7f5ee555f93d92b5da697",
+      "sourceSHA256": "fdd4365b1fe310aa81724a6d29d282b7d3362aa4dd4a4e50d426cd57505c2caf",
       "ownerApproved": false
     },
     {
       "path": "design/proposals/storyboards/x03/04-acknowledged.svg",
-      "sourceSHA256": "2f950df9a3960b2d9626922a62f209972e597505a2bc82226407391316ed4a07",
+      "sourceSHA256": "0696fc21c4d36bc05a7ff35a3c409c6b4d56d6e0fd76568bb86491a6a4afdb8e",
       "ownerApproved": false
     },
     {
       "path": "design/proposals/storyboards/x03/05-uncertain.svg",
-      "sourceSHA256": "2c84d05c9bf4a1f39635840b07a7e2ac22a9ff854212d5ef3082d71b7be1d44d",
+      "sourceSHA256": "2b39c0a3f637bc0ffdcdf125297ce692f3a9e4cd6b4aafb29bc614c9acfd3a8d",
       "ownerApproved": false
     },
     {
       "path": "design/proposals/storyboards/x03/06-failed.svg",
-      "sourceSHA256": "8425b6986989b0712bec7d7af01ceea488ac0082282e82c99d366836194ffb58",
+      "sourceSHA256": "35c3dbe6abfb1584b90d28d677f87239f9d1fde214abfb87122d035c7490a848",
       "ownerApproved": false
     },
     {
       "path": "design/proposals/storyboards/x03/07-unsupported.svg",
-      "sourceSHA256": "723e21d1f574ff0a514d5588e7c64deb65286fddaa33467046bb6986e2b7d9c8",
+      "sourceSHA256": "da22da56314f8d4a1240fcef988bd2fc9b4171adbc78aa04599cf39e1db3af18",
       "ownerApproved": false
     },
     {
       "path": "design/proposals/storyboards/x04/01-ready.svg",
-      "sourceSHA256": "c3d29f8227677b1bbc39a22ae41e73b82ec4678886aaa7c40688fdf23012c35b",
+      "sourceSHA256": "255fe27865fd2c6e2e1dba7ad219fdd36fd41740d37c6f1d9deb8324aa7a1215",
       "ownerApproved": false
     },
     {
       "path": "design/proposals/storyboards/x04/02-start.svg",
-      "sourceSHA256": "77750bdd7e0bb9ef22feb9abe5ab92043bc4cb7f26b2c8877e96f9ff2b818051",
+      "sourceSHA256": "765eec99a0848c15664be18ea469fbe50ff90cfc5db6b3090d11ed05b66c1977",
       "ownerApproved": false
     },
     {
       "path": "design/proposals/storyboards/x04/03-active.svg",
-      "sourceSHA256": "bf65aae58c3ecc06cbb1a9a4f63ba1443ebdbb944f1667441142609ec2b6f970",
+      "sourceSHA256": "8023d4457d99b75d51118647a910661cccfe949066687f9ee4a8e9f3444d9d66",
       "ownerApproved": false
     },
     {
       "path": "design/proposals/storyboards/x04/04-delayed.svg",
-      "sourceSHA256": "5307fe484ec0a6783b06f50158950374ceba8cbca8acc7030841c9515ea78515",
+      "sourceSHA256": "9eb5b0e26460f67cb01f661899cb62630d7f9f11c4bc67de848c8f19799db2e3",
       "ownerApproved": false
     },
     {
       "path": "design/proposals/storyboards/x04/05-paused.svg",
-      "sourceSHA256": "47a7e730af6da976bbfade46bafd5669f07f55bf0556f440e381f9f03cea2e07",
+      "sourceSHA256": "166b1ea49d941af80b97241ca0f01c7811d2922db34829f8c7122c7dc78339b3",
       "ownerApproved": false
     },
     {
       "path": "design/proposals/storyboards/x04/06-resumed.svg",
-      "sourceSHA256": "ef123c5f5e31a0bacfc745915fcfc062593433263cf77bd713e9f27fc29da13a",
+      "sourceSHA256": "b8f44d301e9ed0d3a36df00fbf32890732af5eb8e74d01f90ef14f38d654624a",
       "ownerApproved": false
     },
     {
       "path": "design/proposals/storyboards/x04/07-stopped.svg",
-      "sourceSHA256": "b7dedb8ab76588f1fd02c6aaa37750b683159c68eb046293702c351cb2a96643",
+      "sourceSHA256": "781f48473a1a8f751ab31c5241448af0a84c4a576e4b79947e210b312e4a977f",
       "ownerApproved": false
     },
     {
       "path": "design/proposals/storyboards/x05/01-rest.svg",
-      "sourceSHA256": "fb89180b3538deebee7a35af4eadbbe17c068febcf61226285ae890fde161deb",
+      "sourceSHA256": "dee8c7a9029634af42477584b9afe795e180fc71fa0b26fe625c15f6268679e4",
       "ownerApproved": false
     },
     {
       "path": "design/proposals/storyboards/x05/02-touch-down.svg",
-      "sourceSHA256": "2755a4564aa18f1e1259898a9664c626258038ac80221e00df9a9deb268e2529",
+      "sourceSHA256": "c0f4017c50c64a371f5854cac7523d984cd8b9781a1386237a9f8507d54b5026",
       "ownerApproved": false
     },
     {
       "path": "design/proposals/storyboards/x05/03-drag-18.svg",
-      "sourceSHA256": "72eeec1786d39abf8edb2d61b6f56daa04d24d65da5c3f0d87b546ebeadb12b3",
+      "sourceSHA256": "cce556c91d558c46d0d00f458a4b3c0bc93acf3b55c2603bf16be96d6ff72e84",
       "ownerApproved": false
     },
     {
       "path": "design/proposals/storyboards/x05/04-drag-36.svg",
-      "sourceSHA256": "aacad1a3a562f50bcba0f32525f1de2b22b99036725c95515254a69c489b8fd2",
+      "sourceSHA256": "81015900882488e4b91ab37ffc0ef12d5d35906a78ef50b9619d23cc2bb489ee",
       "ownerApproved": false
     },
     {
       "path": "design/proposals/storyboards/x05/05-snap-72.svg",
-      "sourceSHA256": "75c54660fcdf3665cbbbd9a77534e45fcf73340cd117b435608d7a9c1c9f05e7",
+      "sourceSHA256": "325c09d4e4d2b52489629f9ef6e1219a5bc82bec6419eafd6e5e4091ec8c9ab3",
       "ownerApproved": false
     },
     {
       "path": "design/proposals/storyboards/x05/06-reverse-18.svg",
-      "sourceSHA256": "5d86812b48c2035d06e06bbea29269661d42334206aa230eacb13c587784054d",
+      "sourceSHA256": "29ad0f1d6aa0dc1ee7ddc1ae111ba74d047dbd380c0a093777a79effbb54c986",
       "ownerApproved": false
     },
     {
       "path": "design/proposals/storyboards/x05/07-interrupted.svg",
-      "sourceSHA256": "b09188850d18b5567e69e0d0c7d87d0824c942109fc5459bbb69f0aa4eabcfd6",
+      "sourceSHA256": "c233699dc867ac296b2e77a1541cc700c227f60528d91539abbc069863f1cf2b",
       "ownerApproved": false
     },
     {
       "path": "design/proposals/storyboards/x05/08-last.svg",
-      "sourceSHA256": "d0e7c44d62678fea2eed7843b72d119ab328f02e89aea1f0981c3c4e40c7eddb",
+      "sourceSHA256": "dfd2e96da271d5aed6ae54f15728ebc605c3fc831919a658361461cc5246a019",
       "ownerApproved": false
     },
     {
       "path": "design/proposals/storyboards/x06/01-first.svg",
-      "sourceSHA256": "43813c7457c86678bd9f317b173a262cbaa322d256f15b9b2f54d52e51dad7c1",
+      "sourceSHA256": "1ef011d224b648be8e4ddaeb51efddefb00b66dc2c7fb6fb43fd49952d6213b8",
       "ownerApproved": false
     },
     {
       "path": "design/proposals/storyboards/x06/02-single.svg",
-      "sourceSHA256": "60cd26178d1a44958fc127030e9dc1143a33ad59b1e0081fa91490f789702550",
+      "sourceSHA256": "7581d9869d30b4617bb5c4e93ddc8e68f0be101b473d7cd80d5d18d1d5fa1d89",
       "ownerApproved": false
     },
     {
       "path": "design/proposals/storyboards/x06/03-three.svg",
-      "sourceSHA256": "74c1a355df75a296b5e8eead7ecc4ddc51a79714743f0c6ffe562a13e76073c4",
+      "sourceSHA256": "4d6661de05fe2eb32dc192939e6a90a9fa37d26ac4cfbd761c8216db2cb606dd",
       "ownerApproved": false
     },
     {
       "path": "design/proposals/storyboards/x06/04-exact-five.svg",
-      "sourceSHA256": "6da81791b6f3f06344590439905fe509cc5a46ad2a9670108c3b000666e121e7",
+      "sourceSHA256": "27c12307035b0b0405a5a493ae180cab8fd658774da2ed6090d38e5fee635803",
       "ownerApproved": false
     },
     {
       "path": "design/proposals/storyboards/x06/05-twenty-two.svg",
-      "sourceSHA256": "bdf90c8b41bf266ad731dcaefec3e9ab4b1986d830f37273331d239884b89482",
+      "sourceSHA256": "e55d629d3599c3d1cda3086799ccececfd1353caa6215181409bc83d01cdaa1e",
       "ownerApproved": false
     },
     {
       "path": "design/proposals/storyboards/x06/06-sixty.svg",
-      "sourceSHA256": "8e735845aace8f68a9a6d3d9baf16116d43247caed12a27ccbbac5968c72eb5b",
+      "sourceSHA256": "234423e7a0f7fde8ab7227efbad06e7d3d5448c28dc73c99ac412cbcec6fd2a1",
       "ownerApproved": false
     },
     {
       "path": "design/proposals/storyboards/x06/07-last.svg",
-      "sourceSHA256": "c970a80944c8b038d7e3b4d8643b8219b5c89c53125b34814c4b71305aa63863",
+      "sourceSHA256": "dc0971f1ac66b0b9f1059d873abe901c8c17d095b7875b36156ecb8249f375f0",
       "ownerApproved": false
     },
     {
       "path": "design/proposals/storyboards/x07/01-reel-focus.svg",
-      "sourceSHA256": "ab547607dd57005ef60c678d68a0ecefa372c75d10dda4bd4ec1439d2f7723d7",
+      "sourceSHA256": "56fe29be3a5684433fff24611afbff0aa7d09e6a411864336d5c68110402f7cc",
       "ownerApproved": false
     },
     {
       "path": "design/proposals/storyboards/x07/02-grid-focus.svg",
-      "sourceSHA256": "ca7a7e7134d86f13e82231f32ac1dbab6581accd4734417ace85c23e690272d5",
+      "sourceSHA256": "61c6844ec1140c88ac9b1627d8bc37c2eb57561c8e1beab7c11fad4ea44a906a",
       "ownerApproved": false
     },
     {
       "path": "design/proposals/storyboards/x07/03-photo-detail.svg",
-      "sourceSHA256": "8ec5b507e9690fc9c03e5eb1af4dc2692248fc9f715ee60c4acae1ed022c98e4",
+      "sourceSHA256": "e2422dea9d73540fa39e029d31a4090554320ab4dbfded4e43dcc362284b5047",
       "ownerApproved": false
     },
     {
       "path": "design/proposals/storyboards/x07/04-back-reel.svg",
-      "sourceSHA256": "0d38e1e5bde4c4c6c5b40236ee8d4e14a40c27cd4b86f1e9f946936616ca2991",
+      "sourceSHA256": "133220a16b50cc103b5d33c499d3a054ce415131f580dc09355ed1f97f49fd06",
       "ownerApproved": false
     },
     {
       "path": "design/proposals/storyboards/x07/05-switch-collection.svg",
-      "sourceSHA256": "84811132a9c9b6e53474057303fad9aa46f2873cf36f78530ad7eeb38a960dce",
+      "sourceSHA256": "8caa50dd98ac257c0086c70e16e4857b48900421c0e6862417635cb2bf2895a3",
       "ownerApproved": false
     },
     {
       "path": "design/proposals/storyboards/x07/06-return-original.svg",
-      "sourceSHA256": "8d869cf595763b774cb5ce6e578a52873f6653715745fba3a2db583dc67fc0a0",
+      "sourceSHA256": "07f52933fc34e65efc0c192e68b374a62496f19b5ed5002f7de08a82beb9d72a",
       "ownerApproved": false
     },
     {
       "path": "design/proposals/storyboards/x07/07-multi-select.svg",
-      "sourceSHA256": "069fda834c31303ebce379b2da66913085976573926592d4c0a63d9048a67ca3",
+      "sourceSHA256": "415d45b74ab2681e05bf9a01f708f897c7e61737eb88f696702317779d809590",
       "ownerApproved": false
     },
     {
       "path": "design/proposals/storyboards/x08/01-home-active.svg",
-      "sourceSHA256": "63ba7fb8669f25282fd3f7b9785e5432a18887459e892c58789326c578cf7410",
+      "sourceSHA256": "cd2b3736afaf39ed5465429b4c17da82abdad2632a21df8df477aa8d4b7f55d9",
       "ownerApproved": false
     },
     {
       "path": "design/proposals/storyboards/x08/02-collections.svg",
-      "sourceSHA256": "6be4117a0580e87d46dae862941a88a8e6e1604675f6aa3fe07500072748be1c",
+      "sourceSHA256": "5e7177a795c0e66df0a131981170fc2f74ad8f6ebb9eb55851442223dcef8a02",
       "ownerApproved": false
     },
     {
       "path": "design/proposals/storyboards/x08/03-reel-hero.svg",
-      "sourceSHA256": "9ac24eea2e51b15dc4a0cd6dd78f94e64946991053afe2aceedf6f52b63503e3",
+      "sourceSHA256": "d450db3fe730c96753ed4c729eab010f25314c3fdd41b23b83aca365f27e772b",
       "ownerApproved": false
     },
     {
       "path": "design/proposals/storyboards/x08/04-grid-dense.svg",
-      "sourceSHA256": "62b77181bab2d32b34c59dee2eb01dd19668ecfacf4ab562a4eca79d716662f4",
+      "sourceSHA256": "87e3a896512c145bb39c55e9db76798c6e14a2397dfbb8b4487665ffcc099961",
       "ownerApproved": false
     },
     {
       "path": "design/proposals/storyboards/x08/05-long-title.svg",
-      "sourceSHA256": "24733b02fe8ad2576fd4fec8bbadedd1b732c89603f5de182418ecbc6791c4c2",
+      "sourceSHA256": "42bb2d81ce3aa939f611130b24b32939a8caec413b8c13d4071f68c1abc45f80",
       "ownerApproved": false
     },
     {
       "path": "design/proposals/storyboards/x08/06-status-collapsed.svg",
-      "sourceSHA256": "b72c3c0e74a9cedfee62d10f009ba8139eca03ccd4c8e93d70d983eed17ca5c1",
+      "sourceSHA256": "9d6535b0bc00596321b5d475787f0aba19bd04f25e73e535528489b74b7679e6",
       "ownerApproved": false
     },
     {
       "path": "design/proposals/storyboards/x09/01-home-200-text.svg",
-      "sourceSHA256": "fb74f596b10c37ad0ae02cfdd765eb6377f65af7ac23eec0be23a9eefabb048b",
+      "sourceSHA256": "ab1fa919328cad8e7620a9940c3a92ac16554375eab0f2cbf15933a9ac0dc409",
       "ownerApproved": false
     },
     {
       "path": "design/proposals/storyboards/x09/02-collections-long-name.svg",
-      "sourceSHA256": "520ffbbaadcdcca7420c7c80481391c82b92290bbc37a29f82c43c3e65468e52",
+      "sourceSHA256": "70f49fc78e377bf494f7f175c6e79f8dbb8192cbc2980f1fbe5caeea0812d38c",
       "ownerApproved": false
     },
     {
       "path": "design/proposals/storyboards/x09/03-reel-200-text.svg",
-      "sourceSHA256": "f2f3b4db2d0334093097249b89ba6b263fc6b6820b0df3e8848677e553ecddd7",
+      "sourceSHA256": "4a91bd26692fb1d701973c8cd0c2d45fdaa00543d9471303251dac68f8bb9927",
       "ownerApproved": false
     },
     {
       "path": "design/proposals/storyboards/x09/04-grid-large-type.svg",
-      "sourceSHA256": "734715a3821ea7258ffd4629c4699331ed716f49fa061089502289390b593cc0",
+      "sourceSHA256": "e68f17c0e3714fdb5534d83ff05835d234b5d836ebcab7038a2f41234516512a",
       "ownerApproved": false
     },
     {
       "path": "design/proposals/storyboards/x09/05-import-200-text.svg",
-      "sourceSHA256": "19824e3e5c32a4d6c67f0f7a84939d3c4cefc13cd8b9ced93bf9de6c7a9af510",
+      "sourceSHA256": "20a5660ca81e0288fafe9d3bd82b7666a831bed21a684f6311d8d47b0712f358",
       "ownerApproved": false
     },
     {
       "path": "design/proposals/storyboards/x09/06-apply-high-contrast.svg",
-      "sourceSHA256": "985dce370954ba26479698de6d7012e0c6054cb9ff10091d14eea8596e7e0984",
+      "sourceSHA256": "cc7afcce33e29f3ef02e06065cb9032b7cc6e5cc8531e448fea394e2d3c95a26",
       "ownerApproved": false
     },
     {
       "path": "design/proposals/storyboards/x09/07-error-compact.svg",
-      "sourceSHA256": "6c48fcf3bc6b756c8a066833ce4f7e5dc3066341d72e87ed117c19d314c48e2b",
+      "sourceSHA256": "fdb257778795c985d25b2e2904f7bf05fd4b994c110ff82c142caebb48be2563",
       "ownerApproved": false
     },
     {
       "path": "design/proposals/storyboards/x09/08-help-dialog.svg",
-      "sourceSHA256": "4e29c7d021995cf9c3c7e9099c27ae636a1f72318e3572cb594e9b31e51666da",
+      "sourceSHA256": "daeb5095cd28e6eeaca7fb217550dd27a6206dca7245e325abb2636ba53cdc2d",
       "ownerApproved": false
     },
     {
       "path": "design/proposals/storyboards/x10/01-cloud-pending.svg",
-      "sourceSHA256": "62fd4844f438f2a5a3fd06400821ec3563b2d192913dcfc33ba192761f32c35c",
+      "sourceSHA256": "4d0fe634855f74e5f146bce9553881888ab621d9c838ce1dccd47412ec7525a7",
       "ownerApproved": false
     },
     {
       "path": "design/proposals/storyboards/x10/02-uri-revoked.svg",
-      "sourceSHA256": "95b299d9045355a890ec23491cabea0e56d48562c93939214158ad5a7b692d1d",
+      "sourceSHA256": "bc73008a1139f0bcc805c0fae53a5696234c460cfefe39bb499ed46c3e8fd201",
       "ownerApproved": false
     },
     {
       "path": "design/proposals/storyboards/x10/03-apply-unknown.svg",
-      "sourceSHA256": "381c0a95119127ebe9c8a70dedf716be7624bba46bf2107ee97dbd16476e6d0a",
+      "sourceSHA256": "24c5002f0edd9f6b8cddf4dee1bb1715e7f674368d69dd71711f100ea5e1d389",
       "ownerApproved": false
     },
     {
       "path": "design/proposals/storyboards/x10/04-storage-full.svg",
-      "sourceSHA256": "ddf7d70421b6145751f34aae552fa68af008e907fa9755360bbe23eb33f1923c",
+      "sourceSHA256": "64702fdea5b2005fb87568337c51f7a1de5a90ce4b305e71f14419ce7a616e5a",
       "ownerApproved": false
     },
     {
       "path": "design/proposals/storyboards/x10/05-no-photos.svg",
-      "sourceSHA256": "aee6c9478c9285d2c5efe8f3e3ecf2eddbf8ec97ed6595e39d8eb01c194c82ea",
+      "sourceSHA256": "fef486294c927ea168baef4ebb920df15f98e31f61147113eba3c4cc60603e3a",
       "ownerApproved": false
     },
     {
       "path": "design/proposals/storyboards/x10/06-rotation-delayed.svg",
-      "sourceSHA256": "904188332c91fcace61b12cb41461c1242fc517319075bcdbaa5003616f93922",
+      "sourceSHA256": "6df150ae05d77508b494be75ad82e41bd9a883f4eb9c8731b90f8df07fa14d29",
       "ownerApproved": false
     },
     {
       "path": "design/proposals/storyboards/x10/07-retry-explicit.svg",
-      "sourceSHA256": "b0f60a998913fd14399f100b14241f4d700a1af549a10b0c218ede7ce2c63ec7",
+      "sourceSHA256": "91ec2444c81db535bfb8614ed692ba8f8e508ed57ff50c2c864d9f1f0e1e86c5",
       "ownerApproved": false
     },
     {
       "path": "design/proposals/storyboards/x11/01-inbound-original.svg",
-      "sourceSHA256": "235e27a9d6da0d623fbf13fb5fe2a65adc076ccd060433dd7742522c9be80dc5",
+      "sourceSHA256": "d845d5cc67571afe938d2476048d76b9b37e5d352768696c3a0526e9f44111b5",
       "ownerApproved": false
     },
     {
       "path": "design/proposals/storyboards/x11/02-rotate.svg",
-      "sourceSHA256": "ec61439410c8622092df685dd346bc969886876ba717e82234cad9a99754fd19",
+      "sourceSHA256": "e1ca6cd74094b513933d42174738901865632858e292da1b813eaf816c94cce2",
       "ownerApproved": false
     },
     {
       "path": "design/proposals/storyboards/x11/03-crop.svg",
-      "sourceSHA256": "88aa45e1de7babac1db5ccf60a3dea9fae32ddf21197da5369fd93a0a6a99945",
+      "sourceSHA256": "184c855590b7b994994bafa43c337a051464d5fbdb89422e0578363b14311d4f",
       "ownerApproved": false
     },
     {
       "path": "design/proposals/storyboards/x11/04-save-only.svg",
-      "sourceSHA256": "2d09986e56c914e05348d97b8f1b90d88f123b05079e43fb16a9fc9616ce4e63",
+      "sourceSHA256": "1a565767010014e52cf093da39628835055addca8adce70eeca4bc7919d8ccfb",
       "ownerApproved": false
     },
     {
       "path": "design/proposals/storyboards/x11/05-show-next.svg",
-      "sourceSHA256": "6495671992ecc1c1fb1b72ded2acd3cb944a45ffc02d3441213128445798282d",
+      "sourceSHA256": "72c35eed39c0d96df1af16dc1db539dbdcc2193dc8f8c2b8ebba4204706d9982",
       "ownerApproved": false
     },
     {
       "path": "design/proposals/storyboards/x11/06-use-now.svg",
-      "sourceSHA256": "0cf85fba0baa3e1a776c5d2051fe34e98bccb9006c6f4a327c0911e7b1b21312",
+      "sourceSHA256": "dee9af0f31ae8fa1fb0f289ab94270af836258e4dbf469a30dba40d81633b5c4",
       "ownerApproved": false
     },
     {
       "path": "design/proposals/storyboards/x11/07-cancel-undo.svg",
-      "sourceSHA256": "85fb83eaccfa081089dbbfb192e29c88fe59c647ab7ea2be02c696045ae8f40d",
+      "sourceSHA256": "9c262b41c2343b84e12d408110c09c930cee537c0a21f22c701ecc1fe00e24b4",
       "ownerApproved": false
     },
     {
       "path": "design/proposals/storyboards/x12/01-reel-touch-regions.svg",
-      "sourceSHA256": "3d36c3d99d1ca86cebe08a596ed47740e7bf990d4f4fe62e363396bb421b53fd",
+      "sourceSHA256": "08c6337a705834a24917942d428a815eb75a11f6e024f0167e0e960a0a0d2498",
       "ownerApproved": false
     },
     {
       "path": "design/proposals/storyboards/x12/02-safe-area-navigation.svg",
-      "sourceSHA256": "8485477bdc5cf5b5f34bde157a4b93eac2c1023972133ba7be5fa41d4d5147de",
+      "sourceSHA256": "f8aa7a9d429abcae2746cffb88e2f54ef2c697cffd4e77c292455e5309b20962",
       "ownerApproved": false
     },
     {
       "path": "design/proposals/storyboards/x12/03-keyboard-compose.svg",
-      "sourceSHA256": "10dc26c8bf216e7dedba676c3570f25efe1812e1c4deccabba6ba72a8d1734f7",
+      "sourceSHA256": "d0905566cce08ce4eebfbc2af4854f7dc7e89d829bf3840fbfba1a056a5e4342",
       "ownerApproved": false
     },
     {
       "path": "design/proposals/storyboards/x12/04-talkback-focus.svg",
-      "sourceSHA256": "0e02732b04fad9ee4cb0c2792b5767c4d9363b87bd4b3e45875ce4807c60e10e",
+      "sourceSHA256": "a045763a03d096928051cabf188134fdf6bb1c7320ca354a9d91c39b5fa5797f",
       "ownerApproved": false
     },
     {
       "path": "design/proposals/storyboards/x12/05-error-dialog-focus.svg",
-      "sourceSHA256": "962e51aca70c3ff05c46c8c9852077ad9d86053039376a9a20f452125520740c",
+      "sourceSHA256": "63d2cc7f6c1dba96e31904896222aa07db85b68351ee777b95c0379581a328de",
       "ownerApproved": false
     },
     {
@@ -1178,7 +1178,7 @@
     },
     {
       "path": "design/proposals/support-plates/diagnostic-preview--expanded.svg",
-      "sourceSHA256": "6652e464238a7b07f3582d266f52c886f1e3642c965cbcf9616fbc2fc3f1410c",
+      "sourceSHA256": "6d9b0c31377f18fcddb5f66452ab507f34f20b55212db7719bc92f9f0c248e85",
       "ownerApproved": false
     },
     {
@@ -1294,6 +1294,36 @@
     {
       "path": "design/proposals/support-plates/whats-new--no-notes.svg",
       "sourceSHA256": "c7652d6a236ef73ca58f7e6538275649864a9dc8487936a0c7716f0a9c4f6894",
+      "ownerApproved": false
+    },
+    {
+      "path": "design/proposals/whole-product-candidates/cc0-consistent-20261024/collections.svg",
+      "sourceSHA256": "049be37072c1bd66a23312ac2fd6a89982d5c05e095d85ad10d3a7e2e3e5fe66",
+      "ownerApproved": false
+    },
+    {
+      "path": "design/proposals/whole-product-candidates/cc0-consistent-20261024/detail.svg",
+      "sourceSHA256": "b01ab749736eaa6688ed17dee66ccdf0c3c59a14531599b6ea8526aecbcf28f1",
+      "ownerApproved": false
+    },
+    {
+      "path": "design/proposals/whole-product-candidates/cc0-consistent-20261024/grid-3column.svg",
+      "sourceSHA256": "b7b3698dbbf388f11909f3ffd4339727342134303c3879c2c37e75c4595e1abb",
+      "ownerApproved": false
+    },
+    {
+      "path": "design/proposals/whole-product-candidates/cc0-consistent-20261024/home.svg",
+      "sourceSHA256": "9a2b7da1954e84322556ebb8636bfe6ca9ff37574e23098b77f8de05dc2b4ffa",
+      "ownerApproved": false
+    },
+    {
+      "path": "design/proposals/whole-product-candidates/cc0-consistent-20261024/reel.svg",
+      "sourceSHA256": "ea5e608a809bfc555b29c1ea4575d4ac78987fb55f77129dc7baa1aeca12faf5",
+      "ownerApproved": false
+    },
+    {
+      "path": "design/proposals/whole-product-candidates/cc0-consistent-20261024/share.svg",
+      "sourceSHA256": "e379e1e5941ca293a4e6a776b2682b3470d2cd6f912b8a07cc6d23d4b78e491c",
       "ownerApproved": false
     },
     {
