@@ -25,8 +25,9 @@ css = (UI/"style.css").read_text(encoding="utf-8")
 p = IdCollector()
 p.feed(markup)
 assert len(p.ids) >= 35
+generated_ids=set(re.findall(r'id="([A-Za-z][A-Za-z0-9]*)"', js))
 for x in re.findall(r'\$\("([A-Za-z][A-Za-z0-9]*)"\)', js):
-    assert x in p.ids or x in {"feedbackIssue", "wholeSetNotes"}, "JavaScript references missing HTML ID: " + x
+    assert x in p.ids or x in generated_ids, "JavaScript references missing HTML ID: " + x
 for feature in ("data-section", "data-option", "data-choice", "data-status", "data-use",
                 "data-remove", "data-jump", "requestFullscreen", "localStorage",
                 "wholeSetVisualAcceptanceRequested", "sourceSHA256"):
