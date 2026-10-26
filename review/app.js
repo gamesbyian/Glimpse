@@ -31,7 +31,7 @@ const questionChoices={
 };
 let data=null, records={}, activeList=[], current={section:"primary",id:"home",option:0,compare:false,full:false,peek:false,pinning:false,pin:null}, review, build={};
 let toastTimeout=0,saveTimeout=0;
-const fresh=()=>({schema:1,createdAt:new Date().toISOString(),items:{},questions:{},notes:{},general:{},chosen:{}});
+const fresh=()=>({schema:1,createdAt:new Date().toISOString(),items:{},questions:{},notes:{},general:{},chosen:{},finalIntent:null});
 try {review=JSON.parse(localStorage.getItem(reviewKey)||"null")||fresh(); if(review.schema!==1) review=fresh()} catch(e){review=fresh()}
 function notify(message){const t=$("toast");t.textContent=message;t.classList.add("visible");clearTimeout(toastTimeout);toastTimeout=setTimeout(()=>t.classList.remove("visible"),2900)}
 function save(){try{localStorage.setItem(reviewKey,JSON.stringify(review));$("saveIndicator").textContent="Saved locally · export to share";}catch(e){$("saveIndicator").textContent="Browser storage unavailable · export now";}updateCount()}
@@ -188,10 +188,14 @@ function stateOf(it){return review.items[itemKey(it)]||{}}
 function chooseOption(){
  const it=record(),o=currentOption();if(!it||!o)return;
  if(it.kind!=="primary")return;
- review.chosen[itemKey(it)]={path:o.path,sha:o.sha,at:new Date().toISOString()};
- save();renderInspector();notify("Preferred source saved in this browser");
+ const key=itemKey(it),old=review.chosen[key]?.path||it.options[0].path;
+ review.chosen[key]={path:o.path,sha:o.sha,at:new Date().toISOString()};
+ if(old!==o.path&&review.items[key]?.status==="accepted")review.items[key]={status:"unreviewed"};
+ save();renderInspector();renderNavigation();notify("Preferred source saved; revised selections need review");
 }
-function markStatus(status){const it=record();if(!it||it.kind==="question")return;review.items[itemKey(it)]={status,path:currentOption().path,sha:currentOption().sha,at:new Date().toISOString()};save();renderInspector();renderNavigation()}
+function markStatus(status){const it=record();if(!it||it.kind==="question")return;const key=itemKey(it),o=currentOption();
+ if(it.kind==="primary"&&status==="accepted")review.chosen[key]={path:o.path,sha:o.sha,at:new Date().toISOString()};
+ review.items[key]={status,path:o.path,sha:o.sha,at:new Date().toISOString()};save();renderInspector();renderNavigation()}
 function chooseQuestion(choice){const it=record();if(!it||it.kind!=="question")return;review.questions[it.id]={choice,at:new Date().toISOString()};save();renderInspector();renderNavigation();notify("Decision "+it.id+" saved locally")}
 function renderInspector(){
  const it=record();if(!it)return;const key=itemKey(it),o=currentOption(),item=stateOf(it);
@@ -253,9 +257,23 @@ function stats(){
  all.forEach(it=>{const st=review.items[itemKey(it)]?.status||"unreviewed";counts[st]=(counts[st]||0)+1});
  const answered=records.question.filter(q=>review.questions[q.id]?.choice).length;
  const blockingPins=Object.values(review.notes).flat().filter(n=>n.severity==="blocking").length;
- const unresolved=counts.changes+counts.deferred+counts.unreviewed+blockingPins;
+ const revisionQuestions=records.question.filter(q=>/revise|clarify|different|change action|try a/i.test(review.questions[q.id]?.choice||"")).length;
+ const conflictingChoices=[];
+ const home=selectedPath(records.primary.find(p=>p.id==="home"));
+ const grid=selectedPath(records.primary.find(p=>p.id==="grid"));
+ if(review.questions.D01?.choice==="Use tappable crescent"&&!home.includes("crescent"))conflictingChoices.push("D01 crescent choice does not match the selected Home source");
+ if(review.questions.D03?.choice==="Prefer three-column Grid"&&!grid.includes("grid-3column"))conflictingChoices.push("D03 three-column choice does not match the selected Grid");
+ if(review.questions.D03?.choice==="Prefer four-column Grid"&&grid.includes("grid-3column"))conflictingChoices.push("D03 four-column choice conflicts with the selected Grid");
+ const staleAcceptances=all.filter(it=>review.items[itemKey(it)]?.status==="accepted"&&
+      (review.items[itemKey(it)].path!==selectedPath(it)||review.items[itemKey(it)].sha!==hash(selectedPath(it)))).length;
+ const unresolved=counts.changes+counts.deferred+counts.unreviewed+blockingPins+revisionQuestions+conflictingChoices.length+staleAcceptances;
  const atomic=atomicValid();
- return {counts,answered,blockingPins,atomic,ready:counts.accepted===58&&answered===8&&unresolved===0&&atomic.valid};
+ return {counts,answered,blockingPins,revisionQuestions,conflictingChoices,staleAcceptances,atomic,ready:counts.accepted===58&&answered===8&&unresolved===0&&atomic.valid};
+}
+function acceptanceStamp(){
+ return JSON.stringify({selected:records.primary.map(it=>[it.id,selectedPath(it),hash(selectedPath(it))]),
+  support:records.support.map(it=>[it.id,it.options[0].sha]),
+  reviewStatus:review.items,decisions:review.questions,notes:review.notes,general:review.general});
 }
 function summary(){
  const s=stats(),n=Object.values(review.notes).flat().length;
