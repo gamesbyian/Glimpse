@@ -11,7 +11,7 @@
 <rect x="35" y="163" width="362" height="66" rx="13" fill="#F5E6D1" stroke="none"/>
 <rect x="47" y="173" width="4" height="46" rx="2" fill="#1D5960" stroke="none"/>
 <text x="61" y="189" fill="#153F46" font-size="15" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="start">Preview before any restore</text>
-<text x="61" y="211" fill="#566861" font-size="13" font-weight="500" font-family="Arial,Helvetica,sans-serif" text-anchor="start">No import or conflict resolution yet.</text>
+<text x="61" y="211" fill="#445851" font-size="13" font-weight="500" font-family="Arial,Helvetica,sans-serif" text-anchor="start">No import or conflict resolution yet.</text>
 <text x="36" y="273" fill="#153F46" font-size="20" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="start">Create backup</text>
 <rect x="35" y="287" width="362" height="66" rx="14" fill="#FFFCF6" stroke="#C8B7A1"/>
 <rect x="47" y="300" width="42" height="40" rx="12" fill="#DAEDE1" stroke="none"/>
@@ -35,7 +35,7 @@
 <rect x="35" y="673" width="362" height="66" rx="13" fill="#F5E6D1" stroke="none"/>
 <rect x="47" y="683" width="4" height="46" rx="2" fill="#1D5960" stroke="none"/>
 <text x="61" y="699" fill="#153F46" font-size="15" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="start">Keep / replace / skip</text>
-<text x="61" y="721" fill="#566861" font-size="13" font-weight="500" font-family="Arial,Helvetica,sans-serif" text-anchor="start">Existing originals are not overwritten.</text>
+<text x="61" y="721" fill="#445851" font-size="13" font-weight="500" font-family="Arial,Helvetica,sans-serif" text-anchor="start">Existing originals are not overwritten.</text>
 <text x="38" y="785" fill="#566861" font-size="12" font-weight="500" font-family="Arial,Helvetica,sans-serif" text-anchor="start">Do not restore automatically after preview.</text>
 <rect x="24" y="823" width="384" height="56" rx="0" fill="#FFFCF6" stroke="none"/>
 <path d="M24 823 L408 823" fill="none" stroke="#C8B7A1"/>

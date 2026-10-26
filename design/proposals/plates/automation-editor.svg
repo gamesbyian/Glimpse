@@ -33,7 +33,7 @@
 <rect x="35" y="575" width="362" height="66" rx="13" fill="#F5E6D1" stroke="none"/>
 <rect x="47" y="585" width="4" height="46" rx="2" fill="#1D5960" stroke="none"/>
 <text x="61" y="601" fill="#153F46" font-size="15" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="start">Conflict review required</text>
-<text x="61" y="623" fill="#566861" font-size="13" font-weight="500" font-family="Arial,Helvetica,sans-serif" text-anchor="start">Simulate other active rules first.</text>
+<text x="61" y="623" fill="#445851" font-size="13" font-weight="500" font-family="Arial,Helvetica,sans-serif" text-anchor="start">Simulate other active rules first.</text>
 <rect x="35" y="734" width="173" height="52" rx="16" fill="#1D5960" stroke="none"/>
 <rect x="218" y="734" width="179" height="52" rx="16" fill="#FFFCF6" stroke="#C8B7A1"/>
 <text x="121" y="767" fill="#FFFFFF" font-size="14" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="middle">Simulate</text>

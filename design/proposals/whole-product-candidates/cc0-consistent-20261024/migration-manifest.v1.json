@@ -163,5 +163,13 @@
     "native OS Photo Picker/chooser focus",
     "owner selection of 13 photo subjects and 3-vs-4-column Grid",
     "eight design choice questions"
-  ]
+  ],
+  "supplementalUnselectedSourceDetail": {
+    "path": "design/proposals/whole-product-candidates/cc0-consistent-20261024/source-p12.svg",
+    "from": "design/proposals/whole-product-candidates/cc0-consistent-20261024/detail.svg",
+    "sourcePhotoId": "p12",
+    "purpose": "Source and rights route; not a seventh required atomic selection",
+    "nativeVerified": false,
+    "ownerApproved": false
+  }
 }

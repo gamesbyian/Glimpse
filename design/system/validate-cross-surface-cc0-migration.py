@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Fail-closed verification of four *unselected* cross-surface CC0 candidates.
+"""Fail-closed verification of six *unselected* cross-surface CC0 candidates.
 
 Checks actual embedded JPEG SHA256, immutable ID semantics, metadata and visible
 single-photo selection. Not a license grant, Android behavior, owner approval or
@@ -59,6 +59,16 @@ def read(name:str):
             or state.get('visualApproval')=='not-owner-approved')
     assert state.get('wallpaperMutation',False) is False
     assert state.get('androidVerified',False) is False
+    # WCAG 2.2 normal-size static text: previous #667975 on paper was only 4.07:1.
+    def luminance(code:str)->float:
+        v=[int(code[x:x+2],16)/255 for x in (1,3,5)]
+        linear=[c/12.92 if c<=0.04045 else ((c+0.055)/1.055)**2.4 for c in v]
+        return sum(w*c for w,c in zip((0.2126,0.7152,0.0722),linear))
+    def ratio(a:str,b:str)->float:
+        lo,hi=sorted((luminance(a),luminance(b)))
+        return (hi+0.05)/(lo+0.05)
+    assert ratio('#566861','#F6F0E6')>=4.5
+    assert '#667975' not in raw.decode('utf-8'), 'Inaccessible legacy secondary text token in CC0 state'
     return path,root,state
 
 def check():
@@ -75,6 +85,10 @@ def check():
         assert asset['derivedSHA256']==EXPECTED[asset['id']]
         assert 'CC0' in asset['license']
         assert asset.get('sourceUrl') and asset.get('assetPath')
+    companion=manifest['supplementalUnselectedSourceDetail']
+    assert companion['sourcePhotoId']=='p12'
+    assert companion['path']==str((DIR/'source-p12.svg').relative_to(ROOT))
+    assert companion['ownerApproved'] is False and companion['nativeVerified'] is False
     assert manifest['derivedPreview']['id']=='p12c'
     assert manifest['derivedPreview']['sourceId']=='p12'
     assert manifest['derivedPreview']['sharesheetDeliveryConfirmed'] is False
@@ -92,6 +106,11 @@ def check():
             assert state['presentOSWallpaperStatus']=='not-read-back'
             assert state['p12FixtureSHA256']==EXPECTED['p12']
         elif name=='reel':
+            rendered_markup=path.read_text()
+            for xx,ww in (('40','122'),('172','219')):
+                assert ('<rect x="'+xx+'" y="407" width="'+ww+'" height="49"') in rendered_markup, 'Reel action below 48px'
+            assert '#667975' not in rendered_markup.split('<rect x="442" y="14"')[0], 'Low contrast Reel secondary text'
+            assert '>View grid</text>' in rendered_markup and '>View all</text>' not in rendered_markup, 'Reel/Grid navigation ambiguous'
             assert len(images)==6
             by_id={i.get('id'):i for i in images}
             assert set(by_id)==set(REEL), 'Reel has missing/duplicate fixture'
@@ -111,10 +130,43 @@ def check():
             assert state['p12FixtureSHA256']==EXPECTED['p12']
             visible=path.read_text()
             assert 'NO PHOTO</text>' not in visible and 'RIGHTS?</text>' not in visible
+            assert '>CC0</text>' not in visible, 'Tiny visible license tags misleadingly generalize collection contents'
+            assert 'Sample-photo provenance</text>' in visible
+            assert 'Per-photo rights are not inferred for arbitrary imports.</text>' in visible
+            # Twelve strong-keyline label plates are intentionally source geometry;
+            # every sample ID remains readable without a tiny license badge.
+            for j,pid in enumerate(GRID_ORDER):
+                xx=43+(j%3)*118; yy=277+(j//3)*112
+                plate=next((e for e in root.iter(SVG+'rect')
+                    if e.get('x')==str(xx) and e.get('y')==str(yy)),None)
+                assert plate is not None and plate.get('width')=='56'
+                assert plate.get('height')=='23' and plate.get('stroke')=='#1D5960'
+                assert float(plate.get('stroke-width','0'))>=1.25
+                label=next((e for e in root.iter(SVG+'text')
+                    if e.get('x')==str(xx+7) and e.get('y')==str(yy+16)),None)
+                assert label is not None and label.text==pid.upper(),pid
         elif name=='detail':
+            detail_markup=path.read_text()
+            assert '<rect x="269" y="63" width="113" height="50"' in detail_markup, 'Grid return target below 48px'
+            assert '>●  ▰</text>' not in detail_markup, 'Unsupported status glyph'
+            assert '#667975' not in detail_markup.split('<rect x="442" y="14"')[0], 'Low contrast Detail secondary text'
+            assert 'public research photo fixture' not in detail_markup, 'Stale visual reviewer provenance'
+            assert 'All displayed p12 images reuse C-verified photo bytes' in detail_markup
             assert len(images)==1
             assert_jpeg('p12',images[0])
             assert state['p12FixtureSHA256']==EXPECTED['p12']
+            assert state['photoCredit']['creator']=='Sporlo'
+            assert state['photoCredit']['independentSourcePhotoId']=='p12'
+            assert state['photoCredit']['sourceUrl'].startswith('https://commons.wikimedia.org/wiki/File:Chive_flower')
+            assert 'CC0' in state['photoCredit']['licenseClaim']
+            assert state['photoCredit']['originalPreserved'] is True
+            visible=path.read_text()
+            assert 'Source and rights ›</text>' in visible
+            assert 'Sporlo · CC0 source listed</text>' in visible
+            assert 'Local photo p12</text>' not in visible
+            assert '<clipPath id="detail-mini-p12">' in visible
+            thumbnails=[node for node in root.iter(SVG+'use') if node.get('href')=='#fixture1']
+            assert len(thumbnails)==2, 'Hero and source card must reuse exact same p12 fixture'
         elif name=='collections':
             assert len(images)==3
             order=[('Rainbows','p12','261'),('Golden Hour','p08','411'),('Patterns','p15','561')]
@@ -142,6 +194,38 @@ def check():
                        'jpegCount':len(images),'sourceByteIntegrity':'PASS',
                        'renderIndependentlyInspected':False,
                        'AndroidVerified':False,'ownerApproved':False}
+    extra=DIR/'source-p12.svg'
+    source_bytes=extra.read_bytes()
+    source_root=ET.fromstring(source_bytes)
+    source_meta=source_root.find(SVG+'metadata')
+    assert source_meta is not None and source_meta.text
+    credit=json.loads(html.unescape(source_meta.text))
+    assert credit['photoSourceMode']=='rights-verified-replacements'
+    assert credit['sourceUrl'].startswith('https://commons.wikimedia.org/wiki/File:Chive_flower')
+    assert credit['selectedAssetId']=='p12' and credit['creator']=='Sporlo'
+    assert credit['photoSourceSHA256']==EXPECTED['p12']
+    assert 'CC0' in credit['licenseClaim']
+    assert credit['nativeUrlNavigationVerified'] is False
+    assert credit['ownerApproved'] is False and credit['wallpaperMutation'] is False
+    source_images=list(source_root.iter(SVG+'image'))
+    assert len(source_images)==1
+    assert_jpeg('p12',source_images[0])
+    text=source_bytes.decode('utf-8')
+    for snippet in ('Creator · Sporlo</text>','Creator and source rights for p12</text>',
+                    'Rights depend on each photo</text>',
+                    'Do not generalize this CC0 label.</text>',
+                    'Source: Wikimedia Commons</text>', 'Back to p12</text>'):
+        assert snippet in text, ('Source details missing',snippet)
+    records['source-p12']={'source':str(extra.relative_to(ROOT)),
+        'sha256':hashlib.sha256(source_bytes).hexdigest(),'jpegCount':1,
+        'sourceByteIntegrity':'PASS','renderIndependentlyInspected':False,
+        'AndroidVerified':False,'ownerApproved':False}
+    assert credit['creatorRowBehavior'].startswith('Informational')
+    assert credit['sourceRowBehavior'].startswith('Informational')
+    assert credit['externalNavigationRequiresExplicitTap'] is True
+    assert '<text x="382" y="515"' not in text
+    assert '<text x="382" y="591"' not in text
+    assert 'Open file page…</text>' in text
     assert len(set(EXPECTED.values()))==13
     return records
 

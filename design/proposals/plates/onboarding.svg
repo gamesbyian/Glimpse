@@ -22,11 +22,11 @@
 <rect x="35" y="572" width="362" height="66" rx="13" fill="#F5E6D1" stroke="none"/>
 <rect x="47" y="582" width="4" height="46" rx="2" fill="#1D5960" stroke="none"/>
 <text x="61" y="598" fill="#153F46" font-size="15" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="start">Selecting is safe</text>
-<text x="61" y="620" fill="#566861" font-size="13" font-weight="500" font-family="Arial,Helvetica,sans-serif" text-anchor="start">Apply requires a separate decision.</text>
+<text x="61" y="620" fill="#445851" font-size="13" font-weight="500" font-family="Arial,Helvetica,sans-serif" text-anchor="start">Apply requires a separate decision.</text>
 <rect x="35" y="653" width="362" height="66" rx="13" fill="#F5E6D1" stroke="none"/>
 <rect x="47" y="663" width="4" height="46" rx="2" fill="#1D5960" stroke="none"/>
 <text x="61" y="679" fill="#153F46" font-size="15" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="start">Your library stays yours</text>
-<text x="61" y="701" fill="#566861" font-size="13" font-weight="500" font-family="Arial,Helvetica,sans-serif" text-anchor="start">No proprietary cloud or account.</text>
+<text x="61" y="701" fill="#445851" font-size="13" font-weight="500" font-family="Arial,Helvetica,sans-serif" text-anchor="start">No proprietary cloud or account.</text>
 <rect x="35" y="743" width="362" height="54" rx="18" fill="#1D5960" stroke="none"/>
 <text x="216" y="778" fill="#FFFFFF" font-size="16" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="middle">Choose your first photos...</text>
 <rect x="24" y="823" width="384" height="56" rx="0" fill="#FFFCF6" stroke="none"/>

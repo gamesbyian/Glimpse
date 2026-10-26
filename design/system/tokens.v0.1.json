@@ -1,6 +1,6 @@
 {
   "contract": "glimpse-production-a",
-  "revision": "0.1.0",
+  "revision": "0.1.2",
   "status": "DRAFT_PENDING_INTEGRATION_LOCK",
   "canvas": {
     "study": [
@@ -41,7 +41,14 @@
     "border": "#C8B7A1",
     "warning": "#A5482D",
     "selected": "#E9E0F5",
-    "onAccent": "#FFFFFF"
+    "onAccent": "#FFFFFF",
+    "secondaryOnTint": "#445851",
+    "attentionText": "#703B27",
+    "tintLavender": "#E9E0F5",
+    "tintBlush": "#F5DDDA",
+    "tintTan": "#EAD9BD",
+    "tintSage": "#DAEDE1",
+    "tintSand": "#F5E6D1"
   },
   "typographyPx": {
     "display": 32,
@@ -98,5 +105,42 @@
     "TalkBack",
     "48dp-hitbox",
     "gesture-and-focus-return"
-  ]
+  ],
+  "textColorUsage": {
+    "secondary": "Normal secondary text on paper or near-white surface only; test against actual painted fill.",
+    "secondaryOnTint": "Small normal text on lavender, blush, tan, sage, and sand; ≥4.5:1 contrast.",
+    "attentionText": "Small text, including stateful pointer glyphs, on paper and all listed tints; ≥4.5:1 contrast.",
+    "onAccent": "Normal white foreground only against accent teal, not against light pastel accents."
+  },
+  "contractChangeLog": [
+    {
+      "revision": "0.1.2",
+      "kind": "provisional-visible-focus-affordance",
+      "reason": "B independent support control scan identified 238 low-contrast source-painted control candidates; provide non-color-only 4-unit focus ring contract without claiming each is a WCAG violation.",
+      "ownerApproval": false
+    },
+    {
+      "revision": "0.1.1",
+      "kind": "provisional-contextual-tint-contrast",
+      "reason": "Independent B static AA audit found secondary #566861 at 4.272:1 on tan; use contextual #445851, preserving original paper secondary.",
+      "ownerApproval": false
+    }
+  ],
+  "focusVisible": {
+    "indicatorColor": "#1D5960",
+    "minimumContrastAgainstPaper": 3,
+    "strokePxNominal": 4,
+    "offsetPxNominal": 2,
+    "appliesTo": [
+      "keyboard",
+      "D-pad",
+      "switch-navigation-focus"
+    ],
+    "rules": [
+      "Visible outline around the currently focused actionable region, never color-only focus indication.",
+      "Maintain indicator contrast against the adjacent actual painted surface; focus shape must remain evident when card borders are low contrast.",
+      "Do not use a focus border to imply selection, successful apply, or current Android wallpaper state.",
+      "Native semantics, focus restoration and TalkBack require independent device verification."
+    ]
+  }
 }

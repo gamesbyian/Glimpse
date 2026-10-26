@@ -35,7 +35,7 @@
 <rect x="35" y="627" width="362" height="66" rx="13" fill="#F5E6D1" stroke="none"/>
 <rect x="47" y="637" width="4" height="46" rx="2" fill="#1D5960" stroke="none"/>
 <text x="61" y="653" fill="#153F46" font-size="15" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="start">Android owns tile placement</text>
-<text x="61" y="675" fill="#566861" font-size="13" font-weight="500" font-family="Arial,Helvetica,sans-serif" text-anchor="start">Availability varies by OS/version.</text>
+<text x="61" y="675" fill="#445851" font-size="13" font-weight="500" font-family="Arial,Helvetica,sans-serif" text-anchor="start">Availability varies by OS/version.</text>
 <rect x="35" y="746" width="362" height="54" rx="18" fill="#1D5960" stroke="none"/>
 <text x="216" y="781" fill="#FFFFFF" font-size="16" font-weight="700" font-family="Arial,Helvetica,sans-serif" text-anchor="middle">View setup instructions...</text>
 <rect x="24" y="823" width="384" height="56" rx="0" fill="#FFFCF6" stroke="none"/>

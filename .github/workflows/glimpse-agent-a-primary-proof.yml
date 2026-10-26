@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - agent/production-a-primary-system-20261024
+      - agent/production-a-postmerge-optical-20261024
     paths:
       - .github/workflows/glimpse-agent-a-primary-proof.yml
       - design/proposals/plates/**
@@ -12,6 +13,7 @@ on:
       - design/proposals/whole-product-candidates/compact-320dp-200pct-sections-sheet.svg
       - design/proposals/whole-product-candidates/grid-3column-native-aligned-p12.svg
       - design/proposals/whole-product-candidates/cc0-consistent-20261024/**
+      - design/proposals/whole-product-candidates/accessibility-keyboard-focus-visual.v1.svg
       - design/system/*.py
       - design/system/tokens.v0.1.json
   pull_request:
@@ -50,6 +52,8 @@ jobs:
         run: python3 -m pip install --disable-pip-version-check --quiet Pillow CairoSVG
       - name: Check main proposal XML and source contracts
         run: python3 scripts/validate-visual-spec.py
+      - name: Verify provisional tinted-surface AA contrast and all 22 primary caption fixes
+        run: python3 design/system/validate-contextual-contrast.py
       - name: Check A primary semantics, geometry and all exact raster sources
         run: python3 design/system/validate-production-a.py --render-output /tmp/glimpse-agent-a/phone-crops
       - name: Check actual p04 CC0 JPEG bytes, IDs and unknown Android state
@@ -114,6 +118,31 @@ jobs:
               cropped=Image.open(io.BytesIO(rawpng)).convert('RGB').crop((15,14,416,904))
               assert cropped.size==(401,890)
               cropped.save(out/('cc0-consistent-'+name+'.png'))
+          focused_source=Path('design/proposals/whole-product-candidates/accessibility-keyboard-focus-visual.v1.svg')
+          focus_text=focused_source.read_text(encoding='utf-8')
+          assert 'y="329" width="362" height="66" rx="14" fill="#FFFCF6" stroke="#1D5960" stroke-width="4"' in focus_text
+          assert 'Prefer Grid' in focus_text and '200% design target; test pending' in focus_text
+          focus_raw=cairosvg.svg2png(bytestring=focused_source.read_bytes(),output_width=1160,output_height=920)
+          focus_image=Image.open(io.BytesIO(focus_raw)).convert('RGB').crop((15,14,416,904))
+          assert focus_image.size==(401,890)
+          focus_image.save(out/'accessibility-keyboard-focus-visual.png')
+          default_source=Path('design/proposals/plates/accessibility-preferences.svg')
+          default_raw=cairosvg.svg2png(bytestring=default_source.read_bytes(),output_width=1160,output_height=920)
+          default_image=Image.open(io.BytesIO(default_raw)).convert('RGB').crop((15,14,416,904))
+          pair=Image.new('RGB',(834,930),'#E9E3D9')
+          pair.paste(default_image,(8,24)); pair.paste(focus_image,(425,24))
+          pair_pen=ImageDraw.Draw(pair)
+          pair_pen.text((8,6),'DEFAULT: no keyboard focus',fill='#153F46')
+          pair_pen.text((425,6),'UNSELECTED: Prefer Grid focused',fill='#153F46')
+          pair.save(out/'accessibility-focus-before-after.jpg',quality=95,subsampling=0)
+          # Measure the exact source change: only the intended focus outline
+          # and explicit state annotation may differ inside the 401x890 phone.
+          import PIL.ImageChops
+          delta=PIL.ImageChops.difference(default_image,focus_image)
+          assert delta.getbbox() is not None, 'Focus state must differ from default'
+          regions=[(0,0,401,300),(0,300,401,400),(0,400,401,890)]
+          changed=[PIL.ImageChops.difference(default_image.crop(q),focus_image.crop(q)).getbbox() is not None for q in regions]
+          assert changed == [False,True,False], f'Focus candidate changed unrelated screen areas: {changed}'
           photo_names=('home','reel','grid-3column','detail','collections','share')
           sheet=Image.new('RGB',(3*417+16,2*930+16),'#E9E3D9')
           marker=ImageDraw.Draw(sheet)
@@ -123,6 +152,20 @@ jobs:
               sheet.paste(rendered,(xx,yy))
               marker.text((xx,yy-16),name,fill='#153F46')
           sheet.save(out/'cc0-consistent-six-screen-contact.jpg',quality=94,subsampling=0)
+          sourceSvg=migration/'source-p12.svg'
+          sourcePng=cairosvg.svg2png(bytestring=sourceSvg.read_bytes(),output_width=1160,output_height=920)
+          sourceCrop=Image.open(io.BytesIO(sourcePng)).convert('RGB').crop((15,14,416,904))
+          assert sourceCrop.size==(401,890)
+          sourceCrop.save(out/'cc0-consistent-source-p12.png')
+          seven=Image.new('RGB',(4*417+16,2*930+16),'#E9E3D9')
+          sevenPen=ImageDraw.Draw(seven)
+          for i,name in enumerate((*photo_names,'source-p12')):
+              rendering=Image.open(out/('cc0-consistent-'+name+'.png')).convert('RGB')
+              x=16+(i%4)*417; z=24+(i//4)*930
+              seven.paste(rendering,(x,z))
+              sevenPen.text((x,z-16),name,fill='#153F46')
+          seven.save(out/'cc0-consistent-seven-flow-contact.jpg',quality=94,subsampling=0)
+
 
 
           ledger=[]
@@ -141,6 +184,8 @@ jobs:
           ]
           for name in ('home','reel','grid-3column','detail','collections','share'):
               comparisons.append(('cc0-consistent-'+name+'.png','cc0-consistent-20261024/'+name+'.svg'))
+          comparisons.append(('cc0-consistent-source-p12.png','cc0-consistent-20261024/source-p12.svg'))
+          comparisons.append(('accessibility-keyboard-focus-visual.png', 'accessibility-keyboard-focus-visual.v1.svg'))
           candidates=[]
           for rastername,svgname in comparisons:
               svg=Path('design/proposals/whole-product-candidates')/svgname
@@ -149,7 +194,14 @@ jobs:
               candidates.append({'sourcePath':str(svg), 'sourceSHA256':hashlib.sha256(svg.read_bytes()).hexdigest(),
                   'rasterPath':str(png), 'rasterSHA256':hashlib.sha256(png.read_bytes()).hexdigest(),
                   'status':'UNSELECTED', 'AndroidNativeVerified':False, 'ownerApproved':False})
+          paired=out/'accessibility-focus-before-after.jpg'
+          assert paired.is_file()
           (out/'ci-raster-ledger.json').write_text(json.dumps({'screens':ledger,
+              'focusBeforeAfter':{'contactPath':str(paired),'contactSHA256':hashlib.sha256(paired.read_bytes()).hexdigest(),
+                                  'defaultSourceSHA256':hashlib.sha256(default_source.read_bytes()).hexdigest(),
+                                  'focusedSourceSHA256':hashlib.sha256(focused_source.read_bytes()).hexdigest(),
+                                  'changedRegion':'phone x=0..401, y=300..400 only',
+                                  'independentlyOpticallyInspected':False},
               'unselectedCandidates':candidates, 'AndroidNativeVerified':False,
               'independentlyOpticallyInspected':False,'ownerApproved':False},indent=2)+'\n')
           assert len(ledger)==18
