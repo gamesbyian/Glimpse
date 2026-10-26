@@ -8,7 +8,7 @@ import android.graphics.Rect
 import android.graphics.RectF
 import android.util.LruCache
 import androidx.compose.foundation.Canvas
-import androidx.compose.foundation.gestures.detectHorizontalDragGestures
+import androidx.compose.foundation.gestures.detectDragGestures
 import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -16,8 +16,14 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.animation.core.Animatable
+import androidx.compose.animation.core.FastOutSlowInEasing
+import androidx.compose.animation.core.tween
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.produceState
@@ -30,16 +36,24 @@ import androidx.compose.ui.graphics.drawscope.drawIntoCanvas
 import androidx.compose.ui.graphics.nativeCanvas
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.platform.LocalContext
+import android.provider.Settings
+import android.os.PowerManager
+import android.content.Context
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import io.github.gamesbyian.glimpse.data.PhotoRecord
 import io.github.gamesbyian.glimpse.domain.ReelWindow
+import io.github.gamesbyian.glimpse.domain.ReelMotion
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
 import kotlin.math.cos
 import kotlin.math.sin
+import kotlin.math.abs
 
 /** Small global bounded thumbnail cache; never loads full-resolution originals. */
 private object ReelThumbs : LruCache<String, Bitmap>(16 * 1024 * 1024) {
@@ -86,11 +100,14 @@ private fun aperture(cx: Float, cy: Float, outer: Float, inner: Float, middleDeg
 /**
  * V0 functional circular browsing prototype:
  * - bounded five cutouts into any finite collection
- * - left/right swipes change one photo ID
+ * - swipes and fixed semantic controls turn real photo IDs through legal notches
  * - all display rows are decoupled from WallpaperManager
  * - fixed pointer and center hub; only selected photo in hero is authoritative
  *
- * The final tactile texture, rotation physics and exact responsive geometry
+ * This first physically moving version is NOT the final photographed paper material;
+ * it is the motion acceptance foundation. Real material art must be versioned
+ * and measured against owner-supplied references before visual acceptance.
+ * The final tactile texture, motion physics and exact responsive geometry
  * remain subject to reference approval and Android-device capture.
  */
 @Composable
@@ -102,8 +119,29 @@ fun CircularPhotoReel(
 ) {
     val ids = remember(records) { records.map { it.id } }
     val focus = ReelWindow.focusIndex(ids, selectedId)
-    val slots = ReelWindow.slots(ids, selectedId)
     val local = remember(records) { records.associateBy { it.id } }
+    // The anchored slot IDs remain unchanged while the paper/photo disc turns.
+    // Once the selected window settles at the pointer, rebind hidden slots.
+    var anchorId by remember(ids) {
+        mutableStateOf(if (selectedId in ids) selectedId else ids.firstOrNull())
+    }
+    val slots = ReelWindow.slots(ids, anchorId)
+    val scope = rememberCoroutineScope()
+    val angle = remember { Animatable(0f) }
+    var dragging by remember { mutableStateOf(false) }
+    var dragAngle by remember { mutableFloatStateOf(0f) }
+    var settleJob by remember { mutableStateOf<Job?>(null) }
+    val context = LocalContext.current
+    val reducedMotion = remember(context) {
+        val animatorScale = runCatching {
+            Settings.Global.getFloat(context.contentResolver, Settings.Global.ANIMATOR_DURATION_SCALE, 1f)
+        }.getOrDefault(1f)
+        val powerSave = runCatching {
+            (context.getSystemService(Context.POWER_SERVICE) as? PowerManager)?.isPowerSaveMode ?: false
+        }.getOrDefault(false)
+        animatorScale <= 0f || powerSave
+    }
+    val renderedAngle = if (dragging) dragAngle else angle.value
     val thumbnailFiles = slots.filterNotNull().mapNotNull { local[it]?.localPath }
     val thumbs by produceState(
         initialValue = emptyMap<String, Bitmap>(),
@@ -116,8 +154,49 @@ fun CircularPhotoReel(
         }
     }
     val updatedOnSelect by rememberUpdatedState(onSelect)
-    val dragThreshold = with(LocalDensity.current) { 44.dp.toPx() }
-    var totalDrag by remember(selectedId, records) { mutableFloatStateOf(0f) }
+
+    fun beginSettle(startAngle: Float, steps: Int) {
+        settleJob?.cancel()
+        dragging = false
+        val origin = ReelWindow.focusIndex(ids, anchorId)
+        val legal = ReelMotion.legalSteps(origin, ids.size, steps)
+        settleJob = scope.launch {
+            angle.snapTo(startAngle)
+            val target = ReelMotion.targetAngle(legal)
+            if (reducedMotion) angle.snapTo(target)
+            else angle.animateTo(target, tween(durationMillis = 270, easing = FastOutSlowInEasing))
+            // Logical selection changes only at completed settle; never apply wallpaper.
+            val targetId = ids.getOrNull(origin + legal)
+            if (targetId != null) {
+                anchorId = targetId
+                angle.snapTo(0f)
+                if (targetId != selectedId) updatedOnSelect(targetId)
+            } else angle.snapTo(0f)
+        }
+    }
+
+    // Stable external Previous/Next/Grid choice gets the same photographed wheel
+    // continuity, without making a second selection mutation during animation.
+    LaunchedEffect(selectedId, ids) {
+        val target = ids.indexOf(selectedId)
+        val origin = ids.indexOf(anchorId)
+        if (target < 0) {
+            settleJob?.cancel()
+            anchorId = ids.firstOrNull()
+            angle.snapTo(0f)
+        } else if (target != origin) {
+            settleJob?.cancel()
+            dragging = false
+            val delta = target - origin
+            if (!reducedMotion && abs(delta) == 1) {
+                angle.snapTo(0f)
+                angle.animateTo(ReelMotion.targetAngle(delta),
+                    tween(durationMillis = 270, easing = FastOutSlowInEasing))
+            }
+            anchorId = selectedId
+            angle.snapTo(0f)
+        }
+    }
     Column(modifier = modifier) {
         Text("Browse the reel", fontWeight = FontWeight.SemiBold)
         Text(if (focus < 0) "No photographs" else "Photo ${focus + 1} of ${records.size} · Swipe to browse")
@@ -127,35 +206,40 @@ fun CircularPhotoReel(
                     .semantics {
                         contentDescription = "Paper photo reel. Swipe left for next photo, right for previous. Previous and Next buttons are also available."
                     }
-                    .pointerInput(ids, selectedId) {
+                    .pointerInput(ids, anchorId, renderedAngle) {
                         detectTapGestures { position ->
+                            // Prevent rotating an already moving paper window as a
+                            // tap target. Fixed Previous/Next remain available.
+                            if (dragging || abs(renderedAngle) > 1f) return@detectTapGestures
                             ReelWindow.tapOffset(
                                 position.x, position.y,
                                 size.width.toFloat(), size.height.toFloat()
                             )?.let { offset ->
-                                slots.getOrNull(offset + 2)?.let(updatedOnSelect)
+                                if (offset != 0 && slots.getOrNull(offset + 2) != null) {
+                                    beginSettle(0f, offset)
+                                }
                             }
                         }
                     }
-                    .pointerInput(ids, selectedId) {
-                        detectHorizontalDragGestures(
-                            onDragStart = { totalDrag = 0f },
-                            onHorizontalDrag = { change, amount ->
+                    .pointerInput(ids, anchorId) {
+                        detectDragGestures(
+                            onDragStart = {
+                                settleJob?.cancel()
+                                dragging = true
+                                dragAngle = angle.value
+                            },
+                            onDrag = { change, amount ->
                                 change.consume()
-                                totalDrag += amount
+                                dragAngle = (dragAngle + ReelMotion.dragDegrees(
+                                    amount.x, size.width.toFloat()
+                                )).coerceIn(-2.5f * 72f, 2.5f * 72f)
                             },
                             onDragEnd = {
-                                val delta = when {
-                                    totalDrag < -dragThreshold -> 1
-                                    totalDrag > dragThreshold -> -1
-                                    else -> 0
-                                }
-                                if (delta != 0) {
-                                    ReelWindow.next(ids, selectedId, delta)?.let(updatedOnSelect)
-                                }
-                                totalDrag = 0f
+                                val origin = ReelWindow.focusIndex(ids, anchorId)
+                                beginSettle(dragAngle,
+                                    ReelMotion.settleSteps(dragAngle, origin, ids.size))
                             },
-                            onDragCancel = { totalDrag = 0f }
+                            onDragCancel = { beginSettle(dragAngle, 0) }
                         )
                     }
             ) {
@@ -179,6 +263,10 @@ fun CircularPhotoReel(
                     style = Paint.Style.STROKE
                     strokeWidth = 5.dp.toPx()
                 }
+                // The whole photo-and-paper surface turns together around its hub.
+                // Fixed pointer below does not move. All five slots have real IDs.
+                native.save()
+                native.rotate(renderedAngle, cx, cy)
                 // The outside of this full disc is clipped by the physical
                 // content viewport; the disc has five genuine cutout paths.
                 native.drawCircle(cx, cy + 5.dp.toPx(), r, Paint(Paint.ANTI_ALIAS_FLAG).apply {
@@ -222,6 +310,7 @@ fun CircularPhotoReel(
                 }
                 native.drawCircle(cx, cy, inner * 1.02f, rim)
                 native.drawCircle(cx, cy, inner * .62f, empty)
+                native.restore()
                 val pointer = Path().apply {
                     moveTo(cx - 14.dp.toPx(), 1.dp.toPx())
                     lineTo(cx + 14.dp.toPx(), 1.dp.toPx())
