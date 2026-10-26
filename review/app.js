@@ -283,7 +283,7 @@ function reviewPacket(){
  const selected=records.primary.map(it=>({id:it.id,path:selectedPath(it),sha:hash(selectedPath(it)),status:stateOf(it).status||"unreviewed"}));
  const support=records.support.map(it=>({id:it.id,path:it.options[0].path,sha:it.options[0].sha,status:stateOf(it).status||"unreviewed"}));
  const s=stats();
- return {format:"glimpse-design-review-v1",repository:"gamesbyian/Glimpse",branch:"agent/visual-state-reconciliation-20261023",sourceCommit:build.sha||null,exportedAt:new Date().toISOString(),snapshotSourceCount:data.snapshot.uniqueReferencedSources,approval:{wholeSetVisualAcceptanceRequested:s.ready,hasPendingChanges:!s.ready,repositoryOwnerApproved:false,notes:"This is an exported owner review record, not a direct repository approval."},summary:{...s,atomic:s.atomic.mode},selectedPrimary:selected,selectedSupport:support,decisions:review.questions,comments:review.notes,generalNotes:review.general,reviewStatus:review.items,chosen:review.chosen};
+ return {format:"glimpse-design-review-v1",repository:"gamesbyian/Glimpse",branch:"agent/visual-state-reconciliation-20261023",sourceCommit:build.sha||null,exportedAt:new Date().toISOString(),snapshotSourceCount:data.snapshot.uniqueReferencedSources,approval:{wholeSetVisualAcceptanceRequested:!!(s.ready&&review.finalIntent?.requested&&review.finalIntent?.stamp===acceptanceStamp()),hasPendingChanges:!s.ready,repositoryOwnerApproved:false,notes:"This is an exported owner review record, not a direct repository approval."},summary:{...s,atomic:s.atomic.mode},selectedPrimary:selected,selectedSupport:support,decisions:review.questions,comments:review.notes,generalNotes:review.general,reviewStatus:review.items,chosen:review.chosen,finalIntent:review.finalIntent||null};
 }
 function download(filename,text,mime){const blob=new Blob([text],{type:mime}),u=URL.createObjectURL(blob),a=document.createElement("a");a.href=u;a.download=filename;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(u),900);}
 function exportJSON(){const packet=reviewPacket();download("glimpse-owner-review-"+new Date().toISOString().slice(0,10)+".json",JSON.stringify(packet,null,2)+"\n","application/json");notify("Review exported. Attach the JSON to GitHub or this chat to submit it.")}
@@ -294,7 +294,7 @@ async function importReview(e){
   const x=JSON.parse(await file.text());
   if(x.format!=="glimpse-design-review-v1"||x.repository!=="gamesbyian/Glimpse"||typeof x.reviewStatus!=="object"||typeof x.decisions!=="object")throw Error("Not a Glimpse review packet");
   if(!confirm("Replace your current locally saved review with this imported copy? Export your existing notes first if needed."))return;
-  review={schema:1,createdAt:x.exportedAt,items:x.reviewStatus||{},questions:x.decisions||{},notes:x.comments||{},general:x.generalNotes||{},chosen:x.chosen||{}};
+  review={schema:1,createdAt:x.exportedAt,items:x.reviewStatus||{},questions:x.decisions||{},notes:x.comments||{},general:x.generalNotes||{},chosen:x.chosen||{},finalIntent:x.finalIntent||null};
   save();render();$("overviewDialog").close();notify("Imported. Old source-version notes are flagged where necessary.");
  }catch(err){notify("Import failed: "+err.message)}
 }
@@ -307,10 +307,17 @@ function openOverview(){
   q.map(it=>'<div class="overview-row"><span><strong>'+esc(it.id)+'</strong> '+esc(it.title.replace(it.id+" · ",""))+'<br><small>'+esc(review.questions[it.id]?.choice||"Not decided")+'</small></span><button type="button" data-jump="question|'+esc(it.id)+'">Open</button></div>').join("")+
   '<h3>Outstanding screen evaluations ('+unreviewed.length+')</h3>'+
   '<div class="overview-alert">'+(unreviewed.slice(0,10).map(x=>'<button type="button" data-jump="'+esc(x.kind+"|"+x.id)+'">'+esc(x.title)+'</button>').join(" ")||"No missing acceptances.")+(unreviewed.length>10?" · plus "+(unreviewed.length-10)+" others":"")+'</div>'+
-  '<h3>Whole-set readiness</h3><div class="'+(s.ready?"overview-good":"overview-alert")+'">'+(s.ready?"All 58 selections and eight decisions recorded with a compatible six-photo set and no blocking pins. You may export a source-bound visual acceptance request. Repository signoff remains separate.":"Not yet qualified for a whole-set visual acceptance request. Pending work, revisions or mixed photographic selections remain. Feedback export works at any point.")+'</div>'+
+  '<h3>Whole-set readiness</h3><div class="'+(s.ready?"overview-good":"overview-alert")+'">'+(s.ready?"All 58 selections and eight decisions recorded with a compatible six-photo set and no blocking pins. You may export a source-bound visual acceptance request. Repository signoff remains separate.":"Not yet qualified for whole-set acceptance. Pending screens, revision choices, source/decision mismatches, blocking comments or mixed photographic selections remain. Feedback export works at any point.")+'</div>'+
+  '<p class="muted">Decision/source conflicts: '+esc(s.conflictingChoices.join("; ")||"none")+'. Revision-request decisions: '+s.revisionQuestions+'. Stale acceptances: '+s.staleAcceptances+'.</p>'+
   '<p class="muted">Source build: '+esc(build.sha||"current deployment")+'. Imported browser decisions are independently checked against current source hashes in the exported packet.</p>'+
-  '<button type="button" class="wide" id="feedbackIssue">Open a GitHub feedback issue with summary ↗</button>';
+  '<button type="button" class="wide" id="feedbackIssue">Open a GitHub feedback issue with summary ↗</button>'+
+  '<button type="button" class="wide accent" id="authorizeSet" '+(s.ready?"":"disabled")+'>Authorize source-bound whole-set approval request</button>';
  $("overviewBody").querySelectorAll("[data-jump]").forEach(b=>b.addEventListener("click",()=>{const [k,id]=b.dataset.jump.split("|");$("overviewDialog").close();navigate(k,id)}));
+ $("authorizeSet").addEventListener("click",()=>{
+  const status=stats();if(!status.ready)return;
+  if(!confirm("Authorize an exportable visual approval request for this exact 58-screen source set and all eight decisions? This does not merge a PR or update design/approved/. Cancel to continue reviewing."))return;
+  review.finalIntent={requested:true,at:new Date().toISOString(),stamp:acceptanceStamp()};save();exportJSON();openOverview();
+ });
  $("feedbackIssue").addEventListener("click",()=>{const title="Glimpse visual design review feedback";const body=summary()+"\n\nAttach the exported review JSON to preserve exact screen/option SHA, individual decisions and annotations.";const u="https://github.com/gamesbyian/Glimpse/issues/new?title="+encodeURIComponent(title)+"&body="+encodeURIComponent(body);window.open(u,"_blank","noopener,noreferrer")});
  $("overviewDialog").showModal();
 }
