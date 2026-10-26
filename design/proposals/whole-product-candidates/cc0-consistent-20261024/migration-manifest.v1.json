@@ -1,12 +1,12 @@
 {
   "schemaVersion": 1,
-  "status": "UNSELECTED_SOURCE_EDITABLE_MIGRATION",
+  "status": "EDITORIAL_CC0_SIX_REVIEW_CANDIDATE_NOT_OWNER_APPROVED",
   "generatedOn": "2026-10-24",
   "assetSourceContract": "Agent C #12, production-c-provenance.v1.json",
   "selectedId": "p12",
   "lastGlimpseAcknowledgedId": "p04",
   "androidWallpaperCurrentVerified": false,
-  "changeScope": "Six-surface synchronized alternative; never mutate selected reviewer or change wallpaper",
+  "changeScope": "Six synchronized surfaces preferred for draft owner review; historical selected screens preserved as alternatives. No owner approval or Android acceptance.",
   "sourcePaths": {
     "home": "design/proposals/whole-product-candidates/cc0-consistent-20261024/home.svg",
     "reel": "design/proposals/whole-product-candidates/cc0-consistent-20261024/reel.svg",
