@@ -6,6 +6,8 @@ on:
       - review/index.html
       - review/app.js
       - review/style.css
+      - review/excellence.js
+      - review/excellence.css
       - scripts/test-review-studio-browser.py
       - scripts/test-review-studio.py
       - .github/workflows/glimpse-review-browser-qa.yml
@@ -34,7 +36,11 @@ jobs:
             python3 -m playwright install chromium --with-deps
           fi
       - name: Desktop, mobile, pin and export acceptance
-        run: python3 scripts/test-review-studio-browser.py
+        run: |
+          node --check review/app.js
+          node --check review/excellence.js
+          python3 scripts/test-review-studio.py
+          python3 scripts/test-review-studio-browser.py
       - name: Preserve actual browser screenshots
         if: always()
         uses: actions/upload-artifact@v4
