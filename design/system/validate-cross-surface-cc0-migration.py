@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Fail-closed verification of six *unselected* cross-surface CC0 candidates.
+"""Fail-closed verification of six *still-unapproved* cross-surface CC0 candidates.
 
 Checks actual embedded JPEG SHA256, immutable ID semantics, metadata and visible
 single-photo selection. Not a license grant, Android behavior, owner approval or
@@ -73,7 +73,7 @@ def read(name:str):
 
 def check():
     manifest=json.loads((DIR/'migration-manifest.v1.json').read_text())
-    assert manifest['status']=='UNSELECTED_SOURCE_EDITABLE_MIGRATION'
+    assert manifest['status']=='EDITORIAL_CC0_SIX_REVIEW_CANDIDATE_NOT_OWNER_APPROVED'
     assert manifest['selectedId']=='p12'
     assert manifest['lastGlimpseAcknowledgedId']=='p04'
     assert manifest['androidWallpaperCurrentVerified'] is False
