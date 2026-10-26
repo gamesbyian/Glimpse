@@ -123,3 +123,29 @@ jobs:
           git fetch origin "${GITHUB_REF_NAME}"
           git rebase "origin/${GITHUB_REF_NAME}"
           git push origin HEAD:"${GITHUB_REF_NAME}"
+
+      - name: Package a portable owner-review archive
+        run: |
+          cat > REVIEW-OPEN-FIRST.txt <<'EOF'
+          GLIMPSE / OCTOBER 25, 2026 / PROVISIONAL OWNER VISUAL REVIEW
+          This is a draft proposal, not a decision, final approval, or Android release certificate.
+          Extract this ZIP, then open design/atlas/whole-product-review-selection.html
+          in Chrome or another desktop browser. The 24 primary screens lead, followed
+          by 34 support states, 23 linked journeys and eight owner questions.
+          The synchronized photographic six-screen sample is the editorial
+          preference only; older reference screens remain available as alternatives.
+          The exact source SHA-256 is shown adjacent to each reviewer card.
+          Read docs/planning/OWNER-REVIEW-2026-10-25-DRAFT-DECISION-GUIDE.md.
+          Physical-device/TalkBack/Doze and human approvals remain outstanding.
+          EOF
+          zip -q -r /tmp/glimpse-owner-review-draft.zip REVIEW-OPEN-FIRST.txt \
+            design/atlas design/proposals design/assets \
+            design/system/reviews/ci-renders \
+            design/reviews/support-agent-b-2026-10-24 \
+            docs/planning/OWNER-REVIEW-2026-10-25-DRAFT-DECISION-GUIDE.md
+          unzip -tq /tmp/glimpse-owner-review-draft.zip
+      - uses: actions/upload-artifact@v4
+        with:
+          name: glimpse-owner-review-draft-offline
+          path: /tmp/glimpse-owner-review-draft.zip
+          retention-days: 30
