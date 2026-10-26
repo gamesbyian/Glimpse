@@ -31,7 +31,7 @@ function paintLens(){
  applyLens();
 }
 function applyLens(){
- const f=$("screens .difference-frame");if(!f)return;
+ const f=document.querySelector("#screens .difference-frame");if(!f)return;
  const top=f.querySelector(".diff-top"),div=f.querySelector(".diff-divider");
  if(lens.mode==="wipe"){top.style.clipPath="inset(0 "+(100-lens.value)+"% 0 0)";top.style.opacity="1";div.hidden=false;div.style.left=lens.value+"%"}
  else{top.style.clipPath="none";top.style.opacity=String(lens.value/100);div.hidden=true}
