@@ -28,7 +28,9 @@ jobs:
       - name: Check out unmerged owner-review candidate
         uses: actions/checkout@v4
         with:
-          ref: agent/visual-state-reconciliation-20261023
+          # Deploy precisely the draft revision that passed the triggering workflow.
+          # workflow_dispatch/main workflow edits use the current draft branch.
+          ref: ${{ github.event_name == 'workflow_run' && github.event.workflow_run.head_sha || 'agent/visual-state-reconciliation-20261023' }}
           persist-credentials: false
       - name: Validate current source-exact owner-review candidate
         run: |
@@ -38,6 +40,7 @@ jobs:
           python3 scripts/validate-integrated-optical-ledger.py
           python3 scripts/test-review-studio.py
           node --check review/app.js
+          node --check review/excellence.js
       - name: Stage source-complete interactive review
         run: |
           mkdir -p _site
