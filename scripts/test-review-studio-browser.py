@@ -52,7 +52,9 @@ try:
         assert page.locator(".difference-frame").count()==1
         slider=page.locator("#comparisonSlider")
         slider.evaluate("(el) => {el.value='72'; el.dispatchEvent(new Event('input',{bubbles:true}));}")
-        assert "72%" in page.locator("#comparisonValue").inner_text()
+        info=page.evaluate("({val:document.getElementById('comparisonSlider').value,output:document.getElementById('comparisonValue').textContent,top:document.querySelector('.diff-top')?.getAttribute('style')})")
+        print("WIPE DEBUG",info,"PAGE ERRORS",errors,flush=True)
+        assert info["val"]=="72" and info["output"]=="72%",info
         assert "28%" in page.locator(".diff-top").get_attribute("style")
         page.locator("#diffBlend").click()
         assert page.locator(".diff-top").evaluate("(el) => Number(el.style.opacity)") == .72
