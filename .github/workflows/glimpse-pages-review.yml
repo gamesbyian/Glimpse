@@ -5,6 +5,7 @@ on:
     branches: [agent/visual-state-reconciliation-20261023]
     paths:
       - review/**
+      - scripts/test-review-studio.py
       - .github/workflows/glimpse-pages-review.yml
       - design/proposals/whole-product-review-selection.v1.json
       - design/atlas/whole-product-review-snapshot.v1.json
@@ -20,12 +21,9 @@ concurrency:
   group: glimpse-pages-owner-review
   cancel-in-progress: true
 jobs:
-  deploy-owner-review:
+  build-review:
     runs-on: ubuntu-latest
     timeout-minutes: 12
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -71,6 +69,14 @@ jobs:
       - uses: actions/upload-pages-artifact@v3
         with:
           path: _site
+  deploy-owner-review:
+    needs: build-review
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
       - name: Deploy reviewer
         id: deployment
         uses: actions/deploy-pages@v4
