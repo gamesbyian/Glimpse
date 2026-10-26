@@ -7,6 +7,7 @@ on:
       - review/app.js
       - review/style.css
       - scripts/test-review-studio-browser.py
+      - scripts/test-review-studio.py
       - .github/workflows/glimpse-review-browser-qa.yml
   workflow_dispatch:
 permissions:
