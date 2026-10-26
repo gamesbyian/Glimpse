@@ -62,6 +62,7 @@ try:
         page.locator("#openDashboard").click()
         assert page.locator("#overviewDialog").is_visible()
         assert "1/8" in page.locator("#overviewBody").inner_text()
+        page.locator("#wholeSetNotes").fill("Keep the tactile reel but simplify the first-run explanation.")
         page.locator("#closeOverview").click()
         with page.expect_download() as download:
             page.locator("#exportButton").click()
@@ -74,6 +75,7 @@ try:
             assert packet["approval"]["repositoryOwnerApproved"] is False
             assert packet["approval"]["wholeSetVisualAcceptanceRequested"] is False
             assert packet["decisions"]["D01"]["choice"]
+            assert "first-run explanation" in packet["wholeSetNotes"]
         assert not errors,errors
         desktop.close()
 
