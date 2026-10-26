@@ -6,7 +6,7 @@ on:
     paths: [.github/workflows/glimpse-pages-publisher.yml]
   workflow_dispatch:
   workflow_run:
-    workflows: ["Glimpse | Build complete draft visual evidence atlas"]
+    workflows: ["Glimpse | Build complete draft visual evidence atlas", "Glimpse | Chromium owner reviewer interaction QA"]
     types: [completed]
     branches: [agent/visual-state-reconciliation-20261023]
 permissions:
