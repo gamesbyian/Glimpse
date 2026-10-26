@@ -26,6 +26,13 @@ def evaluate(selection, migration, provenance):
     hashes = [p["sha256"] for p in all_photos]
     if len(ids) != 13 or len(set(ids)) != 13 or len(set(hashes)) != 13:
         raise ValueError("13 independent source identities absent or aliased")
+    for photo in all_photos:
+        if (photo.get("rightsStatus") != "verified" or photo.get("license") != "CC0 1.0 Universal":
+            raise ValueError("photo license evidence missing or unverified: " + photo["photoId"])
+        if not photo.get("creator") or not photo.get("sourceUrl", "").startswith("https://commons.wikimedia.org/wiki/File:"):
+            raise ValueError("photo creator or source page missing: " + photo["photoId"])
+        if len(photo.get("sha256", "")) != 64 or len(photo.get("originalSHA256", "")) != 64:
+            raise ValueError("original/derived source hashes missing: " + photo["photoId"])
     if set(ids) != {"p04"} | {f"p{n:02d}" for n in range(6, 18)}:
         raise ValueError("unexpected photo IDs")
     cards = {p["surfaceId"]: p for p in selection["primarySurfaces"]
