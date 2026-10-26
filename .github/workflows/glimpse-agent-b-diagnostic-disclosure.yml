@@ -7,6 +7,12 @@ on:
       - scripts/validate-agent-b-diagnostic-disclosure.py
       - scripts/test-agent-b-diagnostic-disclosure.py
       - .github/workflows/glimpse-agent-b-diagnostic-disclosure.yml
+  pull_request:
+    paths:
+      - design/proposals/support-plates/diagnostic-preview--expanded.svg
+      - scripts/validate-agent-b-diagnostic-disclosure.py
+      - scripts/test-agent-b-diagnostic-disclosure.py
+      - .github/workflows/glimpse-agent-b-diagnostic-disclosure.yml
   workflow_dispatch:
 permissions:
   contents: read
