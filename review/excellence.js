@@ -142,6 +142,16 @@ function bind(){
  $("comparisonSlider").addEventListener("input",e=>{lens.value=Number(e.target.value);applyLens()});
  $("resetDiff").addEventListener("click",()=>{lens.value=50;$("comparisonSlider").value="50";applyLens()});
  $("focusMode").addEventListener("click",setFocus);
+ for(const id of ["compare","fullSource","startPin"]){
+  $(id).addEventListener("click",()=>{
+   if(lens.mode!=="off"){
+    lens.mode="off";
+    $("comparisonControls").hidden=true;
+    $("diffWipe").setAttribute("aria-pressed","false");
+    $("diffBlend").setAttribute("aria-pressed","false");
+   }
+  });
+ }
  $("journeyPrev").addEventListener("click",()=>step(-1));$("journeyNext").addEventListener("click",()=>step(1));
  $("journeyPlay").addEventListener("click",play);
  $("journeyFramesToggle").addEventListener("click",()=>{timeline=!timeline;journeyDraw()});
