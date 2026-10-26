@@ -46,6 +46,26 @@ try:
         page.locator("#compare").click()
         assert page.locator(".frame").count()==2
         page.locator("#compare").click()
+        # Compare the exact same screen in a wipe and transparency lens.
+        page.locator("#diffWipe").click()
+        assert page.locator("#comparisonControls").is_visible()
+        assert page.locator(".difference-frame").count()==1
+        page.locator("#comparisonSlider").fill("72")
+        assert "72%" in page.locator("#comparisonValue").inner_text()
+        assert "28%" in page.locator(".diff-top").get_attribute("style")
+        page.locator("#diffBlend").click()
+        assert page.locator(".diff-top").evaluate("(el) => Number(el.style.opacity)") == .72
+        page.locator("#diffBlend").click()
+        assert page.locator(".difference-frame").count()==0
+        page.locator("#openSetMap").click()
+        assert page.locator("#setMapList .set-map-card").count()==24
+        page.locator('[data-map-kind="journey"]').click()
+        assert page.locator("#setMapList .set-map-card").count()==23
+        page.locator("#closeSetMap").click()
+        page.locator("#focusMode").click()
+        assert page.evaluate("document.body.classList.contains('focus-mode')")
+        page.locator("#focusMode").click()
+        assert not page.evaluate("document.body.classList.contains('focus-mode')")
         page.locator('[data-status="accepted"]').click()
         assert '"status":"accepted"' in page.evaluate("localStorage.getItem('glimpse.review.v1.gamesbyian.Glimpse')")
         page.locator("#startPin").click()
@@ -56,6 +76,22 @@ try:
         page.locator("#savePin").click()
         assert page.locator("#commentCount").inner_text()=="1"
         page.screenshot(path=str(OUT/"review-desktop.png"),full_page=True)
+        # Verify source-bound journey assessment and playback.
+        page.locator('[data-section="journey"]').click()
+        assert page.locator("#journeyPlayer").is_visible()
+        assert page.locator("#journeyProgress button").count()>=5
+        page.locator("#journeyNext").click()
+        assert "Step 2/" in page.locator("#journeyPosition").inner_text()
+        page.locator("#journeyFramesToggle").click()
+        assert page.locator("#journeyTimeline").is_visible()
+        for check in page.locator("#journeyChecks input").all():
+            check.check()
+        assert page.locator("#journeyApprove").is_enabled()
+        page.locator("#journeyApprove").click()
+        assert "accepted" in page.locator("#journeyApprove").inner_text()
+        page.locator("#journeyNotes").fill("Show a clearer return path from the OS picker.")
+        assert "accepted" not in page.locator("#journeyApprove").inner_text()
+        page.screenshot(path=str(OUT/"review-journey.png"),full_page=True)
         page.locator('[data-section="question"]').click()
         assert page.locator("#screenTitle").inner_text().startswith("D01")
         page.locator('[data-choice]').first.click()
@@ -75,6 +111,8 @@ try:
             assert packet["approval"]["repositoryOwnerApproved"] is False
             assert packet["approval"]["wholeSetVisualAcceptanceRequested"] is False
             assert packet["decisions"]["D01"]["choice"]
+            assert packet["journeys"]["x01"]["status"]=="unreviewed"
+            assert "OS picker" in packet["journeys"]["x01"]["notes"]
             assert "first-run explanation" in packet["wholeSetNotes"]
         assert not errors,errors
         desktop.close()
@@ -96,6 +134,12 @@ try:
         p.locator("#openInspector").click()
         assert p.locator("#inspector").is_visible()
         p.screenshot(path=str(OUT/"review-mobile.png"),full_page=True)
+        p.locator("#closeInspector").click()
+        p.locator("#openBrowse").click()
+        p.locator('[data-section="primary"]').click()
+        p.locator("#diffWipe").click()
+        assert p.locator(".difference-frame").count()==1
+        assert p.locator(".difference-frame").bounding_box()["height"]>=260
         assert not mobile_errors,mobile_errors
         browser.close()
     print("PASS: Chromium desktop A/B, pin, local choice, eight decisions, JSON export; mobile browse, inspection, viewport, zero JS errors")
