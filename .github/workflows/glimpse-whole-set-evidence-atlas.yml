@@ -118,10 +118,14 @@ jobs:
             exit 0
           fi
           git commit -m "docs: regenerate exhaustive draft optical evidence atlas"
-          # Support-source contact updates can land during this atlas run.
-          # Rebase this generated reviewer-only commit; never force-push.
+          # Never rebase generated sourceCommit/SHA atlases over a newer run.
+          # A newer push has its own source-keyed atlas workflow invocation.
           git fetch origin "${GITHUB_REF_NAME}"
-          git rebase "origin/${GITHUB_REF_NAME}"
+          remote_sha="$(git rev-parse FETCH_HEAD)"
+          if [ "${remote_sha}" != "${GITHUB_SHA}" ]; then
+            echo "::warning::Review branch advanced; discard this stale atlas publication rather than conflicting with current evidence."
+            exit 0
+          fi
           git push origin HEAD:"${GITHUB_REF_NAME}"
 
       - name: Package a portable owner-review archive
