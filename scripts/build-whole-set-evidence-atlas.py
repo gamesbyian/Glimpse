@@ -112,7 +112,12 @@ def build():
     for group in p1["groups"]:
         add("P1 " + group["id"].upper() + " / " + group["title"], "P1-storyboard",
             [item(f["path"], f.get("caption"), f.get("invariant")) for f in group["frames"]])
-    whole_product = sorted((PROPOSALS / "whole-product-candidates").glob("*.svg"))
+    # Multi-phone accessibility studies live beside proposals, but are not 401×890 phone screens.
+    non_phone_studies = {"compact-320dp-200pct-sections-sheet.svg"}
+    whole_product = sorted(p for p in (PROPOSALS / "whole-product-candidates").glob("*.svg")
+                           if p.name not in non_phone_studies)
+    for study in non_phone_studies:
+        assert (PROPOSALS / "whole-product-candidates" / study).is_file(), study
     if not whole_product:
         raise ValueError("Whole-product modernized candidate source set is missing")
     add("Current-generation whole-product visual candidates", "whole-product-candidate",
