@@ -64,3 +64,10 @@
  #setMapDialog{padding:12px}.set-map-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
 }
 @media(prefers-reduced-motion:reduce){.journey-progress button{transition:none}}
+
+/* All thumbnails use exactly the same physical phone crop as the large viewer. */
+.map-thumb{position:relative;display:block;width:min(100%,108px);aspect-ratio:401/890;overflow:hidden;border-radius:7px;background:#f7f0e7;box-shadow:0 1px 5px #123b4325;flex:none}
+.map-thumb img,.set-map-card .map-thumb img{position:absolute;left:-3.740648%;top:-1.573034%;width:289.276808%;height:103.370787%;max-width:none;object-fit:unset;object-position:initial;aspect-ratio:auto;border-radius:0}
+.journey-timeline .map-thumb{width:27px;height:60px;margin:auto}
+.journey-timeline .map-thumb img{width:289.276808%;height:103.370787%;max-width:none}
+#setMapDialog .set-map-card .map-thumb{width:min(100%,105px)}
