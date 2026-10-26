@@ -31,10 +31,10 @@ const questionChoices={
 };
 let data=null, records={}, activeList=[], current={section:"primary",id:"home",option:0,compare:false,full:false,peek:false,pinning:false,pin:null}, review, build={};
 let toastTimeout=0,saveTimeout=0;
-const fresh=()=>({schema:1,createdAt:new Date().toISOString(),items:{},questions:{},notes:{},general:{},chosen:{},wholeSetNotes:"",finalIntent:null});
+const fresh=()=>({schema:1,createdAt:new Date().toISOString(),items:{},questions:{},notes:{},general:{},chosen:{},wholeSetNotes:"",journeys:{},finalIntent:null});
 try {review=JSON.parse(localStorage.getItem(reviewKey)||"null")||fresh(); if(review.schema!==1) review=fresh()} catch(e){review=fresh()}
 function notify(message){const t=$("toast");t.textContent=message;t.classList.add("visible");clearTimeout(toastTimeout);toastTimeout=setTimeout(()=>t.classList.remove("visible"),2900)}
-function save(){try{localStorage.setItem(reviewKey,JSON.stringify(review));$("saveIndicator").textContent="Saved locally · export to share";}catch(e){$("saveIndicator").textContent="Browser storage unavailable · export now";}updateCount()}
+function save(){try{localStorage.setItem(reviewKey,JSON.stringify(review));$("saveIndicator").textContent="Saved locally · export to share";}catch(e){$("saveIndicator").textContent="Browser storage unavailable · export now";}updateCount();window.dispatchEvent(new Event("glimpse:save"))}
 function debounceSave(){clearTimeout(saveTimeout);saveTimeout=setTimeout(save,180)}
 function itemKey(it){return it.kind+":"+it.id}
 function record(){return records[current.section]?.find(x=>x.id===current.id)}
@@ -153,7 +153,7 @@ function render(){
  $("fullSource").setAttribute("aria-pressed",String(current.full));
  const params=new URLSearchParams({view:current.section,id:current.id,option:String(current.option)});
  history.replaceState(null,"","?"+params.toString());
- renderNavigation();renderStage();renderInspector();updateCount();
+ renderNavigation();renderStage();renderInspector();updateCount();window.dispatchEvent(new Event("glimpse:render"));
 }
 function renderNavigation(){
  const shown=list();$("resultCount").textContent=shown.length+" of "+records[current.section].length+" entries";
@@ -268,12 +268,15 @@ function stats(){
       (review.items[itemKey(it)].path!==selectedPath(it)||review.items[itemKey(it)].sha!==hash(selectedPath(it)))).length;
  const unresolved=counts.changes+counts.deferred+counts.unreviewed+blockingPins+revisionQuestions+conflictingChoices.length+staleAcceptances;
  const atomic=atomicValid();
- return {counts,answered,blockingPins,revisionQuestions,conflictingChoices,staleAcceptances,atomic,ready:counts.accepted===58&&answered===8&&unresolved===0&&atomic.valid};
+ const journeyAccepted=records.journey.filter(it=>{const r=review.journeys?.[it.id];return r?.status==="accepted"&&
+  r.frames?.length===it.options.length&&r.frames.every((sha,i)=>sha===it.options[i].sha)&&
+  Object.values(r.checks||{}).length===4&&Object.values(r.checks).every(Boolean)}).length;
+ return {counts,answered,blockingPins,revisionQuestions,conflictingChoices,staleAcceptances,journeyAccepted,atomic,ready:counts.accepted===58&&answered===8&&journeyAccepted===23&&unresolved===0&&atomic.valid};
 }
 function acceptanceStamp(){
  return JSON.stringify({selected:records.primary.map(it=>[it.id,selectedPath(it),hash(selectedPath(it))]),
   support:records.support.map(it=>[it.id,it.options[0].sha]),
-  reviewStatus:review.items,decisions:review.questions,notes:review.notes,general:review.general,wholeSetNotes:review.wholeSetNotes||""});
+  reviewStatus:review.items,decisions:review.questions,journeys:review.journeys||{},notes:review.notes,general:review.general,wholeSetNotes:review.wholeSetNotes||""});
 }
 function summary(){
  const s=stats(),n=Object.values(review.notes).flat().length;
@@ -283,7 +286,7 @@ function reviewPacket(){
  const selected=records.primary.map(it=>({id:it.id,path:selectedPath(it),sha:hash(selectedPath(it)),status:stateOf(it).status||"unreviewed"}));
  const support=records.support.map(it=>({id:it.id,path:it.options[0].path,sha:it.options[0].sha,status:stateOf(it).status||"unreviewed"}));
  const s=stats();
- return {format:"glimpse-design-review-v1",repository:"gamesbyian/Glimpse",branch:"agent/visual-state-reconciliation-20261023",sourceCommit:build.sha||null,exportedAt:new Date().toISOString(),snapshotSourceCount:data.snapshot.uniqueReferencedSources,approval:{wholeSetVisualAcceptanceRequested:!!(s.ready&&review.finalIntent?.requested&&review.finalIntent?.stamp===acceptanceStamp()),hasPendingChanges:!s.ready,repositoryOwnerApproved:false,notes:"This is an exported owner review record, not a direct repository approval."},summary:{...s,atomic:s.atomic.mode},selectedPrimary:selected,selectedSupport:support,decisions:review.questions,comments:review.notes,generalNotes:review.general,reviewStatus:review.items,chosen:review.chosen,wholeSetNotes:review.wholeSetNotes||"",finalIntent:review.finalIntent||null};
+ return {format:"glimpse-design-review-v1",repository:"gamesbyian/Glimpse",branch:"agent/visual-state-reconciliation-20261023",sourceCommit:build.sha||null,exportedAt:new Date().toISOString(),snapshotSourceCount:data.snapshot.uniqueReferencedSources,approval:{wholeSetVisualAcceptanceRequested:!!(s.ready&&review.finalIntent?.requested&&review.finalIntent?.stamp===acceptanceStamp()),hasPendingChanges:!s.ready,repositoryOwnerApproved:false,notes:"This is an exported owner review record, not a direct repository approval."},summary:{...s,atomic:s.atomic.mode},selectedPrimary:selected,selectedSupport:support,decisions:review.questions,comments:review.notes,generalNotes:review.general,reviewStatus:review.items,chosen:review.chosen,wholeSetNotes:review.wholeSetNotes||"",journeys:review.journeys||{},finalIntent:review.finalIntent||null};
 }
 function download(filename,text,mime){const blob=new Blob([text],{type:mime}),u=URL.createObjectURL(blob),a=document.createElement("a");a.href=u;a.download=filename;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(u),900);}
 function exportJSON(){const packet=reviewPacket();download("glimpse-owner-review-"+new Date().toISOString().slice(0,10)+".json",JSON.stringify(packet,null,2)+"\n","application/json");notify("Review exported. Attach the JSON to GitHub or this chat to submit it.")}
@@ -294,7 +297,7 @@ async function importReview(e){
   const x=JSON.parse(await file.text());
   if(x.format!=="glimpse-design-review-v1"||x.repository!=="gamesbyian/Glimpse"||typeof x.reviewStatus!=="object"||typeof x.decisions!=="object")throw Error("Not a Glimpse review packet");
   if(!confirm("Replace your current locally saved review with this imported copy? Export your existing notes first if needed."))return;
-  review={schema:1,createdAt:x.exportedAt,items:x.reviewStatus||{},questions:x.decisions||{},notes:x.comments||{},general:x.generalNotes||{},chosen:x.chosen||{},wholeSetNotes:x.wholeSetNotes||"",finalIntent:x.finalIntent||null};
+  review={schema:1,createdAt:x.exportedAt,items:x.reviewStatus||{},questions:x.decisions||{},notes:x.comments||{},general:x.generalNotes||{},chosen:x.chosen||{},wholeSetNotes:x.wholeSetNotes||"",journeys:x.journeys||{},finalIntent:x.finalIntent||null};
   save();render();$("overviewDialog").close();notify("Imported. Old source-version notes are flagged where necessary.");
  }catch(err){notify("Import failed: "+err.message)}
 }
@@ -308,7 +311,7 @@ function openOverview(){
   '<h3>Outstanding screen evaluations ('+unreviewed.length+')</h3>'+
   '<div class="overview-alert">'+(unreviewed.slice(0,10).map(x=>'<button type="button" data-jump="'+esc(x.kind+"|"+x.id)+'">'+esc(x.title)+'</button>').join(" ")||"No missing acceptances.")+(unreviewed.length>10?" · plus "+(unreviewed.length-10)+" others":"")+'</div>'+
   '<h3>Overall comments</h3><label for="wholeSetNotes">Whole-product visual critique, priorities, themes or conditions</label><textarea id="wholeSetNotes" rows="4" placeholder="Comment on Glimpse as an entire app, not just individual screens."></textarea>'+
-  '<h3>Whole-set readiness</h3><div class="'+(s.ready?"overview-good":"overview-alert")+'">'+(s.ready?"All 58 selections and eight decisions recorded with a compatible six-photo set and no blocking pins. You may export a source-bound visual acceptance request. Repository signoff remains separate.":"Not yet qualified for whole-set acceptance. Pending screens, revision choices, source/decision mismatches, blocking comments or mixed photographic selections remain. Feedback export works at any point.")+'</div>'+
+  '<h3>Journey acceptance: '+s.journeyAccepted+'/23</h3><div class="'+(s.ready?"overview-good":"overview-alert")+'">'+(s.ready?"All 58 selections and eight decisions recorded with a compatible six-photo set and no blocking pins. You may export a source-bound visual acceptance request. Repository signoff remains separate.":"Not yet qualified for whole-set acceptance. Pending screens, revision choices, source/decision mismatches, blocking comments or mixed photographic selections remain. Feedback export works at any point.")+'</div>'+
   '<p class="muted">Decision/source conflicts: '+esc(s.conflictingChoices.join("; ")||"none")+'. Revision-request decisions: '+s.revisionQuestions+'. Stale acceptances: '+s.staleAcceptances+'.</p>'+
   '<p class="muted">Source build: '+esc(build.sha||"current deployment")+'. Imported browser decisions are independently checked against current source hashes in the exported packet.</p>'+
   '<button type="button" class="wide" id="feedbackIssue">Open a GitHub feedback issue with summary ↗</button>'+
@@ -326,6 +329,15 @@ function openOverview(){
 }
 function copyText(text){if(navigator.clipboard?.writeText){navigator.clipboard.writeText(text).then(()=>notify("Copied")).catch(()=>fallbackCopy(text))}else fallbackCopy(text)}
 function fallbackCopy(s){const t=document.createElement("textarea");t.value=s;document.body.append(t);t.select();try{document.execCommand("copy");notify("Copied")}catch(e){notify("Clipboard unavailable; use Export review instead")}t.remove()}
+window.GlimpseReview={
+ get ready(){return !!data},get records(){return records},get current(){return current},get review(){return review},
+ get build(){return build},get snapshot(){return data?.snapshot},get selection(){return data?.selection},
+ currentRecord:record,currentOption,optionHash:hash,sourceUrl:src,stats,save,render,navigate,
+ changeOption,notify,reviewPacket,reviewSummary:summary,openOverview,
+ exactSource:it=>it.options.map(o=>[o.path,o.sha]),selectedPath,
+ setJourney(id,r){if(!records.journey.some(x=>x.id===id))return;review.journeys||(review.journeys={});review.journeys[id]=r;save();renderNavigation()},
+ getJourney(id){return review.journeys?.[id]||null}
+};
 Promise.all([
  fetch("../design/proposals/whole-product-review-selection.v1.json").then(x=>{if(!x.ok)throw Error("selection "+x.status);return x.json()}),
  fetch("../design/atlas/whole-product-review-snapshot.v1.json").then(x=>{if(!x.ok)throw Error("snapshot "+x.status);return x.json()}),
