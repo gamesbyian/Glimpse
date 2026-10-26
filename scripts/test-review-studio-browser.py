@@ -7,6 +7,7 @@ or whether human reviewers approve any design.
 from pathlib import Path
 from tempfile import TemporaryDirectory
 import json
+import os
 import subprocess
 import time
 import urllib.request
@@ -28,7 +29,7 @@ try:
     else:
         raise AssertionError("Local review site did not start")
     with sync_playwright() as pw:
-        browser=pw.chromium.launch(headless=True)
+        browser=pw.chromium.launch(headless=True, channel=os.getenv('GLIMPSE_CHROME_CHANNEL') or None)
         desktop=browser.new_context(viewport={"width":1440,"height":900},accept_downloads=True)
         page=desktop.new_page()
         errors=[]
