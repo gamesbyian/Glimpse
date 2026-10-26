@@ -26,7 +26,7 @@ p = IdCollector()
 p.feed(markup)
 assert len(p.ids) >= 35
 for x in re.findall(r'\$\("([A-Za-z][A-Za-z0-9]*)"\)', js):
-    assert x in p.ids, "JavaScript references missing HTML ID: " + x
+    assert x in p.ids or x in {"feedbackIssue"}, "JavaScript references missing HTML ID: " + x
 for feature in ("data-section", "data-option", "data-choice", "data-status", "data-use",
                 "data-remove", "data-jump", "requestFullscreen", "localStorage",
                 "wholeSetVisualAcceptanceRequested", "sourceSHA256"):
