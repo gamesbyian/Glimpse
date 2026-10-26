@@ -7,7 +7,9 @@
 <meta name="description" content="Glimpse visual-review workstation. Compare exact draft sources, annotate screens, and prepare source-bound design decisions.">
 <title>Glimpse · Design Review Studio</title>
 <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="excellence.css">
 <script src="app.js" defer></script>
+<script src="excellence.js" defer></script>
 </head>
 <body>
 <a class="skip" href="#work">Skip to review</a>
@@ -16,6 +18,7 @@
  <div class="mast-actions">
   <span class="save-indicator" id="saveIndicator" role="status">Saved in this browser only</span>
   <button type="button" class="quiet mobile-only" id="openBrowse" aria-controls="browse" aria-expanded="false">☰ Browse</button>
+  <button type="button" class="quiet" id="openSetMap">Set map</button>
   <button type="button" class="quiet" id="openDashboard">Overview <span id="progressCompact">0/58</span></button>
   <button type="button" class="accent" id="exportButton">Export review</button>
  </div>
@@ -55,10 +58,32 @@
     <div class="viewer-modes">
       <button type="button" class="quiet tiny" id="peek" title="Hold to compare with alternative (Space)">Hold A/B</button>
       <button type="button" class="quiet tiny" id="compare" aria-pressed="false">Side by side</button>
+      <button type="button" class="quiet tiny" id="diffWipe" aria-pressed="false" title="Drag to reveal alternate over preferred">Wipe</button>
+      <button type="button" class="quiet tiny" id="diffBlend" aria-pressed="false" title="Fade alternate over preferred">Blend</button>
+      <button type="button" class="quiet tiny" id="focusMode" aria-pressed="false" title="Hide side panels and prioritize the artwork">Focus</button>
+      <button type="button" class="quiet tiny" id="helpButton" title="Keyboard shortcuts">?</button>
       <button type="button" class="quiet tiny" id="fullSource" aria-pressed="false">Show notes area</button>
       <button type="button" class="quiet tiny" id="fullscreen" title="Maximize visual area">⛶ Maximize</button>
     </div>
   </div>
+  <section class="comparison-controls" id="comparisonControls" hidden aria-label="Visual difference controls">
+    <span id="comparisonLabel">Comparing recommended with alternative</span>
+    <label for="comparisonSlider">Reveal alternate</label>
+    <input id="comparisonSlider" type="range" min="0" max="100" value="50" step="1" aria-label="Reveal alternate percent">
+    <output id="comparisonValue" for="comparisonSlider">50%</output>
+    <button type="button" class="quiet tiny" id="resetDiff">50/50</button>
+  </section>
+  <section id="journeyPlayer" class="journey-player" hidden aria-label="Connected journey playback">
+    <div class="journey-controls">
+      <button type="button" id="journeyPrev" title="Previous journey frame">◀</button>
+      <button type="button" id="journeyPlay" aria-pressed="false">▶ Play</button>
+      <button type="button" id="journeyNext" title="Next journey frame">▶</button>
+      <span id="journeyPosition" aria-live="polite"></span>
+      <button type="button" id="journeyFramesToggle" class="quiet tiny" aria-expanded="false">Timeline</button>
+    </div>
+    <div class="journey-progress" id="journeyProgress"></div>
+    <div class="journey-timeline" id="journeyTimeline" hidden></div>
+  </section>
   <div class="stage" id="stage">
    <div class="canvas-stage" id="canvasStage">
     <div class="screens" id="screens" aria-label="Design preview"></div>
@@ -81,6 +106,15 @@
    <div id="decisionPanel"></div>
    <div class="divider"></div>
    <div id="reviewControls"></div>
+   <section id="journeyAcceptance" class="journey-acceptance" hidden aria-label="Connected journey review">
+     <h3>Journey acceptance</h3>
+     <p>Verify all four dimensions against the complete sequence. Frame images remain authored storyboards, not native OS recordings.</p>
+     <div id="journeyChecks"></div>
+     <button type="button" id="journeyApprove" class="accent wide" disabled>Accept connected journey</button>
+     <button type="button" id="journeyRevise" class="quiet wide">Request journey revision</button>
+     <label for="journeyNotes">Journey-wide comments</label>
+     <textarea id="journeyNotes" rows="3" placeholder="Continuity, missing transitions, dead ends, recovery..."></textarea>
+   </section>
    <div id="pinComposer" class="pin-composer" hidden>
     <h3>Comment on this spot</h3>
     <p id="pinLocation"></p>
@@ -104,6 +138,13 @@
     <p id="sourceCaveat"></p>
     <dl><dt>Exact source SHA-256</dt><dd><code id="sourceHash"></code></dd><dt>File</dt><dd id="sourcePath"></dd><dt>Evidence</dt><dd>Static authored SVG. Not an Android screenshot or an owner approval.</dd></dl>
     <button id="copyReference" class="quiet wide" type="button">Copy exact source reference</button>
+    <button id="targetedIssue" class="quiet wide" type="button">Prepare GitHub issue for this screen ↗</button>
+    <button id="copyFeedback" class="quiet wide" type="button">Copy screen feedback as Markdown</button>
+    <div class="evidence-truth"><strong>Evidence distinctions</strong>
+      <p><span class="evidence-lamp yes"></span> Exact source bytes and proposal: available</p>
+      <p><span class="evidence-lamp neutral"></span> Static browser imagery: proposal only</p>
+      <p><span class="evidence-lamp unknown"></span> Native screen, TalkBack and real OS outcomes: not certified here</p>
+    </div>
    </section>
   </div>
  </aside>
@@ -114,6 +155,20 @@
  <div id="overviewBody"></div>
  <div class="dialog-footer"><button class="quiet" id="importButton" type="button">Import review JSON</button><button class="quiet" id="copySummary" type="button">Copy summary</button><button class="accent" id="exportOverview" type="button">Export review JSON</button></div>
  <input id="importFile" type="file" accept=".json,application/json" hidden>
+</dialog>
+<dialog id="setMapDialog" aria-labelledby="setMapTitle">
+  <div class="dialog-heading"><div><div class="eyebrow">APP AT A GLANCE</div><h2 id="setMapTitle">Whole-product contact wall</h2></div><button type="button" id="closeSetMap" class="quiet">Close</button></div>
+  <p class="muted">Select any draft to inspect it at full size. Badges indicate review status, never native verification.</p>
+  <div class="map-filters" role="group" aria-label="Contact wall categories">
+    <button type="button" data-map-kind="primary" class="active">24 primary</button><button type="button" data-map-kind="support">34 support</button><button type="button" data-map-kind="journey">23 journeys</button>
+  </div>
+  <div id="setMapList" class="set-map-grid"></div>
+</dialog>
+<dialog id="helpDialog" aria-labelledby="helpTitle">
+  <div class="dialog-heading"><h2 id="helpTitle">Review controls</h2><button type="button" id="closeHelp" class="quiet">Close</button></div>
+  <p>Use the large preview to evaluate a proposal. Every choice and annotation is saved in this browser until you export.</p>
+  <table class="shortcut-table"><tbody><tr><th>← / →</th><td>Change visual option or journey step</td></tr><tr><th>J / K</th><td>Previous / next screen</td></tr><tr><th>Space (hold)</th><td>Peek at alternative</td></tr><tr><th>F</th><td>Fullscreen visual area</td></tr><tr><th>?</th><td>Shortcuts and help</td></tr><tr><th>Escape</th><td>Close overlays</td></tr></tbody></table>
+  <p class="muted">Wipe compares image regions, Blend compares translucency. Drag the slider without changing the source. Journey approval requires all four checks. GitHub feedback opens a draft issue you must submit yourself.</p>
 </dialog>
 <div id="toast" role="status" aria-live="polite"></div>
 </body>
