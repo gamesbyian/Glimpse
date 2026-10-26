@@ -27,7 +27,7 @@ def evaluate(selection, migration, provenance):
     if len(ids) != 13 or len(set(ids)) != 13 or len(set(hashes)) != 13:
         raise ValueError("13 independent source identities absent or aliased")
     for photo in all_photos:
-        if (photo.get("rightsStatus") != "verified" or photo.get("license") != "CC0 1.0 Universal":
+        if (photo.get("rightsStatus") != "verified" or photo.get("license") != "CC0 1.0 Universal"):
             raise ValueError("photo license evidence missing or unverified: " + photo["photoId"])
         if not photo.get("creator") or not photo.get("sourceUrl", "").startswith("https://commons.wikimedia.org/wiki/File:"):
             raise ValueError("photo creator or source page missing: " + photo["photoId"])
