@@ -370,11 +370,17 @@ def main():
             # not the different physical-file-count inventory.
             reach_and_click("Verify saved originals", "up", attempts=12)
             audit_ok = False
-            for _ in range(18):
+            for attempt in range(18):
                 audit_xml = hierarchy()
                 if "Verified 22 of 22 registered originals." in audit_xml:
                     audit_ok = True
                     break
+                # The Verify button is often at the end of the viewport. Its
+                # resulting status text is *below* it in the scrollable column.
+                # UIAutomator does not include offscreen text. Scroll rather
+                # than falsely labeling 22 intact originals as corrupt.
+                if attempt % 2 == 0:
+                    swipe("up")
                 time.sleep(0.5)
             if not audit_ok:
                 capture_failure("registered-original-audit-failed",
