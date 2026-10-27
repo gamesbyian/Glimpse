@@ -213,14 +213,27 @@ class GlimpseModel(application: Application) : AndroidViewModel(application) {
                     " events); existing imported photos remain available."
             else "")
 
-    fun importSelected(uris: List<Uri>) {
+    /**
+     * The destination is captured *before* launching Android Photo Picker and
+     * restored with the Activity. Never substitute whichever collection is
+     * currently being browsed when the external provider returns.
+     */
+    fun importSelected(uris: List<Uri>, pickerCollectionId: String?) {
         if (uris.isEmpty()) return
         action {
-            val id = browse.value.collectionId ?: error("Create or choose a collection first.")
+            val id = pickerCollectionId ?: error(
+                "Photo selection destination was lost. Choose a collection and Add photos again."
+            )
+            require(withContext(Dispatchers.IO) { dao.collectionExists(id) }) {
+                "The originally selected collection is unavailable. Select photos again."
+            }
             val report = importer.import(uris, id)
             pendingRetry.value = report.failedSources.takeIf { it.isNotEmpty() }
                 ?.let { PendingRetry(id, it) }
-            importNotice(report)
+            val prefix = if (id != browse.value.collectionId)
+                "Photos were imported into the original collection, not the one now shown. "
+            else ""
+            prefix + importNotice(report)
         }
     }
 
