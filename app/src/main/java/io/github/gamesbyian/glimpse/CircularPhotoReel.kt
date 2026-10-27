@@ -298,9 +298,9 @@ fun CircularPhotoReel(
                 }
                 val picture = Paint(Paint.ANTI_ALIAS_FLAG or Paint.FILTER_BITMAP_FLAG)
                 val selectedStroke = Paint(Paint.ANTI_ALIAS_FLAG).apply {
-                    color = 0xFF1D5960.toInt()
+                    color = 0xFF8D654A.toInt()
                     style = Paint.Style.STROKE
-                    strokeWidth = 5.dp.toPx()
+                    strokeWidth = 2.dp.toPx()
                 }
                 // The whole photo-and-paper surface turns together around its hub.
                 // Fixed pointer below does not move. All five slots have real IDs.
@@ -345,7 +345,6 @@ fun CircularPhotoReel(
                         native.restore()
                     }
                     native.drawPath(wedge, stroke)
-                    if (offset == 0 && id != null) native.drawPath(wedge, selectedStroke)
                 }
                 // Photo cutouts are painted first. The prepared translucent face
                 // supplies actual material lighting, recessed cutout edges and hub.
@@ -357,16 +356,21 @@ fun CircularPhotoReel(
                     native.drawCircle(cx, cy, inner * 1.02f, rim)
                     native.drawCircle(cx, cy, inner * .62f, empty)
                 }
+                // A restrained inset outline denotes the selected photograph.
+                // Draw after the material, otherwise the alpha face hides it.
+                if (slots[2] != null) {
+                    native.drawPath(aperture(cx, cy, r, -90f), selectedStroke)
+                }
                 native.restore()
                 val markerTop = (cy - r + 4.dp.toPx()).coerceAtLeast(1.dp.toPx())
                 val pointer = Path().apply {
-                    moveTo(cx - 14.dp.toPx(), markerTop)
-                    lineTo(cx + 14.dp.toPx(), markerTop)
-                    lineTo(cx, markerTop + 24.dp.toPx())
+                    moveTo(cx - 9.dp.toPx(), markerTop)
+                    lineTo(cx + 9.dp.toPx(), markerTop)
+                    lineTo(cx, markerTop + 15.dp.toPx())
                     close()
                 }
                 native.drawPath(pointer, Paint(Paint.ANTI_ALIAS_FLAG).apply {
-                    color = 0xFFE8876C.toInt()
+                    color = 0xFF9C6F4E.toInt()
                 })
             }
         }
