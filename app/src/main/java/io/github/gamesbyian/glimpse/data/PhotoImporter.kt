@@ -29,6 +29,11 @@ internal fun pruneStalePartialFiles(
     originals: File,
     now: Long
 ): Int {
+    // Refuse directory-level aliases too: an app-private directory replaced
+    // by a symlink must not redirect cleanup to files outside our ownership.
+    if (java.nio.file.Files.isSymbolicLink(originals.toPath()) ||
+        !originals.isDirectory
+    ) return 0
     val root = originals.canonicalFile
     return originals.listFiles()?.count { candidate ->
         try {
