@@ -4,7 +4,7 @@
 
 Glimpse is a native Android wallpaper manager concept built around a large-aperture paper photo reel, purposeful browsing, offline collections, and reliable, understandable wallpaper rotation. It uses the user's photos and supported external sources rather than operating its own cloud library.
 
-> **Status (2026-10-23): An installable Android prototype now exists.** The owner successfully used its first version to import **22 photos from Google Photos**, apply Home wallpaper, and observe active-use shuffle. The newer [circular swipe/tap reel prototype](app/src/main/java/io/github/gamesbyian/glimpse/CircularPhotoReel.kt), compact controls and finite-navigation tests have [compiled and passed CI](https://github.com/gamesbyian/Glimpse/actions/runs/39924084187), but **the revised UI has not yet been tested on a physical phone or accepted as final artwork**. Android emulator screenshot capture is a separate unresolved verification gate.
+> **Status (2026-10-23): An installable Android prototype now exists.** The owner successfully used its first version to import **22 photos from Google Photos**, apply Home wallpaper, and observe active-use shuffle. The newer [circular swipe/tap reel prototype](app/src/main/java/io/github/gamesbyian/glimpse/CircularPhotoReel.kt), compact controls and finite-navigation tests have [compiled and passed CI](https://github.com/gamesbyian/Glimpse/actions/runs/39924084187), but **the revised UI has not yet been tested on a physical phone or accepted as final artwork**. Android emulator screenshot and accessibility-hierarchy capture now run in CI, including compact/200%-text checks; these are evidence of running software, **not** owner signoff or physical-device acceptance.
 
 ## First native development slice
 
