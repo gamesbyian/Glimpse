@@ -92,7 +92,7 @@ def start_fixture(count, active=False):
         state = adb("shell", "dumpsys", "activity", "activities",
                     check=False, timeout=15)
         leftovers = re.findall(
-            r"ActivityRecord\\{[^}]*" + re.escape(APP) + r"[^}]*\\}", state
+            r"ActivityRecord\{[^}]*" + re.escape(APP) + r"[^}]*\}", state
         )
         if not leftovers:
             break
