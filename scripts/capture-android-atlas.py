@@ -415,9 +415,32 @@ def main():
             swipe("up")
             capture("22-compact-320dp-text-200pct-scrolled",
                     "320dp logical width, OS 200% font, first scroll")
-            swipe("up")
+            # A taller responsive Home or collection card may push the real
+            # reel several viewports below a fixed two-swipe assumption.
+            # Only label the capture as a reel when the actual native Canvas
+            # has at least 100dp visible according to UIAutomator bounds.
+            w, h, dpi = screen_geometry()
+            minimum_visible = int(100 * dpi / 160)
+            for attempt in range(12):
+                xml = hierarchy()
+                reel_node = next((
+                    node for node in ET.fromstring(xml).iter("node")
+                    if "Paper photo reel" in node.attrib.get("content-desc", "")
+                ), None)
+                if reel_node is not None:
+                    raw_bounds = re.findall(r"\\d+", reel_node.attrib.get("bounds", ""))
+                    if len(raw_bounds) == 4:
+                        x0, y0, x1, y1 = map(int, raw_bounds)
+                        visible = max(0, min(y1, h) - max(y0, 0))
+                        if visible >= minimum_visible:
+                            break
+                swipe("up")
+            else:
+                capture_failure("compact-reel-not-reachable",
+                                "Paper reel Canvas never visibly reached at 320dp/200% font")
+                raise RuntimeError("Cannot reach real paper reel at 320dp/200% type")
             capture("22-compact-320dp-text-200pct-reel",
-                    "320dp logical width, OS 200% font, reel scroll")
+                    "320dp logical width, OS 200% font, verified visible paper reel Canvas")
     except Exception as error:
         failures.append(str(error))
         print("Atlas failed:", error, flush=True)
