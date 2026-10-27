@@ -121,9 +121,11 @@ internal fun GlimpseSupportScreen(
             "Share original photo opens Android's Sharesheet after verifying the " +
                 "private original. It may contain camera, time or location EXIF data. " +
                 "Glimpse does not guarantee delivery to another app or strip metadata.",
-            "Crop, screenshot intake, edited exports, batch share and cloud-album " +
-                "synchronization are not yet implemented. Source provider grants may " +
-                "expire, but successfully imported local originals work offline."
+            "Android Share can send images into Glimpse. Confirm the receiving " +
+                "collection and tap Import shared images; an unchanged private copy " +
+                "is saved. Crop, rotate, edited exports, batch outbound sharing and " +
+                "cloud-album synchronization are not implemented. Source grants " +
+                "may expire; completed offline copies remain available."
         )
         SupportSection(
             "PRIVACY & STORAGE",

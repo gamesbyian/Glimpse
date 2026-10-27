@@ -1,6 +1,8 @@
 # Waltz: Screenshot Quick Capture and Google Lens Handoff
 
-Status: approved product requirements, implementation pending. Updated 21 October 2026. These additions extend the quick-start contract, not the advanced rule grammar.
+Status: approved product requirements, partly implemented. Updated 27 October 2026. These additions extend the quick-start contract, not the advanced rule grammar.
+
+**Implementation evidence (27 October):** Native Android image-sharing ingress, explicit collection confirmation, SHA-verified immutable snapshot and source-restart survival are merged in [#53](https://github.com/gamesbyian/Glimpse/pull/53). This is the *unchanged-original intake step only*. Crop, rotate, straighten, reversible edit recipes, clipboard and quick Use Now/Add Next are distinct features; the latter clipboard route is in [PR #56](https://github.com/gamesbyian/Glimpse/pull/56) pending native CI. Do not mark the F071 end-to-end editor workflow complete or claim physical screenshot-toolbar acceptance.
 
 ## Requirement F071: Screenshot to collection in seconds
 
