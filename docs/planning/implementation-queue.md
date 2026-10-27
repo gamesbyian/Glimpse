@@ -1,5 +1,8 @@
 # Glimpse native implementation queue
 
+> **26 October 2026 current execution:** [R0–R6 build plan](BUILD-PLAN-2026-10-26.md); [native tactile reel PR #27](https://github.com/gamesbyian/Glimpse/pull/27). Existing import/apply/shuffle stays intact. First animated disc and baked paper face have passed Gradle/JVM/PNG tests; independent lower-corner geometry and actual Android optical review remain acceptance gates. **Prioritize physical/visual reel quality before broad unrelated features.** Draft design [PR #6](https://github.com/gamesbyian/Glimpse/pull/6) remains unapproved.
+
+
 **Issue [#1](https://github.com/gamesbyian/Glimpse/issues/1) begins native development.** Historical Waltz specifications remain evidence, and [current decisions](current-decisions.md) retain authority.
 
 ## Priority update: real owner testing, 2026-10-23

@@ -15,6 +15,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
@@ -54,6 +55,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.sp
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -79,11 +81,33 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             MaterialTheme(
+                typography = GlimpseType.theme,
                 colorScheme = lightColorScheme(
-                    primary = Color(0xFF1D5960),
-                    secondary = Color(0xFFE8876C),
+                    primary = Color(0xFF1D4A4D),
+                    onPrimary = Color(0xFFFFFCF3),
+                    primaryContainer = Color(0xFFE2EEE9),
+                    onPrimaryContainer = Color(0xFF243F3C),
+                    secondary = Color(0xFF8B5A3C),
+                    onSecondary = Color(0xFFFFF9F0),
+                    secondaryContainer = Color(0xFFF3E0D0),
+                    onSecondaryContainer = Color(0xFF603D29),
+                    tertiary = Color(0xFF536454),
+                    onTertiary = Color(0xFFFFFCF3),
+                    tertiaryContainer = Color(0xFFDFE8DF),
+                    onTertiaryContainer = Color(0xFF334538),
                     background = Color(0xFFF6F0E6),
-                    surface = Color(0xFFFFFCF6)
+                    onBackground = Color(0xFF263A37),
+                    surface = Color(0xFFFFFCF3),
+                    onSurface = Color(0xFF273A36),
+                    surfaceVariant = Color(0xFFECE2D5),
+                    onSurfaceVariant = Color(0xFF5D5247),
+                    surfaceContainerLowest = Color(0xFFFFFCF6),
+                    surfaceContainerLow = Color(0xFFF8F1E6),
+                    surfaceContainer = Color(0xFFF1E8DC),
+                    surfaceContainerHigh = Color(0xFFEDE1D2),
+                    surfaceContainerHighest = Color(0xFFE6D7C6),
+                    outline = Color(0xFF9B8E7E),
+                    outlineVariant = Color(0xFFD6C8B8)
                 )
             ) {
                 GlimpseScreen(model)
@@ -105,7 +129,7 @@ class MainActivity : ComponentActivity() {
 @Composable
 private fun GlimpseScreen(model: GlimpseModel) {
     val state by model.ui.collectAsStateWithLifecycle()
-    val activeCollection by model.activeCollectionId.collectAsStateWithLifecycle()
+    val activeCollection = state.collectionId
     var newCollection by remember { mutableStateOf("Rainbows") }
     var showNewCollection by remember { mutableStateOf(false) }
     val picker = rememberLauncherForActivityResult(
@@ -120,22 +144,24 @@ private fun GlimpseScreen(model: GlimpseModel) {
                 .padding(horizontal = 16.dp, vertical = 12.dp),
             verticalArrangement = Arrangement.spacedBy(12.dp)
         ) {
-            Text("Glimpse", style = MaterialTheme.typography.headlineLarge, fontWeight = FontWeight.Bold)
+            Text("Glimpse", color = Color(0xFF193B3F),
+                fontFamily = GlimpseType.editorial, fontSize = 44.sp,
+                fontWeight = FontWeight.Normal, letterSpacing = (-1.4).sp)
+            Text("YOUR PHOTOS, NEW PERSPECTIVES",
+                color = Color(0xFF986950), fontWeight = FontWeight.SemiBold,
+                style = MaterialTheme.typography.labelSmall, letterSpacing = 1.3.sp)
             if (state.collections.isEmpty() || showNewCollection) {
                 Text(
                     if (state.collections.isEmpty()) "Start with a collection of photographs."
                     else "Create a collection",
                     style = MaterialTheme.typography.bodyMedium
                 )
-                Row(
-                    verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.spacedBy(8.dp)
-                ) {
+                Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
                     OutlinedTextField(
                         value = newCollection,
                         onValueChange = { newCollection = it },
                         label = { Text("Collection name") },
-                        modifier = Modifier.weight(1f),
+                        modifier = Modifier.fillMaxWidth(),
                         singleLine = true
                     )
                     Button(
@@ -143,17 +169,18 @@ private fun GlimpseScreen(model: GlimpseModel) {
                             model.createCollection(newCollection)
                             showNewCollection = false
                         },
-                        enabled = !state.busy
+                        enabled = !state.busy && newCollection.isNotBlank()
                     ) { Text("Create") }
                 }
             }
             if (state.collections.isNotEmpty()) {
-                Row(
+                FlowRow(
                     modifier = Modifier.fillMaxWidth(),
-                    verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.SpaceBetween
+                    horizontalArrangement = Arrangement.spacedBy(8.dp),
+                    verticalArrangement = Arrangement.spacedBy(4.dp)
                 ) {
-                    Text("Collections", fontWeight = FontWeight.SemiBold)
+                    Text("Collections", color = Color(0xFF263A37),
+                        fontFamily = GlimpseType.editorial, fontSize = 24.sp)
                     TextButton(onClick = { showNewCollection = !showNewCollection }) {
                         Text(if (showNewCollection) "Cancel" else "New collection")
                     }
@@ -186,7 +213,10 @@ private fun GlimpseScreen(model: GlimpseModel) {
                     "Photos: " + state.photos.size + " • Offline copies",
                     style = MaterialTheme.typography.labelLarge
                 )
-                Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                FlowRow(
+                    horizontalArrangement = Arrangement.spacedBy(8.dp),
+                    verticalArrangement = Arrangement.spacedBy(4.dp)
+                ) {
                     FilterChip(
                         selected = !state.grid,
                         onClick = { if (state.grid) model.toggleGrid() },
@@ -205,7 +235,7 @@ private fun GlimpseScreen(model: GlimpseModel) {
                         PhotoGrid(
                             records = state.photos,
                             selectedId = state.current?.id,
-                            onSelect = model::browsePhoto
+                            onSelect = { photoId -> model.browsePhotoInCollection(activeCollection, photoId) }
                         )
                     }
                     val selected = state.current
@@ -224,11 +254,12 @@ private fun GlimpseScreen(model: GlimpseModel) {
                         CircularPhotoReel(
                             records = state.photos,
                             selectedId = selected?.id,
-                            onSelect = model::browsePhoto
+                            onSelect = { photoId -> model.browsePhotoInCollection(activeCollection, photoId) }
                         )
                     }
-                    Row(
+                    FlowRow(
                         horizontalArrangement = Arrangement.spacedBy(8.dp),
+                        verticalArrangement = Arrangement.spacedBy(8.dp),
                         modifier = Modifier.fillMaxWidth()
                     ) {
                         OutlinedButton(
@@ -337,10 +368,10 @@ private fun RotationPanel(state: GlimpseUiState, model: GlimpseModel) {
             modifier = Modifier.padding(12.dp),
             verticalArrangement = Arrangement.spacedBy(8.dp)
         ) {
-            Row(
+            FlowRow(
                 modifier = Modifier.fillMaxWidth(),
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.SpaceBetween
+                horizontalArrangement = Arrangement.spacedBy(8.dp),
+                verticalArrangement = Arrangement.spacedBy(4.dp)
             ) {
                 Text("Home rotation", style = MaterialTheme.typography.titleMedium)
                 TextButton(onClick = { expanded = !expanded }) {
@@ -358,9 +389,10 @@ private fun RotationPanel(state: GlimpseUiState, model: GlimpseModel) {
                     Text("Review uncertainty and pause")
                 }
             } else {
-                Row(
+                FlowRow(
                     modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.spacedBy(8.dp)
+                    horizontalArrangement = Arrangement.spacedBy(8.dp),
+                    verticalArrangement = Arrangement.spacedBy(8.dp)
                 ) {
                     if (rotation?.active == true) {
                         OutlinedButton(onClick = model::pauseRotation, enabled = !state.busy) {

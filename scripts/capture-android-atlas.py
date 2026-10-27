@@ -213,6 +213,8 @@ def capture(slug, explanation):
         "hierarchy": slug + ".xml" if xml else None,
         "reason": explanation,
         "widthPx": w, "heightPx": h, "densityDpi": dpi,
+        "logicalWidthDp": round(w * 160 / dpi, 1),
+        "fontScale": adb("shell", "settings", "get", "system", "font_scale", check=False),
         "clickableCount": len(controls),
         "smallClickableControls": [c for c in controls if c["under44dp"]][:20],
         "capturedFrom": "Android emulator running actual debug MainActivity",
@@ -284,6 +286,21 @@ def main():
             capture("22-reel-text-200-percent", "OS font scale 200%, first viewport")
             swipe("up")
             capture("22-text-200-percent-scrolled", "OS font scale 200%, following viewport")
+            # The genuinely difficult layout: 320dp logical width at 200% text.
+            # Keep verified 22-photo test data; relaunch real Activity to apply
+            # the new display-density configuration without clearing Room.
+            adb("shell", "wm", "density", "720")
+            adb("shell", "am", "force-stop", APP, check=False)
+            adb("shell", "am", "start", "-n", APP + "/.MainActivity")
+            time.sleep(3.0)
+            capture("22-compact-320dp-text-200pct-top",
+                    "320dp logical width, OS 200% font, initial viewport")
+            swipe("up")
+            capture("22-compact-320dp-text-200pct-scrolled",
+                    "320dp logical width, OS 200% font, first scroll")
+            swipe("up")
+            capture("22-compact-320dp-text-200pct-reel",
+                    "320dp logical width, OS 200% font, reel scroll")
     except Exception as error:
         failures.append(str(error))
         print("Atlas failed:", error, flush=True)
