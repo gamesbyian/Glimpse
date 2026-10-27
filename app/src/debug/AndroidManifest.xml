@@ -6,5 +6,13 @@
             android:exported="true"
             android:excludeFromRecents="true"
             android:label="Glimpse visual atlas fixture" />
+        <activity android:name=".debug.PickerBatchFixtureLauncher"
+            android:exported="true"
+            android:excludeFromRecents="true"
+            android:label="Glimpse disposable two-photo picker fixture" />
+        <activity android:name=".debug.PickerMediaFixtureLauncher"
+            android:exported="true"
+            android:excludeFromRecents="true"
+            android:label="Glimpse picker-only synthetic fixture" />
     </application>
 </manifest>
