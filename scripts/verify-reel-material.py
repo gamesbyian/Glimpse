@@ -26,7 +26,7 @@ while offset < len(blob):
     assert zlib.crc32(kind+data)&0xFFFFFFFF == checksum, "PNG CRC mismatch"
     if kind == b"IHDR":
         width, height, depth, color, compression, filtering, interlace = struct.unpack(">IIBBBBB", data)
-        assert (width, height, depth, color, compression, filtering, interlace) == (384,384,8,6,0,0,0)
+        assert (width, height, depth, color, compression, filtering, interlace) == (640,640,8,6,0,0,0)
     if kind == b"IDAT": encoded.extend(data)
     offset += 12+length
 raw = zlib.decompress(encoded)
@@ -36,19 +36,19 @@ assert len(raw)==height*stride and all(raw[y*stride]==0 for y in range(height)),
 def alpha(x,y):
     return raw[y*stride + 1 + x*4 + 3]
 
-assert alpha(192,192)>=250, "Center hub must be present"
+assert alpha(320,320)>=250, "Center hub must be present"
 assert alpha(4,4)==0, "Off-disc corners must be transparent"
-assert alpha(192,4)>=200, "Outer paper rim must be present"
+assert alpha(320,4)>=200, "Outer paper rim must be present"
 for k in range(5):
     angle = math.radians(-90+k*72)
-    x = round(192+189*.68*math.cos(angle))
-    y = round(192+189*.68*math.sin(angle))
+    x = round(320+316*.66*math.cos(angle))
+    y = round(320+316*.66*math.sin(angle))
     assert alpha(x,y) <= 5, f"Cutout {k} is opaque: ({x},{y})"
 for k in range(5):
     angle = math.radians(-90+(k+.5)*72)
-    x = round(192+189*.70*math.cos(angle))
-    y = round(192+189*.70*math.sin(angle))
+    x = round(320+316*.67*math.cos(angle))
+    y = round(320+316*.67*math.sin(angle))
     assert alpha(x,y) > 235, f"Paper separator {k} disappeared"
 
-print("PASS: 384x384 baked alpha-mask/cardstock face has five clear photo windows and intact hub/rim/separators")
+print("PASS: 640x640 baked alpha-mask/cardstock face has five clear photo windows and intact hub/rim/separators")
 print("Source SHA256:",hashlib.sha256(blob).hexdigest())
