@@ -11,12 +11,21 @@ object ReelWindow {
      * wheel, or null when touching paper outside the photo ring. This is
      * geometry only; callers still check that a real photo occupies the slot.
      */
+    /** One geometric source of truth shared by drawing and touch hit testing.
+     * The large disc is docked off the bottom-left edge, with a readable curved
+     * top/right perimeter rather than a full-width strip of wedges.
+     */
+    data class Placement(val centerX: Float, val centerY: Float, val radius: Float)
+    fun placement(width: Float, height: Float): Placement =
+        Placement(width * .27f, height * .87f, width * .69f)
+
     fun tapOffset(x: Float, y: Float, width: Float, height: Float): Int? {
         if (width <= 0f || height <= 0f) return null
-        val dx = x - width * .5f
-        val dy = y - height * .82f
+        val p = placement(width, height)
+        val dx = x - p.centerX
+        val dy = y - p.centerY
         val radius = kotlin.math.hypot(dx, dy)
-        val outer = width * .84f
+        val outer = p.radius
         if (radius < outer * .31f || radius > outer * .95f) return null
         val angle = Math.toDegrees(kotlin.math.atan2(dy, dx).toDouble()).toFloat()
         val relative = (angle + 90f + 180f + 360f) % 360f - 180f
