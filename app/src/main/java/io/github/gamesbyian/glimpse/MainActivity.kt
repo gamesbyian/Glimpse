@@ -23,6 +23,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
@@ -56,6 +57,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
@@ -168,6 +170,8 @@ private fun GlimpseScreen(
 ) {
     val state by model.ui.collectAsStateWithLifecycle()
     val activeCollection = state.collectionId
+    val context = LocalContext.current
+    var clipboardFeedback by remember { mutableStateOf<String?>(null) }
     var newCollection by remember { mutableStateOf("Rainbows") }
     var showNewCollection by remember { mutableStateOf(false) }
     var showingDetail by rememberSaveable { mutableStateOf(false) }
@@ -345,16 +349,39 @@ private fun GlimpseScreen(
                         )
                     }
                 }
-                OutlinedButton(
-                    onClick = {
-                        pickerTargetCollection = activeCollection
-                        picker.launch(
-                            PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly)
-                        )
-                    },
-                    enabled = !state.busy && activeCollection != null
+                FlowRow(
+                    horizontalArrangement = Arrangement.spacedBy(8.dp),
+                    verticalArrangement = Arrangement.spacedBy(4.dp)
                 ) {
-                    Text("Add photos")
+                    OutlinedButton(
+                        onClick = {
+                            clipboardFeedback = null
+                            pickerTargetCollection = activeCollection
+                            picker.launch(
+                                PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly)
+                            )
+                        },
+                        enabled = !state.busy && activeCollection != null,
+                        modifier = Modifier.heightIn(min = 48.dp)
+                    ) { Text("Add photos") }
+                    OutlinedButton(
+                        onClick = {
+                            when (val result = ClipboardImageIntake.readOnUserTap(context)) {
+                                is ClipboardImageResult.Ready -> {
+                                    clipboardFeedback = "Clipboard image import requested; " +
+                                        "check the result below. No wallpaper was changed."
+                                    model.importSelected(result.uris, activeCollection)
+                                }
+                                is ClipboardImageResult.Unavailable ->
+                                    clipboardFeedback = result.explanation
+                            }
+                        },
+                        enabled = !state.busy && activeCollection != null,
+                        modifier = Modifier.heightIn(min = 48.dp)
+                    ) { Text("Paste image") }
+                }
+                if (clipboardFeedback != null) {
+                    Text(clipboardFeedback!!, style = MaterialTheme.typography.bodySmall)
                 }
                 if (state.retryableFailures > 0) {
                     OutlinedButton(
