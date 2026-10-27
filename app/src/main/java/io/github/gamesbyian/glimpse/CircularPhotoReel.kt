@@ -296,11 +296,6 @@ fun CircularPhotoReel(
                     strokeWidth = 3.5.dp.toPx()
                 }
                 val picture = Paint(Paint.ANTI_ALIAS_FLAG or Paint.FILTER_BITMAP_FLAG)
-                val selectedStroke = Paint(Paint.ANTI_ALIAS_FLAG).apply {
-                    color = 0xFF8D654A.toInt()
-                    style = Paint.Style.STROKE
-                    strokeWidth = 2.dp.toPx()
-                }
                 // The whole photo-and-paper surface turns together around its hub.
                 // Fixed pointer below does not move. All five slots have real IDs.
                 native.save()
@@ -355,11 +350,8 @@ fun CircularPhotoReel(
                     native.drawCircle(cx, cy, inner * 1.02f, rim)
                     native.drawCircle(cx, cy, inner * .62f, empty)
                 }
-                // A restrained inset outline denotes the selected photograph.
-                // Draw after the material, otherwise the alpha face hides it.
-                if (slots[2] != null) {
-                    native.drawPath(aperture(cx, cy, r, -90f), selectedStroke)
-                }
+                // The stationary metal indexing marker below denotes selection.
+                // No fake photo-border ink is drawn over the real inset cutouts.
                 native.restore()
                 val markerTop = (cy - r + 4.dp.toPx()).coerceAtLeast(1.dp.toPx())
                 val pointer = Path().apply {
