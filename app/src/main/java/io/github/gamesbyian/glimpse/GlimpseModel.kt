@@ -121,6 +121,12 @@ class GlimpseModel(application: Application) : AndroidViewModel(application) {
         viewModelScope.launch(Dispatchers.IO) {
             try {
                 importer.pruneStalePartialImports()
+                val unfinished = importer.reconcileInterruptedImports()
+                if (unfinished > 0) {
+                    notice.value = "An earlier import did not record completion for " +
+                        unfinished + " photo(s). Check your collection; re-select any " +
+                        "missing photos using Add photos. Existing copies are preserved."
+                }
             } catch (cancel: CancellationException) {
                 throw cancel
             } catch (_: Exception) {
@@ -188,7 +194,11 @@ class GlimpseModel(application: Application) : AndroidViewModel(application) {
             val id = browse.value.collectionId ?: error("Create or choose a collection first.")
             val report = importer.import(uris, id)
             "Selected " + report.selected + "; imported " + report.imported +
-                "; duplicates " + report.duplicates + "; failed " + report.failures + "."
+                "; duplicates " + report.duplicates + "; failed " + report.failures + "." +
+                if (report.journalWarnings > 0)
+                    " Import history could not be fully saved (" + report.journalWarnings +
+                        " events); existing imported photos remain available."
+                else ""
         }
     }
 
