@@ -20,6 +20,8 @@ on:
     paths:
       - .github/workflows/android-visual-atlas.yml
       - app/src/main/java/io/github/gamesbyian/glimpse/CircularPhotoReel.kt
+      - app/src/main/java/io/github/gamesbyian/glimpse/GlimpseTypography.kt
+      - app/src/main/res/font/**
       - app/src/main/java/io/github/gamesbyian/glimpse/domain/ReelMotion.kt
       - app/src/main/res/drawable-nodpi/glimpse_paper_reel_face.png
 
@@ -35,7 +37,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 45
     env:
-      ATLAS_MODE: ${{ github.event_name == 'pull_request' && 'smoke' || (github.event_name == 'workflow_dispatch' && inputs.mode || 'full') }}
+      ATLAS_MODE: ${{ github.event_name == 'pull_request' && 'full' || (github.event_name == 'workflow_dispatch' && inputs.mode || 'full') }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-java@v4
