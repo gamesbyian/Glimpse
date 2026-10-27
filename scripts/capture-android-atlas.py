@@ -365,6 +365,23 @@ def main():
                 raise RuntimeError("Privacy/storage disclosure is unreachable")
             capture("22-help-privacy-disclosure",
                     "Native privacy and backup/storage disclosure reachable by scroll")
+            # Opt-in audit must verify actual synthetic immutable originals.
+            # This checks the Room photo catalog against the SHA-named bytes,
+            # not the different physical-file-count inventory.
+            reach_and_click("Verify saved originals", "up", attempts=12)
+            audit_ok = False
+            for _ in range(18):
+                audit_xml = hierarchy()
+                if "Verified 22 of 22 registered originals." in audit_xml:
+                    audit_ok = True
+                    break
+                time.sleep(0.5)
+            if not audit_ok:
+                capture_failure("registered-original-audit-failed",
+                                "Read-only check did not verify 22 actual fixture originals")
+                raise RuntimeError("Registered-original exact-byte audit failed")
+            capture("22-help-original-integrity-audit",
+                    "User-triggered verified 22/22 private SHA originals, no mutation")
             # The diagnostic preview is user-triggered and must be readable
             # before any Android chooser or clipboard action exists.
             reach_and_click("Generate local diagnostic report", "up", attempts=10)
