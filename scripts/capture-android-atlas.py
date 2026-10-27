@@ -338,7 +338,16 @@ def main():
             # static proposal or a guessed Play/OS permission dialog.
             click_label("Help & privacy")
             help_xml = hierarchy()
-            if "Help & privacy." not in help_xml or "GETTING STARTED" not in help_xml:
+            # UIAutomator XML encodes an ampersand as &amp;. Compare parsed
+            # accessibility text, not the escaped XML source string.
+            visible_help_text = [
+                node.attrib.get("text", "")
+                for node in ET.fromstring(help_xml).iter("node")
+            ]
+            if (not any("Help & privacy." in text for text in visible_help_text) or
+                    not any("GETTING STARTED" in text for text in visible_help_text)):
+                capture_failure("help-privacy-entry-missing",
+                                "Native help title or Getting Started content not accessible")
                 raise RuntimeError("Native Help & privacy entry did not render")
             capture("22-help-privacy-initial",
                     "Real offline Help/Privacy/About entry from Home masthead")
