@@ -243,8 +243,7 @@ private fun GlimpseScreen(
                                     it.id == activeCollection
                                 }?.title
                                 Text(
-                                    "$" + "{count} image" +
-                                        if (count == 1) " is" else "s are" +
+                                    "$count image" + (if (count == 1) " is" else "s are") +
                                         " ready for import. Originals will be saved as " +
                                         "verified private copies. No wallpaper will change."
                                 )
