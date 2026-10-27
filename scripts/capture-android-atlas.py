@@ -5,6 +5,9 @@ Uses a debug-only real Room fixture launcher, the production MainActivity and
 Android screencap/UIAutomator. No alternative mock screen, no user photos.
 """
 import argparse
+import hashlib
+import io
+import zipfile
 import html
 import json
 import os
@@ -334,9 +337,87 @@ def main():
                 raise RuntimeError("Actual initial 22-photo collection tile/count missing")
         capture("22-reel-initial", "Collection with 22 actual records, before any interaction")
         if args.mode == "full":
+            # A collection archive is chosen through Android DocumentsUI,
+            # never a pretend in-app path text field or unapproved broad grant.
+            reach_and_click("Export collection ZIP", "up", attempts=12)
+            time.sleep(1.7)
+            archive_chooser = hierarchy()
+            archive_packages = {node.attrib.get("package")
+                                for node in ET.fromstring(archive_chooser).iter("node")}
+            if not archive_packages.intersection({
+                    "com.android.documentsui", "com.google.android.documentsui"}):
+                capture_failure("collection-export-no-android-save-as",
+                                "Collection ZIP did not launch Android DocumentsUI")
+                raise RuntimeError("Collection export chooser was not real DocumentsUI")
+            capture("22-collection-export-android-save-as",
+                    "Real Android document picker for explicit originals-only ZIP export")
+            adb("shell", "input", "keyevent", "4")
+            returned = False
+            for _ in range(12):
+                time.sleep(0.6)
+                after_cancel = hierarchy()
+                packages = {node.attrib.get("package")
+                            for node in ET.fromstring(after_cancel).iter("node")}
+                if (APP in packages and
+                        "Export collection ZIP" in after_cancel and
+                        not packages.intersection({
+                            "com.android.documentsui", "com.google.android.documentsui"})):
+                    returned = True
+                    break
+            if not returned:
+                capture_failure("collection-export-cancel-return",
+                                "Android ZIP Save As cancellation did not return Home")
+                raise RuntimeError("Cancelled collection ZIP picker did not restore Home")
+            # Complete a second, explicit Android Save As. Validate the bytes
+            # independently from the application's success message: this is
+            # an actual DocumentsUI provider and user-visible ZIP, not a JVM
+            # helper pretending to exercise Android storage permissions.
+            reach_and_click("Export collection ZIP", "up", attempts=12)
+            time.sleep(1.3)
+            zip_picker = hierarchy()
+            if "SAVE" not in zip_picker:
+                capture_failure("collection-zip-save-button-unavailable",
+                                "Android DocumentsUI Save action not found")
+                raise RuntimeError("Android ZIP Save As has no SAVE action")
+            click_label("SAVE")
+            expected_zip = "/sdcard/Download/glimpse-ATLAS-FIXTURE-22-photos-originals.zip"
+            stored = None
+            for _ in range(18):
+                time.sleep(0.8)
+                raw = adb("exec-out", "cat", expected_zip,
+                          binary=True, check=False, timeout=45)
+                if raw.startswith(b"PK\x03\x04"):
+                    stored = raw
+                    break
+            if stored is None:
+                capture_failure("collection-zip-missing-from-downloads",
+                                "Android did not persist a ZIP in Downloads after Save")
+                raise RuntimeError("Android ZIP Save As did not yield a readable archive")
+            with zipfile.ZipFile(io.BytesIO(stored)) as archive:
+                manifest = json.loads(archive.read("manifest.json"))
+                if (manifest.get("format") != "glimpse.collection.originals" or
+                        manifest.get("version") != 1 or
+                        manifest.get("photoCount") != 22 or
+                        len(manifest.get("photos", [])) != 22):
+                    raise RuntimeError("Saved ZIP manifest did not identify 22 originals")
+                if len(archive.namelist()) != 23:
+                    raise RuntimeError("Saved ZIP did not contain exactly 22 originals")
+                for item in manifest["photos"]:
+                    name = item["path"]
+                    sha = item["sha256"]
+                    if not (name.startswith("originals/") and
+                            name == "originals/" + sha + ".jpg" and
+                            len(sha) == 64):
+                        raise RuntimeError("Export contains an unsafe original path")
+                    exact = archive.read(name)
+                    if (len(exact) != item["bytes"] or
+                            hashlib.sha256(exact).hexdigest() != sha):
+                        raise RuntimeError("Android-exported ZIP changed original bytes")
+            capture("22-collection-zip-export-complete",
+                    "Real Android DocumentsUI ZIP: 22 original entries, exact SHA and bytes")
             # Support is an offline, actually navigable native screen, not a
             # static proposal or a guessed Play/OS permission dialog.
-            click_label("Help & privacy")
+            reach_and_click("Help & privacy", "down", attempts=12)
             help_xml = hierarchy()
             # UIAutomator XML encodes an ampersand as &amp;. Compare parsed
             # accessibility text, not the escaped XML source string.
