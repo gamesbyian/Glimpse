@@ -3,6 +3,10 @@
 
 ## Source and current integration
 
+**Owner object/art references:** [unaltered October 26 boards](../../design/reference/owner-2026-10-26/README.md), [A](../../design/reference/owner-2026-10-26/glimpse-physical-reels-and-screen-concepts-a.jpg) and [B](../../design/reference/owner-2026-10-26/glimpse-physical-reels-and-screen-concepts-b.jpg). Match their tangible material and partial-screen composition in production work, not their speculative providers/settings/tool reels. Source JPEGs are visual guides, not licensed APK runtime components.
+
+
+
 Initial source file: [`glimpse_paper_reel_face.png`](../../app/src/main/res/drawable-nodpi/glimpse_paper_reel_face.png), a **384×384 RGBA PNG** baked for the first rotating reel in [`CircularPhotoReel.kt`](../../app/src/main/java/io/github/gamesbyian/glimpse/CircularPhotoReel.kt). Original Git blob ID `41d5e4d04166a83737ed268bee1b0ed5156a45c1`. It is an original, digitally synthesized material sheet with uncompressed PNG data, not sampled from the owner's composite mockup or an imported user photograph. There are **five transparent, genuinely empty photo apertures** in the face. A source-integrity script verifies PNG CRC, exact geometry and window/hub/outer-ring opacity.
 
 Photos are independent cached bitmaps painted underneath the face in the same coordinates. Their identities follow the finite ordered Room-backed selected ID. The paper surface and photographs rotate as one; a fixed pointer does not. Existing Grid, hero and WallpaperManager commands are untouched. The disk is deliberately larger than the display and clipped below the hero; this is a functional provisional viewport, not a final approved position.
