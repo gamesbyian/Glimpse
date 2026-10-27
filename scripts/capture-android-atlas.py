@@ -532,7 +532,6 @@ def main():
                 raise RuntimeError("Adding existing photo did not update target collection")
             capture("22-cross-collection-membership-copy",
                     "Photo 3 reused in alternate collection without recopy or wallpaper change")
-            reach_and_click("ALTERNATE ATLAS")
             # Distinct text nodes can sit in different viewports at large type.
             # Observe each independently across bounded scrolling rather than
             # assuming the source title and explanation share one accessibility
