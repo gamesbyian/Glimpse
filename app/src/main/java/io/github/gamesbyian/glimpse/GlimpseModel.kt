@@ -97,7 +97,11 @@ class GlimpseModel(application: Application) : AndroidViewModel(application) {
     init {
         viewModelScope.launch {
             val initial = withContext(Dispatchers.IO) {
-                dao.watchCollections().firstOrNull()?.firstOrNull()?.id
+                val collections = dao.watchCollections().firstOrNull().orEmpty()
+                BrowseCursor.restoredCollection(
+                    collections.map { it.id },
+                    browsePrefs.getString("active_collection", null)
+                )
             }
             if (browse.value.collectionId == null) {
                 browse.value = browse.value.open(initial, initial?.let(::rememberedPhoto))
@@ -113,12 +117,14 @@ class GlimpseModel(application: Application) : AndroidViewModel(application) {
             dao.insertCollection(CollectionRecord(id, title, System.currentTimeMillis()))
         }
         browse.value = browse.value.open(id, null)
+        browsePrefs.edit().putString("active_collection", id).apply()
         "Created " + title + ". Use Add photos to import."
     }
 
     fun browseCollection(id: String) {
         if (ui.value.collections.none { it.id == id }) return
         browse.value = browse.value.open(id, rememberedPhoto(id))
+        browsePrefs.edit().putString("active_collection", id).apply()
         notice.value = "Browsing this collection does not change the wallpaper."
     }
 
