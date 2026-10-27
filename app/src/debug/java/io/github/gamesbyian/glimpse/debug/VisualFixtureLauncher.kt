@@ -10,9 +10,11 @@ import android.graphics.Rect
 import android.graphics.RectF
 import android.os.Bundle
 import android.os.Build
+import android.util.Base64
 import androidx.activity.ComponentActivity
 import androidx.lifecycle.lifecycleScope
 import io.github.gamesbyian.glimpse.MainActivity
+import io.github.gamesbyian.glimpse.data.BoundedPhotoDecode
 import io.github.gamesbyian.glimpse.data.CollectionRecord
 import io.github.gamesbyian.glimpse.data.GlimpseDatabase
 import io.github.gamesbyian.glimpse.data.PhotoRecord
@@ -48,6 +50,7 @@ class VisualFixtureLauncher : ComponentActivity() {
     }
 
     private suspend fun seed(count: Int, active: Boolean) {
+        verifyOrientationDecode()
         val dao = GlimpseDatabase.open(applicationContext).dao()
         val collectionId = "visual-atlas-$count"
         dao.insertCollection(CollectionRecord(collectionId,
@@ -129,5 +132,38 @@ class VisualFixtureLauncher : ComponentActivity() {
         File(filesDir, "visual-atlas-ready.txt").writeText(
             "READY:" + count + ":" + collectionId
         )
+    }
+
+    /**
+     * Synthetic 16x8 JPEG: left half red, right half blue, EXIF Orientation=6.
+     * Correct decoded pixels are upright 8x16, red above blue. This validates
+     * the actual API34 platform decoder used by Home, Reel and Wallpaper.
+     * No private/user photo or network content is involved.
+     */
+    private fun verifyOrientationDecode() {
+        val encoded = Base64.decode(
+            "/9j/4AAQSkZJRgABAQAAAQABAAD/4QAiRXhpZgAATU0AKgAAAAgAAQESAAMAAAABAAYAAAAAAAD/2wBDAAMCAgMCAgMDAwMEAwMEBQgFBQQEBQoHBwYIDAoMDAsKCwsNDhIQDQ4RDgsLEBYQERMUFRUVDA8XGBYUGBIUFRT/2wBDAQMEBAUEBQkFBQkUDQsNFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBT/wAARCAAIABADASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAf/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFAEBAAAAAAAAAAAAAAAAAAAAB//EABgRAAIDAAAAAAAAAAAAAAAAAAAHRYPD/9oADAMBAAIRAxEAPwCLp4BPQsnTqMj5jLsj/9k=",
+            Base64.DEFAULT
+        )
+        val path = File(cacheDir, "synthetic-exif-orientation-6.jpg")
+        try {
+            path.writeBytes(encoded)
+            val bitmap = BoundedPhotoDecode.decode(path, maxEdge = 64)
+            try {
+                check(bitmap.width == 8 && bitmap.height == 16) {
+                    "EXIF rotated JPEG did not decode as upright 8x16"
+                }
+                val top = bitmap.getPixel(4, 2)
+                val bottom = bitmap.getPixel(4, 13)
+                check(Color.red(top) > Color.blue(top) + 90 &&
+                    Color.blue(bottom) > Color.red(bottom) + 90) {
+                    "EXIF rotated JPEG has incorrect upright pixel order"
+                }
+            } finally {
+                bitmap.recycle()
+            }
+        } finally {
+            path.delete()
+        }
     }
 }
