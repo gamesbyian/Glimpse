@@ -122,8 +122,8 @@ class GlimpseModel(application: Application) : AndroidViewModel(application) {
             grid = isGrid,
             busy = isBusy,
             message = message,
-            retryableFailures = if (data.collectionId == pending?.collectionId)
-                pending.uris.size else 0
+            retryableFailures = if (pending != null &&
+                data.collectionId == pending.collectionId) pending.uris.size else 0
         )
     }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), GlimpseUiState())
 
