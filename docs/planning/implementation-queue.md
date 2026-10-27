@@ -1,5 +1,16 @@
 # Glimpse native implementation queue
 
+## Live merged Android baseline · October 26
+
+- **Merged [#27](https://github.com/gamesbyian/Glimpse/pull/27)** (main `5c9bcc21`): original five-window paper face, genuine bounded notch rotation, licensed editorial typography, collection-scoped persisted photo focus, stale-gesture rejection, 320dp/200%-type action wrapping. Branch native build and full screenshot atlas passed; owner visual/touch approval remains open.
+- **Merged [#28](https://github.com/gamesbyian/Glimpse/pull/28)** (main `0af0a3b7`): independent API34 real Android OS Photo Picker tests for single/duplicate/two-photo imports and byte-identical offline copies after source deletion and restart. Both clean-branch picker workflows passed. Old stacked PRs #21/#24 closed as superseded. No Google Photos cloud-sync or physical-handset claim.
+- **Merged [#29](https://github.com/gamesbyian/Glimpse/pull/29)** (main `50af4719`): an actual full-original-aspect photo-detail view, with Previous/Next, Back, accurate imported metadata and explicit existing Home apply. Its updated native build and full emulator atlas passed. No crop/editor/export simulation.
+- **Merged [#30](https://github.com/gamesbyian/Glimpse/pull/30)** (main `42a519cf`): restore last collection or safe fallback after restart, with unit tests and native CI.
+- **Current focused [#31](https://github.com/gamesbyian/Glimpse/pull/31)**: first real F073 original-only Android Sharesheet action with secure read-only FileProvider, SHA/size/path/MIME revalidation, user metadata warning and emulator chooser/cancel tests. **Pending current-head CI and real external-app receiving verification**; this is neither full F073 nor accepted source sanitization.
+
+**Immediate product gate:** inspect exact merged-build native screenshot atlas for object quality, animation boundaries, usable controls at 320dp/200% type, then place a current debug APK on the owner's Pixel 6 Pro. Continue on R3 real Home/Collections composition, not another isolated schematic gallery. Keep user-approved design direction distinct from unapproved pixel/layout details; master design PR #6 remains draft and unmerged.
+
+
 > **26 October 2026 current execution:** [R0–R6 build plan](BUILD-PLAN-2026-10-26.md); [native tactile reel PR #27](https://github.com/gamesbyian/Glimpse/pull/27). Existing import/apply/shuffle stays intact. First animated disc and baked paper face have passed Gradle/JVM/PNG tests; independent lower-corner geometry and actual Android optical review remain acceptance gates. **Prioritize physical/visual reel quality before broad unrelated features.** Draft design [PR #6](https://github.com/gamesbyian/Glimpse/pull/6) remains unapproved.
 
 
@@ -60,13 +71,13 @@ A real installation successfully imported **22 Google Photos images** through th
 - [ ] Test on Android phone, provider handling, process death, airplane mode and font/accessibility.
 - [ ] Record actual uncoached actions, misunderstandings, error recovery and results against [predictions](../quality/first-slice-evidence.md).
 - [x] First real circular paper disc with 5 wedges, true photo IDs across 0/1/3/22 cases, swipe/tap selection, stationary hero, grid fallback and unit tests. **Visual acceptance and animated wheel motion remain open.**
-- [ ] Improve circular reel response: actually rotate/snap/reverse the disc with interruption and accessibility parity rather than instantaneous rebinding.
+- [x] Implemented basic real-notch rotation/snap, finite selection and reduced-motion fallback (#27); **velocity/interrupt tactile quality, TalkBack equivalence and Pixel timing are still not physically accepted.**
 - [ ] Confirm native capture + physically inspect first-fill, small/large photo collections, type scaling, safe insets and zoom/cropping.
 
 ## P1: daily use beyond the bounded slice
 
 - [ ] Persistent import journal and per-photo retry; cleanup of stranded private files after interrupted import.
-- [ ] Screenshot rotate/crop and original-or-crop sharing via Android Sharesheet/FileProvider (F071/F073).
+- [ ] Screenshot rotate/crop and original-or-crop sharing (F071/F073) remain open. PR #31 separately implements original-only manual outbound Sharesheet; altered/cropped/sanitized copy, incoming ACTION_SEND, clipboard and batch share are still absent.
 - [ ] Home/Lock/Both capability probes and target-isolated apply acknowledgments.
 - [ ] Widgets, Quick Settings and more background policies through the *same* command gateway.
 - [ ] Real on-device performance, Doze, OEM, large text, TalkBack, backups and upgrade testing.
