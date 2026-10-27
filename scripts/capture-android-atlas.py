@@ -337,6 +337,24 @@ def main():
                 raise RuntimeError("Actual initial 22-photo collection tile/count missing")
         capture("22-reel-initial", "Collection with 22 actual records, before any interaction")
         if args.mode == "full":
+            # Real OS multi-stream Sharesheet with read-only FileProvider grants,
+            # distinct from the existing single-photo share acceptance.
+            reach_and_click("Share 22 originals", "up", attempts=12)
+            time.sleep(1.5)
+            batch_xml = hierarchy()
+            batch_packages = {node.attrib.get("package")
+                              for node in ET.fromstring(batch_xml).iter("node")}
+            if not batch_packages.intersection({
+                "android", "com.android.intentresolver",
+                "com.google.android.intentresolver"
+            }):
+                capture_failure("batch-original-sharesheet-missing",
+                                "ACTION_SEND_MULTIPLE did not launch Android Sharesheet")
+                raise RuntimeError("Actual collection Sharesheet failed to launch")
+            capture("22-collection-android-batch-sharesheet",
+                    "Actual Android Sharesheet with 22 verified private original URI grants")
+            adb("shell", "input", "keyevent", "4")
+            time.sleep(1.1)
             # A collection archive is chosen through Android DocumentsUI,
             # never a pretend in-app path text field or unapproved broad grant.
             reach_and_click("Export collection ZIP", "up", attempts=12)

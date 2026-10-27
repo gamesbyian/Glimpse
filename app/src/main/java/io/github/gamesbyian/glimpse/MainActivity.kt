@@ -48,6 +48,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.key
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.produceState
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
@@ -172,6 +173,9 @@ private fun GlimpseScreen(
     val state by model.ui.collectAsStateWithLifecycle()
     val activeCollection = state.collectionId
     val context = LocalContext.current
+    val shareScope = rememberCoroutineScope()
+    var sharingCollection by remember { mutableStateOf(false) }
+    var shareCollectionError by remember { mutableStateOf<String?>(null) }
     var clipboardFeedback by remember { mutableStateOf<String?>(null) }
     var newCollection by remember { mutableStateOf("Rainbows") }
     var showNewCollection by remember { mutableStateOf(false) }
@@ -381,6 +385,47 @@ private fun GlimpseScreen(
                         enabled = activeCollection != null && !state.busy
                     ) { Text("Export collection ZIP") }
                     }
+                    if (state.photos.size in 1..OriginalPhotoSharing.MAX_BATCH) {
+                        TextButton(
+                            enabled = !state.busy && !sharingCollection,
+                            onClick = {
+                                val selected = state.photos.toList()
+                                sharingCollection = true
+                                shareCollectionError = null
+                                shareScope.launch {
+                                    try {
+                                        val chooser = OriginalPhotoSharing.batchChooser(context, selected)
+                                        context.startActivity(chooser)
+                                    } catch (_: Exception) {
+                                        shareCollectionError =
+                                            "Unable to share this collection. Check that each " +
+                                            "original is intact, or share individual photos."
+                                    } finally {
+                                        sharingCollection = false
+                                    }
+                                }
+                            }
+                        ) { Text(if (sharingCollection) "Verifying originals…" else
+                            "Share " + state.photos.size + " originals") }
+                    }
+                }
+                if (shareCollectionError != null) {
+                    Text(shareCollectionError!!, color = MaterialTheme.colorScheme.error)
+                }
+                if (state.photos.size > OriginalPhotoSharing.MAX_BATCH) {
+                    Text(
+                        "Batch sharing currently supports up to 25 originals. " +
+                            "You can share individual photos from their detail screen.",
+                        style = MaterialTheme.typography.bodySmall
+                    )
+                }
+                if (state.photos.size in 1..OriginalPhotoSharing.MAX_BATCH) {
+                    Text(
+                        "Batch sharing sends unchanged originals, including any " +
+                            "location or camera metadata, through Android's chooser. " +
+                            "Receiving apps may have their own size limits.",
+                        style = MaterialTheme.typography.bodySmall
+                    )
                 }
                 if (archivePickerError != null) {
                     Text(archivePickerError!!, color = MaterialTheme.colorScheme.error)
