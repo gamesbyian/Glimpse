@@ -9,6 +9,8 @@ import io.github.gamesbyian.glimpse.data.CollectionOverview
 import io.github.gamesbyian.glimpse.data.CollectionRecord
 import io.github.gamesbyian.glimpse.data.GlimpseDatabase
 import io.github.gamesbyian.glimpse.data.ImportResult
+import io.github.gamesbyian.glimpse.data.inspectRegisteredOriginals
+import io.github.gamesbyian.glimpse.data.LocalOriginalIntegritySummary
 import io.github.gamesbyian.glimpse.data.PhotoImporter
 import io.github.gamesbyian.glimpse.data.PhotoRecord
 import io.github.gamesbyian.glimpse.data.RotationRecord
@@ -17,6 +19,8 @@ import io.github.gamesbyian.glimpse.domain.BrowseCursor
 import io.github.gamesbyian.glimpse.domain.checkedCollectionTitle
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.ensureActive
+import kotlin.coroutines.coroutineContext
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
@@ -160,6 +164,19 @@ class GlimpseModel(application: Application) : AndroidViewModel(application) {
             }
         }
     }
+
+    /**
+     * Explicit user-triggered exact-byte audit. Never repairs, deletes, logs
+     * file paths or stores photo identifiers in support diagnostics.
+     */
+    suspend fun auditPrivateOriginals(): LocalOriginalIntegritySummary =
+        withContext(Dispatchers.IO) {
+            val originals = java.io.File(getApplication<Application>().filesDir, "originals")
+            val registered = dao.allPhotosForAudit()
+            inspectRegisteredOriginals(originals, registered) {
+                coroutineContext.ensureActive()
+            }
+        }
 
     fun createCollection(name: String) = action {
         val title = checkedCollectionTitle(name)

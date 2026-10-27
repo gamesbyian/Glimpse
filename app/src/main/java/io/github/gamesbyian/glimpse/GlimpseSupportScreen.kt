@@ -148,6 +148,43 @@ internal fun GlimpseSupportScreen(
                 "awaiting cleanup; do not manually remove imported originals because " +
                 "that can break collection access and sharing."
         )
+        OutlinedButton(
+            enabled = integrityReadout != IntegrityReadout.Checking,
+            onClick = {
+                integrityReadout = IntegrityReadout.Checking
+                auditScope.launch {
+                    integrityReadout = try {
+                        IntegrityReadout.Ready(model.auditPrivateOriginals())
+                    } catch (cancel: CancellationException) {
+                        throw cancel
+                    } catch (_: Exception) {
+                        IntegrityReadout.Unavailable
+                    }
+                }
+            }
+        ) { Text("Verify saved originals") }
+        when (val audit = integrityReadout) {
+            IntegrityReadout.NotChecked -> Text(
+                "Optional. Checks the exact bytes of photos registered in the library. " +
+                    "This can take time for large collections; no files are changed.",
+                style = MaterialTheme.typography.bodySmall
+            )
+            IntegrityReadout.Checking -> Text(
+                "Verifying private photo originals…",
+                style = MaterialTheme.typography.bodySmall
+            )
+            IntegrityReadout.Unavailable -> Text(
+                "The integrity check could not finish. No files were changed.",
+                style = MaterialTheme.typography.bodySmall
+            )
+            is IntegrityReadout.Ready -> Text(
+                "Verified ${audit.summary.verified} of ${audit.summary.registered} " +
+                    "registered originals. ${audit.summary.problemCount} missing or " +
+                    "failed verification. This does not inspect unregistered orphan " +
+                    "files, repair problems or validate copies held by other apps.",
+                style = MaterialTheme.typography.bodySmall
+            )
+        }
         SupportSection(
             "OPTIONAL SUPPORT REPORT",
             "Generate a local-only diagnostic report. Inspect, edit, copy or " +
@@ -273,4 +310,11 @@ private sealed interface StorageReadout {
     data object Loading : StorageReadout
     data object Unavailable : StorageReadout
     data class Ready(val snapshot: LocalStorageInventory) : StorageReadout
+}
+
+private sealed interface IntegrityReadout {
+    data object NotChecked : IntegrityReadout
+    data object Checking : IntegrityReadout
+    data object Unavailable : IntegrityReadout
+    data class Ready(val summary: LocalOriginalIntegritySummary) : IntegrityReadout
 }
