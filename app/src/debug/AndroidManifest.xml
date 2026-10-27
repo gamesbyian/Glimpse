@@ -14,5 +14,9 @@
             android:exported="true"
             android:excludeFromRecents="true"
             android:label="Glimpse picker-only synthetic fixture" />
+        <activity android:name=".debug.ClipboardImageFixtureLauncher"
+            android:exported="true"
+            android:excludeFromRecents="true"
+            android:label="Glimpse synthetic clipboard fixture" />
     </application>
 </manifest>
