@@ -40,6 +40,37 @@ internal fun pruneStalePartialFiles(
 }
 
 /**
+ * If another import already committed this SHA-named original, verify its bytes
+ * instead of trusting filename/length alone. This prevents a stale or corrupted
+ * file from being attached to another collection as a supposedly valid copy.
+ * Caller already runs in Dispatchers.IO; the source copy never gets replaced.
+ */
+internal fun existingOriginalMatches(
+    file: File,
+    expectedSha256: String,
+    expectedLength: Long
+): Boolean {
+    if (!expectedSha256.matches(Regex("[0-9a-f]{64}")) || expectedLength <= 0L ||
+        !file.isFile || java.nio.file.Files.isSymbolicLink(file.toPath()) ||
+        file.length() != expectedLength
+    ) return false
+    return try {
+        val digest = MessageDigest.getInstance("SHA-256")
+        file.inputStream().buffered().use { stream ->
+            val buffer = ByteArray(64 * 1024)
+            while (true) {
+                val count = stream.read(buffer)
+                if (count == -1) break
+                digest.update(buffer, 0, count)
+            }
+        }
+        digest.digest().joinToString("") { "%02x".format(it) } == expectedSha256
+    } catch (_: Exception) {
+        false
+    }
+}
+
+/**
  * Snapshot-only: never modifies provider URIs. Private copies remain valid after
  * Photo Picker's temporary URI grants expire. No broad media permission is used.
  */
@@ -129,6 +160,13 @@ class PhotoImporter(private val context: Context, private val dao: GlimpseDao) {
             val target = File(originals, hex + extension)
             if (!target.exists()) {
                 require(temp.renameTo(target)) { "Unable to finalize offline copy" }
+            } else {
+                require(existingOriginalMatches(target, hex, size)) {
+                    // Never overwrite an existing private original, even if
+                    // corrupt. The user-selected provider source and earlier
+                    // collection memberships are otherwise left untouched.
+                    "Existing imported original failed integrity check."
+                }
             }
             val photo = PhotoRecord(
                 id = hex,
