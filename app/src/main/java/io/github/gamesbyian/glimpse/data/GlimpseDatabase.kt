@@ -107,6 +107,9 @@ interface GlimpseDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertCollection(collection: CollectionRecord): Long
 
+    @Query("UPDATE collections SET title = :name WHERE id = :id")
+    suspend fun renameCollection(id: String, name: String): Int
+
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertPhoto(photo: PhotoRecord): Long
 

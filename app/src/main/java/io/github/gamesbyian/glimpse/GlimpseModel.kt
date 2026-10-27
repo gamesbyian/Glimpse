@@ -14,6 +14,7 @@ import io.github.gamesbyian.glimpse.data.PhotoRecord
 import io.github.gamesbyian.glimpse.data.RotationRecord
 import io.github.gamesbyian.glimpse.domain.WallpaperCommands
 import io.github.gamesbyian.glimpse.domain.BrowseCursor
+import io.github.gamesbyian.glimpse.domain.checkedCollectionTitle
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -161,8 +162,7 @@ class GlimpseModel(application: Application) : AndroidViewModel(application) {
     }
 
     fun createCollection(name: String) = action {
-        val title = name.trim()
-        require(title.isNotEmpty()) { "Enter a collection name." }
+        val title = checkedCollectionTitle(name)
         val id = UUID.randomUUID().toString()
         withContext(Dispatchers.IO) {
             dao.insertCollection(CollectionRecord(id, title, System.currentTimeMillis()))
@@ -170,6 +170,20 @@ class GlimpseModel(application: Application) : AndroidViewModel(application) {
         browse.value = browse.value.open(id, null)
         browsePrefs.edit().putString("active_collection", id).apply()
         "Created " + title + ". Use Add photos to import."
+    }
+
+    fun renameCollection(id: String?, proposedName: String) = action {
+        val target = id ?: error("Choose a collection to rename.")
+        val title = checkedCollectionTitle(proposedName)
+        val changed = withContext(Dispatchers.IO) {
+            dao.renameCollection(target, title)
+        }
+        require(changed == 1) {
+            "The original collection is unavailable. Choose a collection again."
+        }
+        // Stable CollectionId and current photo selection are unchanged.
+        // Active rotation uses that same ID and follows the renamed title.
+        "Collection renamed to " + title + ". Wallpapers and photo order were unchanged."
     }
 
     fun browseCollection(id: String) {
