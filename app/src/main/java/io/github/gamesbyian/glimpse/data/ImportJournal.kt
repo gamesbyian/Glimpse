@@ -43,7 +43,7 @@ internal class ImportJournal(
     fun recent(): List<Event> {
         if (!file.isFile) return emptyList()
         return file.useLines { lines ->
-            lines.mapNotNull { parse(it) }.takeLast(4096).toList()
+            lines.mapNotNull { parse(it) }.toList().takeLast(4096)
         }
     }
 
