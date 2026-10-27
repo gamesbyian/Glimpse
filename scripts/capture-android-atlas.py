@@ -505,7 +505,7 @@ def main():
                     while (target.attrib.get("clickable") != "true" and
                            target in parent):
                         target = parent[target]
-                    bounds = re.findall(r"\\d+", target.attrib.get("bounds", ""))
+                    bounds = re.findall(r"\d+", target.attrib.get("bounds", ""))
                     if len(bounds) != 4:
                         continue
                     x0, y0, x1, y1 = map(int, bounds)
