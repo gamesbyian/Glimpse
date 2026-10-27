@@ -497,14 +497,20 @@ def main():
                 root = ET.fromstring(xml)
                 parent = {child: node for node in root.iter()
                           for child in node}
+                # DocumentsUI exposes two similarly named targets:
+                # a thumbnail-preview icon, and the actual file title inside
+                # clickable item_root. The preview icon does NOT return a URI.
                 candidates = [node for node in root.iter("node")
-                              if fragment in (node.attrib.get("text", "") + " " +
-                                              node.attrib.get("content-desc", ""))]
+                              if node.attrib.get("resource-id") == "android:id/title" and
+                              fragment in node.attrib.get("text", "")]
                 for node in candidates:
                     target = node
-                    while (target.attrib.get("clickable") != "true" and
-                           target in parent):
+                    while target in parent and target.attrib.get("resource-id") != (
+                            "com.android.documentsui:id/item_root"):
                         target = parent[target]
+                    if target.attrib.get("resource-id") != (
+                            "com.android.documentsui:id/item_root"):
+                        continue
                     bounds = re.findall(r"\d+", target.attrib.get("bounds", ""))
                     if len(bounds) != 4:
                         continue
