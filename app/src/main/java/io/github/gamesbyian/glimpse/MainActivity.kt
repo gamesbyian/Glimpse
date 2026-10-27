@@ -67,6 +67,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import io.github.gamesbyian.glimpse.data.CollectionZipWriter
 import io.github.gamesbyian.glimpse.data.BoundedPhotoDecode
 import io.github.gamesbyian.glimpse.data.PhotoRecord
 import io.github.gamesbyian.glimpse.domain.describeRotationSource
@@ -187,6 +188,17 @@ private fun GlimpseScreen(
     // An external Photo Picker may survive Activity recreation. Retain the
     // launch-time collection identity, never an ephemeral provider URI.
     var pickerTargetCollection by rememberSaveable { mutableStateOf<String?>(null) }
+    var pendingArchiveCollection by rememberSaveable { mutableStateOf<String?>(null) }
+    var archivePickerError by remember { mutableStateOf<String?>(null) }
+    val archivePicker = rememberLauncherForActivityResult(
+        ActivityResultContracts.CreateDocument("application/zip")
+    ) { destination ->
+        val sourceCollection = pendingArchiveCollection
+        pendingArchiveCollection = null
+        if (destination != null) {
+            model.exportCollectionZip(destination, sourceCollection)
+        }
+    }
     val picker = rememberLauncherForActivityResult(
         ActivityResultContracts.PickMultipleVisualMedia(maxItems = 100)
     ) { uris ->
@@ -351,6 +363,35 @@ private fun GlimpseScreen(
                         },
                         enabled = activeCollection != null && !state.busy
                     ) { Text("Rename collection") }
+                    if (state.photos.isNotEmpty()) {
+                    TextButton(
+                        onClick = {
+                            val chosen = state.collections.firstOrNull {
+                                it.id == activeCollection
+                            } ?: return@TextButton
+                            try {
+                                pendingArchiveCollection = chosen.id
+                                archivePickerError = null
+                                archivePicker.launch(CollectionZipWriter.defaultName(chosen.title))
+                            } catch (_: Exception) {
+                                pendingArchiveCollection = null
+                                archivePickerError = "Android Save As could not open. Try again."
+                            }
+                        },
+                        enabled = activeCollection != null && !state.busy
+                    ) { Text("Export collection ZIP") }
+                    }
+                }
+                if (archivePickerError != null) {
+                    Text(archivePickerError!!, color = MaterialTheme.colorScheme.error)
+                }
+                if (state.photos.isNotEmpty()) {
+                    Text(
+                        "Export uses Android's Save As destination and contains exact " +
+                            "unedited originals with camera/location metadata. It may be " +
+                            "large, and Glimpse cannot restore ZIP archives yet.",
+                        style = MaterialTheme.typography.bodySmall
+                    )
                 }
                 val renameTarget = state.collections.firstOrNull {
                     it.id == renameTargetCollection

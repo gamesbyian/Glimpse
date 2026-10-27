@@ -127,7 +127,8 @@ internal fun GlimpseSupportScreen(
             "SHARING & ORIGINALS",
             "Share original photo opens Android's Sharesheet after verifying the " +
                 "private original. It may contain camera, time or location EXIF data. " +
-                "Glimpse does not guarantee delivery to another app or strip metadata.",
+                "Glimpse does not guarantee delivery to another app or strip metadata. " +
+                "Save original copy opens Android's document picker for one verified file.",
             "Android Share can send images into Glimpse. Confirm the receiving " +
                 "collection and tap Import shared images; an unchanged private copy " +
                 "is saved. Paste image reads clipboard only when explicitly tapped. " +
@@ -141,9 +142,11 @@ internal fun GlimpseSupportScreen(
                 "automatic diagnostic upload. Photos and collection records are kept " +
                 "in the app's private storage. Android app auto-backup is disabled.",
             "Uninstalling Glimpse or clearing its app storage can permanently remove " +
-                "its private imported copies and collections. There is no in-app " +
-                "backup/restore workflow yet. Sharing a photo deliberately hands " +
-                "a read-only copy to an Android-selected recipient."
+                "its private imported copies and collections. Export collection ZIP " +
+                "can save the unchanged photos and a manifest to an Android-selected " +
+                "document destination, but it does not export wallpaper settings " +
+                "or support in-app restore. Verify the destination before uninstalling. " +
+                "Exports include original EXIF data and the collection title."
         )
         SupportSection(
             "LOCAL STORAGE · READ ONLY",

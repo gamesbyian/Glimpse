@@ -13,3 +13,15 @@ The native prototype can create collections; import Android Photo Picker selecti
 Core code: `data/GlimpseDatabase.kt` (Room), `data/PhotoImporter.kt` and `data/ImportJournal.kt` (durable snapshots, transient failure retry, redacted recovery), `data/LocalStorageInventory.kt` (safe read-only storage metadata), `domain/ShuffleBag.kt` and `domain/WallpaperCommands.kt` (single OS mutation gateway), `GlimpseModel.kt` (state), `domain/ReelWindow.kt` and `domain/ReelMotion.kt` (finite selection/gestures), `CircularPhotoReel.kt` (disc), `OriginalPhotoSharing.kt` (bounded original-only FileProvider handoff), `GlimpseSupportScreen.kt`, and `MainActivity.kt`.
 
 Not implemented: automatic Google Photos album sync; exact five-minute background scheduling; screenshot crop/rotation/editor recipes and edited/sanitized sharing; Lock/Both wallpaper targets; widgets and Quick Settings; backup/restore; membership-aware deletion or cache-clearing UI; durable external-provider retry grants. Inbound Android Share image intake is implemented, but its crop/edit continuation is not. User-initiated Paste image from Android clipboard is integrated in PR #56; Android read grants can expire, and no clipboard monitoring runs. Failed-import retry works only while its picker URIs remain available in memory. Native build/CI does not substitute for handset validation. Review [evidence and predictions](../docs/quality/first-slice-evidence.md) before claiming any acceptance.
+
+### Collection original export (development)
+
+Select a collection and choose **Export collection ZIP** from Home. Android's
+Save As picker controls the destination. This is a portable originals-only ZIP,
+with a versioned manifest and exact SHA-verified copies. It is not a full library
+backup or an in-app restore feature, and the receiving document provider may
+leave a partial file on error. The external provider can see original EXIF
+metadata and the collection title. Validate real provider persistence before
+deleting any originals. The developer format contract is in
+[collection-zip-export.md](../docs/architecture/collection-zip-export.md).
+
