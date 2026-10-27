@@ -157,6 +157,20 @@ def click_label(expected):
     raise RuntimeError("UI action not found: " + expected)
 
 
+def reach_and_click(label, direction="up", attempts=7):
+    """A human-visible native action may sit below the current viewport."""
+    for attempt in range(attempts):
+        try:
+            click_label(label)
+            return
+        except RuntimeError as error:
+            if "UI action not found:" not in str(error):
+                raise
+            if attempt == attempts - 1:
+                raise
+            swipe(direction)
+
+
 def swipe(direction="up"):
     w, h, _ = screen_geometry()
     a = int(h * (0.78 if direction == "up" else 0.24))
@@ -281,6 +295,25 @@ def main():
             start_fixture(22)
             click_label("View all · Grid")
             capture("22-grid", "The actual View all Grid after selecting the grid control")
+            # R3 uses production PhotoRecord, selection and wallpaper gateway;
+            # inspect the actual full-aspect detail, next ID and back path.
+            start_fixture(22)
+            reach_and_click("Open photo details")
+            first_detail = hierarchy()
+            if "In focus." not in first_detail or "Photograph 1 of 22" not in first_detail:
+                raise RuntimeError("Actual first photo detail state not observed")
+            capture("22-photo-detail-original",
+                    "Full undistorted original on native photo detail, preview-only")
+            reach_and_click("Next photo", "up")
+            swipe("down")
+            next_detail = hierarchy()
+            if "Photograph 2 of 22" not in next_detail:
+                raise RuntimeError("Detail Next did not select photograph 2 of 22")
+            capture("22-photo-detail-next",
+                    "Next selects next stable ID without changing system wallpaper")
+            reach_and_click("Back to Reel / Grid", "down")
+            capture("22-photo-detail-return",
+                    "Return to original Reel/Grid browsing context")
             adb("shell", "settings", "put", "system", "font_scale", "2.0")
             start_fixture(22)
             capture("22-reel-text-200-percent", "OS font scale 200%, first viewport")

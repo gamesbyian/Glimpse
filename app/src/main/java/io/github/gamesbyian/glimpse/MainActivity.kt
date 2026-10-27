@@ -3,6 +3,7 @@ package io.github.gamesbyian.glimpse
 import android.graphics.BitmapFactory
 import android.os.Bundle
 import androidx.activity.ComponentActivity
+import androidx.activity.compose.BackHandler
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.compose.setContent
 import androidx.activity.result.PickVisualMediaRequest
@@ -45,6 +46,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.produceState
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -132,11 +134,21 @@ private fun GlimpseScreen(model: GlimpseModel) {
     val activeCollection = state.collectionId
     var newCollection by remember { mutableStateOf("Rainbows") }
     var showNewCollection by remember { mutableStateOf(false) }
+    var showingDetail by rememberSaveable { mutableStateOf(false) }
+    BackHandler(enabled = showingDetail) { showingDetail = false }
     val picker = rememberLauncherForActivityResult(
         ActivityResultContracts.PickMultipleVisualMedia(maxItems = 100)
     ) { uris -> model.importSelected(uris) }
 
     Scaffold { padding ->
+        if (showingDetail) {
+            GlimpsePhotoDetail(
+                state = state,
+                model = model,
+                onBack = { showingDetail = false },
+                modifier = Modifier.padding(padding)
+            )
+        } else {
         Column(
             modifier = Modifier.fillMaxSize().padding(padding)
                 .background(Color(0xFFF6F0E6))
@@ -250,6 +262,9 @@ private fun GlimpseScreen(model: GlimpseModel) {
                         modifier = Modifier.fillMaxWidth().height(220.dp),
                         label = "Selected photo preview"
                     )
+                    OutlinedButton(onClick = { showingDetail = true }) {
+                        Text("Open photo details")
+                    }
                     if (!state.grid) {
                         CircularPhotoReel(
                             records = state.photos,
@@ -287,6 +302,7 @@ private fun GlimpseScreen(model: GlimpseModel) {
                 style = MaterialTheme.typography.bodySmall
             )
         }
+        }
     }
 }
 
@@ -322,7 +338,12 @@ private fun PhotoGrid(
 }
 
 @Composable
-private fun PhotoPreview(photo: PhotoRecord?, modifier: Modifier, label: String) {
+internal fun PhotoPreview(
+    photo: PhotoRecord?,
+    modifier: Modifier,
+    label: String,
+    contentScale: ContentScale = ContentScale.Crop
+) {
     val path = photo?.localPath
     val image by produceState<ImageBitmap?>(initialValue = null, key1 = path) {
         value = if (path == null) null else withContext(Dispatchers.IO) {
@@ -352,7 +373,7 @@ private fun PhotoPreview(photo: PhotoRecord?, modifier: Modifier, label: String)
             Image(
                 bitmap = image!!,
                 contentDescription = label,
-                contentScale = ContentScale.Crop,
+                contentScale = contentScale,
                 modifier = Modifier.fillMaxSize()
             )
         }
