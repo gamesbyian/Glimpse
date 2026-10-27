@@ -145,9 +145,16 @@ private fun GlimpseScreen(model: GlimpseModel) {
     BackHandler(enabled = showingBrowse && !showingDetail && !showingSupport) {
         showingBrowse = false
     }
+    // An external Photo Picker may survive Activity recreation. Retain the
+    // launch-time collection identity, never an ephemeral provider URI.
+    var pickerTargetCollection by rememberSaveable { mutableStateOf<String?>(null) }
     val picker = rememberLauncherForActivityResult(
         ActivityResultContracts.PickMultipleVisualMedia(maxItems = 100)
-    ) { uris -> model.importSelected(uris) }
+    ) { uris ->
+        val target = pickerTargetCollection
+        pickerTargetCollection = null
+        model.importSelected(uris, target)
+    }
 
     Scaffold { padding ->
         if (showingDetail) {
@@ -253,6 +260,7 @@ private fun GlimpseScreen(model: GlimpseModel) {
                 }
                 OutlinedButton(
                     onClick = {
+                        pickerTargetCollection = activeCollection
                         picker.launch(
                             PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly)
                         )

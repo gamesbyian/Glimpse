@@ -96,6 +96,11 @@ interface GlimpseDao {
     @Query("SELECT * FROM photos WHERE id = :id LIMIT 1")
     suspend fun findPhoto(id: String): PhotoRecord?
 
+    // The Android picker is external to this Activity. Never attach a photo
+    // to a collection that disappeared during provider selection/restoration.
+    @Query("SELECT EXISTS(SELECT 1 FROM collections WHERE id = :id)")
+    suspend fun collectionExists(id: String): Boolean
+
     @Query("SELECT * FROM memberships WHERE collectionId = :collectionId AND photoId = :photoId LIMIT 1")
     suspend fun findMembership(collectionId: String, photoId: String): MembershipRecord?
 
