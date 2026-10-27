@@ -1,5 +1,7 @@
 package io.github.gamesbyian.glimpse
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.BackHandler
@@ -81,9 +83,14 @@ import java.util.Date
  */
 class MainActivity : ComponentActivity() {
     private val model: GlimpseModel by viewModels()
+    // The incoming grant is intentionally Activity RAM, never saved into a Bundle.
+    // During configuration changes, Android re-delivers the launch Intent until
+    // the user accepts/dismisses it. Process death may require sharing again.
+    private var incomingShare by mutableStateOf<IncomingPhotoShare?>(null)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        incomingShare = IncomingPhotoShareReceiver.parse(intent)
         setContent {
             MaterialTheme(
                 typography = GlimpseType.theme,
@@ -115,7 +122,21 @@ class MainActivity : ComponentActivity() {
                     outlineVariant = Color(0xFFD6C8B8)
                 )
             ) {
-                GlimpseScreen(model)
+                GlimpseScreen(
+                    model = model,
+                    incomingShare = incomingShare,
+                    onAcceptShared = { uris, destination ->
+                        // Import never changes Home wallpaper or starts rotation.
+                        // Clear the incoming launch intent to avoid replay on rotate.
+                        incomingShare = null
+                        setIntent(Intent(Intent.ACTION_MAIN))
+                        model.importSelected(uris, destination)
+                    },
+                    onDismissShared = {
+                        incomingShare = null
+                        setIntent(Intent(Intent.ACTION_MAIN))
+                    }
+                )
             }
         }
         lifecycleScope.launch {
@@ -129,10 +150,22 @@ class MainActivity : ComponentActivity() {
             }
         }
     }
+
+    override fun onNewIntent(intent: Intent) {
+        super.onNewIntent(intent)
+        setIntent(intent)
+        // Replaces an unaccepted previous share; nothing imported implicitly.
+        incomingShare = IncomingPhotoShareReceiver.parse(intent)
+    }
 }
 
 @Composable
-private fun GlimpseScreen(model: GlimpseModel) {
+private fun GlimpseScreen(
+    model: GlimpseModel,
+    incomingShare: IncomingPhotoShare?,
+    onAcceptShared: (List<Uri>, String) -> Unit,
+    onDismissShared: () -> Unit
+) {
     val state by model.ui.collectAsStateWithLifecycle()
     val activeCollection = state.collectionId
     var newCollection by remember { mutableStateOf("Rainbows") }
@@ -195,6 +228,61 @@ private fun GlimpseScreen(model: GlimpseModel) {
             Text("YOUR PHOTOS, NEW PERSPECTIVES",
                 color = Color(0xFF986950), fontWeight = FontWeight.SemiBold,
                 style = MaterialTheme.typography.labelSmall, letterSpacing = 1.3.sp)
+            if (incomingShare != null) {
+                Card(modifier = Modifier.fillMaxWidth()) {
+                    Column(
+                        modifier = Modifier.padding(16.dp),
+                        verticalArrangement = Arrangement.spacedBy(8.dp)
+                    ) {
+                        Text("SHARED WITH GLIMPSE",
+                            style = MaterialTheme.typography.labelLarge)
+                        when (incomingShare) {
+                            is IncomingPhotoShare.Ready -> {
+                                val count = incomingShare.uris.size
+                                val targetName = state.collections.firstOrNull {
+                                    it.id == activeCollection
+                                }?.title
+                                Text(
+                                    "$" + "{count} image" +
+                                        if (count == 1) " is" else "s are" +
+                                        " ready for import. Originals will be saved as " +
+                                        "verified private copies. No wallpaper will change."
+                                )
+                                Text(
+                                    if (targetName != null)
+                                        "Destination: " + targetName
+                                    else "Create or select a collection before importing.",
+                                    style = MaterialTheme.typography.bodyMedium
+                                )
+                                FlowRow(
+                                    horizontalArrangement = Arrangement.spacedBy(8.dp),
+                                    verticalArrangement = Arrangement.spacedBy(4.dp)
+                                ) {
+                                    Button(
+                                        onClick = {
+                                            val destination = activeCollection
+                                            if (destination != null) {
+                                                onAcceptShared(incomingShare.uris, destination)
+                                            }
+                                        },
+                                        enabled = !state.busy && targetName != null
+                                    ) { Text("Import shared images") }
+                                    TextButton(onClick = onDismissShared) { Text("Dismiss") }
+                                }
+                                Text(
+                                    "Crop and rotate are not yet available in this build. " +
+                                        "The shared original remains unchanged.",
+                                    style = MaterialTheme.typography.bodySmall
+                                )
+                            }
+                            is IncomingPhotoShare.Rejected -> {
+                                Text(incomingShare.message)
+                                TextButton(onClick = onDismissShared) { Text("Dismiss") }
+                            }
+                        }
+                    }
+                }
+            }
             // Direct route to the physical control: no need to scroll through
             // the dashboard/collection management merely to turn the reel.
             FlowRow(
