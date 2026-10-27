@@ -136,7 +136,8 @@ fun CircularPhotoReel(
     records: List<PhotoRecord>,
     selectedId: String?,
     onSelect: (String) -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    showHeading: Boolean = true
 ) {
     val ids = remember(records) { records.map { it.id } }
     val focus = ReelWindow.focusIndex(ids, selectedId)
@@ -227,16 +228,21 @@ fun CircularPhotoReel(
         }
     }
     Column(modifier = modifier) {
-        Text("THE PHOTO REEL", color = Color(0xFF8A654E),
-            fontSize = 11.sp, fontWeight = FontWeight.Bold, letterSpacing = 2.sp)
-        Text("Turn a new page.", fontFamily = GlimpseType.editorial,
-            fontSize = 30.sp, fontWeight = FontWeight.Normal,
-            color = Color(0xFF263A37))
-        Text(
-            if (focus < 0) "Nothing here yet"
-            else "%02d  /  %02d    ·    Turn to browse".format(focus + 1, records.size),
-            color = Color(0xFF665B51), fontSize = 13.sp
-        )
+        // The focused browser gives this physical control a full-viewport
+        // heading/count outside the wheel. Reusing the exact reel state/draw
+        // path avoids a second implementation of rotation or photo selection.
+        if (showHeading) {
+            Text("THE PHOTO REEL", color = Color(0xFF8A654E),
+                fontSize = 11.sp, fontWeight = FontWeight.Bold, letterSpacing = 2.sp)
+            Text("Turn a new page.", fontFamily = GlimpseType.editorial,
+                fontSize = 30.sp, fontWeight = FontWeight.Normal,
+                color = Color(0xFF263A37))
+            Text(
+                if (focus < 0) "Nothing here yet"
+                else "%02d  /  %02d    ·    Turn to browse".format(focus + 1, records.size),
+                color = Color(0xFF665B51), fontSize = 13.sp
+            )
+        }
         Box(modifier = Modifier.fillMaxWidth().height(316.dp).clipToBounds()) {
             Canvas(
                 modifier = Modifier.fillMaxWidth().height(316.dp)

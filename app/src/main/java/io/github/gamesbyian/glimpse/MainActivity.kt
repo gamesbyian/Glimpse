@@ -136,7 +136,9 @@ private fun GlimpseScreen(model: GlimpseModel) {
     var newCollection by remember { mutableStateOf("Rainbows") }
     var showNewCollection by remember { mutableStateOf(false) }
     var showingDetail by rememberSaveable { mutableStateOf(false) }
+    var showingBrowse by rememberSaveable { mutableStateOf(false) }
     BackHandler(enabled = showingDetail) { showingDetail = false }
+    BackHandler(enabled = showingBrowse && !showingDetail) { showingBrowse = false }
     val picker = rememberLauncherForActivityResult(
         ActivityResultContracts.PickMultipleVisualMedia(maxItems = 100)
     ) { uris -> model.importSelected(uris) }
@@ -147,6 +149,18 @@ private fun GlimpseScreen(model: GlimpseModel) {
                 state = state,
                 model = model,
                 onBack = { showingDetail = false },
+                modifier = Modifier.padding(padding)
+            )
+        } else if (showingBrowse) {
+            GlimpseReelRoom(
+                state = state,
+                model = model,
+                onBack = { showingBrowse = false },
+                onDetails = { showingDetail = true },
+                onGrid = {
+                    if (!state.grid) model.toggleGrid()
+                    showingBrowse = false
+                },
                 modifier = Modifier.padding(padding)
             )
         } else {
@@ -163,6 +177,12 @@ private fun GlimpseScreen(model: GlimpseModel) {
             Text("YOUR PHOTOS, NEW PERSPECTIVES",
                 color = Color(0xFF986950), fontWeight = FontWeight.SemiBold,
                 style = MaterialTheme.typography.labelSmall, letterSpacing = 1.3.sp)
+            // Direct route to the physical control: no need to scroll through
+            // the dashboard/collection management merely to turn the reel.
+            OutlinedButton(
+                onClick = { showingBrowse = true },
+                enabled = activeCollection != null && state.photos.isNotEmpty()
+            ) { Text("Browse photo reel") }
             GlimpseWallpaperSummary(state)
             if (state.collections.isEmpty() || showNewCollection) {
                 Text(
