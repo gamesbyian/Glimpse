@@ -1,5 +1,6 @@
 package io.github.gamesbyian.glimpse
 
+import android.view.HapticFeedbackConstants
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Paint
@@ -36,6 +37,7 @@ import androidx.compose.ui.graphics.drawscope.drawIntoCanvas
 import androidx.compose.ui.graphics.nativeCanvas
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.platform.LocalContext
 import android.provider.Settings
 import android.os.PowerManager
@@ -154,6 +156,7 @@ fun CircularPhotoReel(
     var dragAngle by remember { mutableFloatStateOf(0f) }
     var settleJob by remember { mutableStateOf<Job?>(null) }
     val context = LocalContext.current
+    val hostView = LocalView.current
     // Baked material face: real raster fiber, bevel/edge light and five transparent
     // windows. Cached once; dynamic photos remain distinct bitmaps beneath it.
     val paperFace = remember(context) {
@@ -200,7 +203,14 @@ fun CircularPhotoReel(
             if (targetId != null) {
                 anchorId = targetId
                 angle.snapTo(0f)
-                if (targetId != selectedId) updatedOnSelect(targetId)
+                if (targetId != selectedId) {
+                    // Exactly one restrained tactile acknowledgement for a
+                    // completed finite photo selection. Never vibrate during
+                    // raw dragging, at a clamped endpoint, or on cancellation.
+                    // Android honours the device's system haptic preference.
+                    hostView.performHapticFeedback(HapticFeedbackConstants.CLOCK_TICK)
+                    updatedOnSelect(targetId)
+                }
             } else angle.snapTo(0f)
         }
     }
@@ -225,6 +235,9 @@ fun CircularPhotoReel(
             }
             anchorId = selectedId
             angle.snapTo(0f)
+            // Semantic Previous/Next photo selection has the same tactile
+            // acknowledgment as an actual gesture, without wallpaper action.
+            hostView.performHapticFeedback(HapticFeedbackConstants.CLOCK_TICK)
         }
     }
     Column(modifier = modifier) {
