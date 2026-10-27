@@ -9,6 +9,7 @@ import android.graphics.Paint
 import android.graphics.Rect
 import android.graphics.RectF
 import android.os.Bundle
+import android.os.Build
 import androidx.activity.ComponentActivity
 import androidx.lifecycle.lifecycleScope
 import io.github.gamesbyian.glimpse.MainActivity
@@ -31,6 +32,12 @@ import java.security.MessageDigest
 class VisualFixtureLauncher : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        require(Build.HARDWARE.contains("ranchu", true) ||
+            Build.HARDWARE.contains("goldfish", true) ||
+            Build.FINGERPRINT.contains("generic", true) ||
+            Build.MODEL.contains("sdk_gphone", true)) {
+            "Visual fixtures refuse a physical handset"
+        }
         val count = intent.getIntExtra("count", 22).coerceIn(0, 60)
         val active = intent.getBooleanExtra("active", false)
         lifecycleScope.launch {
@@ -45,7 +52,8 @@ class VisualFixtureLauncher : ComponentActivity() {
         val collectionId = "visual-atlas-$count"
         dao.insertCollection(CollectionRecord(collectionId,
             "ATLAS FIXTURE · $count photos", 1_700_000_000_000L))
-        val folder = File(filesDir, "visual-atlas").apply { mkdirs() }
+        val staging = File(filesDir, "visual-atlas").apply { mkdirs() }
+        val originals = File(filesDir, "originals").apply { mkdirs() }
         repeat(count) { index ->
             // Vary six fixed photos with a unique number overlay so 22 thumbnails
             // have distinct bytes and verified content hashes.
@@ -62,7 +70,7 @@ class VisualFixtureLauncher : ComponentActivity() {
             paint.textSize = 44f
             paint.isFakeBoldText = true
             canvas.drawText("%02d".format(index + 1), 33f, 72f, paint)
-            val path = File(folder, "image-%02d.jpg".format(index + 1))
+            val path = File(staging, "image-%02d.jpg".format(index + 1))
             path.outputStream().use { output ->
                 check(image.compress(Bitmap.CompressFormat.JPEG, 88, output))
             }
@@ -76,14 +84,22 @@ class VisualFixtureLauncher : ComponentActivity() {
                 }
                 digest.digest().joinToString("") { "%02x".format(it) }
             }
+            // Mirror PhotoImporter storage and immutable SHA filename so the
+            // native Sharesheet tests the production security boundary.
+            val original = File(originals, "$id.jpg")
+            if (!original.exists()) {
+                check(path.renameTo(original)) { "Synthetic photo finalization failed" }
+            } else {
+                path.delete()
+            }
             dao.attach(PhotoRecord(
                 id = id,
                 sha256 = id,
-                localPath = path.absolutePath,
+                localPath = original.absolutePath,
                 mime = "image/jpeg",
                 width = 480,
                 height = 720,
-                byteLength = path.length(),
+                byteLength = original.length(),
                 importedAt = 1_700_000_000_000L + index
             ), collectionId)
             source.recycle()
