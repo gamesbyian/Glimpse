@@ -43,7 +43,6 @@ import android.content.Context
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.unit.dp
@@ -230,7 +229,7 @@ fun CircularPhotoReel(
     Column(modifier = modifier) {
         Text("THE PHOTO REEL", color = Color(0xFF8A654E),
             fontSize = 11.sp, fontWeight = FontWeight.Bold, letterSpacing = 2.sp)
-        Text("Turn a new page.", fontFamily = FontFamily.Serif,
+        Text("Turn a new page.", fontFamily = GlimpseType.editorial,
             fontSize = 30.sp, fontWeight = FontWeight.Normal,
             color = Color(0xFF263A37))
         Text(
