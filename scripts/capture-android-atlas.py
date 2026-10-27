@@ -365,6 +365,24 @@ def main():
                 raise RuntimeError("Privacy/storage disclosure is unreachable")
             capture("22-help-privacy-disclosure",
                     "Native privacy and backup/storage disclosure reachable by scroll")
+            # The diagnostic preview is user-triggered and must be readable
+            # before any Android chooser or clipboard action exists.
+            reach_and_click("Generate local diagnostic report", "up", attempts=10)
+            found_diagnostic = False
+            for _ in range(9):
+                diag_xml = hierarchy()
+                if ("Review or edit diagnostic text" in diag_xml and
+                        "Copy report" in diag_xml):
+                    found_diagnostic = True
+                    break
+                swipe("up")
+            if not found_diagnostic:
+                capture_failure("diagnostic-preview-unreachable",
+                                "Local diagnostic preview/copy controls not visible")
+                raise RuntimeError("Opt-in support diagnostic preview is unreachable")
+            capture("22-help-diagnostic-preview",
+                    "Real Android local report preview before copy or share")
+            reach_and_click("Close report", "up", attempts=8)
             reach_and_click("Back to Home", "down", attempts=12)
             if "Glimpse" not in hierarchy():
                 raise RuntimeError("Help & privacy did not return Home")
