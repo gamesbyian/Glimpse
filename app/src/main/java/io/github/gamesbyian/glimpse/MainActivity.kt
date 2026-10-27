@@ -128,7 +128,7 @@ class MainActivity : ComponentActivity() {
 @Composable
 private fun GlimpseScreen(model: GlimpseModel) {
     val state by model.ui.collectAsStateWithLifecycle()
-    val activeCollection by model.activeCollectionId.collectAsStateWithLifecycle()
+    val activeCollection = state.collectionId
     var newCollection by remember { mutableStateOf("Rainbows") }
     var showNewCollection by remember { mutableStateOf(false) }
     val picker = rememberLauncherForActivityResult(
@@ -234,7 +234,7 @@ private fun GlimpseScreen(model: GlimpseModel) {
                         PhotoGrid(
                             records = state.photos,
                             selectedId = state.current?.id,
-                            onSelect = model::browsePhoto
+                            onSelect = { photoId -> model.browsePhotoInCollection(activeCollection, photoId) }
                         )
                     }
                     val selected = state.current
@@ -253,7 +253,7 @@ private fun GlimpseScreen(model: GlimpseModel) {
                         CircularPhotoReel(
                             records = state.photos,
                             selectedId = selected?.id,
-                            onSelect = model::browsePhoto
+                            onSelect = { photoId -> model.browsePhotoInCollection(activeCollection, photoId) }
                         )
                     }
                     Row(
