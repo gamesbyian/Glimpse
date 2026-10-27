@@ -8,7 +8,7 @@ import android.graphics.Rect
 import android.graphics.RectF
 import android.util.LruCache
 import androidx.compose.foundation.Canvas
-import androidx.compose.foundation.gestures.detectDragGestures
+import androidx.compose.foundation.gestures.detectHorizontalDragGestures
 import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -43,6 +43,9 @@ import android.content.Context
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.unit.sp
 import androidx.compose.ui.unit.dp
 import io.github.gamesbyian.glimpse.data.PhotoRecord
 import io.github.gamesbyian.glimpse.domain.ReelWindow
@@ -225,8 +228,16 @@ fun CircularPhotoReel(
         }
     }
     Column(modifier = modifier) {
-        Text("Browse the reel", fontWeight = FontWeight.SemiBold)
-        Text(if (focus < 0) "No photographs" else "Photo ${focus + 1} of ${records.size} · Swipe to browse")
+        Text("THE PHOTO REEL", color = Color(0xFF8A654E),
+            fontSize = 11.sp, fontWeight = FontWeight.Bold, letterSpacing = 2.sp)
+        Text("Turn a new page.", fontFamily = FontFamily.Serif,
+            fontSize = 30.sp, fontWeight = FontWeight.Normal,
+            color = Color(0xFF263A37))
+        Text(
+            if (focus < 0) "Nothing here yet"
+            else "%02d  /  %02d    ·    Turn to browse".format(focus + 1, records.size),
+            color = Color(0xFF665B51), fontSize = 13.sp
+        )
         Box(modifier = Modifier.fillMaxWidth().height(316.dp).clipToBounds()) {
             Canvas(
                 modifier = Modifier.fillMaxWidth().height(316.dp)
@@ -249,16 +260,16 @@ fun CircularPhotoReel(
                         }
                     }
                     .pointerInput(ids, anchorId) {
-                        detectDragGestures(
+                        detectHorizontalDragGestures(
                             onDragStart = {
                                 settleJob?.cancel()
                                 dragging = true
                                 dragAngle = angle.value
                             },
-                            onDrag = { change, amount ->
+                            onHorizontalDrag = { change, amountX ->
                                 change.consume()
                                 dragAngle = (dragAngle + ReelMotion.dragDegrees(
-                                    amount.x, size.width.toFloat()
+                                    amountX, size.width.toFloat()
                                 )).coerceIn(-2.5f * 72f, 2.5f * 72f)
                             },
                             onDragEnd = {
