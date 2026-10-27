@@ -254,9 +254,10 @@ fun CircularPhotoReel(
                 val native = drawContext.canvas.nativeCanvas
                 val w = size.width
                 val h = size.height
-                val cx = w / 2f
-                val cy = h * 0.82f
-                val r = w * .84f
+                val placement = ReelWindow.placement(w, h)
+                val cx = placement.centerX
+                val cy = placement.centerY
+                val r = placement.radius
                 val inner = r * .29f
                 val rim = Paint(Paint.ANTI_ALIAS_FLAG).apply { color = 0xFFEAD9BD.toInt() }
                 val empty = Paint(Paint.ANTI_ALIAS_FLAG).apply { color = 0xFFF6F0E6.toInt() }
@@ -327,10 +328,11 @@ fun CircularPhotoReel(
                     native.drawCircle(cx, cy, inner * .62f, empty)
                 }
                 native.restore()
+                val markerTop = (cy - r + 4.dp.toPx()).coerceAtLeast(1.dp.toPx())
                 val pointer = Path().apply {
-                    moveTo(cx - 14.dp.toPx(), 1.dp.toPx())
-                    lineTo(cx + 14.dp.toPx(), 1.dp.toPx())
-                    lineTo(cx, 25.dp.toPx())
+                    moveTo(cx - 14.dp.toPx(), markerTop)
+                    lineTo(cx + 14.dp.toPx(), markerTop)
+                    lineTo(cx, markerTop + 24.dp.toPx())
                     close()
                 }
                 native.drawPath(pointer, Paint(Paint.ANTI_ALIAS_FLAG).apply {
