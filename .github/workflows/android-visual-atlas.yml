@@ -27,6 +27,8 @@ on:
       - app/src/main/java/io/github/gamesbyian/glimpse/GlimpsePhotoDetail.kt
       - app/src/main/java/io/github/gamesbyian/glimpse/CircularPhotoReel.kt
       - app/src/main/java/io/github/gamesbyian/glimpse/GlimpseTypography.kt
+      - app/src/main/java/io/github/gamesbyian/glimpse/GlimpseSupportScreen.kt
+      - app/src/main/java/io/github/gamesbyian/glimpse/LocalDiagnosticReport.kt
       - app/src/main/res/font/**
       - app/src/main/java/io/github/gamesbyian/glimpse/domain/ReelMotion.kt
       - app/src/main/res/drawable-nodpi/glimpse_paper_reel_face.png
