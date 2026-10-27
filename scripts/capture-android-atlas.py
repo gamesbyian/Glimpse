@@ -334,6 +334,28 @@ def main():
                 raise RuntimeError("Actual initial 22-photo collection tile/count missing")
         capture("22-reel-initial", "Collection with 22 actual records, before any interaction")
         if args.mode == "full":
+            # Support is an offline, actually navigable native screen, not a
+            # static proposal or a guessed Play/OS permission dialog.
+            click_label("Help & privacy")
+            help_xml = hierarchy()
+            if "Help & privacy." not in help_xml or "GETTING STARTED" not in help_xml:
+                raise RuntimeError("Native Help & privacy entry did not render")
+            capture("22-help-privacy-initial",
+                    "Real offline Help/Privacy/About entry from Home masthead")
+            found_privacy = False
+            for _ in range(9):
+                privacy_xml = hierarchy()
+                if "PRIVACY & STORAGE" in privacy_xml:
+                    found_privacy = True
+                    break
+                swipe("up")
+            if not found_privacy:
+                raise RuntimeError("Privacy/storage disclosure is unreachable")
+            capture("22-help-privacy-disclosure",
+                    "Native privacy and backup/storage disclosure reachable by scroll")
+            reach_and_click("Back to Home", "down", attempts=12)
+            if "Glimpse" not in hierarchy():
+                raise RuntimeError("Help & privacy did not return Home")
             # The new primary doorway must open a real photographic Reel,
             # preserve finite identity and return without applying wallpaper.
             click_label("Browse photo reel")
