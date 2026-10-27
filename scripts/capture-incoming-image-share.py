@@ -60,10 +60,17 @@ def main(out):
     if not pending:
         base.capture_failure("no-share-banner","Missing explicit incoming confirmation")
         raise RuntimeError("ACTION_SEND was not received")
-    assert "No images yet." in pending, "Imported without consent"
+    # The incoming banner pushes the empty-list label below the viewport on
+    # many screen sizes. UIAutomator cannot prove a missing Room membership.
+    # Check that no exact SHA-named original was privately committed instead.
+    stored_before = base.adb("shell","run-as",APP,"ls","files/originals",
+                             check=False)
+    assert sha + ".jpg" not in stored_before, "Imported without consent"
     base.capture("01-unconfirmed-share","Shared image has not imported until confirmation")
     base.click_label("Dismiss")
-    assert visible("No images yet."), "Dismiss mutated collection"
+    stored_after_dismiss = base.adb("shell","run-as",APP,"ls","files/originals",
+                                    check=False)
+    assert sha + ".jpg" not in stored_after_dismiss, "Dismiss imported data"
     assert not visible("Import shared images"), "Dismiss did not clear share"
     base.capture("02-dismissed","Dismissed share without side effects")
     send(uri)
