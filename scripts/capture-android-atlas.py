@@ -536,7 +536,9 @@ def main():
             start_fixture(3)
             capture("03-reel-initial", "Three photos: empty end apertures, no fake repeats")
             start_fixture(22)
-            click_label("View all · Grid")
+            # The collection Share/Export actions can move Grid below the
+            # first viewport; UIAutomator only reports visible nodes.
+            reach_and_click("View all · Grid", "up", attempts=12)
             capture("22-grid", "The actual View all Grid after selecting the grid control")
             # R3 uses production PhotoRecord, selection and wallpaper gateway;
             # inspect the actual full-aspect detail, next ID and back path.
