@@ -173,8 +173,9 @@ class GlimpseModel(application: Application) : AndroidViewModel(application) {
         withContext(Dispatchers.IO) {
             val originals = java.io.File(getApplication<Application>().filesDir, "originals")
             val registered = dao.allPhotosForAudit()
+            val checkContext = coroutineContext
             inspectRegisteredOriginals(originals, registered) {
-                coroutineContext.ensureActive()
+                checkContext.ensureActive()
             }
         }
 
