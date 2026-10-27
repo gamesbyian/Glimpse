@@ -308,6 +308,17 @@ def main():
         swipe("up")
         capture("22-reel-and-hero", "Scroll to photo selection and selected hero")
         if args.mode == "full":
+            # Assert the new collection UI is based on the real Room membership
+            # aggregate, not a decorative count or the browse-only photo list.
+            overview = hierarchy()
+            if "ATLAS FIXTURE · 22 photos, 22 photos" not in overview:
+                capture_failure("missing-collection-overview",
+                                "Actual photo-backed collection tile/count missing")
+                raise RuntimeError("Room-derived 22-photo collection tile not visible")
+            if "No wallpaper change has been acknowledged yet" not in overview:
+                capture_failure("incorrect-home-acknowledgment",
+                                "Fresh fixture must not claim a wallpaper acknowledgment")
+                raise RuntimeError("Home card claimed unobserved Android wallpaper state")
             swipe("up")
             capture("22-controls-and-rotation", "Bottom controls and rotation status")
             start_fixture(3)
