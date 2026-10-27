@@ -162,6 +162,7 @@ private fun GlimpseScreen(model: GlimpseModel) {
             Text("YOUR PHOTOS, NEW PERSPECTIVES",
                 color = Color(0xFF986950), fontWeight = FontWeight.SemiBold,
                 style = MaterialTheme.typography.labelSmall, letterSpacing = 1.3.sp)
+            GlimpseWallpaperSummary(state)
             if (state.collections.isEmpty() || showNewCollection) {
                 Text(
                     if (state.collections.isEmpty()) "Start with a collection of photographs."
@@ -198,14 +199,14 @@ private fun GlimpseScreen(model: GlimpseModel) {
                     }
                 }
                 LazyRow(
-                    horizontalArrangement = Arrangement.spacedBy(8.dp),
+                    horizontalArrangement = Arrangement.spacedBy(10.dp),
                     modifier = Modifier.fillMaxWidth()
                 ) {
-                    items(state.collections, key = { it.id }) { group ->
-                        FilterChip(
+                    items(state.collectionOverviews, key = { it.id }) { group ->
+                        GlimpseCollectionTile(
+                            overview = group,
                             selected = activeCollection == group.id,
-                            onClick = { model.browseCollection(group.id) },
-                            label = { Text(group.title) }
+                            onSelect = { model.browseCollection(group.id) }
                         )
                     }
                 }
@@ -298,7 +299,7 @@ private fun GlimpseScreen(model: GlimpseModel) {
             RotationPanel(state, model)
             Text(state.message, style = MaterialTheme.typography.bodyMedium)
             Text(
-                "Prototype: the paper reel geometry and Android device behavior are still under evaluation.",
+                "Paper-reel finish and motion are still being evaluated on physical Android devices.",
                 style = MaterialTheme.typography.bodySmall
             )
         }
@@ -342,9 +343,10 @@ internal fun PhotoPreview(
     photo: PhotoRecord?,
     modifier: Modifier,
     label: String,
-    contentScale: ContentScale = ContentScale.Crop
+    contentScale: ContentScale = ContentScale.Crop,
+    pathOverride: String? = null
 ) {
-    val path = photo?.localPath
+    val path = pathOverride ?: photo?.localPath
     val image by produceState<ImageBitmap?>(initialValue = null, key1 = path) {
         value = if (path == null) null else withContext(Dispatchers.IO) {
             try {
@@ -368,7 +370,7 @@ internal fun PhotoPreview(
         contentAlignment = Alignment.Center
     ) {
         if (image == null) {
-            Text(if (photo == null) "No photo" else "Image unavailable")
+            Text(if (path == null) "No photo" else "Image unavailable")
         } else {
             Image(
                 bitmap = image!!,
