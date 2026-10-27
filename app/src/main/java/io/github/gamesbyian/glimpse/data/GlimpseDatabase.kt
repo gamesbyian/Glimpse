@@ -126,6 +126,23 @@ interface GlimpseDao {
         return insertMembership(MembershipRecord(collectionId, photo.id)) != -1L
     }
 
+    /**
+     * Link an existing original to another valid collection without copying
+     * image bytes or mutating source membership. -1 invalid, 0 duplicate, 1 added.
+     * This is atomic even if collection state changes during an external UI.
+     */
+    @Transaction
+    suspend fun copyMembership(
+        sourceCollectionId: String, targetCollectionId: String, photoId: String
+    ): Int {
+        if (sourceCollectionId == targetCollectionId ||
+            !collectionExists(targetCollectionId) ||
+            findMembership(sourceCollectionId, photoId) == null ||
+            findPhoto(photoId) == null
+        ) return -1
+        return if (insertMembership(MembershipRecord(targetCollectionId, photoId)) == -1L) 0 else 1
+    }
+
     @Query("SELECT * FROM rotation WHERE id = 1 LIMIT 1")
     fun watchRotation(): Flow<RotationRecord?>
 

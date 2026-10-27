@@ -12,6 +12,7 @@ import io.github.gamesbyian.glimpse.data.ImportResult
 import io.github.gamesbyian.glimpse.data.inspectRegisteredOriginals
 import io.github.gamesbyian.glimpse.data.LocalOriginalIntegritySummary
 import io.github.gamesbyian.glimpse.data.PhotoImporter
+import io.github.gamesbyian.glimpse.data.verifyPrivateOriginal
 import io.github.gamesbyian.glimpse.data.PhotoRecord
 import io.github.gamesbyian.glimpse.data.RotationRecord
 import io.github.gamesbyian.glimpse.domain.WallpaperCommands
@@ -280,6 +281,32 @@ class GlimpseModel(application: Application) : AndroidViewModel(application) {
         pendingRetry.value = report.failedSources.takeIf { it.isNotEmpty() }
             ?.let { PendingRetry(pending.collectionId, it) }
         importNotice(report)
+    }
+
+    /**
+     * Intentionally a non-destructive membership copy. A different collection
+     * acquires this verified original; wallpaper/shuffle and selection do not move.
+     */
+    fun addPhotoToCollection(photoId: String, sourceId: String, targetId: String) = action {
+        val targetName = withContext(Dispatchers.IO) {
+            val target = dao.watchCollections().firstOrNull()
+                ?.firstOrNull { it.id == targetId }
+                ?: error("The destination collection is no longer available.")
+            val original = dao.findPhoto(photoId)
+                ?: error("The selected photo is no longer available.")
+            // Do not propagate a damaged/missing source to another collection.
+            verifyPrivateOriginal(
+                java.io.File(getApplication<Application>().filesDir, "originals"), original
+            )
+            val result = dao.copyMembership(sourceId, targetId, photoId)
+            when (result) {
+                -1 -> error("The source photo or destination is no longer available.")
+                0 -> "This photo is already in " + target.title + "."
+                else -> "Added photo to " + target.title +
+                    ". Original and current wallpaper were unchanged."
+            }
+        }
+        targetName
     }
 
     fun applyPreview() = action {

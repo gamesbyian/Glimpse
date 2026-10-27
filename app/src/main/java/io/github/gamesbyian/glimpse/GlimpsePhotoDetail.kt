@@ -55,6 +55,7 @@ internal fun GlimpsePhotoDetail(
     val scope = rememberCoroutineScope()
     var sharing by remember(photo?.id) { mutableStateOf(false) }
     var shareError by remember(photo?.id) { mutableStateOf<String?>(null) }
+    var choosingCopyDestination by remember(photo?.id) { mutableStateOf(false) }
     var saving by remember { mutableStateOf(false) }
     var saveNotice by remember { mutableStateOf<String?>(null) }
     // Hold the exact selected image across the external picker. Not persisted.
@@ -226,6 +227,43 @@ internal fun GlimpsePhotoDetail(
                     }
                 }
             }
+        }
+        val otherCollections = state.collections.filter { it.id != state.collectionId }
+        OutlinedButton(
+            enabled = photo != null && state.collectionId != null &&
+                otherCollections.isNotEmpty() && !state.busy,
+            onClick = { choosingCopyDestination = !choosingCopyDestination }
+        ) { Text(if (choosingCopyDestination) "Close collection chooser"
+                 else "Add this photo to another collection") }
+        if (choosingCopyDestination && photo != null && state.collectionId != null) {
+            Card(modifier = Modifier.fillMaxWidth()) {
+                Column(
+                    modifier = Modifier.padding(12.dp),
+                    verticalArrangement = Arrangement.spacedBy(8.dp)
+                ) {
+                    Text(
+                        "Reuses this verified original; it will appear in both " +
+                            "collections. No wallpaper or shuffle change.",
+                        style = MaterialTheme.typography.bodySmall
+                    )
+                    for (target in otherCollections) {
+                        OutlinedButton(
+                            enabled = !state.busy,
+                            onClick = {
+                                val sourceId = state.collectionId
+                                val selectedId = photo.id
+                                choosingCopyDestination = false
+                                model.addPhotoToCollection(selectedId, sourceId, target.id)
+                            }
+                        ) { Text("Add to " + target.title) }
+                    }
+                }
+            }
+        } else if (otherCollections.isEmpty()) {
+            Text(
+                "Create another collection on Home to organize this photo in more than one place.",
+                style = MaterialTheme.typography.bodySmall
+            )
         }
         Text(state.message, style = MaterialTheme.typography.bodyMedium)
     }
