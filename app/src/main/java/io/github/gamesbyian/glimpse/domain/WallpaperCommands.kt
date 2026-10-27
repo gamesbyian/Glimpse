@@ -6,6 +6,7 @@ import androidx.annotation.VisibleForTesting
 import io.github.gamesbyian.glimpse.data.BoundedPhotoDecode
 import io.github.gamesbyian.glimpse.data.GlimpseDao
 import io.github.gamesbyian.glimpse.data.PhotoRecord
+import io.github.gamesbyian.glimpse.data.verifyPrivateOriginal
 import io.github.gamesbyian.glimpse.data.RotationRecord
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Dispatchers
@@ -197,11 +198,13 @@ class WallpaperCommands(
         }
     }
 
-    private fun decodeForWallpaper(photo: PhotoRecord): android.graphics.Bitmap =
-        // ImageDecoder respects EXIF orientation while bounding decoded pixel
-        // dimensions, so the user's selected camera photo is applied upright.
-        // Imported original bytes remain immutable and sharing stays untouched.
-        BoundedPhotoDecode.decode(File(photo.localPath), maxEdge = 3200)
+    private fun decodeForWallpaper(photo: PhotoRecord): android.graphics.Bitmap {
+        // Exact physical bytes are checked before invoking the OS side effect.
+        // A corrupt or replaced original is a pre-OS failure, so the prior
+        // wallpaper acknowledgment and no-repeat queue remain untouched.
+        val original = verifyPrivateOriginal(File(context.filesDir, "originals"), photo)
+        return BoundedPhotoDecode.decode(original, maxEdge = 3200)
+    }
 
     private fun decodeBag(raw: String): List<String> = try {
         val json = JSONArray(raw)
