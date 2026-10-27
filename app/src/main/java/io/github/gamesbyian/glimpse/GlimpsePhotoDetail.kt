@@ -17,6 +17,13 @@ import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.platform.LocalContext
+import kotlinx.coroutines.launch
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
@@ -40,6 +47,10 @@ internal fun GlimpsePhotoDetail(
 ) {
     val photo = state.current
     val index = state.photos.indexOfFirst { it.id == photo?.id }
+    val context = LocalContext.current
+    val scope = rememberCoroutineScope()
+    var sharing by remember(photo?.id) { mutableStateOf(false) }
+    var shareError by remember(photo?.id) { mutableStateOf<String?>(null) }
     Column(
         modifier = modifier.fillMaxSize().background(Color(0xFFF6F0E6))
             .verticalScroll(rememberScrollState())
@@ -91,6 +102,36 @@ internal fun GlimpsePhotoDetail(
                 enabled = index >= 0 && index < state.photos.lastIndex
             ) { Text("Next photo") }
         }
+        OutlinedButton(
+            onClick = {
+                val source = photo ?: return@OutlinedButton
+                if (!sharing) {
+                    sharing = true
+                    shareError = null
+                    scope.launch {
+                        try {
+                            // File integrity verification runs off the main thread.
+                            val chooser = OriginalPhotoSharing.chooser(context, source)
+                            context.startActivity(chooser)
+                        } catch (error: Exception) {
+                            shareError = error.message ?: "Android could not open sharing."
+                        } finally {
+                            sharing = false
+                        }
+                    }
+                }
+            },
+            enabled = photo != null && !sharing
+        ) { Text(if (sharing) "Verifying original…" else "Share original photo") }
+        Text(
+            "Sharing sends the unedited original. Camera or location metadata may " +
+                "be included; Android lets you choose the receiving app. " +
+                "Glimpse does not upload photos itself.",
+            style = MaterialTheme.typography.bodySmall
+        )
+        if (shareError != null) {
+            Text("Sharing unavailable: " + shareError, color = MaterialTheme.colorScheme.error)
+        }
         Button(
             onClick = model::applyPreview,
             enabled = photo != null && !state.busy
@@ -113,8 +154,8 @@ internal fun GlimpsePhotoDetail(
                     Text("${NumberFormat.getIntegerInstance().format(photo.byteLength)} bytes · ${photo.mime}")
                     Text("Imported ${DateFormat.getDateTimeInstance().format(Date(photo.importedAt))}")
                     Text(
-                        "Verified private offline copy. Cropping, sharing and editing " +
-                            "will appear only when those native features are implemented.",
+                        "Verified private offline copy. Sharing the untouched original is available; " +
+                            "crop/edit recipes and sanitized exports are not yet implemented.",
                         style = MaterialTheme.typography.bodySmall
                     )
                     if (state.rotation?.lastAcknowledgedPhotoId == photo.id) {
