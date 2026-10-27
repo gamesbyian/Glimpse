@@ -33,6 +33,14 @@ data class PhotoRecord(
     val importedAt: Long
 )
 
+/** Read-only library overview; computed from actual memberships, never guessed by UI. */
+data class CollectionOverview(
+    val id: String,
+    val title: String,
+    val photoCount: Int,
+    val coverPath: String?
+)
+
 @Entity(tableName = "memberships", primaryKeys = ["collectionId", "photoId"])
 data class MembershipRecord(val collectionId: String, val photoId: String)
 
@@ -66,6 +74,24 @@ interface GlimpseDao {
             "WHERE m.collectionId = :collectionId ORDER BY p.importedAt, p.id"
     )
     suspend fun photosIn(collectionId: String): List<PhotoRecord>
+
+    @Query(
+        "SELECT c.id AS id, c.title AS title, COUNT(m.photoId) AS photoCount, " +
+            "(SELECT p.localPath FROM photos p " +
+            "JOIN memberships cm ON cm.photoId = p.id " +
+            "WHERE cm.collectionId = c.id ORDER BY p.importedAt, p.id LIMIT 1) AS coverPath " +
+            "FROM collections c LEFT JOIN memberships m ON m.collectionId = c.id " +
+            "GROUP BY c.id, c.title, c.createdAt ORDER BY c.createdAt, c.id"
+    )
+    fun watchCollectionOverviews(): Flow<List<CollectionOverview>>
+
+    // This photo can belong to another collection. Home must never substitute
+    // the currently previewed photo for the last Android-acknowledged one.
+    @Query(
+        "SELECT p.* FROM photos p INNER JOIN rotation r " +
+            "ON r.lastAcknowledgedPhotoId = p.id WHERE r.id = 1 LIMIT 1"
+    )
+    fun watchAcknowledgedPhoto(): Flow<PhotoRecord?>
 
     @Query("SELECT * FROM photos WHERE id = :id LIMIT 1")
     suspend fun findPhoto(id: String): PhotoRecord?

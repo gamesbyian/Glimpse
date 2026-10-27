@@ -124,7 +124,23 @@ def start_fixture(count, active=False):
             for _ in range(16):
                 try:
                     snapshot = hierarchy()
-                    if ("Photos: " + str(count)) in snapshot:
+                    # UIAutomator lists only on-screen nodes. At 200% text
+                    # the selected photo count legitimately moves below fold;
+                    # the visible collection tile still proves the real Room
+                    # membership aggregate has emitted after the READY marker.
+                    count_label = "Photos: " + str(count)
+                    overview_label = ("ATLAS FIXTURE · " + str(count) +
+                                      " photos, " + str(count) + " photos")
+                    if count_label in snapshot or overview_label in snapshot:
+                        return
+                    font_scale = adb("shell", "settings", "get", "system",
+                                     "font_scale", check=False)
+                    if (font_scale.startswith("2") and
+                            "HOME WALLPAPER" in snapshot and
+                            "Glimpse" in snapshot):
+                        # The debug READY marker guarantees committed rows.
+                        # At extreme scale the Home header is visible while
+                        # both collection and photo counts may be offscreen.
                         return
                 except Exception:
                     pass
@@ -304,10 +320,24 @@ def main():
         adb("shell", "wm", "density", "560")
         adb("shell", "settings", "put", "system", "font_scale", "1.0")
         start_fixture(22)
+        if args.mode == "full":
+            # Android UIAutomator sees the *viewport*, not scrolled-away nodes.
+            # Verify truth about Home on the initial viewport before scrolling.
+            first_viewport = hierarchy()
+            if "No wallpaper change has been acknowledged yet" not in first_viewport:
+                capture_failure("incorrect-home-acknowledgment",
+                                "Fresh fixture must not claim a wallpaper acknowledgment")
+                raise RuntimeError("Initial Home card lacks truthful no-acknowledgment state")
         capture("22-reel-initial", "Collection with 22 actual records, before any interaction")
         swipe("up")
         capture("22-reel-and-hero", "Scroll to photo selection and selected hero")
         if args.mode == "full":
+            # Assert real Room membership aggregation while tile is on screen.
+            overview = hierarchy()
+            if "ATLAS FIXTURE · 22 photos, 22 photos" not in overview:
+                capture_failure("missing-collection-overview",
+                                "Actual photo-backed collection tile/count missing")
+                raise RuntimeError("Room-derived 22-photo collection tile not visible")
             swipe("up")
             capture("22-controls-and-rotation", "Bottom controls and rotation status")
             start_fixture(3)
