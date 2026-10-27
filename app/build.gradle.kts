@@ -61,3 +61,12 @@ dependencies {
 
     testImplementation("junit:junit:4.13.2")
 }
+
+// Stable, user-facing filename. Keep AGP's internal app-debug.apk untouched so
+// emulator and instrumentation workflows do not depend on renamed intermediates.
+tasks.register<Copy>("packageGlimpseDebugApk") {
+    dependsOn("assembleDebug")
+    from(layout.buildDirectory.file("outputs/apk/debug/app-debug.apk"))
+    into(layout.buildDirectory.dir("distributions"))
+    rename { "glimpse-debug.apk" }
+}
