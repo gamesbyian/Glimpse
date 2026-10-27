@@ -24,6 +24,42 @@ data class ImportResult(
 class PhotoImporter(private val context: Context, private val dao: GlimpseDao) {
     private val originals = File(context.filesDir, "originals").apply { mkdirs() }
 
+    companion object {
+        // A recent file may belong to an import still writing on another job.
+        // Never delete imported SHA-named originals or arbitrary app files.
+        const val STALE_PARTIAL_GRACE_MS = 24L * 60L * 60L * 1000L
+
+        internal fun isStaleImportPartial(
+            name: String,
+            modifiedAt: Long,
+            now: Long
+        ): Boolean =
+            name.startsWith("import-") && name.endsWith(".partial") &&
+                modifiedAt > 0 && now >= modifiedAt &&
+                now - modifiedAt >= STALE_PARTIAL_GRACE_MS
+    }
+
+    /**
+     * Recover only abandoned staging fragments after Android process death.
+     * Does not touch finished SHA originals, Room rows, provider copies or files
+     * that could still be part of a recent operation. A failure is nonfatal.
+     */
+    suspend fun pruneStalePartialImports(now: Long = System.currentTimeMillis()): Int =
+        withContext(Dispatchers.IO) {
+            val root = originals.canonicalFile
+            originals.listFiles()?.count { candidate ->
+                try {
+                    candidate.isFile &&
+                        !java.nio.file.Files.isSymbolicLink(candidate.toPath()) &&
+                        candidate.canonicalFile.parentFile == root &&
+                        isStaleImportPartial(candidate.name, candidate.lastModified(), now) &&
+                        candidate.delete()
+                } catch (_: Exception) {
+                    false
+                }
+            } ?: 0
+        }
+
     suspend fun import(uris: List<Uri>, collectionId: String): ImportResult =
         withContext(Dispatchers.IO) {
             var imported = 0
