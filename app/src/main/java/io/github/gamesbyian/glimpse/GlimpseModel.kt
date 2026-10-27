@@ -8,6 +8,7 @@ import androidx.lifecycle.viewModelScope
 import io.github.gamesbyian.glimpse.data.CollectionOverview
 import io.github.gamesbyian.glimpse.data.CollectionRecord
 import io.github.gamesbyian.glimpse.data.GlimpseDatabase
+import io.github.gamesbyian.glimpse.data.ImportResult
 import io.github.gamesbyian.glimpse.data.PhotoImporter
 import io.github.gamesbyian.glimpse.data.PhotoRecord
 import io.github.gamesbyian.glimpse.data.RotationRecord
@@ -40,6 +41,7 @@ data class GlimpseUiState(
     val selectedPhotoId: String? = null,
     val grid: Boolean = false,
     val busy: Boolean = false,
+    val retryableFailures: Int = 0,
     val message: String = "Create a collection to begin."
 ) {
     val current: PhotoRecord?
@@ -75,6 +77,10 @@ class GlimpseModel(application: Application) : AndroidViewModel(application) {
     private val grid = MutableStateFlow(false)
     private val busy = MutableStateFlow(false)
     private val notice = MutableStateFlow("Create a collection, import photos and choose a wallpaper.")
+    // The picker grant is ephemeral. Keep failed sources only in ViewModel RAM;
+    // never SharedPreferences, Room, import journal, diagnostics or logcat.
+    private data class PendingRetry(val collectionId: String, val uris: List<Uri>)
+    private val pendingRetry = MutableStateFlow<PendingRetry?>(null)
 
     private data class ScopedPhotos(val collectionId: String?, val items: List<PhotoRecord>)
 
@@ -110,8 +116,15 @@ class GlimpseModel(application: Application) : AndroidViewModel(application) {
             selectedPhotoId = cursor.resolvedId(photos.map { it.id })
         )
     }
-    val ui: StateFlow<GlimpseUiState> = combine(catalog, grid, busy, notice) { data, isGrid, isBusy, message ->
-        data.copy(grid = isGrid, busy = isBusy, message = message)
+    val ui: StateFlow<GlimpseUiState> = combine(catalog, grid, busy, notice, pendingRetry) {
+        data, isGrid, isBusy, message, pending ->
+        data.copy(
+            grid = isGrid,
+            busy = isBusy,
+            message = message,
+            retryableFailures = if (pending != null &&
+                data.collectionId == pending.collectionId) pending.uris.size else 0
+        )
     }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), GlimpseUiState())
 
     init {
@@ -188,18 +201,40 @@ class GlimpseModel(application: Application) : AndroidViewModel(application) {
 
     fun toggleGrid() { grid.value = !grid.value }
 
+    private fun importNotice(report: ImportResult): String =
+        "Selected " + report.selected + "; imported " + report.imported +
+            "; duplicates " + report.duplicates + "; failed " + report.failures + "." +
+            (if (report.failedSources.isNotEmpty())
+                " Retry failed photos while Glimpse stays open, or reselect them " +
+                    "if the provider no longer allows access."
+            else "") +
+            (if (report.journalWarnings > 0)
+                " Import history could not be fully saved (" + report.journalWarnings +
+                    " events); existing imported photos remain available."
+            else "")
+
     fun importSelected(uris: List<Uri>) {
         if (uris.isEmpty()) return
         action {
             val id = browse.value.collectionId ?: error("Create or choose a collection first.")
             val report = importer.import(uris, id)
-            "Selected " + report.selected + "; imported " + report.imported +
-                "; duplicates " + report.duplicates + "; failed " + report.failures + "." +
-                if (report.journalWarnings > 0)
-                    " Import history could not be fully saved (" + report.journalWarnings +
-                        " events); existing imported photos remain available."
-                else ""
+            pendingRetry.value = report.failedSources.takeIf { it.isNotEmpty() }
+                ?.let { PendingRetry(id, it) }
+            importNotice(report)
         }
+    }
+
+    /** Only retries the previously failed provider selections in RAM.
+     * A revoked grant stays failed and the user must reselect through Picker. */
+    fun retryFailedImports() = action {
+        val pending = pendingRetry.value ?: error("No failed imports to retry.")
+        require(pending.collectionId == browse.value.collectionId) {
+            "Return to the original collection to retry failed imports."
+        }
+        val report = importer.import(pending.uris, pending.collectionId)
+        pendingRetry.value = report.failedSources.takeIf { it.isNotEmpty() }
+            ?.let { PendingRetry(pending.collectionId, it) }
+        importNotice(report)
     }
 
     fun applyPreview() = action {

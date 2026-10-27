@@ -261,6 +261,20 @@ private fun GlimpseScreen(model: GlimpseModel) {
                 ) {
                     Text("Add photos")
                 }
+                if (state.retryableFailures > 0) {
+                    OutlinedButton(
+                        onClick = model::retryFailedImports,
+                        enabled = !state.busy
+                    ) {
+                        Text("Retry " + state.retryableFailures + " failed photo" +
+                            if (state.retryableFailures == 1) "" else "s")
+                    }
+                    Text(
+                        "Retry uses temporary Photo Picker access. If it has expired, " +
+                            "choose Add photos to reselect missing images.",
+                        style = MaterialTheme.typography.bodySmall
+                    )
+                }
             }
             if (activeCollection != null) {
                 Text(

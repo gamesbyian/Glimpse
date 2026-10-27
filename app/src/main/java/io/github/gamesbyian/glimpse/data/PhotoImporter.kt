@@ -16,7 +16,9 @@ data class ImportResult(
     val imported: Int,
     val duplicates: Int,
     val failures: Int,
-    val journalWarnings: Int = 0
+    val journalWarnings: Int = 0,
+    /** Transient, in-process picker grants only; never journal or persist these. */
+    val failedSources: List<Uri> = emptyList()
 )
 
 /**
@@ -118,6 +120,7 @@ class PhotoImporter(private val context: Context, private val dao: GlimpseDao) {
             var duplicates = 0
             var failed = 0
             var journalWarnings = 0
+            val failedSources = mutableListOf<Uri>()
             // Journal errors must not block safe immutable source ingestion.
             // They are explicitly disclosed in the result instead.
             fun note(position: Int, state: ImportJournal.State) {
@@ -142,12 +145,13 @@ class PhotoImporter(private val context: Context, private val dao: GlimpseDao) {
                     throw cancel
                 } catch (_: Exception) {
                     failed++
+                    failedSources += uri
                     // Never persist a provider URI, external filename, path or
                     // exception message in the private journal.
                     note(position, ImportJournal.State.FAILED)
                 }
             }
-            ImportResult(uris.size, imported, duplicates, failed, journalWarnings)
+            ImportResult(uris.size, imported, duplicates, failed, journalWarnings, failedSources.toList())
         }
 
     private suspend fun copyOne(uri: Uri, collectionId: String): Boolean {
