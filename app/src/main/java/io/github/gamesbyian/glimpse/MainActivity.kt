@@ -64,6 +64,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import io.github.gamesbyian.glimpse.data.PhotoRecord
+import io.github.gamesbyian.glimpse.domain.describeRotationSource
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.isActive
@@ -385,6 +386,9 @@ internal fun PhotoPreview(
 @Composable
 private fun RotationPanel(state: GlimpseUiState, model: GlimpseModel) {
     val rotation = state.rotation
+    val source = describeRotationSource(
+        rotation?.collectionId, state.collectionId, state.collections
+    )
     var expanded by remember { mutableStateOf(false) }
     Card(modifier = Modifier.fillMaxWidth()) {
         Column(
@@ -406,6 +410,31 @@ private fun RotationPanel(state: GlimpseUiState, model: GlimpseModel) {
                 else "Rotation is paused or not started",
                 style = MaterialTheme.typography.bodyMedium
             )
+            if (source != null) {
+                Text(
+                    "Shuffle collection: " + source.title,
+                    style = MaterialTheme.typography.bodyMedium,
+                    fontWeight = FontWeight.SemiBold
+                )
+                if (!source.available) {
+                    Text(
+                        "This saved shuffle source no longer exists. Choose a collection and " +
+                            "start a new shuffle.",
+                        style = MaterialTheme.typography.bodySmall
+                    )
+                } else if (source.differsFromBrowsing) {
+                    Text(
+                        if (rotation?.active == true)
+                            "Browsing a different collection does not switch the shuffle. " +
+                                "Change Home now still uses " + source.title +
+                                ". Pause first, then start shuffle in the collection you want."
+                        else
+                            "Change Home now still uses " + source.title +
+                                ". Start shuffle while viewing another collection to switch sources.",
+                        style = MaterialTheme.typography.bodySmall
+                    )
+                }
+            }
             if (rotation?.pendingPhotoId != null) {
                 Text("Previous wallpaper attempt is uncertain; automatic changes are paused.")
                 OutlinedButton(onClick = model::resolveUncertain, enabled = !state.busy) {
@@ -429,7 +458,7 @@ private fun RotationPanel(state: GlimpseUiState, model: GlimpseModel) {
                     }
                     TextButton(
                         onClick = model::changeWallpaperNow,
-                        enabled = !state.busy && rotation?.collectionId != null
+                        enabled = !state.busy && source?.available == true
                     ) {
                         Text("Change Home now")
                     }

@@ -106,10 +106,20 @@ class VisualFixtureLauncher : ComponentActivity() {
             image.recycle()
         }
         if (active) {
+            // Real memberships in two differently named collections let the
+            // atlas prove that browse changes never reassign shuffle source.
+            val alternate = "visual-atlas-alternate"
+            dao.insertCollection(CollectionRecord(
+                alternate, "ALTERNATE ATLAS", 1_700_000_010_000L
+            ))
+            dao.photosIn(collectionId).take(2).forEach { photo ->
+                dao.attach(photo, alternate)
+            }
             dao.saveRotation(RotationRecord(
                 collectionId = collectionId,
                 active = true,
-                nextEligibleAt = System.currentTimeMillis() + 2 * 60_000L,
+                // Explicitly no wallpaper command during the capture window.
+                nextEligibleAt = System.currentTimeMillis() + 12 * 60_000L,
                 outcome = "VISUAL FIXTURE ONLY; no OS wallpaper was changed"
             ))
         }
