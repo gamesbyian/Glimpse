@@ -403,19 +403,29 @@ def main():
             # shuffle on the first, then browse the second and inspect status.
             start_fixture(22, active=True)
             reach_and_click("ALTERNATE ATLAS")
-            source_snapshot = ""
-            for _ in range(8):
+            # Distinct text nodes can sit in different viewports at large type.
+            # Observe each independently across bounded scrolling rather than
+            # assuming the source title and explanation share one accessibility
+            # snapshot after the first match.
+            found_source = False
+            found_disclosure = False
+            for _ in range(12):
                 source_snapshot = hierarchy()
-                if "Shuffle collection: ATLAS FIXTURE · 22 photos" in source_snapshot:
+                found_source |= "Shuffle collection: ATLAS FIXTURE · 22 photos" in source_snapshot
+                found_disclosure |= (
+                    "Browsing a different collection does not switch the shuffle"
+                    in source_snapshot
+                )
+                if found_source and found_disclosure:
                     break
                 swipe("up")
-            else:
+            if not found_source:
                 capture_failure("rotation-source-not-visible",
                                 "Unable to find named saved rotation source")
                 raise RuntimeError("Current rotation source not labelled in native UI")
-            if "Browsing a different collection does not switch the shuffle" not in source_snapshot:
+            if not found_disclosure:
                 capture_failure("rotation-source-mismatch-unexplained",
-                                "Source changed or browse/shuffle distinction missing")
+                                "Browse/shuffle distinction missing over scroll path")
                 raise RuntimeError("Browse collection switch lost source disclosure")
             capture("22-shuffle-source-after-browse-switch",
                     "Browsing alternate two-photo collection retains named 22-photo shuffle source")
@@ -436,9 +446,32 @@ def main():
             swipe("up")
             capture("22-compact-320dp-text-200pct-scrolled",
                     "320dp logical width, OS 200% font, first scroll")
-            swipe("up")
+            # A taller responsive Home or collection card may push the real
+            # reel several viewports below a fixed two-swipe assumption.
+            # Only label the capture as a reel when the actual native Canvas
+            # has at least 240dp visible according to UIAutomator bounds.
+            w, h, dpi = screen_geometry()
+            minimum_visible = int(240 * dpi / 160)
+            for attempt in range(12):
+                xml = hierarchy()
+                reel_node = next((
+                    node for node in ET.fromstring(xml).iter("node")
+                    if "Paper photo reel" in node.attrib.get("content-desc", "")
+                ), None)
+                if reel_node is not None:
+                    raw_bounds = re.findall(r"\d+", reel_node.attrib.get("bounds", ""))
+                    if len(raw_bounds) == 4:
+                        x0, y0, x1, y1 = map(int, raw_bounds)
+                        visible = max(0, min(y1, h) - max(y0, 0))
+                        if visible >= minimum_visible:
+                            break
+                swipe("up")
+            else:
+                capture_failure("compact-reel-not-reachable",
+                                "Paper reel Canvas never reached 240dp-visible threshold at 320dp/200% font")
+                raise RuntimeError("Cannot show enough real paper reel at 320dp/200% type")
             capture("22-compact-320dp-text-200pct-reel",
-                    "320dp logical width, OS 200% font, reel scroll")
+                    "320dp logical width, OS 200% font, >=240dp actual paper reel Canvas visible")
     except Exception as error:
         failures.append(str(error))
         print("Atlas failed:", error, flush=True)
