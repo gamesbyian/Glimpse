@@ -311,6 +311,21 @@ def main():
                 raise RuntimeError("Detail Next did not select photograph 2 of 22")
             capture("22-photo-detail-next",
                     "Next selects next stable ID without changing system wallpaper")
+            reach_and_click("Share original photo")
+            time.sleep(2.0)
+            chooser = hierarchy()
+            packages = {node.attrib.get("package")
+                        for node in ET.fromstring(chooser).iter("node")}
+            if not (packages & {"android", "com.android.intentresolver",
+                                "com.google.android.intentresolver"}):
+                raise RuntimeError("Actual Android Sharesheet never opened: " +
+                                   ",".join(sorted(str(p) for p in packages)))
+            capture("22-original-android-sharesheet",
+                    "Android chooser launched from verified immutable original; no wallpaper operation")
+            adb("shell", "input", "keyevent", "4")
+            time.sleep(1.0)
+            if "In focus." not in hierarchy():
+                raise RuntimeError("Photo detail did not survive cancelled Android Sharesheet")
             reach_and_click("Back to Reel / Grid", "down")
             capture("22-photo-detail-return",
                     "Return to original Reel/Grid browsing context")
