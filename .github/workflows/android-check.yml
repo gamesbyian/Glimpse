@@ -48,11 +48,55 @@ jobs:
         run: python3 scripts/verify-reel-material.py
       - name: Verify offline licensed font identities
         run: python3 scripts/verify-reel-typography.py
+      - name: Configure optional stable CI debug signing
+        # Never expose the persistent signing key to arbitrary PR contents.
+        if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+        shell: bash
+        env:
+          GLIMPSE_CI_SIGNING_KEYSTORE_BASE64: ${{ secrets.GLIMPSE_CI_SIGNING_KEYSTORE_BASE64 }}
+          GLIMPSE_CI_SIGNING_STORE_PASSWORD: ${{ secrets.GLIMPSE_CI_SIGNING_STORE_PASSWORD }}
+          GLIMPSE_CI_SIGNING_KEY_ALIAS: ${{ secrets.GLIMPSE_CI_SIGNING_KEY_ALIAS }}
+          GLIMPSE_CI_SIGNING_KEY_PASSWORD: ${{ secrets.GLIMPSE_CI_SIGNING_KEY_PASSWORD }}
+        run: |
+          set -euo pipefail
+          if [[ -z "$GLIMPSE_CI_SIGNING_KEYSTORE_BASE64" &&
+                -z "$GLIMPSE_CI_SIGNING_STORE_PASSWORD" &&
+                -z "$GLIMPSE_CI_SIGNING_KEY_ALIAS" &&
+                -z "$GLIMPSE_CI_SIGNING_KEY_PASSWORD" ]]; then
+            echo "::warning::No persistent CI signing secret configured. APK uses a per-run debug certificate and cannot be assumed to update prior APKs in place. Never uninstall without protecting app-private images."
+          elif [[ -z "$GLIMPSE_CI_SIGNING_KEYSTORE_BASE64" ||
+                  -z "$GLIMPSE_CI_SIGNING_STORE_PASSWORD" ||
+                  -z "$GLIMPSE_CI_SIGNING_KEY_ALIAS" ||
+                  -z "$GLIMPSE_CI_SIGNING_KEY_PASSWORD" ]]; then
+            echo "::error::CI debug signing is partially configured. All four secrets are required."
+            exit 1
+          else
+            umask 077
+            printf '%s' "$GLIMPSE_CI_SIGNING_KEYSTORE_BASE64" |
+              base64 --decode > "$RUNNER_TEMP/glimpse-debug-signing.p12"
+            echo "GLIMPSE_CI_DEBUG_KEYSTORE_PATH=$RUNNER_TEMP/glimpse-debug-signing.p12" >> "$GITHUB_ENV"
+            echo "GLIMPSE_CI_DEBUG_STORE_PASSWORD=$GLIMPSE_CI_SIGNING_STORE_PASSWORD" >> "$GITHUB_ENV"
+            echo "GLIMPSE_CI_DEBUG_KEY_ALIAS=$GLIMPSE_CI_SIGNING_KEY_ALIAS" >> "$GITHUB_ENV"
+            echo "GLIMPSE_CI_DEBUG_KEY_PASSWORD=$GLIMPSE_CI_SIGNING_KEY_PASSWORD" >> "$GITHUB_ENV"
+            echo "::notice::Stable CI signing enabled for this build; private key stays out of artifacts."
+          fi
+      - name: Warn on non-release PR signing
+        if: github.event_name == 'pull_request'
+        run: echo "::warning::PR debug APK uses ephemeral signing; not a reliable in-place upgrade."
       - name: Compile and test
         run: ./gradlew --no-daemon :app:packageGlimpseDebugApk :app:testDebugUnitTest
+      - name: Report public APK certificate fingerprint
+        if: success()
+        shell: bash
+        run: |
+          "$ANDROID_HOME/build-tools/36.0.0/apksigner" verify --print-certs             app/build/distributions/glimpse-debug.apk |
+            grep "Signer #1 certificate SHA-256 digest:" |
+            tee app/build/distributions/glimpse-signing-fingerprint.txt
       - uses: actions/upload-artifact@v4
         if: success()
         with:
           name: glimpse-debug-test-only
-          path: app/build/distributions/glimpse-debug.apk
+          path: |
+            app/build/distributions/glimpse-debug.apk
+            app/build/distributions/glimpse-signing-fingerprint.txt
           retention-days: 7

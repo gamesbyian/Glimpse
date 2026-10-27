@@ -17,6 +17,28 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    // A CI key must live in repository secrets, not public Git history or
+    // workflow artifacts. Without the environment hook, AGP's throwaway
+    // debug key remains the explicit non-upgradeable test-only fallback.
+    val ciSigningPath = System.getenv("GLIMPSE_CI_DEBUG_KEYSTORE_PATH")
+    if (!ciSigningPath.isNullOrBlank()) {
+        signingConfigs.create("ciDebug") {
+            storeFile = file(ciSigningPath)
+            storePassword = requireNotNull(
+                System.getenv("GLIMPSE_CI_DEBUG_STORE_PASSWORD")
+            ) { "Missing CI signing store password" }
+            keyAlias = requireNotNull(System.getenv("GLIMPSE_CI_DEBUG_KEY_ALIAS")) {
+                "Missing CI signing key alias"
+            }
+            keyPassword = requireNotNull(
+                System.getenv("GLIMPSE_CI_DEBUG_KEY_PASSWORD")
+            ) { "Missing CI signing key password" }
+            storeType = "pkcs12"
+        }
+        buildTypes.getByName("debug").signingConfig =
+            signingConfigs.getByName("ciDebug")
+    }
+
     buildFeatures {
         compose = true
     }

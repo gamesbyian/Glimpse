@@ -14,6 +14,37 @@ Core code: `data/GlimpseDatabase.kt` (Room), `data/PhotoImporter.kt` and `data/I
 
 Not implemented: automatic Google Photos album sync; exact five-minute background scheduling; screenshot crop/rotation/editor recipes and edited/sanitized sharing; Lock/Both wallpaper targets; widgets and Quick Settings; comprehensive library/settings backup and restore; deletion of a photo's final collection membership and original; cache-clearing UI; durable external-provider retry grants. Inbound Android Share image intake and user-tapped clipboard Paste image are implemented, but crop/edit continuation is not. Android read grants can expire, and no clipboard monitoring runs. An existing verified photo can be reused or unlinked across collections without deleting its original. Failed-import retry works only while its picker URIs remain available in memory. Native build/CI does not substitute for handset validation. Review [evidence and predictions](../docs/quality/first-slice-evidence.md) before claiming any acceptance.
 
+### Debug APK signatures and safe upgrades
+
+**Do not uninstall a working Glimpse installation merely to install a new CI
+debug APK.** Uninstalling or clearing its storage removes its private original
+photos and collections. GitHub Actions' default, automatically generated debug
+certificate is not stable across fresh runners. Two successful October 27 CI
+artifacts were independently examined and had different signing-certificate
+SHA-256 fingerprints, so an in-place update between them is not supported.
+The APK artifact includes a public certificate-fingerprint text file to let
+testers compare builds. Matching Android package IDs do not imply matching
+signatures.
+
+For future *main-branch* debug builds, the workflow supports an optional,
+persistent **PKCS#12 signing identity stored entirely in encrypted GitHub
+Actions secrets**. All four secrets must be present together:
+`GLIMPSE_CI_SIGNING_KEYSTORE_BASE64` (base64 of the private .p12 file),
+`GLIMPSE_CI_SIGNING_STORE_PASSWORD`, `GLIMPSE_CI_SIGNING_KEY_ALIAS`,
+and `GLIMPSE_CI_SIGNING_KEY_PASSWORD`. Never commit or upload the keystore
+as a repository source, PR artifact, screenshot or chat attachment.
+For a generated identity, use `keytool -genkeypair -storetype PKCS12` in a
+trusted environment and preserve secure offline copies of the keystore and
+passwords. Without configured secrets, builds stay ephemeral **test-only**
+APKs and CI emits a visible warning. PR builds never receive the persistent signing secrets, including
+same-repository PRs; they use ephemeral test signing and are not upgrade
+acceptance candidates.
+
+Configuring a stable identity for the first time does not retroactively make
+older, differently signed debug APKs upgrade-compatible. A protected
+backup/export-and-restore path and a separate release-signing policy remain
+necessary before asking users to migrate devices or uninstall older versions.
+
 ### Collection original export (implemented; restore in development)
 
 Select a collection and choose **Export collection ZIP** from Home. Android's
