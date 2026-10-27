@@ -82,10 +82,31 @@ class MainActivity : ComponentActivity() {
             MaterialTheme(
                 typography = GlimpseType.theme,
                 colorScheme = lightColorScheme(
-                    primary = Color(0xFF1D5960),
-                    secondary = Color(0xFFE8876C),
+                    primary = Color(0xFF1D4A4D),
+                    onPrimary = Color(0xFFFFFCF3),
+                    primaryContainer = Color(0xFFE2EEE9),
+                    onPrimaryContainer = Color(0xFF243F3C),
+                    secondary = Color(0xFF8B5A3C),
+                    onSecondary = Color(0xFFFFF9F0),
+                    secondaryContainer = Color(0xFFF3E0D0),
+                    onSecondaryContainer = Color(0xFF603D29),
+                    tertiary = Color(0xFF536454),
+                    onTertiary = Color(0xFFFFFCF3),
+                    tertiaryContainer = Color(0xFFDFE8DF),
+                    onTertiaryContainer = Color(0xFF334538),
                     background = Color(0xFFF6F0E6),
-                    surface = Color(0xFFFFFCF6)
+                    onBackground = Color(0xFF263A37),
+                    surface = Color(0xFFFFFCF3),
+                    onSurface = Color(0xFF273A36),
+                    surfaceVariant = Color(0xFFECE2D5),
+                    onSurfaceVariant = Color(0xFF5D5247),
+                    surfaceContainerLowest = Color(0xFFFFFCF6),
+                    surfaceContainerLow = Color(0xFFF8F1E6),
+                    surfaceContainer = Color(0xFFF1E8DC),
+                    surfaceContainerHigh = Color(0xFFEDE1D2),
+                    surfaceContainerHighest = Color(0xFFE6D7C6),
+                    outline = Color(0xFF9B8E7E),
+                    outlineVariant = Color(0xFFD6C8B8)
                 )
             ) {
                 GlimpseScreen(model)
