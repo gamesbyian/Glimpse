@@ -26,7 +26,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.produceState
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
@@ -57,8 +56,9 @@ internal fun GlimpseSupportScreen(
     }
     val isDebug = (context.applicationInfo.flags and ApplicationInfo.FLAG_DEBUGGABLE) != 0
     var externalError by remember { mutableStateOf<String?>(null) }
-    var diagnosticsVisible by rememberSaveable { mutableStateOf(false) }
-    var diagnosticDraft by rememberSaveable { mutableStateOf("") }
+    // User-edited report text stays in Compose RAM and is never SavedState-persisted.
+    var diagnosticsVisible by remember { mutableStateOf(false) }
+    var diagnosticDraft by remember { mutableStateOf("") }
     val inventory by produceState<StorageReadout>(StorageReadout.Loading, context.filesDir) {
         value = withContext(Dispatchers.IO) {
             val result = inspectLocalStorage(File(context.filesDir, "originals"))
