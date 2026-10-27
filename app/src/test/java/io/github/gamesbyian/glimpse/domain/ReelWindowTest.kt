@@ -32,15 +32,25 @@ class ReelWindowTest {
     @Test fun hitTestingMatchesRenderedApertures() {
         val w = 400f
         val h = 316f
-        val cx = w / 2f
-        val cy = h * .82f
-        val radius = w * .84f * .62f
+        val placement = ReelWindow.placement(w, h)
+        val cx = placement.centerX
+        val cy = placement.centerY
+        val radius = placement.radius * .62f
         fun x(deg: Double) = cx + kotlin.math.cos(Math.toRadians(deg)).toFloat() * radius
         fun y(deg: Double) = cy + kotlin.math.sin(Math.toRadians(deg)).toFloat() * radius
         assertEquals(0, ReelWindow.tapOffset(x(-90.0), y(-90.0), w, h))
         assertEquals(1, ReelWindow.tapOffset(x(-18.0), y(-18.0), w, h))
         assertEquals(-1, ReelWindow.tapOffset(x(-162.0), y(-162.0), w, h))
         assertNull(ReelWindow.tapOffset(cx, cy, w, h))
+    }
+    @Test fun bottomCornerObjectHasVisiblePerimeterAndRealHitArea() {
+        val p = ReelWindow.placement(400f, 316f)
+        assert(p.centerX > 0f && p.centerX < 400f * .40f)
+        assert(p.radius < 400f * .73f)
+        assert(p.centerY - p.radius > -12f)
+        assert(p.centerX + p.radius < 400f)
+        assertEquals(0, ReelWindow.tapOffset(p.centerX,
+            p.centerY - p.radius * .62f, 400f, 316f))
     }
     @Test fun unknownSelectionIsStableAtFirstRealAsset() {
         assertEquals(0, ReelWindow.focusIndex(listOf("a", "b"), "missing"))
