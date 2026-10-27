@@ -1,0 +1,7 @@
+# Portable collection ZIP export (development contract)
+
+This is a user-initiated export of immutable originals associated with exactly one collection, not a complete library backup or restore implementation. Archive contains `manifest.json` (format `glimpse.collection.originals`, version 1, title, SHA-256, MIME, byte size, safe relative path) and byte-identical `originals/<sha>.<extension>` files. File names are constructed from SHA-256 and trusted imported MIME; arbitrary user paths do not enter ZIP entries. A photo can appear in multiple exported collections without duplicating the live stored source.
+
+Sources are all verified before export begins, and rehashed during bounded streaming. A failed destination may still contain a partial archive, which is *not* safe to treat as a backup and must be deleted through its document provider by the user. ZIP's manifest may contain the collection title and per-photo hashes; exporting it deliberately shares that information with the chosen destination provider. Do not add current wallpaper, uncertain OS state, active shuffle bag, credentials or stored provider URI data to this format without a separate explicit versioned contract.
+
+**Acceptance:** automated JVM exact-byte archives, strict ZIP entry names, manifest escaping, corrupt-source preflight; real Android DocumentsProvider Save As and restore flows are separate gates. The writer alone is not a user feature until surfaced through a working Android create-document flow.
