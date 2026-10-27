@@ -83,9 +83,9 @@ class CollectionZipReaderTest {
             val first = bytes(10,11,12)
             val second = bytes(20,21,22)
             val records = listOf(fixture(root, first), fixture(root, second))
-            val bytes = archive(root, records)
+            val zipBytes = archive(root, records)
             // Tamper with the bytes of the second member via a freshly written ZIP.
-            val manifest = java.util.zip.ZipInputStream(bytes.inputStream()).use { zin ->
+            val manifest = java.util.zip.ZipInputStream(zipBytes.inputStream()).use { zin ->
                 zin.nextEntry
                 zin.readBytes()
             }
