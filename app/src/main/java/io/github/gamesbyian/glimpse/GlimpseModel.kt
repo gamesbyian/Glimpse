@@ -5,6 +5,7 @@ import android.content.Context
 import android.net.Uri
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
+import io.github.gamesbyian.glimpse.data.CollectionOverview
 import io.github.gamesbyian.glimpse.data.CollectionRecord
 import io.github.gamesbyian.glimpse.data.GlimpseDatabase
 import io.github.gamesbyian.glimpse.data.PhotoImporter
@@ -31,6 +32,8 @@ import java.util.UUID
 
 data class GlimpseUiState(
     val collections: List<CollectionRecord> = emptyList(),
+    val collectionOverviews: List<CollectionOverview> = emptyList(),
+    val acknowledgedPhoto: PhotoRecord? = null,
     val collectionId: String? = null,
     val photos: List<PhotoRecord> = emptyList(),
     val rotation: RotationRecord? = null,
@@ -74,16 +77,27 @@ class GlimpseModel(application: Application) : AndroidViewModel(application) {
             if (id == null) flowOf(ScopedPhotos(null, emptyList()))
             else dao.watchPhotos(id).map { ScopedPhotos(id, it) }
         }
+    private val wallpaperStatus = combine(
+        dao.watchRotation(),
+        dao.watchAcknowledgedPhoto()
+    ) { rotation, acknowledged -> rotation to acknowledged }
+
     private val catalog = combine(
         dao.watchCollections(),
         visiblePhotos,
-        dao.watchRotation(),
+        dao.watchCollectionOverviews(),
+        wallpaperStatus,
         browse
-    ) { collections, loaded, rotation, cursor ->
+    ) { collections, loaded, overviews, wallpaperState, cursor ->
         // A switch must not briefly expose photos from the previous collection.
         val photos = if (loaded.collectionId == cursor.collectionId) loaded.items else emptyList()
+        val (rotation, acknowledged) = wallpaperState
+        // Room flows can emit independently. Reject transient mismatched pairs.
+        val provenPhoto = acknowledged?.takeIf { it.id == rotation?.lastAcknowledgedPhotoId }
         GlimpseUiState(
             collections = collections,
+            collectionOverviews = overviews,
+            acknowledgedPhoto = provenPhoto,
             collectionId = cursor.collectionId,
             photos = photos,
             rotation = rotation,
