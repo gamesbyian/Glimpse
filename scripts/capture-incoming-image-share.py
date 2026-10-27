@@ -27,6 +27,13 @@ def visible(fragment):
     xml = base.hierarchy()
     return xml if fragment in xml else None
 
+def one_imported_photo():
+    # The Room-backed collection cover/count can be visible when the
+    # lower "Photos: 1" label is pushed below the fold by new Home actions.
+    # The SHA-named private original is checked independently afterward.
+    xml = base.hierarchy()
+    return xml if ("Photos: 1" in xml or "1 photograph" in xml) else None
+
 def send(uri):
     report = base.adb("shell","am","start","-W","-a","android.intent.action.SEND",
                       "-p",APP,"-t","image/jpeg","--grant-read-uri-permission",
@@ -76,7 +83,7 @@ def main(out):
     send(uri)
     assert until(lambda: visible("Import shared images")), "Second share not delivered"
     base.click_label("Import shared images")
-    confirmed = until(lambda: visible("Photos: 1"),seconds=40)
+    confirmed = until(one_imported_photo,seconds=40)
     if not confirmed:
         base.capture_failure("no-import","No production Room update after explicit import")
         raise RuntimeError("Shared original was not committed")
@@ -87,7 +94,7 @@ def main(out):
     assert copied == original, "Private SHA original differs from external share"
     base.adb("shell","am","force-stop",APP)
     base.adb("shell","am","start","-n",APP+"/.MainActivity")
-    restored = until(lambda: visible("Photos: 1"))
+    restored = until(one_imported_photo)
     assert restored and "Import shared images" not in restored
     assert base.adb("exec-out","run-as",APP,"cat",
                     "files/originals/"+sha+".jpg",binary=True) == original

@@ -27,6 +27,12 @@ def until(fn, seconds=40):
 def app_file(name):
     return base.adb("shell","run-as",APP,"cat","files/"+name,check=False)
 
+def one_imported_photo():
+    # Collection card text is computed from actual Room memberships. The
+    # older lower "Photos: 1" label can be offscreen on taller Home actions.
+    xml = base.hierarchy()
+    return xml if ("Photos: 1" in xml or "1 photograph" in xml) else None
+
 def set_clipboard(text_only=False):
     # The second handoff must not mistake the previous fixture receipt for a
     # newly completed Android clipboard write.
@@ -65,7 +71,7 @@ def main(out):
                  "User-tapped Paste correctly declines a non-image clipboard")
     set_clipboard(text_only=False)
     base.click_label("Paste image")
-    imported = until(lambda: base.hierarchy() if "Photos: 1" in base.hierarchy() else None)
+    imported = until(one_imported_photo)
     if not imported:
         base.capture_failure("clipboard-import-failed","No image membership after explicit paste")
         raise RuntimeError("Pasted content image did not import")
@@ -77,7 +83,7 @@ def main(out):
                  "Actual synthetic clipboard URI imported via production Paste image button")
     base.adb("shell","am","force-stop",APP)
     base.adb("shell","am","start","-n",APP+"/.MainActivity")
-    assert until(lambda: base.hierarchy() if "Photos: 1" in base.hierarchy() else None)
+    assert until(one_imported_photo)
     assert base.adb("exec-out","run-as",APP,"cat",
                     "files/originals/"+sha+".jpg",binary=True) == original
     base.capture("03-clipboard-import-after-restart",
