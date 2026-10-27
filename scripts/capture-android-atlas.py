@@ -83,6 +83,26 @@ def start_fixture(count, active=False):
     # ONLY use on a disposable emulator/test device; destroys Glimpse data.
     adb("shell", "am", "force-stop", APP, check=False)
     adb("shell", "pm", "clear", APP)
+    # Clearing package data tears down the previous Android activity task
+    # asynchronously. Starting a new launcher immediately can put it into a
+    # process subsequently killed by the *old* task's destroy-timeout handler.
+    # See API34 atlas failure 40449390809. Wait for actual activity removal.
+    leftovers = []
+    for _ in range(28):
+        state = adb("shell", "dumpsys", "activity", "activities",
+                    check=False, timeout=15)
+        leftovers = re.findall(
+            r"ActivityRecord\\{[^}]*" + re.escape(APP) + r"[^}]*\\}", state
+        )
+        if not leftovers:
+            break
+        time.sleep(1.0)
+    else:
+        capture_failure("old-fixture-task-still-active",
+                        "Stale Android ActivityRecord after pm clear: " +
+                        str(leftovers[:3]))
+        raise RuntimeError("Previous fixture task not removed after package clear")
+    time.sleep(1.5)
     launch = adb("shell", "am", "start", "-n", FIXTURE,
                  "--ei", "count", str(count),
                  "--ez", "active", str(active).lower(), check=False)
