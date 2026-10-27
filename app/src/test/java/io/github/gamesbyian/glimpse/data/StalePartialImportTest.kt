@@ -75,4 +75,17 @@ class StalePartialImportTest {
         assertTrue(alias.exists())
         assertEquals("should survive", elsewhere.readText())
     }
+    @Test fun recoveryRefusesAnAliasedOriginalsDirectory() {
+        val outsideRoot = temporary.newFolder("not-originals")
+        val oldImport = File(outsideRoot, "import-external.partial").apply {
+            writeText("must not be removed")
+            assertTrue(setLastModified(now - grace - 1_000))
+        }
+        val alias = File(temporary.root, "aliased-originals")
+        java.nio.file.Files.createSymbolicLink(alias.toPath(), outsideRoot.toPath())
+        assertEquals(0, pruneStalePartialFiles(alias, now))
+        assertTrue(oldImport.exists())
+        assertEquals("must not be removed", oldImport.readText())
+    }
+
 }
