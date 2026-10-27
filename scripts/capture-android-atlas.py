@@ -469,6 +469,46 @@ def main():
                 raise RuntimeError("Registered-original exact-byte audit failed")
             capture("22-help-original-integrity-audit",
                     "User-triggered verified 22/22 private SHA originals, no mutation")
+            # Restore the exact ZIP we just exported via the *real* Android
+            # OpenDocument chooser. The app must create a new Room collection
+            # without changing the source library or applying wallpaper.
+            reach_and_click("Restore collection ZIP", "up", attempts=14)
+            time.sleep(1.5)
+            restore_picker = hierarchy()
+            restore_packages = {node.attrib.get("package")
+                                for node in ET.fromstring(restore_picker).iter("node")}
+            if not restore_packages.intersection({
+                    "com.android.documentsui", "com.google.android.documentsui"}):
+                capture_failure("restore-zip-no-real-document-picker",
+                                "Android OpenDocument did not open")
+                raise RuntimeError("Restore did not launch actual DocumentsUI")
+            zip_display = "glimpse-ATLAS-FIXTURE-22-photos-originals.zip"
+            try:
+                reach_and_click(zip_display, "up", attempts=5)
+            except RuntimeError as missing_in_recent:
+                # Recent files may not include Downloads on a fresh emulator.
+                # Navigate the real provider rather than bypassing its grant.
+                try:
+                    click_label("Downloads")
+                except RuntimeError:
+                    click_label("Show roots")
+                    click_label("Downloads")
+                reach_and_click(zip_display, "up", attempts=10)
+            restored = False
+            for attempt in range(30):
+                result_xml = hierarchy()
+                if "Restored 22 original photos into a new collection" in result_xml:
+                    restored = True
+                    break
+                if attempt % 3 == 0:
+                    swipe("up")
+                time.sleep(0.8)
+            if not restored:
+                capture_failure("restore-zip-22-originals-not-confirmed",
+                                "Android ZIP was selected but new collection did not report 22 originals")
+                raise RuntimeError("Glimpse did not confirm restore of all 22 original photos")
+            capture("22-collection-zip-restore-complete",
+                    "Real Android OpenDocument restores 22 original bytes to independent Room collection")
             # The diagnostic preview is user-triggered and must be readable
             # before any Android chooser or clipboard action exists.
             reach_and_click("Generate local diagnostic report", "up", attempts=10)
