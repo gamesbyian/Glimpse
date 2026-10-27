@@ -334,6 +334,40 @@ def main():
                 raise RuntimeError("Actual initial 22-photo collection tile/count missing")
         capture("22-reel-initial", "Collection with 22 actual records, before any interaction")
         if args.mode == "full":
+            # Support is an offline, actually navigable native screen, not a
+            # static proposal or a guessed Play/OS permission dialog.
+            click_label("Help & privacy")
+            help_xml = hierarchy()
+            # UIAutomator XML encodes an ampersand as &amp;. Compare parsed
+            # accessibility text, not the escaped XML source string.
+            visible_help_text = [
+                node.attrib.get("text", "")
+                for node in ET.fromstring(help_xml).iter("node")
+            ]
+            if (not any("Help & privacy." in text for text in visible_help_text) or
+                    not any("GETTING STARTED" in text for text in visible_help_text)):
+                capture_failure("help-privacy-entry-missing",
+                                "Native help title or Getting Started content not accessible")
+                raise RuntimeError("Native Help & privacy entry did not render")
+            capture("22-help-privacy-initial",
+                    "Real offline Help/Privacy/About entry from Home masthead")
+            found_privacy = False
+            for _ in range(9):
+                privacy_xml = hierarchy()
+                # Match parsed accessibility labels; raw XML escapes &.
+                privacy_labels = [node.attrib.get("text", "")
+                                  for node in ET.fromstring(privacy_xml).iter("node")]
+                if any("PRIVACY & STORAGE" in label for label in privacy_labels):
+                    found_privacy = True
+                    break
+                swipe("up")
+            if not found_privacy:
+                raise RuntimeError("Privacy/storage disclosure is unreachable")
+            capture("22-help-privacy-disclosure",
+                    "Native privacy and backup/storage disclosure reachable by scroll")
+            reach_and_click("Back to Home", "down", attempts=12)
+            if "Glimpse" not in hierarchy():
+                raise RuntimeError("Help & privacy did not return Home")
             # The new primary doorway must open a real photographic Reel,
             # preserve finite identity and return without applying wallpaper.
             click_label("Browse photo reel")

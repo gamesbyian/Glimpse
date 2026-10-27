@@ -139,8 +139,12 @@ private fun GlimpseScreen(model: GlimpseModel) {
     var showNewCollection by remember { mutableStateOf(false) }
     var showingDetail by rememberSaveable { mutableStateOf(false) }
     var showingBrowse by rememberSaveable { mutableStateOf(false) }
+    var showingSupport by rememberSaveable { mutableStateOf(false) }
     BackHandler(enabled = showingDetail) { showingDetail = false }
-    BackHandler(enabled = showingBrowse && !showingDetail) { showingBrowse = false }
+    BackHandler(enabled = showingSupport && !showingDetail) { showingSupport = false }
+    BackHandler(enabled = showingBrowse && !showingDetail && !showingSupport) {
+        showingBrowse = false
+    }
     val picker = rememberLauncherForActivityResult(
         ActivityResultContracts.PickMultipleVisualMedia(maxItems = 100)
     ) { uris -> model.importSelected(uris) }
@@ -151,6 +155,11 @@ private fun GlimpseScreen(model: GlimpseModel) {
                 state = state,
                 model = model,
                 onBack = { showingDetail = false },
+                modifier = Modifier.padding(padding)
+            )
+        } else if (showingSupport) {
+            GlimpseSupportScreen(
+                onBack = { showingSupport = false },
                 modifier = Modifier.padding(padding)
             )
         } else if (showingBrowse) {
@@ -181,10 +190,19 @@ private fun GlimpseScreen(model: GlimpseModel) {
                 style = MaterialTheme.typography.labelSmall, letterSpacing = 1.3.sp)
             // Direct route to the physical control: no need to scroll through
             // the dashboard/collection management merely to turn the reel.
-            OutlinedButton(
-                onClick = { showingBrowse = true },
-                enabled = activeCollection != null && state.photos.isNotEmpty()
-            ) { Text("Browse photo reel") }
+            FlowRow(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.spacedBy(8.dp),
+                verticalArrangement = Arrangement.spacedBy(4.dp)
+            ) {
+                OutlinedButton(
+                    onClick = { showingBrowse = true },
+                    enabled = activeCollection != null && state.photos.isNotEmpty()
+                ) { Text("Browse photo reel") }
+                TextButton(onClick = { showingSupport = true }) {
+                    Text("Help & privacy")
+                }
+            }
             GlimpseWallpaperSummary(state)
             if (state.collections.isEmpty() || showNewCollection) {
                 Text(

@@ -1,0 +1,150 @@
+package io.github.gamesbyian.glimpse
+
+import android.content.Intent
+import android.content.pm.ApplicationInfo
+import android.net.Uri
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.Card
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+
+/**
+ * Offline, source-faithful M1 help/privacy entry. No fabricated Play channel,
+ * account sync, exact five-minute alarm or wallpaper readback is presented.
+ */
+@Composable
+internal fun GlimpseSupportScreen(
+    onBack: () -> Unit,
+    modifier: Modifier = Modifier
+) {
+    val context = LocalContext.current
+    val packageInfo = remember(context) {
+        runCatching {
+            context.packageManager.getPackageInfo(context.packageName, 0)
+        }.getOrNull()
+    }
+    val isDebug = (context.applicationInfo.flags and ApplicationInfo.FLAG_DEBUGGABLE) != 0
+    var externalError by remember { mutableStateOf<String?>(null) }
+
+    Column(
+        modifier = modifier.fillMaxSize().background(Color(0xFFF6F0E6))
+            .verticalScroll(rememberScrollState())
+            .padding(horizontal = 18.dp, vertical = 12.dp),
+        verticalArrangement = Arrangement.spacedBy(14.dp)
+    ) {
+        TextButton(onClick = onBack) { Text("Back to Home") }
+        Text(
+            "GOOD TO KNOW",
+            color = Color(0xFF97684D),
+            style = MaterialTheme.typography.labelLarge,
+            letterSpacing = 1.5.sp
+        )
+        Text(
+            "Help & privacy.",
+            fontFamily = GlimpseType.editorial,
+            fontSize = 36.sp,
+            color = Color(0xFF193B3F)
+        )
+
+        SupportSection(
+            "GETTING STARTED",
+            "Create or choose a collection, then tap Add photos. The Android Photo Picker " +
+                "lets you select images from supported providers. Glimpse verifies and " +
+                "keeps an offline private copy of each imported original.",
+            "Browse photo reel opens the physical disc and stationary preview. Swipe " +
+                "the disc or use Previous photo / Next photo; View all · Grid is an " +
+                "equivalent alternative. Browsing never applies a wallpaper."
+        )
+        SupportSection(
+            "APPLY & SHUFFLE",
+            "Set Home wallpaper now is the explicit apply action. Glimpse shows the " +
+                "last Android-acknowledged photo but cannot reliably read back the " +
+                "current wallpaper after another app changes it.",
+            "Start shuffle uses the named collection selected at that moment. " +
+                "Five-minute eligibility is checked only while Glimpse is visible. " +
+                "Background timing, exact alarms, Lock and Both targeting are not " +
+                "available in this build. Review uncertain attempts before restarting."
+        )
+        SupportSection(
+            "SHARING & ORIGINALS",
+            "Share original photo opens Android's Sharesheet after verifying the " +
+                "private original. It may contain camera, time or location EXIF data. " +
+                "Glimpse does not guarantee delivery to another app or strip metadata.",
+            "Crop, screenshot intake, edited exports, batch share and cloud-album " +
+                "synchronization are not yet implemented. Source provider grants may " +
+                "expire, but successfully imported local originals work offline."
+        )
+        SupportSection(
+            "PRIVACY & STORAGE",
+            "Glimpse has no account, advertising SDK, proprietary photo cloud or " +
+                "automatic diagnostic upload. Photos and collection records are kept " +
+                "in the app's private storage. Android app auto-backup is disabled.",
+            "Uninstalling Glimpse or clearing its app storage can permanently remove " +
+                "its private imported copies and collections. There is no in-app " +
+                "backup/restore workflow yet. Sharing a photo deliberately hands " +
+                "a read-only copy to an Android-selected recipient."
+        )
+        SupportSection(
+            "ABOUT THIS BUILD",
+            "Version: " + (packageInfo?.versionName ?: "Unavailable") +
+                " · build " + (packageInfo?.longVersionCode?.toString() ?: "unknown"),
+            if (isDebug) "Development/debug APK. No Play Store distribution is claimed."
+            else "Installed app. Distribution source and update channel are unverified."
+        )
+        TextButton(
+            onClick = {
+                externalError = null
+                try {
+                    context.startActivity(
+                        Intent(Intent.ACTION_VIEW,
+                            Uri.parse("https://github.com/gamesbyian/Glimpse/issues"))
+                    )
+                } catch (_: Exception) {
+                    externalError = "No app could open GitHub. The address is " +
+                        "github.com/gamesbyian/Glimpse/issues"
+                }
+            }
+        ) { Text("Open Glimpse issues on GitHub") }
+        if (externalError != null) {
+            Text(externalError!!, color = MaterialTheme.colorScheme.error)
+        }
+    }
+}
+
+@Composable
+private fun SupportSection(heading: String, vararg paragraphs: String) {
+    Card(modifier = Modifier.fillMaxWidth()) {
+        Column(
+            modifier = Modifier.padding(16.dp),
+            verticalArrangement = Arrangement.spacedBy(8.dp)
+        ) {
+            Text(
+                heading,
+                style = MaterialTheme.typography.labelLarge,
+                color = Color(0xFF8B5A3C),
+                letterSpacing = 1.1.sp
+            )
+            paragraphs.forEach { paragraph ->
+                Text(paragraph, style = MaterialTheme.typography.bodyMedium)
+            }
+        }
+    }
+}
