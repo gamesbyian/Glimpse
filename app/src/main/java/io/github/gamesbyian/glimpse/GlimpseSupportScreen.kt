@@ -27,15 +27,19 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.produceState
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import io.github.gamesbyian.glimpse.data.LocalOriginalIntegritySummary
 import io.github.gamesbyian.glimpse.data.LocalStorageInventory
 import io.github.gamesbyian.glimpse.data.inspectLocalStorage
+import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.io.File
 
@@ -45,10 +49,13 @@ import java.io.File
  */
 @Composable
 internal fun GlimpseSupportScreen(
+    model: GlimpseModel,
     onBack: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     val context = LocalContext.current
+    val auditScope = rememberCoroutineScope()
+    var integrityReadout by remember { mutableStateOf<IntegrityReadout>(IntegrityReadout.NotChecked) }
     val packageInfo = remember(context) {
         runCatching {
             context.packageManager.getPackageInfo(context.packageName, 0)
@@ -148,6 +155,43 @@ internal fun GlimpseSupportScreen(
                 "awaiting cleanup; do not manually remove imported originals because " +
                 "that can break collection access and sharing."
         )
+        OutlinedButton(
+            enabled = integrityReadout != IntegrityReadout.Checking,
+            onClick = {
+                integrityReadout = IntegrityReadout.Checking
+                auditScope.launch {
+                    integrityReadout = try {
+                        IntegrityReadout.Ready(model.auditPrivateOriginals())
+                    } catch (cancel: CancellationException) {
+                        throw cancel
+                    } catch (_: Exception) {
+                        IntegrityReadout.Unavailable
+                    }
+                }
+            }
+        ) { Text("Verify saved originals") }
+        when (val audit = integrityReadout) {
+            IntegrityReadout.NotChecked -> Text(
+                "Optional. Checks the exact bytes of photos registered in the library. " +
+                    "This can take time for large collections; no files are changed.",
+                style = MaterialTheme.typography.bodySmall
+            )
+            IntegrityReadout.Checking -> Text(
+                "Verifying private photo originals…",
+                style = MaterialTheme.typography.bodySmall
+            )
+            IntegrityReadout.Unavailable -> Text(
+                "The integrity check could not finish. No files were changed.",
+                style = MaterialTheme.typography.bodySmall
+            )
+            is IntegrityReadout.Ready -> Text(
+                "Verified ${audit.summary.verified} of ${audit.summary.registered} " +
+                    "registered originals. ${audit.summary.problemCount} missing or " +
+                    "failed verification. This does not inspect unregistered orphan " +
+                    "files, repair problems or validate copies held by other apps.",
+                style = MaterialTheme.typography.bodySmall
+            )
+        }
         SupportSection(
             "OPTIONAL SUPPORT REPORT",
             "Generate a local-only diagnostic report. Inspect, edit, copy or " +
@@ -273,4 +317,11 @@ private sealed interface StorageReadout {
     data object Loading : StorageReadout
     data object Unavailable : StorageReadout
     data class Ready(val snapshot: LocalStorageInventory) : StorageReadout
+}
+
+private sealed interface IntegrityReadout {
+    data object NotChecked : IntegrityReadout
+    data object Checking : IntegrityReadout
+    data object Unavailable : IntegrityReadout
+    data class Ready(val summary: LocalOriginalIntegritySummary) : IntegrityReadout
 }

@@ -205,6 +205,7 @@ private fun GlimpseScreen(
             )
         } else if (showingSupport) {
             GlimpseSupportScreen(
+                model = model,
                 onBack = { showingSupport = false },
                 modifier = Modifier.padding(padding)
             )
