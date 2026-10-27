@@ -115,6 +115,18 @@ class GlimpseModel(application: Application) : AndroidViewModel(application) {
     }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), GlimpseUiState())
 
     init {
+        // An Android process kill can bypass PhotoImporter's finally block.
+        // Reclaim *only* day-old, importer-named .partial files off the UI
+        // thread. SHA originals and provider grants are never touched.
+        viewModelScope.launch(Dispatchers.IO) {
+            try {
+                importer.pruneStalePartialImports()
+            } catch (cancel: CancellationException) {
+                throw cancel
+            } catch (_: Exception) {
+                // Noncritical housekeeping cannot block gallery startup.
+            }
+        }
         viewModelScope.launch {
             val initial = withContext(Dispatchers.IO) {
                 val collections = dao.watchCollections().firstOrNull().orEmpty()
