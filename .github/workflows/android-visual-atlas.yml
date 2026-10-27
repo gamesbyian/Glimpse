@@ -21,6 +21,9 @@ on:
       - .github/workflows/android-visual-atlas.yml
       - scripts/capture-android-atlas.py
       - app/src/main/java/io/github/gamesbyian/glimpse/MainActivity.kt
+      - app/src/main/java/io/github/gamesbyian/glimpse/GlimpseHomeComponents.kt
+      - app/src/main/java/io/github/gamesbyian/glimpse/GlimpseModel.kt
+      - app/src/main/java/io/github/gamesbyian/glimpse/data/GlimpseDatabase.kt
       - app/src/main/java/io/github/gamesbyian/glimpse/GlimpsePhotoDetail.kt
       - app/src/main/java/io/github/gamesbyian/glimpse/CircularPhotoReel.kt
       - app/src/main/java/io/github/gamesbyian/glimpse/GlimpseTypography.kt
