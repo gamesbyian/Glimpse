@@ -1,5 +1,7 @@
 # Glimpse design
 
+**Owner-supplied 26 October 2026 art direction (two original boards, unchanged):** [visual reference archive](reference/owner-2026-10-26/README.md) · [Board A](reference/owner-2026-10-26/glimpse-physical-reels-and-screen-concepts-a.jpg) · [Board B](reference/owner-2026-10-26/glimpse-physical-reels-and-screen-concepts-b.jpg). These set material, typography, photographic composition and partial-reel direction, **not approval for invented category/provider/settings functionality or pixel-perfect implementation**.
+
 **Reference direction (not pixel-approved screenshots)**
 
 - [Five-window reel SVG](reference/five-window-reel.svg) and [offscreen reel browser SVG](reference/reel-browser-concept.svg)
