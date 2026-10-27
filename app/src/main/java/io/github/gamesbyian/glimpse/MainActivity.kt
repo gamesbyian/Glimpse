@@ -15,6 +15,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
@@ -155,15 +156,12 @@ private fun GlimpseScreen(model: GlimpseModel) {
                     else "Create a collection",
                     style = MaterialTheme.typography.bodyMedium
                 )
-                Row(
-                    verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.spacedBy(8.dp)
-                ) {
+                Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
                     OutlinedTextField(
                         value = newCollection,
                         onValueChange = { newCollection = it },
                         label = { Text("Collection name") },
-                        modifier = Modifier.weight(1f),
+                        modifier = Modifier.fillMaxWidth(),
                         singleLine = true
                     )
                     Button(
@@ -171,15 +169,15 @@ private fun GlimpseScreen(model: GlimpseModel) {
                             model.createCollection(newCollection)
                             showNewCollection = false
                         },
-                        enabled = !state.busy
+                        enabled = !state.busy && newCollection.isNotBlank()
                     ) { Text("Create") }
                 }
             }
             if (state.collections.isNotEmpty()) {
-                Row(
+                FlowRow(
                     modifier = Modifier.fillMaxWidth(),
-                    verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.SpaceBetween
+                    horizontalArrangement = Arrangement.spacedBy(8.dp),
+                    verticalArrangement = Arrangement.spacedBy(4.dp)
                 ) {
                     Text("Collections", color = Color(0xFF263A37),
                         fontFamily = GlimpseType.editorial, fontSize = 24.sp)
@@ -215,7 +213,10 @@ private fun GlimpseScreen(model: GlimpseModel) {
                     "Photos: " + state.photos.size + " • Offline copies",
                     style = MaterialTheme.typography.labelLarge
                 )
-                Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                FlowRow(
+                    horizontalArrangement = Arrangement.spacedBy(8.dp),
+                    verticalArrangement = Arrangement.spacedBy(4.dp)
+                ) {
                     FilterChip(
                         selected = !state.grid,
                         onClick = { if (state.grid) model.toggleGrid() },
@@ -256,8 +257,9 @@ private fun GlimpseScreen(model: GlimpseModel) {
                             onSelect = { photoId -> model.browsePhotoInCollection(activeCollection, photoId) }
                         )
                     }
-                    Row(
+                    FlowRow(
                         horizontalArrangement = Arrangement.spacedBy(8.dp),
+                        verticalArrangement = Arrangement.spacedBy(8.dp),
                         modifier = Modifier.fillMaxWidth()
                     ) {
                         OutlinedButton(
@@ -366,10 +368,10 @@ private fun RotationPanel(state: GlimpseUiState, model: GlimpseModel) {
             modifier = Modifier.padding(12.dp),
             verticalArrangement = Arrangement.spacedBy(8.dp)
         ) {
-            Row(
+            FlowRow(
                 modifier = Modifier.fillMaxWidth(),
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.SpaceBetween
+                horizontalArrangement = Arrangement.spacedBy(8.dp),
+                verticalArrangement = Arrangement.spacedBy(4.dp)
             ) {
                 Text("Home rotation", style = MaterialTheme.typography.titleMedium)
                 TextButton(onClick = { expanded = !expanded }) {
@@ -387,9 +389,10 @@ private fun RotationPanel(state: GlimpseUiState, model: GlimpseModel) {
                     Text("Review uncertainty and pause")
                 }
             } else {
-                Row(
+                FlowRow(
                     modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.spacedBy(8.dp)
+                    horizontalArrangement = Arrangement.spacedBy(8.dp),
+                    verticalArrangement = Arrangement.spacedBy(8.dp)
                 ) {
                     if (rotation?.active == true) {
                         OutlinedButton(onClick = model::pauseRotation, enabled = !state.busy) {
