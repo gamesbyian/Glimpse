@@ -516,7 +516,28 @@ def main():
             # the user has opened. Seed two real Room memberships, start active
             # shuffle on the first, then browse the second and inspect status.
             start_fixture(22, active=True)
+            # Attach photo 3 to the alternate collection, which initially
+            # contains only photos 1 and 2. The same source file is reused.
+            reach_and_click("Open photo details")
+            reach_and_click("Next photo", "up")
+            reach_and_click("Next photo", "up")
+            reach_and_click("Add this photo to another collection", "up", attempts=12)
+            reach_and_click("Add to ALTERNATE ATLAS", "up", attempts=10)
+            reach_and_click("Back to Reel / Grid", "down", attempts=12)
             reach_and_click("ALTERNATE ATLAS")
+            found_three = False
+            for _ in range(9):
+                membership_xml = hierarchy()
+                if "Photos: 3" in membership_xml:
+                    found_three = True
+                    break
+                swipe("up")
+            if not found_three:
+                capture_failure("cross-collection-membership-not-visible",
+                                "Membership copy did not appear in alternate collection")
+                raise RuntimeError("Adding existing photo did not update target collection")
+            capture("22-cross-collection-membership-copy",
+                    "Photo 3 reused in alternate collection without recopy or wallpaper change")
             # Distinct text nodes can sit in different viewports at large type.
             # Observe each independently across bounded scrolling rather than
             # assuming the source title and explanation share one accessibility
