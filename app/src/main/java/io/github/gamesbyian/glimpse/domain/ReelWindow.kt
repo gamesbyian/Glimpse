@@ -7,6 +7,19 @@ package io.github.gamesbyian.glimpse.domain
  */
 object ReelWindow {
     /**
+     * Authoritative dimensions for the photograph openings in the paper object.
+     * Photo clips extend slightly beyond the opaque-face alpha edges so a
+     * rotation cannot reveal colored paper or bleed at the aperture borders.
+     * The baked material source uses its own inset edges as documented.
+     */
+    const val WINDOW_INNER_RADIUS = .39f
+    const val WINDOW_OUTER_RADIUS = .87f
+    const val WINDOW_HALF_ANGLE = 26f
+    const val FACE_HOLE_INNER_RADIUS = .425f
+    const val FACE_HOLE_OUTER_RADIUS = .835f
+    const val FACE_HOLE_HALF_ANGLE = 23f
+
+    /**
      * Return the tapped aperture offset for the currently drawn cropped
      * wheel, or null when touching paper outside the photo ring. This is
      * geometry only; callers still check that a real photo occupies the slot.
@@ -26,11 +39,11 @@ object ReelWindow {
         val dy = y - p.centerY
         val radius = kotlin.math.hypot(dx, dy)
         val outer = p.radius
-        if (radius < outer * .31f || radius > outer * .95f) return null
+        if (radius < outer * FACE_HOLE_INNER_RADIUS || radius > outer * FACE_HOLE_OUTER_RADIUS) return null
         val angle = Math.toDegrees(kotlin.math.atan2(dy, dx).toDouble()).toFloat()
         val relative = (angle + 90f + 180f + 360f) % 360f - 180f
         val offset = kotlin.math.round(relative / 72f).toInt()
-        return offset.takeIf { it in -2..2 && kotlin.math.abs(relative - it * 72f) <= 31f }
+        return offset.takeIf { it in -2..2 && kotlin.math.abs(relative - it * 72f) <= FACE_HOLE_HALF_ANGLE }
     }
 
     fun focusIndex(ids: List<String>, selectedId: String?): Int =
