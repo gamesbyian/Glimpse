@@ -137,10 +137,10 @@ def start_fixture(count, active=False):
                                      "font_scale", check=False)
                     if (font_scale.startswith("2") and
                             "HOME WALLPAPER" in snapshot and
-                            "Collections" in snapshot):
-                        # The debug seed marker guarantees 22 committed rows;
-                        # the collection header proves Compose loaded without
-                        # requiring an offscreen text node at extreme scale.
+                            "Glimpse" in snapshot):
+                        # The debug READY marker guarantees committed rows.
+                        # At extreme scale the Home header is visible while
+                        # both collection and photo counts may be offscreen.
                         return
                 except Exception:
                     pass
