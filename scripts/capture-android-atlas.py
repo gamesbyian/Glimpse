@@ -538,6 +538,25 @@ def main():
                 raise RuntimeError("Adding existing photo did not update target collection")
             capture("22-cross-collection-membership-copy",
                     "Photo 3 reused in alternate collection without recopy or wallpaper change")
+            # Removing an additional membership must not delete the verified
+            # private original still used by the original 22-photo collection.
+            reach_and_click("Open photo details", "up", attempts=12)
+            reach_and_click("Remove from this collection", "up", attempts=12)
+            reach_and_click("Keep original and remove membership", "up", attempts=12)
+            reach_and_click("Back to Reel / Grid", "down", attempts=12)
+            removed_only_membership = False
+            for _ in range(12):
+                after_unlink = hierarchy()
+                if "Photos: 2" in after_unlink:
+                    removed_only_membership = True
+                    break
+                swipe("up")
+            if not removed_only_membership:
+                capture_failure("unlink-shared-membership-not-visible",
+                                "Unlink did not restore alternate collection count")
+                raise RuntimeError("Shared photo could not be unlinked from alternate collection")
+            capture("22-cross-collection-membership-unlink",
+                    "Alternate collection returned to two photos; source original retained")
             # Distinct text nodes can sit in different viewports at large type.
             # Observe each independently across bounded scrolling rather than
             # assuming the source title and explanation share one accessibility

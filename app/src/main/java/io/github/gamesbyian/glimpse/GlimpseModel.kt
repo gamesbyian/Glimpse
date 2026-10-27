@@ -309,6 +309,26 @@ class GlimpseModel(application: Application) : AndroidViewModel(application) {
         targetName
     }
 
+    /**
+     * Non-destructive collection unlink: never strand the original with zero
+     * memberships, and never touch Home wallpaper or rotation state.
+     */
+    fun removePhotoFromCollection(photoId: String, collectionId: String) = action {
+        require(browse.value.collectionId == collectionId) {
+            "You changed collections. Open the original collection and try again."
+        }
+        val removed = withContext(Dispatchers.IO) {
+            dao.detachOnlyIfElsewhere(collectionId, photoId)
+        }
+        if (!removed) {
+            "Cannot remove this photo here. It must also belong to another " +
+                "collection to keep the original accessible."
+        } else {
+            "Removed from this collection. The intact original stays in another " +
+                "collection. Home wallpaper and shuffle settings were not changed."
+        }
+    }
+
     fun applyPreview() = action {
         val photo = ui.value.current ?: error("Choose a photo first.")
         wallpaper.applySelected(photo.id)

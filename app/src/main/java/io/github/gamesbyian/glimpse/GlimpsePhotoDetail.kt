@@ -56,6 +56,7 @@ internal fun GlimpsePhotoDetail(
     var sharing by remember(photo?.id) { mutableStateOf(false) }
     var shareError by remember(photo?.id) { mutableStateOf<String?>(null) }
     var choosingCopyDestination by remember(photo?.id) { mutableStateOf(false) }
+    var confirmingMembershipRemoval by remember(photo?.id) { mutableStateOf(false) }
     var saving by remember { mutableStateOf(false) }
     var saveNotice by remember { mutableStateOf<String?>(null) }
     // Hold the exact selected image across the external picker. Not persisted.
@@ -264,6 +265,38 @@ internal fun GlimpsePhotoDetail(
                 "Create another collection on Home to organize this photo in more than one place.",
                 style = MaterialTheme.typography.bodySmall
             )
+        }
+        OutlinedButton(
+            enabled = photo != null && state.collectionId != null && !state.busy,
+            onClick = { confirmingMembershipRemoval = true }
+        ) { Text("Remove from this collection") }
+        if (confirmingMembershipRemoval && photo != null && state.collectionId != null) {
+            Card(modifier = Modifier.fillMaxWidth()) {
+                Column(
+                    modifier = Modifier.padding(12.dp),
+                    verticalArrangement = Arrangement.spacedBy(8.dp)
+                ) {
+                    Text(
+                        "Only a collection membership is removed. This succeeds " +
+                            "only if the photo is also in another collection, so " +
+                            "its intact original remains accessible. Current " +
+                            "wallpaper and shuffle settings do not change.",
+                        style = MaterialTheme.typography.bodySmall
+                    )
+                    OutlinedButton(
+                        onClick = { confirmingMembershipRemoval = false }
+                    ) { Text("Keep photo in this collection") }
+                    OutlinedButton(
+                        enabled = !state.busy,
+                        onClick = {
+                            val source = state.collectionId
+                            val selected = photo.id
+                            confirmingMembershipRemoval = false
+                            model.removePhotoFromCollection(selected, source)
+                        }
+                    ) { Text("Keep original and remove membership") }
+                }
+            }
         }
         Text(state.message, style = MaterialTheme.typography.bodyMedium)
     }

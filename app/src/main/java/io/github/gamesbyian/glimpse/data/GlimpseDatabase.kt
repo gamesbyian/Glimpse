@@ -108,6 +108,23 @@ interface GlimpseDao {
     @Query("SELECT * FROM memberships WHERE collectionId = :collectionId AND photoId = :photoId LIMIT 1")
     suspend fun findMembership(collectionId: String, photoId: String): MembershipRecord?
 
+    @Query("SELECT COUNT(*) FROM memberships WHERE photoId = :photoId")
+    suspend fun membershipCount(photoId: String): Int
+
+    @Query("DELETE FROM memberships WHERE collectionId = :collectionId AND photoId = :photoId")
+    suspend fun deleteMembership(collectionId: String, photoId: String): Int
+
+    /**
+     * A membership may be detached only if the original remains accessible
+     * through another collection. Never delete PhotoRecord or image bytes.
+     */
+    @Transaction
+    suspend fun detachOnlyIfElsewhere(collectionId: String, photoId: String): Boolean {
+        if (findMembership(collectionId, photoId) == null ||
+            membershipCount(photoId) < 2) return false
+        return deleteMembership(collectionId, photoId) == 1
+    }
+
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertCollection(collection: CollectionRecord): Long
 
