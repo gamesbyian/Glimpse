@@ -1,6 +1,10 @@
 package io.github.gamesbyian.glimpse
 
+import android.content.ClipData
+import android.content.ClipboardManager
+import android.content.Context
 import android.content.Intent
+import android.os.Build
 import android.content.pm.ApplicationInfo
 import android.net.Uri
 import android.text.format.Formatter
@@ -15,11 +19,14 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Card
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
+import androidx.compose.material3.OutlinedButton
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.produceState
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
@@ -50,6 +57,8 @@ internal fun GlimpseSupportScreen(
     }
     val isDebug = (context.applicationInfo.flags and ApplicationInfo.FLAG_DEBUGGABLE) != 0
     var externalError by remember { mutableStateOf<String?>(null) }
+    var diagnosticsVisible by rememberSaveable { mutableStateOf(false) }
+    var diagnosticDraft by rememberSaveable { mutableStateOf("") }
     val inventory by produceState<StorageReadout>(StorageReadout.Loading, context.filesDir) {
         value = withContext(Dispatchers.IO) {
             val result = inspectLocalStorage(File(context.filesDir, "originals"))
@@ -136,6 +145,80 @@ internal fun GlimpseSupportScreen(
                 "awaiting cleanup; do not manually remove imported originals because " +
                 "that can break collection access and sharing."
         )
+        SupportSection(
+            "OPTIONAL SUPPORT REPORT",
+            "Generate a local-only diagnostic report. Inspect, edit, copy or " +
+                "share its text; nothing uploads automatically. No photo pixels, " +
+                "filenames, EXIF or collection IDs are included."
+        )
+        OutlinedButton(onClick = {
+            val info = (inventory as? StorageReadout.Ready)?.snapshot
+            diagnosticDraft = LocalDiagnosticReport.render(
+                DiagnosticFacts(
+                    versionCode = packageInfo?.longVersionCode ?: -1,
+                    isDebug = isDebug,
+                    androidApi = Build.VERSION.SDK_INT,
+                    originalCount = info?.originalFileCount,
+                    originalBytes = info?.originalBytes,
+                    stagingCount = info?.stagingFileCount,
+                    stagingBytes = info?.stagingBytes
+                )
+            )
+            diagnosticsVisible = true
+            externalError = null
+        }) { Text("Generate local diagnostic report") }
+        if (diagnosticsVisible) {
+            OutlinedTextField(
+                value = diagnosticDraft,
+                onValueChange = { diagnosticDraft = it.take(8_000) },
+                label = { Text("Review or edit diagnostic text") },
+                minLines = 7,
+                maxLines = 12,
+                modifier = Modifier.fillMaxWidth()
+            )
+            Text(
+                "The report leaves Glimpse only if you tap Copy or Share. " +
+                    "Review any additional text for private information.",
+                style = MaterialTheme.typography.bodySmall
+            )
+            androidx.compose.foundation.layout.FlowRow(
+                horizontalArrangement = Arrangement.spacedBy(8.dp),
+                verticalArrangement = Arrangement.spacedBy(4.dp)
+            ) {
+                OutlinedButton(onClick = {
+                    try {
+                        val clipboard = context.getSystemService(Context.CLIPBOARD_SERVICE)
+                            as ClipboardManager
+                        clipboard.setPrimaryClip(ClipData.newPlainText(
+                            "Glimpse support report", diagnosticDraft
+                        ))
+                        externalError = "Report copied to Android clipboard."
+                    } catch (_: Exception) {
+                        externalError = "Could not copy the report."
+                    }
+                }) { Text("Copy report") }
+                OutlinedButton(onClick = {
+                    try {
+                        val payload = Intent(Intent.ACTION_SEND).apply {
+                            type = "text/plain"
+                            putExtra(Intent.EXTRA_TEXT, diagnosticDraft)
+                        }
+                        context.startActivity(Intent.createChooser(
+                            payload, "Share Glimpse support report"
+                        ))
+                        externalError = null
+                    } catch (_: Exception) {
+                        externalError = "No app could share this report. " +
+                            "You can copy it instead."
+                    }
+                }) { Text("Share report") }
+                androidx.compose.material3.TextButton(onClick = {
+                    diagnosticsVisible = false
+                    diagnosticDraft = ""
+                    externalError = null
+                }) { Text("Close report") }
+            }
+        }
         SupportSection(
             "ABOUT THIS BUILD",
             "Version: " + (packageInfo?.versionName ?: "Unavailable") +
