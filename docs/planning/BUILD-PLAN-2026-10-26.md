@@ -3,6 +3,10 @@
 
 ## Why this plan exists
 
+**Canonical original reference images:** [owner reference archive](../../design/reference/owner-2026-10-26/README.md), [Board A](../../design/reference/owner-2026-10-26/glimpse-physical-reels-and-screen-concepts-a.jpg), [Board B](../../design/reference/owner-2026-10-26/glimpse-physical-reels-and-screen-concepts-b.jpg). Original JPG bytes and Git blob identities are preserved on `main`. These are the primary *aesthetic* comparator for the art/reel work. They do not supersede actual user-workflow contracts or grant approval to invented controls.
+
+
+
 The owner likes the broad direction of the two October 26 concept boards: **convincingly physical pale paper photo reels; partially offscreen, preferably at a lower edge or corner; asymmetric compositions with room for more than one reel when they have distinct jobs; stronger editorial typography, richly photographed hero imagery, artful deliberate UI**. This is an **approved design direction for prototyping**, not permission to ship every pictured control or claim either board is a pixel-perfect implementation reference.
 
 Previous exploratory SVGs are too generic and too diagrammatic. The existing Android prototype has real imported photos, offline copies, a five-aperture circular *schematic*, Reel/Grid browsing, and an explicit Home wallpaper gateway. The owner physically tested an earlier APK and imported 22 photos. **Do not replace or break this working vertical slice while building the new design.** The first job is to make the reel real.
