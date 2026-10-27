@@ -174,6 +174,8 @@ private fun GlimpseScreen(
     var clipboardFeedback by remember { mutableStateOf<String?>(null) }
     var newCollection by remember { mutableStateOf("Rainbows") }
     var showNewCollection by remember { mutableStateOf(false) }
+    var renameTargetCollection by remember { mutableStateOf<String?>(null) }
+    var renameTitle by remember { mutableStateOf("") }
     var showingDetail by rememberSaveable { mutableStateOf(false) }
     var showingBrowse by rememberSaveable { mutableStateOf(false) }
     var showingSupport by rememberSaveable { mutableStateOf(false) }
@@ -335,6 +337,59 @@ private fun GlimpseScreen(
                         fontFamily = GlimpseType.editorial, fontSize = 24.sp)
                     TextButton(onClick = { showNewCollection = !showNewCollection }) {
                         Text(if (showNewCollection) "Cancel" else "New collection")
+                    }
+                    TextButton(
+                        onClick = {
+                            val selected = state.collections.firstOrNull {
+                                it.id == activeCollection
+                            }
+                            if (selected != null) {
+                                renameTargetCollection = selected.id
+                                renameTitle = selected.title
+                            }
+                        },
+                        enabled = activeCollection != null && !state.busy
+                    ) { Text("Rename collection") }
+                }
+                val renameTarget = state.collections.firstOrNull {
+                    it.id == renameTargetCollection
+                }
+                if (renameTarget != null) {
+                    Card(modifier = Modifier.fillMaxWidth()) {
+                        Column(
+                            modifier = Modifier.padding(16.dp),
+                            verticalArrangement = Arrangement.spacedBy(8.dp)
+                        ) {
+                            Text("Rename: " + renameTarget.title,
+                                style = MaterialTheme.typography.titleMedium)
+                            OutlinedTextField(
+                                value = renameTitle,
+                                onValueChange = { renameTitle = it.take(80) },
+                                label = { Text("New collection name") },
+                                singleLine = true,
+                                modifier = Modifier.fillMaxWidth()
+                            )
+                            FlowRow(
+                                horizontalArrangement = Arrangement.spacedBy(8.dp),
+                                verticalArrangement = Arrangement.spacedBy(4.dp)
+                            ) {
+                                Button(
+                                    onClick = {
+                                        model.renameCollection(renameTargetCollection, renameTitle)
+                                        renameTargetCollection = null
+                                    },
+                                    enabled = !state.busy && renameTitle.isNotBlank()
+                                ) { Text("Save name") }
+                                TextButton(onClick = { renameTargetCollection = null }) {
+                                    Text("Cancel rename")
+                                }
+                            }
+                            Text(
+                                "Only the title changes. Photos, shuffle collection and " +
+                                    "the current wallpaper are unaffected.",
+                                style = MaterialTheme.typography.bodySmall
+                            )
+                        }
                     }
                 }
                 LazyRow(
