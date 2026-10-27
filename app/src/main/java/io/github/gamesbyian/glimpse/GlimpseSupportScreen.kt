@@ -123,9 +123,10 @@ internal fun GlimpseSupportScreen(
                 "Glimpse does not guarantee delivery to another app or strip metadata.",
             "Android Share can send images into Glimpse. Confirm the receiving " +
                 "collection and tap Import shared images; an unchanged private copy " +
-                "is saved. Crop, rotate, edited exports, batch outbound sharing and " +
-                "cloud-album synchronization are not implemented. Source grants " +
-                "may expire; completed offline copies remain available."
+                "is saved. Paste image reads clipboard only when explicitly tapped. " +
+                "Crop, rotate, edited exports, batch outbound sharing and cloud-album " +
+                "synchronization are not implemented. Temporary source grants may " +
+                "expire; completed offline copies remain available."
         )
         SupportSection(
             "PRIVACY & STORAGE",
