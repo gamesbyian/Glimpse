@@ -447,6 +447,25 @@ def main():
             time.sleep(1.0)
             if "In focus." not in hierarchy():
                 raise RuntimeError("Photo detail did not survive cancelled Android Sharesheet")
+            # New Save As is an OS-owned SAF document picker, not an
+            # app-private filename entry pretending to write user storage.
+            reach_and_click("Save original copy…", "up", attempts=11)
+            time.sleep(1.7)
+            save_chooser = hierarchy()
+            save_packages = {node.attrib.get("package")
+                             for node in ET.fromstring(save_chooser).iter("node")}
+            if not (save_packages & {"com.android.documentsui",
+                                     "com.google.android.documentsui"}):
+                capture_failure("save-original-no-document-picker",
+                                "Android DocumentsUI did not open on Save original copy")
+                raise RuntimeError("Actual Android document picker did not open: " +
+                                   ",".join(sorted(str(p) for p in save_packages)))
+            capture("22-original-android-save-as",
+                    "Real Android DocumentsUI chosen for user-initiated original export")
+            adb("shell", "input", "keyevent", "4")
+            time.sleep(1.2)
+            if "In focus." not in hierarchy():
+                raise RuntimeError("Cancelled Save As failed to return to photo detail")
             reach_and_click("Back to Reel / Grid", "down")
             capture("22-photo-detail-return",
                     "Return to original Reel/Grid browsing context")
