@@ -42,6 +42,7 @@ import androidx.compose.material3.TextButton
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.key
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.produceState
 import androidx.compose.runtime.remember
@@ -369,28 +370,46 @@ internal fun PhotoPreview(
     pathOverride: String? = null
 ) {
     val path = pathOverride ?: photo?.localPath
-    val image by produceState<ImageBitmap?>(initialValue = null, key1 = path) {
-        value = if (path == null) null else withContext(Dispatchers.IO) {
-            try {
-                // Unified orientation-aware decode for Home hero, detail, Grid
-                // and photographic collection-cover tiles; immutable original
-                // stays untouched, and the output is bounded to 1024 pixels.
-                BoundedPhotoDecode.decode(File(path), maxEdge = 1024).asImageBitmap()
-            } catch (_: Exception) {
-                null
+    // key(path) restarts the load state rather than retaining the previous
+    // bitmap while the next selection decodes. The explicit source identity
+    // check is a second guard against a delayed previous result.
+    val loaded by key(path) {
+        produceState(
+            initialValue = PreviewLoadState<ImageBitmap>(
+                sourcePath = path, complete = path == null
+            ),
+            key1 = path
+        ) {
+            value = if (path == null) {
+                PreviewLoadState(sourcePath = null, complete = true)
+            } else {
+                withContext(Dispatchers.IO) {
+                    try {
+                        // Same EXIF orientation and bounded decode as Reel/Home
+                        // wallpaper. Original file bytes are untouched.
+                        val image = BoundedPhotoDecode.decode(
+                            File(path), maxEdge = 1024
+                        ).asImageBitmap()
+                        PreviewLoadState(sourcePath = path, image = image, complete = true)
+                    } catch (_: Exception) {
+                        PreviewLoadState(sourcePath = path, complete = true)
+                    }
+                }
             }
         }
     }
+    val image = loaded.imageFor(path)
     Box(
         modifier = modifier.background(Color(0xFFE1D9CC), RoundedCornerShape(12.dp))
             .semantics { contentDescription = label },
         contentAlignment = Alignment.Center
     ) {
-        if (image == null) {
-            Text(if (path == null) "No photo" else "Image unavailable")
-        } else {
-            Image(
-                bitmap = image!!,
+        when {
+            path == null -> Text("No photo")
+            loaded.isLoading(path) -> Text("Loading photo…")
+            image == null -> Text("Image unavailable")
+            else -> Image(
+                bitmap = image,
                 contentDescription = label,
                 contentScale = contentScale,
                 modifier = Modifier.fillMaxSize()
