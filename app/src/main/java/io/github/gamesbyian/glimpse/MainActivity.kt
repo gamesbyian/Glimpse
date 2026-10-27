@@ -363,6 +363,7 @@ private fun GlimpseScreen(
                         },
                         enabled = activeCollection != null && !state.busy
                     ) { Text("Rename collection") }
+                    if (state.photos.isNotEmpty()) {
                     TextButton(
                         onClick = {
                             val chosen = state.collections.firstOrNull {
@@ -379,16 +380,19 @@ private fun GlimpseScreen(
                         },
                         enabled = activeCollection != null && !state.busy
                     ) { Text("Export collection ZIP") }
+                    }
                 }
                 if (archivePickerError != null) {
                     Text(archivePickerError!!, color = MaterialTheme.colorScheme.error)
                 }
-                Text(
-                    "Export uses Android's Save As destination and contains exact " +
-                        "unedited originals with camera/location metadata. It may be " +
-                        "large, and Glimpse cannot restore ZIP archives yet.",
-                    style = MaterialTheme.typography.bodySmall
-                )
+                if (state.photos.isNotEmpty()) {
+                    Text(
+                        "Export uses Android's Save As destination and contains exact " +
+                            "unedited originals with camera/location metadata. It may be " +
+                            "large, and Glimpse cannot restore ZIP archives yet.",
+                        style = MaterialTheme.typography.bodySmall
+                    )
+                }
                 val renameTarget = state.collections.firstOrNull {
                     it.id == renameTargetCollection
                 }
