@@ -333,6 +333,27 @@ def main():
                                 "Real Room-backed collection tile not in initial viewport")
                 raise RuntimeError("Actual initial 22-photo collection tile/count missing")
         capture("22-reel-initial", "Collection with 22 actual records, before any interaction")
+        if args.mode == "full":
+            # The new primary doorway must open a real photographic Reel,
+            # preserve finite identity and return without applying wallpaper.
+            click_label("Browse photo reel")
+            first_reel = hierarchy()
+            if ("Turn a new page." not in first_reel or
+                    "Previewing 1 of 22" not in first_reel or
+                    "Paper photo reel" not in first_reel):
+                capture_failure("focused-reel-entry-missing",
+                                "Dedicated Reel lacks selected hero, count or real Canvas")
+                raise RuntimeError("Focused Reel entry not visibly functional")
+            capture("22-focused-reel-entry",
+                    "First-frame dedicated photo room with stationary hero and actual reel")
+            click_label("Next photo")
+            if "Previewing 2 of 22" not in hierarchy():
+                raise RuntimeError("Focused Reel Next did not select stable photo 2")
+            capture("22-focused-reel-next",
+                    "Photo 2 preview from same collection after semantic Next")
+            click_label("Back to Home")
+            if "Glimpse" not in hierarchy():
+                raise RuntimeError("Dedicated reel did not return to Home dashboard")
         swipe("up")
         capture("22-reel-and-hero", "Scroll to photo selection and selected hero")
         if args.mode == "full":
