@@ -2,8 +2,8 @@ package io.github.gamesbyian.glimpse.domain
 
 import android.app.WallpaperManager
 import android.content.Context
-import android.graphics.BitmapFactory
 import androidx.annotation.VisibleForTesting
+import io.github.gamesbyian.glimpse.data.BoundedPhotoDecode
 import io.github.gamesbyian.glimpse.data.GlimpseDao
 import io.github.gamesbyian.glimpse.data.PhotoRecord
 import io.github.gamesbyian.glimpse.data.RotationRecord
@@ -14,6 +14,7 @@ import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 import kotlinx.coroutines.withContext
 import org.json.JSONArray
+import java.io.File
 
 /**
  * Single serialized side-effect gateway. Browsing never calls this class.
@@ -196,20 +197,11 @@ class WallpaperCommands(
         }
     }
 
-    private fun decodeForWallpaper(photo: PhotoRecord): android.graphics.Bitmap {
-        val bound = BitmapFactory.Options().apply { inJustDecodeBounds = true }
-        BitmapFactory.decodeFile(photo.localPath, bound)
-        require(bound.outWidth > 0 && bound.outHeight > 0) { "Image missing or corrupt" }
-        var sample = 1
-        while (bound.outWidth / sample > 3200 || bound.outHeight / sample > 3200) {
-            sample *= 2
-        }
-        return requireNotNull(
-            BitmapFactory.decodeFile(photo.localPath, BitmapFactory.Options().apply {
-                inSampleSize = sample
-            })
-        ) { "Unable to decode offline image" }
-    }
+    private fun decodeForWallpaper(photo: PhotoRecord): android.graphics.Bitmap =
+        // ImageDecoder respects EXIF orientation while bounding decoded pixel
+        // dimensions, so the user's selected camera photo is applied upright.
+        // Imported original bytes remain immutable and sharing stays untouched.
+        BoundedPhotoDecode.decode(File(photo.localPath), maxEdge = 3200)
 
     private fun decodeBag(raw: String): List<String> = try {
         val json = JSONArray(raw)
