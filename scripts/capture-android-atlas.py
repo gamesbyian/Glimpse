@@ -83,6 +83,26 @@ def start_fixture(count, active=False):
     # ONLY use on a disposable emulator/test device; destroys Glimpse data.
     adb("shell", "am", "force-stop", APP, check=False)
     adb("shell", "pm", "clear", APP)
+    # Clearing package data tears down the previous Android activity task
+    # asynchronously. Starting a new launcher immediately can put it into a
+    # process subsequently killed by the *old* task's destroy-timeout handler.
+    # See API34 atlas failure 40449390809. Wait for actual activity removal.
+    leftovers = []
+    for _ in range(28):
+        state = adb("shell", "dumpsys", "activity", "activities",
+                    check=False, timeout=15)
+        leftovers = re.findall(
+            r"ActivityRecord\{[^}]*" + re.escape(APP) + r"[^}]*\}", state
+        )
+        if not leftovers:
+            break
+        time.sleep(1.0)
+    else:
+        capture_failure("old-fixture-task-still-active",
+                        "Stale Android ActivityRecord after pm clear: " +
+                        str(leftovers[:3]))
+        raise RuntimeError("Previous fixture task not removed after package clear")
+    time.sleep(1.5)
     launch = adb("shell", "am", "start", "-n", FIXTURE,
                  "--ei", "count", str(count),
                  "--ez", "active", str(active).lower(), check=False)
@@ -311,6 +331,21 @@ def main():
                 raise RuntimeError("Detail Next did not select photograph 2 of 22")
             capture("22-photo-detail-next",
                     "Next selects next stable ID without changing system wallpaper")
+            reach_and_click("Share original photo")
+            time.sleep(2.0)
+            chooser = hierarchy()
+            packages = {node.attrib.get("package")
+                        for node in ET.fromstring(chooser).iter("node")}
+            if not (packages & {"android", "com.android.intentresolver",
+                                "com.google.android.intentresolver"}):
+                raise RuntimeError("Actual Android Sharesheet never opened: " +
+                                   ",".join(sorted(str(p) for p in packages)))
+            capture("22-original-android-sharesheet",
+                    "Android chooser launched from verified immutable original; no wallpaper operation")
+            adb("shell", "input", "keyevent", "4")
+            time.sleep(1.0)
+            if "In focus." not in hierarchy():
+                raise RuntimeError("Photo detail did not survive cancelled Android Sharesheet")
             reach_and_click("Back to Reel / Grid", "down")
             capture("22-photo-detail-return",
                     "Return to original Reel/Grid browsing context")
