@@ -4,9 +4,9 @@ Development began from [issue #1](https://github.com/gamesbyian/Glimpse/issues/1
 
 With JDK 17 and Android SDK 37 installed:
 
-    ./gradlew :app:assembleDebug :app:testDebugUnitTest
+    ./gradlew :app:packageGlimpseDebugApk :app:testDebugUnitTest
 
-[New native reel CI run 39924084187](https://github.com/gamesbyian/Glimpse/actions/runs/39924084187) completed successfully with `:app:assembleDebug` and `:app:testDebugUnitTest` and uploaded the **glimpse-debug-test-only** artifact. The debug APK is `app/build/outputs/apk/debug/app-debug.apk`. A path-filtered workflow also builds/tests native changes and allows manual dispatch.
+[New native reel CI run 39924084187](https://github.com/gamesbyian/Glimpse/actions/runs/39924084187) completed successfully with `:app:assembleDebug` and `:app:testDebugUnitTest` and uploaded the **glimpse-debug-test-only** artifact. The distributable debug APK is `app/build/distributions/glimpse-debug.apk`. The Gradle-generated internal APK remains `app/build/outputs/apk/debug/app-debug.apk` for emulator installs and tooling. `:app:packageGlimpseDebugApk` runs `assembleDebug` before copying the distributable with the stable `glimpse` filename. A path-filtered workflow also builds/tests native changes and allows manual dispatch.
 
 The native prototype can create collections; import Android Photo Picker selections into SHA-verified offline originals; retry failed selections during the same running process; preserve per-collection focus; browse through a provisional animated five-aperture reel, Grid, and full-photo detail; explicitly set Home wallpaper; share an unchanged original through Android Sharesheet; and run no-repeat shuffle while the Activity is visible. Help & Privacy also exposes accurate build/channel disclosures and a read-only count/byte estimate of private original files. Native reel material/motion and one-handed accessibility remain provisional until a real device validates the experience. Android Doze prevents any promise of exact background five-minute scheduling.
 
