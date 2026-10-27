@@ -463,9 +463,29 @@ def main():
             capture("22-original-android-save-as",
                     "Real Android DocumentsUI chosen for user-initiated original export")
             adb("shell", "input", "keyevent", "4")
-            time.sleep(1.2)
-            if "In focus." not in hierarchy():
-                raise RuntimeError("Cancelled Save As failed to return to photo detail")
+            # We scrolled down to reach Save As. "In focus." is above the
+            # fold and is not a valid post-cancel assertion at this position.
+            # Require an actual Glimpse detail action after DocumentsUI exits.
+            returned = False
+            for _ in range(12):
+                time.sleep(0.6)
+                after_cancel = hierarchy()
+                packages = {node.attrib.get("package")
+                            for node in ET.fromstring(after_cancel).iter("node")}
+                detail_action = ("Save original copy" in after_cancel or
+                                 "Set Home wallpaper now" in after_cancel or
+                                 "Share original photo" in after_cancel)
+                if (APP in packages and
+                        not packages.intersection({"com.android.documentsui",
+                                                   "com.google.android.documentsui"}) and
+                        detail_action):
+                    returned = True
+                    break
+            if not returned:
+                capture_failure("save-original-cancel-return",
+                                "Android Save As cancellation did not expose " +
+                                "a Glimpse photo detail action")
+                raise RuntimeError("Cancelled Save As did not return to photo detail")
             reach_and_click("Back to Reel / Grid", "down")
             capture("22-photo-detail-return",
                     "Return to original Reel/Grid browsing context")
