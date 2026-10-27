@@ -28,6 +28,9 @@ def app_file(name):
     return base.adb("shell","run-as",APP,"cat","files/"+name,check=False)
 
 def set_clipboard(text_only=False):
+    # The second handoff must not mistake the previous fixture receipt for a
+    # newly completed Android clipboard write.
+    base.adb("shell","run-as",APP,"rm","files/clipboard-fixture-ready.json",check=False)
     base.adb("shell","am","start","-n",CLIP_FIXTURE,
              "--ez","textOnly",str(text_only).lower())
     raw = until(lambda: app_file("clipboard-fixture-ready.json"),seconds=25)
