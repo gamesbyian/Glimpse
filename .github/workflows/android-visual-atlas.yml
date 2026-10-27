@@ -19,6 +19,9 @@ on:
   pull_request:
     paths:
       - .github/workflows/android-visual-atlas.yml
+      - scripts/capture-android-atlas.py
+      - app/src/main/java/io/github/gamesbyian/glimpse/MainActivity.kt
+      - app/src/main/java/io/github/gamesbyian/glimpse/GlimpsePhotoDetail.kt
       - app/src/main/java/io/github/gamesbyian/glimpse/CircularPhotoReel.kt
       - app/src/main/java/io/github/gamesbyian/glimpse/GlimpseTypography.kt
       - app/src/main/res/font/**
