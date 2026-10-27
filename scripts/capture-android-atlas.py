@@ -328,16 +328,14 @@ def main():
                 capture_failure("incorrect-home-acknowledgment",
                                 "Fresh fixture must not claim a wallpaper acknowledgment")
                 raise RuntimeError("Initial Home card lacks truthful no-acknowledgment state")
+            if "ATLAS FIXTURE · 22 photos, 22 photos" not in first_viewport:
+                capture_failure("missing-collection-overview",
+                                "Real Room-backed collection tile not in initial viewport")
+                raise RuntimeError("Actual initial 22-photo collection tile/count missing")
         capture("22-reel-initial", "Collection with 22 actual records, before any interaction")
         swipe("up")
         capture("22-reel-and-hero", "Scroll to photo selection and selected hero")
         if args.mode == "full":
-            # Assert real Room membership aggregation while tile is on screen.
-            overview = hierarchy()
-            if "ATLAS FIXTURE · 22 photos, 22 photos" not in overview:
-                capture_failure("missing-collection-overview",
-                                "Actual photo-backed collection tile/count missing")
-                raise RuntimeError("Room-derived 22-photo collection tile not visible")
             swipe("up")
             capture("22-controls-and-rotation", "Bottom controls and rotation status")
             start_fixture(3)
