@@ -379,6 +379,27 @@ def main():
             reach_and_click("Back to Reel / Grid", "down")
             capture("22-photo-detail-return",
                     "Return to original Reel/Grid browsing context")
+            # R3 foreground shuffle source must be independent of which library
+            # the user has opened. Seed two real Room memberships, start active
+            # shuffle on the first, then browse the second and inspect status.
+            start_fixture(22, active=True)
+            reach_and_click("ALTERNATE ATLAS")
+            source_snapshot = ""
+            for _ in range(8):
+                source_snapshot = hierarchy()
+                if "Shuffle collection: ATLAS FIXTURE · 22 photos" in source_snapshot:
+                    break
+                swipe("up")
+            else:
+                capture_failure("rotation-source-not-visible",
+                                "Unable to find named saved rotation source")
+                raise RuntimeError("Current rotation source not labelled in native UI")
+            if "Browsing a different collection does not switch the shuffle" not in source_snapshot:
+                capture_failure("rotation-source-mismatch-unexplained",
+                                "Source changed or browse/shuffle distinction missing")
+                raise RuntimeError("Browse collection switch lost source disclosure")
+            capture("22-shuffle-source-after-browse-switch",
+                    "Browsing alternate two-photo collection retains named 22-photo shuffle source")
             adb("shell", "settings", "put", "system", "font_scale", "2.0")
             start_fixture(22)
             capture("22-reel-text-200-percent", "OS font scale 200%, first viewport")
