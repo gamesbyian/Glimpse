@@ -31,6 +31,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.produceState
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
@@ -55,6 +56,7 @@ internal fun GlimpseSupportScreen(
     onBack: () -> Unit,
     modifier: Modifier = Modifier
 ) {
+    val currentState by model.ui.collectAsStateWithLifecycle()
     val context = LocalContext.current
     val auditScope = rememberCoroutineScope()
     var archiveOpenError by remember { mutableStateOf<String?>(null) }
@@ -223,6 +225,10 @@ internal fun GlimpseSupportScreen(
         }) { Text("Restore collection ZIP…") }
         if (archiveOpenError != null) {
             Text(archiveOpenError!!, color = MaterialTheme.colorScheme.error)
+        }
+        if (currentState.message.startsWith("Restored ") ||
+            currentState.message.contains("archive", ignoreCase = true)) {
+            Text(currentState.message, style = MaterialTheme.typography.bodyMedium)
         }
         Text("After restoring, return Home to browse the new collection. " +
             "An invalid or interrupted archive leaves existing collections unchanged.",
