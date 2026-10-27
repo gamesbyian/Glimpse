@@ -428,7 +428,7 @@ def main():
                     if "Paper photo reel" in node.attrib.get("content-desc", "")
                 ), None)
                 if reel_node is not None:
-                    raw_bounds = re.findall(r"\\d+", reel_node.attrib.get("bounds", ""))
+                    raw_bounds = re.findall(r"\d+", reel_node.attrib.get("bounds", ""))
                     if len(raw_bounds) == 4:
                         x0, y0, x1, y1 = map(int, raw_bounds)
                         visible = max(0, min(y1, h) - max(y0, 0))
