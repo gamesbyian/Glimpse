@@ -5,6 +5,7 @@ import android.content.Context
 import android.net.Uri
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
+import io.github.gamesbyian.glimpse.data.CollectionZipWriter
 import io.github.gamesbyian.glimpse.data.CollectionOverview
 import io.github.gamesbyian.glimpse.data.CollectionRecord
 import io.github.gamesbyian.glimpse.data.GlimpseDatabase
@@ -179,6 +180,43 @@ class GlimpseModel(application: Application) : AndroidViewModel(application) {
                 checkContext.ensureActive()
             }
         }
+
+    /**
+     * Explicit SAF export. Does not promise restore, cloud synchronization,
+     * or transactionality across an external document provider.
+     */
+    fun exportCollectionZip(uri: Uri, requestedCollectionId: String?) = action {
+        val id = requestedCollectionId ?: error(
+            "The original export collection was lost. Choose Export again."
+        )
+        require(uri.scheme == "content") { "Android did not provide a document destination." }
+        try {
+            val summary = withContext(Dispatchers.IO) {
+                val collection = dao.findCollection(id)
+                    ?: error("The collection is no longer available for export.")
+                val records = dao.photosIn(id)
+                val destination = getApplication<Application>()
+                    .contentResolver.openOutputStream(uri, "wt")
+                    ?: error("Android could not open the selected export destination.")
+                destination.use { output ->
+                    val exportContext = coroutineContext
+                    CollectionZipWriter.write(
+                        output, java.io.File(getApplication<Application>().filesDir, "originals"),
+                        collection.title, records
+                    ) { exportContext.ensureActive() }
+                }
+            }
+            "Android accepted a ZIP with ${summary.count} original photos " +
+                "(${summary.bytes} uncompressed image bytes). Verify the chosen " +
+                "destination. This export cannot yet be restored inside Glimpse."
+        } catch (cancel: CancellationException) {
+            throw cancel
+        } catch (_: Exception) {
+            "ZIP export failed or was interrupted. A partial destination file may " +
+                "exist; delete it using its Android document provider. Original " +
+                "photos in Glimpse were not changed."
+        }
+    }
 
     fun createCollection(name: String) = action {
         val title = checkedCollectionTitle(name)

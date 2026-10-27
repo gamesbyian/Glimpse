@@ -93,6 +93,9 @@ interface GlimpseDao {
     )
     fun watchAcknowledgedPhoto(): Flow<PhotoRecord?>
 
+    @Query("SELECT * FROM collections WHERE id = :id LIMIT 1")
+    suspend fun findCollection(id: String): CollectionRecord?
+
     @Query("SELECT * FROM photos WHERE id = :id LIMIT 1")
     suspend fun findPhoto(id: String): PhotoRecord?
 
