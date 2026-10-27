@@ -46,6 +46,12 @@ data class GlimpseUiState(
         get() = photos.firstOrNull { it.id == selectedPhotoId } ?: photos.firstOrNull()
 }
 
+/** Defend against asynchronous Room emissions when Android's acknowledged ID changes. */
+internal fun matchedAcknowledgedPhoto(
+    rotation: RotationRecord?,
+    candidate: PhotoRecord?
+): PhotoRecord? = candidate?.takeIf { it.id == rotation?.lastAcknowledgedPhotoId }
+
 @OptIn(ExperimentalCoroutinesApi::class)
 class GlimpseModel(application: Application) : AndroidViewModel(application) {
     private val dao = GlimpseDatabase.open(application).dao()
@@ -93,7 +99,7 @@ class GlimpseModel(application: Application) : AndroidViewModel(application) {
         val photos = if (loaded.collectionId == cursor.collectionId) loaded.items else emptyList()
         val (rotation, acknowledged) = wallpaperState
         // Room flows can emit independently. Reject transient mismatched pairs.
-        val provenPhoto = acknowledged?.takeIf { it.id == rotation?.lastAcknowledgedPhotoId }
+        val provenPhoto = matchedAcknowledgedPhoto(rotation, acknowledged)
         GlimpseUiState(
             collections = collections,
             collectionOverviews = overviews,
