@@ -1,5 +1,9 @@
 # Glimpse agent guide
 
+> **Primary owner art references (2026-10-26):** [two original, unchanged visual boards](design/reference/owner-2026-10-26/README.md), [A](design/reference/owner-2026-10-26/glimpse-physical-reels-and-screen-concepts-a.jpg) and [B](design/reference/owner-2026-10-26/glimpse-physical-reels-and-screen-concepts-b.jpg). Start art/reel work here, then obey the finite-reel and native feature contracts. Their pictured provider/settings/categories do *not* authorize inventing functionality. Preserve their original JPEGs; separately license production art and fonts.
+
+
+
 > **26 October 2026 build authority:** The owner endorsed the physical cream paper-reel/editorial-photography direction (not every illustrated control). Follow [native build plan](docs/planning/BUILD-PLAN-2026-10-26.md) and [tactile material constraints](docs/design/TACTILE-REEL-MATERIAL-2026-10-26.md) before starting new artwork or Android UI. The separate [native reel PR #27](https://github.com/gamesbyian/Glimpse/pull/27) implements provisional actual disc motion + a baked five-aperture raster face, not final owner-approved art or device-proven behavior. The first real emulator screenshot revealed a flat/full-width presentation, prompting shared lower-corner geometry correction. Keep the [master visual-review PR #6](https://github.com/gamesbyian/Glimpse/pull/6) draft/unmerged. Do not invent settings/provider/categorical reels from illustrative boards.
 
 
