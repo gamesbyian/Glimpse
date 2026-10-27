@@ -77,22 +77,41 @@ private fun smallBitmap(file: String): Bitmap? {
     return image
 }
 
-/** Draws a paper aperture around real photo identity without mutating wallpaper. */
-private fun aperture(cx: Float, cy: Float, outer: Float, inner: Float, middleDegrees: Float): Path {
-    val rectOuter = RectF(cx - outer, cy - outer, cx + outer, cy + outer)
-    val rectInner = RectF(cx - inner, cy - inner, cx + inner, cy + inner)
-    val start = middleDegrees - 31f
-    val end = middleDegrees + 31f
-    val x = cx + outer * cos(Math.toRadians(start.toDouble())).toFloat()
-    val y = cy + outer * sin(Math.toRadians(start.toDouble())).toFloat()
+/**
+ * A rounded trapezoidal photographic opening set inside a broad paper ring.
+ * Unlike the original pie-slice sectors, the photograph is inset from both the
+ * rim and the hub. The baked-face PNG masks the final softly rounded edges.
+ */
+private fun aperture(cx: Float, cy: Float, radius: Float, middleDegrees: Float): Path {
+    val outer = radius * ReelWindow.WINDOW_OUTER_RADIUS
+    val inner = radius * ReelWindow.WINDOW_INNER_RADIUS
+    val half = ReelWindow.WINDOW_HALF_ANGLE
+    val start = middleDegrees - half
+    val end = middleDegrees + half
+    val corner = 3f
+    val cornerRadius = radius * .037f
+    fun radial(r: Float, degree: Float): Pair<Float, Float> {
+        val a = Math.toRadians(degree.toDouble())
+        return (cx + r * cos(a).toFloat()) to (cy + r * sin(a).toFloat())
+    }
+    val outerRect = RectF(cx - outer, cy - outer, cx + outer, cy + outer)
+    val innerRect = RectF(cx - inner, cy - inner, cx + inner, cy + inner)
     return Path().apply {
-        moveTo(x, y)
-        arcTo(rectOuter, start, 62f)
-        lineTo(
-            cx + inner * cos(Math.toRadians(end.toDouble())).toFloat(),
-            cy + inner * sin(Math.toRadians(end.toDouble())).toFloat()
-        )
-        arcTo(rectInner, end, -62f)
+        val first = radial(outer, start + corner)
+        moveTo(first.first, first.second)
+        arcTo(outerRect, start + corner, 2f * (half - corner))
+        val outerEnd = radial(outer - cornerRadius, end)
+        radial(outer, end).let { quadTo(it.first, it.second, outerEnd.first, outerEnd.second) }
+        val innerEnd = radial(inner + cornerRadius, end)
+        lineTo(innerEnd.first, innerEnd.second)
+        val innerCurve = radial(inner, end - corner)
+        radial(inner, end).let { quadTo(it.first, it.second, innerCurve.first, innerCurve.second) }
+        arcTo(innerRect, end - corner, -2f * (half - corner))
+        val innerStart = radial(inner + cornerRadius, start)
+        radial(inner, start).let { quadTo(it.first, it.second, innerStart.first, innerStart.second) }
+        val outerStart = radial(outer - cornerRadius, start)
+        lineTo(outerStart.first, outerStart.second)
+        radial(outer, start).let { quadTo(it.first, it.second, first.first, first.second) }
         close()
     }
 }
@@ -284,7 +303,7 @@ fun CircularPhotoReel(
                 native.drawCircle(cx, cy, r, rim)
                 for (offset in -2..2) {
                     val angle = -90f + offset * 72f
-                    val wedge = aperture(cx, cy, r - 14.dp.toPx(), inner, angle)
+                    val wedge = aperture(cx, cy, r, angle)
                     native.drawPath(wedge, empty)
                     val id = slots[offset + 2]
                     val bitmap = id?.let(local::get)?.let { thumbs[it.localPath] }
