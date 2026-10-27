@@ -54,6 +54,8 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.unit.sp
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -120,7 +122,12 @@ private fun GlimpseScreen(model: GlimpseModel) {
                 .padding(horizontal = 16.dp, vertical = 12.dp),
             verticalArrangement = Arrangement.spacedBy(12.dp)
         ) {
-            Text("Glimpse", style = MaterialTheme.typography.headlineLarge, fontWeight = FontWeight.Bold)
+            Text("Glimpse", color = Color(0xFF193B3F),
+                fontFamily = FontFamily.Serif, fontSize = 44.sp,
+                fontWeight = FontWeight.Normal, letterSpacing = (-1.4).sp)
+            Text("YOUR PHOTOS, NEW PERSPECTIVES",
+                color = Color(0xFF986950), fontWeight = FontWeight.SemiBold,
+                style = MaterialTheme.typography.labelSmall, letterSpacing = 1.3.sp)
             if (state.collections.isEmpty() || showNewCollection) {
                 Text(
                     if (state.collections.isEmpty()) "Start with a collection of photographs."
@@ -153,7 +160,8 @@ private fun GlimpseScreen(model: GlimpseModel) {
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.SpaceBetween
                 ) {
-                    Text("Collections", fontWeight = FontWeight.SemiBold)
+                    Text("Collections", color = Color(0xFF263A37),
+                        fontFamily = FontFamily.Serif, fontSize = 24.sp)
                     TextButton(onClick = { showNewCollection = !showNewCollection }) {
                         Text(if (showNewCollection) "Cancel" else "New collection")
                     }
