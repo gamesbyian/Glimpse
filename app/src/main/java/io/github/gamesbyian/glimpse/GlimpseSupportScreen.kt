@@ -3,6 +3,7 @@ package io.github.gamesbyian.glimpse
 import android.content.Intent
 import android.content.pm.ApplicationInfo
 import android.net.Uri
+import android.text.format.Formatter
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -19,12 +20,18 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.produceState
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import io.github.gamesbyian.glimpse.data.LocalStorageInventory
+import io.github.gamesbyian.glimpse.data.inspectLocalStorage
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
+import java.io.File
 
 /**
  * Offline, source-faithful M1 help/privacy entry. No fabricated Play channel,
@@ -43,6 +50,23 @@ internal fun GlimpseSupportScreen(
     }
     val isDebug = (context.applicationInfo.flags and ApplicationInfo.FLAG_DEBUGGABLE) != 0
     var externalError by remember { mutableStateOf<String?>(null) }
+    val inventory by produceState<StorageReadout>(StorageReadout.Loading, context.filesDir) {
+        value = withContext(Dispatchers.IO) {
+            val result = inspectLocalStorage(File(context.filesDir, "originals"))
+            if (result == null) StorageReadout.Unavailable else StorageReadout.Ready(result)
+        }
+    }
+    val storageSummary = when (val current = inventory) {
+        StorageReadout.Loading -> "Calculating local storage usage…"
+        StorageReadout.Unavailable ->
+            "Storage inspection is unavailable. No files were changed."
+        is StorageReadout.Ready ->
+            "${current.snapshot.originalFileCount} stored original files · " +
+                Formatter.formatShortFileSize(context, current.snapshot.originalBytes) +
+                " of image data. " +
+                "${current.snapshot.stagingFileCount} temporary import fragments · " +
+                Formatter.formatShortFileSize(context, current.snapshot.stagingBytes) + "."
+    }
 
     Column(
         modifier = modifier.fillMaxSize().background(Color(0xFFF6F0E6))
@@ -103,6 +127,16 @@ internal fun GlimpseSupportScreen(
                 "a read-only copy to an Android-selected recipient."
         )
         SupportSection(
+            "LOCAL STORAGE · READ ONLY",
+            storageSummary,
+            "Counts are physical SHA-named files and file lengths, not the number " +
+                "of photos assigned to a collection or a fresh integrity check. " +
+                "The same original may belong to multiple collections.",
+            "This screen never deletes files. Temporary fragments may be active or " +
+                "awaiting cleanup; do not manually remove imported originals because " +
+                "that can break collection access and sharing."
+        )
+        SupportSection(
             "ABOUT THIS BUILD",
             "Version: " + (packageInfo?.versionName ?: "Unavailable") +
                 " · build " + (packageInfo?.longVersionCode?.toString() ?: "unknown"),
@@ -147,4 +181,10 @@ private fun SupportSection(heading: String, vararg paragraphs: String) {
             }
         }
     }
+}
+
+private sealed interface StorageReadout {
+    data object Loading : StorageReadout
+    data object Unavailable : StorageReadout
+    data class Ready(val snapshot: LocalStorageInventory) : StorageReadout
 }
