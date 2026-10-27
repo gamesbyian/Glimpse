@@ -46,6 +46,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.unit.dp
+import io.github.gamesbyian.glimpse.data.BoundedPhotoDecode
 import io.github.gamesbyian.glimpse.data.PhotoRecord
 import io.github.gamesbyian.glimpse.domain.ReelWindow
 import io.github.gamesbyian.glimpse.domain.ReelMotion
@@ -56,6 +57,7 @@ import kotlinx.coroutines.launch
 import kotlin.math.cos
 import kotlin.math.sin
 import kotlin.math.abs
+import java.io.File
 
 /** Small global bounded thumbnail cache; never loads full-resolution originals. */
 private object ReelThumbs : LruCache<String, Bitmap>(16 * 1024 * 1024) {
@@ -64,17 +66,10 @@ private object ReelThumbs : LruCache<String, Bitmap>(16 * 1024 * 1024) {
 
 private fun smallBitmap(file: String): Bitmap? {
     synchronized(ReelThumbs) { ReelThumbs.get(file)?.let { return it } }
-    val size = BitmapFactory.Options().apply { inJustDecodeBounds = true }
-    BitmapFactory.decodeFile(file, size)
-    if (size.outWidth <= 0 || size.outHeight <= 0) return null
-    var sample = 1
-    while (size.outWidth / sample > 512 || size.outHeight / sample > 512) {
-        sample *= 2
-    }
-    val image = BitmapFactory.decodeFile(file, BitmapFactory.Options().apply {
-        inSampleSize = sample
-        inPreferredConfig = Bitmap.Config.RGB_565
-    }) ?: return null
+    // The photo inside the paper aperture must be upright in the same way
+    // as the stationary hero preview and the applied wallpaper. Reuse one
+    // bounded decoder and preserve the compact 16 MB thumbnail cache.
+    val image = BoundedPhotoDecode.decode(File(file), maxEdge = 512, lowMemory = true)
     synchronized(ReelThumbs) { ReelThumbs.put(file, image) }
     return image
 }
