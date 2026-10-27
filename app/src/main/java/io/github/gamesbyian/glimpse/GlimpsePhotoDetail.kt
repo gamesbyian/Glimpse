@@ -1,5 +1,9 @@
 package io.github.gamesbyian.glimpse
 
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
+import io.github.gamesbyian.glimpse.data.PhotoRecord
+
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -51,6 +55,34 @@ internal fun GlimpsePhotoDetail(
     val scope = rememberCoroutineScope()
     var sharing by remember(photo?.id) { mutableStateOf(false) }
     var shareError by remember(photo?.id) { mutableStateOf<String?>(null) }
+    var saving by remember { mutableStateOf(false) }
+    var saveNotice by remember { mutableStateOf<String?>(null) }
+    // Hold the exact selected image across the external picker. Not persisted.
+    var pendingSave by remember { mutableStateOf<PhotoRecord?>(null) }
+    val documentPicker = rememberLauncherForActivityResult(
+        ActivityResultContracts.CreateDocument("image/*")
+    ) { destination ->
+        val original = pendingSave
+        pendingSave = null
+        if (destination != null) {
+            if (original == null) {
+                saveNotice = "The source selection expired. Choose the photo and Save again."
+            } else {
+                saving = true
+                saveNotice = null
+                scope.launch {
+                    try {
+                        saveNotice = OriginalPhotoSave.copy(context, original, destination)
+                    } catch (error: Exception) {
+                        saveNotice = "Save failed: " +
+                            (error.message ?: "Android could not write the selected document.")
+                    } finally {
+                        saving = false
+                    }
+                }
+            }
+        }
+    }
     Column(
         modifier = modifier.fillMaxSize().background(Color(0xFFF6F0E6))
             .verticalScroll(rememberScrollState())
@@ -131,6 +163,33 @@ internal fun GlimpsePhotoDetail(
         )
         if (shareError != null) {
             Text("Sharing unavailable: " + shareError, color = MaterialTheme.colorScheme.error)
+        }
+        OutlinedButton(
+            onClick = {
+                val source = photo ?: return@OutlinedButton
+                try {
+                    val filename = OriginalPhotoSave.defaultName(source)
+                    pendingSave = source
+                    saveNotice = null
+                    documentPicker.launch(filename)
+                } catch (error: Exception) {
+                    pendingSave = null
+                    saveNotice = "Could not open Android Save As: " +
+                        (error.message ?: "Unsupported destination.")
+                }
+            },
+            enabled = photo != null && !sharing && !saving
+        ) {
+            Text(if (saving) "Saving original copy…" else "Save original copy…")
+        }
+        Text(
+            "Choose a file destination through Android. The exact imported " +
+                "original, including camera/location metadata, is copied without " +
+                "editing or deleting Glimpse's private file. This is not a full library backup.",
+            style = MaterialTheme.typography.bodySmall
+        )
+        if (saveNotice != null) {
+            Text(saveNotice!!, style = MaterialTheme.typography.bodySmall)
         }
         Button(
             onClick = model::applyPreview,
