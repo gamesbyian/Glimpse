@@ -9,12 +9,14 @@ import kotlinx.coroutines.withContext
 import java.io.File
 import java.io.FileOutputStream
 import java.security.MessageDigest
+import java.util.UUID
 
 data class ImportResult(
     val selected: Int,
     val imported: Int,
     val duplicates: Int,
-    val failures: Int
+    val failures: Int,
+    val journalWarnings: Int = 0
 )
 
 /**
@@ -76,6 +78,7 @@ internal fun existingOriginalMatches(
  */
 class PhotoImporter(private val context: Context, private val dao: GlimpseDao) {
     private val originals = File(context.filesDir, "originals").apply { mkdirs() }
+    private val journal = ImportJournal(File(context.filesDir, "import-history.log"))
 
     companion object {
         // A recent file may belong to an import still writing on another job.
@@ -100,24 +103,51 @@ class PhotoImporter(private val context: Context, private val dao: GlimpseDao) {
     suspend fun pruneStalePartialImports(now: Long = System.currentTimeMillis()): Int =
         withContext(Dispatchers.IO) { pruneStalePartialFiles(originals, now) }
 
+    /**
+     * A START lacking a terminal record is uncertain after process restart:
+     * Room may already contain its photo. Re-selecting through the picker is
+     * safe because immutable content hashes and memberships deduplicate.
+     */
+    suspend fun reconcileInterruptedImports(): Int =
+        withContext(Dispatchers.IO) { journal.reconcileInterrupted() }
+
     suspend fun import(uris: List<Uri>, collectionId: String): ImportResult =
         withContext(Dispatchers.IO) {
+            val runId = UUID.randomUUID().toString()
             var imported = 0
             var duplicates = 0
             var failed = 0
-            for (uri in uris) {
+            var journalWarnings = 0
+            // Journal errors must not block safe immutable source ingestion.
+            // They are explicitly disclosed in the result instead.
+            fun note(position: Int, state: ImportJournal.State) {
                 try {
-                    when (copyOne(uri, collectionId)) {
-                        true -> imported++
-                        false -> duplicates++
+                    journal.record(runId, collectionId, position, state)
+                } catch (_: Exception) {
+                    journalWarnings++
+                }
+            }
+            for ((position, uri) in uris.withIndex()) {
+                note(position, ImportJournal.State.START)
+                try {
+                    if (copyOne(uri, collectionId)) {
+                        imported++
+                        note(position, ImportJournal.State.IMPORTED)
+                    } else {
+                        duplicates++
+                        note(position, ImportJournal.State.DUPLICATE)
                     }
                 } catch (cancel: CancellationException) {
+                    note(position, ImportJournal.State.INTERRUPTED)
                     throw cancel
                 } catch (_: Exception) {
                     failed++
+                    // Never persist a provider URI, external filename, path or
+                    // exception message in the private journal.
+                    note(position, ImportJournal.State.FAILED)
                 }
             }
-            ImportResult(uris.size, imported, duplicates, failed)
+            ImportResult(uris.size, imported, duplicates, failed, journalWarnings)
         }
 
     private suspend fun copyOne(uri: Uri, collectionId: String): Boolean {
