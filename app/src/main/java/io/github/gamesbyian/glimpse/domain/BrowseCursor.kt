@@ -10,6 +10,12 @@ data class BrowseCursor(
     val collectionId: String? = null,
     val selectedPhotoId: String? = null
 ) {
+    companion object {
+        /** Restore an available collection by stable ID, or choose first real collection. */
+        fun restoredCollection(availableIds: List<String>, rememberedId: String?): String? =
+            rememberedId?.takeIf { it in availableIds } ?: availableIds.firstOrNull()
+    }
+
     fun open(collectionId: String?, recalledPhotoId: String?): BrowseCursor =
         BrowseCursor(collectionId, if (collectionId == null) null else recalledPhotoId)
 

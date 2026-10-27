@@ -27,6 +27,14 @@ class BrowseCursorTest {
         assertEquals(null, BrowseCursor().open(null, "old").selectedPhotoId)
     }
 
+    @Test fun restoredCollectionFallsBackWithoutFabricatingAnEntry() {
+        val collections = listOf("flowers", "rainbows", "skies")
+        assertEquals("rainbows", BrowseCursor.restoredCollection(collections, "rainbows"))
+        assertEquals("flowers", BrowseCursor.restoredCollection(collections, "deleted"))
+        assertEquals("flowers", BrowseCursor.restoredCollection(collections, null))
+        assertEquals(null, BrowseCursor.restoredCollection(emptyList(), "deleted"))
+    }
+
     @Test fun finiteStepsClampAtBothEndsAndHandleLargeDeltas() {
         val ids = (0 until 60).map { "p$it" }
         val atStart = BrowseCursor("A", "p0")
