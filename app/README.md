@@ -36,9 +36,9 @@ as a repository source, PR artifact, screenshot or chat attachment.
 For a generated identity, use `keytool -genkeypair -storetype PKCS12` in a
 trusted environment and preserve secure offline copies of the keystore and
 passwords. Without configured secrets, builds stay ephemeral **test-only**
-APKs and CI emits a visible warning. PRs from forks normally cannot access
-repository secrets; their generated debug APKs must not be treated as stable
-upgrade packages.
+APKs and CI emits a visible warning. PR builds never receive the persistent signing secrets, including
+same-repository PRs; they use ephemeral test signing and are not upgrade
+acceptance candidates.
 
 Configuring a stable identity for the first time does not retroactively make
 older, differently signed debug APKs upgrade-compatible. A protected

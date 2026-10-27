@@ -49,6 +49,8 @@ jobs:
       - name: Verify offline licensed font identities
         run: python3 scripts/verify-reel-typography.py
       - name: Configure optional stable CI debug signing
+        # Never expose the persistent signing key to arbitrary PR contents.
+        if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
         shell: bash
         env:
           GLIMPSE_CI_SIGNING_KEYSTORE_BASE64: ${{ secrets.GLIMPSE_CI_SIGNING_KEYSTORE_BASE64 }}
@@ -78,6 +80,9 @@ jobs:
             echo "GLIMPSE_CI_DEBUG_KEY_PASSWORD=$GLIMPSE_CI_SIGNING_KEY_PASSWORD" >> "$GITHUB_ENV"
             echo "::notice::Stable CI signing enabled for this build; private key stays out of artifacts."
           fi
+      - name: Warn on non-release PR signing
+        if: github.event_name == 'pull_request'
+        run: echo "::warning::PR debug APK uses ephemeral signing; not a reliable in-place upgrade."
       - name: Compile and test
         run: ./gradlew --no-daemon :app:packageGlimpseDebugApk :app:testDebugUnitTest
       - name: Report public APK certificate fingerprint

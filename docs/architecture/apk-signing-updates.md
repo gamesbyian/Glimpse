@@ -8,7 +8,8 @@ update check. No artifact is a signed release.
 
 The native CI workflow now accepts optional, encrypted repository secrets
 for a persistent PKCS#12 debug signing key. The private key is decoded only
-into the ephemeral runner; it is not uploaded. Missing *all* four secrets
+on main-branch push or manual dispatch, never from PR code, into an ephemeral
+runner; it is not uploaded. Missing *all* four secrets
 leaves explicit per-run debug signing. Missing *some* aborts rather than
 mislabeling the output. Each APK artifact includes a public signing
 fingerprint for independent comparison.
