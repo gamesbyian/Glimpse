@@ -5,6 +5,7 @@ import android.content.Context
 import android.net.Uri
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
+import io.github.gamesbyian.glimpse.data.CollectionZipRestorer
 import io.github.gamesbyian.glimpse.data.CollectionZipWriter
 import io.github.gamesbyian.glimpse.data.CollectionOverview
 import io.github.gamesbyian.glimpse.data.CollectionRecord
@@ -66,6 +67,7 @@ class GlimpseModel(application: Application) : AndroidViewModel(application) {
     private val dao = GlimpseDatabase.open(application).dao()
     private val importer = PhotoImporter(application, dao)
     private val wallpaper = WallpaperCommands(application, dao)
+    private val zipRestorer = CollectionZipRestorer(application, dao)
 
     private val browse = MutableStateFlow(BrowseCursor())
     // Durable per-collection photo IDs; originals, hashes and source paths are
@@ -216,6 +218,19 @@ class GlimpseModel(application: Application) : AndroidViewModel(application) {
                 "exist; delete it using its Android document provider. Original " +
                 "photos in Glimpse were not changed."
         }
+    }
+
+    /**
+     * The system document chooser grants one archive temporarily. Once every
+     * original has been validated, a distinct new collection is committed.
+     * No wallpaper or active rotation is changed by restoration.
+     */
+    fun restoreCollectionZip(uri: Uri) = action {
+        val result = zipRestorer.restore(uri)
+        browse.value = browse.value.open(result.collectionId, null)
+        browsePrefs.edit().putString("active_collection", result.collectionId).apply()
+        "Restored " + result.count + " original photos into a new collection, " +
+            result.title + ". Existing collections and wallpaper were unchanged."
     }
 
     fun createCollection(name: String) = action {

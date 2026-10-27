@@ -163,6 +163,28 @@ interface GlimpseDao {
         return if (insertMembership(MembershipRecord(targetCollectionId, photoId)) == -1L) 0 else 1
     }
 
+    /**
+     * The archive is fully validated before this transaction. Either its new
+     * collection and every membership commit together, or none commit.
+     */
+    @Transaction
+    suspend fun insertRestoredCollection(
+        collection: CollectionRecord, originals: List<PhotoRecord>
+    ) {
+        require(insertCollection(collection) != -1L) { "New collection ID already exists." }
+        for (photo in originals) {
+            val known = findPhoto(photo.id)
+            require(known == null ||
+                (known.sha256 == photo.sha256 && known.mime == photo.mime &&
+                    known.byteLength == photo.byteLength && known.localPath == photo.localPath)
+            ) { "A stored image record disagrees with the archive." }
+            insertPhoto(photo)
+            require(insertMembership(MembershipRecord(collection.id, photo.id)) != -1L) {
+                "The archive contains a duplicate collection membership."
+            }
+        }
+    }
+
     @Query("SELECT * FROM rotation WHERE id = 1 LIMIT 1")
     fun watchRotation(): Flow<RotationRecord?>
 
