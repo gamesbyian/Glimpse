@@ -1,5 +1,9 @@
 # Glimpse design assets: current inventory
 
+## Owner reference boards (26 October 2026)
+
+The two owner-uploaded JPG concept boards have been moved **byte-for-byte** from the repository root to [the dedicated owner reference folder](../design/reference/owner-2026-10-26/README.md): [Board A](../design/reference/owner-2026-10-26/glimpse-physical-reels-and-screen-concepts-a.jpg) and [Board B](../design/reference/owner-2026-10-26/glimpse-physical-reels-and-screen-concepts-b.jpg). Their original Git blob SHAs, sizes, and root names are preserved in the index. They govern tactile/art direction, **not rights-cleared production imagery nor invented reel functionality**.
+
 **Updated 2026-10-22.** This inventory describes the actual contents of `gamesbyian/Glimpse`. The old private source folder was preserved, but is not the destination for future work.
 
 ## Verified files in this repository
