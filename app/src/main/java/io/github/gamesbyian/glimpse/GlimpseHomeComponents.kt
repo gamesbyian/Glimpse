@@ -34,10 +34,15 @@ import io.github.gamesbyian.glimpse.data.CollectionOverview
  * 320dp or 200% font scaling makes the original horizontal card impossible.
  * Uses Android's actual Compose density/configuration, no emulator special case.
  */
+internal fun shouldStackPhotoCard(screenWidthDp: Int, fontScale: Float): Boolean =
+    fontScale >= 1.5f || screenWidthDp <= 360
+
 @Composable
 private fun needsStackedPhotoCard(): Boolean =
-    LocalDensity.current.fontScale >= 1.5f ||
-        LocalConfiguration.current.screenWidthDp <= 360
+    shouldStackPhotoCard(
+        LocalConfiguration.current.screenWidthDp,
+        LocalDensity.current.fontScale
+    )
 
 /**
  * Home truth remains stable as browsing changes. Android's wallpaper is not
