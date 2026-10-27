@@ -1,6 +1,7 @@
 package io.github.gamesbyian.glimpse
 
 import android.app.Application
+import android.content.Context
 import android.net.Uri
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
@@ -10,6 +11,7 @@ import io.github.gamesbyian.glimpse.data.PhotoImporter
 import io.github.gamesbyian.glimpse.data.PhotoRecord
 import io.github.gamesbyian.glimpse.data.RotationRecord
 import io.github.gamesbyian.glimpse.domain.WallpaperCommands
+import io.github.gamesbyian.glimpse.domain.BrowseCursor
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -20,6 +22,8 @@ import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -27,6 +31,7 @@ import java.util.UUID
 
 data class GlimpseUiState(
     val collections: List<CollectionRecord> = emptyList(),
+    val collectionId: String? = null,
     val photos: List<PhotoRecord> = emptyList(),
     val rotation: RotationRecord? = null,
     val selectedPhotoId: String? = null,
@@ -44,28 +49,45 @@ class GlimpseModel(application: Application) : AndroidViewModel(application) {
     private val importer = PhotoImporter(application, dao)
     private val wallpaper = WallpaperCommands(application, dao)
 
-    private val collectionId = MutableStateFlow<String?>(null)
-    private val selectedPhoto = MutableStateFlow<String?>(null)
+    private val browse = MutableStateFlow(BrowseCursor())
+    // Durable per-collection photo IDs; originals, hashes and source paths are
+    // deliberately not persisted in preferences.
+    private val browsePrefs = application.getSharedPreferences(
+        "glimpse_browsing", Context.MODE_PRIVATE
+    )
+    private fun rememberedPhoto(collection: String): String? =
+        browsePrefs.getString("photo:$collection", null)
+
+    private fun retainPhoto(cursor: BrowseCursor) {
+        val collection = cursor.collectionId ?: return
+        val photo = cursor.selectedPhotoId ?: return
+        browsePrefs.edit().putString("photo:$collection", photo).apply()
+    }
     private val grid = MutableStateFlow(false)
     private val busy = MutableStateFlow(false)
     private val notice = MutableStateFlow("Create a collection, import photos and choose a wallpaper.")
 
-    val activeCollectionId: StateFlow<String?> = collectionId
+    private data class ScopedPhotos(val collectionId: String?, val items: List<PhotoRecord>)
 
-    private val visiblePhotos = collectionId.flatMapLatest { id ->
-        if (id == null) flowOf(emptyList()) else dao.watchPhotos(id)
-    }
+    private val visiblePhotos = browse.map { it.collectionId }.distinctUntilChanged()
+        .flatMapLatest { id ->
+            if (id == null) flowOf(ScopedPhotos(null, emptyList()))
+            else dao.watchPhotos(id).map { ScopedPhotos(id, it) }
+        }
     private val catalog = combine(
         dao.watchCollections(),
         visiblePhotos,
         dao.watchRotation(),
-        selectedPhoto
-    ) { collections, photos, rotation, id ->
+        browse
+    ) { collections, loaded, rotation, cursor ->
+        // A switch must not briefly expose photos from the previous collection.
+        val photos = if (loaded.collectionId == cursor.collectionId) loaded.items else emptyList()
         GlimpseUiState(
             collections = collections,
+            collectionId = cursor.collectionId,
             photos = photos,
             rotation = rotation,
-            selectedPhotoId = id
+            selectedPhotoId = cursor.resolvedId(photos.map { it.id })
         )
     }
     val ui: StateFlow<GlimpseUiState> = combine(catalog, grid, busy, notice) { data, isGrid, isBusy, message ->
@@ -77,7 +99,9 @@ class GlimpseModel(application: Application) : AndroidViewModel(application) {
             val initial = withContext(Dispatchers.IO) {
                 dao.watchCollections().firstOrNull()?.firstOrNull()?.id
             }
-            if (collectionId.value == null) collectionId.value = initial
+            if (browse.value.collectionId == null) {
+                browse.value = browse.value.open(initial, initial?.let(::rememberedPhoto))
+            }
         }
     }
 
@@ -88,27 +112,33 @@ class GlimpseModel(application: Application) : AndroidViewModel(application) {
         withContext(Dispatchers.IO) {
             dao.insertCollection(CollectionRecord(id, title, System.currentTimeMillis()))
         }
-        collectionId.value = id
-        selectedPhoto.value = null
+        browse.value = browse.value.open(id, null)
         "Created " + title + ". Use Add photos to import."
     }
 
     fun browseCollection(id: String) {
-        collectionId.value = id
-        selectedPhoto.value = null
+        if (ui.value.collections.none { it.id == id }) return
+        browse.value = browse.value.open(id, rememberedPhoto(id))
         notice.value = "Browsing this collection does not change the wallpaper."
     }
 
-    fun browsePhoto(id: String) {
-        selectedPhoto.value = id
+    fun browsePhotoInCollection(sourceCollectionId: String, id: String) {
+        val state = ui.value
+        if (state.collectionId != sourceCollectionId) return
+        val updated = browse.value.select(sourceCollectionId, id, state.photos.map { it.id })
+        if (updated == browse.value) return
+        browse.value = updated
+        retainPhoto(updated)
         notice.value = "Preview only. Use Set Home wallpaper to apply."
     }
 
     fun stepPhoto(delta: Int) {
-        val photos = ui.value.photos
-        if (photos.isEmpty()) return
-        val position = photos.indexOfFirst { it.id == ui.value.current?.id }.coerceAtLeast(0)
-        selectedPhoto.value = photos[(position + delta).coerceIn(0, photos.lastIndex)].id
+        val state = ui.value
+        if (state.collectionId == null || state.collectionId != browse.value.collectionId) return
+        val updated = browse.value.step(delta, state.photos.map { it.id })
+        if (updated == browse.value) return
+        browse.value = updated
+        retainPhoto(updated)
         notice.value = "Preview only. No device wallpaper changed."
     }
 
@@ -117,7 +147,7 @@ class GlimpseModel(application: Application) : AndroidViewModel(application) {
     fun importSelected(uris: List<Uri>) {
         if (uris.isEmpty()) return
         action {
-            val id = collectionId.value ?: error("Create or choose a collection first.")
+            val id = browse.value.collectionId ?: error("Create or choose a collection first.")
             val report = importer.import(uris, id)
             "Selected " + report.selected + "; imported " + report.imported +
                 "; duplicates " + report.duplicates + "; failed " + report.failures + "."
@@ -130,7 +160,7 @@ class GlimpseModel(application: Application) : AndroidViewModel(application) {
     }
 
     fun startRotation() = action {
-        val id = collectionId.value ?: error("Choose a collection first.")
+        val id = browse.value.collectionId ?: error("Choose a collection first.")
         wallpaper.start(id)
     }
 
