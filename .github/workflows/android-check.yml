@@ -22,8 +22,10 @@ on:
       - "scripts/verify-reel-typography.py"
 permissions:
   contents: read
+# Obsolete commits within one PR may cancel each other. Separate PRs and
+# main must not cancel one another's compilation/acceptance evidence.
 concurrency:
-  group: glimpse-native-check
+  group: glimpse-native-check-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
 jobs:
   build:
