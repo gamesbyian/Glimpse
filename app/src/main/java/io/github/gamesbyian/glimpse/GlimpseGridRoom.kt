@@ -55,7 +55,7 @@ internal fun GlimpseGridRoom(
 
     // On first arrival in a new collection, reveal the previously selected
     // photo. Do not scroll/jump after every tap as the user explores the Grid.
-    LaunchedEffect(collectionId) {
+    LaunchedEffect(collectionId, state.photos.size) {
         if (selectedIndex >= 0) gridState.scrollToItem(selectedIndex)
     }
 
