@@ -354,7 +354,10 @@ def main():
             found_privacy = False
             for _ in range(9):
                 privacy_xml = hierarchy()
-                if "PRIVACY & STORAGE" in privacy_xml:
+                # Match parsed accessibility labels; raw XML escapes &.
+                privacy_labels = [node.attrib.get("text", "")
+                                  for node in ET.fromstring(privacy_xml).iter("node")]
+                if any("PRIVACY & STORAGE" in label for label in privacy_labels):
                     found_privacy = True
                     break
                 swipe("up")
