@@ -948,6 +948,48 @@ def main():
                 raise RuntimeError("Adding existing photo did not update target collection")
             capture("22-cross-collection-membership-copy",
                     "Photo 3 reused in alternate collection without recopy or wallpaper change")
+            # A second functional fixed reel appears only when TWO real
+            # collections are present on a sufficiently wide normal-font
+            # viewport. Exercise both physical directions against real Room
+            # membership, not a decorative Canvas or hardcoded categories.
+            if "Collection paper reel" not in hierarchy():
+                capture_failure("collection-reel-not-visible",
+                                "Two real collection choices did not expose fixed corner reel")
+                raise RuntimeError("Functional collection reel was not displayed")
+            w, h, dpi = screen_geometry()
+            logical_width = w * 160 / dpi
+            if logical_width >= 390:
+                import math
+                scale = dpi / 160
+                cx = w - (196 - 28 - 196 * .80) * scale
+                cy = (-20 + 196 * .18) * scale
+                rr = 196 * .68 * .72 * scale
+                def collection_reel_drag(first, last):
+                    x1 = round(cx + math.cos(math.radians(first)) * rr)
+                    y1 = round(cy + math.sin(math.radians(first)) * rr)
+                    x2 = round(cx + math.cos(math.radians(last)) * rr)
+                    y2 = round(cy + math.sin(math.radians(last)) * rr)
+                    if not (0 <= x1 < w and 0 <= y1 < h and
+                            0 <= x2 < w and 0 <= y2 < h):
+                        raise RuntimeError("Collection reel gesture fell outside device viewport")
+                    adb("shell", "input", "swipe", str(x1), str(y1),
+                        str(x2), str(y2), "640")
+                    time.sleep(1.8)
+                # Clockwise turn advances toward earlier actual collections.
+                collection_reel_drag(112, 168)
+                if "Photos: 22" not in hierarchy():
+                    capture_failure("collection-reel-first-selection",
+                                    "Reel turn did not select original 22-photo source")
+                    raise RuntimeError("Collection reel cannot select prior collection")
+                capture("22-two-functional-corner-reels",
+                        "Both fixed paper discs shown; upper reel selected real source collection")
+                collection_reel_drag(168, 112)
+                if "Photos: 3" not in hierarchy():
+                    capture_failure("collection-reel-return-selection",
+                                    "Reel return did not restore alternate 3-photo collection")
+                    raise RuntimeError("Collection reel did not retain real source IDs")
+                capture("22-collection-reel-bidirectional",
+                        "Two anchored functional reels; alternate collection restored by wheel")
             # Removing an additional membership must not delete the verified
             # private original still used by the original 22-photo collection.
             reach_and_click("Open photo details", "up", attempts=12)
