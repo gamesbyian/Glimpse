@@ -811,6 +811,34 @@ def main():
             first_detail = hierarchy()
             if "In focus." not in first_detail or "Photograph 1 of 22" not in first_detail:
                 raise RuntimeError("Actual first photo detail state not observed")
+            # Real Android semantics test: caption text can be a non-clickable
+            # descendant of a 48dp Button, so measure its actionable parent
+            # rather than the text glyph bounds. Two always-visible enabled
+            # actions prove the accessibility contract after layout/reflow.
+            detail_tree = ET.fromstring(first_detail)
+            def action_height_dp(label):
+                def walk(node, ancestors=()):
+                    if label in (node.attrib.get("text"), node.attrib.get("content-desc")):
+                        target = next((candidate for candidate in
+                                       (node, *reversed(ancestors))
+                                       if candidate.attrib.get("clickable") == "true"), None)
+                        if target is not None:
+                            bounds = re.findall(r"\d+", target.attrib.get("bounds", ""))
+                            if len(bounds) == 4:
+                                _, top, _, bottom = map(int, bounds)
+                                return (bottom - top) * 160 / screen_geometry()[2]
+                    for child in node:
+                        measured = walk(child, ancestors + (node,))
+                        if measured is not None:
+                            return measured
+                    return None
+                return walk(detail_tree)
+            for name in ("Back to Reel / Grid", "Next photo"):
+                measured = action_height_dp(name)
+                if measured is None or measured < 44:
+                    capture_failure("detail-action-touch-target",
+                                    name + " measured " + str(measured) + "dp")
+                    raise RuntimeError("Photo Details action below 44dp: " + name)
             capture("22-photo-detail-original",
                     "Full undistorted original on native photo detail, preview-only")
             reach_and_click("Next photo", "up")
