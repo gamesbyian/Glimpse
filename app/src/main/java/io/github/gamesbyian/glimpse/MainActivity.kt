@@ -433,7 +433,8 @@ private fun GlimpseScreen(
                     Text(
                         "Export uses Android's Save As destination and contains exact " +
                             "unedited originals with camera/location metadata. It may be " +
-                            "large, and Glimpse cannot restore ZIP archives yet.",
+                            "large. Restore collection ZIP in Help & privacy imports " +
+                            "photos into a new collection, not wallpaper settings.",
                         style = MaterialTheme.typography.bodySmall
                     )
                 }
