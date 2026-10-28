@@ -135,7 +135,9 @@ internal fun GlimpseGridRoom(
                                 if (active) Color(0xFF24665E)
                                 else Color(0xFFC6B7A4), shape)
                             .clickable {
-                                model.browsePhotoInCollection(collectionId, photo.id)
+                                collectionId?.let { id ->
+                                    model.browsePhotoInCollection(id, photo.id)
+                                }
                             }.padding(4.dp),
                         contentAlignment = Alignment.Center
                     ) {
