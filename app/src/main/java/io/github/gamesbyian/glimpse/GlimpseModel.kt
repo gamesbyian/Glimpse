@@ -212,7 +212,9 @@ class GlimpseModel(application: Application) : AndroidViewModel(application) {
             }
             "Android accepted a ZIP with ${summary.count} original photos " +
                 "(${summary.bytes} uncompressed image bytes). Verify the chosen " +
-                "destination. This export cannot yet be restored inside Glimpse."
+                "destination. Use Restore collection ZIP in Help & privacy to import " +
+                "these photos into a new collection. Shuffle and wallpaper settings " +
+                "are not included."
         } catch (cancel: CancellationException) {
             throw cancel
         } catch (_: Exception) {
