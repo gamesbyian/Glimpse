@@ -142,9 +142,12 @@ internal fun GlimpseSupportScreen(
             "Android Share can send images into Glimpse. Confirm the receiving " +
                 "collection and tap Import shared images; an unchanged private copy " +
                 "is saved. Paste image reads clipboard only when explicitly tapped. " +
-                "Crop, rotate, edited exports, batch outbound sharing and cloud-album " +
-                "synchronization are not implemented. Temporary source grants may " +
-                "expire; completed offline copies remain available."
+                "Photo Detail can preview crop edges and 90-degree rotations and save a " +
+                "separate edited PNG with a 3072-pixel edge limit and stripped original " +
+                "EXIF. Durable edit recipes and applying edited wallpapers are pending. " +
+                "Batch outbound sharing is limited to 25 originals. Cloud-album " +
+                "synchronization is not implemented; temporary provider grants can " +
+                "expire but completed offline originals remain available."
         )
         SupportSection(
             "PRIVACY & STORAGE",
