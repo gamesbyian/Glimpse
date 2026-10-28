@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -105,7 +106,7 @@ internal fun GlimpseReelRoom(
                     RoundedCornerShape(22.dp)
                 )
             ) {
-                TextButton(onClick = onBack) {
+                TextButton(onClick = onBack, modifier = Modifier.heightIn(min = 48.dp)) {
                     Text("Back to Home",
                         color = if (hasReel) Color.White else Color(0xFF193B3F))
                 }
@@ -144,16 +145,18 @@ internal fun GlimpseReelRoom(
                     verticalArrangement = Arrangement.spacedBy(6.dp)
                 ) {
                     Button(
+                        modifier = Modifier.heightIn(min = 48.dp),
                         onClick = { model.stepPhoto(-1) },
                         enabled = currentIndex > 0,
                         colors = paleControls
                     ) { Text("Previous photo") }
                     Button(
+                        modifier = Modifier.heightIn(min = 48.dp),
                         onClick = { model.stepPhoto(1) },
                         enabled = currentIndex >= 0 && currentIndex < state.photos.lastIndex,
                         colors = paleControls
                     ) { Text("Next photo") }
-                    Button(onClick = onGrid, colors = paleControls) {
+                    Button(onClick = onGrid, modifier = Modifier.heightIn(min = 48.dp), colors = paleControls) {
                         Text("View all · Grid")
                     }
                 }
@@ -179,10 +182,11 @@ internal fun GlimpseReelRoom(
                             horizontalArrangement = Arrangement.spacedBy(8.dp),
                             verticalArrangement = Arrangement.spacedBy(6.dp)
                         ) {
-                            OutlinedButton(onClick = onDetails) {
+                            OutlinedButton(onClick = onDetails, modifier = Modifier.heightIn(min = 48.dp)) {
                                 Text("Open photo details")
                             }
                             Button(
+                                modifier = Modifier.heightIn(min = 48.dp),
                                 onClick = model::applyPreview,
                                 enabled = !state.busy && selected != null
                             ) { Text("Set Home wallpaper now") }
