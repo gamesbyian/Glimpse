@@ -39,14 +39,20 @@ class WallpaperCommands(
         if (previous.pendingPhotoId != null) {
             return@withLock "An earlier wallpaper operation has an uncertain outcome. Review it first."
         }
-        dao.saveRotation(previous.copy(
-            collectionId = collectionId,
-            active = true,
-            remainingJson = "[]",
-            nextEligibleAt = now() + intervalMillis,
-            outcome = "Rotation enabled while Glimpse is in use. Next eligible in about five minutes."
+        if (previous.active && previous.collectionId == collectionId) {
+            return@withLock "Shuffle is already running for this collection."
+        }
+        val resumed = !previous.active && previous.collectionId == collectionId
+        dao.saveRotation(prepareRotationStart(
+            previous = previous, requestedCollectionId = collectionId,
+            nowMillis = now(), intervalMillis = intervalMillis
         ))
-        "Rotation enabled for Home wallpaper. Android sleep is not scheduled."
+        if (resumed)
+            "Resumed the saved no-repeat shuffle for this collection. " +
+                "Next eligible in about five minutes while Glimpse is visible."
+        else
+            "Started a new Home wallpaper shuffle for this collection. " +
+                "Next eligible in about five minutes while Glimpse is visible."
     }
 
     suspend fun pause(): String = mutex.withLock {
