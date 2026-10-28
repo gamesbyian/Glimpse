@@ -227,8 +227,11 @@ def swipe(direction="up"):
 def accessible_bounds(xml, phrase):
     """Read actual rendered Android bounds; never infer positions from mockups."""
     for node in ET.fromstring(xml).iter("node"):
-        value = node.attrib.get("text", "") or node.attrib.get("content-desc", "")
-        if phrase in value:
+        # Android may populate both 'text' and 'content-desc'. The reel is
+        # Canvas semantics, so ignoring descriptions when text exists falsely
+        # reports a missing physical control after a state transition.
+        values = (node.attrib.get("text", ""), node.attrib.get("content-desc", ""))
+        if any(phrase in value for value in values):
             bounds = re.findall(r"\\d+", node.attrib.get("bounds", ""))
             if len(bounds) == 4:
                 return tuple(map(int, bounds))
