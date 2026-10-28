@@ -232,7 +232,7 @@ def accessible_bounds(xml, phrase):
             # Canvas, while surrounding layout state may have text too.
             values = (node.attrib.get("text", ""), node.attrib.get("content-desc", ""))
             if any(phrase in value for value in values):
-                bounds = re.findall(r"\\d+", node.attrib.get("bounds", ""))
+                bounds = re.findall(r"\d+", node.attrib.get("bounds", ""))
                 if len(bounds) == 4:
                     return tuple(map(int, bounds))
         # UIAutomator can omit transient Compose nodes during the asynchronous
