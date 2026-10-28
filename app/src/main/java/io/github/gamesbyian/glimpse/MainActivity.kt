@@ -252,22 +252,11 @@ private fun GlimpseScreen(
                         state.photos.isNotEmpty()) 330.dp else 12.dp),
             verticalArrangement = Arrangement.spacedBy(12.dp)
         ) {
-            Text("Glimpse", color = Color(0xFF193B3F),
-                fontFamily = GlimpseType.editorial, fontSize = 44.sp,
-                fontWeight = FontWeight.Normal, letterSpacing = (-1.4).sp)
-            Text("YOUR PHOTOS, NEW PERSPECTIVES",
-                color = Color(0xFF986950), fontWeight = FontWeight.SemiBold,
-                style = MaterialTheme.typography.labelSmall, letterSpacing = 1.3.sp)
-            // Visible collection cardinality belongs in the persistent page
-            // introduction, not only below a scrollable management dashboard.
-            // Inset paper never obscures this real Room-backed count.
-            if (activeCollection != null) {
-                Text(
-                    "Photos: ${state.photos.size} • Offline copies",
-                    style = MaterialTheme.typography.labelLarge,
-                    color = Color(0xFF5D5247)
-                )
-            }
+            GlimpseHomeHero(
+                state = state,
+                onBrowse = { showingBrowse = true },
+                onSupport = { showingSupport = true }
+            )
             if (incomingShare != null) {
                 Card(modifier = Modifier.fillMaxWidth()) {
                     Column(
@@ -320,21 +309,6 @@ private fun GlimpseScreen(
                             }
                         }
                     }
-                }
-            }
-            // Direct route to the physical control: no need to scroll through
-            // the dashboard/collection management merely to turn the reel.
-            FlowRow(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.spacedBy(8.dp),
-                verticalArrangement = Arrangement.spacedBy(4.dp)
-            ) {
-                OutlinedButton(
-                    onClick = { showingBrowse = true },
-                    enabled = activeCollection != null && state.photos.isNotEmpty()
-                ) { Text("Browse photo reel") }
-                TextButton(onClick = { showingSupport = true }) {
-                    Text("Help & privacy")
                 }
             }
             GlimpseWallpaperSummary(state)
