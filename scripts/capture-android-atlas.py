@@ -828,6 +828,44 @@ def main():
             reach_and_click("Edit photo (crop and rotate)", "up", attempts=14)
             reach_and_click("Rotate 90° right", "up", attempts=12)
             reach_and_click("Left crop edge", "up", attempts=16)
+            # Edited sharing is a separate explicit native Sharesheet, never
+            # an original-file share or an implicit wallpaper apply.
+            reach_and_click("Share edited PNG…", "up", attempts=16)
+            edited_sharesheet = None
+            for _ in range(16):
+                time.sleep(.6)
+                view = hierarchy()
+                packages = {node.attrib.get("package")
+                            for node in ET.fromstring(view).iter("node")}
+                if packages & {"android", "com.android.intentresolver",
+                               "com.google.android.intentresolver"}:
+                    edited_sharesheet = view
+                    break
+            if edited_sharesheet is None:
+                capture_failure("edited-share-chooser-missing",
+                                "Edited PNG did not launch Android's real chooser")
+                raise RuntimeError("Edited PNG Sharesheet did not open")
+            shared_files = adb("shell", "run-as", APP, "ls",
+                               "cache/shared-edits", check=False).splitlines()
+            shared_pngs = [name for name in shared_files
+                           if name.startswith("glimpse-edited-")
+                           and name.endswith(".png")]
+            if len(shared_pngs) != 1:
+                raise RuntimeError("Edited Sharesheet did not stage exactly one PNG")
+            edited_bytes = adb(
+                "exec-out", "run-as", APP, "cat",
+                "cache/shared-edits/" + shared_pngs[0],
+                check=False, binary=True, timeout=40
+            )
+            if not edited_bytes.startswith(b"\\x89PNG\\r\\n\\x1a\\n") or len(edited_bytes) < 24:
+                raise RuntimeError("Edited share staged invalid PNG pixels")
+            share_width, share_height = struct.unpack(">II", edited_bytes[16:24])
+            if not (1 <= share_width < 720 and share_height == 480):
+                raise RuntimeError("Edited share lost crop/rotation geometry")
+            capture("22-edited-png-android-sharesheet",
+                    "Real chooser for metadata-free rotated/cropped PNG in a private read-only share cache")
+            adb("shell", "input", "keyevent", "4")
+            time.sleep(1.0)
             reach_and_click("Save edited PNG…", "up", attempts=16)
             time.sleep(1.5)
             edit_picker = hierarchy()
