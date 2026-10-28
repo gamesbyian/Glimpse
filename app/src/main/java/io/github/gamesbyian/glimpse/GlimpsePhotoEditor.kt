@@ -16,6 +16,7 @@ import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Slider
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.mutableIntStateOf
@@ -33,6 +34,7 @@ import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
 import io.github.gamesbyian.glimpse.data.PhotoRecord
+import io.github.gamesbyian.glimpse.data.PhotoEditRecipeStore
 import io.github.gamesbyian.glimpse.domain.NormalizedCrop
 import io.github.gamesbyian.glimpse.domain.PhotoEditGeometry
 import kotlinx.coroutines.CancellationException
@@ -48,18 +50,37 @@ private data class PendingEditedSave(val original: PhotoRecord,
  * labelled equivalents; no gesture or unrecoverable editing operation.
  */
 @Composable
-internal fun GlimpsePhotoEditor(photo: PhotoRecord) {
+internal fun GlimpsePhotoEditor(
+    photo: PhotoRecord, model: GlimpseModel, collectionId: String?, busy: Boolean
+) {
     val context = LocalContext.current
     val scope = rememberCoroutineScope()
+    val recipes = remember(context) { PhotoEditRecipeStore(context) }
     var visible by rememberSaveable(photo.id) { mutableStateOf(false) }
     var turns by rememberSaveable(photo.id) { mutableIntStateOf(0) }
     var left by rememberSaveable(photo.id) { mutableFloatStateOf(0f) }
     var top by rememberSaveable(photo.id) { mutableFloatStateOf(0f) }
     var right by rememberSaveable(photo.id) { mutableFloatStateOf(1f) }
     var bottom by rememberSaveable(photo.id) { mutableFloatStateOf(1f) }
+    var recipeLoaded by rememberSaveable(photo.id) { mutableStateOf(false) }
+    var recipeSaving by remember { mutableStateOf(false) }
     var saving by remember { mutableStateOf(false) }
     var notice by remember { mutableStateOf<String?>(null) }
     var pending by remember { mutableStateOf<PendingEditedSave?>(null) }
+
+    LaunchedEffect(photo.id) {
+        if (!recipeLoaded) {
+            val previous = withContext(Dispatchers.IO) { recipes.load(photo.id) }
+            if (previous != null) {
+                turns = previous.clockwiseQuarterTurns
+                left = previous.crop.left.toFloat()
+                top = previous.crop.top.toFloat()
+                right = previous.crop.right.toFloat()
+                bottom = previous.crop.bottom.toFloat()
+            }
+            recipeLoaded = true
+        }
+    }
 
     val geometry = PhotoEditGeometry(turns, NormalizedCrop(
         left.toDouble(), top.toDouble(), right.toDouble(), bottom.toDouble()
@@ -107,10 +128,18 @@ internal fun GlimpsePhotoEditor(photo: PhotoRecord) {
                 "This is a reversible preview. The imported original is unchanged. " +
                     "Save edited PNG makes a separate image, up to 3072 pixels on " +
                     "the longest edge, without copying original EXIF metadata. " +
-                    "Changes are not saved as a permanent recipe yet.",
+                    "Use Save edit recipe to keep your crop/rotation choices " +
+                    "for this original across restarts, without changing its pixels.",
                 style = MaterialTheme.typography.bodySmall
             )
-            val preview by produceState<Bitmap?>(null, photo.id, geometry) {
+            if (!recipeLoaded) {
+                Text("Loading saved edit recipe…", style = MaterialTheme.typography.bodySmall)
+            }
+            val preview by produceState<Bitmap?>(null, photo.id, geometry, recipeLoaded) {
+                if (!recipeLoaded) {
+                    value = null
+                    return@produceState
+                }
                 value = null
                 value = try {
                     withContext(Dispatchers.IO) {
@@ -185,7 +214,49 @@ internal fun GlimpsePhotoEditor(photo: PhotoRecord) {
                 modifier = Modifier.semantics { contentDescription = "Bottom crop edge" }
             )
             OutlinedButton(
-                enabled = !saving,
+                enabled = recipeLoaded && !recipeSaving && !busy,
+                onClick = {
+                    recipeSaving = true
+                    val snapshot = geometry
+                    scope.launch {
+                        try {
+                            val stored = withContext(Dispatchers.IO) {
+                                recipes.save(photo.id, snapshot)
+                            }
+                            notice = if (stored)
+                                "Saved edit recipe for this original. No image bytes changed."
+                            else "Could not save edit recipe. Your preview remains intact."
+                        } catch (_: Exception) {
+                            notice = "Could not save edit recipe. Original is untouched."
+                        } finally {
+                            recipeSaving = false
+                        }
+                    }
+                }
+            ) { Text(if (recipeSaving) "Saving edit recipe…" else "Save edit recipe…") }
+            OutlinedButton(
+                enabled = recipeLoaded && !busy && collectionId != null,
+                onClick = {
+                    val selected = collectionId ?: return@OutlinedButton
+                    model.saveEditedToCollection(photo, selected, geometry)
+                }
+            ) { Text(if (busy) "Saving edited copy…" else "Save edited photo to this collection") }
+            OutlinedButton(
+                enabled = recipeLoaded && !busy && collectionId != null,
+                onClick = {
+                    val selected = collectionId ?: return@OutlinedButton
+                    model.saveEditedToCollection(photo, selected, geometry, setHomeNow = true)
+                }
+            ) { Text("Save edit and set Home wallpaper now") }
+            Text(
+                "Save edited photo to this collection changes no wallpaper. " +
+                    "The separate Use Now button explicitly asks Android to apply " +
+                    "the new edited photo through the same safe Home wallpaper " +
+                    "gateway as ordinary photo detail. The original stays intact.",
+                style = MaterialTheme.typography.bodySmall
+            )
+            OutlinedButton(
+                enabled = recipeLoaded && !saving && !busy,
                 onClick = {
                     try {
                         pending = PendingEditedSave(photo, geometry)

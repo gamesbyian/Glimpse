@@ -14,6 +14,7 @@ import io.github.gamesbyian.glimpse.data.ImportResult
 import io.github.gamesbyian.glimpse.data.inspectRegisteredOriginals
 import io.github.gamesbyian.glimpse.data.LocalOriginalIntegritySummary
 import io.github.gamesbyian.glimpse.data.PhotoImporter
+import io.github.gamesbyian.glimpse.domain.PhotoEditGeometry
 import io.github.gamesbyian.glimpse.data.verifyPrivateOriginal
 import io.github.gamesbyian.glimpse.data.PhotoRecord
 import io.github.gamesbyian.glimpse.data.RotationRecord
@@ -411,6 +412,38 @@ class GlimpseModel(application: Application) : AndroidViewModel(application) {
         } else {
             "Removed from this collection. The intact original stays in another " +
                 "collection. Home wallpaper and shuffle settings were not changed."
+        }
+    }
+
+    /**
+     * Baked edited PNG becomes an ordinary additional offline photo, never
+     * mutating the parent original. Focus follows the newly attached variant.
+     */
+    fun saveEditedToCollection(
+        original: PhotoRecord, collectionId: String, geometry: PhotoEditGeometry,
+        setHomeNow: Boolean = false
+    ) = action {
+        require(browse.value.collectionId == collectionId) {
+            "Return to the original collection before saving the edit."
+        }
+        val imported = EditedPhotoOutput.addEditedVersion(
+            getApplication(), dao, original, geometry, collectionId
+        )
+        val ids = ui.value.photos.map { it.id } + imported.record.id
+        val changed = browse.value.select(collectionId, imported.record.id, ids)
+        browse.value = changed
+        retainPhoto(changed)
+        val saveMessage = if (imported.newlyAttached)
+            "Saved a separate edited PNG in this collection. The untouched " +
+                "original is still available."
+        else
+            "This edited PNG already belongs here; the saved copy was selected."
+        if (setHomeNow) {
+            // The existing serialized gateway owns the only OS side effect.
+            // If Android cannot confirm, its pending token safeguards rotation.
+            saveMessage + " " + wallpaper.applySelected(imported.record.id)
+        } else {
+            saveMessage + " Set Home wallpaper now to apply this edited photo."
         }
     }
 
