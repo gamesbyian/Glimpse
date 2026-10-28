@@ -252,11 +252,15 @@ private fun GlimpseScreen(
                         state.photos.isNotEmpty()) 330.dp else 12.dp),
             verticalArrangement = Arrangement.spacedBy(12.dp)
         ) {
-            GlimpseHomeHero(
-                state = state,
-                onBrowse = { showingBrowse = true },
-                onSupport = { showingSupport = true }
-            )
+            // An Android Sharesheet handoff needs immediate consent: do not
+            // bury its import/dismiss choices beneath the photographic hero.
+            if (incomingShare == null) {
+                GlimpseHomeHero(
+                    state = state,
+                    onBrowse = { showingBrowse = true },
+                    onSupport = { showingSupport = true }
+                )
+            }
             if (incomingShare != null) {
                 Card(modifier = Modifier.fillMaxWidth()) {
                     Column(
