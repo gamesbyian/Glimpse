@@ -751,7 +751,21 @@ def main():
             # The collection Share/Export actions can move Grid below the
             # first viewport; UIAutomator only reports visible nodes.
             reach_and_click("View all · Grid", "up", attempts=12)
-            capture("22-grid", "The actual View all Grid after selecting the grid control")
+            grid_xml = hierarchy()
+            if ("THE CONTACT SHEET" not in grid_xml or
+                    "22 photographs" not in grid_xml or
+                    "Back to Home" not in grid_xml):
+                capture_failure("dedicated-grid-route-missing",
+                                "View all must open a full-height real collection contact sheet")
+                raise RuntimeError("Grid remained a nested Home panel instead of dedicated room")
+            capture("22-grid", "Full-height native contact sheet for 22 real source photographs")
+            reach_and_click("Browse photo reel", "up", attempts=4)
+            if "THE PHOTO REEL" not in hierarchy():
+                capture_failure("grid-to-reel-nav-missing",
+                                "Contact sheet did not switch into the fixed paper Reel room")
+                raise RuntimeError("Grid-to-Reel navigation failed")
+            capture("22-grid-to-fixed-reel",
+                    "Grid returns directly to fixed photographic Reel browser")
             # R3 uses production PhotoRecord, selection and wallpaper gateway;
             # inspect the actual full-aspect detail, next ID and back path.
             start_fixture(22)
