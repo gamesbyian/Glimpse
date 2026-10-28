@@ -719,7 +719,7 @@ def main():
             reach_and_click("Edit photo (crop and rotate)", "up", attempts=14)
             reach_and_click("Rotate 90° right", "up", attempts=12)
             reach_and_click("Left crop edge", "up", attempts=16)
-            reach_and_click("Save edited PNG", "up", attempts=16)
+            reach_and_click("Save edited PNG…", "up", attempts=16)
             time.sleep(1.5)
             edit_picker = hierarchy()
             edit_pkgs = {node.attrib.get("package")
