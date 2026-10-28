@@ -22,6 +22,7 @@ on:
       - scripts/capture-android-atlas.py
       - app/src/main/java/io/github/gamesbyian/glimpse/MainActivity.kt
       - app/src/main/java/io/github/gamesbyian/glimpse/GlimpseReelRoom.kt
+      - app/src/main/java/io/github/gamesbyian/glimpse/GlimpseHomeHero.kt
       - app/src/main/java/io/github/gamesbyian/glimpse/GlimpseHomeComponents.kt
       - app/src/main/java/io/github/gamesbyian/glimpse/GlimpseModel.kt
       - app/src/main/java/io/github/gamesbyian/glimpse/data/GlimpseDatabase.kt
