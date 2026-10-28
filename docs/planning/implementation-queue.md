@@ -1,3 +1,5 @@
+> **P0 owner device acceptance correction (2026-10-28):** [#81](https://github.com/gamesbyian/Glimpse/issues/81) is the next visual architecture gate: fixed viewport-edge/corner reels independent of scrolling, scroll-behind content, no lower footer, and drag initiation from *all* photo apertures as well as paper. Current APK's reel motion feels promising but its placement and interaction are wrong; visual fidelity to owner reference remains the leading priority, feature breadth a close second. No crashes were reported in this initial test, but functional journeys have not received a complete owner review.
+
 # Glimpse native implementation queue
 
 ## Live merged Android baseline · October 27
