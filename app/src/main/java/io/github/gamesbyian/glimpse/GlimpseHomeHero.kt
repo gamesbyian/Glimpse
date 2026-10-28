@@ -47,7 +47,14 @@ internal fun GlimpseHomeHero(
     // The opening image must extend beneath the fixed corner reel on actual
     // devices; a short rectangular card above a dashboard defeats the design.
     val viewportHeight = LocalConfiguration.current.screenHeightDp
-    val heroHeight = (viewportHeight - 28).coerceAtLeast(500).dp
+    // Empty-library onboarding must not hide Create/Add photos below a
+    // nearly full-screen empty illustration. Only genuine photography earns
+    // the immersive viewport-height treatment.
+    val heroHeight = if (hasPhoto) {
+        (viewportHeight - 28).coerceAtLeast(500).dp
+    } else {
+        (if (largeType) 340 else 248).dp
+    }
     val ink = if (hasPhoto) Color.White else Color(0xFF193B3F)
     val paper = Color(0xFFF8EDE1)
     val surface = RoundedCornerShape(26.dp)
