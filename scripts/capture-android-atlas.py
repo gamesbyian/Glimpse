@@ -220,6 +220,17 @@ def swipe(direction="up"):
     time.sleep(1)
 
 
+def accessible_bounds(xml, phrase):
+    """Read actual rendered Android bounds; never infer positions from mockups."""
+    for node in ET.fromstring(xml).iter("node"):
+        value = node.attrib.get("text", "") or node.attrib.get("content-desc", "")
+        if phrase in value:
+            bounds = re.findall(r"\\d+", node.attrib.get("bounds", ""))
+            if len(bounds) == 4:
+                return tuple(map(int, bounds))
+    raise RuntimeError("Native element not visible: " + phrase)
+
+
 def inspect_controls(xml, dpi):
     root = ET.fromstring(xml)
     examples = []
@@ -632,7 +643,56 @@ def main():
                 raise RuntimeError("Focused Reel Next did not select stable photo 2")
             capture("22-focused-reel-next",
                     "Photo 2 preview from same collection after semantic Next")
-            click_label("Back to Home")
+            # The owner found that drags beginning inside photographic
+            # apertures failed. Rotate a real fixture from the selected top
+            # photo-window centre toward its clockwise neighbour. This is an
+            # Android input event, not a synthetic ReelMotion unit assertion.
+            x0, y0, x1, y1 = accessible_bounds(hierarchy(), "Paper photo reel")
+            rw, rh = x1 - x0, y1 - y0
+            cx = x0 + rw * .27
+            cy = y0 + rh * .87
+            photo_radius = rw * .69 * .62
+            start_x, start_y = round(cx), round(cy - photo_radius)
+            end_x = round(cx + photo_radius * .707)
+            end_y = round(cy - photo_radius * .707)
+            if not (x0 <= start_x < x1 and y0 <= start_y < y1):
+                raise RuntimeError("Top photo aperture outside native reel bounds")
+            adb("shell", "input", "swipe", str(start_x), str(start_y),
+                str(end_x), str(end_y), "620")
+            time.sleep(1.5)
+            if "Previewing 1 of 22" not in hierarchy():
+                capture_failure("photo-window-drag-unresponsive",
+                                "Native drag started on actual photographic aperture")
+                raise RuntimeError("Aperture-origin reel rotation did not select previous photo")
+            capture("22-photo-aperture-drag",
+                    "Native Android clockwise drag begins within a photographic aperture")
+            # Scrolling the underlying page above the reel must leave the reel
+            # itself at the identical screen position, rather than carry it
+            # upward as an in-flow dashboard widget.
+            reel_before = accessible_bounds(hierarchy(), "Paper photo reel")
+            home_before = accessible_bounds(hierarchy(), "Back to Home")
+            screen_w, screen_h, _ = screen_geometry()
+            adb("shell", "input", "swipe",
+                str(int(screen_w * .92)), str(int(screen_h * .44)),
+                str(int(screen_w * .92)), str(int(screen_h * .16)), "520")
+            time.sleep(1)
+            scrolled = hierarchy()
+            if accessible_bounds(scrolled, "Paper photo reel") != reel_before:
+                raise RuntimeError("Fixed reel moved when page content scrolled")
+            try:
+                home_after = accessible_bounds(scrolled, "Back to Home")
+            except RuntimeError:
+                home_after = None  # expected: header scrolls away
+            if home_after == home_before:
+                raise RuntimeError("Page failed to scroll independently of fixed reel")
+            capture("22-fixed-reel-after-scroll",
+                    "Photo reel stays at its viewport coordinates as content scrolls behind")
+            # Restore a visible navigation action without touching the reel.
+            adb("shell", "input", "swipe",
+                str(int(screen_w * .92)), str(int(screen_h * .20)),
+                str(int(screen_w * .92)), str(int(screen_h * .57)), "550")
+            time.sleep(1)
+            reach_and_click("Back to Home", "down", attempts=8)
             if "Glimpse" not in hierarchy():
                 raise RuntimeError("Dedicated reel did not return to Home dashboard")
         swipe("up")
