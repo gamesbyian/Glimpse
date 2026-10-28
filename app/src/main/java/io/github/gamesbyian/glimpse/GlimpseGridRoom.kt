@@ -143,7 +143,8 @@ internal fun GlimpseGridRoom(
                             photo = photo,
                             modifier = Modifier.fillMaxSize(),
                             label = "Photograph ${position + 1} of ${photos.size}" +
-                                if (active) ", selected" else ", choose photo"
+                                if (active) ", selected" else ", choose photo",
+                            decodeMaxEdge = 384
                         )
                     }
                 }
