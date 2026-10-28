@@ -65,6 +65,7 @@ internal fun GlimpsePhotoEditor(
     var recipeLoaded by rememberSaveable(photo.id) { mutableStateOf(false) }
     var recipeSaving by remember { mutableStateOf(false) }
     var saving by remember { mutableStateOf(false) }
+    var sharing by remember { mutableStateOf(false) }
     var notice by remember { mutableStateOf<String?>(null) }
     var pending by remember { mutableStateOf<PendingEditedSave?>(null) }
 
@@ -256,7 +257,7 @@ internal fun GlimpsePhotoEditor(
                 style = MaterialTheme.typography.bodySmall
             )
             OutlinedButton(
-                enabled = recipeLoaded && !saving && !busy,
+                enabled = recipeLoaded && !saving && !sharing && !busy,
                 onClick = {
                     try {
                         pending = PendingEditedSave(photo, geometry)
@@ -268,6 +269,33 @@ internal fun GlimpsePhotoEditor(
                     }
                 }
             ) { Text(if (saving) "Saving edited PNG…" else "Save edited PNG…") }
+            OutlinedButton(
+                enabled = recipeLoaded && !saving && !sharing && !busy,
+                onClick = {
+                    sharing = true
+                    notice = null
+                    val selectedGeometry = geometry
+                    scope.launch {
+                        try {
+                            // Render and verify off the UI thread before
+                            // starting the user's regular Android Sharesheet.
+                            val share = EditedPhotoSharing.chooser(
+                                context, photo, selectedGeometry
+                            )
+                            context.startActivity(share)
+                            notice = "Android opened sharing for the edited PNG. " +
+                                "No original was shared or changed."
+                        } catch (cancel: CancellationException) {
+                            throw cancel
+                        } catch (_: Exception) {
+                            notice = "Edited photo sharing could not start. " +
+                                "The unchanged original remains private."
+                        } finally {
+                            sharing = false
+                        }
+                    }
+                }
+            ) { Text(if (sharing) "Preparing edited PNG…" else "Share edited PNG…") }
             if (notice != null) {
                 Text(notice!!, style = MaterialTheme.typography.bodySmall)
             }
