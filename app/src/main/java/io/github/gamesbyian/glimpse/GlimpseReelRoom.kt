@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.FlowRow
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -40,7 +41,8 @@ internal fun GlimpseReelRoom(
     onBack: () -> Unit,
     onDetails: () -> Unit,
     onGrid: () -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    contentInsets: PaddingValues = PaddingValues(0.dp)
 ) {
     val collectionId = state.collectionId
     val collectionName = state.collections.firstOrNull { it.id == collectionId }?.title
@@ -52,7 +54,7 @@ internal fun GlimpseReelRoom(
 
     Box(modifier = modifier.fillMaxSize().background(Color(0xFFF6F0E6))) {
         Column(
-            modifier = Modifier.fillMaxSize()
+            modifier = Modifier.fillMaxSize().padding(contentInsets)
                 .verticalScroll(rememberScrollState())
                 .padding(start = 16.dp, end = 16.dp, top = 8.dp,
                     bottom = if (hasReel) 330.dp else 20.dp),
