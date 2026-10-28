@@ -8,6 +8,8 @@ import android.os.Build
 import android.content.pm.ApplicationInfo
 import android.net.Uri
 import android.text.format.Formatter
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -29,6 +31,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.produceState
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
@@ -53,8 +56,15 @@ internal fun GlimpseSupportScreen(
     onBack: () -> Unit,
     modifier: Modifier = Modifier
 ) {
+    val currentState by model.ui.collectAsStateWithLifecycle()
     val context = LocalContext.current
     val auditScope = rememberCoroutineScope()
+    var archiveOpenError by remember { mutableStateOf<String?>(null) }
+    val restorePicker = rememberLauncherForActivityResult(
+        ActivityResultContracts.OpenDocument()
+    ) { uri ->
+        if (uri != null) model.restoreCollectionZip(uri)
+    }
     var integrityReadout by remember { mutableStateOf<IntegrityReadout>(IntegrityReadout.NotChecked) }
     val packageInfo = remember(context) {
         runCatching {
@@ -195,6 +205,34 @@ internal fun GlimpseSupportScreen(
                 style = MaterialTheme.typography.bodySmall
             )
         }
+        SupportSection(
+            "RESTORE AN EXPORTED COLLECTION",
+            "Import a Glimpse originals-only ZIP through Android Documents. " +
+                "All entries, image types, byte counts and SHA-256 hashes must " +
+                "validate before creating a separate new collection. Existing " +
+                "collections and wallpaper settings are never replaced.",
+            "This imports photographs only. It cannot recreate prior wallpaper " +
+                "or shuffle settings. Large collections need enough free storage " +
+                "for temporary verification before the new collection is saved."
+        )
+        OutlinedButton(onClick = {
+            archiveOpenError = null
+            try {
+                restorePicker.launch(arrayOf("application/zip", "application/octet-stream"))
+            } catch (_: Exception) {
+                archiveOpenError = "Android could not open the archive picker."
+            }
+        }) { Text("Restore collection ZIP…") }
+        if (archiveOpenError != null) {
+            Text(archiveOpenError!!, color = MaterialTheme.colorScheme.error)
+        }
+        if (currentState.message.startsWith("Restored ") ||
+            currentState.message.contains("archive", ignoreCase = true)) {
+            Text(currentState.message, style = MaterialTheme.typography.bodyMedium)
+        }
+        Text("After restoring, return Home to browse the new collection. " +
+            "An invalid or interrupted archive leaves existing collections unchanged.",
+            style = MaterialTheme.typography.bodySmall)
         SupportSection(
             "OPTIONAL SUPPORT REPORT",
             "Generate a local-only diagnostic report. Inspect, edit, copy or " +

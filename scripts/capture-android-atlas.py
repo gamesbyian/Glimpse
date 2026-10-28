@@ -469,6 +469,108 @@ def main():
                 raise RuntimeError("Registered-original exact-byte audit failed")
             capture("22-help-original-integrity-audit",
                     "User-triggered verified 22/22 private SHA originals, no mutation")
+            # Restore the exact ZIP we just exported via the *real* Android
+            # OpenDocument chooser. The app must create a new Room collection
+            # without changing the source library or applying wallpaper.
+            reach_and_click("Restore collection ZIP", "up", attempts=14)
+            time.sleep(1.5)
+            restore_picker = hierarchy()
+            restore_packages = {node.attrib.get("package")
+                                for node in ET.fromstring(restore_picker).iter("node")}
+            if not restore_packages.intersection({
+                    "com.android.documentsui", "com.google.android.documentsui"}):
+                capture_failure("restore-zip-no-real-document-picker",
+                                "Android OpenDocument did not open")
+                raise RuntimeError("Restore did not launch actual DocumentsUI")
+            zip_display = "glimpse-ATLAS-FIXTURE-22-photos-originals.zip"
+            def documentsui_visible(xml):
+                packages = {node.attrib.get("package")
+                            for node in ET.fromstring(xml).iter("node")}
+                return bool(packages.intersection({
+                    "com.android.documentsui", "com.google.android.documentsui"
+                }))
+            # Android DocumentsUI can truncate a filename in grid mode, and
+            # a text node may not itself be clickable. Tap the enclosing
+            # clickable file tile, never an arbitrary guessed screen coordinate.
+            def choose_document_tile(fragment):
+                xml = hierarchy()
+                root = ET.fromstring(xml)
+                parent = {child: node for node in root.iter()
+                          for child in node}
+                # DocumentsUI exposes two similarly named targets:
+                # a thumbnail-preview icon, and the actual file title inside
+                # clickable item_root. The preview icon does NOT return a URI.
+                candidates = [node for node in root.iter("node")
+                              if node.attrib.get("resource-id") == "android:id/title" and
+                              fragment in node.attrib.get("text", "")]
+                for node in candidates:
+                    target = node
+                    while target in parent and target.attrib.get("resource-id") != (
+                            "com.android.documentsui:id/item_root"):
+                        target = parent[target]
+                    if target.attrib.get("resource-id") != (
+                            "com.android.documentsui:id/item_root"):
+                        continue
+                    bounds = re.findall(r"\d+", target.attrib.get("bounds", ""))
+                    if len(bounds) != 4:
+                        continue
+                    x0, y0, x1, y1 = map(int, bounds)
+                    adb("shell", "input", "tap",
+                        str((x0 + x1)//2), str((y0 + y1)//2))
+                    time.sleep(1.3)
+                    return True
+                return False
+            if not choose_document_tile("glimpse-ATLAS"):
+                try:
+                    click_label("Downloads")
+                except RuntimeError:
+                    click_label("Show roots")
+                    click_label("Downloads")
+                if not choose_document_tile("glimpse-ATLAS"):
+                    capture_failure("restore-zip-not-listed-in-provider",
+                                    "Downloaded Glimpse ZIP not shown in real OpenDocument UI")
+                    raise RuntimeError("Exported ZIP unavailable in Android document provider")
+            picker_closed = False
+            for attempt in range(10):
+                response_xml = hierarchy()
+                if not documentsui_visible(response_xml):
+                    picker_closed = True
+                    break
+                # Grid mode may highlight a tile on first tap rather than
+                # launch the OpenDocument result immediately.
+                if not choose_document_tile("glimpse-ATLAS"):
+                    for label in ("Open", "OPEN", "Select", "SELECT"):
+                        try:
+                            click_label(label)
+                            break
+                        except RuntimeError:
+                            pass
+                time.sleep(0.6)
+            if not picker_closed:
+                (OUT / "restore-zip-still-in-documentsui.xml").write_text(
+                    hierarchy(), encoding="utf-8"
+                )
+                capture_failure("restore-zip-picker-still-open",
+                                "Picker did not return a document URI after tapping visible ZIP tile")
+                raise RuntimeError("Android OpenDocument never returned the chosen ZIP")
+            restored = False
+            for attempt in range(30):
+                result_xml = hierarchy()
+                if "Restored 22 original photos into a new collection" in result_xml:
+                    restored = True
+                    break
+                if attempt % 3 == 0:
+                    swipe("up")
+                time.sleep(0.8)
+            if not restored:
+                (OUT / "restore-zip-result-unconfirmed.xml").write_text(
+                    hierarchy(), encoding="utf-8"
+                )
+                capture_failure("restore-zip-22-originals-not-confirmed",
+                                "OpenDocument returned but no new 22-photo collection reported")
+                raise RuntimeError("Glimpse did not confirm restore of all 22 original photos")
+            capture("22-collection-zip-restore-complete",
+                    "Real Android OpenDocument restores 22 original bytes to independent Room collection")
             # The diagnostic preview is user-triggered and must be readable
             # before any Android chooser or clipboard action exists.
             reach_and_click("Generate local diagnostic report", "up", attempts=10)
