@@ -225,18 +225,24 @@ def swipe(direction="up"):
 
 
 def accessible_bounds(xml, phrase):
-    """Read actual rendered Android bounds; never infer positions from mockups."""
-    for node in ET.fromstring(xml).iter("node"):
-        # Android may populate both 'text' and 'content-desc'. The reel is
-        # Canvas semantics, so ignoring descriptions when text exists falsely
-        # reports a missing physical control after a state transition.
-        values = (node.attrib.get("text", ""), node.attrib.get("content-desc", ""))
-        if any(phrase in value for value in values):
-            bounds = re.findall(r"\\d+", node.attrib.get("bounds", ""))
-            if len(bounds) == 4:
-                return tuple(map(int, bounds))
-    raise RuntimeError("Native element not visible: " + phrase)
-
+    """Read actual rendered Android bounds with bounded recompose tolerance."""
+    for attempt in range(6):
+        for node in ET.fromstring(xml).iter("node"):
+            # Both fields may be populated; accessibility labels own the
+            # Canvas, while surrounding layout state may have text too.
+            values = (node.attrib.get("text", ""), node.attrib.get("content-desc", ""))
+            if any(phrase in value for value in values):
+                bounds = re.findall(r"\\d+", node.attrib.get("bounds", ""))
+                if len(bounds) == 4:
+                    return tuple(map(int, bounds))
+        # UIAutomator can omit transient Compose nodes during the asynchronous
+        # selector/thumbnail rebind after Next. A captured screenshot from this
+        # exact branch proves the Canvas exists; retry a fresh hierarchy rather
+        # than reporting a non-existent UI defect from one transient dump.
+        if attempt != 5:
+            time.sleep(.45)
+            xml = hierarchy()
+    raise RuntimeError("Native element not visible after retries: " + phrase)
 
 def inspect_controls(xml, dpi):
     root = ET.fromstring(xml)
