@@ -49,6 +49,18 @@ internal fun pruneStalePartialFiles(
 }
 
 /**
+ * Source picker URIs are untrusted, and a compromised private originals root
+ * must not redirect imports to an outside directory. Refuse symlinked roots
+ * before creating a single staging file or opening a provider stream.
+ */
+internal fun requirePrivateImportRoot(originals: File) {
+    require(originals.isDirectory &&
+        !java.nio.file.Files.isSymbolicLink(originals.toPath())) {
+        "The private photo storage directory is unavailable."
+    }
+}
+
+/**
  * If another import already committed this SHA-named original, verify its bytes
  * instead of trusting filename/length alone. This prevents a stale or corrupted
  * file from being attached to another collection as a supposedly valid copy.
@@ -160,6 +172,7 @@ class PhotoImporter(private val context: Context, private val dao: GlimpseDao) {
         }
 
     private suspend fun copyOne(uri: Uri, collectionId: String): Boolean {
+        requirePrivateImportRoot(originals)
         val temp = File.createTempFile("import-", ".partial", originals)
         try {
             val digest = MessageDigest.getInstance("SHA-256")
