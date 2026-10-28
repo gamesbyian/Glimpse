@@ -12,7 +12,7 @@ The native prototype can create collections; import Android Photo Picker selecti
 
 Core code: `data/GlimpseDatabase.kt` (Room), `data/PhotoImporter.kt` and `data/ImportJournal.kt` (durable snapshots, transient failure retry, redacted recovery), `data/LocalStorageInventory.kt` (safe read-only storage metadata), `domain/ShuffleBag.kt` and `domain/WallpaperCommands.kt` (single OS mutation gateway), `GlimpseModel.kt` (state), `domain/ReelWindow.kt` and `domain/ReelMotion.kt` (finite selection/gestures), `CircularPhotoReel.kt` (disc), `OriginalPhotoSharing.kt` (bounded original-only FileProvider handoff), `GlimpseSupportScreen.kt`, and `MainActivity.kt`.
 
-Not implemented: automatic Google Photos album sync; exact five-minute background scheduling; screenshot crop/rotation/editor recipes and edited/sanitized sharing; Lock/Both wallpaper targets; widgets and Quick Settings; comprehensive library/settings backup and restore; deletion of a photo's final collection membership and original; cache-clearing UI; durable external-provider retry grants. Inbound Android Share image intake and user-tapped clipboard Paste image are implemented, but crop/edit continuation is not. Android read grants can expire, and no clipboard monitoring runs. An existing verified photo can be reused or unlinked across collections without deleting its original. Failed-import retry works only while its picker URIs remain available in memory. Native build/CI does not substitute for handset validation. Review [evidence and predictions](../docs/quality/first-slice-evidence.md) before claiming any acceptance.
+Not implemented: automatic Google Photos album sync; exact five-minute background scheduling; production-accepted screenshot crop/rotation/editor and edited/sanitized sharing (in development in #73/#75); Lock/Both wallpaper targets; widgets and Quick Settings; comprehensive library/settings backup and restore; deletion of a photo's final collection membership and original; cache-clearing UI; durable external-provider retry grants. Inbound Android Share image intake and user-tapped clipboard Paste image are implemented, but crop/edit continuation is not. Android read grants can expire, and no clipboard monitoring runs. An existing verified photo can be reused or unlinked across collections without deleting its original. Failed-import retry works only while its picker URIs remain available in memory. Native build/CI does not substitute for handset validation. Review [evidence and predictions](../docs/quality/first-slice-evidence.md) before claiming any acceptance.
 
 ### Debug APK signatures and safe upgrades
 
@@ -45,13 +45,16 @@ older, differently signed debug APKs upgrade-compatible. A protected
 backup/export-and-restore path and a separate release-signing policy remain
 necessary before asking users to migrate devices or uninstall older versions.
 
-### Collection original export (implemented; restore in development)
+### Collection original export and restore (implemented originals only)
 
 Select a collection and choose **Export collection ZIP** from Home. Android's
 Save As picker controls the destination. This is a portable originals-only ZIP,
-with a versioned manifest and exact SHA-verified copies. It is not a full library
-backup or an in-app restore feature, and the receiving document provider may
-leave a partial file on error. The external provider can see original EXIF
+with a versioned manifest and exact SHA-verified copies. From Help & Privacy,
+**Restore collection ZIP…** opens Android Documents to select a compatible archive,
+validates all entries and exact original bytes, then creates a new collection.
+This is not a full library/settings backup or restore; it cannot recreate
+rotation state, wallpaper acknowledgments or app preferences. A receiving
+document provider may leave a partial file on export error. The external provider can see original EXIF
 metadata and the collection title. Validate real provider persistence before
 deleting any originals. The developer format contract is in
 [collection-zip-export.md](../docs/architecture/collection-zip-export.md).
