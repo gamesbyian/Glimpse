@@ -946,18 +946,37 @@ def main():
             # to its original 22-photo source.
             reach_and_click("Remove collection", "down", attempts=16)
             reach_and_click("Confirm remove collection only", "up", attempts=12)
-            removed_alternate = False
-            for attempt in range(14):
-                removed_xml = hierarchy()
-                if ("ALTERNATE ATLAS" not in removed_xml and
-                        "ATLAS FIXTURE" in removed_xml):
-                    removed_alternate = True
+            # The photographic Home header shows the actual selected
+            # Room count, while the collection titles now live BELOW a
+            # full-height photo. Verify both independent UI observations.
+            # A top-viewport string search for "ATLAS FIXTURE" is invalid.
+            source_count_restored = False
+            for _ in range(10):
+                if "Photos: 22" in hierarchy():
+                    source_count_restored = True
                     break
-                if attempt % 2 == 0:
-                    swipe("down")
+                swipe("down")
+            if not source_count_restored:
+                capture_failure("redundant-collection-fallback-count",
+                                "Source did not regain its 22-photo selection count")
+                raise RuntimeError("Collection removal did not restore source count")
+            removed_alternate = False
+            for attempt in range(18):
+                tree = ET.fromstring(hierarchy())
+                cards = [n.attrib.get("content-desc", "") for n in tree.iter("node")
+                         if n.attrib.get("content-desc", "").endswith(
+                             (", selected", ", open collection"))]
+                source_card = any("ATLAS FIXTURE · 22 photos" in desc
+                                  for desc in cards)
+                alternate_card = any("ALTERNATE ATLAS" in desc
+                                     for desc in cards)
+                if source_card:
+                    removed_alternate = not alternate_card
+                    break
+                swipe("up")
             if not removed_alternate:
                 capture_failure("redundant-collection-removal-unconfirmed",
-                                "Alternate membership container not removed or wrong fallback")
+                                "Source tile not found or alternate tile still present")
                 raise RuntimeError("Safe redundant collection removal did not return source")
             originals_after = adb("shell", "run-as", APP, "ls", "files/originals",
                                   check=False).splitlines()
