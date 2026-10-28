@@ -12,6 +12,8 @@ import androidx.room.Query
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.Transaction
+import io.github.gamesbyian.glimpse.domain.CollectionRemovalSafety
+import io.github.gamesbyian.glimpse.domain.collectionRemovalSafety
 import kotlinx.coroutines.flow.Flow
 
 @Entity(tableName = "collections")
@@ -183,6 +185,37 @@ interface GlimpseDao {
                 "The archive contains a duplicate collection membership."
             }
         }
+    }
+
+    @Query(
+        "SELECT COUNT(*) FROM memberships m WHERE m.collectionId = :collectionId " +
+            "AND NOT EXISTS (SELECT 1 FROM memberships other " +
+            "WHERE other.photoId = m.photoId AND other.collectionId != :collectionId)"
+    )
+    suspend fun exclusiveOriginalCount(collectionId: String): Int
+
+    @Query("DELETE FROM memberships WHERE collectionId = :collectionId")
+    suspend fun dropCollectionMemberships(collectionId: String): Int
+
+    @Query("DELETE FROM collections WHERE id = :collectionId")
+    suspend fun dropCollectionRecord(collectionId: String): Int
+
+    /** Non-destructive: no PhotoRecord, byte deletion or rotation mutation. */
+    @Transaction
+    suspend fun removeCollectionIfRedundant(collectionId: String): CollectionRemovalSafety {
+        val rotation = readRotation()
+        val policy = collectionRemovalSafety(
+            exists = collectionExists(collectionId),
+            exclusiveOriginals = exclusiveOriginalCount(collectionId),
+            ownsRotation = rotation?.collectionId == collectionId,
+            uncertainWallpaper = rotation?.pendingPhotoId != null
+        )
+        if (policy != CollectionRemovalSafety.SAFE) return policy
+        dropCollectionMemberships(collectionId)
+        check(dropCollectionRecord(collectionId) == 1) {
+            "Collection disappeared during removal."
+        }
+        return CollectionRemovalSafety.SAFE
     }
 
     @Query("SELECT * FROM rotation WHERE id = 1 LIMIT 1")

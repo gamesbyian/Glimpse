@@ -830,6 +830,30 @@ def main():
                 raise RuntimeError("Browse collection switch lost source disclosure")
             capture("22-shuffle-source-after-browse-switch",
                     "Browsing alternate two-photo collection retains named 22-photo shuffle source")
+            # Remove only the redundant container. Both photo originals must
+            # remain in the first collection and rotation must stay attached
+            # to its original 22-photo source.
+            reach_and_click("Remove collection", "down", attempts=16)
+            reach_and_click("Confirm remove collection only", "up", attempts=12)
+            removed_alternate = False
+            for attempt in range(14):
+                removed_xml = hierarchy()
+                if ("ALTERNATE ATLAS" not in removed_xml and
+                        "ATLAS FIXTURE" in removed_xml):
+                    removed_alternate = True
+                    break
+                if attempt % 2 == 0:
+                    swipe("down")
+            if not removed_alternate:
+                capture_failure("redundant-collection-removal-unconfirmed",
+                                "Alternate membership container not removed or wrong fallback")
+                raise RuntimeError("Safe redundant collection removal did not return source")
+            originals_after = adb("shell", "run-as", APP, "ls", "files/originals",
+                                  check=False).splitlines()
+            if len([name for name in originals_after if name.endswith(".jpg")]) != 22:
+                raise RuntimeError("Collection removal unexpectedly changed immutable originals")
+            capture("22-safe-redundant-collection-removal",
+                    "Redundant collection removed, all 22 exact original files retained")
             adb("shell", "settings", "put", "system", "font_scale", "2.0")
             start_fixture(22)
             capture("22-reel-text-200-percent", "OS font scale 200%, first viewport")

@@ -180,6 +180,7 @@ private fun GlimpseScreen(
     var newCollection by remember { mutableStateOf("Rainbows") }
     var showNewCollection by remember { mutableStateOf(false) }
     var renameTargetCollection by remember { mutableStateOf<String?>(null) }
+    var removeTargetCollection by remember { mutableStateOf<String?>(null) }
     var renameTitle by remember { mutableStateOf("") }
     var showingDetail by rememberSaveable { mutableStateOf(false) }
     var showingBrowse by rememberSaveable { mutableStateOf(false) }
@@ -367,6 +368,10 @@ private fun GlimpseScreen(
                         },
                         enabled = activeCollection != null && !state.busy
                     ) { Text("Rename collection") }
+                    TextButton(
+                        enabled = activeCollection != null && !state.busy,
+                        onClick = { removeTargetCollection = activeCollection }
+                    ) { Text("Remove collection") }
                     if (state.photos.isNotEmpty()) {
                     TextButton(
                         onClick = {
@@ -437,6 +442,36 @@ private fun GlimpseScreen(
                             "large, and Glimpse cannot restore ZIP archives yet.",
                         style = MaterialTheme.typography.bodySmall
                     )
+                }
+                val removeTarget = state.collections.firstOrNull {
+                    it.id == removeTargetCollection
+                }
+                if (removeTarget != null) {
+                    Card(modifier = Modifier.fillMaxWidth()) {
+                        Column(modifier = Modifier.padding(12.dp),
+                            verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                            Text("REMOVE COLLECTION · " + removeTarget.title,
+                                style = MaterialTheme.typography.titleSmall)
+                            Text(
+                                "This removes the collection name and its memberships " +
+                                    "only when every photo also belongs to another collection, " +
+                                    "or when the collection is empty. No image bytes are " +
+                                    "deleted. A saved shuffle source cannot be removed. " +
+                                    "This collection arrangement cannot be undone.",
+                                style = MaterialTheme.typography.bodySmall
+                            )
+                            FlowRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                                OutlinedButton(onClick = { removeTargetCollection = null }) {
+                                    Text("Keep collection")
+                                }
+                                OutlinedButton(enabled = !state.busy, onClick = {
+                                    val chosenId = removeTarget.id
+                                    removeTargetCollection = null
+                                    model.removeCollectionOnly(chosenId)
+                                }) { Text("Confirm remove collection only") }
+                            }
+                        }
+                    }
                 }
                 val renameTarget = state.collections.firstOrNull {
                     it.id == renameTargetCollection
