@@ -239,11 +239,16 @@ private fun GlimpseScreen(
                 modifier = Modifier.padding(padding)
             )
         } else {
+        // The reel occupies fixed screen coordinates, independent of the page
+        // scroll. Content scrolls behind the anchored paper disc.
+        Box(modifier = Modifier.fillMaxSize().padding(padding)
+            .background(Color(0xFFF6F0E6))) {
         Column(
-            modifier = Modifier.fillMaxSize().padding(padding)
-                .background(Color(0xFFF6F0E6))
+            modifier = Modifier.fillMaxSize()
                 .verticalScroll(rememberScrollState())
-                .padding(horizontal = 16.dp, vertical = 12.dp),
+                .padding(start = 16.dp, end = 16.dp, top = 12.dp,
+                    bottom = if (activeCollection != null && !state.grid &&
+                        state.photos.isNotEmpty()) 330.dp else 12.dp),
             verticalArrangement = Arrangement.spacedBy(12.dp)
         ) {
             Text("Glimpse", color = Color(0xFF193B3F),
@@ -620,13 +625,6 @@ private fun GlimpseScreen(
                     OutlinedButton(onClick = { showingDetail = true }) {
                         Text("Open photo details")
                     }
-                    if (!state.grid) {
-                        CircularPhotoReel(
-                            records = state.photos,
-                            selectedId = selected?.id,
-                            onSelect = { photoId -> model.browsePhotoInCollection(activeCollection, photoId) }
-                        )
-                    }
                     FlowRow(
                         horizontalArrangement = Arrangement.spacedBy(8.dp),
                         verticalArrangement = Arrangement.spacedBy(8.dp),
@@ -656,6 +654,18 @@ private fun GlimpseScreen(
                 "Paper-reel finish and motion are still being evaluated on physical Android devices.",
                 style = MaterialTheme.typography.bodySmall
             )
+        }
+        // This overlay is a sibling of, rather than a child of, the scrollable
+        // dashboard. No footer or dashboard card can shift the reel position.
+        if (activeCollection != null && !state.grid && state.photos.isNotEmpty()) {
+            CircularPhotoReel(
+                records = state.photos,
+                selectedId = state.current?.id,
+                onSelect = { id -> model.browsePhotoInCollection(activeCollection, id) },
+                modifier = Modifier.align(Alignment.BottomStart),
+                showHeading = false
+            )
+        }
         }
         }
     }
