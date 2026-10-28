@@ -697,18 +697,23 @@ internal fun PhotoPreview(
     modifier: Modifier,
     label: String,
     contentScale: ContentScale = ContentScale.Crop,
-    pathOverride: String? = null
+    pathOverride: String? = null,
+    decodeMaxEdge: Int = 1024
 ) {
     val path = pathOverride ?: photo?.localPath
+    // Large photographic surfaces benefit from additional detail; keep a
+    // strict bound so decoded bitmap memory cannot explode on huge originals.
+    val boundedEdge = decodeMaxEdge.coerceIn(256, 2048)
     // key(path) restarts the load state rather than retaining the previous
     // bitmap while the next selection decodes. The explicit source identity
     // check is a second guard against a delayed previous result.
-    val loaded by key(path) {
+    val loaded by key(path, boundedEdge) {
         produceState(
             initialValue = PreviewLoadState<ImageBitmap>(
                 sourcePath = path, complete = path == null
             ),
-            key1 = path
+            key1 = path,
+            key2 = boundedEdge
         ) {
             value = if (path == null) {
                 PreviewLoadState(sourcePath = null, complete = true)
@@ -718,7 +723,7 @@ internal fun PhotoPreview(
                         // Same EXIF orientation and bounded decode as Reel/Home
                         // wallpaper. Original file bytes are untouched.
                         val image = BoundedPhotoDecode.decode(
-                            File(path), maxEdge = 1024
+                            File(path), maxEdge = boundedEdge
                         ).asImageBitmap()
                         PreviewLoadState(sourcePath = path, image = image, complete = true)
                     } catch (_: Exception) {
