@@ -880,7 +880,7 @@ def main():
             reach_and_click("Add this photo to another collection", "up", attempts=12)
             reach_and_click("Add to ALTERNATE ATLAS", "up", attempts=10)
             reach_and_click("Back to Reel / Grid", "down", attempts=12)
-            reach_and_click("ALTERNATE ATLAS", "down", attempts=12)
+            reach_and_click("ALTERNATE ATLAS", "up", attempts=12)
             found_three = False
             for _ in range(12):
                 membership_xml = hierarchy()
