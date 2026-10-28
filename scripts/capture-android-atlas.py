@@ -225,15 +225,24 @@ def swipe(direction="up"):
 
 
 def accessible_bounds(xml, phrase):
-    """Read actual rendered Android bounds; never infer positions from mockups."""
-    for node in ET.fromstring(xml).iter("node"):
-        value = node.attrib.get("text", "") or node.attrib.get("content-desc", "")
-        if phrase in value:
-            bounds = re.findall(r"\\d+", node.attrib.get("bounds", ""))
-            if len(bounds) == 4:
-                return tuple(map(int, bounds))
-    raise RuntimeError("Native element not visible: " + phrase)
-
+    """Read actual rendered Android bounds with bounded recompose tolerance."""
+    for attempt in range(6):
+        for node in ET.fromstring(xml).iter("node"):
+            # Both fields may be populated; accessibility labels own the
+            # Canvas, while surrounding layout state may have text too.
+            values = (node.attrib.get("text", ""), node.attrib.get("content-desc", ""))
+            if any(phrase in value for value in values):
+                bounds = re.findall(r"\d+", node.attrib.get("bounds", ""))
+                if len(bounds) == 4:
+                    return tuple(map(int, bounds))
+        # UIAutomator can omit transient Compose nodes during the asynchronous
+        # selector/thumbnail rebind after Next. A captured screenshot from this
+        # exact branch proves the Canvas exists; retry a fresh hierarchy rather
+        # than reporting a non-existent UI defect from one transient dump.
+        if attempt != 5:
+            time.sleep(.45)
+            xml = hierarchy()
+    raise RuntimeError("Native element not visible after retries: " + phrase)
 
 def inspect_controls(xml, dpi):
     root = ET.fromstring(xml)
@@ -355,12 +364,12 @@ def main():
                 capture_failure("missing-collection-overview",
                                 "No Room-backed 22-photo count in initial Home viewport")
                 raise RuntimeError("Actual initial 22-photo collection count missing")
-            # The Home opening is actual PhotoRecord imagery, not sample
-            # decoration or a claim that browsing has changed OS wallpaper.
+            # Home is a photographic preview backed by the actual selected
+            # fixture image, with explicit navigation and no implied Apply.
             if ("Selected photograph · Preview only" not in first_viewport or
                     "Browse photo reel" not in first_viewport):
                 capture_failure("missing-photographic-home-introduction",
-                                "Home lacks the selected-photo preview or reel entrance")
+                                "Home lacks selected-photo preview or the browse entrance")
                 raise RuntimeError("Photographic Home hero and explicit browse action missing")
         capture("22-reel-initial", "Collection with 22 actual records, before any interaction")
         if args.mode == "full":
