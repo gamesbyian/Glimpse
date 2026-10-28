@@ -15,7 +15,7 @@ import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
-import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.foundation.lazy.grid.itemsIndexed
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
@@ -94,7 +94,8 @@ internal fun GlimpseGridRoom(
                     modifier = Modifier.fillMaxWidth().padding(10.dp),
                     verticalArrangement = Arrangement.spacedBy(6.dp)
                 ) {
-                    Text("IN FOCUS · ${index + 1} OF ${photos.size}",
+                    Text(if (index >= 0) "IN FOCUS · ${index + 1} OF ${photos.size}"
+                        else "CHOOSE A PHOTOGRAPH",
                         color = ink, style = MaterialTheme.typography.labelLarge)
                     PhotoPreview(
                         photo = selected,
@@ -125,7 +126,7 @@ internal fun GlimpseGridRoom(
                 verticalArrangement = Arrangement.spacedBy(8.dp),
                 horizontalArrangement = Arrangement.spacedBy(8.dp)
             ) {
-                items(photos, key = { it.id }) { photo ->
+                itemsIndexed(photos, key = { _, photo -> photo.id }) { position, photo ->
                     val active = photo.id == selected?.id
                     val shape = RoundedCornerShape(12.dp)
                     Box(
@@ -141,7 +142,8 @@ internal fun GlimpseGridRoom(
                         PhotoPreview(
                             photo = photo,
                             modifier = Modifier.fillMaxSize(),
-                            label = "Choose photo in collection: " + photo.id.take(8)
+                            label = "Photograph ${position + 1} of ${photos.size}" +
+                                if (active) ", selected" else ", choose photo"
                         )
                     }
                 }
