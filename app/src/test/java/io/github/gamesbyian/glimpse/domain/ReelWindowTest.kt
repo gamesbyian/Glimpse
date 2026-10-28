@@ -80,4 +80,21 @@ class ReelWindowTest {
         assertEquals(0, ReelWindow.focusIndex(listOf("a", "b"), "missing"))
         assertEquals("b", ReelWindow.next(listOf("a", "b"), "missing", 1))
     }
+    @Test fun everyApertureAndPaperSectorCanStartReelRotation() {
+        val w = 400f
+        val h = 316f
+        val p = ReelWindow.placement(w, h)
+        for (degree in listOf(-162.0, -90.0, -18.0, 54.0, 126.0)) {
+            val a = Math.toRadians(degree)
+            val x = p.centerX + p.radius * .62f * kotlin.math.cos(a).toFloat()
+            val y = p.centerY + p.radius * .62f * kotlin.math.sin(a).toFloat()
+            assert(ReelWindow.acceptsRotationStart(x, y, w, h))
+        }
+        assert(ReelWindow.acceptsRotationStart(p.centerX, p.centerY, w, h))
+        assert(!ReelWindow.acceptsRotationStart(p.centerX + p.radius * 1.2f,
+            p.centerY, w, h))
+        assert(!ReelWindow.acceptsRotationStart(Float.NaN, p.centerY, w, h))
+    }
+
+
 }

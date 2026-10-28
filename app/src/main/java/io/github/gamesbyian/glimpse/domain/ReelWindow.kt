@@ -32,6 +32,16 @@ object ReelWindow {
     fun placement(width: Float, height: Float): Placement =
         Placement(width * .27f, height * .87f, width * .69f)
 
+    /**
+     * The photographic aperture is part of the same physical turnable disc as
+     * the surrounding paper. Never reserve rotation only for opaque pixels.
+     */
+    fun acceptsRotationStart(x: Float, y: Float, width: Float, height: Float): Boolean {
+        if (!x.isFinite() || !y.isFinite() || width <= 0f || height <= 0f) return false
+        val p = placement(width, height)
+        return kotlin.math.hypot(x - p.centerX, y - p.centerY) <= p.radius
+    }
+
     fun tapOffset(x: Float, y: Float, width: Float, height: Float): Int? {
         if (width <= 0f || height <= 0f) return null
         val p = placement(width, height)

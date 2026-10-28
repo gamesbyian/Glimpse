@@ -213,12 +213,36 @@ def reach_and_click(label, direction="up", attempts=7):
 
 def swipe(direction="up"):
     w, h, _ = screen_geometry()
-    a = int(h * (0.78 if direction == "up" else 0.24))
-    b = int(h * (0.24 if direction == "up" else 0.78))
-    adb("shell", "input", "swipe", str(w//2), str(a),
-        str(w//2), str(b), "520")
+    # A bottom-corner reel is a live rotation control, not a scrolling grip.
+    # Start in the unobstructed upper content area; crossing the wheel during
+    # a gesture is harmless once the scroll owner has accepted the down event.
+    a = int(h * (0.49 if direction == "up" else 0.18))
+    b = int(h * (0.17 if direction == "up" else 0.53))
+    x = int(w * .92)
+    adb("shell", "input", "swipe", str(x), str(a),
+        str(x), str(b), "520")
     time.sleep(1)
 
+
+def accessible_bounds(xml, phrase):
+    """Read actual rendered Android bounds with bounded recompose tolerance."""
+    for attempt in range(6):
+        for node in ET.fromstring(xml).iter("node"):
+            # Both fields may be populated; accessibility labels own the
+            # Canvas, while surrounding layout state may have text too.
+            values = (node.attrib.get("text", ""), node.attrib.get("content-desc", ""))
+            if any(phrase in value for value in values):
+                bounds = re.findall(r"\d+", node.attrib.get("bounds", ""))
+                if len(bounds) == 4:
+                    return tuple(map(int, bounds))
+        # UIAutomator can omit transient Compose nodes during the asynchronous
+        # selector/thumbnail rebind after Next. A captured screenshot from this
+        # exact branch proves the Canvas exists; retry a fresh hierarchy rather
+        # than reporting a non-existent UI defect from one transient dump.
+        if attempt != 5:
+            time.sleep(.45)
+            xml = hierarchy()
+    raise RuntimeError("Native element not visible after retries: " + phrase)
 
 def inspect_controls(xml, dpi):
     root = ET.fromstring(xml)
@@ -332,10 +356,14 @@ def main():
                 capture_failure("incorrect-home-acknowledgment",
                                 "Fresh fixture must not claim a wallpaper acknowledgment")
                 raise RuntimeError("Initial Home card lacks truthful no-acknowledgment state")
-            if "ATLAS FIXTURE · 22 photos, 22 photos" not in first_viewport:
+            # A fixed-edge reel is now a primary Home control. The former
+            # collection-management tile may scroll under it; the live Room
+            # count is deliberately kept in Home's visible introduction.
+            if ("ATLAS FIXTURE · 22 photos, 22 photos" not in first_viewport and
+                    "Photos: 22" not in first_viewport):
                 capture_failure("missing-collection-overview",
-                                "Real Room-backed collection tile not in initial viewport")
-                raise RuntimeError("Actual initial 22-photo collection tile/count missing")
+                                "No Room-backed 22-photo count in initial Home viewport")
+                raise RuntimeError("Actual initial 22-photo collection count missing")
         capture("22-reel-initial", "Collection with 22 actual records, before any interaction")
         if args.mode == "full":
             # Real OS multi-stream Sharesheet with read-only FileProvider grants,
@@ -628,7 +656,56 @@ def main():
                 raise RuntimeError("Focused Reel Next did not select stable photo 2")
             capture("22-focused-reel-next",
                     "Photo 2 preview from same collection after semantic Next")
-            click_label("Back to Home")
+            # The owner found that drags beginning inside photographic
+            # apertures failed. Rotate a real fixture from the selected top
+            # photo-window centre toward its clockwise neighbour. This is an
+            # Android input event, not a synthetic ReelMotion unit assertion.
+            x0, y0, x1, y1 = accessible_bounds(hierarchy(), "Paper photo reel")
+            rw, rh = x1 - x0, y1 - y0
+            cx = x0 + rw * .27
+            cy = y0 + rh * .87
+            photo_radius = rw * .69 * .62
+            start_x, start_y = round(cx), round(cy - photo_radius)
+            end_x = round(cx + photo_radius * .707)
+            end_y = round(cy - photo_radius * .707)
+            if not (x0 <= start_x < x1 and y0 <= start_y < y1):
+                raise RuntimeError("Top photo aperture outside native reel bounds")
+            adb("shell", "input", "swipe", str(start_x), str(start_y),
+                str(end_x), str(end_y), "620")
+            time.sleep(1.5)
+            if "Previewing 1 of 22" not in hierarchy():
+                capture_failure("photo-window-drag-unresponsive",
+                                "Native drag started on actual photographic aperture")
+                raise RuntimeError("Aperture-origin reel rotation did not select previous photo")
+            capture("22-photo-aperture-drag",
+                    "Native Android clockwise drag begins within a photographic aperture")
+            # Scrolling the underlying page above the reel must leave the reel
+            # itself at the identical screen position, rather than carry it
+            # upward as an in-flow dashboard widget.
+            reel_before = accessible_bounds(hierarchy(), "Paper photo reel")
+            home_before = accessible_bounds(hierarchy(), "Back to Home")
+            screen_w, screen_h, _ = screen_geometry()
+            adb("shell", "input", "swipe",
+                str(int(screen_w * .92)), str(int(screen_h * .44)),
+                str(int(screen_w * .92)), str(int(screen_h * .16)), "520")
+            time.sleep(1)
+            scrolled = hierarchy()
+            if accessible_bounds(scrolled, "Paper photo reel") != reel_before:
+                raise RuntimeError("Fixed reel moved when page content scrolled")
+            try:
+                home_after = accessible_bounds(scrolled, "Back to Home")
+            except RuntimeError:
+                home_after = None  # expected: header scrolls away
+            if home_after == home_before:
+                raise RuntimeError("Page failed to scroll independently of fixed reel")
+            capture("22-fixed-reel-after-scroll",
+                    "Photo reel stays at its viewport coordinates as content scrolls behind")
+            # Restore a visible navigation action without touching the reel.
+            adb("shell", "input", "swipe",
+                str(int(screen_w * .92)), str(int(screen_h * .20)),
+                str(int(screen_w * .92)), str(int(screen_h * .57)), "550")
+            time.sleep(1)
+            reach_and_click("Back to Home", "down", attempts=8)
             if "Glimpse" not in hierarchy():
                 raise RuntimeError("Dedicated reel did not return to Home dashboard")
         swipe("up")

@@ -59,4 +59,20 @@ class ReelMotionTest {
             assertEquals(0, focus)
         }
     }
+    @Test fun angularMotionWorksFromPhotoWindowsInEitherDirection() {
+        assertEquals(112.5f, ReelMotion.angularDragDegrees(
+            0f, -100f, 100f, 0f, 0f, 0f, 200f, 400f), .01f)
+        assertEquals(-112.5f, ReelMotion.angularDragDegrees(
+            0f, -100f, -100f, 0f, 0f, 0f, 200f, 400f), .01f)
+        // Crossing the atan2 seam must remain a tiny motion, not a full turn.
+        val seam = ReelMotion.angularDragDegrees(
+            -100f, -1f, -100f, 1f, 0f, 0f, 200f, 400f)
+        assert(kotlin.math.abs(seam) < 5f)
+        assertEquals(0f, ReelMotion.angularDragDegrees(
+            Float.NaN, 0f, 100f, 0f, 0f, 0f, 200f, 400f))
+        assertEquals(0f, ReelMotion.angularDragDegrees(
+            0f, 0f, 100f, 0f, 0f, 0f, 0f, 400f))
+    }
+
+
 }

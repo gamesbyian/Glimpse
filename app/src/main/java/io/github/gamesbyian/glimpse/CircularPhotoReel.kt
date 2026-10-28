@@ -9,7 +9,7 @@ import android.graphics.Rect
 import android.graphics.RectF
 import android.util.LruCache
 import androidx.compose.foundation.Canvas
-import androidx.compose.foundation.gestures.detectHorizontalDragGestures
+import androidx.compose.foundation.gestures.detectDragGestures
 import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -273,24 +273,46 @@ fun CircularPhotoReel(
                         }
                     }
                     .pointerInput(ids, anchorId) {
-                        detectHorizontalDragGestures(
-                            onDragStart = {
-                                settleJob?.cancel()
-                                dragging = true
-                                dragAngle = angle.value
+                        // A real turn of the disc is tangential: vertical and
+                        // diagonal drags count, including those begun directly
+                        // on a photographic aperture. Horizontal-only detection
+                        // used to ignore much of the owner's natural motion.
+                        detectDragGestures(
+                            onDragStart = { start ->
+                                dragging = ReelWindow.acceptsRotationStart(
+                                    start.x, start.y, size.width.toFloat(), size.height.toFloat()
+                                )
+                                if (dragging) {
+                                    settleJob?.cancel()
+                                    dragAngle = angle.value
+                                }
                             },
-                            onHorizontalDrag = { change, amountX ->
-                                change.consume()
-                                dragAngle = (dragAngle + ReelMotion.dragDegrees(
-                                    amountX, size.width.toFloat()
-                                )).coerceIn(-2.5f * 72f, 2.5f * 72f)
+                            onDrag = { change, _ ->
+                                if (dragging) {
+                                    change.consume()
+                                    val placement = ReelWindow.placement(
+                                        size.width.toFloat(), size.height.toFloat()
+                                    )
+                                    val delta = ReelMotion.angularDragDegrees(
+                                        change.previousPosition.x, change.previousPosition.y,
+                                        change.position.x, change.position.y,
+                                        placement.centerX, placement.centerY, placement.radius,
+                                        size.width.toFloat()
+                                    )
+                                    dragAngle = (dragAngle + delta)
+                                        .coerceIn(-2.5f * 72f, 2.5f * 72f)
+                                }
                             },
                             onDragEnd = {
-                                val origin = ReelWindow.focusIndex(ids, anchorId)
-                                beginSettle(dragAngle,
-                                    ReelMotion.settleSteps(dragAngle, origin, ids.size))
+                                if (dragging) {
+                                    val origin = ReelWindow.focusIndex(ids, anchorId)
+                                    beginSettle(dragAngle,
+                                        ReelMotion.settleSteps(dragAngle, origin, ids.size))
+                                }
                             },
-                            onDragCancel = { beginSettle(dragAngle, 0) }
+                            onDragCancel = {
+                                if (dragging) beginSettle(dragAngle, 0)
+                            }
                         )
                     }
             ) {
