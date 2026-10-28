@@ -759,11 +759,20 @@ def main():
                                 "View all must open a full-height real collection contact sheet")
                 raise RuntimeError("Grid remained a nested Home panel instead of dedicated room")
             capture("22-grid", "Full-height native contact sheet for 22 real source photographs")
+            reach_and_click("Photograph 2 of 22", "up", attempts=4)
+            if "IN FOCUS · 2 OF 22" not in hierarchy():
+                capture_failure("grid-selection-not-retained",
+                                "Selecting second real photo did not update contact-sheet focus")
+                raise RuntimeError("Grid did not select the second collection photo")
+            capture("22-grid-selected-photo-two",
+                    "Grid selection changes only the preview and stable photo identity")
             reach_and_click("Browse photo reel", "up", attempts=4)
             if "THE PHOTO REEL" not in hierarchy():
                 capture_failure("grid-to-reel-nav-missing",
                                 "Contact sheet did not switch into the fixed paper Reel room")
                 raise RuntimeError("Grid-to-Reel navigation failed")
+            if "Previewing 2 of 22" not in hierarchy():
+                raise RuntimeError("Grid-to-Reel transition discarded selected photo ID")
             capture("22-grid-to-fixed-reel",
                     "Grid returns directly to fixed photographic Reel browser")
             # R3 uses production PhotoRecord, selection and wallpaper gateway;
