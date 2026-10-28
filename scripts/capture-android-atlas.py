@@ -789,7 +789,7 @@ def main():
             # Remove only the redundant container. Both photo originals must
             # remain in the first collection and rotation must stay attached
             # to its original 22-photo source.
-            reach_and_click("Remove collection", "up", attempts=12)
+            reach_and_click("Remove collection", "down", attempts=16)
             reach_and_click("Confirm remove collection only", "up", attempts=12)
             removed_alternate = False
             for attempt in range(14):
