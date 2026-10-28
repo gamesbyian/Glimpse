@@ -213,10 +213,14 @@ def reach_and_click(label, direction="up", attempts=7):
 
 def swipe(direction="up"):
     w, h, _ = screen_geometry()
-    a = int(h * (0.78 if direction == "up" else 0.24))
-    b = int(h * (0.24 if direction == "up" else 0.78))
-    adb("shell", "input", "swipe", str(w//2), str(a),
-        str(w//2), str(b), "520")
+    # A bottom-corner reel is a live rotation control, not a scrolling grip.
+    # Start in the unobstructed upper content area; crossing the wheel during
+    # a gesture is harmless once the scroll owner has accepted the down event.
+    a = int(h * (0.49 if direction == "up" else 0.18))
+    b = int(h * (0.17 if direction == "up" else 0.53))
+    x = int(w * .92)
+    adb("shell", "input", "swipe", str(x), str(a),
+        str(x), str(b), "520")
     time.sleep(1)
 
 
