@@ -53,7 +53,7 @@ def main(out):
     if base.adb("shell","getprop","ro.kernel.qemu").strip() != "1":
         raise RuntimeError("REFUSE clipboard fixture on physical hardware")
     base.start_fixture(0)
-    assert "No images yet." in base.hierarchy()
+    assert "Photos: 0" in base.hierarchy()
     base.adb("shell","am","start","-n",PICKER_FIXTURE)
     raw = until(lambda: app_file("picker-fixture-ready.json"),seconds=25)
     assert raw and raw.startswith("{"), "No published synthetic source"
