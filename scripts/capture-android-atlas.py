@@ -857,7 +857,7 @@ def main():
                 "cache/shared-edits/" + shared_pngs[0],
                 check=False, binary=True, timeout=40
             )
-            if not edited_bytes.startswith(b"\\x89PNG\\r\\n\\x1a\\n") or len(edited_bytes) < 24:
+            if not edited_bytes.startswith(b"\x89PNG\r\n\x1a\n") or len(edited_bytes) < 24:
                 raise RuntimeError("Edited share staged invalid PNG pixels")
             share_width, share_height = struct.unpack(">II", edited_bytes[16:24])
             if not (1 <= share_width < 720 and share_height == 480):
