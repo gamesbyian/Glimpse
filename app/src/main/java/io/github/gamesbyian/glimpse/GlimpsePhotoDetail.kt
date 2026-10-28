@@ -194,7 +194,7 @@ internal fun GlimpsePhotoDetail(
             Text(saveNotice!!, style = MaterialTheme.typography.bodySmall)
         }
         if (photo != null) {
-            GlimpsePhotoEditor(photo)
+            GlimpsePhotoEditor(photo, model, state.collectionId, state.busy)
         }
         Button(
             onClick = model::applyPreview,

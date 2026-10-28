@@ -6,17 +6,23 @@ import android.graphics.Matrix
 import android.net.Uri
 import io.github.gamesbyian.glimpse.data.BoundedPhotoDecode
 import io.github.gamesbyian.glimpse.data.PhotoRecord
+import io.github.gamesbyian.glimpse.data.GlimpseDao
+import io.github.gamesbyian.glimpse.data.existingOriginalMatches
 import io.github.gamesbyian.glimpse.data.verifyPrivateOriginal
 import io.github.gamesbyian.glimpse.domain.PhotoEditGeometry
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.io.File
+import java.io.FileOutputStream
+import java.security.MessageDigest
 
 /**
  * Bounded, non-destructive rendering of user-selected rotation/crop.
  * ImageDecoder handles EXIF before the geometry is applied. A saved PNG
  * contains edited pixels but intentionally excludes the source EXIF.
  */
+internal data class EditedCollectionCopy(val record: PhotoRecord, val newlyAttached: Boolean)
+
 internal object EditedPhotoOutput {
     const val MAX_EXPORT_EDGE = 3072
     const val MAX_PREVIEW_EDGE = 960
@@ -62,6 +68,67 @@ internal object EditedPhotoOutput {
         } catch (failure: Throwable) {
             current.recycle()
             throw failure
+        }
+    }
+
+    /**
+     * Save a separate PNG as a regular, SHA-identified offline photo in the
+     * chosen collection. The source original and its memberships are intact.
+     * This first edit milestone stores baked pixels, not a revision recipe.
+     */
+    suspend fun addEditedVersion(
+        context: Context, dao: GlimpseDao, original: PhotoRecord,
+        geometry: PhotoEditGeometry, collectionId: String
+    ): EditedCollectionCopy = withContext(Dispatchers.IO) {
+        require(dao.collectionExists(collectionId) &&
+            dao.findMembership(collectionId, original.id) != null) {
+            "The original is no longer in the chosen collection."
+        }
+        val pixels = renderVerified(context, original, geometry, MAX_EXPORT_EDGE)
+        val root = File(context.filesDir, "originals")
+        val temporary = File.createTempFile("import-", ".partial", root)
+        try {
+            FileOutputStream(temporary).use { output ->
+                require(pixels.compress(Bitmap.CompressFormat.PNG, 100, output)) {
+                    "Unable to encode edited image."
+                }
+                output.fd.sync()
+            }
+            val byteCount = temporary.length()
+            require(byteCount in 1..(50L * 1024 * 1024)) {
+                "The edited image is too large for local importing."
+            }
+            val digest = MessageDigest.getInstance("SHA-256")
+            temporary.inputStream().buffered().use { input ->
+                val buffer = ByteArray(64 * 1024)
+                while (true) {
+                    val n = input.read(buffer)
+                    if (n < 0) break
+                    digest.update(buffer, 0, n)
+                }
+            }
+            val id = digest.digest().joinToString("") { "%02x".format(it) }
+            val target = File(root, id + ".png")
+            if (!target.exists()) {
+                require(temporary.renameTo(target)) {
+                    "Unable to finalize the edited offline copy."
+                }
+            } else {
+                require(existingOriginalMatches(target, id, byteCount)) {
+                    "An existing edited original is damaged; it was not overwritten."
+                }
+            }
+            val record = PhotoRecord(
+                id = id, sha256 = id, localPath = target.absolutePath,
+                mime = "image/png", width = pixels.width, height = pixels.height,
+                byteLength = byteCount, importedAt = System.currentTimeMillis()
+            )
+            val attached = dao.attachIfCollectionExists(record, collectionId)
+                ?: error("The destination collection disappeared during editing.")
+            EditedCollectionCopy(record, attached)
+        } finally {
+            pixels.recycle()
+            temporary.delete()
         }
     }
 

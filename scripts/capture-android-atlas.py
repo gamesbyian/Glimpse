@@ -897,6 +897,69 @@ def main():
                 raise RuntimeError("Cannot show enough real paper reel at 320dp/200% type")
             capture("22-compact-320dp-text-200pct-reel",
                     "320dp logical width, OS 200% font, >=240dp actual paper reel Canvas visible")
+            # Isolated destructive-to-fixture-only edit acceptance, AFTER all
+            # main 22-photo/focus/shuffle/large-type checks. A real separate
+            # SHA-named edited PNG is added to a three-photo Room collection.
+            adb("shell", "wm", "density", "reset")
+            adb("shell", "settings", "put", "system", "font_scale", "1.0")
+            start_fixture(3)
+            before_sources = adb("shell", "run-as", APP, "ls",
+                                 "files/originals", check=False).splitlines()
+            if len([name for name in before_sources if name.endswith(".jpg")]) != 3:
+                raise RuntimeError("Variant fixture did not begin with 3 intact originals")
+            reach_and_click("Open photo details", "up", attempts=12)
+            reach_and_click("Edit photo (crop and rotate)", "up", attempts=14)
+            reach_and_click("Rotate 90° right", "up", attempts=14)
+            reach_and_click("Left crop edge", "up", attempts=16)
+            reach_and_click("Save edit recipe…", "up", attempts=15)
+            stored_recipe = False
+            for _ in range(10):
+                receipt = adb("shell", "run-as", APP, "cat",
+                              "shared_prefs/glimpse_edit_recipes_v1.xml",
+                              check=False)
+                if "1|1|" in receipt:
+                    stored_recipe = True
+                    break
+                time.sleep(0.5)
+            if not stored_recipe:
+                raise RuntimeError("The edited photo recipe was not retained in private preferences")
+            reach_and_click("Save edited photo to this collection", "up", attempts=14)
+            variant_selected = False
+            time.sleep(2)
+            # The position caption sits above the editor; UIAutomator only
+            # reports visible nodes, so return to the top before reading it.
+            for _ in range(6):
+                swipe("down")
+            for _ in range(24):
+                view = hierarchy()
+                if "Photograph 4 of 4" in view:
+                    variant_selected = True
+                    break
+                time.sleep(0.8)
+            if not variant_selected:
+                capture_failure("edited-variant-not-selected",
+                                "Native edited PNG was not attached and selected")
+                raise RuntimeError("Edited variant did not appear as photograph 4 of 4")
+            after_sources = adb("shell", "run-as", APP, "ls",
+                                "files/originals", check=False).splitlines()
+            if len([n for n in after_sources if n.endswith(".jpg")]) != 3:
+                raise RuntimeError("Saving variant unexpectedly removed source originals")
+            variants = [n for n in after_sources if n.endswith(".png") and
+                        re.fullmatch(r"[0-9a-f]{64}\.png", n)]
+            if len(variants) != 1:
+                raise RuntimeError("Expected one new SHA-identified edited PNG source")
+            variant_file = adb("exec-out", "run-as", APP, "cat",
+                               "files/originals/" + variants[0],
+                               check=False, binary=True)
+            if not variant_file.startswith(b"\x89PNG\r\n\x1a\n"):
+                raise RuntimeError("Saved edited member is not actual PNG pixels")
+            width, height = struct.unpack(">II", variant_file[16:24])
+            if not (1 <= width < 720 and height == 480):
+                raise RuntimeError("Saved collection member lost rotation/crop geometry")
+            if hashlib.sha256(variant_file).hexdigest() != variants[0][:-4]:
+                raise RuntimeError("Saved collection PNG bytes disagree with filename SHA")
+            capture("03-edited-variant-immutable-collection-copy",
+                    "Actual cropped/rotated PNG became fourth collection photo; three originals retained")
     except Exception as error:
         failures.append(str(error))
         print("Atlas failed:", error, flush=True)

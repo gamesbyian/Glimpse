@@ -142,6 +142,16 @@ interface GlimpseDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertMembership(membership: MembershipRecord): Long
 
+    /**
+     * Guard selection races in long-running edits: a deleted destination must
+     * never receive a new dangling membership.
+     */
+    @Transaction
+    suspend fun attachIfCollectionExists(photo: PhotoRecord, collectionId: String): Boolean? {
+        if (!collectionExists(collectionId)) return null
+        return attach(photo, collectionId)
+    }
+
     @Transaction
     suspend fun attach(photo: PhotoRecord, collectionId: String): Boolean {
         insertPhoto(photo)
