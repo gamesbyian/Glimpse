@@ -1,5 +1,12 @@
 # Issue #1: first native slice predictions and evidence
 
+## Current evidence update: fixed-reel architecture (2026-10-28)
+
+- **Owner's second physical APK report (pre-#82):** the paper reel's tactile feel was promising, but it incorrectly scrolled with a long Home page, and gesture rotation worked from paper sectors rather than photographic windows. The overall design remained substantially behind the two approved 2026-10-26 visual reference boards. No crashes were reported in this limited exploration; everyday UX review was expressly deferred. Visual identity is priority one, feature completeness close behind.
+- **Verified Android emulator after [#82](https://github.com/gamesbyian/Glimpse/pull/82):** merge commit `b9f3e7af`. [Full visual-atlas run #40740490634](https://github.com/gamesbyian/Glimpse/actions/runs/40740490634) and native/JVM, Android Share and Clipboard workflow checks all **passed** at PR head `c2d89cf5`. A real Android input swipe beginning inside a photographed aperture moved from photo 2 back to photo 1, and the reel's accessibility bounds remained identical before and after scrolling the content behind it. Artifacts include `22-photo-aperture-drag` and `22-fixed-reel-after-scroll` captures. These checks establish Android emulator behavior, not Pixel 6 Pro human approval.
+- **Unaccepted:** final screen materials and typography vs reference, precise transparent-area pointer passthrough, per-screen multi-reel function, full native accessibility/TalkBack and 320dp/200%-font no-obstruction, actual-owner assessment of the new APK. Follow-ons [#83](https://github.com/gamesbyian/Glimpse/pull/83), [#84](https://github.com/gamesbyian/Glimpse/pull/84), and [#85](https://github.com/gamesbyian/Glimpse/pull/85) remain independent until their CI and integration gates are satisfied. Earlier 2026-10-23 observations below describe an older rectangle-reel build and must not be read as current implementation truth.
+
+
 **Status: Android source, CI build and JVM unit task verified; handset/human acceptance unverified.** These hypotheses were documented before an uncoached user observation. This is not a simulated usability study.
 
 ## First real owner test: 22 imported Google Photos images (2026-10-23)
