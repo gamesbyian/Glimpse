@@ -799,7 +799,7 @@ def main():
                     removed_alternate = True
                     break
                 if attempt % 2 == 0:
-                    swipe("up")
+                    swipe("down")
             if not removed_alternate:
                 capture_failure("redundant-collection-removal-unconfirmed",
                                 "Alternate membership container not removed or wrong fallback")
