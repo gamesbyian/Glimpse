@@ -247,7 +247,7 @@ private fun GlimpseScreen(
         Column(
             modifier = Modifier.fillMaxSize().padding(padding)
                 .verticalScroll(rememberScrollState())
-                .padding(start = 16.dp, end = 16.dp, top = 12.dp,
+                .padding(top = 0.dp,
                     bottom = if (activeCollection != null && !state.grid &&
                         state.photos.isNotEmpty()) 330.dp else 12.dp),
             verticalArrangement = Arrangement.spacedBy(12.dp)
@@ -258,9 +258,19 @@ private fun GlimpseScreen(
                 GlimpseHomeHero(
                     state = state,
                     onBrowse = { showingBrowse = true },
-                    onSupport = { showingSupport = true }
+                    onSupport = { showingSupport = true },
+                    modifier = if (state.current == null)
+                        Modifier.padding(horizontal = 16.dp) else Modifier
                 )
             }
+            // Management content is inset as a distinct scroll-flow region.
+            // Only the photographic opening is edge-to-edge; the reel remains
+            // a viewport-anchored sibling of this entire scrolling Column.
+            Column(
+                modifier = Modifier.fillMaxWidth()
+                    .padding(horizontal = 16.dp, vertical = 12.dp),
+                verticalArrangement = Arrangement.spacedBy(12.dp)
+            ) {
             if (incomingShare != null) {
                 Card(modifier = Modifier.fillMaxWidth()) {
                     Column(
@@ -643,6 +653,7 @@ private fun GlimpseScreen(
                 "Paper-reel finish and motion are still being evaluated on physical Android devices.",
                 style = MaterialTheme.typography.bodySmall
             )
+            } // End inset management region.
         }
         // This overlay is a sibling of, rather than a child of, the scrollable
         // dashboard. No footer or dashboard card can shift the reel position.
