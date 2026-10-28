@@ -1,7 +1,7 @@
 package io.github.gamesbyian.glimpse.domain
 
 /** Collection cleanup cannot strand originals or discard rotation identity. */
-internal enum class CollectionRemovalSafety {
+enum class CollectionRemovalSafety {
     SAFE, NOT_FOUND, HAS_EXCLUSIVE_ORIGINALS, OWNS_ROTATION, UNCERTAIN_WALLPAPER
 }
 
