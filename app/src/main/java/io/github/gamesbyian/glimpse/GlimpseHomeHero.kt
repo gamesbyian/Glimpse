@@ -57,7 +57,8 @@ internal fun GlimpseHomeHero(
                 photo = preview,
                 modifier = Modifier.fillMaxSize(),
                 label = "Home selected photograph, preview only; Android wallpaper unchanged by browsing",
-                contentScale = ContentScale.Crop
+                contentScale = ContentScale.Crop,
+                decodeMaxEdge = 2048
             )
             Box(
                 modifier = Modifier.fillMaxSize().background(
