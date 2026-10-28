@@ -236,15 +236,16 @@ private fun GlimpseScreen(
                     if (!state.grid) model.toggleGrid()
                     showingBrowse = false
                 },
-                modifier = Modifier.padding(padding)
+                modifier = Modifier,
+                contentInsets = padding
             )
         } else {
         // The reel occupies fixed screen coordinates, independent of the page
         // scroll. Content scrolls behind the anchored paper disc.
-        Box(modifier = Modifier.fillMaxSize().padding(padding)
+        Box(modifier = Modifier.fillMaxSize()
             .background(Color(0xFFF6F0E6))) {
         Column(
-            modifier = Modifier.fillMaxSize()
+            modifier = Modifier.fillMaxSize().padding(padding)
                 .verticalScroll(rememberScrollState())
                 .padding(start = 16.dp, end = 16.dp, top = 12.dp,
                     bottom = if (activeCollection != null && !state.grid &&
