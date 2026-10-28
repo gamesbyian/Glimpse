@@ -182,20 +182,29 @@ def capture_failure(slug, detail):
 
 def click_label(expected):
     clear_system_obstructions()
-    xml = hierarchy()
-    root = ET.fromstring(xml)
+    root = ET.fromstring(hierarchy())
+    candidates = []
     for node in root.iter("node"):
-        value = node.attrib.get("text", "") or node.attrib.get("content-desc", "")
-        if value == expected or expected in value:
-            bounds = re.findall(r"\d+", node.attrib.get("bounds", ""))
-            if len(bounds) != 4:
-                continue
-            x0, y0, x1, y1 = map(int, bounds)
-            adb("shell", "input", "tap", str((x0 + x1)//2), str((y0 + y1)//2))
-            time.sleep(1.2)
-            return
-    raise RuntimeError("UI action not found: " + expected)
-
+        text = node.attrib.get("text", "")
+        description = node.attrib.get("content-desc", "")
+        values = (text, description)
+        if not any(expected == value or expected in value for value in values):
+            continue
+        bounds = re.findall(r"\d+", node.attrib.get("bounds", ""))
+        if len(bounds) != 4:
+            continue
+        # Choose the actual actionable collection/button, NOT a non-clickable
+        # status message such as "Added photo to ALTERNATE ATLAS" that happens
+        # to contain the same label. Exact matches break ties.
+        clickable = node.attrib.get("clickable") == "true"
+        exact = any(value == expected for value in values)
+        candidates.append((0 if clickable else 1, 0 if exact else 1, bounds))
+    if not candidates:
+        raise RuntimeError("UI action not found: " + expected)
+    candidates.sort(key=lambda item: item[:2])
+    x0, y0, x1, y1 = map(int, candidates[0][2])
+    adb("shell", "input", "tap", str((x0 + x1)//2), str((y0 + y1)//2))
+    time.sleep(1.2)
 
 def reach_and_click(label, direction="up", attempts=7):
     """A human-visible native action may sit below the current viewport."""
@@ -855,14 +864,16 @@ def main():
             reach_and_click("Add this photo to another collection", "up", attempts=12)
             reach_and_click("Add to ALTERNATE ATLAS", "up", attempts=10)
             reach_and_click("Back to Reel / Grid", "down", attempts=12)
-            reach_and_click("ALTERNATE ATLAS")
+            reach_and_click("ALTERNATE ATLAS", "down", attempts=12)
             found_three = False
-            for _ in range(9):
+            for _ in range(12):
                 membership_xml = hierarchy()
                 if "Photos: 3" in membership_xml:
                     found_three = True
                     break
-                swipe("up")
+                # The new photographic Home count is at the TOP of the
+                # scrolling page, not below the collection-management tile.
+                swipe("down")
             if not found_three:
                 capture_failure("cross-collection-membership-not-visible",
                                 "Membership copy did not appear in alternate collection")
@@ -881,7 +892,7 @@ def main():
                 if "Photos: 2" in after_unlink:
                     removed_only_membership = True
                     break
-                swipe("up")
+                swipe("down")
             if not removed_only_membership:
                 capture_failure("unlink-shared-membership-not-visible",
                                 "Unlink did not restore alternate collection count")
