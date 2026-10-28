@@ -190,6 +190,10 @@ private fun GlimpseScreen(
     BackHandler(enabled = showingBrowse && !showingDetail && !showingSupport) {
         showingBrowse = false
     }
+    BackHandler(enabled = state.grid && incomingShare == null &&
+        !showingBrowse && !showingDetail && !showingSupport) {
+        model.toggleGrid()
+    }
     // An external Photo Picker may survive Activity recreation. Retain the
     // launch-time collection identity, never an ephemeral provider URI.
     var pickerTargetCollection by rememberSaveable { mutableStateOf<String?>(null) }
@@ -238,6 +242,18 @@ private fun GlimpseScreen(
                 },
                 modifier = Modifier,
                 contentInsets = padding
+            )
+        } else if (state.grid && incomingShare == null) {
+            GlimpseGridRoom(
+                state = state,
+                model = model,
+                onBack = { model.toggleGrid() },
+                onReel = {
+                    model.toggleGrid()
+                    showingBrowse = true
+                },
+                onDetails = { showingDetail = true },
+                modifier = Modifier.padding(padding)
             )
         } else {
         // The reel occupies fixed screen coordinates, independent of the page
