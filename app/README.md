@@ -69,3 +69,7 @@ opens Android Save As and outputs a bounded (3072 px longest edge) PNG without
 copying the source's original EXIF metadata. The untouched SHA-verified import
 continues to back wallpaper and original-sharing actions. Crop recipes can be retained in private app preferences, and users can save edited images as separate SHA-verified originals in their collection and explicitly apply the result through the existing Home wallpaper gateway. Freeform touch framing, fine straightening, arbitrary full-resolution export and a comprehensive editing history remain future work. Physical-device editor acceptance remains outstanding. A receiving document provider may retain a partial
 file on interrupted output, so verify important exports before relying on them.
+
+### Personal test APK installation policy (2026-10-28)
+
+For the repository owner's current personal test cycle, clean uninstall and reinstall are explicitly acceptable, including loss of existing Glimpse private data. The native CI's ephemeral-signing debug APK may therefore be used for this limited purpose; if Android reports a signature mismatch, uninstalling the previous test version is an owner-authorized option. This does not change production requirements for stable signing, data-preserving upgrades, migration or backup/restore. Always distinguish a CI-pass test artifact from a release-qualified build.
