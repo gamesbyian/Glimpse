@@ -184,25 +184,31 @@ def click_label(expected):
     clear_system_obstructions()
     root = ET.fromstring(hierarchy())
     candidates = []
-    for node in root.iter("node"):
-        text = node.attrib.get("text", "")
+
+    def inspect(node, ancestors=()):
+        value = node.attrib.get("text", "")
         description = node.attrib.get("content-desc", "")
-        values = (text, description)
-        if not any(expected == value or expected in value for value in values):
-            continue
-        bounds = re.findall(r"\d+", node.attrib.get("bounds", ""))
-        if len(bounds) != 4:
-            continue
-        # Choose the actual actionable collection/button, NOT a non-clickable
-        # status message such as "Added photo to ALTERNATE ATLAS" that happens
-        # to contain the same label. Exact matches break ties.
-        clickable = node.attrib.get("clickable") == "true"
-        exact = any(value == expected for value in values)
-        candidates.append((0 if clickable else 1, 0 if exact else 1, bounds))
+        values = (value, description)
+        if any(expected == v or expected in v for v in values):
+            # In Compose and many OS dialogs the text node itself is marked
+            # non-clickable, while its enclosing Button/Card owns the actual
+            # click semantics. Find that nearest actionable ancestor. A plain
+            # status message containing the same words has NO such ancestor.
+            target = next((n for n in (node, *reversed(ancestors))
+                           if n.attrib.get("clickable") == "true"), None)
+            if target is not None:
+                bounds = re.findall(r"\d+", target.attrib.get("bounds", ""))
+                if len(bounds) == 4:
+                    exact = any(v == expected for v in values)
+                    candidates.append((0 if exact else 1, bounds))
+        for child in node:
+            inspect(child, ancestors + (node,))
+
+    inspect(root)
     if not candidates:
         raise RuntimeError("UI action not found: " + expected)
-    candidates.sort(key=lambda item: item[:2])
-    x0, y0, x1, y1 = map(int, candidates[0][2])
+    candidates.sort(key=lambda item: item[0])
+    x0, y0, x1, y1 = map(int, candidates[0][1])
     adb("shell", "input", "tap", str((x0 + x1)//2), str((y0 + y1)//2))
     time.sleep(1.2)
 
