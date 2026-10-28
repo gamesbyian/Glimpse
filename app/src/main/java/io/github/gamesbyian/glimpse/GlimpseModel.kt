@@ -19,6 +19,7 @@ import io.github.gamesbyian.glimpse.data.PhotoRecord
 import io.github.gamesbyian.glimpse.data.RotationRecord
 import io.github.gamesbyian.glimpse.domain.WallpaperCommands
 import io.github.gamesbyian.glimpse.domain.BrowseCursor
+import io.github.gamesbyian.glimpse.domain.CollectionRemovalSafety
 import io.github.gamesbyian.glimpse.domain.checkedCollectionTitle
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Dispatchers
@@ -256,6 +257,37 @@ class GlimpseModel(application: Application) : AndroidViewModel(application) {
         // Stable CollectionId and current photo selection are unchanged.
         // Active rotation uses that same ID and follows the renamed title.
         "Collection renamed to " + title + ". Wallpapers and photo order were unchanged."
+    }
+
+    /**
+     * Remove only a redundant collection container, never a user's last copy
+     * of an image. This also refuses to sever the saved shuffle source.
+     */
+    fun removeCollectionOnly(id: String) = action {
+        val (decision, nextId) = withContext(Dispatchers.IO) {
+            val result = dao.removeCollectionIfRedundant(id)
+            result to if (result == CollectionRemovalSafety.SAFE)
+                dao.watchCollections().firstOrNull().orEmpty().firstOrNull()?.id
+            else null
+        }
+        when (decision) {
+            CollectionRemovalSafety.NOT_FOUND -> "This collection was already removed."
+            CollectionRemovalSafety.HAS_EXCLUSIVE_ORIGINALS ->
+                "Cannot remove this collection: some originals belong only here. " +
+                    "First add those photos to another collection."
+            CollectionRemovalSafety.OWNS_ROTATION ->
+                "This is the saved shuffle collection. Choose another shuffle " +
+                    "collection before removing it."
+            CollectionRemovalSafety.UNCERTAIN_WALLPAPER ->
+                "Review the uncertain wallpaper attempt before removing collections."
+            CollectionRemovalSafety.SAFE -> {
+                browsePrefs.edit().remove("photo:$id")
+                    .putString("active_collection", nextId).apply()
+                browse.value = browse.value.open(nextId, nextId?.let(::rememberedPhoto))
+                "Removed the redundant collection. Every original remains " +
+                    "accessible elsewhere; no wallpaper or shuffle was changed."
+            }
+        }
     }
 
     fun browseCollection(id: String) {
