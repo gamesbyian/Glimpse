@@ -257,6 +257,16 @@ private fun GlimpseScreen(
             Text("YOUR PHOTOS, NEW PERSPECTIVES",
                 color = Color(0xFF986950), fontWeight = FontWeight.SemiBold,
                 style = MaterialTheme.typography.labelSmall, letterSpacing = 1.3.sp)
+            // Visible collection cardinality belongs in the persistent page
+            // introduction, not only below a scrollable management dashboard.
+            // Inset paper never obscures this real Room-backed count.
+            if (activeCollection != null) {
+                Text(
+                    "Photos: ${state.photos.size} • Offline copies",
+                    style = MaterialTheme.typography.labelLarge,
+                    color = Color(0xFF5D5247)
+                )
+            }
             if (incomingShare != null) {
                 Card(modifier = Modifier.fillMaxWidth()) {
                     Column(
