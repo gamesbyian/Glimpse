@@ -97,4 +97,21 @@ class ReelWindowTest {
     }
 
 
+    @Test fun shortLandscapeViewportDoesNotScalePaperToScreenWidth() {
+        // A 480dp-wide container on a short 216dp landscape viewport must
+        // expose a turnable paper arc rather than grow a 331dp radius.
+        val width = 480f
+        val height = 216f
+        val p = ReelWindow.placement(width, height)
+        assertEquals(216f, p.radius, .001f)
+        assert(p.centerY - p.radius < 0f)
+        assert(p.centerX + p.radius < width)
+        val topApertureY = p.centerY - p.radius * .62f
+        assert(topApertureY in 0f..height)
+        assertEquals(0, ReelWindow.tapOffset(p.centerX, topApertureY, width, height))
+        assert(ReelWindow.acceptsRotationStart(p.centerX, topApertureY, width, height))
+        // The accepted portrait geometry is intentionally unchanged.
+        assertEquals(276f, ReelWindow.placement(400f, 316f).radius, .001f)
+    }
+
 }

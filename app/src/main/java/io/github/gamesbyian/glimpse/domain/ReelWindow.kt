@@ -30,7 +30,7 @@ object ReelWindow {
      */
     data class Placement(val centerX: Float, val centerY: Float, val radius: Float)
     fun placement(width: Float, height: Float): Placement =
-        Placement(width * .27f, height * .87f, width * .69f)
+        Placement(width * .27f, height * .87f, minOf(width * .69f, height))
 
     /**
      * The photographic aperture is part of the same physical turnable disc as

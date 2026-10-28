@@ -15,6 +15,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.animation.core.Animatable
@@ -37,6 +38,7 @@ import androidx.compose.ui.graphics.drawscope.drawIntoCanvas
 import androidx.compose.ui.graphics.nativeCanvas
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.platform.LocalContext
 import android.provider.Settings
@@ -154,6 +156,13 @@ fun CircularPhotoReel(
     var dragAngle by remember { mutableFloatStateOf(0f) }
     var settleJob by remember { mutableStateOf<Job?>(null) }
     val context = LocalContext.current
+    val config = LocalConfiguration.current
+    // In landscape a width-based disc can grow larger than the phone's
+    // short viewport. Retain exact accepted portrait dimensions, but bound
+    // landscape paper geometry to 72% of the available screen height.
+    val reelHeight = if (config.screenWidthDp > config.screenHeightDp) {
+        (config.screenHeightDp * .72f).toInt().coerceIn(180, 316).dp
+    } else 316.dp
     val hostView = LocalView.current
     // Baked material face: real raster fiber, bevel/edge light and five transparent
     // windows. Cached once; dynamic photos remain distinct bitmaps beneath it.
@@ -238,7 +247,7 @@ fun CircularPhotoReel(
             hostView.performHapticFeedback(HapticFeedbackConstants.CLOCK_TICK)
         }
     }
-    Column(modifier = modifier) {
+    Column(modifier = modifier.widthIn(max = 480.dp)) {
         // The focused browser gives this physical control a full-viewport
         // heading/count outside the wheel. Reusing the exact reel state/draw
         // path avoids a second implementation of rotation or photo selection.
@@ -254,9 +263,9 @@ fun CircularPhotoReel(
                 color = Color(0xFF665B51), fontSize = 13.sp
             )
         }
-        Box(modifier = Modifier.fillMaxWidth().height(316.dp).clipToBounds()) {
+        Box(modifier = Modifier.fillMaxWidth().height(reelHeight).clipToBounds()) {
             Canvas(
-                modifier = Modifier.fillMaxWidth().height(316.dp)
+                modifier = Modifier.fillMaxWidth().height(reelHeight)
                     .semantics {
                         contentDescription = "Paper photo reel. Turn to browse photographs."
                         stateDescription = if (focus < 0) "No photos"

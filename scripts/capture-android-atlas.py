@@ -372,8 +372,37 @@ def main():
         adb("shell", "wm", "size", "1440x3120")
         adb("shell", "wm", "density", "560")
         adb("shell", "settings", "put", "system", "font_scale", "1.0")
-        start_fixture(22)
+        start_fixture(3 if args.mode == "full" else 22)
         if args.mode == "full":
+            # Independent early landscape acceptance, before the expensive
+            # full 22-photo journey. A short wide viewport must not turn
+            # the wheel into a giant off-screen width-scaled bitmap.
+            adb("shell", "wm", "size", "1920x840")
+            adb("shell", "wm", "density", "560")
+            # Fixture was committed and verified in portrait first. Switching
+            # to a short landscape viewport can legitimately move both the
+            # hero's count and collection tile below the visible fold.
+            # Recreate the Activity to apply the new Configuration without
+            # clearing real Room data or weakening the fixture check.
+            adb("shell", "am", "force-stop", APP, check=False)
+            adb("shell", "am", "start", "-n", APP + "/.MainActivity")
+            time.sleep(3.0)
+            landscape_xml = hierarchy()
+            lw, lh, ldpi = screen_geometry()
+            if lw <= lh:
+                raise RuntimeError("Landscape viewport override not applied")
+            lx0, ly0, lx1, ly1 = accessible_bounds(landscape_xml, "Paper photo reel")
+            observed_height_dp = (ly1 - ly0) * 160 / ldpi
+            if not (165 <= observed_height_dp <= 265):
+                capture_failure("landscape-reel-oversized",
+                                "Short landscape reel exceeded its bounded physical height")
+                raise RuntimeError(
+                    "Landscape paper reel measured " + str(round(observed_height_dp, 1)) + "dp")
+            capture("03-short-landscape-fixed-reel",
+                    "1920x840 short-wide Android viewport; bounded fixed paper reel")
+            adb("shell", "wm", "size", "1440x3120")
+            adb("shell", "wm", "density", "560")
+            start_fixture(22)
             # Android UIAutomator sees the *viewport*, not scrolled-away nodes.
             # Verify truth about Home on the initial viewport before scrolling.
             first_viewport = hierarchy()
