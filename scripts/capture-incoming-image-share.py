@@ -49,7 +49,7 @@ def main(out):
     if base.adb("shell","getprop","ro.kernel.qemu").strip() != "1":
         raise RuntimeError("REFUSE synthetic-image testing on physical hardware")
     base.start_fixture(0)
-    assert visible("No images yet."), "Room fixture not empty"
+    assert visible("Photos: 0"), "Room fixture not empty"
     base.adb("shell","am","start","-n",FIXTURE)
     raw = until(lambda: base.adb("shell","run-as",APP,"cat",
                                 "files/picker-fixture-ready.json",check=False))
