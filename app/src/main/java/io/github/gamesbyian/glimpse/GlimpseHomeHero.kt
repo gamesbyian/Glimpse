@@ -23,6 +23,7 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -43,12 +44,16 @@ internal fun GlimpseHomeHero(
     val preview = state.current
     val hasPhoto = preview != null
     val largeType = LocalDensity.current.fontScale >= 1.5f
+    // The opening image must extend beneath the fixed corner reel on actual
+    // devices; a short rectangular card above a dashboard defeats the design.
+    val viewportHeight = LocalConfiguration.current.screenHeightDp
+    val heroHeight = (viewportHeight - 28).coerceAtLeast(500).dp
     val ink = if (hasPhoto) Color.White else Color(0xFF193B3F)
     val paper = Color(0xFFF8EDE1)
     val surface = RoundedCornerShape(26.dp)
     Box(
         modifier = modifier.fillMaxWidth()
-            .height(if (largeType) 425.dp else 326.dp)
+            .height(heroHeight)
             .clip(surface)
             .background(if (hasPhoto) Color(0xFF2B3A39) else paper)
     ) {
@@ -73,7 +78,7 @@ internal fun GlimpseHomeHero(
         }
         Column(
             modifier = Modifier.fillMaxSize().padding(20.dp),
-            verticalArrangement = Arrangement.SpaceBetween
+            verticalArrangement = Arrangement.spacedBy(12.dp)
         ) {
             Column(verticalArrangement = Arrangement.spacedBy(5.dp)) {
                 Text(
@@ -126,6 +131,17 @@ internal fun GlimpseHomeHero(
                         Text("Help & privacy", color = ink)
                     }
                 }
+                Text(
+                    when {
+                        state.acknowledgedPhoto != null ->
+                            "Last wallpaper application acknowledged · Previewing does not apply."
+                        state.rotation?.lastAcknowledgedPhotoId != null ->
+                            "Earlier wallpaper acknowledgment exists; its original is unavailable."
+                        else -> "No wallpaper change has been acknowledged yet."
+                    },
+                    color = ink.copy(alpha = .88f),
+                    style = MaterialTheme.typography.bodySmall
+                )
             }
         }
     }
