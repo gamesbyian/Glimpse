@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
@@ -127,6 +128,7 @@ internal fun GlimpseHomeHero(
                     verticalArrangement = Arrangement.spacedBy(6.dp)
                 ) {
                     Button(
+                        modifier = Modifier.heightIn(min = 48.dp),
                         onClick = onBrowse,
                         enabled = state.collectionId != null && state.photos.isNotEmpty(),
                         colors = ButtonDefaults.buttonColors(
@@ -136,7 +138,7 @@ internal fun GlimpseHomeHero(
                             disabledContentColor = Color(0xFF6F6256)
                         )
                     ) { Text("Browse photo reel") }
-                    TextButton(onClick = onSupport) {
+                    TextButton(onClick = onSupport, modifier = Modifier.heightIn(min = 48.dp)) {
                         Text("Help & privacy", color = ink)
                     }
                 }
