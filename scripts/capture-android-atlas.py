@@ -5,6 +5,7 @@ Uses a debug-only real Room fixture launcher, the production MainActivity and
 Android screencap/UIAutomator. No alternative mock screen, no user photos.
 """
 import argparse
+import struct
 import hashlib
 import io
 import zipfile
@@ -712,6 +713,49 @@ def main():
                                 "Android Save As cancellation did not expose " +
                                 "a Glimpse photo detail action")
                 raise RuntimeError("Cancelled Save As did not return to photo detail")
+            # Exercise the real reversible editor and Android PNG Save As.
+            # Test a clockwise quarter-turn and a nontrivial left crop; PNG
+            # dimensions prove pixels were transformed, not merely renamed.
+            reach_and_click("Edit photo (crop and rotate)", "up", attempts=14)
+            reach_and_click("Rotate 90° right", "up", attempts=12)
+            reach_and_click("Left crop edge", "up", attempts=16)
+            reach_and_click("Save edited PNG…", "up", attempts=16)
+            time.sleep(1.5)
+            edit_picker = hierarchy()
+            edit_pkgs = {node.attrib.get("package")
+                         for node in ET.fromstring(edit_picker).iter("node")}
+            if not edit_pkgs.intersection({
+                    "com.android.documentsui", "com.google.android.documentsui"}):
+                capture_failure("edited-png-save-as-missing",
+                                "Edited PNG did not launch Android DocumentsUI")
+                raise RuntimeError("Edited PNG Save As never opened Android")
+            capture("22-edited-png-android-save-as",
+                    "Rotated/cropped preview launched genuine Android PNG Save As")
+            reach_and_click("SAVE", attempts=4)
+            saved_png = None
+            for _ in range(20):
+                time.sleep(0.8)
+                names = adb("shell", "ls", "/sdcard/Download", check=False).splitlines()
+                matches = [name for name in names if
+                           name.startswith("glimpse-edited-") and name.endswith(".png")]
+                if matches:
+                    raw = adb("exec-out", "cat",
+                              "/sdcard/Download/" + matches[-1],
+                              check=False, binary=True, timeout=40)
+                    if raw.startswith(b"\x89PNG\r\n\x1a\n") and len(raw) >= 24:
+                        saved_png = raw
+                        break
+            if saved_png is None:
+                capture_failure("edited-png-not-created",
+                                "The Android document provider did not save the edited PNG")
+                raise RuntimeError("No readable edited PNG from Save As")
+            png_width, png_height = struct.unpack(">II", saved_png[16:24])
+            if not (1 <= png_width < 720 and png_height == 480):
+                raise RuntimeError(
+                    "Edited PNG did not encode the 90-degree turn and left crop: " +
+                    str(png_width) + "x" + str(png_height))
+            capture("22-edited-png-saved-and-cropped",
+                    "Android saved real rotated/cropped PNG; original private JPEG retained")
             reach_and_click("Back to Reel / Grid", "down")
             capture("22-photo-detail-return",
                     "Return to original Reel/Grid browsing context")

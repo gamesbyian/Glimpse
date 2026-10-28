@@ -59,3 +59,16 @@ metadata and the collection title. Validate real provider persistence before
 deleting any originals. The developer format contract is in
 [collection-zip-export.md](../docs/architecture/collection-zip-export.md).
 
+
+### Photo Detail: non-destructive editor
+
+An explicit **Edit photo (crop and rotate)** panel previews 90° clockwise or
+counterclockwise rotation and individually adjustable normalized crop edges.
+**Reset crop and rotation** restores the unaltered preview. **Save edited PNG**
+opens Android Save As and outputs a bounded (3072 px longest edge) PNG without
+copying the source's original EXIF metadata. The untouched SHA-verified import
+continues to back wallpaper and original-sharing actions. Edits are currently
+temporary UI state, not durable recipes; cropped wallpaper application, freeform
+touch framing, fine straightening, arbitrary full-resolution export and editing
+history remain future work. A receiving document provider may retain a partial
+file on interrupted output, so verify important exports before relying on them.

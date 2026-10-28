@@ -4,8 +4,9 @@ import kotlin.math.ceil
 import kotlin.math.floor
 
 /**
- * Proposed reversible crop/rotation geometry only. NOT wired to UI, original
- * decoding, wallpaper apply, saved recipes or exported edited images yet.
+ * Reversible crop/rotation geometry now powers the interactive Photo Detail
+ * preview and bounded PNG export. It is not yet a persisted Room edit recipe
+ * or an edited Android wallpaper apply operation.
  *
  * Coordinates are normalized against the EXIF-upright image after the selected
  * clockwise quarter-turn rotation, so the editor can retain one definition

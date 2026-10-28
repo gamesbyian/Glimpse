@@ -193,6 +193,9 @@ internal fun GlimpsePhotoDetail(
         if (saveNotice != null) {
             Text(saveNotice!!, style = MaterialTheme.typography.bodySmall)
         }
+        if (photo != null) {
+            GlimpsePhotoEditor(photo)
+        }
         Button(
             onClick = model::applyPreview,
             enabled = photo != null && !state.busy
@@ -216,7 +219,7 @@ internal fun GlimpsePhotoDetail(
                     Text("Imported ${DateFormat.getDateTimeInstance().format(Date(photo.importedAt))}")
                     Text(
                         "Verified private offline copy. Sharing the untouched original is available; " +
-                            "crop/edit recipes and sanitized exports are not yet implemented.",
+                            "The basic crop/quarter-turn editor saves EXIF-free, bounded PNG copies; durable edit recipes and edited wallpaper application are not yet implemented.",
                         style = MaterialTheme.typography.bodySmall
                     )
                     if (state.rotation?.lastAcknowledgedPhotoId == photo.id) {
