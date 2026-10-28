@@ -57,7 +57,9 @@ internal fun GlimpseHomeHero(
     }
     val ink = if (hasPhoto) Color.White else Color(0xFF193B3F)
     val paper = Color(0xFFF8EDE1)
-    val surface = RoundedCornerShape(26.dp)
+    // A selected photograph reaches the actual screen edges; the rounded
+    // paper empty state keeps a deliberately separate onboarding treatment.
+    val surface = RoundedCornerShape(if (hasPhoto) 0.dp else 26.dp)
     Box(
         modifier = modifier.fillMaxWidth()
             .height(heroHeight)
