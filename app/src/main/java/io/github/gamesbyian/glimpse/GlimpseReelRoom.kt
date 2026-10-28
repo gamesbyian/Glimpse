@@ -76,7 +76,8 @@ internal fun GlimpseReelRoom(
                 photo = selected,
                 modifier = Modifier.fillMaxSize(),
                 label = "Full-screen selected photo preview. Wallpaper unchanged.",
-                contentScale = ContentScale.Crop
+                contentScale = ContentScale.Crop,
+                decodeMaxEdge = 2048
             )
             // Keep text legible over dark, light and high-contrast photographs
             // without putting a full-width generic footer below the reel.

@@ -182,20 +182,45 @@ def capture_failure(slug, detail):
 
 def click_label(expected):
     clear_system_obstructions()
-    xml = hierarchy()
-    root = ET.fromstring(xml)
-    for node in root.iter("node"):
-        value = node.attrib.get("text", "") or node.attrib.get("content-desc", "")
-        if value == expected or expected in value:
-            bounds = re.findall(r"\d+", node.attrib.get("bounds", ""))
-            if len(bounds) != 4:
-                continue
-            x0, y0, x1, y1 = map(int, bounds)
-            adb("shell", "input", "tap", str((x0 + x1)//2), str((y0 + y1)//2))
-            time.sleep(1.2)
-            return
-    raise RuntimeError("UI action not found: " + expected)
+    root = ET.fromstring(hierarchy())
+    candidates = []
 
+    def inspect(node, ancestors=()):
+        value = node.attrib.get("text", "")
+        description = node.attrib.get("content-desc", "")
+        values = (value, description)
+        if any(expected == v or expected in v for v in values):
+            # In Compose and many OS dialogs the text node itself is marked
+            # non-clickable, while its enclosing Button/Card owns the actual
+            # click semantics. Find that nearest actionable ancestor. A plain
+            # status message containing the same words has NO such ancestor.
+            target = next((n for n in (node, *reversed(ancestors))
+                           if n.attrib.get("clickable") == "true"), None)
+            # A Compose Slider exposes SetProgress, not a click action. The
+            # existing editor test deliberately taps its named track to make
+            # a nontrivial real crop. Permit these four explicit slider
+            # semantics, without ever treating arbitrary status text as a
+            # button or collection tile.
+            if (target is None and expected in {
+                    "Left crop edge", "Top crop edge",
+                    "Right crop edge", "Bottom crop edge"
+                } and description == expected):
+                target = node
+            if target is not None:
+                bounds = re.findall(r"\d+", target.attrib.get("bounds", ""))
+                if len(bounds) == 4:
+                    exact = any(v == expected for v in values)
+                    candidates.append((0 if exact else 1, bounds))
+        for child in node:
+            inspect(child, ancestors + (node,))
+
+    inspect(root)
+    if not candidates:
+        raise RuntimeError("UI action not found: " + expected)
+    candidates.sort(key=lambda item: item[0])
+    x0, y0, x1, y1 = map(int, candidates[0][1])
+    adb("shell", "input", "tap", str((x0 + x1)//2), str((y0 + y1)//2))
+    time.sleep(1.2)
 
 def reach_and_click(label, direction="up", attempts=7):
     """A human-visible native action may sit below the current viewport."""
@@ -364,6 +389,13 @@ def main():
                 capture_failure("missing-collection-overview",
                                 "No Room-backed 22-photo count in initial Home viewport")
                 raise RuntimeError("Actual initial 22-photo collection count missing")
+            # Home is a photographic preview backed by the actual selected
+            # fixture image, with explicit navigation and no implied Apply.
+            if ("Selected photograph · Preview only" not in first_viewport or
+                    "Browse photo reel" not in first_viewport):
+                capture_failure("missing-photographic-home-introduction",
+                                "Home lacks selected-photo preview or the browse entrance")
+                raise RuntimeError("Photographic Home hero and explicit browse action missing")
         capture("22-reel-initial", "Collection with 22 actual records, before any interaction")
         if args.mode == "full":
             # Real OS multi-stream Sharesheet with read-only FileProvider grants,
@@ -848,14 +880,16 @@ def main():
             reach_and_click("Add this photo to another collection", "up", attempts=12)
             reach_and_click("Add to ALTERNATE ATLAS", "up", attempts=10)
             reach_and_click("Back to Reel / Grid", "down", attempts=12)
-            reach_and_click("ALTERNATE ATLAS")
+            reach_and_click("ALTERNATE ATLAS", "up", attempts=12)
             found_three = False
-            for _ in range(9):
+            for _ in range(12):
                 membership_xml = hierarchy()
                 if "Photos: 3" in membership_xml:
                     found_three = True
                     break
-                swipe("up")
+                # The new photographic Home count is at the TOP of the
+                # scrolling page, not below the collection-management tile.
+                swipe("down")
             if not found_three:
                 capture_failure("cross-collection-membership-not-visible",
                                 "Membership copy did not appear in alternate collection")
@@ -874,7 +908,7 @@ def main():
                 if "Photos: 2" in after_unlink:
                     removed_only_membership = True
                     break
-                swipe("up")
+                swipe("down")
             if not removed_only_membership:
                 capture_failure("unlink-shared-membership-not-visible",
                                 "Unlink did not restore alternate collection count")

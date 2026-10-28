@@ -252,20 +252,13 @@ private fun GlimpseScreen(
                         state.photos.isNotEmpty()) 330.dp else 12.dp),
             verticalArrangement = Arrangement.spacedBy(12.dp)
         ) {
-            Text("Glimpse", color = Color(0xFF193B3F),
-                fontFamily = GlimpseType.editorial, fontSize = 44.sp,
-                fontWeight = FontWeight.Normal, letterSpacing = (-1.4).sp)
-            Text("YOUR PHOTOS, NEW PERSPECTIVES",
-                color = Color(0xFF986950), fontWeight = FontWeight.SemiBold,
-                style = MaterialTheme.typography.labelSmall, letterSpacing = 1.3.sp)
-            // Visible collection cardinality belongs in the persistent page
-            // introduction, not only below a scrollable management dashboard.
-            // Inset paper never obscures this real Room-backed count.
-            if (activeCollection != null) {
-                Text(
-                    "Photos: ${state.photos.size} • Offline copies",
-                    style = MaterialTheme.typography.labelLarge,
-                    color = Color(0xFF5D5247)
+            // An Android Sharesheet handoff needs immediate consent: do not
+            // bury its import/dismiss choices beneath the photographic hero.
+            if (incomingShare == null) {
+                GlimpseHomeHero(
+                    state = state,
+                    onBrowse = { showingBrowse = true },
+                    onSupport = { showingSupport = true }
                 )
             }
             if (incomingShare != null) {
@@ -309,8 +302,8 @@ private fun GlimpseScreen(
                                     TextButton(onClick = onDismissShared) { Text("Dismiss") }
                                 }
                                 Text(
-                                    "Crop and rotate are not yet available in this build. " +
-                                        "The shared original remains unchanged.",
+                                    "The shared original stays unchanged. After importing, " +
+                                        "open Photo Detail for non-destructive crop and rotation.",
                                     style = MaterialTheme.typography.bodySmall
                                 )
                             }
@@ -320,21 +313,6 @@ private fun GlimpseScreen(
                             }
                         }
                     }
-                }
-            }
-            // Direct route to the physical control: no need to scroll through
-            // the dashboard/collection management merely to turn the reel.
-            FlowRow(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.spacedBy(8.dp),
-                verticalArrangement = Arrangement.spacedBy(4.dp)
-            ) {
-                OutlinedButton(
-                    onClick = { showingBrowse = true },
-                    enabled = activeCollection != null && state.photos.isNotEmpty()
-                ) { Text("Browse photo reel") }
-                TextButton(onClick = { showingSupport = true }) {
-                    Text("Help & privacy")
                 }
             }
             GlimpseWallpaperSummary(state)
@@ -719,18 +697,23 @@ internal fun PhotoPreview(
     modifier: Modifier,
     label: String,
     contentScale: ContentScale = ContentScale.Crop,
-    pathOverride: String? = null
+    pathOverride: String? = null,
+    decodeMaxEdge: Int = 1024
 ) {
     val path = pathOverride ?: photo?.localPath
+    // Large photographic surfaces benefit from additional detail; keep a
+    // strict bound so decoded bitmap memory cannot explode on huge originals.
+    val boundedEdge = decodeMaxEdge.coerceIn(256, 2048)
     // key(path) restarts the load state rather than retaining the previous
     // bitmap while the next selection decodes. The explicit source identity
     // check is a second guard against a delayed previous result.
-    val loaded by key(path) {
+    val loaded by key(path, boundedEdge) {
         produceState(
             initialValue = PreviewLoadState<ImageBitmap>(
                 sourcePath = path, complete = path == null
             ),
-            key1 = path
+            key1 = path,
+            key2 = boundedEdge
         ) {
             value = if (path == null) {
                 PreviewLoadState(sourcePath = null, complete = true)
@@ -740,7 +723,7 @@ internal fun PhotoPreview(
                         // Same EXIF orientation and bounded decode as Reel/Home
                         // wallpaper. Original file bytes are untouched.
                         val image = BoundedPhotoDecode.decode(
-                            File(path), maxEdge = 1024
+                            File(path), maxEdge = boundedEdge
                         ).asImageBitmap()
                         PreviewLoadState(sourcePath = path, image = image, complete = true)
                     } catch (_: Exception) {
