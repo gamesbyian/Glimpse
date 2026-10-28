@@ -298,8 +298,8 @@ private fun GlimpseScreen(
                                     TextButton(onClick = onDismissShared) { Text("Dismiss") }
                                 }
                                 Text(
-                                    "Crop and rotate are not yet available in this build. " +
-                                        "The shared original remains unchanged.",
+                                    "The shared original stays unchanged. After importing, " +
+                                        "open Photo Detail for non-destructive crop and rotation.",
                                     style = MaterialTheme.typography.bodySmall
                                 )
                             }
