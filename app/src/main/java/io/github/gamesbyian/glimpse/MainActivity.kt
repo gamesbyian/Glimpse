@@ -27,9 +27,6 @@ import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.lazy.grid.GridCells
-import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
-import androidx.compose.foundation.lazy.grid.items as gridItems
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
@@ -618,13 +615,6 @@ private fun GlimpseScreen(
                 if (state.photos.isEmpty()) {
                     Text("No images yet. Add photos to this collection.")
                 } else {
-                    if (state.grid) {
-                        PhotoGrid(
-                            records = state.photos,
-                            selectedId = state.current?.id,
-                            onSelect = { photoId -> model.browsePhotoInCollection(activeCollection, photoId) }
-                        )
-                    }
                     val selected = state.current
                     val selectedIndex = state.photos.indexOfFirst { it.id == selected?.id }
                     Text(
@@ -683,37 +673,6 @@ private fun GlimpseScreen(
             )
         }
         }
-        }
-    }
-}
-
-@Composable
-private fun PhotoGrid(
-    records: List<PhotoRecord>,
-    selectedId: String?,
-    onSelect: (String) -> Unit
-) {
-    LazyVerticalGrid(
-        columns = GridCells.Adaptive(minSize = 95.dp),
-        contentPadding = PaddingValues(4.dp),
-        verticalArrangement = Arrangement.spacedBy(8.dp),
-        horizontalArrangement = Arrangement.spacedBy(8.dp),
-        modifier = Modifier.fillMaxWidth().height(300.dp)
-    ) {
-        gridItems(records, key = { it.id }) { photo ->
-            Box(
-                modifier = Modifier.height(112.dp)
-                    .border(
-                        if (photo.id == selectedId) 3.dp else 1.dp,
-                        if (photo.id == selectedId) Color(0xFF1D5960) else Color(0xFFD9D0C0),
-                        RoundedCornerShape(12.dp)
-                    )
-                    .clickable { onSelect(photo.id) }
-                    .padding(3.dp),
-                contentAlignment = Alignment.Center
-            ) {
-                PhotoPreview(photo, Modifier.fillMaxSize(), "Choose photo " + photo.id.take(8))
-            }
         }
     }
 }
