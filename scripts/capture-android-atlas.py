@@ -196,6 +196,16 @@ def click_label(expected):
             # status message containing the same words has NO such ancestor.
             target = next((n for n in (node, *reversed(ancestors))
                            if n.attrib.get("clickable") == "true"), None)
+            # A Compose Slider exposes SetProgress, not a click action. The
+            # existing editor test deliberately taps its named track to make
+            # a nontrivial real crop. Permit these four explicit slider
+            # semantics, without ever treating arbitrary status text as a
+            # button or collection tile.
+            if (target is None and expected in {
+                    "Left crop edge", "Top crop edge",
+                    "Right crop edge", "Bottom crop edge"
+                } and description == expected):
+                target = node
             if target is not None:
                 bounds = re.findall(r"\d+", target.attrib.get("bounds", ""))
                 if len(bounds) == 4:
