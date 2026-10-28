@@ -332,10 +332,14 @@ def main():
                 capture_failure("incorrect-home-acknowledgment",
                                 "Fresh fixture must not claim a wallpaper acknowledgment")
                 raise RuntimeError("Initial Home card lacks truthful no-acknowledgment state")
-            if "ATLAS FIXTURE · 22 photos, 22 photos" not in first_viewport:
+            # A fixed-edge reel is now a primary Home control. The former
+            # collection-management tile may scroll under it; the live Room
+            # count is deliberately kept in Home's visible introduction.
+            if ("ATLAS FIXTURE · 22 photos, 22 photos" not in first_viewport and
+                    "Photos: 22" not in first_viewport):
                 capture_failure("missing-collection-overview",
-                                "Real Room-backed collection tile not in initial viewport")
-                raise RuntimeError("Actual initial 22-photo collection tile/count missing")
+                                "No Room-backed 22-photo count in initial Home viewport")
+                raise RuntimeError("Actual initial 22-photo collection count missing")
         capture("22-reel-initial", "Collection with 22 actual records, before any interaction")
         if args.mode == "full":
             # Real OS multi-stream Sharesheet with read-only FileProvider grants,
