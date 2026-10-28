@@ -62,7 +62,11 @@ internal fun GlimpseReelRoom(
     val hasReel = collectionId != null && state.photos.isNotEmpty()
     val paleControls = ButtonDefaults.buttonColors(
         containerColor = Color(0xFFF7EBD8),
-        contentColor = Color(0xFF233C3B)
+        contentColor = Color(0xFF233C3B),
+        // Endpoints must remain visibly readable over arbitrary user photos.
+        // Disabled state has a muted *but opaque* ink/paper pair.
+        disabledContainerColor = Color(0xFFE8DBCC),
+        disabledContentColor = Color(0xFF655A50)
     )
 
     Box(modifier = modifier.fillMaxSize().background(Color(0xFFF6F0E6))) {
