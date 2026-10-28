@@ -42,6 +42,9 @@ import androidx.compose.ui.platform.LocalContext
 import android.provider.Settings
 import android.os.PowerManager
 import android.content.Context
+import androidx.compose.ui.semantics.CustomAccessibilityAction
+import androidx.compose.ui.semantics.customActions
+import androidx.compose.ui.semantics.stateDescription
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
@@ -255,7 +258,26 @@ fun CircularPhotoReel(
             Canvas(
                 modifier = Modifier.fillMaxWidth().height(316.dp)
                     .semantics {
-                        contentDescription = "Paper photo reel. Swipe left for next photo, right for previous. Previous and Next buttons are also available."
+                        contentDescription = "Paper photo reel. Turn to browse photographs."
+                        stateDescription = if (focus < 0) "No photos"
+                            else "Photo ${focus + 1} of ${ids.size}"
+                        // Accessible gestures must respect the same finite
+                        // real-photo IDs as touch rotation, and must never
+                        // implicitly apply Android wallpaper.
+                        customActions = buildList {
+                            if (focus > 0) {
+                                add(CustomAccessibilityAction("Previous photo") {
+                                    updatedOnSelect(ids[focus - 1])
+                                    true
+                                })
+                            }
+                            if (focus >= 0 && focus < ids.lastIndex) {
+                                add(CustomAccessibilityAction("Next photo") {
+                                    updatedOnSelect(ids[focus + 1])
+                                    true
+                                })
+                            }
+                        }
                     }
                     .pointerInput(ids, anchorId) {
                         detectTapGestures { position ->
