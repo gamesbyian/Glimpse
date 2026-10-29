@@ -982,9 +982,11 @@ def main():
                     time.sleep(1.8)
                 # Clockwise turn advances toward earlier actual collections.
                 collection_reel_drag(112, 168)
+                # UIAutomator does not serialize Compose stateDescription
+                # consistently. The reel's visible 1/2 · Title label is
+                # reliable native UI evidence and changes with the real ID.
                 selected_source = any(
-                    "Collection 1 of 2: ATLAS FIXTURE" in node.attrib.get("content-desc", "")
-                    or "Collection 1 of 2: ATLAS FIXTURE" in node.attrib.get("state-desc", "")
+                    "· ATLAS FIXTURE" in node.attrib.get("text", "")
                     for node in ET.fromstring(hierarchy()).iter("node"))
                 if not selected_source:
                     capture_failure("collection-reel-first-selection",
@@ -994,8 +996,7 @@ def main():
                         "Both fixed paper discs shown; upper reel selected real source collection")
                 collection_reel_drag(168, 112)
                 selected_alternate = any(
-                    "Collection 2 of 2: ALTERNATE ATLAS" in node.attrib.get("content-desc", "")
-                    or "Collection 2 of 2: ALTERNATE ATLAS" in node.attrib.get("state-desc", "")
+                    "· ALTERNATE ATLAS" in node.attrib.get("text", "")
                     for node in ET.fromstring(hierarchy()).iter("node"))
                 if not selected_alternate:
                     capture_failure("collection-reel-return-selection",
