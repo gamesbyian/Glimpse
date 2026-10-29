@@ -21,6 +21,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -334,14 +335,18 @@ internal fun GlimpseCollectionReel(
         Text(
             text = "${focus + 1}/${ids.size} · ${currentTitle}",
             fontFamily = GlimpseType.editorial,
-            fontSize = 12.sp,
-            maxLines = 2,
+            fontSize = 11.sp,
+            maxLines = 1,
             overflow = TextOverflow.Ellipsis,
             color = Color(0xFF294640),
+            // Keep the actual selected collection discoverable while the
+            // photographic hero remains dominant. A two-line floating card
+            // obscured too much of the owner-approved visual composition.
             modifier = Modifier.align(Alignment.BottomStart)
-                .padding(end = 24.dp, bottom = 3.dp)
-                .background(Color(0xFFF8EDDC), RoundedCornerShape(10.dp))
-                .padding(horizontal = 8.dp, vertical = 5.dp)
+                .widthIn(max = 146.dp)
+                .padding(bottom = 3.dp)
+                .background(Color(0xFFF8EDDC), RoundedCornerShape(9.dp))
+                .padding(horizontal = 7.dp, vertical = 3.dp)
         )
     }
 }
