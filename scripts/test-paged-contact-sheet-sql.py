@@ -109,7 +109,7 @@ assert all(not p.startswith("future") for p in expected_ids("main", 1))
 # The focused item's ordinal is computed in SQL, not by downloading 12k
 # records. Audit the exact Room query as well as the paged rows it counts.
 POSITION_BLOCK = re.search(
-    r'@Query\\(\\s*((?:"[^"]*"\\s*\\+?\\s*)+)\\)\\s*fun watchPhotoPosition',
+    r'@Query\(\s*((?:"[^"]*"\s*\+?\s*)+)\)\s*fun watchPhotoPosition',
     TEXT, re.DOTALL,
 )
 if not POSITION_BLOCK:
@@ -123,9 +123,10 @@ for collection in ("main", "alternate"):
             collectionId=collection, selectedImportedAt=row[1], selectedId=sample_id
         )).fetchone()[0]
         expected = expected_ids(collection, 0)
+        expected_set = set(expected)
         desired = expected.index(sample_id) + 1 if sample_id in expected else sum(
             1 for photo_id, stamped in rows
-            if photo_id in set(expected) and
+            if photo_id in expected_set and
                (stamped < row[1] or (stamped == row[1] and photo_id <= sample_id))
         )
         assert actual == desired, (collection, sample_id, actual, desired)
