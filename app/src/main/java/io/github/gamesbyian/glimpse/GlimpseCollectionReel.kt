@@ -1,7 +1,9 @@
 package io.github.gamesbyian.glimpse
 
+import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Paint
+import android.graphics.Rect
 import android.graphics.Path
 import android.graphics.RectF
 import android.view.HapticFeedbackConstants
@@ -20,6 +22,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.produceState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.mutableStateOf
@@ -45,9 +48,12 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import io.github.gamesbyian.glimpse.data.CollectionRecord
+import io.github.gamesbyian.glimpse.data.CollectionOverview
 import io.github.gamesbyian.glimpse.domain.CollectionReelMath
 import io.github.gamesbyian.glimpse.domain.ReelMotion
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import kotlinx.coroutines.launch
 import kotlin.math.cos
 import kotlin.math.hypot
@@ -66,6 +72,7 @@ import kotlin.math.sin
 @Composable
 internal fun GlimpseCollectionReel(
     collections: List<CollectionRecord>,
+    overviews: List<CollectionOverview>,
     selectedId: String?,
     onSelect: (String) -> Unit,
     modifier: Modifier = Modifier
@@ -73,6 +80,34 @@ internal fun GlimpseCollectionReel(
     val ids = remember(collections) { collections.map { it.id } }
     val focus = ids.indexOf(selectedId)
     if (ids.size < 2 || focus < 0) return
+    // A collection wheel should identify its *real* contents, not merely
+    // display invented ordinal sectors. Reuse the existing SHA-originals
+    // bounded thumbnail cache and draw only the five physically visible
+    // collection covers behind the real die-cut paper apertures.
+    val coverPaths = remember(collections, overviews, focus) {
+        val byId = overviews.associateBy { it.id }
+        (-2..2).mapNotNull { slot ->
+            CollectionReelMath.target(focus, ids.size, slot)
+                ?.let { byId[ids[it]]?.coverPath }
+        }.distinct()
+    }
+    val covers by produceState(
+        initialValue = emptyMap<String, Bitmap>(),
+        key1 = coverPaths
+    ) {
+        value = withContext(Dispatchers.IO) {
+            coverPaths.mapNotNull { path ->
+                try { smallBitmap(path)?.let { path to it } }
+                catch (_: Exception) { null }
+            }.toMap()
+        }
+    }
+    val coverById = remember(collections, overviews) {
+        val byId = overviews.associateBy { it.id }
+        collections.associate { collection ->
+            collection.id to byId[collection.id]?.coverPath
+        }
+    }
     val scope = rememberCoroutineScope()
     val context = LocalContext.current
     val view = LocalView.current
@@ -83,6 +118,7 @@ internal fun GlimpseCollectionReel(
     }
     val facePaint = remember { Paint(Paint.ANTI_ALIAS_FLAG or Paint.FILTER_BITMAP_FLAG) }
     val windowPaint = remember { Paint(Paint.ANTI_ALIAS_FLAG).apply { color = 0xFF315B56.toInt() } }
+    val coverPaint = remember { Paint(Paint.ANTI_ALIAS_FLAG or Paint.FILTER_BITMAP_FLAG) }
     val digits = remember { Paint(Paint.ANTI_ALIAS_FLAG).apply {
         color = 0xFFF8EEDC.toInt()
         textAlign = Paint.Align.CENTER
@@ -216,10 +252,42 @@ internal fun GlimpseCollectionReel(
                     val radians = Math.toRadians((-90f + offset * 72f).toDouble())
                     val x = cx + cos(radians).toFloat() * labelRadius
                     val y = cy + sin(radians).toFloat() * labelRadius
+                    val oval = aperture(cx, cy, radius,
+                        -90f + offset * ReelMotion.NOTCH_DEGREES)
+                    val cover = coverById[ids[candidate]]?.let(covers::get)
+                    if (cover != null) {
+                        // Actual photo cover, clipped inside exactly the same
+                        // physical window geometry as the primary photo reel.
+                        val side = minOf(cover.width, cover.height)
+                        val src = Rect((cover.width - side) / 2,
+                            (cover.height - side) / 2,
+                            (cover.width + side) / 2,
+                            (cover.height + side) / 2)
+                        val half = radius * .53f
+                        native.save()
+                        native.clipPath(oval)
+                        native.drawBitmap(cover, src,
+                            RectF(x - half, y - half, x + half, y + half),
+                            coverPaint)
+                        native.restore()
+                    } else {
+                        // An empty collection still owns a real selectable
+                        // window, not a fabricated stock-photo thumbnail.
+                        native.drawRoundRect(
+                            RectF(x - radius * .145f, y - radius * .095f,
+                                x + radius * .145f, y + radius * .095f),
+                            radius * .028f, radius * .028f, windowPaint
+                        )
+                    }
+                    // Legible finite index overlay; identity remains the
+                    // collection's actual title in the fixed label and a11y.
                     native.drawRoundRect(
-                        RectF(x - radius * .145f, y - radius * .095f,
-                            x + radius * .145f, y + radius * .095f),
-                        radius * .028f, radius * .028f, windowPaint
+                        RectF(x - radius * .13f, y - radius * .09f,
+                            x + radius * .13f, y + radius * .09f),
+                        radius * .03f, radius * .03f,
+                        Paint(Paint.ANTI_ALIAS_FLAG).apply {
+                            color = 0xBE1A3933.toInt()
+                        }
                     )
                     native.drawText((candidate + 1).toString().padStart(2, '0'),
                         x, y + digits.textSize * .33f, digits)
