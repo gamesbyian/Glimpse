@@ -188,7 +188,7 @@ private fun GlimpseScreen(
         showingDetail = false
         // Restore the user's originating contact sheet, not Home, after
         // temporarily materializing the finite collection for Photo Details.
-        if (detailFromGrid && !state.grid) model.toggleGrid()
+        if (detailFromGrid) model.showGrid()
         detailFromGrid = false
     }
     BackHandler(enabled = showingDetail) { closeDetails() }
@@ -262,7 +262,7 @@ private fun GlimpseScreen(
                     // Photo Details and Reel need the full finite collection
                     // until their own cursor virtualization is implemented.
                     // Preserve the paged Grid's selected stable ID first.
-                    model.toggleGrid()
+                    model.hideGrid()
                     detailFromGrid = true
                     showingDetail = true
                 },
