@@ -12,6 +12,8 @@ import androidx.room.Query
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.Transaction
+import androidx.room.migration.Migration
+import androidx.sqlite.db.SupportSQLiteDatabase
 import io.github.gamesbyian.glimpse.domain.CollectionRemovalSafety
 import io.github.gamesbyian.glimpse.domain.collectionRemovalSafety
 import kotlinx.coroutines.flow.Flow
@@ -46,6 +48,13 @@ data class CollectionOverview(
 @Entity(tableName = "memberships", primaryKeys = ["collectionId", "photoId"])
 data class MembershipRecord(val collectionId: String, val photoId: String)
 
+/** A single global flag for each immutable original, never one per membership. */
+@Entity(tableName = "photo_favorites")
+data class PhotoFavoriteRecord(
+    @PrimaryKey val photoId: String,
+    val markedAt: Long
+)
+
 @Entity(tableName = "rotation")
 data class RotationRecord(
     @PrimaryKey val id: Int = 1,
@@ -62,6 +71,32 @@ data class RotationRecord(
 
 @Dao
 interface GlimpseDao {
+    @Query("SELECT photoId FROM photo_favorites ORDER BY photoId")
+    fun watchFavoriteIds(): Flow<List<String>>
+
+    @Query("SELECT * FROM photo_favorites WHERE photoId = :photoId LIMIT 1")
+    suspend fun findFavorite(photoId: String): PhotoFavoriteRecord?
+
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    suspend fun addFavorite(record: PhotoFavoriteRecord): Long
+
+    @Query("DELETE FROM photo_favorites WHERE photoId = :photoId")
+    suspend fun deleteFavorite(photoId: String): Int
+
+    /** Idempotent serialized transaction. Null means the source is gone. */
+    @Transaction
+    suspend fun setFavorite(photoId: String, favorite: Boolean): Boolean? {
+        if (findPhoto(photoId) == null) return null
+        if (favorite) {
+            if (findFavorite(photoId) == null) {
+                addFavorite(PhotoFavoriteRecord(photoId, System.currentTimeMillis()))
+            }
+        } else {
+            deleteFavorite(photoId)
+        }
+        return favorite
+    }
+
     @Query("SELECT * FROM collections ORDER BY createdAt, id")
     fun watchCollections(): Flow<List<CollectionRecord>>
 
@@ -239,14 +274,26 @@ interface GlimpseDao {
 }
 
 @Database(
-    entities = [CollectionRecord::class, PhotoRecord::class, MembershipRecord::class, RotationRecord::class],
-    version = 1,
+    entities = [CollectionRecord::class, PhotoRecord::class, MembershipRecord::class,
+        RotationRecord::class, PhotoFavoriteRecord::class],
+    version = 2,
     exportSchema = true
 )
 abstract class GlimpseDatabase : RoomDatabase() {
     abstract fun dao(): GlimpseDao
 
     companion object {
+        /** Upgrade existing owner-installed v1 databases without deleting any photos. */
+        val MIGRATION_1_2 = object : Migration(1, 2) {
+            override fun migrate(db: SupportSQLiteDatabase) {
+                db.execSQL(
+                    "CREATE TABLE IF NOT EXISTS `photo_favorites` (" +
+                        "`photoId` TEXT NOT NULL, `markedAt` INTEGER NOT NULL, " +
+                        "PRIMARY KEY(`photoId`))"
+                )
+            }
+        }
+
         @Volatile private var instance: GlimpseDatabase? = null
 
         fun open(context: Context): GlimpseDatabase =
@@ -255,7 +302,7 @@ abstract class GlimpseDatabase : RoomDatabase() {
                     context.applicationContext,
                     GlimpseDatabase::class.java,
                     "glimpse.db"
-                ).build().also { instance = it }
+                ).addMigrations(MIGRATION_1_2).build().also { instance = it }
             }
     }
 }
