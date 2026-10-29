@@ -157,9 +157,10 @@ internal fun GlimpseSupportScreen(
             "Uninstalling Glimpse or clearing its app storage can permanently remove " +
                 "its private imported copies and collections. Export collection ZIP " +
                 "can save the unchanged photos and a manifest to an Android-selected " +
-                "document destination, but it does not export wallpaper settings " +
-                "or support in-app restore. Verify the destination before uninstalling. " +
-                "Exports include original EXIF data and the collection title."
+                "document destination, but it does not include wallpaper or shuffle " +
+                "settings. The Restore collection ZIP action below creates a new " +
+                "photo-only collection. Verify the saved destination before " +
+                "uninstalling. Exports include original EXIF data and the collection title."
         )
         SupportSection(
             "LOCAL STORAGE · READ ONLY",
