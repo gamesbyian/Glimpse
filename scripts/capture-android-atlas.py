@@ -995,8 +995,35 @@ def main():
                     capture_failure("collection-reel-first-selection",
                                     "Physical turn did not select the original collection ID")
                     raise RuntimeError("Collection reel cannot select prior collection")
+                # A functional upper-right wheel must not make Home's visible
+                # navigation inaccessible, including its transparent Canvas.
+                dual_xml = hierarchy()
+                upper_bounds = accessible_bounds(dual_xml, "Collection paper reel")
+                def action_bounds(xml, label):
+                    def walk(node, ancestors=()):
+                        if label in (node.attrib.get("text"), node.attrib.get("content-desc")):
+                            for target in (node, *reversed(ancestors)):
+                                if target.attrib.get("clickable") == "true":
+                                    numbers = re.findall(r"\d+", target.attrib.get("bounds", ""))
+                                    if len(numbers) == 4:
+                                        return tuple(map(int, numbers))
+                        for child in node:
+                            value = walk(child, ancestors + (node,))
+                            if value is not None: return value
+                        return None
+                    return walk(ET.fromstring(xml))
+                def overlap(a, b):
+                    return min(a[2], b[2]) > max(a[0], b[0]) and (
+                        min(a[3], b[3]) > max(a[1], b[1])
+                    )
+                for action in ("Browse photo reel", "Help & privacy"):
+                    rect = action_bounds(dual_xml, action)
+                    if rect is None or overlap(upper_bounds, rect):
+                        capture_failure("dual-reel-obstructed-home-action",
+                            "Upper-right reel overlaps or hides actual " + action + " control")
+                        raise RuntimeError("Dual reel obscured clickable Home navigation: " + action)
                 capture("22-two-functional-corner-reels",
-                        "Both fixed paper discs shown; upper reel selected real source collection")
+                        "Both fixed paper discs with action-clearance verified")
                 collection_reel_drag(168, 112)
                 selected_alternate = any(
                     "· ALTERNATE ATLAS" in node.attrib.get("text", "")
