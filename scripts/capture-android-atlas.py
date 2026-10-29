@@ -774,6 +774,27 @@ def main():
         if args.mode == "full":
             swipe("up")
             capture("22-controls-and-rotation", "Bottom controls and rotation status")
+            # User consent is explicit, OFF by default, and independent of
+            # applying wallpaper or starting a hidden foreground service.
+            reach_and_click("Details", "up", attempts=12)
+            details_before = hierarchy()
+            if "Allow background wallpaper checks" not in details_before:
+                capture_failure("background-consent-not-exposed",
+                                "Rotation Details lacked opt-in disclosure")
+                raise RuntimeError("Best-effort background consent setting missing")
+            reach_and_click("Enable best-effort background wallpaper checks",
+                            "up", attempts=7)
+            opted_in = hierarchy()
+            if "Background checks enabled (best effort)" not in opted_in:
+                raise RuntimeError("Explicit background consent failed to update visible state")
+            capture("22-opt-in-background-rotation",
+                    "Opt-in OS work disclosure distinguishes 15min+ background from visible five-minute")
+            reach_and_click("Enable best-effort background wallpaper checks",
+                            "up", attempts=7)
+            if "Allow background wallpaper checks" not in hierarchy():
+                raise RuntimeError("Background opt-out did not restore disabled state")
+            capture("22-opt-out-background-rotation",
+                    "Background work explicitly disabled without changing Home wallpaper")
             start_fixture(3)
             capture("03-reel-initial", "Three photos: empty end apertures, no fake repeats")
             start_fixture(22)

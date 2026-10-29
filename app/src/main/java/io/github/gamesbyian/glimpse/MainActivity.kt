@@ -37,6 +37,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.lightColorScheme
@@ -763,7 +764,9 @@ private fun RotationPanel(state: GlimpseUiState, model: GlimpseModel) {
                 }
             }
             Text(
-                if (rotation?.active == true) "Shuffling · while Glimpse is in use"
+                if (rotation?.active == true && state.backgroundChecksEnabled)
+                    "Shuffling · 5-minute visible checks; OS-delayed background checks enabled"
+                else if (rotation?.active == true) "Shuffling · while Glimpse is in use"
                 else "Rotation is paused or not started",
                 style = MaterialTheme.typography.bodyMedium
             )
@@ -822,9 +825,33 @@ private fun RotationPanel(state: GlimpseUiState, model: GlimpseModel) {
                 }
             }
             if (expanded) {
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.spacedBy(12.dp)
+                ) {
+                    Switch(
+                        checked = state.backgroundChecksEnabled,
+                        onCheckedChange = model::setBackgroundChecks,
+                        enabled = !state.busy,
+                        modifier = Modifier.semantics {
+                            contentDescription = "Enable best-effort background wallpaper checks"
+                        }
+                    )
+                    Text(
+                        if (state.backgroundChecksEnabled)
+                            "Background checks enabled (best effort)"
+                        else "Allow background wallpaper checks",
+                        style = MaterialTheme.typography.bodyMedium
+                    )
+                }
                 Text(
-                    "Five-minute eligibility is checked while this app is visible. " +
-                        "Android may defer changes when Glimpse is not in use.",
+                    "Optional, off by default. Foreground rotation checks about every " +
+                        "five minutes while Glimpse is visible. When you enable " +
+                        "background checks, Android schedules work no more frequently " +
+                        "than every 15 minutes and may defer it much longer in Doze " +
+                        "or due to manufacturer restrictions. No exact background " +
+                        "change time, wakeup or catch-up is promised.",
                     style = MaterialTheme.typography.bodySmall
                 )
                 Text("Outcome: " + (rotation?.outcome ?: "Not started"))
