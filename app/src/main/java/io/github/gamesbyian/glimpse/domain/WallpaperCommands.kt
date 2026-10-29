@@ -1,6 +1,7 @@
 package io.github.gamesbyian.glimpse.domain
 
 import android.app.WallpaperManager
+import io.github.gamesbyian.glimpse.BestEffortRotationWork
 import android.content.Context
 import android.os.PowerManager
 import androidx.annotation.VisibleForTesting
@@ -18,9 +19,15 @@ import kotlinx.coroutines.withContext
 import org.json.JSONArray
 import java.io.File
 
+/** Both the UI and WorkManager worker are in the main app process. */
+private object WallpaperProcessGate {
+    val mutex = Mutex()
+}
+
 /**
  * Single serialized side-effect gateway. Browsing never calls this class.
- * All automatic work happens only while the app is STARTED in the foreground.
+ * Foreground checks and explicitly enabled best-effort OS work use this same
+ * process-wide operation gate; no second bitmap writer exists.
  *
  * A persisted pending photo means a process died or the OS failed to confirm
  * the result. Never retry that photo automatically or advance the queue.
@@ -36,7 +43,7 @@ class WallpaperCommands(
         }.getOrDefault(false)
     }
 ) {
-    private val mutex = Mutex()
+    private val mutex = WallpaperProcessGate.mutex
     private val intervalMillis = 5 * 60 * 1000L
 
     suspend fun start(collectionId: String): String = mutex.withLock {
@@ -93,25 +100,31 @@ class WallpaperCommands(
         performNextLocked(previous, collectionId)
     }
 
-    suspend fun pollWhileVisible() = mutex.withLock {
-        val previous = dao.readRotation() ?: return@withLock
-        if (!previous.active || previous.pendingPhotoId != null) return@withLock
+    /** Runs only from Activity STARTED's existing five-minute loop. */
+    suspend fun pollWhileVisible() = mutex.withLock { pollEligibleLocked() }
+
+    /** OS-delayed check, independently gated by explicit user consent. */
+    suspend fun pollFromBackground() = mutex.withLock {
+        if (BestEffortRotationWork.enabled(context)) pollEligibleLocked()
+    }
+
+    /** Never replay missed intervals or consume a reserved candidate twice. */
+    private suspend fun pollEligibleLocked() {
+        val previous = dao.readRotation() ?: return
+        if (!previous.active || previous.pendingPhotoId != null) return
         val current = now()
-        if (current < (previous.nextEligibleAt ?: Long.MAX_VALUE)) return@withLock
+        if (current < (previous.nextEligibleAt ?: Long.MAX_VALUE)) return
         if (batterySaverActive()) {
-            // Android Battery Saver is a stronger gate than a nominal five-
-            // minute due time. Defer the *eligible time* without consuming a
-            // photo, resetting the persisted no-repeat bag, or replaying
-            // every missed interval when power saving ends.
+            // Battery Saver defers without advancing the no-repeat bag.
             dao.saveRotation(previous.copy(
                 nextEligibleAt = BatterySaverRotationPolicy.deferDue(
                     current, intervalMillis
                 ),
                 outcome = "Battery Saver: automatic rotation deferred; original queue preserved"
             ))
-            return@withLock
+            return
         }
-        val collectionId = previous.collectionId ?: return@withLock
+        val collectionId = previous.collectionId ?: return
         performNextLocked(previous, collectionId)
     }
 
