@@ -111,21 +111,25 @@ class WallpaperCommands(
     /** Never replay missed intervals or consume a reserved candidate twice. */
     private suspend fun pollEligibleLocked() {
         val previous = dao.readRotation() ?: return
-        if (!previous.active || previous.pendingPhotoId != null) return
         val current = now()
-        if (current < (previous.nextEligibleAt ?: Long.MAX_VALUE)) return
-        if (batterySaverActive()) {
-            // Battery Saver defers without advancing the no-repeat bag.
-            dao.saveRotation(previous.copy(
-                nextEligibleAt = BatterySaverRotationPolicy.deferDue(
-                    current, intervalMillis
-                ),
-                outcome = "Battery Saver: automatic rotation deferred; original queue preserved"
-            ))
-            return
+        when (automaticRotationGate(previous, current, batterySaverActive())) {
+            AutomaticRotationGate.PAUSED, AutomaticRotationGate.UNCERTAIN,
+            AutomaticRotationGate.NOT_DUE -> return
+            AutomaticRotationGate.BATTERY_SAVER -> {
+                // Do not consume a candidate or replay missed time windows.
+                dao.saveRotation(previous.copy(
+                    nextEligibleAt = BatterySaverRotationPolicy.deferDue(
+                        current, intervalMillis
+                    ),
+                    outcome = "Battery Saver: automatic rotation deferred; original queue preserved"
+                ))
+                return
+            }
+            AutomaticRotationGate.ELIGIBLE -> {
+                val collectionId = previous.collectionId ?: return
+                performNextLocked(previous, collectionId)
+            }
         }
-        val collectionId = previous.collectionId ?: return
-        performNextLocked(previous, collectionId)
     }
 
     private suspend fun performNextLocked(
