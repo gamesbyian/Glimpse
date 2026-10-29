@@ -50,6 +50,7 @@ data class GlimpseUiState(
     val rotation: RotationRecord? = null,
     val selectedPhotoId: String? = null,
     val grid: Boolean = false,
+    val backgroundChecksEnabled: Boolean = false,
     val busy: Boolean = false,
     val retryableFailures: Int = 0,
     val message: String = "Create a collection to begin."
@@ -85,6 +86,7 @@ class GlimpseModel(application: Application) : AndroidViewModel(application) {
         val photo = cursor.selectedPhotoId ?: return
         browsePrefs.edit().putString("photo:$collection", photo).apply()
     }
+    private val backgroundChecks = MutableStateFlow(BestEffortRotationWork.enabled(application))
     private val grid = MutableStateFlow(false)
     private val busy = MutableStateFlow(false)
     private val notice = MutableStateFlow("Create a collection, import photos and choose a wallpaper.")
@@ -127,11 +129,15 @@ class GlimpseModel(application: Application) : AndroidViewModel(application) {
             selectedPhotoId = cursor.resolvedId(photos.map { it.id })
         )
     }
-    val ui: StateFlow<GlimpseUiState> = combine(catalog, grid, busy, notice, pendingRetry) {
-        data, isGrid, isBusy, message, pending ->
+    private val activityState = combine(busy, backgroundChecks) { active, background ->
+        active to background
+    }
+    val ui: StateFlow<GlimpseUiState> = combine(catalog, grid, activityState, notice, pendingRetry) {
+        data, isGrid, settings, message, pending ->
         data.copy(
             grid = isGrid,
-            busy = isBusy,
+            busy = settings.first,
+            backgroundChecksEnabled = settings.second,
             message = message,
             retryableFailures = if (pending != null &&
                 data.collectionId == pending.collectionId) pending.uris.size else 0
@@ -155,6 +161,13 @@ class GlimpseModel(application: Application) : AndroidViewModel(application) {
                 throw cancel
             } catch (_: Exception) {
                 // Noncritical housekeeping cannot block gallery startup.
+            }
+        }
+        viewModelScope.launch(Dispatchers.IO) {
+            // WorkManager persists scheduling through process death and reboot.
+            // Reassert only explicit prior consent and an active saved rotation.
+            if (backgroundChecks.value && dao.readRotation()?.active == true) {
+                runCatching { BestEffortRotationWork.schedule(application) }
             }
         }
         viewModelScope.launch {
@@ -456,12 +469,45 @@ class GlimpseModel(application: Application) : AndroidViewModel(application) {
 
     fun startRotation() = action {
         val id = browse.value.collectionId ?: error("Choose a collection first.")
-        wallpaper.start(id)
+        val result = wallpaper.start(id)
+        if (BestEffortRotationWork.enabled(getApplication()) &&
+            dao.readRotation()?.active == true
+        ) BestEffortRotationWork.schedule(getApplication())
+        result
     }
 
-    fun pauseRotation() = action { wallpaper.pause() }
+    fun pauseRotation() = action {
+        val result = wallpaper.pause()
+        BestEffortRotationWork.cancel(getApplication())
+        result
+    }
+
+    fun setBackgroundChecks(enabled: Boolean) = action {
+        val application = getApplication<Application>()
+        // Explicit opt-in is kept independently of the browsing preferences.
+        // Turning off changes consent before cancellation; an already-started
+        // Worker rechecks under the shared OS wallpaper operation mutex.
+        BestEffortRotationWork.setConsent(application, enabled)
+        backgroundChecks.value = enabled
+        if (!enabled) {
+            BestEffortRotationWork.cancel(application)
+            "Background checks disabled. Foreground five-minute rotation unchanged."
+        } else {
+            if (dao.readRotation()?.active == true) {
+                BestEffortRotationWork.schedule(application)
+            }
+            "Best-effort background checks enabled. Android's periodic minimum " +
+                "is 15 minutes and Doze can delay further. Five-minute checks " +
+                "still require Glimpse to be visible."
+        }
+    }
+
     fun changeWallpaperNow() = action { wallpaper.changeNow() }
-    fun resolveUncertain() = action { wallpaper.acknowledgeUncertain() }
+    fun resolveUncertain() = action {
+        val result = wallpaper.acknowledgeUncertain()
+        if (dao.readRotation()?.active != true) BestEffortRotationWork.cancel(getApplication())
+        result
+    }
 
     suspend fun tickVisible() {
         try { wallpaper.pollWhileVisible() }
