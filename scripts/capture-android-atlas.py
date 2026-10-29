@@ -547,7 +547,7 @@ def main():
                                         (node, *reversed(parents))
                                         if candidate.attrib.get("clickable") == "true"), None)
                         if control is not None:
-                            bounds = re.findall(r"\\d+", control.attrib.get("bounds", ""))
+                            bounds = re.findall(r"\d+", control.attrib.get("bounds", ""))
                             if len(bounds) == 4:
                                 _, top, _, bottom = map(int, bounds)
                                 return (bottom - top) * 160 / screen_geometry()[2]
