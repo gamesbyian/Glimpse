@@ -788,6 +788,16 @@ def main():
                                 "View all must open a full-height real collection contact sheet")
                 raise RuntimeError("Grid remained a nested Home panel instead of dedicated room")
             capture("22-grid", "Full-height native contact sheet for 22 real source photographs")
+            reach_and_click("Imported last 7 days", "up", attempts=5)
+            if "imported in the last seven days" not in hierarchy():
+                capture_failure("recent-import-filter-missing",
+                                "The contact sheet did not show its explicit relative-time filter")
+                raise RuntimeError("Recent imports filter was not activated")
+            capture("22-grid-recent-imports",
+                    "Optional recent imported originals filter, without changing wallpaper")
+            reach_and_click("All photos", "up", attempts=5)
+            if "IN FOCUS · 1 OF 22" not in hierarchy():
+                raise RuntimeError("Returning to All photos lost the real collection focus")
             reach_and_click("Photograph 2 of 22", "up", attempts=4)
             if "IN FOCUS · 2 OF 22" not in hierarchy():
                 capture_failure("grid-selection-not-retained",
