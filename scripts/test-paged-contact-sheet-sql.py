@@ -106,5 +106,29 @@ for collection in ("main", "alternate", "missing"):
 assert len(expected_ids("main", 0)) == COUNT
 assert len(expected_ids("main", 1)) == COUNT // 3
 assert all(not p.startswith("future") for p in expected_ids("main", 1))
+# The focused item's ordinal is computed in SQL, not by downloading 12k
+# records. Audit the exact Room query as well as the paged rows it counts.
+POSITION_BLOCK = re.search(
+    r'@Query\\(\\s*((?:"[^"]*"\\s*\\+?\\s*)+)\\)\\s*fun watchPhotoPosition',
+    TEXT, re.DOTALL,
+)
+if not POSITION_BLOCK:
+    raise AssertionError("Unable to extract the live Room focus-position query")
+POSITION_SQL = "".join(re.findall(r'"([^"]*)"', POSITION_BLOCK.group(1)))
+for collection in ("main", "alternate"):
+    for sample_id in ("photo-00000", "photo-00002", "photo-09000", "photo-11999"):
+        row = next((row for row in rows if row[0] == sample_id), None)
+        assert row is not None
+        actual = db.execute(POSITION_SQL, dict(
+            collectionId=collection, selectedImportedAt=row[1], selectedId=sample_id
+        )).fetchone()[0]
+        expected = expected_ids(collection, 0)
+        desired = expected.index(sample_id) + 1 if sample_id in expected else sum(
+            1 for photo_id, stamped in rows
+            if photo_id in set(expected) and
+               (stamped < row[1] or (stamped == row[1] and photo_id <= sample_id))
+        )
+        assert actual == desired, (collection, sample_id, actual, desired)
+
 print("PASS: actual Room contact-sheet SQL, 12000 rows, pagination, collection scope, "
       "stable order, future-date exclusions and filters")
