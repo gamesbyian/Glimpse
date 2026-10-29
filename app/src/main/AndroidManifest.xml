@@ -24,6 +24,19 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/glimpse_edited_share_paths" />
         </provider>
+        <!-- System-bound Quick Settings tile: tapping requests one manual
+             Home change through the existing serialized command gateway.
+             No exported arbitrary wallpaper-change receiver is introduced. -->
+        <service
+            android:name=".QuickHomeTileService"
+            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE"
+            android:exported="true"
+            android:label="Next Home photo"
+            android:icon="@drawable/glimpse_tile_next">
+            <intent-filter>
+                <action android:name="android.service.quicksettings.action.QS_TILE" />
+            </intent-filter>
+        </service>
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
