@@ -687,6 +687,7 @@ private fun GlimpseScreen(
         ) {
             GlimpseCollectionReel(
                 collections = state.collections,
+                overviews = state.collectionOverviews,
                 selectedId = activeCollection,
                 onSelect = model::browseCollection,
                 modifier = Modifier.align(Alignment.TopEnd)
