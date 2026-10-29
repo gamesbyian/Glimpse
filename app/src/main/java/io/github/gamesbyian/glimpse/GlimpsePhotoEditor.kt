@@ -30,6 +30,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
@@ -37,6 +39,7 @@ import io.github.gamesbyian.glimpse.data.PhotoRecord
 import io.github.gamesbyian.glimpse.data.PhotoEditRecipeStore
 import io.github.gamesbyian.glimpse.domain.NormalizedCrop
 import io.github.gamesbyian.glimpse.domain.PhotoEditGeometry
+import io.github.gamesbyian.glimpse.domain.estimateCropResolution
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -86,6 +89,14 @@ internal fun GlimpsePhotoEditor(
     val geometry = PhotoEditGeometry(turns, NormalizedCrop(
         left.toDouble(), top.toDouble(), right.toDouble(), bottom.toDouble()
     ))
+    val displayConfig = LocalConfiguration.current
+    val displayDensity = LocalDensity.current.density
+    val displayWidthPx = (displayConfig.screenWidthDp * displayDensity).toInt().coerceAtLeast(1)
+    val displayHeightPx = (displayConfig.screenHeightDp * displayDensity).toInt().coerceAtLeast(1)
+    val cropEstimate = runCatching {
+        estimateCropResolution(geometry, photo.width, photo.height,
+            displayWidthPx, displayHeightPx)
+    }.getOrNull()
     val picker = rememberLauncherForActivityResult(
         ActivityResultContracts.CreateDocument("image/png")
     ) { destination ->
@@ -180,6 +191,23 @@ internal fun GlimpsePhotoEditor(
                 }) { Text("Reset crop and rotation") }
             }
             Text("Rotation: " + (90 * turns) + "° clockwise")
+            if (cropEstimate != null) {
+                Text(
+                    "Estimated remaining original detail: ${cropEstimate.width} × " +
+                        "${cropEstimate.height} pixels.",
+                    style = MaterialTheme.typography.bodySmall
+                )
+                if (cropEstimate.belowDisplay) {
+                    Text(
+                        "Quality caution: this crop has fewer source pixels along " +
+                            "at least one axis than this screen. It may look soft " +
+                            "as wallpaper. Android may crop or zoom differently; " +
+                            "this is not a guarantee of displayed quality.",
+                        color = MaterialTheme.colorScheme.error,
+                        style = MaterialTheme.typography.bodySmall
+                    )
+                }
+            }
             Text(
                 "Adjust the crop edges below. Values are fractions of the " +
                     "EXIF-upright image after your rotation. Each edge remains " +
