@@ -61,18 +61,18 @@ internal object ShuffleProjection {
         val generator = Random(seed)
         val sequence = ArrayList<Frame>(requestedSteps)
 
-        repeat(requestedSteps) { index ->
+        for (index in 0 until requestedSteps) {
             // This is the same singleton optimization as WallpaperCommands:
             // don't claim a new change when it would reapply the same photo.
             if (identities.size == 1 && identities.first() == last) {
                 stoppedSingleton = true
-                return@repeat
+                break
             }
             val certainty = if (unused.isNotEmpty())
                 Confidence.SAVED_QUEUE else Confidence.ILLUSTRATIVE
             if (certainty == Confidence.ILLUSTRATIVE) illustrative = true
             val bag = ShuffleBag.replenish(identities, unused, last, generator)
-            val chosen = bag.firstOrNull() ?: return@repeat
+            val chosen = bag.firstOrNull() ?: break
             sequence.add(Frame(chosen, index + 1, certainty))
             unused = bag.drop(1)
             last = chosen
