@@ -841,6 +841,23 @@ def main():
                     raise RuntimeError("Photo Details action below 44dp: " + name)
             capture("22-photo-detail-original",
                     "Full undistorted original on native photo detail, preview-only")
+            # Favorites belong to the global immutable PhotoRecord, not a
+            # collection membership. The explicit mark/unmark action must
+            # preserve all original bytes, photo order and Android wallpaper.
+            reach_and_click("Mark as favorite", "up", attempts=9)
+            if "Remove from favorites" not in hierarchy():
+                raise RuntimeError("Favorite mark did not persist to Room-observed UI")
+            capture("22-photo-favorite-marked",
+                    "Actual favorite flag visible without changing wallpaper or memberships")
+            reach_and_click("Next photo", "up")
+            reach_and_click("Previous photo", "up")
+            if "Remove from favorites" not in hierarchy():
+                raise RuntimeError("Favorite mark lost when browsing away and returning")
+            reach_and_click("Remove from favorites", "up", attempts=9)
+            if "Mark as favorite" not in hierarchy():
+                raise RuntimeError("Favorite unmark did not persist to Room-observed UI")
+            capture("22-photo-favorite-removed",
+                    "Reversible favorite flag remains independent of collection and wallpaper")
             reach_and_click("Next photo", "up")
             swipe("down")
             next_detail = hierarchy()
