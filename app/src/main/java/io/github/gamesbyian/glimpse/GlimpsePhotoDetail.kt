@@ -127,8 +127,8 @@ internal fun GlimpsePhotoDetail(
         Text(
             "Favorites are shared across collections for the same original. " +
                 "Marking a favorite does not change today's wallpaper, " +
-                "photo order or the active shuffle. Favorites-only filtering " +
-                "is not available yet.",
+                "photo order or the active shuffle. Browse Favorites in the " +
+                "Grid contact sheet to see only starred photos.",
             style = MaterialTheme.typography.bodySmall
         )
 

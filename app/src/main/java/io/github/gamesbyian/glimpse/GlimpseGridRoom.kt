@@ -60,7 +60,10 @@ internal fun GlimpseGridRoom(
 ) {
     val collectionId = state.collectionId
     val photos = state.photos
+    // Filters never mutate the active wallpaper/shuffle collection, and each
+    // new collection starts in the predictable All view.
     var recentOnly by rememberSaveable(collectionId) { mutableStateOf(false) }
+    var favoritesOnly by rememberSaveable(collectionId) { mutableStateOf(false) }
     var timeSnapshot by androidx.compose.runtime.remember { mutableLongStateOf(System.currentTimeMillis()) }
     // Once enabled, a photo ages out of the filtered view automatically;
     // no filesystem scan, network access or background service is involved.
@@ -71,9 +74,13 @@ internal fun GlimpseGridRoom(
             timeSnapshot = System.currentTimeMillis()
         }
     }
-    val displayedPhotos = if (recentOnly) photos.filter {
-        RecentImportFilter.isRecent(it.importedAt, timeSnapshot)
-    } else photos
+    val displayedPhotos = when {
+        favoritesOnly -> photos.filter { it.id in state.favoritePhotoIds }
+        recentOnly -> photos.filter {
+            RecentImportFilter.isRecent(it.importedAt, timeSnapshot)
+        }
+        else -> photos
+    }
     val selected = state.current
     val index = photos.indexOfFirst { it.id == selected?.id }
     val collection = state.collections.firstOrNull { it.id == collectionId }?.title
@@ -115,21 +122,35 @@ internal fun GlimpseGridRoom(
             verticalArrangement = Arrangement.spacedBy(4.dp)
         ) {
             FilterChip(
-                selected = !recentOnly,
-                onClick = { recentOnly = false },
+                selected = !recentOnly && !favoritesOnly,
+                onClick = { recentOnly = false; favoritesOnly = false },
                 modifier = Modifier.heightIn(min = 48.dp),
                 label = { Text("All photos") }
             )
             FilterChip(
                 selected = recentOnly,
-                onClick = { recentOnly = true },
+                onClick = { recentOnly = true; favoritesOnly = false },
                 modifier = Modifier.heightIn(min = 48.dp),
                 label = { Text("Imported last 7 days") }
+            )
+            FilterChip(
+                selected = favoritesOnly,
+                onClick = { favoritesOnly = true; recentOnly = false },
+                modifier = Modifier.heightIn(min = 48.dp),
+                label = { Text("Favorites") }
             )
         }
         if (recentOnly) {
             Text(
                 "${displayedPhotos.size} imported in the last seven days · ${photos.size} total",
+                color = Color(0xFF695D52),
+                style = MaterialTheme.typography.labelMedium
+            )
+        }
+        if (favoritesOnly) {
+            Text(
+                "${displayedPhotos.size} favorites in this collection · " +
+                    "${photos.size} total. Favorite flags are global to original photos.",
                 color = Color(0xFF695D52),
                 style = MaterialTheme.typography.labelMedium
             )
@@ -170,7 +191,11 @@ internal fun GlimpseGridRoom(
             }
             if (displayedPhotos.isEmpty()) {
                 Text(
-                    "No photos were imported in the last seven days. Select All photos to browse the collection.",
+                    if (favoritesOnly)
+                        "No favorites in this collection yet. Mark a photo in Photo Details " +
+                            "to include it here. Select All photos to browse everything."
+                    else "No photos were imported in the last seven days. " +
+                        "Select All photos to browse the collection.",
                     style = MaterialTheme.typography.bodyMedium
                 )
             } else LazyVerticalGrid(
