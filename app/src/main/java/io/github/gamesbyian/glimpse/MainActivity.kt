@@ -690,7 +690,7 @@ private fun GlimpseScreen(
                 selectedId = activeCollection,
                 onSelect = model::browseCollection,
                 modifier = Modifier.align(Alignment.TopEnd)
-                    .offset(x = 28.dp, y = (-20).dp)
+                    .offset(x = 28.dp, y = 32.dp)
             )
         }
         }
