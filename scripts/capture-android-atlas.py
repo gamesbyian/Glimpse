@@ -939,15 +939,20 @@ def main():
                 if "Photos: 3" in membership_xml:
                     found_three = True
                     break
-                # The new photographic Home count is at the TOP of the
-                # scrolling page, not below the collection-management tile.
-                swipe("down")
+                # Clicking the actual collection card may return the scroll
+                # position to the top of a full-height photograph. The Room
+                # membership count lives in the management area BELOW it.
+                swipe("up")
             if not found_three:
                 capture_failure("cross-collection-membership-not-visible",
                                 "Membership copy did not appear in alternate collection")
                 raise RuntimeError("Adding existing photo did not update target collection")
             capture("22-cross-collection-membership-copy",
                     "Photo 3 reused in alternate collection without recopy or wallpaper change")
+            # Reset the *content* viewport for the corner-reel gesture test.
+            # Both physical reels must remain fixed while it scrolls.
+            for _ in range(4):
+                swipe("down")
             # A second functional fixed reel appears only when TWO real
             # collections are present on a sufficiently wide normal-font
             # viewport. Exercise both physical directions against real Room
@@ -977,16 +982,24 @@ def main():
                     time.sleep(1.8)
                 # Clockwise turn advances toward earlier actual collections.
                 collection_reel_drag(112, 168)
-                if "Photos: 22" not in hierarchy():
+                selected_source = any(
+                    "Collection 1 of 2: ATLAS FIXTURE" in node.attrib.get("content-desc", "")
+                    or "Collection 1 of 2: ATLAS FIXTURE" in node.attrib.get("state-desc", "")
+                    for node in ET.fromstring(hierarchy()).iter("node"))
+                if not selected_source:
                     capture_failure("collection-reel-first-selection",
-                                    "Reel turn did not select original 22-photo source")
+                                    "Physical turn did not select the original collection ID")
                     raise RuntimeError("Collection reel cannot select prior collection")
                 capture("22-two-functional-corner-reels",
                         "Both fixed paper discs shown; upper reel selected real source collection")
                 collection_reel_drag(168, 112)
-                if "Photos: 3" not in hierarchy():
+                selected_alternate = any(
+                    "Collection 2 of 2: ALTERNATE ATLAS" in node.attrib.get("content-desc", "")
+                    or "Collection 2 of 2: ALTERNATE ATLAS" in node.attrib.get("state-desc", "")
+                    for node in ET.fromstring(hierarchy()).iter("node"))
+                if not selected_alternate:
                     capture_failure("collection-reel-return-selection",
-                                    "Reel return did not restore alternate 3-photo collection")
+                                    "Reel return did not restore alternate collection ID")
                     raise RuntimeError("Collection reel did not retain real source IDs")
                 capture("22-collection-reel-bidirectional",
                         "Two anchored functional reels; alternate collection restored by wheel")
