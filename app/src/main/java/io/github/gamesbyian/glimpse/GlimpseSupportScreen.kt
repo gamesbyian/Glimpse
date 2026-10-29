@@ -130,9 +130,15 @@ internal fun GlimpseSupportScreen(
                 "last Android-acknowledged photo but cannot reliably read back the " +
                 "current wallpaper after another app changes it.",
             "Start shuffle uses the named collection selected at that moment. " +
-                "Five-minute eligibility is checked only while Glimpse is visible. " +
-                "Background timing, exact alarms, Lock and Both targeting are not " +
-                "available in this build. Review uncertain attempts before restarting."
+                "Five-minute eligibility is checked while Glimpse is visible. " +
+                "Optional background checks are off by default; when enabled, " +
+                "Android runs them no more frequently than every 15 minutes " +
+                "and may defer them much longer. Exact alarms, Lock and Both " +
+                "targeting are not supported. Review uncertain attempts before restarting.",
+            "On Android, edit your Quick Settings tiles to add Next Home photo. " +
+                "This requests one change from the saved shuffle collection, " +
+                "even when rotation is paused. Android may delay the request; " +
+                "open Glimpse to verify the outcome. The tile cannot set Lock wallpaper."
         )
         SupportSection(
             "SHARING & ORIGINALS",
@@ -145,7 +151,10 @@ internal fun GlimpseSupportScreen(
                 "is saved. Paste image reads clipboard only when explicitly tapped. " +
                 "Photo Detail can preview crop edges and 90-degree rotations and save a " +
                 "separate edited PNG with a 3072-pixel edge limit and stripped original " +
-                "EXIF. Durable edit recipes and applying edited wallpapers are pending. " +
+                "EXIF. Non-destructive crop/rotation recipes can be retained, " +
+                "and separate edited PNGs can be saved to a collection or applied " +
+                "to Home through the existing wallpaper command. Free-angle " +
+                "straightening and source-wide automatic editing remain unavailable. " +
                 "Batch outbound sharing is limited to 25 originals. Cloud-album " +
                 "synchronization is not implemented; temporary provider grants can " +
                 "expire but completed offline originals remain available."
