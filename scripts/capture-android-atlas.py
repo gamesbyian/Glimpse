@@ -899,7 +899,13 @@ def main():
                     "Android chooser launched from verified immutable original; no wallpaper operation")
             adb("shell", "input", "keyevent", "4")
             time.sleep(1.0)
-            if "In focus." not in hierarchy():
+            # Adding real favorite controls increases the vertically scrollable
+            # Details content. UIAutomator only sees its *current viewport*:
+            # verify the still-visible Share/Save commands after chooser cancel
+            # instead of assuming the offscreen editorial heading is visible.
+            after_share_cancel = hierarchy()
+            if ("Share original photo" not in after_share_cancel or
+                    "Save original copy" not in after_share_cancel):
                 raise RuntimeError("Photo detail did not survive cancelled Android Sharesheet")
             # New Save As is an OS-owned SAF document picker, not an
             # app-private filename entry pretending to write user storage.
