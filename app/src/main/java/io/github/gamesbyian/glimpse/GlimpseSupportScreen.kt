@@ -15,6 +15,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
@@ -100,7 +101,7 @@ internal fun GlimpseSupportScreen(
             .padding(horizontal = 18.dp, vertical = 12.dp),
         verticalArrangement = Arrangement.spacedBy(14.dp)
     ) {
-        TextButton(onClick = onBack) { Text("Back to Home") }
+        TextButton(onClick = onBack, modifier = Modifier.heightIn(min = 48.dp)) { Text("Back to Home") }
         Text(
             "GOOD TO KNOW",
             color = Color(0xFF97684D),
@@ -182,6 +183,7 @@ internal fun GlimpseSupportScreen(
                 "that can break collection access and sharing."
         )
         OutlinedButton(
+            modifier = Modifier.heightIn(min = 48.dp),
             enabled = integrityReadout != IntegrityReadout.Checking,
             onClick = {
                 integrityReadout = IntegrityReadout.Checking
@@ -228,7 +230,7 @@ internal fun GlimpseSupportScreen(
                 "or shuffle settings. Large collections need enough free storage " +
                 "for temporary verification before the new collection is saved."
         )
-        OutlinedButton(onClick = {
+        OutlinedButton(modifier = Modifier.heightIn(min = 48.dp), onClick = {
             archiveOpenError = null
             try {
                 restorePicker.launch(arrayOf("application/zip", "application/octet-stream"))
@@ -252,7 +254,7 @@ internal fun GlimpseSupportScreen(
                 "share its text; nothing uploads automatically. No photo pixels, " +
                 "filenames, EXIF or collection IDs are included."
         )
-        OutlinedButton(onClick = {
+        OutlinedButton(modifier = Modifier.heightIn(min = 48.dp), onClick = {
             val info = (inventory as? StorageReadout.Ready)?.snapshot
             diagnosticDraft = LocalDiagnosticReport.render(
                 DiagnosticFacts(
@@ -286,7 +288,7 @@ internal fun GlimpseSupportScreen(
                 horizontalArrangement = Arrangement.spacedBy(8.dp),
                 verticalArrangement = Arrangement.spacedBy(4.dp)
             ) {
-                OutlinedButton(onClick = {
+                OutlinedButton(modifier = Modifier.heightIn(min = 48.dp), onClick = {
                     try {
                         val clipboard = context.getSystemService(Context.CLIPBOARD_SERVICE)
                             as ClipboardManager
@@ -298,7 +300,7 @@ internal fun GlimpseSupportScreen(
                         externalError = "Could not copy the report."
                     }
                 }) { Text("Copy report") }
-                OutlinedButton(onClick = {
+                OutlinedButton(modifier = Modifier.heightIn(min = 48.dp), onClick = {
                     try {
                         val payload = Intent(Intent.ACTION_SEND).apply {
                             type = "text/plain"
@@ -313,7 +315,7 @@ internal fun GlimpseSupportScreen(
                             "You can copy it instead."
                     }
                 }) { Text("Share report") }
-                androidx.compose.material3.TextButton(onClick = {
+                androidx.compose.material3.TextButton(modifier = Modifier.heightIn(min = 48.dp), onClick = {
                     diagnosticsVisible = false
                     diagnosticDraft = ""
                     externalError = null
@@ -328,6 +330,7 @@ internal fun GlimpseSupportScreen(
             else "Installed app. Distribution source and update channel are unverified."
         )
         TextButton(
+            modifier = Modifier.heightIn(min = 48.dp),
             onClick = {
                 externalError = null
                 try {
