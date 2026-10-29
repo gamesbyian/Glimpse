@@ -983,7 +983,10 @@ def main():
                     str(png_width) + "x" + str(png_height))
             capture("22-edited-png-saved-and-cropped",
                     "Android saved real rotated/cropped PNG; original private JPEG retained")
-            reach_and_click("Back to Reel / Grid", "down")
+            # The crop-resolution advisory adds legitimate editor height.
+            # Continue scrolling to the actual clickable Back control rather
+            # than treating a still-visible Photo Detail as a crash.
+            reach_and_click("Back to Reel / Grid", "down", attempts=16)
             capture("22-photo-detail-return",
                     "Return to original Reel/Grid browsing context")
             # R3 foreground shuffle source must be independent of which library
