@@ -45,7 +45,15 @@ internal fun GlimpseShuffleFilmstrip(state: GlimpseUiState) {
     }
     if (!expanded) return
 
-    if (rotation?.pendingPhotoId != null) {
+    if (rotation == null) {
+        Text(
+            "Choose a collection and start shuffle first. " +
+                "This preview cannot start or change a rotation.",
+            style = MaterialTheme.typography.bodySmall
+        )
+        return
+    }
+    if (rotation.pendingPhotoId != null) {
         Text(
             "The previous Android wallpaper operation is uncertain. " +
                 "Review that result before previewing another sequence.",
@@ -53,7 +61,7 @@ internal fun GlimpseShuffleFilmstrip(state: GlimpseUiState) {
         )
         return
     }
-    val sourceId = rotation?.collectionId
+    val sourceId = rotation.collectionId
     if (sourceId == null) {
         Text(
             "Choose a collection and start shuffle first. " +
