@@ -9,10 +9,10 @@ Each of the **73** scenarios receives one of three states. *Implemented* means t
 | Tier | Complete | Partial | Not implemented | Total | Scenario-equivalent coverage |
 |---|---:|---:|---:|---:|---:|
 | M1 | 4 | 4 | 0 | 8 | 75% |
-| M2 | 0 | 5 | 17 | 22 | 11% |
+| M2 | 0 | 6 | 16 | 22 | 14% |
 | M3 | 0 | 3 | 39 | 42 | 4% |
 | M4 | 0 | 0 | 1 | 1 | 0% |
-| **All** | **4** | **12** | **57** | **73** | **13.7%** |
+| **All** | **4** | **13** | **56** | **73** | **14.4%** |
 
 **Interpretation:** M1 core is substantially implemented but not production complete. The whole ambitious scope is mostly unimplemented because advanced schedule/rule, provider, per-target, widget and extensibility scenarios have not been built. This tally does **not** count several independently implemented supporting capabilities (collection rename, exact-byte import journal, ZIP safety, photo-only membership copy, diagnostic report, editor PNG export, real contact sheet) as *extra* scenarios. It does **not** count proposed mockups as working native screens.
 
@@ -37,7 +37,7 @@ Each of the **73** scenarios receives one of three states. *Implemented* means t
 | W15 | M3 | Not implemented | No evidence of a complete, independently operable native workflow matching this scenario; platform/provider feasibility may be gated. |
 | W16 | M3 | Not implemented | No evidence of a complete, independently operable native workflow matching this scenario; platform/provider feasibility may be gated. |
 | W17 | M3 | Not implemented | No evidence of a complete, independently operable native workflow matching this scenario; platform/provider feasibility may be gated. |
-| W18 | M2 | Not implemented | No evidence of a complete, independently operable native workflow matching this scenario; platform/provider feasibility may be gated. |
+| W18 | M2 | Partial | Merged [#97](https://github.com/gamesbyian/Glimpse/pull/97) defers due automatic foreground rotation while Android Battery Saver is active without consuming the no-repeat bag or creating catch-up bursts. Native/JVM policy tests passed. Background/OS-lifecycle and physical Battery Saver acceptance remain open. |
 | W19 | M3 | Not implemented | No evidence of a complete, independently operable native workflow matching this scenario; platform/provider feasibility may be gated. |
 | W20 | M3 | Not implemented | No evidence of a complete, independently operable native workflow matching this scenario; platform/provider feasibility may be gated. |
 | W21 | M3 | Not implemented | No evidence of a complete, independently operable native workflow matching this scenario; platform/provider feasibility may be gated. |
