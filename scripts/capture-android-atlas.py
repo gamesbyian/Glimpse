@@ -967,7 +967,7 @@ def main():
                 import math
                 scale = dpi / 160
                 cx = w - (196 - 28 - 196 * .80) * scale
-                cy = (-20 + 196 * .18) * scale
+                cy = (32 + 196 * .18) * scale
                 rr = 196 * .68 * .72 * scale
                 def collection_reel_drag(first, last):
                     x1 = round(cx + math.cos(math.radians(first)) * rr)
