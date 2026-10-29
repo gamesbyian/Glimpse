@@ -777,7 +777,16 @@ def main():
             # User consent is explicit, OFF by default, and independent of
             # applying wallpaper or starting a hidden foreground service.
             reach_and_click("Details", "up", attempts=12)
+            # The expanded consent row is below the fold on 320dp and
+            # larger devices alike; UIAutomator only exposes visible
+            # descendants. Scroll to the *actual* rendered status rather
+            # than interpreting a below-fold row as missing implementation.
             details_before = hierarchy()
+            for _ in range(10):
+                if "Allow background wallpaper checks" in details_before:
+                    break
+                swipe("up")
+                details_before = hierarchy()
             if "Allow background wallpaper checks" not in details_before:
                 capture_failure("background-consent-not-exposed",
                                 "Rotation Details lacked opt-in disclosure")
