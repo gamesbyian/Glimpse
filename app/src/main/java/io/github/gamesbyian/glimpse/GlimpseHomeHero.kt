@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.FlowRow
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -113,6 +114,15 @@ internal fun GlimpseHomeHero(
                         style = MaterialTheme.typography.labelLarge
                     )
                 }
+            }
+            // Reserve the upper-right paper reel's actual 196dp bounds for
+            // its own collection windows. Even the transparent part of that
+            // interactive canvas must not overlap Browse/Help actions.
+            // On compact/large-text devices the second reel is not rendered,
+            // so this spacing is not imposed on single-reel layouts.
+            if (hasPhoto && state.collections.size >= 2 &&
+                LocalConfiguration.current.screenWidthDp >= 390 && !largeType) {
+                Spacer(modifier = Modifier.height(110.dp))
             }
             Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
                 if (hasPhoto) {
