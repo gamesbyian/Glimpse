@@ -788,6 +788,12 @@ def main():
                                 "View all must open a full-height real collection contact sheet")
                 raise RuntimeError("Grid remained a nested Home panel instead of dedicated room")
             capture("22-grid", "Full-height native contact sheet for 22 real source photographs")
+            reach_and_click("Favorites", "up", attempts=5)
+            if "0 favorites in this collection" not in hierarchy():
+                raise RuntimeError("Empty favorites filter was not accurate for source collection")
+            capture("22-grid-empty-favorites",
+                    "Favorites-only contact sheet explains an actually empty global favorite pool")
+            reach_and_click("All photos", "up", attempts=5)
             reach_and_click("Photograph 2 of 22", "up", attempts=4)
             if "IN FOCUS · 2 OF 22" not in hierarchy():
                 capture_failure("grid-selection-not-retained",
@@ -849,6 +855,21 @@ def main():
                 raise RuntimeError("Favorite mark did not persist to Room-observed UI")
             capture("22-photo-favorite-marked",
                     "Actual favorite flag visible without changing wallpaper or memberships")
+            reach_and_click("Back to Reel / Grid", "down", attempts=12)
+            reach_and_click("View all · Grid", "up", attempts=12)
+            reach_and_click("Favorites", "up", attempts=5)
+            if ("1 favorites in this collection" not in hierarchy() or
+                    "Photograph 1 of 1" not in hierarchy()):
+                capture_failure("favorites-grid-not-synchronized",
+                                "The newly marked original was missing from global favorites filter")
+                raise RuntimeError("Photo favorite failed to appear in collection Grid")
+            capture("22-grid-with-favorite",
+                    "Favorite marked in Details appears by stable global original ID in Grid")
+            reach_and_click("All photos", "up", attempts=5)
+            reach_and_click("Browse photo reel", "up", attempts=6)
+            reach_and_click("Open photo details", "up", attempts=7)
+            if "Remove from favorites" not in hierarchy():
+                raise RuntimeError("Favorites flag lost across Grid/Reel/Details navigation")
             reach_and_click("Next photo", "up")
             reach_and_click("Previous photo", "up")
             if "Remove from favorites" not in hierarchy():
