@@ -243,7 +243,10 @@ def swipe(direction="up"):
     # a gesture is harmless once the scroll owner has accepted the down event.
     a = int(h * (0.49 if direction == "up" else 0.18))
     b = int(h * (0.17 if direction == "up" else 0.53))
-    x = int(w * .92)
+    # With two corner reels, the right-edge swipe lane is itself a rotating
+    # collection control. The central photographic lane remains unoccupied
+    # by either physical wheel, allowing intentional scroll-behind gestures.
+    x = int(w * .52)
     adb("shell", "input", "swipe", str(x), str(a),
         str(x), str(b), "520")
     time.sleep(1)
