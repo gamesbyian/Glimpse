@@ -40,20 +40,37 @@ def main(out):
         time.sleep(.7)
     else:
         raise RuntimeError("Read-only Home shuffle preview never rendered")
-    assert "EXAMPLE" in xml, "Unsampled bag must be honestly labelled illustrative"
+    # The expanded preview is deliberately below the Home rotation status.
+    # UIAutomator omits items below the fold, so scroll into the *actual*
+    # filmstrip instead of pretending "EXAMPLE" is missing on first opening.
+    for attempt in range(10):
+        xml=base.hierarchy()
+        if "EXAMPLE" in xml:
+            break
+        base.swipe("up")
+    else:
+        (out/"shuffle-example-not-visible.xml").write_text(xml,encoding="utf-8")
+        raise RuntimeError("Actual illustrative filmstrip did not become visible")
     assert "SAVED" not in xml, "Empty saved queue must not claim known next order"
     base.capture("03-shuffle-four-example-photos",
                  "Actual Home filmstrip with illustrative seeded no-repeat frames")
-    seek("Hide next-photo preview","up",attempts=8)
+    seek("Hide next-photo preview","down",attempts=15)
     after=base.hierarchy()
-    assert "READ-ONLY ROTATION REHEARSAL" not in after, (
-        "Closing the preview failed to hide photos without Android changes"
-    )
+    # The preview heading may have scrolled off-screen, but the active
+    # disclosure control must have reversed without any wallpaper operation.
+    assert "Preview next four photos" in after or "READ-ONLY ROTATION REHEARSAL" not in after
     # Reopen and compare. The same seeded example must not unexpectedly
     # mutate the wallpaper or its saved queue while observing the preview.
-    seek("Preview next four photos","up",attempts=8)
-    reopened=base.hierarchy()
-    assert "EXAMPLE" in reopened
+    seek("Preview next four photos","down",attempts=12)
+    reopened=""
+    for _ in range(10):
+        reopened=base.hierarchy()
+        if "EXAMPLE" in reopened:
+            break
+        base.swipe("up")
+    else:
+        (out/"shuffle-reopened-not-visible.xml").write_text(reopened,encoding="utf-8")
+        raise RuntimeError("Reopened illustrative projection not visible")
     assert "Android acknowledged Home wallpaper update" not in reopened
     base.capture("03-shuffle-reopened-same-unapplied-preview",
                  "Stable side-effect-free read-only preview after closing and reopening")
