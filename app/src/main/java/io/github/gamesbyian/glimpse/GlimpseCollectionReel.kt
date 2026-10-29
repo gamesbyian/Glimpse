@@ -6,6 +6,9 @@ import android.graphics.Paint
 import android.graphics.Rect
 import android.graphics.Path
 import android.graphics.RectF
+import android.provider.Settings
+import android.os.PowerManager
+import android.content.Context
 import android.view.HapticFeedbackConstants
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.FastOutSlowInEasing
@@ -111,6 +114,17 @@ internal fun GlimpseCollectionReel(
     val scope = rememberCoroutineScope()
     val context = LocalContext.current
     val view = LocalView.current
+    val reducedMotion = remember(context) {
+        val scale = runCatching {
+            Settings.Global.getFloat(context.contentResolver,
+                Settings.Global.ANIMATOR_DURATION_SCALE, 1f)
+        }.getOrDefault(1f)
+        val lowPower = runCatching {
+            (context.getSystemService(Context.POWER_SERVICE) as? PowerManager)
+                ?.isPowerSaveMode ?: false
+        }.getOrDefault(false)
+        scale <= 0f || lowPower
+    }
     val updatedOnSelect by rememberUpdatedState(onSelect)
     val paperFace = remember(context) {
         BitmapFactory.decodeResource(context.resources, R.drawable.glimpse_paper_reel_face,
@@ -140,8 +154,12 @@ internal fun GlimpseCollectionReel(
         settleJob = scope.launch {
             angle.snapTo(start)
             dragging = false
-            angle.animateTo(ReelMotion.targetAngle(steps),
-                tween(durationMillis = 250, easing = FastOutSlowInEasing))
+            if (reducedMotion) {
+                angle.snapTo(ReelMotion.targetAngle(steps))
+            } else {
+                angle.animateTo(ReelMotion.targetAngle(steps),
+                    tween(durationMillis = 250, easing = FastOutSlowInEasing))
+            }
             if (target != null && target != focus) {
                 view.performHapticFeedback(HapticFeedbackConstants.CLOCK_TICK)
                 updatedOnSelect(ids[target])
