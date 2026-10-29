@@ -47,6 +47,8 @@ data class GlimpseUiState(
     val acknowledgedPhoto: PhotoRecord? = null,
     val collectionId: String? = null,
     val photos: List<PhotoRecord> = emptyList(),
+    /** Global original IDs, independent of which collections contain them. */
+    val favoritePhotoIds: Set<String> = emptySet(),
     val rotation: RotationRecord? = null,
     val selectedPhotoId: String? = null,
     val grid: Boolean = false,
@@ -102,8 +104,11 @@ class GlimpseModel(application: Application) : AndroidViewModel(application) {
         }
     private val wallpaperStatus = combine(
         dao.watchRotation(),
-        dao.watchAcknowledgedPhoto()
-    ) { rotation, acknowledged -> rotation to acknowledged }
+        dao.watchAcknowledgedPhoto(),
+        dao.watchFavoriteIds()
+    ) { rotation, acknowledged, favorites ->
+        Triple(rotation, acknowledged, favorites.toSet())
+    }
 
     private val catalog = combine(
         dao.watchCollections(),
@@ -114,7 +119,7 @@ class GlimpseModel(application: Application) : AndroidViewModel(application) {
     ) { collections, loaded, overviews, wallpaperState, cursor ->
         // A switch must not briefly expose photos from the previous collection.
         val photos = if (loaded.collectionId == cursor.collectionId) loaded.items else emptyList()
-        val (rotation, acknowledged) = wallpaperState
+        val (rotation, acknowledged, favorites) = wallpaperState
         // Room flows can emit independently. Reject transient mismatched pairs.
         val provenPhoto = matchedAcknowledgedPhoto(rotation, acknowledged)
         GlimpseUiState(
@@ -123,6 +128,7 @@ class GlimpseModel(application: Application) : AndroidViewModel(application) {
             acknowledgedPhoto = provenPhoto,
             collectionId = cursor.collectionId,
             photos = photos,
+            favoritePhotoIds = favorites,
             rotation = rotation,
             selectedPhotoId = cursor.resolvedId(photos.map { it.id })
         )
@@ -318,6 +324,19 @@ class GlimpseModel(application: Application) : AndroidViewModel(application) {
         browse.value = updated
         retainPhoto(updated)
         notice.value = "Preview only. No device wallpaper changed."
+    }
+
+    /** User-directed metadata only: never alter imported bytes, membership,
+     *  Android wallpaper, no-repeat bag, or saved rotation source. */
+    fun setPhotoFavorite(photoId: String, favorite: Boolean) = action {
+        val changed = withContext(Dispatchers.IO) {
+            dao.setFavorite(photoId, favorite)
+        }
+        require(changed != null) {
+            "The original photograph is no longer available. No favorite was changed."
+        }
+        if (changed) "Marked photo as favorite. Existing wallpapers and collections unchanged."
+        else "Removed favorite mark. Existing wallpapers and collections unchanged."
     }
 
     fun toggleGrid() { grid.value = !grid.value }
