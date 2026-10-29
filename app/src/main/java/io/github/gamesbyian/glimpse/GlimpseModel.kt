@@ -427,6 +427,10 @@ class GlimpseModel(application: Application) : AndroidViewModel(application) {
         grid.value = !grid.value
     }
 
+    /** Idempotent routes must not depend on a slightly stale StateFlow frame. */
+    fun showGrid() { if (!grid.value) toggleGrid() }
+    fun hideGrid() { if (grid.value) toggleGrid() }
+
     private fun importNotice(report: ImportResult): String =
         "Selected " + report.selected + "; imported " + report.imported +
             "; duplicates " + report.duplicates + "; failed " + report.failures + "." +
