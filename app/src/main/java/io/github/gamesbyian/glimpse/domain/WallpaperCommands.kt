@@ -2,6 +2,7 @@ package io.github.gamesbyian.glimpse.domain
 
 import android.app.WallpaperManager
 import android.content.Context
+import android.os.PowerManager
 import androidx.annotation.VisibleForTesting
 import io.github.gamesbyian.glimpse.data.BoundedPhotoDecode
 import io.github.gamesbyian.glimpse.data.GlimpseDao
@@ -27,7 +28,13 @@ import java.io.File
 class WallpaperCommands(
     private val context: Context,
     private val dao: GlimpseDao,
-    private val now: () -> Long = System::currentTimeMillis
+    private val now: () -> Long = System::currentTimeMillis,
+    private val batterySaverActive: () -> Boolean = {
+        runCatching {
+            (context.getSystemService(Context.POWER_SERVICE) as? PowerManager)
+                ?.isPowerSaveMode == true
+        }.getOrDefault(false)
+    }
 ) {
     private val mutex = Mutex()
     private val intervalMillis = 5 * 60 * 1000L
@@ -89,7 +96,21 @@ class WallpaperCommands(
     suspend fun pollWhileVisible() = mutex.withLock {
         val previous = dao.readRotation() ?: return@withLock
         if (!previous.active || previous.pendingPhotoId != null) return@withLock
-        if (now() < (previous.nextEligibleAt ?: Long.MAX_VALUE)) return@withLock
+        val current = now()
+        if (current < (previous.nextEligibleAt ?: Long.MAX_VALUE)) return@withLock
+        if (batterySaverActive()) {
+            // Android Battery Saver is a stronger gate than a nominal five-
+            // minute due time. Defer the *eligible time* without consuming a
+            // photo, resetting the persisted no-repeat bag, or replaying
+            // every missed interval when power saving ends.
+            dao.saveRotation(previous.copy(
+                nextEligibleAt = BatterySaverRotationPolicy.deferDue(
+                    current, intervalMillis
+                ),
+                outcome = "Battery Saver: automatic rotation deferred; original queue preserved"
+            ))
+            return@withLock
+        }
         val collectionId = previous.collectionId ?: return@withLock
         performNextLocked(previous, collectionId)
     }
