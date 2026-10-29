@@ -28,6 +28,8 @@ on:
       - app/src/main/java/io/github/gamesbyian/glimpse/GlimpseModel.kt
       - app/src/main/java/io/github/gamesbyian/glimpse/data/GlimpseDatabase.kt
       - app/src/main/java/io/github/gamesbyian/glimpse/GlimpsePhotoDetail.kt
+      - app/src/main/java/io/github/gamesbyian/glimpse/GlimpsePhotoEditor.kt
+      - app/src/main/java/io/github/gamesbyian/glimpse/domain/CropResolutionAdvisory.kt
       - app/src/main/java/io/github/gamesbyian/glimpse/CircularPhotoReel.kt
       - app/src/main/java/io/github/gamesbyian/glimpse/GlimpseTypography.kt
       - app/src/main/java/io/github/gamesbyian/glimpse/GlimpseSupportScreen.kt
