@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
@@ -91,7 +92,7 @@ internal fun GlimpsePhotoDetail(
             .padding(horizontal = 18.dp, vertical = 12.dp),
         verticalArrangement = Arrangement.spacedBy(12.dp)
     ) {
-        TextButton(onClick = onBack) { Text("Back to Reel / Grid") }
+        TextButton(onClick = onBack, modifier = Modifier.heightIn(min = 48.dp)) { Text("Back to Reel / Grid") }
         Text(
             "A CLOSER LOOK",
             color = Color(0xFF966C4F),
@@ -128,15 +129,18 @@ internal fun GlimpsePhotoDetail(
             verticalArrangement = Arrangement.spacedBy(8.dp)
         ) {
             OutlinedButton(
+                modifier = Modifier.heightIn(min = 48.dp),
                 onClick = { model.stepPhoto(-1) },
                 enabled = index > 0
             ) { Text("Previous photo") }
             OutlinedButton(
+                modifier = Modifier.heightIn(min = 48.dp),
                 onClick = { model.stepPhoto(1) },
                 enabled = index >= 0 && index < state.photos.lastIndex
             ) { Text("Next photo") }
         }
         OutlinedButton(
+            modifier = Modifier.heightIn(min = 48.dp),
             onClick = {
                 val source = photo ?: return@OutlinedButton
                 if (!sharing) {
@@ -167,6 +171,7 @@ internal fun GlimpsePhotoDetail(
             Text("Sharing unavailable: " + shareError, color = MaterialTheme.colorScheme.error)
         }
         OutlinedButton(
+            modifier = Modifier.heightIn(min = 48.dp),
             onClick = {
                 val source = photo ?: return@OutlinedButton
                 try {
@@ -197,6 +202,7 @@ internal fun GlimpsePhotoDetail(
             GlimpsePhotoEditor(photo, model, state.collectionId, state.busy)
         }
         Button(
+            modifier = Modifier.heightIn(min = 48.dp),
             onClick = model::applyPreview,
             enabled = photo != null && !state.busy
         ) { Text("Set Home wallpaper now") }
@@ -234,6 +240,7 @@ internal fun GlimpsePhotoDetail(
         }
         val otherCollections = state.collections.filter { it.id != state.collectionId }
         OutlinedButton(
+            modifier = Modifier.heightIn(min = 48.dp),
             enabled = photo != null && state.collectionId != null &&
                 otherCollections.isNotEmpty() && !state.busy,
             onClick = { choosingCopyDestination = !choosingCopyDestination }
@@ -252,6 +259,7 @@ internal fun GlimpsePhotoDetail(
                     )
                     for (target in otherCollections) {
                         OutlinedButton(
+                            modifier = Modifier.heightIn(min = 48.dp),
                             enabled = !state.busy,
                             onClick = {
                                 val sourceId = state.collectionId
@@ -270,6 +278,7 @@ internal fun GlimpsePhotoDetail(
             )
         }
         OutlinedButton(
+            modifier = Modifier.heightIn(min = 48.dp),
             enabled = photo != null && state.collectionId != null && !state.busy,
             onClick = { confirmingMembershipRemoval = true }
         ) { Text("Remove from this collection") }
@@ -287,9 +296,11 @@ internal fun GlimpsePhotoDetail(
                         style = MaterialTheme.typography.bodySmall
                     )
                     OutlinedButton(
+                        modifier = Modifier.heightIn(min = 48.dp),
                         onClick = { confirmingMembershipRemoval = false }
                     ) { Text("Keep photo in this collection") }
                     OutlinedButton(
+                        modifier = Modifier.heightIn(min = 48.dp),
                         enabled = !state.busy,
                         onClick = {
                             val source = state.collectionId
