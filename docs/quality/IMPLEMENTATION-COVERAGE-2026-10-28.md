@@ -1,6 +1,6 @@
 # Glimpse implementation coverage of the 73 workflow specification
 
-**Audit date:** 2026-10-28. **Authority:** current merged Android `main` and [73-workflow contractual specification](../product/feature-audit.md), supplemented by [AGENTS.md](../../AGENTS.md), [implementation queue](../planning/implementation-queue.md) and final-head Android CI. **This is a conservative capability audit, not a code-completion claim or owner design acceptance.**
+**Audit date:** 2026-10-28 (updated after verified PR #98 merge `d9524e3f`). **Authority:** current merged Android `main` and [73-workflow contractual specification](../product/feature-audit.md), supplemented by [AGENTS.md](../../AGENTS.md), [implementation queue](../planning/implementation-queue.md) and final-head Android CI. **This is a conservative capability audit, not a code-completion claim or owner design acceptance.**
 
 ## Counting method
 
@@ -9,10 +9,10 @@ Each of the **73** scenarios receives one of three states. *Implemented* means t
 | Tier | Complete | Partial | Not implemented | Total | Scenario-equivalent coverage |
 |---|---:|---:|---:|---:|---:|
 | M1 | 4 | 4 | 0 | 8 | 75% |
-| M2 | 0 | 6 | 16 | 22 | 14% |
+| M2 | 0 | 7 | 15 | 22 | 15.9% |
 | M3 | 0 | 3 | 39 | 42 | 4% |
 | M4 | 0 | 0 | 1 | 1 | 0% |
-| **All** | **4** | **13** | **56** | **73** | **14.4%** |
+| **All** | **4** | **14** | **55** | **73** | **15.1%** |
 
 **Interpretation:** M1 core is substantially implemented but not production complete. The whole ambitious scope is mostly unimplemented because advanced schedule/rule, provider, per-target, widget and extensibility scenarios have not been built. This tally does **not** count several independently implemented supporting capabilities (collection rename, exact-byte import journal, ZIP safety, photo-only membership copy, diagnostic report, editor PNG export, real contact sheet) as *extra* scenarios. It does **not** count proposed mockups as working native screens.
 
@@ -26,7 +26,7 @@ Each of the **73** scenarios receives one of three states. *Implemented* means t
 | W04 | M1 | Implemented | Photo Picker imports verify immutable local byte copies that survive offline/source loss. |
 | W05 | M2 | Not implemented | No evidence of a complete, independently operable native workflow matching this scenario; platform/provider feasibility may be gated. |
 | W06 | M2 | Not implemented | No evidence of a complete, independently operable native workflow matching this scenario; platform/provider feasibility may be gated. |
-| W07 | M2 | Not implemented | No evidence of a complete, independently operable native workflow matching this scenario; platform/provider feasibility may be gated. |
+| W07 | M2 | Partial | Merged [#98](https://github.com/gamesbyian/Glimpse/pull/98) adds a real contact-sheet 'Imported last 7 days' filter, count, empty state, timed expiry and restoration of All photos, verified in native/unit and running-emulator atlas. The underlying full collection flow still loads all records; scalable 12k-photo SQL paging is absent. |
 | W08 | M3 | Not implemented | No evidence of a complete, independently operable native workflow matching this scenario; platform/provider feasibility may be gated. |
 | W09 | M3 | Not implemented | No evidence of a complete, independently operable native workflow matching this scenario; platform/provider feasibility may be gated. |
 | W10 | M3 | Not implemented | No evidence of a complete, independently operable native workflow matching this scenario; platform/provider feasibility may be gated. |
