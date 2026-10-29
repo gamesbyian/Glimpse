@@ -1,3 +1,5 @@
+> **Implementation update (2026-10-28):** This document is the original 73-scenario *specification*, not live completion status. For an evidence-conservative row-by-row status of the current Android app, see [the current implementation coverage audit](../quality/IMPLEMENTATION-COVERAGE-2026-10-28.md). Its M1 and full-scope percentages use an explicit half-credit-for-partial convention; don't confuse proposal completeness with code or owner acceptance.
+
 # Glimpse: feature-by-feature specification completeness audit
 
 **Date:** 2026-10-22 · **Status:** normative pre-build contract and risk ledger; **no implementation exists**. Companion to [current decisions](../planning/current-decisions.md), [technical contracts](../architecture/behavior-contracts.md), [reel critique](../design/reel-ux-audit.md), [70 human workflows](workflows.md) and [screenshot/share features](image-import-sharing.md).
