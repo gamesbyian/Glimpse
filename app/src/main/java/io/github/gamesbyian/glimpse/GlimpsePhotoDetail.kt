@@ -52,6 +52,7 @@ internal fun GlimpsePhotoDetail(
 ) {
     val photo = state.current
     val index = state.photos.indexOfFirst { it.id == photo?.id }
+    val favorite = photo?.id in state.favoritePhotoIds
     val context = LocalContext.current
     val scope = rememberCoroutineScope()
     var sharing by remember(photo?.id) { mutableStateOf(false) }
@@ -112,6 +113,23 @@ internal fun GlimpsePhotoDetail(
             else "No photograph selected",
             color = Color(0xFF5F554B),
             style = MaterialTheme.typography.titleSmall
+        )
+
+        OutlinedButton(
+            modifier = Modifier.heightIn(min = 48.dp),
+            onClick = {
+                photo?.let { model.setPhotoFavorite(it.id, !favorite) }
+            },
+            enabled = photo != null && !state.busy
+        ) {
+            Text(if (favorite) "Remove from favorites" else "Mark as favorite")
+        }
+        Text(
+            "Favorites are shared across collections for the same original. " +
+                "Marking a favorite does not change today's wallpaper, " +
+                "photo order or the active shuffle. Favorites-only filtering " +
+                "is not available yet.",
+            style = MaterialTheme.typography.bodySmall
         )
 
         // Fit preserves the entire image and its aspect ratio. This is distinct
