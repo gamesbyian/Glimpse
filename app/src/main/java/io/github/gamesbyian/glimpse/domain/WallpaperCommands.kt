@@ -4,7 +4,6 @@ import android.app.WallpaperManager
 import io.github.gamesbyian.glimpse.BestEffortRotationWork
 import android.content.Context
 import android.os.PowerManager
-import androidx.annotation.VisibleForTesting
 import io.github.gamesbyian.glimpse.data.BoundedPhotoDecode
 import io.github.gamesbyian.glimpse.data.GlimpseDao
 import io.github.gamesbyian.glimpse.data.PhotoRecord
@@ -143,7 +142,7 @@ class WallpaperCommands(
         }
         if (photos.size == 1 && photos[0].id == previous.lastAcknowledgedPhotoId) {
             dao.saveRotation(previous.copy(
-                nextEligibleAt = now() + intervalMillis,
+                nextEligibleAt = BatterySaverRotationPolicy.deferDue(now(), intervalMillis),
                 outcome = "One photo already applied; skipped unnecessary repeat"
             ))
             return "Only one eligible photo; nothing to change."
@@ -164,15 +163,27 @@ class WallpaperCommands(
         remainingAfterSuccess: List<String>?
     ): String {
         val started = now()
-        dao.saveRotation(previous.copy(
-            pendingPhotoId = photo.id,
-            lastAttemptAt = started,
-            outcome = "Attempting to apply Home wallpaper"
-        ))
-        // A WallpaperManager call is a side effect, not a transaction. An
-        // exception/cancellation after entering setBitmap cannot prove Android
-        // left the prior wallpaper in place. Keep the persisted pending token.
+        dao.saveRotation(beginWallpaperAttempt(previous, photo.id, started))
+        // Once WallpaperManager is entered, an exception or cancellation
+        // cannot prove the prior image remains in place. The reducer retains
+        // a durable pending token and refuses to consume the reserved bag.
         var systemCallStarted = false
+
+        suspend fun persist(
+            result: WallpaperAttemptResult,
+            remaining: List<String>? = null
+        ) {
+            dao.saveRotation(resolveWallpaperAttempt(
+                previous = previous,
+                photoId = photo.id,
+                startedAt = started,
+                finishedAt = now(),
+                intervalMillis = intervalMillis,
+                remainingAfterSuccessJson = remaining?.let(::encodeBag),
+                result = result
+            ))
+        }
+
         return try {
             val wallpaperId = withContext(Dispatchers.IO) {
                 val bitmap = decodeForWallpaper(photo)
@@ -185,57 +196,28 @@ class WallpaperCommands(
                 }
             }
             if (wallpaperId <= 0) {
-                // Some systems cannot provide an authoritative result. Never
-                // fabricate acknowledgment or advance the rotation bag.
-                dao.saveRotation(previous.copy(
-                    pendingPhotoId = photo.id,
-                    lastAttemptAt = started,
-                    active = false,
-                    outcome = "Wallpaper API returned no confirmed ID; outcome uncertain"
-                ))
+                persist(WallpaperAttemptResult.MissingAcknowledgment)
                 "Wallpaper outcome uncertain; automatic rotation paused."
             } else {
-                dao.saveRotation(previous.copy(
-                    pendingPhotoId = null,
-                    lastAttemptAt = started,
-                    lastAcknowledgedPhotoId = photo.id,
-                    lastAcknowledgedAt = now(),
-                    nextEligibleAt = if (previous.active) now() + intervalMillis else previous.nextEligibleAt,
-                    remainingJson = remainingAfterSuccess?.let(::encodeBag) ?: previous.remainingJson,
-                    outcome = "Android acknowledged Home wallpaper update (ID " + wallpaperId + ")"
-                ))
+                persist(WallpaperAttemptResult.Acknowledged(wallpaperId),
+                    remainingAfterSuccess)
                 "Android acknowledged the Home wallpaper update."
             }
         } catch (cancel: CancellationException) {
-            // Cancellation may arrive while Android owns the bitmap, or after
-            // it completed but before Room committed confirmation. A cancelled
-            // coroutine still needs an uncancellable write to preserve the gate.
+            // A cancelled coroutine can still persist the conservative gate.
             withContext(NonCancellable + Dispatchers.IO) {
-                dao.saveRotation(previous.copy(
-                    pendingPhotoId = photo.id,
-                    lastAttemptAt = started,
-                    active = false,
-                    outcome = "Wallpaper attempt interrupted; outcome uncertain. Check Home wallpaper."
-                ))
+                persist(WallpaperAttemptResult.Interrupted)
             }
             throw cancel
         } catch (failure: Exception) {
             if (systemCallStarted) {
-                dao.saveRotation(previous.copy(
-                    pendingPhotoId = photo.id,
-                    lastAttemptAt = started,
-                    active = false,
-                    outcome = "Wallpaper API error; outcome uncertain. Check Home wallpaper."
-                ))
+                persist(WallpaperAttemptResult.PlatformError)
                 "Wallpaper outcome uncertain; automatic rotation paused."
             } else {
-                // A decode or service lookup failure before setBitmap has no
-                // Android wallpaper side effect. The prior acknowledgment stays.
-                dao.saveRotation(previous.copy(
-                    pendingPhotoId = null,
-                    lastAttemptAt = started,
-                    nextEligibleAt = if (previous.active) now() + intervalMillis else previous.nextEligibleAt,
-                    outcome = "Apply failed before OS call: " + failure.javaClass.simpleName
+                // Decode or manager lookup failed before entering the OS.
+                // Retain the whole shuffle reservation, defer one interval.
+                persist(WallpaperAttemptResult.BeforePlatformError(
+                    failure.javaClass.simpleName
                 ))
                 "Wallpaper application failed before Android was asked to change it."
             }
