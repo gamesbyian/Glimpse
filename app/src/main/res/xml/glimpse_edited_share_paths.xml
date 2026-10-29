@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<paths xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Edited PNG shares only. Never grant the originals provider's root. -->
+    <cache-path name="edited-png" path="shared-edits/" />
+</paths>
