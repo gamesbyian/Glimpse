@@ -1,6 +1,6 @@
 # Glimpse implementation coverage of the 73 workflow specification
 
-**Audit date:** 2026-10-29 (reconciled with qualified merges #99 `b3475664` and #102 `96d7fa24`; favorites PR #103 remains pending). **Authority:** current merged Android `main` and [73-workflow contractual specification](../product/feature-audit.md), supplemented by [AGENTS.md](../../AGENTS.md), [implementation queue](../planning/implementation-queue.md) and final-head Android CI. **This is a conservative capability audit, not a code-completion claim or owner design acceptance.**
+**Audit date:** 2026-10-29 (reconciled with qualified Favorites merges #103 and #109, Home-only tile #110 and accessibility #105; large-library Paging #111 and Help copy #112 remain pending). **Authority:** current merged Android `main` and [73-workflow contractual specification](../product/feature-audit.md), supplemented by [AGENTS.md](../../AGENTS.md), [implementation queue](../planning/implementation-queue.md) and final-head Android CI. **This is a conservative capability audit, not a code-completion claim or owner design acceptance.**
 
 ## Counting method
 
@@ -9,12 +9,12 @@ Each of the **73** scenarios receives one of three states. *Implemented* means t
 | Tier | Complete | Partial | Not implemented | Total | Scenario-equivalent coverage |
 |---|---:|---:|---:|---:|---:|
 | M1 | 4 | 4 | 0 | 8 | 75% |
-| M2 | 0 | 8 | 14 | 22 | 18.2% |
+| M2 | 0 | 9 | 13 | 22 | 20.5% |
 | M3 | 0 | 3 | 39 | 42 | 4% |
 | M4 | 0 | 0 | 1 | 1 | 0% |
-| **All** | **4** | **15** | **54** | **73** | **15.8%** |
+| **All** | **4** | **16** | **53** | **73** | **16.4%** |
 
-**Current counted additions:** #99 raises W59 from Not implemented to Partial; #102 improves W01 within its existing Partial classification. #100/#101 and rebuilt #103 favorites remain pending and receive no credit until merged.
+**Current counted additions:** #99 raises W59 to Partial; #102 improves W01 within Partial. Merged #103 and #109 raise W06 from Not implemented to Partial: a global reversible favorite and Favorites-only collection contact sheet exist, but favorites do not yet constitute an independently selected shuffle source. Home-only Quick Settings #110 is useful but does **not** fulfill the W62 Lock-only request; no status credit was added. Accessibility #105 improves W67 without completing its app-wide physical-device acceptance. Proposed #111 has not been counted.
 
 **Interpretation:** M1 core is substantially implemented but not production complete. The whole ambitious scope is mostly unimplemented because advanced schedule/rule, provider, per-target, widget and extensibility scenarios have not been built. This tally does **not** count several independently implemented supporting capabilities (collection rename, exact-byte import journal, ZIP safety, photo-only membership copy, diagnostic report, editor PNG export, real contact sheet) as *extra* scenarios. It does **not** count proposed mockups as working native screens.
 
@@ -27,7 +27,7 @@ Each of the **73** scenarios receives one of three states. *Implemented* means t
 | W03 | M2 | Not implemented | No evidence of a complete, independently operable native workflow matching this scenario; platform/provider feasibility may be gated. |
 | W04 | M1 | Implemented | Photo Picker imports verify immutable local byte copies that survive offline/source loss. |
 | W05 | M2 | Not implemented | No evidence of a complete, independently operable native workflow matching this scenario; platform/provider feasibility may be gated. |
-| W06 | M2 | Not implemented | No evidence of a complete, independently operable native workflow matching this scenario; platform/provider feasibility may be gated. |
+| W06 | M2 | Partial | Merged #103 saves reversible global favorites against immutable originals, and #109 exposes a Favorites-only contact sheet without mutating memberships or wallpaper. Selecting favorites as the active shuffle subset and reconciling external folder-star metadata remain absent. |
 | W07 | M2 | Partial | Merged [#98](https://github.com/gamesbyian/Glimpse/pull/98) adds a real contact-sheet 'Imported last 7 days' filter, count, empty state, timed expiry and restoration of All photos, verified in native/unit and running-emulator atlas. The underlying full collection flow still loads all records; scalable 12k-photo SQL paging is absent. |
 | W08 | M3 | Not implemented | No evidence of a complete, independently operable native workflow matching this scenario; platform/provider feasibility may be gated. |
 | W09 | M3 | Not implemented | No evidence of a complete, independently operable native workflow matching this scenario; platform/provider feasibility may be gated. |
@@ -83,7 +83,7 @@ Each of the **73** scenarios receives one of three states. *Implemented* means t
 | W59 | M2 | Partial | Merged #99 estimates remaining source pixels after crop/rotation, compares against approximate screen resolution and warns about softness. True target-specific framing, scaling and display acceptance remain unimplemented. |
 | W60 | M2 | Not implemented | No evidence of a complete, independently operable native workflow matching this scenario; platform/provider feasibility may be gated. |
 | W61 | M2 | Not implemented | No evidence of a complete, independently operable native workflow matching this scenario; platform/provider feasibility may be gated. |
-| W62 | M2 | Not implemented | No evidence of a complete, independently operable native workflow matching this scenario; platform/provider feasibility may be gated. |
+| W62 | M2 | Not implemented | Merged #110 provides a system-bound Quick Settings tile for an explicitly requested **Home-only** next-photo command. W62 specifically requires independently rotating **Lock** without changing Home; that destination is not implemented. |
 | W63 | M3 | Not implemented | No evidence of a complete, independently operable native workflow matching this scenario; platform/provider feasibility may be gated. |
 | W64 | M2 | Partial | Versioned, exact-byte validated photo-only ZIP export and restore exist; full settings/rules backup does not. |
 | W65 | M2 | Not implemented | No evidence of a complete, independently operable native workflow matching this scenario; platform/provider feasibility may be gated. |

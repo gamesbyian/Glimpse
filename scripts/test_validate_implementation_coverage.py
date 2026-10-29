@@ -32,11 +32,17 @@ class CoverageLedgerTest(unittest.TestCase):
             validator.validate_text(self.ledger + "\n" + first)
 
     def test_stale_overall_summary_fails(self):
-        old = "| **All** | **4** | **15** | **54** | **73** | **15.8%** |"
-        self.assertIn(old, self.ledger)
-        wrong = self.ledger.replace(old, old.replace("**15**", "**14**"))
+        # The ledger is deliberately living documentation; the negative
+        # assertion must not hardcode yesterday's legitimate coverage count.
+        row = next(line for line in self.ledger.splitlines()
+                   if line.startswith("| **All** |"))
+        parts = row.split("|")
+        actual = validator.parse(self.ledger)[1]["All"][1]
+        self.assertGreater(actual, 0)
+        parts[3] = f" **{actual - 1}** "
+        wrong_row = "|".join(parts)
         with self.assertRaisesRegex(ValueError, "derived counts"):
-            validator.validate_text(wrong)
+            validator.validate_text(self.ledger.replace(row, wrong_row, 1))
 
 
 if __name__ == "__main__":
