@@ -9,6 +9,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.PrimaryKey
 import androidx.room.Query
+import androidx.paging.PagingSource
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.Transaction
@@ -105,6 +106,53 @@ interface GlimpseDao {
             "WHERE m.collectionId = :collectionId ORDER BY p.importedAt, p.id"
     )
     fun watchPhotos(collectionId: String): Flow<List<PhotoRecord>>
+
+    /**
+     * Actual SQL-backed contact-sheet pagination: only requested rows are
+     * materialized. All, Recent and Favorites share one stable ordering.
+     * Filter changes generate a new Pager, never mutate the real collection
+     * or active wallpaper/rotation state.
+     */
+    @Query(
+        "SELECT p.* FROM photos p " +
+            "INNER JOIN memberships m ON m.photoId = p.id " +
+            "WHERE m.collectionId = :collectionId " +
+            "AND (:filter != 1 OR (p.importedAt >= :recentCutoff " +
+                "AND p.importedAt <= :nowMillis)) " +
+            "AND (:filter != 2 OR EXISTS (" +
+            "SELECT 1 FROM photo_favorites f WHERE f.photoId = p.id)) " +
+            "ORDER BY p.importedAt, p.id"
+    )
+    fun pageContactSheet(
+        collectionId: String, filter: Int, recentCutoff: Long, nowMillis: Long
+    ): PagingSource<Int, PhotoRecord>
+
+    /** Stable selected original, independent of loaded pages or filter. */
+    @Query(
+        "SELECT p.* FROM photos p " +
+            "INNER JOIN memberships m ON m.photoId = p.id " +
+            "WHERE m.collectionId = :collectionId " +
+            "ORDER BY CASE WHEN p.id = :preferredId THEN 0 ELSE 1 END, " +
+            "p.importedAt, p.id LIMIT 1"
+    )
+    fun watchFocusPhoto(collectionId: String, preferredId: String?): Flow<PhotoRecord?>
+
+    /**
+     * SQL count of the selected original's 1-based position in the real
+     * collection. This replaces the previous in-memory indexOf(12k photos).
+     * Imported-at ties follow the same stable ID secondary order as Pager.
+     */
+    @Query(
+        "SELECT COUNT(*) FROM photos p " +
+            "INNER JOIN memberships m ON m.photoId = p.id " +
+            "WHERE m.collectionId = :collectionId " +
+            "AND (p.importedAt < :selectedImportedAt OR " +
+            "(p.importedAt = :selectedImportedAt AND p.id <= :selectedId))"
+    )
+    fun watchPhotoPosition(
+        collectionId: String, selectedImportedAt: Long, selectedId: String
+    ): Flow<Int>
+
 
     @Query(
         "SELECT p.* FROM photos p INNER JOIN memberships m ON m.photoId = p.id " +

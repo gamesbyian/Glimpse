@@ -14,12 +14,14 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.GridItemSpan
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
-import androidx.compose.foundation.lazy.grid.itemsIndexed
+import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.foundation.lazy.grid.rememberLazyGridState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
-import androidx.compose.material3.FilterChip
 import androidx.compose.material3.Card
+import androidx.compose.material3.FilterChip
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
@@ -29,6 +31,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableLongStateOf
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
@@ -37,17 +40,21 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.paging.LoadState
+import androidx.paging.compose.collectAsLazyPagingItems
+import androidx.paging.compose.itemKey
 import io.github.gamesbyian.glimpse.domain.RecentImportFilter
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.isActive
 
 /**
- * Full-height contact sheet is a genuine alternative to the physical reel,
- * not a 300dp nested grid buried in the scrolling Home dashboard.
+ * Full-height Room-backed contact sheet. Each on-screen page is queried from
+ * SQLite without first collecting all photo records into the Home ViewModel.
+ * The selected original is observed separately by stable ID.
  *
- * The grid scrolls independently beneath a compact, persistent identity and
- * action header. Browsing updates only the selected PhotoRecord. Wallpaper
- * changes require the explicit Home apply action.
+ * All filters are read-only; Grid taps only move the browse cursor, never the
+ * saved rotation source or Android wallpaper. Returning to Reel restores the
+ * existing finite ordering with the same stable selected photo.
  */
 @Composable
 internal fun GlimpseGridRoom(
@@ -59,14 +66,10 @@ internal fun GlimpseGridRoom(
     modifier: Modifier = Modifier
 ) {
     val collectionId = state.collectionId
-    val photos = state.photos
-    // Filters never mutate the active wallpaper/shuffle collection, and each
-    // new collection starts in the predictable All view.
+    val total = state.collectionOverviews.firstOrNull { it.id == collectionId }?.photoCount ?: 0
     var recentOnly by rememberSaveable(collectionId) { mutableStateOf(false) }
     var favoritesOnly by rememberSaveable(collectionId) { mutableStateOf(false) }
-    var timeSnapshot by androidx.compose.runtime.remember { mutableLongStateOf(System.currentTimeMillis()) }
-    // Once enabled, a photo ages out of the filtered view automatically;
-    // no filesystem scan, network access or background service is involved.
+    var timeSnapshot by remember { mutableLongStateOf(System.currentTimeMillis()) }
     LaunchedEffect(recentOnly, collectionId) {
         timeSnapshot = System.currentTimeMillis()
         while (recentOnly && isActive) {
@@ -74,15 +77,24 @@ internal fun GlimpseGridRoom(
             timeSnapshot = System.currentTimeMillis()
         }
     }
-    val displayedPhotos = when {
-        favoritesOnly -> photos.filter { it.id in state.favoritePhotoIds }
-        recentOnly -> photos.filter {
-            RecentImportFilter.isRecent(it.importedAt, timeSnapshot)
-        }
-        else -> photos
+    val filter = when {
+        favoritesOnly -> 2
+        recentOnly -> 1
+        else -> 0
     }
+    val recentCutoff = if (recentOnly)
+        (timeSnapshot - RecentImportFilter.WEEK_MILLIS).coerceAtLeast(0L)
+    else 0L
+    val pageFlow = remember(collectionId, filter, recentCutoff) {
+        model.contactSheetPages(collectionId.orEmpty(), filter, recentCutoff, timeSnapshot)
+    }
+    val paged = pageFlow.collectAsLazyPagingItems()
+    val loading = paged.loadState.refresh is LoadState.Loading
+    val loadError = paged.loadState.refresh is LoadState.Error
     val selected = state.current
-    val index = photos.indexOfFirst { it.id == selected?.id }
+    val gridState = rememberLazyGridState()
+    LaunchedEffect(collectionId, filter) { gridState.scrollToItem(0) }
+
     val collection = state.collections.firstOrNull { it.id == collectionId }?.title
         ?: "Your collection"
     val paper = Color(0xFFF7F0E6)
@@ -102,7 +114,7 @@ internal fun GlimpseGridRoom(
             }
             OutlinedButton(
                 onClick = onReel,
-                enabled = photos.isNotEmpty(),
+                enabled = total > 0,
                 modifier = Modifier.heightIn(min = 48.dp)
             ) { Text("Browse photo reel") }
         }
@@ -112,7 +124,7 @@ internal fun GlimpseGridRoom(
         Text(collection, color = ink, fontFamily = GlimpseType.editorial,
             fontSize = 28.sp)
         Text(
-            "${photos.size} photographs · Selection only; wallpaper unchanged",
+            "$total photographs · Selection only; wallpaper unchanged",
             color = Color(0xFF695D52),
             style = MaterialTheme.typography.labelMedium
         )
@@ -122,40 +134,40 @@ internal fun GlimpseGridRoom(
             verticalArrangement = Arrangement.spacedBy(4.dp)
         ) {
             FilterChip(
-                selected = !recentOnly && !favoritesOnly,
+                selected = filter == 0,
                 onClick = { recentOnly = false; favoritesOnly = false },
                 modifier = Modifier.heightIn(min = 48.dp),
                 label = { Text("All photos") }
             )
             FilterChip(
-                selected = recentOnly,
+                selected = filter == 1,
                 onClick = { recentOnly = true; favoritesOnly = false },
                 modifier = Modifier.heightIn(min = 48.dp),
                 label = { Text("Imported last 7 days") }
             )
             FilterChip(
-                selected = favoritesOnly,
+                selected = filter == 2,
                 onClick = { favoritesOnly = true; recentOnly = false },
                 modifier = Modifier.heightIn(min = 48.dp),
                 label = { Text("Favorites") }
             )
         }
-        if (recentOnly) {
+        if (recentOnly && !loading) {
             Text(
-                "${displayedPhotos.size} imported in the last seven days · ${photos.size} total",
+                "${paged.itemCount} imported in the last seven days · $total total",
                 color = Color(0xFF695D52),
                 style = MaterialTheme.typography.labelMedium
             )
         }
-        if (favoritesOnly) {
+        if (favoritesOnly && !loading) {
             Text(
-                "${displayedPhotos.size} favorites in this collection · " +
-                    "${photos.size} total. Favorite flags are global to original photos.",
+                "${paged.itemCount} favorites in this collection · " +
+                    "$total total. Favorite flags are global to original photos.",
                 color = Color(0xFF695D52),
                 style = MaterialTheme.typography.labelMedium
             )
         }
-        if (photos.isEmpty()) {
+        if (total == 0) {
             Text("No photos in this collection yet. Add photos from Home.",
                 style = MaterialTheme.typography.bodyMedium)
         } else {
@@ -164,7 +176,7 @@ internal fun GlimpseGridRoom(
                     modifier = Modifier.fillMaxWidth().padding(10.dp),
                     verticalArrangement = Arrangement.spacedBy(6.dp)
                 ) {
-                    Text(if (index >= 0) "IN FOCUS · ${index + 1} OF ${photos.size}"
+                    Text(if (selected != null) "IN FOCUS · ${state.gridPosition} OF $total"
                         else "CHOOSE A PHOTOGRAPH",
                         color = ink, style = MaterialTheme.typography.labelLarge)
                     PhotoPreview(
@@ -179,6 +191,7 @@ internal fun GlimpseGridRoom(
                     ) {
                         OutlinedButton(
                             onClick = onDetails,
+                            enabled = selected != null,
                             modifier = Modifier.heightIn(min = 48.dp)
                         ) { Text("Photo details") }
                         Button(
@@ -189,44 +202,74 @@ internal fun GlimpseGridRoom(
                     }
                 }
             }
-            if (displayedPhotos.isEmpty()) {
+            if (loadError) {
+                Text("The contact sheet couldn't load. Your original photos are unchanged.",
+                    style = MaterialTheme.typography.bodyMedium)
+                OutlinedButton(
+                    onClick = { paged.retry() },
+                    modifier = Modifier.heightIn(min = 48.dp)
+                ) { Text("Retry loading photos") }
+            } else if (loading && paged.itemCount == 0) {
+                Text("Loading photographs…", style = MaterialTheme.typography.bodyMedium)
+            } else if (paged.itemCount == 0) {
                 Text(
                     if (favoritesOnly)
                         "No favorites in this collection yet. Mark a photo in Photo Details " +
                             "to include it here. Select All photos to browse everything."
-                    else "No photos were imported in the last seven days. " +
-                        "Select All photos to browse the collection.",
+                    else if (recentOnly)
+                        "No photos were imported in the last seven days. " +
+                            "Select All photos to browse the collection."
+                    else "No photographs available in this collection.",
                     style = MaterialTheme.typography.bodyMedium
                 )
             } else LazyVerticalGrid(
                 columns = GridCells.Adaptive(minSize = 102.dp),
+                state = gridState,
                 modifier = Modifier.fillMaxWidth().weight(1f),
                 contentPadding = PaddingValues(bottom = 18.dp),
                 verticalArrangement = Arrangement.spacedBy(8.dp),
                 horizontalArrangement = Arrangement.spacedBy(8.dp)
             ) {
-                itemsIndexed(displayedPhotos, key = { _, photo -> photo.id }) { position, photo ->
-                    val active = photo.id == selected?.id
+                items(paged.itemCount, key = paged.itemKey { it.id }) { position ->
+                    val photo = paged[position]
+                    val active = photo?.id == selected?.id
                     val shape = RoundedCornerShape(12.dp)
                     Box(
                         modifier = Modifier.fillMaxWidth().height(128.dp)
                             .border(if (active) 3.dp else 1.dp,
                                 if (active) Color(0xFF24665E)
                                 else Color(0xFFC6B7A4), shape)
-                            .clickable {
-                                collectionId?.let { id ->
-                                    model.browsePhotoInCollection(id, photo.id)
-                                }
-                            }.padding(4.dp),
+                            .then(if (photo != null) Modifier.clickable {
+                                collectionId?.let { model.browsePhotoInCollection(it, photo.id) }
+                            } else Modifier)
+                            .padding(4.dp),
                         contentAlignment = Alignment.Center
                     ) {
-                        PhotoPreview(
+                        if (photo == null) {
+                            Text("Loading…", style = MaterialTheme.typography.labelSmall)
+                        } else PagedGridThumbnail(
                             photo = photo,
                             modifier = Modifier.fillMaxSize(),
-                            label = "Photograph ${position + 1} of ${displayedPhotos.size}" +
-                                if (active) ", selected" else ", choose photo",
-                            decodeMaxEdge = 384
+                            label = "Photograph ${position + 1} of ${paged.itemCount}" +
+                                if (active) ", selected" else ", choose photo"
                         )
+                    }
+                }
+                if (paged.loadState.append is LoadState.Error) {
+                    item(span = { GridItemSpan(maxLineSpan) }, key = "page-error") {
+                        Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                            Text("More photos could not be loaded. Existing photos are safe.",
+                                style = MaterialTheme.typography.bodyMedium)
+                            OutlinedButton(
+                                onClick = { paged.retry() },
+                                modifier = Modifier.heightIn(min = 48.dp)
+                            ) { Text("Retry loading more") }
+                        }
+                    }
+                } else if (paged.loadState.append is LoadState.Loading) {
+                    item(span = { GridItemSpan(maxLineSpan) }, key = "page-loading") {
+                        Text("Loading more photographs…",
+                            style = MaterialTheme.typography.bodyMedium)
                     }
                 }
             }

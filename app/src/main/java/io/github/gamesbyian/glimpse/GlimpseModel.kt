@@ -5,6 +5,9 @@ import android.content.Context
 import android.net.Uri
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
 import io.github.gamesbyian.glimpse.data.CollectionZipRestorer
 import io.github.gamesbyian.glimpse.data.CollectionZipWriter
 import io.github.gamesbyian.glimpse.data.CollectionOverview
@@ -27,6 +30,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ensureActive
 import kotlin.coroutines.coroutineContext
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
@@ -47,6 +51,8 @@ data class GlimpseUiState(
     val acknowledgedPhoto: PhotoRecord? = null,
     val collectionId: String? = null,
     val photos: List<PhotoRecord> = emptyList(),
+    val gridPreview: PhotoRecord? = null,
+    val gridPosition: Int = 0,
     val favoritePhotoIds: Set<String> = emptySet(),
     val rotation: RotationRecord? = null,
     val selectedPhotoId: String? = null,
@@ -57,7 +63,9 @@ data class GlimpseUiState(
     val message: String = "Create a collection to begin."
 ) {
     val current: PhotoRecord?
-        get() = photos.firstOrNull { it.id == selectedPhotoId } ?: photos.firstOrNull()
+        get() = if (grid) gridPreview
+            else photos.firstOrNull { it.id == selectedPhotoId }
+                ?: photos.firstOrNull() ?: gridPreview
 }
 
 /** Defend against asynchronous Room emissions when Android's acknowledged ID changes. */
@@ -97,12 +105,40 @@ class GlimpseModel(application: Application) : AndroidViewModel(application) {
     private val pendingRetry = MutableStateFlow<PendingRetry?>(null)
 
     private data class ScopedPhotos(val collectionId: String?, val items: List<PhotoRecord>)
+    private data class ScopedFocus(
+        val collectionId: String?, val photo: PhotoRecord?, val position: Int = 0
+    )
+    private data class BrowsingMode(val cursor: BrowseCursor, val gridOpen: Boolean)
 
-    private val visiblePhotos = browse.map { it.collectionId }.distinctUntilChanged()
-        .flatMapLatest { id ->
-            if (id == null) flowOf(ScopedPhotos(null, emptyList()))
-            else dao.watchPhotos(id).map { ScopedPhotos(id, it) }
+    // Opening the Grid unsubscribes from the entire collection list. The
+    // Room/PagingSource contact sheet loads rows on demand instead. Reel and
+    // Home retain their existing full finite ordered photo list for now;
+    // large-reel cursor virtualization is a separate milestone.
+    private val browsingMode = combine(browse, grid) { cursor, open ->
+        BrowsingMode(cursor, open)
+    }
+    private val visiblePhotos = browsingMode.distinctUntilChanged()
+        .flatMapLatest { mode ->
+            val id = mode.cursor.collectionId
+            when {
+                id == null -> flowOf(ScopedPhotos(null, emptyList()))
+                mode.gridOpen -> flowOf(ScopedPhotos(id, emptyList()))
+                else -> dao.watchPhotos(id).map { ScopedPhotos(id, it) }
+            }
         }
+    private val focusedPhoto = browse.flatMapLatest { cursor ->
+        val id = cursor.collectionId
+        if (id == null) flowOf(ScopedFocus(null, null))
+        else dao.watchFocusPhoto(id, cursor.selectedPhotoId).flatMapLatest { photo ->
+            if (photo == null) flowOf(ScopedFocus(id, null))
+            else dao.watchPhotoPosition(id, photo.importedAt, photo.id)
+                .map { position -> ScopedFocus(id, photo, position) }
+        }
+    }
+    private val visibleBrowse = combine(visiblePhotos, focusedPhoto, browsingMode) {
+        loaded, focused, mode -> Triple(loaded, focused, mode)
+    }
+
     private val wallpaperStatus = combine(
         dao.watchRotation(),
         dao.watchAcknowledgedPhoto(),
@@ -113,15 +149,20 @@ class GlimpseModel(application: Application) : AndroidViewModel(application) {
 
     private val catalog = combine(
         dao.watchCollections(),
-        visiblePhotos,
+        visibleBrowse,
         dao.watchCollectionOverviews(),
-        wallpaperStatus,
-        browse
-    ) { collections, loaded, overviews, wallpaperState, cursor ->
-        // A switch must not briefly expose photos from the previous collection.
-        val photos = if (loaded.collectionId == cursor.collectionId) loaded.items else emptyList()
+        wallpaperStatus
+    ) { collections, view, overviews, wallpaperState ->
+        val (loaded, focus, mode) = view
+        val cursor = mode.cursor
+        val photos = if (!mode.gridOpen && loaded.collectionId == cursor.collectionId)
+            loaded.items else emptyList()
+        val selectedFocus = focus.photo.takeIf {
+            focus.collectionId == cursor.collectionId
+        }
         val (rotation, acknowledged, favorites) = wallpaperState
-        // Room flows can emit independently. Reject transient mismatched pairs.
+        // A collection switch must not expose the previous collection's
+        // photo, including during the asynchronously updated focus query.
         val provenPhoto = matchedAcknowledgedPhoto(rotation, acknowledged)
         GlimpseUiState(
             collections = collections,
@@ -129,11 +170,32 @@ class GlimpseModel(application: Application) : AndroidViewModel(application) {
             acknowledgedPhoto = provenPhoto,
             collectionId = cursor.collectionId,
             photos = photos,
+            gridPreview = selectedFocus,
+            gridPosition = if (selectedFocus != null) focus.position else 0,
             favoritePhotoIds = favorites,
             rotation = rotation,
-            selectedPhotoId = cursor.resolvedId(photos.map { it.id })
+            selectedPhotoId = if (mode.gridOpen) selectedFocus?.id
+                else cursor.resolvedId(photos.map { it.id })
         )
     }
+
+    /** Paging 3 owns the SQL page window and Room invalidation, not a UI list filter. */
+    fun contactSheetPages(
+        collectionId: String,
+        filter: Int,
+        recentCutoff: Long,
+        nowMillis: Long
+    ): Flow<PagingData<PhotoRecord>> {
+        require(filter in 0..2)
+        return Pager(
+            config = PagingConfig(pageSize = 48, initialLoadSize = 96,
+                prefetchDistance = 20, enablePlaceholders = true, maxSize = 320),
+            pagingSourceFactory = {
+                dao.pageContactSheet(collectionId, filter, recentCutoff, nowMillis)
+            }
+        ).flow
+    }
+
     private val activityState = combine(busy, backgroundChecks) { active, background ->
         active to background
     }
@@ -321,7 +383,10 @@ class GlimpseModel(application: Application) : AndroidViewModel(application) {
     fun browsePhotoInCollection(sourceCollectionId: String, id: String) {
         val state = ui.value
         if (state.collectionId != sourceCollectionId) return
-        val updated = browse.value.select(sourceCollectionId, id, state.photos.map { it.id })
+        // A Grid tap came from a genuine Room-loaded page; it must not depend
+        // on loading the complete collection into state.photos first.
+        val allowedIds = if (grid.value) listOf(id) else state.photos.map { it.id }
+        val updated = browse.value.select(sourceCollectionId, id, allowedIds)
         if (updated == browse.value) return
         browse.value = updated
         retainPhoto(updated)
@@ -348,7 +413,19 @@ class GlimpseModel(application: Application) : AndroidViewModel(application) {
         else "Removed favorite mark. Existing wallpapers and collections unchanged."
     }
 
-    fun toggleGrid() { grid.value = !grid.value }
+    fun toggleGrid() {
+        if (!grid.value) {
+            // Preserve the actual focused ID before the full Reel list is
+            // released and SQL-backed contact-sheet paging takes ownership.
+            val id = ui.value.current?.id
+            if (id != null && browse.value.collectionId == ui.value.collectionId) {
+                val updated = browse.value.copy(selectedPhotoId = id)
+                browse.value = updated
+                retainPhoto(updated)
+            }
+        }
+        grid.value = !grid.value
+    }
 
     private fun importNotice(report: ImportResult): String =
         "Selected " + report.selected + "; imported " + report.imported +
