@@ -24,6 +24,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
@@ -56,6 +57,8 @@ import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
@@ -671,6 +674,24 @@ private fun GlimpseScreen(
                 onSelect = { id -> model.browsePhotoInCollection(activeCollection, id) },
                 modifier = Modifier.align(Alignment.BottomStart),
                 showHeading = false
+            )
+        }
+        // A second physical reel represents ACTUAL saved collections.
+        // The first bottom-left reel still represents photographs. Neither
+        // is a scrolling dashboard card or a decorative wheel; this corner
+        // control only appears when there is a real choice to make and enough
+        // screen/type space to preserve reachable primary actions.
+        if (incomingShare == null && activeCollection != null &&
+            state.collections.size >= 2 &&
+            LocalConfiguration.current.screenWidthDp >= 390 &&
+            LocalDensity.current.fontScale < 1.5f
+        ) {
+            GlimpseCollectionReel(
+                collections = state.collections,
+                selectedId = activeCollection,
+                onSelect = model::browseCollection,
+                modifier = Modifier.align(Alignment.TopEnd)
+                    .offset(x = 28.dp, y = 32.dp)
             )
         }
         }
