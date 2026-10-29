@@ -1,0 +1,34 @@
+name: Glimpse implementation coverage audit
+
+on:
+  pull_request:
+    paths:
+      - docs/quality/IMPLEMENTATION-COVERAGE-2026-10-28.md
+      - scripts/validate_implementation_coverage.py
+      - scripts/test_validate_implementation_coverage.py
+      - .github/workflows/implementation-coverage.yml
+  push:
+    branches: [main]
+    paths:
+      - docs/quality/IMPLEMENTATION-COVERAGE-2026-10-28.md
+      - scripts/validate_implementation_coverage.py
+      - scripts/test_validate_implementation_coverage.py
+      - .github/workflows/implementation-coverage.yml
+
+permissions:
+  contents: read
+
+concurrency:
+  group: coverage-audit-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check all 73 statuses and published totals
+        run: python3 scripts/validate_implementation_coverage.py
+      - name: Run negative/positive validator regression tests
+        run: python3 -m unittest discover -s scripts -p 'test_validate_implementation_coverage.py' -v
