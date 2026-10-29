@@ -872,6 +872,23 @@ def main():
                     raise RuntimeError("Photo Details action below 44dp: " + name)
             capture("22-photo-detail-original",
                     "Full undistorted original on native photo detail, preview-only")
+            # Favorites belong to the global immutable PhotoRecord, not a
+            # collection membership. The explicit mark/unmark action must
+            # preserve all original bytes, photo order and Android wallpaper.
+            reach_and_click("Mark as favorite", "up", attempts=9)
+            if "Remove from favorites" not in hierarchy():
+                raise RuntimeError("Favorite mark did not persist to Room-observed UI")
+            capture("22-photo-favorite-marked",
+                    "Actual favorite flag visible without changing wallpaper or memberships")
+            reach_and_click("Next photo", "up")
+            reach_and_click("Previous photo", "up")
+            if "Remove from favorites" not in hierarchy():
+                raise RuntimeError("Favorite mark lost when browsing away and returning")
+            reach_and_click("Remove from favorites", "up", attempts=9)
+            if "Mark as favorite" not in hierarchy():
+                raise RuntimeError("Favorite unmark did not persist to Room-observed UI")
+            capture("22-photo-favorite-removed",
+                    "Reversible favorite flag remains independent of collection and wallpaper")
             reach_and_click("Next photo", "up")
             swipe("down")
             next_detail = hierarchy()
@@ -892,7 +909,11 @@ def main():
                     "Android chooser launched from verified immutable original; no wallpaper operation")
             adb("shell", "input", "keyevent", "4")
             time.sleep(1.0)
-            if "In focus." not in hierarchy():
+            # The top editorial heading can be offscreen after scrolling past
+            # favorites, but the real Share/Save buttons must survive cancel.
+            after_share_cancel = hierarchy()
+            if ("Share original photo" not in after_share_cancel or
+                    "Save original copy" not in after_share_cancel):
                 raise RuntimeError("Photo detail did not survive cancelled Android Sharesheet")
             # New Save As is an OS-owned SAF document picker, not an
             # app-private filename entry pretending to write user storage.
