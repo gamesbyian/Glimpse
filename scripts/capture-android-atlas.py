@@ -538,6 +538,29 @@ def main():
                 capture_failure("help-privacy-entry-missing",
                                 "Native help title or Getting Started content not accessible")
                 raise RuntimeError("Native Help & privacy entry did not render")
+            # Measure an actual clickable parent, never only the child text.
+            help_tree = ET.fromstring(help_xml)
+            def native_help_action_height(label):
+                def find(node, parents=()):
+                    if label in (node.attrib.get("text"), node.attrib.get("content-desc")):
+                        control = next((candidate for candidate in
+                                        (node, *reversed(parents))
+                                        if candidate.attrib.get("clickable") == "true"), None)
+                        if control is not None:
+                            bounds = re.findall(r"\d+", control.attrib.get("bounds", ""))
+                            if len(bounds) == 4:
+                                _, top, _, bottom = map(int, bounds)
+                                return (bottom - top) * 160 / screen_geometry()[2]
+                    for child in node:
+                        found = find(child, parents + (node,))
+                        if found is not None: return found
+                    return None
+                return find(help_tree)
+            help_back_height = native_help_action_height("Back to Home")
+            if help_back_height is None or help_back_height < 44:
+                capture_failure("help-back-touch-target",
+                                "Help Back button missing or <44dp: " + str(help_back_height))
+                raise RuntimeError("Help accessibility Back target below 44dp")
             capture("22-help-privacy-initial",
                     "Real offline Help/Privacy/About entry from Home masthead")
             found_privacy = False
