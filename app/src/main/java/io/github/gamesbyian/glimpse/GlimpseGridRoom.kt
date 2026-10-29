@@ -18,18 +18,28 @@ import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.itemsIndexed
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
+import androidx.compose.material3.FilterChip
 import androidx.compose.material3.Card
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableLongStateOf
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import io.github.gamesbyian.glimpse.domain.RecentImportFilter
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.isActive
 
 /**
  * Full-height contact sheet is a genuine alternative to the physical reel,
@@ -50,6 +60,20 @@ internal fun GlimpseGridRoom(
 ) {
     val collectionId = state.collectionId
     val photos = state.photos
+    var recentOnly by rememberSaveable(collectionId) { mutableStateOf(false) }
+    var timeSnapshot by androidx.compose.runtime.remember { mutableLongStateOf(System.currentTimeMillis()) }
+    // Once enabled, a photo ages out of the filtered view automatically;
+    // no filesystem scan, network access or background service is involved.
+    LaunchedEffect(recentOnly, collectionId) {
+        timeSnapshot = System.currentTimeMillis()
+        while (recentOnly && isActive) {
+            delay(60_000L)
+            timeSnapshot = System.currentTimeMillis()
+        }
+    }
+    val displayedPhotos = if (recentOnly) photos.filter {
+        RecentImportFilter.isRecent(it.importedAt, timeSnapshot)
+    } else photos
     val selected = state.current
     val index = photos.indexOfFirst { it.id == selected?.id }
     val collection = state.collections.firstOrNull { it.id == collectionId }?.title
@@ -85,6 +109,31 @@ internal fun GlimpseGridRoom(
             color = Color(0xFF695D52),
             style = MaterialTheme.typography.labelMedium
         )
+        FlowRow(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.spacedBy(8.dp),
+            verticalArrangement = Arrangement.spacedBy(4.dp)
+        ) {
+            FilterChip(
+                selected = !recentOnly,
+                onClick = { recentOnly = false },
+                modifier = Modifier.heightIn(min = 48.dp),
+                label = { Text("All photos") }
+            )
+            FilterChip(
+                selected = recentOnly,
+                onClick = { recentOnly = true },
+                modifier = Modifier.heightIn(min = 48.dp),
+                label = { Text("Imported last 7 days") }
+            )
+        }
+        if (recentOnly) {
+            Text(
+                "${displayedPhotos.size} imported in the last seven days · ${photos.size} total",
+                color = Color(0xFF695D52),
+                style = MaterialTheme.typography.labelMedium
+            )
+        }
         if (photos.isEmpty()) {
             Text("No photos in this collection yet. Add photos from Home.",
                 style = MaterialTheme.typography.bodyMedium)
@@ -119,14 +168,19 @@ internal fun GlimpseGridRoom(
                     }
                 }
             }
-            LazyVerticalGrid(
+            if (displayedPhotos.isEmpty()) {
+                Text(
+                    "No photos were imported in the last seven days. Select All photos to browse the collection.",
+                    style = MaterialTheme.typography.bodyMedium
+                )
+            } else LazyVerticalGrid(
                 columns = GridCells.Adaptive(minSize = 102.dp),
                 modifier = Modifier.fillMaxWidth().weight(1f),
                 contentPadding = PaddingValues(bottom = 18.dp),
                 verticalArrangement = Arrangement.spacedBy(8.dp),
                 horizontalArrangement = Arrangement.spacedBy(8.dp)
             ) {
-                itemsIndexed(photos, key = { _, photo -> photo.id }) { position, photo ->
+                itemsIndexed(displayedPhotos, key = { _, photo -> photo.id }) { position, photo ->
                     val active = photo.id == selected?.id
                     val shape = RoundedCornerShape(12.dp)
                     Box(
@@ -144,7 +198,7 @@ internal fun GlimpseGridRoom(
                         PhotoPreview(
                             photo = photo,
                             modifier = Modifier.fillMaxSize(),
-                            label = "Photograph ${position + 1} of ${photos.size}" +
+                            label = "Photograph ${position + 1} of ${displayedPhotos.size}" +
                                 if (active) ", selected" else ", choose photo",
                             decodeMaxEdge = 384
                         )
