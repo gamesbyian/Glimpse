@@ -71,7 +71,7 @@ private object ReelThumbs : LruCache<String, Bitmap>(16 * 1024 * 1024) {
     override fun sizeOf(key: String, value: Bitmap): Int = value.byteCount
 }
 
-private fun smallBitmap(file: String): Bitmap? {
+internal fun smallBitmap(file: String): Bitmap? {
     synchronized(ReelThumbs) { ReelThumbs.get(file)?.let { return it } }
     // The photo inside the paper aperture must be upright in the same way
     // as the stationary hero preview and the applied wallpaper. Reuse one
@@ -86,7 +86,7 @@ private fun smallBitmap(file: String): Bitmap? {
  * Unlike the original pie-slice sectors, the photograph is inset from both the
  * rim and the hub. The baked-face PNG masks the final softly rounded edges.
  */
-private fun aperture(cx: Float, cy: Float, radius: Float, middleDegrees: Float): Path {
+internal fun aperture(cx: Float, cy: Float, radius: Float, middleDegrees: Float): Path {
     val outer = radius * ReelWindow.WINDOW_OUTER_RADIUS
     val inner = radius * ReelWindow.WINDOW_INNER_RADIUS
     val half = ReelWindow.WINDOW_HALF_ANGLE
