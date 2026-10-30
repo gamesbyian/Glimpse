@@ -41,6 +41,21 @@ class WidgetHostProbeActivity : ComponentActivity() {
         val manager = AppWidgetManager.getInstance(this)
         val provider = ComponentName(this, GlimpseHomeWidgetProvider::class.java)
         widgetHost = AppWidgetHost(this, 19405)
+
+        // Wallpaper application can trigger a configuration change (including
+        // dynamic system colors). On Activity recreation the same *bound*
+        // widget must remain hosted: deleting it and allocating again starts
+        // another OS consent dialog and hides the real post-click outcome.
+        val restoredId = savedInstanceState
+            ?.getInt(SAVED_WIDGET_ID, AppWidgetManager.INVALID_APPWIDGET_ID)
+            ?: AppWidgetManager.INVALID_APPWIDGET_ID
+        if (restoredId != AppWidgetManager.INVALID_APPWIDGET_ID &&
+            manager.getAppWidgetInfo(restoredId) != null) {
+            widgetId = restoredId
+            showActualWidget()
+            return
+        }
+
         widgetHost.deleteHost()
         widgetId = widgetHost.allocateAppWidgetId()
 
@@ -95,14 +110,22 @@ class WidgetHostProbeActivity : ComponentActivity() {
         File(filesDir, "widget-probe-ready.txt").writeText("READY:" + widgetId)
     }
 
+    override fun onSaveInstanceState(outState: Bundle) {
+        outState.putInt(SAVED_WIDGET_ID, widgetId)
+        super.onSaveInstanceState(outState)
+    }
+
     override fun onDestroy() {
         runCatching { widgetHost.stopListening() }
-        runCatching { widgetHost.deleteHost() }
-        File(filesDir, "widget-probe-ready.txt").delete()
+        if (!isChangingConfigurations) {
+            runCatching { widgetHost.deleteHost() }
+            File(filesDir, "widget-probe-ready.txt").delete()
+        }
         super.onDestroy()
     }
 
     companion object {
         private const val REQUEST_BIND_WIDGET = 19405
+        private const val SAVED_WIDGET_ID = "glimpse_debug_host_widget_id"
     }
 }
