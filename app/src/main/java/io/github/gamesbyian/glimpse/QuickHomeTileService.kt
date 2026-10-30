@@ -9,6 +9,7 @@ import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
 import android.content.Context
 import io.github.gamesbyian.glimpse.data.GlimpseDatabase
+import io.github.gamesbyian.glimpse.domain.HomeChangeStatus
 import io.github.gamesbyian.glimpse.domain.QuickTileAvailability
 import io.github.gamesbyian.glimpse.domain.WallpaperCommands
 import io.github.gamesbyian.glimpse.domain.quickTileAvailability
@@ -118,8 +119,13 @@ class QuickHomeTileWorker(
             if (quickTileAvailability(dao.readRotation()) != QuickTileAvailability.READY) {
                 return Result.failure()
             }
-            WallpaperCommands(applicationContext, dao).changeNow()
-            Result.success()
+            val outcome = WallpaperCommands(applicationContext, dao).changeNowOutcome()
+            // The old worker returned success for rejected, skipped and
+            // uncertain requests. No automatic retry is permitted: the user
+            // must inspect or explicitly resubmit after platform ambiguity.
+            if (outcome.status == HomeChangeStatus.ACKNOWLEDGED)
+                Result.success()
+            else Result.failure()
         } catch (cancel: CancellationException) {
             throw cancel
         } catch (_: Exception) {
