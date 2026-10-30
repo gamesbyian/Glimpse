@@ -97,6 +97,18 @@ jobs:
         run: echo "::warning::PR debug APK uses ephemeral signing; not a reliable in-place upgrade."
       - name: Compile and test
         run: ./gradlew --no-daemon :app:packageGlimpseDebugApk :app:testDebugUnitTest
+      - name: Run Android lint and reject real findings
+        run: ./gradlew --no-daemon :app:lintDebug
+      - name: Retain lint evidence for failed checks
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: glimpse-debug-lint-evidence
+          path: |
+            app/build/reports/lint-results-debug.*
+            app/build/intermediates/lint_intermediate_text_report/
+          retention-days: 7
+          if-no-files-found: warn
       - name: Report public APK certificate fingerprint
         if: success()
         shell: bash
