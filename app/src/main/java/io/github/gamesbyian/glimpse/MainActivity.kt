@@ -128,11 +128,13 @@ class MainActivity : ComponentActivity() {
                     model = model,
                     incomingShare = incomingShare,
                     onAcceptShared = { uris, destination ->
-                        // Import never changes Home wallpaper or starts rotation.
-                        // Clear the incoming launch intent to avoid replay on rotate.
-                        incomingShare = null
-                        setIntent(Intent(Intent.ACTION_MAIN))
-                        model.importSelected(uris, destination)
+                        // Release transient share UI only after the model has
+                        // synchronously accepted this operation. A busy action
+                        // must not consume the only accessible URI grant.
+                        if (model.importSelected(uris, destination)) {
+                            incomingShare = null
+                            setIntent(Intent(Intent.ACTION_MAIN))
+                        }
                     },
                     onDismissShared = {
                         incomingShare = null
@@ -219,7 +221,9 @@ private fun GlimpseScreen(
     ) { uris ->
         val target = pickerTargetCollection
         pickerTargetCollection = null
-        model.importSelected(uris, target)
+        if (!model.importSelected(uris, target)) {
+            model.retainBusyPickerReturn(uris, target)
+        }
     }
 
     Scaffold { padding ->
@@ -593,6 +597,23 @@ private fun GlimpseScreen(
                 }
                 if (clipboardFeedback != null) {
                     Text(clipboardFeedback!!, style = MaterialTheme.typography.bodySmall)
+                }
+                if (state.deferredPickerCount > 0) {
+                    Text(
+                        "Android returned ${state.deferredPickerCount} selected image(s) " +
+                            "while another operation was running. Nothing was imported. " +
+                            "Retry now or use Add photos to reselect if the grant expired.",
+                        style = MaterialTheme.typography.bodySmall
+                    )
+                    FlowRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                        OutlinedButton(
+                            onClick = model::retryDeferredPicker,
+                            enabled = !state.busy
+                        ) { Text("Retry pending picker photos") }
+                        TextButton(onClick = model::dismissDeferredPicker) {
+                            Text("Dismiss pending selection")
+                        }
+                    }
                 }
                 if (state.retryableFailures > 0) {
                     OutlinedButton(

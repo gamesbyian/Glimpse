@@ -60,6 +60,7 @@ data class GlimpseUiState(
     val backgroundChecksEnabled: Boolean = false,
     val busy: Boolean = false,
     val retryableFailures: Int = 0,
+    val deferredPickerCount: Int = 0,
     val message: String = "Create a collection to begin."
 ) {
     val current: PhotoRecord?
@@ -103,6 +104,10 @@ class GlimpseModel(application: Application) : AndroidViewModel(application) {
     // never SharedPreferences, Room, import journal, diagnostics or logcat.
     private data class PendingRetry(val collectionId: String, val uris: List<Uri>)
     private val pendingRetry = MutableStateFlow<PendingRetry?>(null)
+    // Photo Picker can return while another action is busy. Keep its temporary
+    // URI grant in ViewModel RAM until the user explicitly retries/dismisses.
+    // Never persist it to Room, preferences, logs, or saved instance state.
+    private val deferredPicker = MutableStateFlow<PendingRetry?>(null)
 
     private data class ScopedPhotos(val collectionId: String?, val items: List<PhotoRecord>)
     private data class ScopedFocus(
@@ -199,15 +204,19 @@ class GlimpseModel(application: Application) : AndroidViewModel(application) {
     private val activityState = combine(busy, backgroundChecks) { active, background ->
         active to background
     }
-    val ui: StateFlow<GlimpseUiState> = combine(catalog, grid, activityState, notice, pendingRetry) {
+    private val pendingImports = combine(pendingRetry, deferredPicker) { failed, deferred ->
+        failed to deferred
+    }
+    val ui: StateFlow<GlimpseUiState> = combine(catalog, grid, activityState, notice, pendingImports) {
         data, isGrid, settings, message, pending ->
         data.copy(
             grid = isGrid,
             busy = settings.first,
             backgroundChecksEnabled = settings.second,
             message = message,
-            retryableFailures = if (pending != null &&
-                data.collectionId == pending.collectionId) pending.uris.size else 0
+            retryableFailures = if (pending.first != null &&
+                data.collectionId == pending.first!!.collectionId) pending.first!!.uris.size else 0,
+            deferredPickerCount = pending.second?.uris?.size ?: 0
         )
     }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), GlimpseUiState())
 
@@ -448,9 +457,10 @@ class GlimpseModel(application: Application) : AndroidViewModel(application) {
      * restored with the Activity. Never substitute whichever collection is
      * currently being browsed when the external provider returns.
      */
-    fun importSelected(uris: List<Uri>, pickerCollectionId: String?) {
-        if (uris.isEmpty()) return
-        action {
+    /** Return whether work was admitted before the caller releases its URI consent UI. */
+    fun importSelected(uris: List<Uri>, pickerCollectionId: String?): Boolean {
+        if (uris.isEmpty()) return false
+        return beginAction {
             val id = pickerCollectionId ?: error(
                 "Photo selection destination was lost. Choose a collection and Add photos again."
             )
@@ -465,6 +475,39 @@ class GlimpseModel(application: Application) : AndroidViewModel(application) {
             else ""
             prefix + importNotice(report)
         }
+    }
+
+    /** The platform Picker callback cannot be replayed. Keep one rejected return
+     * in RAM, and never mislabel the photos as imported merely because a
+     * separate save/export/action was running. The normal picker is a single
+     * launcher, and cannot deliver two results concurrently.
+     */
+    fun retainBusyPickerReturn(uris: List<Uri>, destination: String?) {
+        if (uris.isEmpty()) return
+        deferredPicker.value = PendingRetry(destination ?: "", uris.toList())
+        notice.value = "Another operation was active when Android returned photos. " +
+            "Nothing was imported. Use Retry pending picker photos, or reselect them."
+    }
+
+    fun retryDeferredPicker() {
+        val pending = deferredPicker.value ?: return
+        val admitted = beginAction {
+            require(pending.collectionId.isNotBlank() &&
+                dao.collectionExists(pending.collectionId)) {
+                "The original picker destination is unavailable. Reselect photos."
+            }
+            val report = importer.import(pending.uris, pending.collectionId)
+            deferredPicker.value = null
+            pendingRetry.value = report.failedSources.takeIf { it.isNotEmpty() }
+                ?.let { PendingRetry(pending.collectionId, it) }
+            importNotice(report)
+        }
+        if (!admitted) notice.value = "The app is still busy. Retry the pending photos when ready."
+    }
+
+    fun dismissDeferredPicker() {
+        deferredPicker.value = null
+        notice.value = "Pending picker selection discarded. No wallpaper changed."
     }
 
     /** Only retries the previously failed provider selections in RAM.
@@ -611,10 +654,16 @@ class GlimpseModel(application: Application) : AndroidViewModel(application) {
         catch (_: Exception) { notice.value = "Could not evaluate rotation; no change claimed." }
     }
 
-    private fun action(block: suspend () -> String) {
+    private fun action(block: suspend () -> String) { beginAction(block) }
+
+    /** Main-thread admission is synchronous; a returned true means the job
+     * actually owns the busy slot. The previous check inside launch could
+     * silently drop a share after Activity had already erased its intent.
+     */
+    private fun beginAction(block: suspend () -> String): Boolean {
+        if (busy.value) return false
+        busy.value = true
         viewModelScope.launch {
-            if (busy.value) return@launch
-            busy.value = true
             try {
                 notice.value = block()
             } catch (cancel: CancellationException) {
@@ -625,5 +674,6 @@ class GlimpseModel(application: Application) : AndroidViewModel(application) {
                 busy.value = false
             }
         }
+        return true
     }
 }
