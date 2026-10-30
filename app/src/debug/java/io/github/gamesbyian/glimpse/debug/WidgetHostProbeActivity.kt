@@ -42,20 +42,29 @@ class WidgetHostProbeActivity : ComponentActivity() {
         val provider = ComponentName(this, GlimpseHomeWidgetProvider::class.java)
         widgetHost = AppWidgetHost(this, 19405)
 
-        // Wallpaper application can trigger a configuration change (including
-        // dynamic system colors). On Activity recreation the same *bound*
-        // widget must remain hosted: deleting it and allocating again starts
-        // another OS consent dialog and hides the real post-click outcome.
-        val restoredId = savedInstanceState
+        // Wallpaper or launcher configuration changes can recreate this
+        // debug-only Activity without a useful saved-instance Bundle.
+        // Query IDs owned by *this* AppWidgetHost before ever deleting it;
+        // otherwise an existing bound widget is discarded and another
+        // Settings CREATE permission dialog appears instead of its result.
+        val savedId = savedInstanceState
             ?.getInt(SAVED_WIDGET_ID, AppWidgetManager.INVALID_APPWIDGET_ID)
             ?: AppWidgetManager.INVALID_APPWIDGET_ID
-        if (restoredId != AppWidgetManager.INVALID_APPWIDGET_ID &&
-            manager.getAppWidgetInfo(restoredId) != null) {
-            widgetId = restoredId
+        val alreadyBound = widgetHost.appWidgetIds.filter { id ->
+            manager.getAppWidgetInfo(id)?.provider == provider
+        }
+        val reused = (listOf(savedId) + alreadyBound)
+            .firstOrNull { id ->
+                id in alreadyBound && id != AppWidgetManager.INVALID_APPWIDGET_ID
+            }
+        if (reused != null) {
+            widgetId = reused
             showActualWidget()
             return
         }
 
+        // Only a genuinely fresh test-host install is allowed to request a
+        // new Android widget binding. No privileged grant or fake launcher.
         widgetHost.deleteHost()
         widgetId = widgetHost.allocateAppWidgetId()
 
