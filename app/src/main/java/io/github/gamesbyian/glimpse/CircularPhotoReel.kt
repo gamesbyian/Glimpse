@@ -24,6 +24,7 @@ import androidx.compose.animation.core.tween
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.getValue
@@ -43,7 +44,15 @@ import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.platform.LocalContext
 import android.provider.Settings
 import android.os.PowerManager
+import android.os.Handler
+import android.os.Looper
+import android.database.ContentObserver
+import android.content.BroadcastReceiver
+import android.content.Intent
+import android.content.IntentFilter
 import android.content.Context
+import androidx.core.content.ContextCompat
+import io.github.gamesbyian.glimpse.domain.shouldReduceReelMotion
 import androidx.compose.ui.semantics.CustomAccessibilityAction
 import androidx.compose.ui.semantics.customActions
 import androidx.compose.ui.semantics.stateDescription
@@ -171,14 +180,49 @@ fun CircularPhotoReel(
             BitmapFactory.Options().apply { inScaled = false })
     }
     val facePaint = remember { Paint(Paint.ANTI_ALIAS_FLAG or Paint.FILTER_BITMAP_FLAG) }
-    val reducedMotion = remember(context) {
-        val animatorScale = runCatching {
-            Settings.Global.getFloat(context.contentResolver, Settings.Global.ANIMATOR_DURATION_SCALE, 1f)
+    // Respect live Android accessibility/Power Saver changes while Glimpse is
+    // on screen. A remember(context) snapshot would remain stale until the
+    // Activity was recreated; the next swipe must honor the current setting.
+    fun queryReducedMotion(): Boolean {
+        val scale = runCatching {
+            Settings.Global.getFloat(
+                context.contentResolver, Settings.Global.ANIMATOR_DURATION_SCALE, 1f
+            )
         }.getOrDefault(1f)
-        val powerSave = runCatching {
-            (context.getSystemService(Context.POWER_SERVICE) as? PowerManager)?.isPowerSaveMode ?: false
+        val saver = runCatching {
+            (context.getSystemService(Context.POWER_SERVICE) as? PowerManager)
+                ?.isPowerSaveMode ?: false
         }.getOrDefault(false)
-        animatorScale <= 0f || powerSave
+        return shouldReduceReelMotion(scale, saver)
+    }
+    var reducedMotion by remember(context) { mutableStateOf(queryReducedMotion()) }
+    DisposableEffect(context) {
+        val observer = object : ContentObserver(Handler(Looper.getMainLooper())) {
+            override fun onChange(selfChange: Boolean) {
+                reducedMotion = queryReducedMotion()
+            }
+        }
+        val receiver = object : BroadcastReceiver() {
+            override fun onReceive(context: Context?, intent: Intent?) {
+                if (intent?.action == PowerManager.ACTION_POWER_SAVE_MODE_CHANGED) {
+                    reducedMotion = queryReducedMotion()
+                }
+            }
+        }
+        val resolver = context.contentResolver
+        resolver.registerContentObserver(
+            Settings.Global.getUriFor(Settings.Global.ANIMATOR_DURATION_SCALE),
+            false, observer
+        )
+        ContextCompat.registerReceiver(
+            context, receiver, IntentFilter(PowerManager.ACTION_POWER_SAVE_MODE_CHANGED),
+            ContextCompat.RECEIVER_NOT_EXPORTED
+        )
+        reducedMotion = queryReducedMotion()
+        onDispose {
+            resolver.unregisterContentObserver(observer)
+            context.unregisterReceiver(receiver)
+        }
     }
     val renderedAngle = if (dragging) dragAngle else angle.value
     val updatedAngle by rememberUpdatedState(renderedAngle)
