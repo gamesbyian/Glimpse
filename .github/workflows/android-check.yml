@@ -12,6 +12,8 @@ on:
       - "scripts/verify-reel-material.py"
       - "scripts/verify-reel-typography.py"
       - "scripts/test-paged-contact-sheet-sql.py"
+      - "scripts/validate_android_boundaries.py"
+      - "scripts/test_validate_android_boundaries.py"
   pull_request:
     paths:
       - "app/**"
@@ -22,6 +24,8 @@ on:
       - "scripts/verify-reel-material.py"
       - "scripts/verify-reel-typography.py"
       - "scripts/test-paged-contact-sheet-sql.py"
+      - "scripts/validate_android_boundaries.py"
+      - "scripts/test_validate_android_boundaries.py"
 permissions:
   contents: read
 # Obsolete commits within one PR may cancel each other. Separate PRs and
@@ -46,6 +50,10 @@ jobs:
           if [ -d "$ANDROID_HOME/platforms/android-37.0" ] && [ ! -e "$ANDROID_HOME/platforms/android-37" ]; then
             ln -s "$ANDROID_HOME/platforms/android-37.0" "$ANDROID_HOME/platforms/android-37"
           fi
+      - name: Enforce permanent Android security boundaries
+        run: |
+          python3 scripts/validate_android_boundaries.py
+          python3 -m unittest discover -s scripts -p 'test_validate_android_boundaries.py' -v
       - name: Validate baked paper material geometry
         run: python3 scripts/verify-reel-material.py
       - name: Verify offline licensed font identities
