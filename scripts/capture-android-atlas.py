@@ -961,12 +961,31 @@ def main():
             capture("22-original-android-sharesheet",
                     "Android chooser launched from verified immutable original; no wallpaper operation")
             adb("shell", "input", "keyevent", "4")
-            time.sleep(1.0)
-            # The top editorial heading can be offscreen after scrolling past
-            # favorites, but the real Share/Save buttons must survive cancel.
-            after_share_cancel = hierarchy()
-            if ("Share original photo" not in after_share_cancel or
-                    "Save original copy" not in after_share_cancel):
+            # Android may restore Compose detail asynchronously after closing
+            # the platform Sharesheet. The exact scroll position also changes
+            # on different font scales; either real share/save action suffices
+            # to prove the original detail screen survived. The subsequent
+            # Save As click independently proves the other action still works.
+            returned_to_detail = False
+            for attempt in range(12):
+                time.sleep(.6)
+                after_share_cancel = hierarchy()
+                if ("Share original photo" in after_share_cancel or
+                        "Save original copy" in after_share_cancel):
+                    returned_to_detail = True
+                    break
+                # If Android still owns the chooser, dismiss it; otherwise
+                # inspect the actual Glimpse screen further down its scroll.
+                packages = {node.attrib.get("package")
+                            for node in ET.fromstring(after_share_cancel).iter("node")}
+                if packages & {"com.android.intentresolver",
+                               "com.google.android.intentresolver"}:
+                    adb("shell", "input", "keyevent", "4")
+                elif attempt % 3 == 2:
+                    swipe("up")
+            if not returned_to_detail:
+                capture_failure("photo-detail-after-share-cancel",
+                                "No actual Share/Save action appeared after cancelling Android Sharesheet")
                 raise RuntimeError("Photo detail did not survive cancelled Android Sharesheet")
             # New Save As is an OS-owned SAF document picker, not an
             # app-private filename entry pretending to write user storage.

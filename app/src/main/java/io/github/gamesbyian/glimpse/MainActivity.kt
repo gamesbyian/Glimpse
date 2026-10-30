@@ -181,9 +181,17 @@ private fun GlimpseScreen(
     var removeTargetCollection by remember { mutableStateOf<String?>(null) }
     var renameTitle by remember { mutableStateOf("") }
     var showingDetail by rememberSaveable { mutableStateOf(false) }
+    var detailFromGrid by rememberSaveable { mutableStateOf(false) }
     var showingBrowse by rememberSaveable { mutableStateOf(false) }
     var showingSupport by rememberSaveable { mutableStateOf(false) }
-    BackHandler(enabled = showingDetail) { showingDetail = false }
+    val closeDetails: () -> Unit = {
+        showingDetail = false
+        // Restore the user's originating contact sheet, not Home, after
+        // temporarily materializing the finite collection for Photo Details.
+        if (detailFromGrid) model.showGrid()
+        detailFromGrid = false
+    }
+    BackHandler(enabled = showingDetail) { closeDetails() }
     BackHandler(enabled = showingSupport && !showingDetail) { showingSupport = false }
     BackHandler(enabled = showingBrowse && !showingDetail && !showingSupport) {
         showingBrowse = false
@@ -219,7 +227,7 @@ private fun GlimpseScreen(
             GlimpsePhotoDetail(
                 state = state,
                 model = model,
-                onBack = { showingDetail = false },
+                onBack = closeDetails,
                 modifier = Modifier.padding(padding)
             )
         } else if (showingSupport) {
@@ -233,7 +241,7 @@ private fun GlimpseScreen(
                 state = state,
                 model = model,
                 onBack = { showingBrowse = false },
-                onDetails = { showingDetail = true },
+                onDetails = { detailFromGrid = false; showingDetail = true },
                 onGrid = {
                     if (!state.grid) model.toggleGrid()
                     showingBrowse = false
@@ -250,7 +258,14 @@ private fun GlimpseScreen(
                     model.toggleGrid()
                     showingBrowse = true
                 },
-                onDetails = { showingDetail = true },
+                onDetails = {
+                    // Photo Details and Reel need the full finite collection
+                    // until their own cursor virtualization is implemented.
+                    // Preserve the paged Grid's selected stable ID first.
+                    model.hideGrid()
+                    detailFromGrid = true
+                    showingDetail = true
+                },
                 modifier = Modifier.padding(padding)
             )
         } else {
@@ -629,7 +644,7 @@ private fun GlimpseScreen(
                         modifier = Modifier.fillMaxWidth().height(220.dp),
                         label = "Selected photo preview"
                     )
-                    OutlinedButton(onClick = { showingDetail = true }) {
+                    OutlinedButton(onClick = { detailFromGrid = false; showingDetail = true }) {
                         Text("Open photo details")
                     }
                     FlowRow(
