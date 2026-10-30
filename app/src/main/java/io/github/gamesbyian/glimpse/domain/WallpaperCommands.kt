@@ -2,6 +2,7 @@ package io.github.gamesbyian.glimpse.domain
 
 import android.app.WallpaperManager
 import io.github.gamesbyian.glimpse.BestEffortRotationWork
+import io.github.gamesbyian.glimpse.GlimpseHomeWidgetRefresh
 import android.content.Context
 import android.os.PowerManager
 import io.github.gamesbyian.glimpse.data.BoundedPhotoDecode
@@ -45,6 +46,12 @@ class WallpaperCommands(
     private val mutex = WallpaperProcessGate.mutex
     private val intervalMillis = 5 * 60 * 1000L
 
+    // A widget cannot become part of the wallpaper transaction. Its refresh
+    // failures must NEVER turn an acknowledged OS apply into an unknown result.
+    private fun refreshWidgetBestEffort() {
+        runCatching { GlimpseHomeWidgetRefresh.enqueue(context) }
+    }
+
     suspend fun start(collectionId: String): String = mutex.withLock {
         val photos = dao.photosIn(collectionId)
         if (photos.isEmpty()) return@withLock "Import at least one photo first."
@@ -60,6 +67,7 @@ class WallpaperCommands(
             previous = previous, requestedCollectionId = collectionId,
             nowMillis = now(), intervalMillis = intervalMillis
         ))
+        refreshWidgetBestEffort()
         if (resumed)
             "Resumed the saved no-repeat shuffle for this collection. " +
                 "Next eligible in about five minutes while Glimpse is visible."
@@ -71,6 +79,7 @@ class WallpaperCommands(
     suspend fun pause(): String = mutex.withLock {
         val previous = dao.readRotation() ?: RotationRecord()
         dao.saveRotation(previous.copy(active = false, outcome = "Rotation paused"))
+        refreshWidgetBestEffort()
         "Rotation paused."
     }
 
@@ -82,6 +91,7 @@ class WallpaperCommands(
             active = false,
             outcome = "Prior attempt outcome uncertain; automatic rotation paused. Inspect your wallpaper."
         ))
+        refreshWidgetBestEffort()
         "Uncertain attempt dismissed; rotation remains paused."
     }
 
@@ -138,6 +148,7 @@ class WallpaperCommands(
         val photos = dao.photosIn(collectionId)
         if (photos.isEmpty()) {
             dao.saveRotation(previous.copy(active = false, outcome = "No eligible photos; rotation paused"))
+            refreshWidgetBestEffort()
             return "No photos in rotation collection."
         }
         if (photos.size == 1 && photos[0].id == previous.lastAcknowledgedPhotoId) {
@@ -182,6 +193,7 @@ class WallpaperCommands(
                 remainingAfterSuccessJson = remaining?.let(::encodeBag),
                 result = result
             ))
+            refreshWidgetBestEffort()
         }
 
         return try {

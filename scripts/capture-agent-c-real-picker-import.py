@@ -57,7 +57,25 @@ def main(out):
     if base.adb("shell", "getprop", "ro.kernel.qemu").strip() != "1":
         raise RuntimeError("REFUSE picker selection fixture on physical handset")
     base.start_fixture(0)
-    assert "No images yet." in base.hierarchy(), "Not initially empty"
+    # Fixture readiness means Room writes completed, not that Activity/Compose
+    # has completed its first StateFlow and layout emission. Wait for the
+    # actual empty production UI rather than reading one transient hierarchy.
+    initial_xml = ""
+    for attempt in range(20):
+        initial_xml = base.hierarchy()
+        if "No images yet." in initial_xml and "Photos: 0" in initial_xml:
+            break
+        if attempt % 2 == 1:
+            # Home's actual collection count and empty state live *below*
+            # the photographic cover and controls. UIAutomator reports only
+            # visible descendants. Look at the real viewport while scrolling.
+            base.swipe("up")
+        time.sleep(.6)
+    else:
+        (out / "initial-empty-state-not-rendered.xml").write_text(
+            initial_xml, encoding="utf-8"
+        )
+        raise RuntimeError("Initial empty Room collection state not visible after scrolling")
     base.adb("shell", "am", "start", "-n", FIXTURE)
     record = None
     for i in range(30):
@@ -76,7 +94,7 @@ def main(out):
     assert len(source_data) == record["sourceBytes"]
     (out / "published-fixture-original.jpg").write_bytes(source_data)
     print("Published one synthetic Android MediaStore JPEG:", record["sourceUri"], flush=True)
-    base.click_label("Add photos")
+    base.reach_and_click("Add photos", "down", attempts=14)
     time.sleep(2.0)
     root = visible_nodes()
     packages = {n.attrib.get("package", "") for n in root}
