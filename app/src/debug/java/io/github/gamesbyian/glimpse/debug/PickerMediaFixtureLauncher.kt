@@ -22,7 +22,10 @@ class PickerMediaFixtureLauncher : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val verdict = File(filesDir, "picker-fixture-ready.json")
-        try {
+        // Encode JPEG, read/write files and publish MediaStore media off the UI
+        // thread. The Activity stays alive until the worker reports readiness.
+        Thread {
+            try {
             val emulator = Build.HARDWARE.contains("ranchu", true) ||
                 Build.HARDWARE.contains("goldfish", true) ||
                 Build.FINGERPRINT.contains("generic", true) ||
@@ -51,7 +54,7 @@ class PickerMediaFixtureLauncher : Activity() {
                         put("deletedOnlyOwnTestSource", true)
                     }.toString()
                 )
-                return
+                return@Thread
             }
             val image = Bitmap.createBitmap(192, 256, Bitmap.Config.ARGB_8888)
             val bytes = try {
@@ -109,8 +112,9 @@ class PickerMediaFixtureLauncher : Activity() {
                 put("status", "ERROR")
                 put("reason", error.javaClass.simpleName)
             }.toString())
-        } finally {
-            finish()
-        }
+            } finally {
+                runOnUiThread { finish() }
+            }
+        }.start()
     }
 }
