@@ -57,7 +57,13 @@ def main(out):
     if base.adb("shell", "getprop", "ro.kernel.qemu").strip() != "1":
         raise RuntimeError("REFUSE picker selection fixture on physical handset")
     base.start_fixture(0)
-    assert "No images yet." in base.hierarchy(), "Not initially empty"
+    initial = base.hierarchy()
+    # On the photographic Home, the lower help copy can be offscreen.
+    # Real zero Room count and the zero-photo selected collection are
+    # independently adequate evidence of an empty destination.
+    assert ("Photos: 0" in initial and
+            ("No images yet." in initial or
+             "ATLAS FIXTURE · 0 photos" in initial)), "Not initially empty"
     base.adb("shell", "am", "start", "-n", FIXTURE)
     record = None
     for i in range(30):
