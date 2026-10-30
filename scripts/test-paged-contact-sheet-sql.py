@@ -9,6 +9,7 @@ Pixel scrolling, user behavior, or live OS wallpaper acceptance.
 import pathlib
 import re
 import sqlite3
+import json
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 DAO_SOURCE = ROOT / "app/src/main/java/io/github/gamesbyian/glimpse/data/GlimpseDatabase.kt"
@@ -44,8 +45,10 @@ CREATE TABLE memberships (
 CREATE TABLE photo_favorites (
   photoId TEXT PRIMARY KEY, markedAt INTEGER NOT NULL
 );
-CREATE INDEX ix_membership_collection ON memberships(collectionId, photoId);
-CREATE INDEX ix_photos_imported ON photos(importedAt, id);
+-- Membership's declared (collectionId, photoId) composite PRIMARY KEY
+-- already creates SQLite's real implicit autoindex. Do not invent an
+-- importedAt/index for the fixture: Room v2 does not ship one, and doing so
+-- makes a source-exact correctness test look like a performance benchmark.
 """)
 
 rows = []
@@ -66,6 +69,27 @@ db.executemany("INSERT INTO memberships VALUES (?, ?)", memberships)
 db.executemany("INSERT INTO photo_favorites VALUES (?, ?)",
                [(photo_id, NOW) for photo_id in favorites])
 db.commit()
+
+# Compare the newest *checked-in Room-generated* schema's index declarations
+# with the fixture. The schema is authoritative; the 12k-row logical test
+# must never quietly rely on an extra covering importedAt index.
+schemas = ROOT / "app/schemas/io.github.gamesbyian.glimpse.data.GlimpseDatabase"
+snapshots = sorted(schemas.glob("*.json"), key=lambda p: int(p.stem))
+assert snapshots, "No exported Room schemas available"
+latest = json.loads(snapshots[-1].read_text(encoding="utf-8"))
+entities = {e["tableName"]: e for e in latest["database"]["entities"]}
+photo_indexes = entities["photos"].get("indices", [])
+assert not any("importedAt" in index["columnNames"] for index in photo_indexes), (
+    "A production importedAt index was added: update this SQL fixture "
+    "and independently benchmark Room/Pixel behavior"
+)
+fixture_indexes = {row[1] for row in db.execute("PRAGMA index_list('photos')")}
+assert "ix_photos_imported" not in fixture_indexes
+assert "sqlite_autoindex_memberships_1" in {
+    row[1] for row in db.execute("PRAGMA index_list('memberships')")
+}
+print("PASS: logical SQL fixture adds no fictional importedAt index; "
+      "production schema " + str(latest["database"]["version"]))
 
 def expected_ids(collection, mode):
     member_ids = {id_ for scope, id_ in memberships if scope == collection}
@@ -154,6 +178,12 @@ for collection in ("main", "alternate", "missing"):
         )
         assert len(observed) == len(set(observed)) <= 5
 print("PASS: bounded SQL Reel viewport, no phantom edge records or cross-collection IDs")
+explain = list(db.execute("EXPLAIN QUERY PLAN " + WINDOW_SQL, {
+    "collectionId": "main", "offset": 8_997, "limit": 5
+}))
+print("SQLite logical fixture EXPLAIN query plan:", [row[-1] for row in explain])
+print("NOTE: 12k-row SQLite contract proves correct ordering, NOT Android Room "
+      "query latency, memory use, or smooth Reel/Coil rendering on a device")
 
 print("PASS: actual Room contact-sheet SQL, 12000 rows, pagination, collection scope, "
       "stable order, future-date exclusions and filters")
