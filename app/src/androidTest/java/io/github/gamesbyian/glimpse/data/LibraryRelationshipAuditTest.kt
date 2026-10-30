@@ -42,6 +42,7 @@ class LibraryRelationshipAuditTest {
         ))
         val audit = dao.auditLibraryRelationships()
         assertEquals(0, audit.issueCount)
+        assertEquals(0, audit.photosWithoutMembership)
         assertNotNull(dao.findPhoto(sha))
         assertNotNull(dao.findFavorite(sha))
         assertNotNull(dao.findMembership("safe", sha))
@@ -52,6 +53,11 @@ class LibraryRelationshipAuditTest {
         // interrupted/imported metadata without ever touching physical files.
         dao.insertMembership(MembershipRecord("lost-collection", "lost-photo"))
         dao.addFavorite(PhotoFavoriteRecord("lost-photo", 1L))
+        val unassignedSha = "e".repeat(64)
+        dao.insertPhoto(PhotoRecord(
+            unassignedSha, unassignedSha, "/fixture/never-read/$unassignedSha.jpg",
+            "image/jpeg", 1, 1, 1L, 2L
+        ))
         dao.saveRotation(RotationRecord(
             collectionId = "lost-collection",
             pendingPhotoId = "lost-photo",
@@ -62,10 +68,12 @@ class LibraryRelationshipAuditTest {
         assertEquals(1, audit.membershipsWithoutPhoto)
         assertEquals(1, audit.membershipsWithoutCollection)
         assertEquals(1, audit.favoritesWithoutPhoto)
+        assertEquals(1, audit.photosWithoutMembership)
         assertTrue(audit.rotationCollectionMissing)
         assertTrue(audit.pendingPhotoMissing)
         assertTrue(audit.acknowledgedPhotoMissing)
-        assertEquals(6, audit.issueCount)
+        assertEquals(7, audit.issueCount)
+        assertNotNull(dao.findPhoto(unassignedSha))
         // A non-destructive audit cannot decide that a historical file or
         // unresolved OS request should be discarded.
         assertNotNull(dao.findMembership("lost-collection", "lost-photo"))

@@ -279,8 +279,9 @@ internal fun GlimpseSupportScreen(
         }
         SupportSection(
             "LIBRARY LINKS · READ ONLY",
-            "Check whether stored collection memberships, favorites and the saved " +
-                "shuffle record still point to existing database records. This " +
+            "Check whether every saved original belongs to a collection, and whether " +
+                "memberships, favorites and the saved shuffle record point to " +
+                "existing database records. This " +
                 "examines links only and does not validate image bytes.",
             "Broken links can be inherited from an interrupted older import. " +
                 "Glimpse will not silently discard or repair such data."
@@ -319,6 +320,7 @@ internal fun GlimpseSupportScreen(
                     "Photo memberships: ${result.snapshot.membershipsWithoutPhoto}; " +
                     "collection memberships: ${result.snapshot.membershipsWithoutCollection}; " +
                     "favorites: ${result.snapshot.favoritesWithoutPhoto}; " +
+                    "photos without collections: ${result.snapshot.photosWithoutMembership}; " +
                     "saved rotation references: " +
                     listOf(
                         result.snapshot.rotationCollectionMissing,

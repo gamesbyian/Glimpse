@@ -63,12 +63,14 @@ data class LibraryRelationshipAudit(
     val membershipsWithoutPhoto: Int,
     val membershipsWithoutCollection: Int,
     val favoritesWithoutPhoto: Int,
+    val photosWithoutMembership: Int,
     val rotationCollectionMissing: Boolean,
     val pendingPhotoMissing: Boolean,
     val acknowledgedPhotoMissing: Boolean
 ) {
     val issueCount: Int get() =
-        membershipsWithoutPhoto + membershipsWithoutCollection + favoritesWithoutPhoto +
+        membershipsWithoutPhoto + membershipsWithoutCollection +
+            favoritesWithoutPhoto + photosWithoutMembership +
             (if (rotationCollectionMissing) 1 else 0) +
             (if (pendingPhotoMissing) 1 else 0) +
             (if (acknowledgedPhotoMissing) 1 else 0)
@@ -244,6 +246,14 @@ interface GlimpseDao {
     )
     suspend fun favoritesWithoutPhotoCount(): Int
 
+    // A registered original can become invisible in all collections while
+    // its private bytes still exist. Never infer that it may be deleted.
+    @Query(
+        "SELECT COUNT(*) FROM photos p WHERE NOT EXISTS " +
+            "(SELECT 1 FROM memberships m WHERE m.photoId = p.id)"
+    )
+    suspend fun photosWithoutMembershipCount(): Int
+
     /**
      * Read-only, transactional integrity snapshot. Do not repair or delete
      * historical rows: the user may still hold the sole intact SHA original.
@@ -256,6 +266,7 @@ interface GlimpseDao {
             membershipsWithoutPhoto = membershipsWithoutPhotoCount(),
             membershipsWithoutCollection = membershipsWithoutCollectionCount(),
             favoritesWithoutPhoto = favoritesWithoutPhotoCount(),
+            photosWithoutMembership = photosWithoutMembershipCount(),
             rotationCollectionMissing = rotation?.collectionId?.let {
                 !collectionExists(it)
             } ?: false,
