@@ -872,6 +872,9 @@ private fun RotationPanel(state: GlimpseUiState, model: GlimpseModel) {
                 Text("Outcome: " + (rotation?.outcome ?: "Not started"))
                 Text("Last Android acknowledgment: " + displayTime(rotation?.lastAcknowledgedAt))
                 Text("Next eligible: " + displayTime(rotation?.nextEligibleAt))
+                // Preview is opt-in within Details and never invokes the
+                // wallpaper side-effect gateway or reserves a shuffle entry.
+                GlimpseShuffleFilmstrip(state)
             }
         }
     }
