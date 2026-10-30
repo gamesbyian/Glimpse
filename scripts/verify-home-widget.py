@@ -35,6 +35,8 @@ info = ET.parse(
 ).getroot()
 assert get(info, "initialLayout") == "@layout/glimpse_home_widget"
 assert int(get(info, "updatePeriodMillis")) >= 1_800_000
+assert int(get(info, "minHeight").removesuffix("dp")) >= 220
+assert int(get(info, "minResizeHeight").removesuffix("dp")) >= 200
 assert get(info, "widgetCategory") == "home_screen"
 
 layout = ET.parse(
