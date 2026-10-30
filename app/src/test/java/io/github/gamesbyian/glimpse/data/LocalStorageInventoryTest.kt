@@ -57,4 +57,49 @@ class LocalStorageInventoryTest {
         Files.createSymbolicLink(alias.toPath(), actual.toPath())
         assertNull(inspectLocalStorage(alias))
     }
+    @Test fun potentialOrphansAreCountedWithoutDeletingAnything() {
+        val originals = temporary.newFolder("orphan-inventory")
+        val keep = File(originals, "a".repeat(64) + ".jpg").apply { writeBytes(ByteArray(10)) }
+        val lost = File(originals, "b".repeat(64) + ".png").apply { writeBytes(ByteArray(14)) }
+        File(originals, "import-work.partial").writeBytes(ByteArray(37))
+        val reg = PhotoRecord(
+            id = "a".repeat(64), sha256 = "a".repeat(64), localPath = keep.absolutePath,
+            mime = "image/jpeg", width = 1, height = 1, byteLength = 10, importedAt = 1L
+        )
+        val actual = inspectPotentialOrphans(originals, listOf(reg))
+        assertEquals(PotentialOrphanInventory(2, 1, 14L), actual)
+        assertTrue(keep.exists())
+        assertTrue(lost.exists())
+    }
+
+    @Test fun forgedDatabasePathCannotClaimPhysicalOriginal() {
+        val folder = temporary.newFolder("owned-inventory")
+        val sha = "c".repeat(64)
+        File(folder, "$sha.jpg").writeBytes(ByteArray(7))
+        val outside = temporary.newFolder("fake-root")
+        val reg = PhotoRecord(
+            id = sha, sha256 = sha, localPath = File(outside, "$sha.jpg").absolutePath,
+            mime = "image/jpeg", width = 1, height = 1, byteLength = 7, importedAt = 1L
+        )
+        assertEquals(PotentialOrphanInventory(1, 1, 7L),
+            inspectPotentialOrphans(folder, listOf(reg)))
+    }
+
+    @Test fun orphanAuditNeverFollowsSymlinkAndRejectsUnsafeRoot() {
+        val folder = temporary.newFolder("safe-inventory")
+        val original = temporary.newFile("outside-inventory").apply {
+            writeBytes(ByteArray(15))
+        }
+        Files.createSymbolicLink(
+            File(folder, "d".repeat(64) + ".jpg").toPath(), original.toPath()
+        )
+        assertEquals(PotentialOrphanInventory(0, 0, 0L),
+            inspectPotentialOrphans(folder, emptyList()))
+        assertTrue(original.exists())
+        val shortcut = File(temporary.root, "root-inventory-shortcut")
+        Files.createSymbolicLink(shortcut.toPath(), folder.toPath())
+        assertNull(inspectPotentialOrphans(shortcut, emptyList()))
+    }
+
 }
+

@@ -16,6 +16,8 @@ import io.github.gamesbyian.glimpse.data.GlimpseDatabase
 import io.github.gamesbyian.glimpse.data.ImportResult
 import io.github.gamesbyian.glimpse.data.inspectRegisteredOriginals
 import io.github.gamesbyian.glimpse.data.LocalOriginalIntegritySummary
+import io.github.gamesbyian.glimpse.data.PotentialOrphanInventory
+import io.github.gamesbyian.glimpse.data.inspectPotentialOrphans
 import io.github.gamesbyian.glimpse.data.PhotoImporter
 import io.github.gamesbyian.glimpse.domain.PhotoEditGeometry
 import io.github.gamesbyian.glimpse.data.verifyPrivateOriginal
@@ -272,6 +274,19 @@ class GlimpseModel(application: Application) : AndroidViewModel(application) {
             inspectRegisteredOriginals(originals, registered) {
                 checkContext.ensureActive()
             }
+        }
+
+    /**
+     * Explicit, cancellable and read-only metadata comparison of private
+     * SHA-named files with Room registrations. Never deletes or repairs files.
+     * Counts are *potential*, since import/restore may still be in progress.
+     */
+    internal suspend fun auditPotentialOrphanOriginals(): PotentialOrphanInventory? =
+        withContext(Dispatchers.IO) {
+            val root = java.io.File(getApplication<Application>().filesDir, "originals")
+            val registered = dao.allPhotosForAudit()
+            val active = coroutineContext
+            inspectPotentialOrphans(root, registered) { active.ensureActive() }
         }
 
     /**

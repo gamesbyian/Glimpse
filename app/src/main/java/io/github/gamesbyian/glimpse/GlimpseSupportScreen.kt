@@ -40,6 +40,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import io.github.gamesbyian.glimpse.data.LocalOriginalIntegritySummary
 import io.github.gamesbyian.glimpse.data.LocalStorageInventory
+import io.github.gamesbyian.glimpse.data.PotentialOrphanInventory
 import io.github.gamesbyian.glimpse.data.inspectLocalStorage
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Dispatchers
@@ -67,6 +68,7 @@ internal fun GlimpseSupportScreen(
         if (uri != null) model.restoreCollectionZip(uri)
     }
     var integrityReadout by remember { mutableStateOf<IntegrityReadout>(IntegrityReadout.NotChecked) }
+    var orphanReadout by remember { mutableStateOf<OrphanReadout>(OrphanReadout.NotChecked) }
     val packageInfo = remember(context) {
         runCatching {
             context.packageManager.getPackageInfo(context.packageName, 0)
@@ -217,6 +219,57 @@ internal fun GlimpseSupportScreen(
                     "registered originals. ${audit.summary.problemCount} missing or " +
                     "failed verification. This does not inspect unregistered orphan " +
                     "files, repair problems or validate copies held by other apps.",
+                style = MaterialTheme.typography.bodySmall
+            )
+        }
+        SupportSection(
+            "UNREGISTERED ORIGINALS · READ ONLY",
+            "A crash after Glimpse finishes copying an original but before Room saves " +
+                "its record can leave a valuable photo file outside all collections. " +
+                "This check counts potential unreferenced SHA-named files. It does " +
+                "not verify their bytes, recover them or assume they are disposable.",
+            "Never delete these files just because they are unreferenced. " +
+                "A current import or ZIP restore can also temporarily appear here."
+        )
+        OutlinedButton(
+            modifier = Modifier.heightIn(min = 48.dp),
+            enabled = orphanReadout != OrphanReadout.Checking,
+            onClick = {
+                orphanReadout = OrphanReadout.Checking
+                auditScope.launch {
+                    orphanReadout = try {
+                        val snapshot = model.auditPotentialOrphanOriginals()
+                        if (snapshot == null) OrphanReadout.Unavailable
+                        else OrphanReadout.Ready(snapshot)
+                    } catch (cancel: CancellationException) {
+                        throw cancel
+                    } catch (_: Exception) {
+                        OrphanReadout.Unavailable
+                    }
+                }
+            }
+        ) { Text("Check for unregistered originals") }
+        when (val result = orphanReadout) {
+            OrphanReadout.NotChecked -> Text(
+                "Optional local metadata comparison. No files are touched.",
+                style = MaterialTheme.typography.bodySmall
+            )
+            OrphanReadout.Checking -> Text(
+                "Comparing stored file names with registered photos…",
+                style = MaterialTheme.typography.bodySmall
+            )
+            OrphanReadout.Unavailable -> Text(
+                "The storage comparison could not finish. No files were changed.",
+                style = MaterialTheme.typography.bodySmall
+            )
+            is OrphanReadout.Ready -> Text(
+                "${result.snapshot.unreferencedOriginals} potentially unregistered " +
+                    "original(s) among ${result.snapshot.scannedOriginals} completed " +
+                    "SHA-named files, totalling " +
+                    Formatter.formatShortFileSize(
+                        context, result.snapshot.unreferencedBytes
+                    ) +
+                    ". No files were changed. This is not deletion clearance.",
                 style = MaterialTheme.typography.bodySmall
             )
         }
@@ -381,4 +434,11 @@ private sealed interface IntegrityReadout {
     data object Checking : IntegrityReadout
     data object Unavailable : IntegrityReadout
     data class Ready(val summary: LocalOriginalIntegritySummary) : IntegrityReadout
+}
+
+private sealed interface OrphanReadout {
+    data object NotChecked : OrphanReadout
+    data object Checking : OrphanReadout
+    data object Unavailable : OrphanReadout
+    data class Ready(val snapshot: PotentialOrphanInventory) : OrphanReadout
 }
