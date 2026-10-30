@@ -281,7 +281,7 @@ class GlimpseModel(application: Application) : AndroidViewModel(application) {
      * SHA-named files with Room registrations. Never deletes or repairs files.
      * Counts are *potential*, since import/restore may still be in progress.
      */
-    suspend fun auditPotentialOrphanOriginals(): PotentialOrphanInventory? =
+    internal suspend fun auditPotentialOrphanOriginals(): PotentialOrphanInventory? =
         withContext(Dispatchers.IO) {
             val root = java.io.File(getApplication<Application>().filesDir, "originals")
             val registered = dao.allPhotosForAudit()
