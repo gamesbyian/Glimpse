@@ -54,3 +54,62 @@ internal fun inspectLocalStorage(originals: File): LocalStorageInventory? {
         null
     }
 }
+
+/**
+ * Potentially unreferenced completed originals, calculated from physical
+ * SHA-named files versus the currently committed Room photo records.
+ *
+ * An unreferenced file may be a valuable immutable copy written just before
+ * a crash or a transaction commit. This is an advisory count, NEVER evidence
+ * that it is safe to delete the file. Verification/recovery needs a separate
+ * explicit user action and full content validation.
+ */
+internal data class PotentialOrphanInventory(
+    val scannedOriginals: Int,
+    val unreferencedOriginals: Int,
+    val unreferencedBytes: Long
+)
+
+/**
+ * Read-only, metadata-only reconciliation. No byte reads, imports, hash
+ * verification, logs, files changed or symbolic link traversal. Do not trust
+ * a database record whose path escapes the exact private originals directory.
+ */
+internal fun inspectPotentialOrphans(
+    originals: File,
+    registered: List<PhotoRecord>,
+    checkpoint: () -> Unit = {}
+): PotentialOrphanInventory? {
+    if (!originals.exists()) return PotentialOrphanInventory(0, 0, 0L)
+    return try {
+        if (!originals.isDirectory || Files.isSymbolicLink(originals.toPath())) return null
+        val root = originals.canonicalFile
+        val referenced = registered.mapNotNull { photo ->
+            checkpoint()
+            val file = File(photo.localPath)
+            if (file.name == photo.sha256 + "." + file.extension &&
+                originalFilename.matches(file.name) &&
+                file.absoluteFile.parentFile == root
+            ) file.name else null
+        }.toHashSet()
+        var scanned = 0
+        var orphaned = 0
+        var bytes = 0L
+        for (child in (originals.listFiles() ?: return null)) {
+            checkpoint()
+            if (Files.isSymbolicLink(child.toPath()) ||
+                !child.isFile || child.canonicalFile.parentFile != root ||
+                !originalFilename.matches(child.name)
+            ) continue
+            scanned++
+            if (child.name !in referenced) {
+                orphaned++
+                val length = child.length().coerceAtLeast(0L)
+                bytes = if (Long.MAX_VALUE - bytes < length) Long.MAX_VALUE else bytes + length
+            }
+        }
+        PotentialOrphanInventory(scanned, orphaned, bytes)
+    } catch (_: Exception) {
+        null
+    }
+}
