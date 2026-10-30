@@ -182,7 +182,12 @@ def main(out):
     # Select the *same exact original* a second time through the real OS
     # Photo Picker. A correct importer reports a duplicate and does not create
     # a second membership/photo or rewrite the immutable SHA identity.
-    base.click_label("Add photos")
+    # The first successful import leaves the viewport at the collection
+    # count/hero; the real Add photos control may be below the finite reel.
+    # Use the same bounded, visible-action seeker as the first picker launch,
+    # rather than demanding that an offscreen Compose button be in the
+    # current UIAutomator hierarchy.
+    base.reach_and_click("Add photos", "down", attempts=14)
     time.sleep(1.5)
     second = visible_nodes()
     assert "com.android.providers.media.module" in {
