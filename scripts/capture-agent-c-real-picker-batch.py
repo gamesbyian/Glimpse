@@ -48,10 +48,21 @@ def read_json(name):
     raise RuntimeError("Missing debug-only test receipt "+name)
 
 def wait_count(n):
-    for _ in range(40):
+    last=""
+    for attempt in range(42):
         ui=base.hierarchy()
+        last=ui
         if "Photos: "+str(n) in ui and "No images yet." not in ui:return ui
+        if attempt % 3 == 2 and "com.android.providers.media.module" not in ui:
+            # The real Photo count is below the fixed-edge Reel in Home,
+            # and UIAutomator excludes below-fold Compose nodes.
+            base.swipe("up")
         time.sleep(.8)
+    (base.OUT / ("batch-photo-count-"+str(n)+"-not-visible.xml")).write_text(
+        last, encoding="utf-8"
+    )
+    base.capture_failure("picker-batch-count-missing",
+        "Actual Android batch picker returned but expected Room count was not visible")
     raise RuntimeError("Production Glimpse UI did not show exact Photos: "+str(n))
 
 def main(out):
