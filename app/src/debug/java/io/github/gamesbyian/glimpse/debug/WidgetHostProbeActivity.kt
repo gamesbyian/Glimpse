@@ -13,6 +13,16 @@ import android.widget.FrameLayout
 import androidx.activity.ComponentActivity
 import io.github.gamesbyian.glimpse.GlimpseHomeWidgetProvider
 import io.github.gamesbyian.glimpse.GlimpseHomeWidgetRefresh
+import io.github.gamesbyian.glimpse.data.GlimpseDatabase
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.CancellationException
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.cancel
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.isActive
+import kotlinx.coroutines.launch
+import org.json.JSONObject
 import java.io.File
 
 /**
@@ -25,6 +35,7 @@ import java.io.File
 class WidgetHostProbeActivity : ComponentActivity() {
     private lateinit var widgetHost: AppWidgetHost
     private var widgetId: Int = AppWidgetManager.INVALID_APPWIDGET_ID
+    private var stateSnapshotJob: Job? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -117,6 +128,53 @@ class WidgetHostProbeActivity : ComponentActivity() {
         widgetHost.startListening()
         GlimpseHomeWidgetRefresh.enqueue(this)
         File(filesDir, "widget-probe-ready.txt").writeText("READY:" + widgetId)
+    }
+
+    /**
+     * Instrument only the disposable debug host. A wallpaper change can
+     * recreate AppWidgetHostView and restore its XML initialLayout; that
+     * says nothing about the command's durable Room result. Record only
+     * boolean state, never IDs, filenames, SHA hashes or photo content.
+     */
+    override fun onStart() {
+        super.onStart()
+        stateSnapshotJob?.cancel()
+        stateSnapshotJob = lifecycleScope.launch(Dispatchers.IO) {
+            while (isActive) {
+                try {
+                    val rotation = GlimpseDatabase.open(applicationContext).dao().readRotation()
+                    val source = rotation?.collectionId != null
+                    val outcome = when {
+                        rotation?.pendingPhotoId != null -> "UNCERTAIN"
+                        rotation?.lastAcknowledgedPhotoId != null -> "ACKNOWLEDGED"
+                        rotation?.lastAttemptAt != null -> "NOT_CONFIRMED"
+                        else -> "NOT_ATTEMPTED"
+                    }
+                    File(filesDir, "widget-probe-rotation-state.json").writeText(
+                        JSONObject().apply {
+                            put("savedSource", source)
+                            put("attemptObserved", rotation?.lastAttemptAt != null)
+                            put("pending", rotation?.pendingPhotoId != null)
+                            put("acknowledged", rotation?.lastAcknowledgedPhotoId != null)
+                            put("outcomeCategory", outcome)
+                        }.toString()
+                    )
+                } catch (cancel: CancellationException) {
+                    throw cancel
+                } catch (_: Exception) {
+                    File(filesDir, "widget-probe-rotation-state.json").writeText(
+                        """{"outcomeCategory":"INSPECTION_UNAVAILABLE"}"""
+                    )
+                }
+                delay(1200)
+            }
+        }
+    }
+
+    override fun onStop() {
+        stateSnapshotJob?.cancel()
+        stateSnapshotJob = null
+        super.onStop()
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
