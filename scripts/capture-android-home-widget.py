@@ -195,10 +195,18 @@ def main():
     try:
         updated = wait_for(
             check_updated_widget,
-            "widget refresh after an actual user-requested Home command", 45
+            "widget refresh after an actual user-requested Home command", 14
         )
     except RuntimeError:
         capture(out, "widget-not-refreshed-after-change-request")
+        # The debug Activity records the actual DB command outcome without
+        # paths or IDs. Never mistake a host's XML initialLayout for a
+        # failed WallpaperManager request, or for a successful one.
+        (out / "widget-command-outcome.json").write_text(
+            adb("shell", "run-as", APP,
+                "cat", "files/widget-probe-rotation-state.json",
+                check=False)[:512], encoding="utf-8"
+        )
         # This emulator is seeded only with generated images; do not dump
         # full databases, URI grants, or provider contents into CI artifacts.
         for name, args in (
