@@ -208,13 +208,14 @@ class WallpaperCommands(
                 }
             }
             if (wallpaperId <= 0) {
-                persist(WallpaperAttemptResult.MissingAcknowledgment)
-                HomeChangeOutcome(HomeChangeStatus.UNCERTAIN,
+                val result = WallpaperAttemptResult.MissingAcknowledgment
+                persist(result)
+                HomeChangeOutcome(homeChangeStatus(result),
                     "Wallpaper outcome uncertain; automatic rotation paused.")
             } else {
-                persist(WallpaperAttemptResult.Acknowledged(wallpaperId),
-                    remainingAfterSuccess)
-                HomeChangeOutcome(HomeChangeStatus.ACKNOWLEDGED,
+                val result = WallpaperAttemptResult.Acknowledged(wallpaperId)
+                persist(result, remainingAfterSuccess)
+                HomeChangeOutcome(homeChangeStatus(result),
                     "Android acknowledged the Home wallpaper update.")
             }
         } catch (cancel: CancellationException) {
@@ -225,16 +226,18 @@ class WallpaperCommands(
             throw cancel
         } catch (failure: Exception) {
             if (systemCallStarted) {
-                persist(WallpaperAttemptResult.PlatformError)
-                HomeChangeOutcome(HomeChangeStatus.UNCERTAIN,
+                val result = WallpaperAttemptResult.PlatformError
+                persist(result)
+                HomeChangeOutcome(homeChangeStatus(result),
                     "Wallpaper outcome uncertain; automatic rotation paused.")
             } else {
                 // Decode or manager lookup failed before entering the OS.
                 // Retain the whole shuffle reservation, defer one interval.
-                persist(WallpaperAttemptResult.BeforePlatformError(
+                val result = WallpaperAttemptResult.BeforePlatformError(
                     failure.javaClass.simpleName
-                ))
-                HomeChangeOutcome(HomeChangeStatus.NOT_APPLIED,
+                )
+                persist(result)
+                HomeChangeOutcome(homeChangeStatus(result),
                     "Wallpaper application failed before Android was asked to change it.")
             }
         }
