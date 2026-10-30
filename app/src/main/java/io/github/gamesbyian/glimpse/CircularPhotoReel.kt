@@ -210,18 +210,25 @@ fun CircularPhotoReel(
             }
         }
         val resolver = context.contentResolver
-        resolver.registerContentObserver(
-            Settings.Global.getUriFor(Settings.Global.ANIMATOR_DURATION_SCALE),
-            false, observer
-        )
-        ContextCompat.registerReceiver(
-            context, receiver, IntentFilter(PowerManager.ACTION_POWER_SAVE_MODE_CHANGED),
-            ContextCompat.RECEIVER_NOT_EXPORTED
-        )
+        // Some vendor builds can reject observer/receiver registration.
+        // The currently sampled preference still applies; never crash a
+        // photo browser merely because a system notification is unavailable.
+        val observing = runCatching {
+            resolver.registerContentObserver(
+                Settings.Global.getUriFor(Settings.Global.ANIMATOR_DURATION_SCALE),
+                false, observer
+            )
+        }.isSuccess
+        val listening = runCatching {
+            ContextCompat.registerReceiver(
+                context, receiver, IntentFilter(PowerManager.ACTION_POWER_SAVE_MODE_CHANGED),
+                ContextCompat.RECEIVER_NOT_EXPORTED
+            )
+        }.isSuccess
         reducedMotion = queryReducedMotion()
         onDispose {
-            resolver.unregisterContentObserver(observer)
-            context.unregisterReceiver(receiver)
+            if (observing) runCatching { resolver.unregisterContentObserver(observer) }
+            if (listening) runCatching { context.unregisterReceiver(receiver) }
         }
     }
     val renderedAngle = if (dragging) dragAngle else angle.value
