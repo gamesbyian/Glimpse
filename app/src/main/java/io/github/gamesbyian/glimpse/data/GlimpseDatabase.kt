@@ -153,6 +153,24 @@ interface GlimpseDao {
         collectionId: String, selectedImportedAt: Long, selectedId: String
     ): Flow<Int>
 
+    /**
+     * Future Reel cursor virtualization: a bounded real-photo window, never
+     * fake repeated images at collection ends. Uses the exact same ordered
+     * membership key as Paging 3 Grid and the SQL focus ordinal.
+     *
+     * UI integration must take width/offset from ReelWindowPolicy and keep
+     * its stable selected photo ID; this read alone changes no live UI.
+     */
+    @Query(
+        "SELECT p.* FROM photos p " +
+            "INNER JOIN memberships m ON m.photoId = p.id " +
+            "WHERE m.collectionId = :collectionId " +
+            "ORDER BY p.importedAt, p.id LIMIT :limit OFFSET :offset"
+    )
+    suspend fun readReelWindow(
+        collectionId: String, offset: Int, limit: Int
+    ): List<PhotoRecord>
+
 
     @Query(
         "SELECT p.* FROM photos p INNER JOIN memberships m ON m.photoId = p.id " +
