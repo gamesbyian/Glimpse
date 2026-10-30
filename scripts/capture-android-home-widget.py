@@ -48,6 +48,11 @@ def capture(out, label):
     print("Captured", label, len(png), "PNG bytes", flush=True)
 
 def start_probe(out):
+    # A previous force-stop bypasses Activity.onDestroy(), so the old READY
+    # file can survive. Delete it *before* launching a fresh widget host.
+    # Otherwise the wait loop sees a stale ID and leaves Android's second
+    # real widget-bind consent dialog unanswered.
+    adb("shell", "run-as", APP, "rm", "-f", "files/widget-probe-ready.txt")
     adb("shell", "am", "start", "-n", APP + "/.debug.WidgetHostProbeActivity")
     user_approved = False
     for _ in range(45):

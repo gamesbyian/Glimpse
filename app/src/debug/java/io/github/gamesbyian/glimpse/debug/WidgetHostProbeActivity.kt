@@ -35,6 +35,9 @@ class WidgetHostProbeActivity : ComponentActivity() {
             "Widget probe must never run on the owner's physical phone"
         }
 
+        // Debug test synchronization must be specific to this launch.
+        // Android force-stop can bypass onDestroy and leave stale READY.
+        File(filesDir, "widget-probe-ready.txt").delete()
         val manager = AppWidgetManager.getInstance(this)
         val provider = ComponentName(this, GlimpseHomeWidgetProvider::class.java)
         widgetHost = AppWidgetHost(this, 19405)
