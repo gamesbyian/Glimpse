@@ -82,7 +82,7 @@ class WidgetHostProbeActivity : ComponentActivity() {
             val px = (16 * resources.displayMetrics.density).toInt()
             setPadding(px, px, px, px)
         }
-        val height = (220 * resources.displayMetrics.density).toInt()
+        val height = (268 * resources.displayMetrics.density).toInt()
         container.addView(widgetView, FrameLayout.LayoutParams(
             ViewGroup.LayoutParams.MATCH_PARENT, height, Gravity.CENTER
         ))
