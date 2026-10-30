@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
     android:minWidth="250dp"
-    android:minHeight="154dp"
+    android:minHeight="232dp"
     android:minResizeWidth="230dp"
-    android:minResizeHeight="145dp"
+    android:minResizeHeight="208dp"
     android:updatePeriodMillis="1800000"
     android:initialLayout="@layout/glimpse_home_widget"
     android:resizeMode="horizontal|vertical"
