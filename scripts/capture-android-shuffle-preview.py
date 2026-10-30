@@ -51,7 +51,12 @@ def main(out):
     else:
         (out/"shuffle-example-not-visible.xml").write_text(xml,encoding="utf-8")
         raise RuntimeError("Actual illustrative filmstrip did not become visible")
-    assert "SAVED" not in xml, "Empty saved queue must not claim known next order"
+    # The editorial explanation itself contains the word "Saved". Test the
+    # semantic per-frame label instead of matching ordinary explanatory copy.
+    import re
+    assert not re.search(r"NEXT\\s+\\d+\\s+[·]\\s+SAVED", xml), (
+        "Empty saved queue must not label any image a known next candidate"
+    )
     base.capture("03-shuffle-four-example-photos",
                  "Actual Home filmstrip with illustrative seeded no-repeat frames")
     seek("Hide next-photo preview","down",attempts=15)
