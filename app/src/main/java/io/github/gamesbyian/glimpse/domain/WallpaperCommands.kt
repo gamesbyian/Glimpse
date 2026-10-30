@@ -89,13 +89,23 @@ class WallpaperCommands(
         val photo = dao.findPhoto(photoId) ?: return@withLock "Selected photo is unavailable."
         val previous = dao.readRotation() ?: RotationRecord()
         if (previous.pendingPhotoId != null) return@withLock "Resolve the uncertain attempt first."
-        applyLocked(photo, previous, null)
+        applyLocked(photo, previous, null).message
     }
 
-    suspend fun changeNow(): String = mutex.withLock {
-        val previous = dao.readRotation() ?: return@withLock "Start a collection first."
-        if (previous.pendingPhotoId != null) return@withLock "Resolve the uncertain attempt first."
-        val collectionId = previous.collectionId ?: return@withLock "Select a rotation collection first."
+    // Existing UI callers still receive truthful copy. Workers must consume
+    // the typed result, never infer an Android acknowledgment from that copy.
+    suspend fun changeNow(): String = changeNowOutcome().message
+
+    internal suspend fun changeNowOutcome(): HomeChangeOutcome = mutex.withLock {
+        val previous = dao.readRotation() ?: return@withLock HomeChangeOutcome(
+            HomeChangeStatus.NOT_APPLIED, "Start a collection first."
+        )
+        if (previous.pendingPhotoId != null) return@withLock HomeChangeOutcome(
+            HomeChangeStatus.UNCERTAIN, "Resolve the uncertain attempt first."
+        )
+        val collectionId = previous.collectionId ?: return@withLock HomeChangeOutcome(
+            HomeChangeStatus.NOT_APPLIED, "Select a rotation collection first."
+        )
         performNextLocked(previous, collectionId)
     }
 
@@ -134,18 +144,19 @@ class WallpaperCommands(
     private suspend fun performNextLocked(
         previous: RotationRecord,
         collectionId: String
-    ): String {
+    ): HomeChangeOutcome {
         val photos = dao.photosIn(collectionId)
         if (photos.isEmpty()) {
             dao.saveRotation(previous.copy(active = false, outcome = "No eligible photos; rotation paused"))
-            return "No photos in rotation collection."
+            return HomeChangeOutcome(HomeChangeStatus.NOT_APPLIED, "No photos in rotation collection.")
         }
         if (photos.size == 1 && photos[0].id == previous.lastAcknowledgedPhotoId) {
             dao.saveRotation(previous.copy(
                 nextEligibleAt = BatterySaverRotationPolicy.deferDue(now(), intervalMillis),
                 outcome = "One photo already applied; skipped unnecessary repeat"
             ))
-            return "Only one eligible photo; nothing to change."
+            return HomeChangeOutcome(HomeChangeStatus.NOT_APPLIED,
+                "Only one eligible photo; nothing to change.")
         }
         val bag = ShuffleBag.replenish(
             photos.map { it.id },
@@ -153,7 +164,8 @@ class WallpaperCommands(
             previous.lastAcknowledgedPhotoId
         )
         val candidate = photos.firstOrNull { it.id == bag.firstOrNull() }
-            ?: return "No eligible photo could be selected."
+            ?: return HomeChangeOutcome(HomeChangeStatus.NOT_APPLIED,
+                "No eligible photo could be selected.")
         return applyLocked(candidate, previous, bag.drop(1))
     }
 
@@ -161,7 +173,7 @@ class WallpaperCommands(
         photo: PhotoRecord,
         previous: RotationRecord,
         remainingAfterSuccess: List<String>?
-    ): String {
+    ): HomeChangeOutcome {
         val started = now()
         dao.saveRotation(beginWallpaperAttempt(previous, photo.id, started))
         // Once WallpaperManager is entered, an exception or cancellation
@@ -196,12 +208,15 @@ class WallpaperCommands(
                 }
             }
             if (wallpaperId <= 0) {
-                persist(WallpaperAttemptResult.MissingAcknowledgment)
-                "Wallpaper outcome uncertain; automatic rotation paused."
+                val result = WallpaperAttemptResult.MissingAcknowledgment
+                persist(result)
+                HomeChangeOutcome(homeChangeStatus(result),
+                    "Wallpaper outcome uncertain; automatic rotation paused.")
             } else {
-                persist(WallpaperAttemptResult.Acknowledged(wallpaperId),
-                    remainingAfterSuccess)
-                "Android acknowledged the Home wallpaper update."
+                val result = WallpaperAttemptResult.Acknowledged(wallpaperId)
+                persist(result, remainingAfterSuccess)
+                HomeChangeOutcome(homeChangeStatus(result),
+                    "Android acknowledged the Home wallpaper update.")
             }
         } catch (cancel: CancellationException) {
             // A cancelled coroutine can still persist the conservative gate.
@@ -211,15 +226,19 @@ class WallpaperCommands(
             throw cancel
         } catch (failure: Exception) {
             if (systemCallStarted) {
-                persist(WallpaperAttemptResult.PlatformError)
-                "Wallpaper outcome uncertain; automatic rotation paused."
+                val result = WallpaperAttemptResult.PlatformError
+                persist(result)
+                HomeChangeOutcome(homeChangeStatus(result),
+                    "Wallpaper outcome uncertain; automatic rotation paused.")
             } else {
                 // Decode or manager lookup failed before entering the OS.
                 // Retain the whole shuffle reservation, defer one interval.
-                persist(WallpaperAttemptResult.BeforePlatformError(
+                val result = WallpaperAttemptResult.BeforePlatformError(
                     failure.javaClass.simpleName
-                ))
-                "Wallpaper application failed before Android was asked to change it."
+                )
+                persist(result)
+                HomeChangeOutcome(homeChangeStatus(result),
+                    "Wallpaper application failed before Android was asked to change it.")
             }
         }
     }

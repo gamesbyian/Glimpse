@@ -26,6 +26,24 @@ class WallpaperAttemptTransitionTest {
         previous, "new-photo", 9_000L, finished, 300_000L, remaining, result
     )
 
+    @Test fun manualWorkerOutcomeOnlyAcknowledgesPositivePlatformId() {
+        assertEquals(HomeChangeStatus.ACKNOWLEDGED,
+            homeChangeStatus(WallpaperAttemptResult.Acknowledged(17)))
+        assertEquals(HomeChangeStatus.UNCERTAIN,
+            homeChangeStatus(WallpaperAttemptResult.Acknowledged(0)))
+        for (result in listOf(
+            WallpaperAttemptResult.MissingAcknowledgment,
+            WallpaperAttemptResult.Interrupted,
+            WallpaperAttemptResult.PlatformError
+        )) {
+            assertEquals(HomeChangeStatus.UNCERTAIN, homeChangeStatus(result))
+        }
+        assertEquals(HomeChangeStatus.NOT_APPLIED,
+            homeChangeStatus(WallpaperAttemptResult.BeforePlatformError("IOException")))
+        assertEquals(HomeChangeStatus.NOT_APPLIED,
+            HomeChangeOutcome(HomeChangeStatus.NOT_APPLIED, "No photos").status)
+    }
+
     @Test fun beginDoesNotAdvanceConfirmedPhotoOrBag() {
         val begun = beginWallpaperAttempt(saved, "new-photo", 9_000L)
         assertEquals("new-photo", begun.pendingPhotoId)
