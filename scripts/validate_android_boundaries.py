@@ -30,6 +30,36 @@ def inspect(root: Path) -> list[str]:
             return errors + ["Missing Android application element"]
         if app.get(ANDROID + "allowBackup") != "false":
             errors.append("Private originals require android:allowBackup=false")
+        if app.get(ANDROID + "fullBackupContent") != "false":
+            errors.append("Android 11 and lower require fullBackupContent=false")
+        if app.get(ANDROID + "dataExtractionRules") != "@xml/glimpse_data_extraction_rules":
+            errors.append("Android 12+ requires explicit local-only data extraction rules")
+        else:
+            rules_path = root / "app/src/main/res/xml/glimpse_data_extraction_rules.xml"
+            try:
+                extraction = ET.parse(rules_path).getroot()
+                if extraction.tag != "data-extraction-rules":
+                    errors.append("Data extraction rules have the wrong XML root")
+                for channel in ("cloud-backup", "device-transfer"):
+                    section = extraction.find(channel)
+                    required = {
+                        "root", "file", "database", "sharedpref", "external",
+                        "device_root", "device_file", "device_database",
+                        "device_sharedpref"
+                    }
+                    excluded = set() if section is None else {
+                        x.get("domain") for x in section.findall("exclude")
+                        if x.get("path") in {".", "./"}
+                    }
+                    if not required.issubset(excluded):
+                        errors.append(
+                            "Missing full private-storage exclusion in " + channel +
+                            ": " + ", ".join(sorted(required - excluded))
+                        )
+                    if section is not None and section.findall("include"):
+                        errors.append("Backup mode " + channel + " must have no includes")
+            except (OSError, ET.ParseError) as problem:
+                errors.append("Unavailable/invalid data extraction rules: " + str(problem))
         providers = {p.get(ANDROID + "name"): p for p in app.findall("provider")}
         for name in sorted(PROVIDERS):
             p = providers.get(name)
