@@ -1,3 +1,5 @@
+> **Engineering audit and action program:** [October 29 Android codebase audit, 17 findings, six agent work packages and dependency-aware release gates](quality/ARCHITECTURE-AUDIT-2026-10-29.md). Prioritize alongside the [live queue](planning/implementation-queue.md). Existing historical blueprints remain useful design sources, not proof of merged implementation.
+
 # Documentation map
 
 **Read [current decisions](planning/current-decisions.md) first.** Documents from the historical Waltz phase sometimes describe superseded UI and staged implementation ideas. The more recent specific contract takes precedence.

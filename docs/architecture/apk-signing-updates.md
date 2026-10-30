@@ -1,3 +1,5 @@
+> **P0 acceptance reaffirmed (2026-10-29, GL-AUD-01):** Signed debug artifacts from different runners were empirically incompatible. A configured optional key is **not** proof of upgrade safety. Release remains blocked until two consecutive protected main builds have the identical public signing fingerprint and `adb install -r` preserves populated Room and immutable originals without uninstall. Owner must separately provision and escrow secrets; neither agent nor CI should disclose private signing bytes. See [audit](../quality/ARCHITECTURE-AUDIT-2026-10-29.md) and [#72](https://github.com/gamesbyian/Glimpse/issues/72).
+
 # Glimpse Android signing and update continuity
 
 **Observed 27 October 2026:** Two successful debug APK artifacts from separate

@@ -1,3 +1,5 @@
+> **Interpretation rule (2026-10-29 engineering audit):** [GL-AUD-01–17](ARCHITECTURE-AUDIT-2026-10-29.md) are *engineering risks and safeguards*, not 17 new user workflows, and must not modify the 4 complete / 16 partial / 53 unimplemented baseline merely because documentation, tests or guarded internals change. Distinguish source-confirmed, emulator-verified, physically measured, owner-accepted and production-release evidence; see audit acceptance gates and active PR blockers.
+
 # Glimpse implementation coverage of the 73 workflow specification
 
 **Audit date:** 2026-10-29 (reconciled with qualified Favorites merges #103 and #109, Home-only tile #110 and accessibility #105; large-library Grid Paging #111 and Help copy #112 are merged; widget #115 and filmstrip #116 remain pending). **Authority:** current merged Android `main` and [73-workflow contractual specification](../product/feature-audit.md), supplemented by [AGENTS.md](../../AGENTS.md), [implementation queue](../planning/implementation-queue.md) and final-head Android CI. **This is a conservative capability audit, not a code-completion claim or owner design acceptance.**

@@ -1,3 +1,5 @@
+> **Engineering gate overlay (2026-10-29):** Treat this October 26 design-led plan as still binding on visual fidelity, but sequence release-affecting implementation according to the [architecture audit roadmap](../quality/ARCHITECTURE-AUDIT-2026-10-29.md). Gating before release: stable signing, full Room migration evidence, atomic imports/membership tests, interruption and WallpaperManager uncertain outcomes, real device/visual/TalkBack acceptance. Continue independent visual R&D without merging unaccepted multi-reel PRs or mistaking a green atlas for product signoff.
+
 # Glimpse native product build plan
 **Authoritative implementation sequence · 26 October 2026 · execution begun**
 
