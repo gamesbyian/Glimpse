@@ -41,13 +41,28 @@ def tap_node(node):
     time.sleep(1.5)
 
 
-def wait_for_photo_count(n, timeout=32):
+def wait_for_photo_count(n, timeout=32, scroll=False):
     end = time.monotonic() + timeout
+    attempts = 0
+    last_xml = ""
     while time.monotonic() < end:
         xml = base.hierarchy()
+        last_xml = xml
         if "Photos: " + str(n) in xml and "No images yet." not in xml:
             return xml
+        # Photo count is below the paper-reel hero. Android's accessibility
+        # tree omits below-fold Compose descendants. Scroll ONLY after an
+        # actual Android picker grant/return, never inside the picker itself.
+        if scroll and attempts % 3 == 2 and                 "com.android.providers.media.module" not in xml:
+            base.swipe("up")
+        attempts += 1
         time.sleep(1)
+    if scroll:
+        (base.OUT / f"picker-photo-count-{n}-not-visible.xml").write_text(
+            last_xml, encoding="utf-8"
+        )
+        base.capture_failure("post-picker-count-missing",
+            f"Count {n} not visible after actual Android picker return and scrolling")
     return None
 
 
@@ -143,7 +158,7 @@ def main(out):
                                str([(n.attrib.get("text"), n.attrib.get("content-desc"))
                                     for n in accept]))
         tap_node(accept[0])
-    ui = wait_for_photo_count(1)
+    ui = wait_for_photo_count(1, scroll=True)
     if not ui:
         raise RuntimeError("Actual production MainActivity did not import the selected photo")
     base.capture("03-glimpse-after-real-picker-import",
@@ -185,7 +200,7 @@ def main(out):
                    and node.attrib.get("text") == "Add (1)"]
         assert len(buttons) == 1, "Second picker confirmation was not uniquely Add (1)"
         tap_node(buttons[0])
-    top_after_repeat = wait_for_photo_count(1, timeout=32)
+    top_after_repeat = wait_for_photo_count(1, timeout=32, scroll=True)
     if not top_after_repeat:
         raise RuntimeError("Repeat picker action failed to return to a one-photo Glimpse collection")
     base.capture("04-after-repeat-real-picker-photo-count",
@@ -210,7 +225,7 @@ def main(out):
                  "Scrolled actual Glimpse view confirms imported 0; duplicates 1")
     for _ in range(3):
         base.swipe("down")
-    if not wait_for_photo_count(1, timeout=8):
+    if not wait_for_photo_count(1, timeout=8, scroll=True):
         raise RuntimeError("Failed to restore Photos: 1 view after checking duplicate report")
     assert base.adb("exec-out","run-as",APP,"cat",
                     "files/originals/"+record["sourceSHA256"]+".jpg",
