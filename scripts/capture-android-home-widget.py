@@ -158,7 +158,24 @@ def main():
              "an unsampled shuffle must never show a fictitious next photo", 45)
     assert "CHANGE HOME" in labels(hierarchy())
     capture(out, "widget-true-undecided-draw")
-    tap("CHANGE HOME")
+    # Android may recreate the host Activity while applying a widget
+    # RemoteViews update. Require the *same* real labeled action to be
+    # actionable in a fresh UI hierarchy before touching it; never blindly
+    # reuse old coordinates, synthesize a broadcast or claim a wallpaper set.
+    for attempt in range(5):
+        try:
+            tap("CHANGE HOME")
+            break
+        except RuntimeError as failure:
+            if "Real Android action was missing: CHANGE HOME" not in str(failure):
+                raise
+            if attempt == 4:
+                capture(out, "widget-change-action-disappeared")
+                (out / "widget-change-action-activity-state.txt").write_text(
+                    adb("shell", "dumpsys", "activity", "activities", check=False)[:100000],
+                    encoding="utf-8")
+                raise
+            time.sleep(0.7)
     # The click itself is not an acknowledgment. Capture actual post-tap UI
     # and OS state, so a wrong PendingIntent, stalled worker or failed Android
     # wallpaper call is diagnosable rather than an opaque late timeout.
