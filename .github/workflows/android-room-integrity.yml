@@ -47,6 +47,18 @@ jobs:
           fi
       - name: Compile native tests and produce generated Room schema
         run: ./gradlew --no-daemon :app:assembleDebug :app:assembleDebugAndroidTest :app:testDebugUnitTest
+      - name: Verify all checked-in Room schema snapshots match KSP output
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -s app/schemas/io.github.gamesbyian.glimpse.data.GlimpseDatabase/1.json
+          test -s app/schemas/io.github.gamesbyian.glimpse.data.GlimpseDatabase/2.json
+          if [[ -n "$(git status --porcelain -- app/schemas/)" ]]; then
+            echo "::error::Generated Room schema changed or a new version was not committed."
+            git status --short -- app/schemas/
+            exit 1
+          fi
+          echo "PASS: generated Room schema history matches tracked v1 and v2 exactly"
       - name: Publish generated schema for independent review
         if: always()
         uses: actions/upload-artifact@v4
