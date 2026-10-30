@@ -131,5 +131,29 @@ for collection in ("main", "alternate"):
         )
         assert actual == desired, (collection, sample_id, actual, desired)
 
+# Exercise the *actual* SQL Reel viewport using the same 12,000 photo IDs
+# as the contact sheet and focus-rank query. It must not produce phantom
+# repeats at the ends, cross collection boundaries or load all photo records.
+WINDOW_BLOCK = re.search(
+    r'@Query\(\s*((?:"[^"]*"\s*\+?\s*)+)\)\s*suspend fun readReelWindow',
+    TEXT, re.DOTALL,
+)
+if not WINDOW_BLOCK:
+    raise AssertionError("Unable to extract the actual Room Reel window query")
+WINDOW_SQL = "".join(re.findall(r'"([^"]*)"', WINDOW_BLOCK.group(1)))
+assert "ORDER BY p.importedAt, p.id LIMIT :limit OFFSET :offset" in WINDOW_SQL
+for collection in ("main", "alternate", "missing"):
+    expected = expected_ids(collection, 0)
+    for offset in (0, 1, 2, 97, 8997, max(0, len(expected) - 5),
+                   len(expected), len(expected) + 1):
+        observed = [row[0] for row in db.execute(WINDOW_SQL, {
+            "collectionId": collection, "limit": 5, "offset": offset
+        })]
+        assert observed == expected[offset:offset + 5], (
+            collection, offset, observed, expected[offset:offset + 5]
+        )
+        assert len(observed) == len(set(observed)) <= 5
+print("PASS: bounded SQL Reel viewport, no phantom edge records or cross-collection IDs")
+
 print("PASS: actual Room contact-sheet SQL, 12000 rows, pagination, collection scope, "
       "stable order, future-date exclusions and filters")
