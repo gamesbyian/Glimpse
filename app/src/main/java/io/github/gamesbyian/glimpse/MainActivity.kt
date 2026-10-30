@@ -359,6 +359,11 @@ private fun GlimpseScreen(
                 }
             }
             GlimpseWallpaperSummary(state)
+            // Until a collection exists there is no Add photos section to own
+            // action feedback. Keep the initial onboarding/errors visible.
+            if (state.collections.isEmpty()) {
+                Text(state.message, style = MaterialTheme.typography.bodyMedium)
+            }
             if (state.collections.isEmpty() || showNewCollection) {
                 Text(
                     if (state.collections.isEmpty()) "Start with a collection of photographs."
