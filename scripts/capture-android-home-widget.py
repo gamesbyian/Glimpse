@@ -48,6 +48,11 @@ def capture(out, label):
     print("Captured", label, len(png), "PNG bytes", flush=True)
 
 def start_probe(out):
+    # A previous force-stop bypasses Activity.onDestroy(), so the old READY
+    # file can survive. Delete it *before* launching a fresh widget host.
+    # Otherwise the wait loop sees a stale ID and leaves Android's second
+    # real widget-bind consent dialog unanswered.
+    adb("shell", "run-as", APP, "rm", "-f", "files/widget-probe-ready.txt")
     adb("shell", "am", "start", "-n", APP + "/.debug.WidgetHostProbeActivity")
     user_approved = False
     for _ in range(45):
@@ -153,17 +158,58 @@ def main():
              "an unsampled shuffle must never show a fictitious next photo", 45)
     assert "CHANGE HOME" in labels(hierarchy())
     capture(out, "widget-true-undecided-draw")
-    tap("CHANGE HOME")
+    # Android may recreate the host Activity while applying a widget
+    # RemoteViews update. Require the *same* real labeled action to be
+    # actionable in a fresh UI hierarchy before touching it; never blindly
+    # reuse old coordinates, synthesize a broadcast or claim a wallpaper set.
+    for attempt in range(5):
+        try:
+            tap("CHANGE HOME")
+            break
+        except RuntimeError as failure:
+            if "Real Android action was missing: CHANGE HOME" not in str(failure):
+                raise
+            if attempt == 4:
+                capture(out, "widget-change-action-disappeared")
+                (out / "widget-change-action-activity-state.txt").write_text(
+                    adb("shell", "dumpsys", "activity", "activities", check=False)[:100000],
+                    encoding="utf-8")
+                raise
+            time.sleep(0.7)
+    # The click itself is not an acknowledgment. Capture actual post-tap UI
+    # and OS state, so a wrong PendingIntent, stalled worker or failed Android
+    # wallpaper call is diagnosable rather than an opaque late timeout.
+    capture(out, "widget-immediately-after-change-request")
     # A real Android wallpaper request may acknowledge, report unknown, or
     # be delayed. Never falsify a success; the updated widget must show one
     # of the gateway's durable truthful states.
-    updated = wait_for(
-        lambda: hierarchy() if (
-            "Next in the bag" in labels(hierarchy()) or
-            "Next saved photo" in labels(hierarchy()) or
-            "Result uncertain" in labels(hierarchy())
-        ) else None,
-        "widget refresh after an actual user-requested Home command", 55)
+    def check_updated_widget():
+        xml = hierarchy()
+        seen = labels(xml)
+        if any(text in seen for text in (
+            "Next in the bag", "Next saved photo", "Result uncertain"
+        )):
+            return xml
+        return None
+
+    try:
+        updated = wait_for(
+            check_updated_widget,
+            "widget refresh after an actual user-requested Home command", 45
+        )
+    except RuntimeError:
+        capture(out, "widget-not-refreshed-after-change-request")
+        # This emulator is seeded only with generated images; do not dump
+        # full databases, URI grants, or provider contents into CI artifacts.
+        for name, args in (
+            ("widget-postclick-appwidget-state.txt", ("shell", "dumpsys", "appwidget")),
+            ("widget-postclick-activity-state.txt", ("shell", "dumpsys", "activity", "activities")),
+            ("widget-postclick-work-state.txt", ("shell", "dumpsys", "jobscheduler")),
+        ):
+            (out / name).write_text(
+                adb(*args, check=False)[:100000], encoding="utf-8"
+            )
+        raise
     actual = labels(updated)
     assert "Choose a collection" not in actual
     capture(out, "widget-after-actual-home-command")

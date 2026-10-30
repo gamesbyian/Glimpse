@@ -145,6 +145,15 @@ class GlimpseHomeWidgetRefreshWorker(
                     views.setOnClickPendingIntent(
                         R.id.glimpse_widget_root, openAppIntent(context)
                     )
+                    // The XML's static description describes the empty state.
+                    // Keep TalkBack aligned with the *actual* tap target:
+                    // a requested wallpaper change is not an acknowledged one.
+                    views.setContentDescription(
+                        R.id.glimpse_widget_action,
+                        if (decision.canRequestChange)
+                            "Request a Home wallpaper change. Android may delay or decline it."
+                        else "Open Glimpse to configure or review Home wallpaper."
+                    )
                     views.setImageViewResource(
                         R.id.glimpse_widget_preview, R.drawable.glimpse_tile_next
                     )

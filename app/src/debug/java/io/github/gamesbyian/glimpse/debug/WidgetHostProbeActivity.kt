@@ -35,9 +35,36 @@ class WidgetHostProbeActivity : ComponentActivity() {
             "Widget probe must never run on the owner's physical phone"
         }
 
+        // Debug test synchronization must be specific to this launch.
+        // Android force-stop can bypass onDestroy and leave stale READY.
+        File(filesDir, "widget-probe-ready.txt").delete()
         val manager = AppWidgetManager.getInstance(this)
         val provider = ComponentName(this, GlimpseHomeWidgetProvider::class.java)
         widgetHost = AppWidgetHost(this, 19405)
+
+        // Wallpaper or launcher configuration changes can recreate this
+        // debug-only Activity without a useful saved-instance Bundle.
+        // Query IDs owned by *this* AppWidgetHost before ever deleting it;
+        // otherwise an existing bound widget is discarded and another
+        // Settings CREATE permission dialog appears instead of its result.
+        val savedId = savedInstanceState
+            ?.getInt(SAVED_WIDGET_ID, AppWidgetManager.INVALID_APPWIDGET_ID)
+            ?: AppWidgetManager.INVALID_APPWIDGET_ID
+        val alreadyBound = widgetHost.appWidgetIds.filter { id ->
+            manager.getAppWidgetInfo(id)?.provider == provider
+        }
+        val reused = (listOf(savedId) + alreadyBound)
+            .firstOrNull { id ->
+                id in alreadyBound && id != AppWidgetManager.INVALID_APPWIDGET_ID
+            }
+        if (reused != null) {
+            widgetId = reused
+            showActualWidget()
+            return
+        }
+
+        // Only a genuinely fresh test-host install is allowed to request a
+        // new Android widget binding. No privileged grant or fake launcher.
         widgetHost.deleteHost()
         widgetId = widgetHost.allocateAppWidgetId()
 
@@ -92,14 +119,22 @@ class WidgetHostProbeActivity : ComponentActivity() {
         File(filesDir, "widget-probe-ready.txt").writeText("READY:" + widgetId)
     }
 
+    override fun onSaveInstanceState(outState: Bundle) {
+        outState.putInt(SAVED_WIDGET_ID, widgetId)
+        super.onSaveInstanceState(outState)
+    }
+
     override fun onDestroy() {
         runCatching { widgetHost.stopListening() }
-        runCatching { widgetHost.deleteHost() }
-        File(filesDir, "widget-probe-ready.txt").delete()
+        if (!isChangingConfigurations) {
+            runCatching { widgetHost.deleteHost() }
+            File(filesDir, "widget-probe-ready.txt").delete()
+        }
         super.onDestroy()
     }
 
     companion object {
         private const val REQUEST_BIND_WIDGET = 19405
+        private const val SAVED_WIDGET_ID = "glimpse_debug_host_widget_id"
     }
 }
