@@ -159,16 +159,40 @@ def main():
     assert "CHANGE HOME" in labels(hierarchy())
     capture(out, "widget-true-undecided-draw")
     tap("CHANGE HOME")
+    # The click itself is not an acknowledgment. Capture actual post-tap UI
+    # and OS state, so a wrong PendingIntent, stalled worker or failed Android
+    # wallpaper call is diagnosable rather than an opaque late timeout.
+    capture(out, "widget-immediately-after-change-request")
     # A real Android wallpaper request may acknowledge, report unknown, or
     # be delayed. Never falsify a success; the updated widget must show one
     # of the gateway's durable truthful states.
-    updated = wait_for(
-        lambda: hierarchy() if (
-            "Next in the bag" in labels(hierarchy()) or
-            "Next saved photo" in labels(hierarchy()) or
-            "Result uncertain" in labels(hierarchy())
-        ) else None,
-        "widget refresh after an actual user-requested Home command", 55)
+    def check_updated_widget():
+        xml = hierarchy()
+        seen = labels(xml)
+        if any(text in seen for text in (
+            "Next in the bag", "Next saved photo", "Result uncertain"
+        )):
+            return xml
+        return None
+
+    try:
+        updated = wait_for(
+            check_updated_widget,
+            "widget refresh after an actual user-requested Home command", 45
+        )
+    except RuntimeError:
+        capture(out, "widget-not-refreshed-after-change-request")
+        # This emulator is seeded only with generated images; do not dump
+        # full databases, URI grants, or provider contents into CI artifacts.
+        for name, args in (
+            ("widget-postclick-appwidget-state.txt", ("shell", "dumpsys", "appwidget")),
+            ("widget-postclick-activity-state.txt", ("shell", "dumpsys", "activity", "activities")),
+            ("widget-postclick-work-state.txt", ("shell", "dumpsys", "jobscheduler")),
+        ):
+            (out / name).write_text(
+                adb(*args, check=False)[:100000], encoding="utf-8"
+            )
+        raise
     actual = labels(updated)
     assert "Choose a collection" not in actual
     capture(out, "widget-after-actual-home-command")
