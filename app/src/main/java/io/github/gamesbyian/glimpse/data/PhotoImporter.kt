@@ -232,7 +232,13 @@ class PhotoImporter(private val context: Context, private val dao: GlimpseDao) {
             )
             // Photo and membership commit together. An interrupted file commit may
             // leave an unreferenced immutable file; it never deletes an original.
-            return dao.attach(photo, collectionId)
+            // The collection may disappear while an external provider takes time
+            // to stream its bytes. Existence and membership insertion must share
+            // one Room transaction; an earlier ViewModel check is not sufficient.
+            // A rejected attach keeps the verified immutable file but creates
+            // neither a phantom photo row nor a dangling membership.
+            return dao.attachIfCollectionExists(photo, collectionId)
+                ?: error("The destination collection was removed during import. Re-select it and retry.")
         } finally {
             temp.delete()
         }

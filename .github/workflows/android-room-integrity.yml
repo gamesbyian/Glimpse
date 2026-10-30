@@ -1,0 +1,82 @@
+name: Glimpse Room integrity instrumentation
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - ".github/workflows/android-room-integrity.yml"
+      - "app/build.gradle.kts"
+      - "app/schemas/**"
+      - "app/src/androidTest/**"
+      - "app/src/main/java/io/github/gamesbyian/glimpse/data/GlimpseDatabase.kt"
+      - "app/src/main/java/io/github/gamesbyian/glimpse/data/PhotoImporter.kt"
+      - "app/src/main/java/io/github/gamesbyian/glimpse/data/CollectionZipRestorer.kt"
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/android-room-integrity.yml"
+      - "app/build.gradle.kts"
+      - "app/schemas/**"
+      - "app/src/androidTest/**"
+      - "app/src/main/java/io/github/gamesbyian/glimpse/data/GlimpseDatabase.kt"
+      - "app/src/main/java/io/github/gamesbyian/glimpse/data/PhotoImporter.kt"
+      - "app/src/main/java/io/github/gamesbyian/glimpse/data/CollectionZipRestorer.kt"
+permissions:
+  contents: read
+concurrency:
+  group: glimpse-room-integrity-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+jobs:
+  room:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+      - uses: gradle/actions/setup-gradle@v4
+      - name: Install Android SDK 37
+        shell: bash
+        run: |
+          set -euo pipefail
+          printf 'y\n' | "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --channel=3 "platforms;android-37.0" "build-tools;36.0.0"
+          test -d "$ANDROID_HOME/platforms/android-37.0"
+          if [ ! -e "$ANDROID_HOME/platforms/android-37" ]; then
+            ln -s "$ANDROID_HOME/platforms/android-37.0" "$ANDROID_HOME/platforms/android-37"
+          fi
+      - name: Compile native tests and produce generated Room schema
+        run: ./gradlew --no-daemon :app:assembleDebug :app:assembleDebugAndroidTest :app:testDebugUnitTest
+      - name: Publish generated schema for independent review
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: glimpse-room-generated-schema
+          path: app/schemas/io.github.gamesbyian.glimpse.data.GlimpseDatabase/*.json
+          retention-days: 7
+          if-no-files-found: warn
+      - name: Accelerate emulator
+        shell: bash
+        run: |
+          if test -e /dev/kvm; then sudo chmod a+rw /dev/kvm; fi
+      - name: Run actual Room DAO integrity tests
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 34
+          arch: x86_64
+          target: default
+          profile: pixel_5
+          cores: 2
+          ram-size: 3072
+          emulator-boot-timeout: 360
+          disable-animations: true
+          emulator-options: -no-window -gpu swiftshader_indirect -no-snapshot -noaudio -no-boot-anim
+          script: ./gradlew --no-daemon :app:connectedDebugAndroidTest
+      - name: Upload instrumentation evidence, including failures
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: glimpse-room-integrity-results
+          path: app/build/outputs/androidTest-results/
+          retention-days: 7
+          if-no-files-found: warn

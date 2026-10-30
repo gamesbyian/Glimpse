@@ -89,6 +89,12 @@ dependencies {
 
     implementation("com.google.code.gson:gson:2.11.0")
     testImplementation("junit:junit:4.13.2")
+    // Real Room/OS instrumentation, scoped to data-integrity and migration
+    // workflows. Pure policy tests remain under src/test.
+    androidTestImplementation("androidx.test:core:1.7.0")
+    androidTestImplementation("androidx.test:runner:1.7.0")
+    androidTestImplementation("androidx.test.ext:junit:1.3.0")
+    androidTestImplementation("androidx.room:room-testing:2.8.5")
 }
 
 // Stable, user-facing filename. Keep AGP's internal app-debug.apk untouched so

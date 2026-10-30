@@ -5,8 +5,10 @@ import kotlin.math.floor
 
 /**
  * Reversible crop/rotation geometry now powers the interactive Photo Detail
- * preview and bounded PNG export. It is not yet a persisted Room edit recipe
- * or an edited Android wallpaper apply operation.
+ * preview, saved SharedPreferences edit recipes and bounded PNG export.
+ * The saved recipe does not mutate the immutable original; the edited PNG
+ * may be added to a collection and explicitly applied through the shared
+ * wallpaper gateway.
  *
  * Coordinates are normalized against the EXIF-upright image after the selected
  * clockwise quarter-turn rotation, so the editor can retain one definition
