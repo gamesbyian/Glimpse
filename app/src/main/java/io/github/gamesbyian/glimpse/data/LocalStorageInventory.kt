@@ -2,6 +2,7 @@ package io.github.gamesbyian.glimpse.data
 
 import java.io.File
 import java.nio.file.Files
+import java.util.concurrent.CancellationException
 
 /**
  * Metadata-only, read-only physical storage inventory. This deliberately does
@@ -109,6 +110,10 @@ internal fun inspectPotentialOrphans(
             }
         }
         PotentialOrphanInventory(scanned, orphaned, bytes)
+    } catch (cancel: CancellationException) {
+        // Cancellation is a control-flow signal, not a storage failure:
+        // never swallow it and report an apparently completed audit.
+        throw cancel
     } catch (_: Exception) {
         null
     }
