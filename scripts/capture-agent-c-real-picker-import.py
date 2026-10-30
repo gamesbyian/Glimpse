@@ -187,7 +187,10 @@ def main(out):
     # Use the same bounded, visible-action seeker as the first picker launch,
     # rather than demanding that an offscreen Compose button be in the
     # current UIAutomator hierarchy.
-    base.reach_and_click("Add photos", "down", attempts=14)
+    # Scroll *upward by finger* to move toward lower page content.
+    # The first launch starts after a different setup scroll state and uses
+    # the opposite direction; do not copy it for this second launch.
+    base.reach_and_click("Add photos", "up", attempts=14)
     time.sleep(1.5)
     second = visible_nodes()
     assert "com.android.providers.media.module" in {
