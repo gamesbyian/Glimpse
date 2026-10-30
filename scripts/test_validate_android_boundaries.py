@@ -5,10 +5,22 @@ from pathlib import Path
 from validate_android_boundaries import inspect, GATEWAY, MANIFEST
 
 MANIFEST_TEXT = '''<manifest xmlns:android="http://schemas.android.com/apk/res/android">
-<application android:allowBackup="false">
+<application android:allowBackup="false" android:fullBackupContent="false" android:dataExtractionRules="@xml/glimpse_data_extraction_rules">
 <provider android:name=".GlimpseOriginalFileProvider" android:exported="false" android:grantUriPermissions="true"/>
 <provider android:name=".GlimpseEditedFileProvider" android:exported="false" android:grantUriPermissions="true"/>
 </application></manifest>'''
+
+DOMAINS = ("root", "file", "database", "sharedpref", "external",
+           "device_root", "device_file", "device_database",
+           "device_sharedpref")
+RULES_TEXT = "<data-extraction-rules>" + "".join(
+    "<" + mode + ">" +
+    "".join('<exclude domain="' + domain + '" path="."/>'
+            for domain in DOMAINS) +
+    "</" + mode + ">"
+    for mode in ("cloud-backup", "device-transfer")
+) + "</data-extraction-rules>"
+
 
 class BoundaryTests(unittest.TestCase):
     def setUp(self):
@@ -21,6 +33,10 @@ class BoundaryTests(unittest.TestCase):
         self.manifest = self.root / MANIFEST
         self.manifest.parent.mkdir(parents=True, exist_ok=True)
         self.manifest.write_text(MANIFEST_TEXT, encoding='utf8')
+        self.rules = (self.root /
+                      'app/src/main/res/xml/glimpse_data_extraction_rules.xml')
+        self.rules.parent.mkdir(parents=True, exist_ok=True)
+        self.rules.write_text(RULES_TEXT, encoding='utf8')
 
     def test_compliant_app(self):
         self.assertFalse(inspect(self.root))
@@ -43,6 +59,35 @@ class BoundaryTests(unittest.TestCase):
         self.manifest.write_text(MANIFEST_TEXT.replace('allowBackup="false"',
             'allowBackup="true"'), encoding='utf8')
         self.assertTrue(any('allowBackup=false' in x for x in inspect(self.root)))
+
+    def test_missing_device_transfer_rules_fail(self):
+        self.rules.write_text(RULES_TEXT.replace(
+            "<device-transfer>", "<unapproved-device-transfer>"
+        ).replace("</device-transfer>", "</unapproved-device-transfer>"),
+            encoding='utf8')
+        self.assertTrue(any("device-transfer" in x for x in inspect(self.root)))
+
+    def test_incomplete_device_domain_exclusion_fails(self):
+        self.rules.write_text(RULES_TEXT.replace(
+            '<exclude domain="device_database" path="."/>', ""),
+            encoding='utf8')
+        self.assertTrue(any("device_database" in x for x in inspect(self.root)))
+
+    def test_xml_rules_absence_fails(self):
+        self.rules.unlink()
+        self.assertTrue(any("data extraction rules" in x for x in inspect(self.root)))
+
+    def test_cloud_backup_cannot_include_private_files(self):
+        self.rules.write_text(RULES_TEXT.replace(
+            "<cloud-backup>", '<cloud-backup><include domain="file" path="."/>'
+        ), encoding='utf8')
+        self.assertTrue(any("must have no includes" in x for x in inspect(self.root)))
+
+    def test_backward_compat_backup_attribute_is_required(self):
+        self.manifest.write_text(MANIFEST_TEXT.replace(
+            'android:fullBackupContent="false"', 'android:fullBackupContent="true"'
+        ), encoding='utf8')
+        self.assertTrue(any("fullBackupContent=false" in x for x in inspect(self.root)))
 
     def test_invalid_manifest_fails(self):
         self.manifest.write_text('<manifest>', encoding='utf8')
