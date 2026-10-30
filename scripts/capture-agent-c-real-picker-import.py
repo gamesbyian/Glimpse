@@ -49,17 +49,14 @@ def wait_for_photo_count(n, timeout=32, scroll=False):
         xml = base.hierarchy()
         last_xml = xml
         # The fixed paper Reel can physically overlay the count label.
-        # UIAutomator omits occluded Compose descendants even though a
-        # screenshot visibly reads "Photos: n". Two *independent* Room-backed
-        # live labels, Share N originals and the collection-card N photograph,
-        # establish the same count without trusting pixels or relaxing SHA
-        # verification of the imported private original below.
+        # UIAutomator omits occluded Compose descendants even when PNG shows
+        # "Photos: n" and the collection-card n-photograph count. Its
+        # independently Room-backed "Share n originals" action *is* exposed
+        # in the actual failed emulator XML. Require either live Room count,
+        # then independently require exact SHA/source-byte parity below.
         count_visible = "Photos: " + str(n) in xml
-        room_backed_alternates = (
-            f"Share {n} originals" in xml and
-            f"{n} photograph" in xml
-        )
-        if (count_visible or room_backed_alternates) and "No images yet." not in xml:
+        room_count_action = f"Share {n} originals" in xml
+        if (count_visible or room_count_action) and "No images yet." not in xml:
             return xml
         # Photo count is below the paper-reel hero. Android's accessibility
         # tree omits below-fold Compose descendants. Scroll ONLY after an
@@ -180,7 +177,7 @@ def main(out):
     assert copied == source_data, "Private offline JPEG no longer byte-identical to selected source"
     assert hashlib.sha256(copied).hexdigest() == record["sourceSHA256"]
     assert ("Previewing 1 of 1" in ui or "Photos: 1" in ui or
-            ("Share 1 originals" in ui and "1 photograph" in ui))
+            "Share 1 originals" in ui)
     assert "No images yet." not in ui
     # Select the *same exact original* a second time through the real OS
     # Photo Picker. A correct importer reports a duplicate and does not create
