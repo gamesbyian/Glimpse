@@ -31,6 +31,7 @@
 ## Engineering
 
 - [Android architecture](architecture/android.md)
+- [Lossless Room v3 integrity and legacy recovery plan](planning/ROOM-INTEGRITY-RECOVERY.md): validation, escrow alternatives, and explicit acceptance prerequisites
 - [Technical behavior contracts](architecture/behavior-contracts.md)
 - [Reel motion and rendering](architecture/reel-motion.md)
 
