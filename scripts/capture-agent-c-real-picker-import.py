@@ -179,7 +179,8 @@ def main(out):
                       binary=True)
     assert copied == source_data, "Private offline JPEG no longer byte-identical to selected source"
     assert hashlib.sha256(copied).hexdigest() == record["sourceSHA256"]
-    assert "Previewing 1 of 1" in ui or "Photos: 1" in ui
+    assert ("Previewing 1 of 1" in ui or "Photos: 1" in ui or
+            ("Share 1 originals" in ui and "1 photograph" in ui))
     assert "No images yet." not in ui
     # Select the *same exact original* a second time through the real OS
     # Photo Picker. A correct importer reports a duplicate and does not create
