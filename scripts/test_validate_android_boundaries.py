@@ -19,7 +19,7 @@ class BoundaryTests(unittest.TestCase):
         self.gateway.parent.mkdir(parents=True)
         self.gateway.write_text('WallpaperManager.getInstance(ctx).setBitmap(bitmap)', encoding='utf8')
         self.manifest = self.root / MANIFEST
-        self.manifest.parent.mkdir(parents=True)
+        self.manifest.parent.mkdir(parents=True, exist_ok=True)
         self.manifest.write_text(MANIFEST_TEXT, encoding='utf8')
 
     def test_compliant_app(self):
