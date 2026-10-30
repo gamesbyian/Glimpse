@@ -48,7 +48,18 @@ def wait_for_photo_count(n, timeout=32, scroll=False):
     while time.monotonic() < end:
         xml = base.hierarchy()
         last_xml = xml
-        if "Photos: " + str(n) in xml and "No images yet." not in xml:
+        # The fixed paper Reel can physically overlay the count label.
+        # UIAutomator omits occluded Compose descendants even though a
+        # screenshot visibly reads "Photos: n". Two *independent* Room-backed
+        # live labels, Share N originals and the collection-card N photograph,
+        # establish the same count without trusting pixels or relaxing SHA
+        # verification of the imported private original below.
+        count_visible = "Photos: " + str(n) in xml
+        room_backed_alternates = (
+            f"Share {n} originals" in xml and
+            f"{n} photograph" in xml
+        )
+        if (count_visible or room_backed_alternates) and "No images yet." not in xml:
             return xml
         # Photo count is below the paper-reel hero. Android's accessibility
         # tree omits below-fold Compose descendants. Scroll ONLY after an
