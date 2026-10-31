@@ -22,8 +22,10 @@ data class ImportResult(
 )
 
 /**
- * Pure filesystem recovery boundary. Kept separate from Context/DAO so tests
- * can exercise actual deletion against isolated directories without Android.
+ * Conservative filesystem cleanup boundary. Only zero-byte, aged importer
+ * staging placeholders are removable. Nonempty partial files may contain
+ * irreplaceable user-selected bytes after process death and are preserved
+ * pending ownership-proven recovery (#143). Tests exercise isolated directories.
  */
 internal fun pruneStalePartialFiles(
     originals: File,
@@ -41,6 +43,12 @@ internal fun pruneStalePartialFiles(
                 !java.nio.file.Files.isSymbolicLink(candidate.toPath()) &&
                 candidate.canonicalFile.parentFile == root &&
                 PhotoImporter.isStaleImportPartial(candidate.name, candidate.lastModified(), now) &&
+                // An aged nonempty stage may be the *only complete fsynced*
+                // source after process death midway through CREATE_NEW copy.
+                // Do not destroy recoverable bytes merely because the
+                // provisional name is old. #143 must prove ownership before
+                // quarantining/cleaning any data-bearing staging file.
+                candidate.length() == 0L &&
                 candidate.delete()
         } catch (_: Exception) {
             false
