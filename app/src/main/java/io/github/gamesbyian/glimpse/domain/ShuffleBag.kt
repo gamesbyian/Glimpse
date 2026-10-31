@@ -18,11 +18,13 @@ object ShuffleBag {
     fun skipKnownNext(
         available: Collection<String>,
         remaining: List<String>,
-        lastAcknowledged: String?
+        lastAcknowledged: String?,
+        expectedHead: String
     ): List<String>? {
         val valid = available.toSet()
         val retained = remaining.filter { it in valid }.distinct()
-        if (retained.size < 2) return null
+        // A tap can arrive after the displayed queue has changed.
+        if (retained.size < 2 || retained.first() != expectedHead) return null
         if (retained[1] == lastAcknowledged) return null
         return retained.drop(1) + retained.first()
     }
