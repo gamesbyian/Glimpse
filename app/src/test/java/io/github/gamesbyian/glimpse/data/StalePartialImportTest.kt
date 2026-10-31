@@ -88,6 +88,12 @@ class StalePartialImportTest {
         org.junit.Assert.assertArrayEquals(targetBefore, existingDigest.readBytes())
     }
 
+    @Test fun importerFinallyPreservesLastValidatedStageWhenPublicationFailed() {
+        assertFalse(canDiscardImportStaging(validated = true, published = false))
+        assertTrue(canDiscardImportStaging(validated = true, published = true))
+        assertTrue(canDiscardImportStaging(validated = false, published = false))
+    }
+
     @Test fun recoveryCannotEscapeOriginalsViaSymbolicLink() {
         val root = temporary.newFolder("originals")
         val elsewhere = temporary.newFile("outside.jpg").apply {
