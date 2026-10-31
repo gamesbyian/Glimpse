@@ -220,6 +220,10 @@ internal fun canDiscardImportStaging(validated: Boolean, published: Boolean): Bo
 class PhotoImporter(private val context: Context, private val dao: GlimpseDao) {
     private val originals = File(context.filesDir, "originals").apply { mkdirs() }
     private val journal = ImportJournal(File(context.filesDir, "import-history.log"))
+    // Durable URI-free provenance for the staged source, written before any
+    // SHA-name path reservation. This receipt never authorizes file deletion
+    // or automatic recovery without independently proven ownership.
+    private val publicationReceipts = PrivatePublicationReceiptJournal(originals)
 
     companion object {
         // A recent file may belong to an import still writing on another job.
@@ -340,6 +344,9 @@ class PhotoImporter(private val context: Context, private val dao: GlimpseDao) {
             // if the final SHA-name publication fails. A future recovery
             // receipt will link the two names without persisting provider URIs.
             validatedStaging = true
+            val publicationReceipt = publicationReceipts.begin(
+                temp, target, hex, size, collectionId
+            )
             // Atomic no-replace publication. A raced matching SHA verifies and
             // deduplicates; an existing corrupt/symlinked file is never replaced.
             publishPrivateOriginalExclusively(temp, target, hex, size)
@@ -361,8 +368,13 @@ class PhotoImporter(private val context: Context, private val dao: GlimpseDao) {
             // one Room transaction; an earlier ViewModel check is not sufficient.
             // A rejected attach keeps the verified immutable file but creates
             // neither a phantom photo row nor a dangling membership.
-            return dao.attachIfCollectionExists(photo, collectionId)
+            val attached = dao.attachIfCollectionExists(photo, collectionId)
                 ?: error("The destination collection was removed during import. Re-select it and retry.")
+            // A committed Room membership and verified, fsynced SHA original
+            // precede receipt retirement. A failure to remove the receipt is
+            // nonfatal; the app preserves it for later read-only reconciliation.
+            publicationReceipts.complete(publicationReceipt)
+            return attached
         } finally {
             // Preserve the last complete staging copy on a failed publish.
             // Normal success and unverified/empty staging clean up as before.
