@@ -31,6 +31,7 @@
 ## Engineering
 
 - [Android architecture](architecture/android.md)
+- [Private-original no-overwrite and crash-recovery contract](architecture/private-original-publication.md): API29/34 evidence, concurrent publishers, interrupted-copy provenance and safe recovery
 - [Lossless Room v3 integrity and legacy recovery plan](planning/ROOM-INTEGRITY-RECOVERY.md): validation, escrow alternatives, and explicit acceptance prerequisites
 - [Technical behavior contracts](architecture/behavior-contracts.md)
 - [Reel motion and rendering](architecture/reel-motion.md)
