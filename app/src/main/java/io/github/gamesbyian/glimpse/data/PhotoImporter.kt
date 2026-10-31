@@ -92,6 +92,88 @@ internal fun existingOriginalMatches(
 }
 
 /**
+ * Finalize a verified, fsynced private import without replacing any digest name.
+ *
+ * Android's untrusted_app SELinux policy can deny hard links under filesDir,
+ * despite Linux/JVM tests succeeding. Prefer same-directory link creation when
+ * supported: it atomically publishes complete bytes and fails if target exists.
+ * On OS denial, use FileChannel.open with CREATE_NEW (O_EXCL): the
+ * existence check AND entry creation are atomic against concurrent writers.
+ * Files.copy without REPLACE_EXISTING is insufficient because its contract
+ * explicitly permits a non-atomic target check. Never truncate an original.
+ *
+ * Copy fallback has different crash behavior: a failed or interrupted copy
+ * could leave an incomplete, unregistered digest-name file. Never delete or
+ * overwrite such a file automatically. The next importer refuses a corrupted
+ * existing target, preserving evidence for explicit non-destructive recovery.
+ * A genuine atomic no-replace rename remains desirable for a future NDK lane.
+ */
+internal fun publishPrivateOriginalExclusively(
+    staged: File,
+    target: File,
+    expectedSha256: String,
+    expectedLength: Long,
+    preferHardLink: Boolean = true
+) {
+    require(staged.isFile && !java.nio.file.Files.isSymbolicLink(staged.toPath())) {
+        "Verified private staging file is unavailable."
+    }
+    require(staged.canonicalFile.parentFile == target.canonicalFile.parentFile) {
+        "Staged and final private originals must share one owned directory."
+    }
+    fun requireMatchingExisting() {
+        require(existingOriginalMatches(target, expectedSha256, expectedLength)) {
+            "Existing imported original failed integrity check."
+        }
+    }
+
+    if (preferHardLink) {
+        try {
+            java.nio.file.Files.createLink(target.toPath(), staged.toPath())
+            return
+        } catch (_: java.nio.file.FileAlreadyExistsException) {
+            requireMatchingExisting()
+            return
+        } catch (_: java.io.IOException) {
+            // Android app-private SELinux often rejects hard links. No
+            // renameTo/copy-overwrite fallback can ever be used here.
+        } catch (_: UnsupportedOperationException) {
+            // Filesystem does not support hard links. Try exclusive create.
+        } catch (_: SecurityException) {
+            // Java hard-link privileges are optional, even on API 26+.
+        }
+    }
+
+    try {
+        // CREATE_NEW atomically reserves the digest path and refuses existing
+        // regular files, symlinks and simultaneous writers. No preflight
+        // exists() check and no truncate/replace-capable operation occurs.
+        java.nio.channels.FileChannel.open(
+            target.toPath(),
+            java.nio.file.StandardOpenOption.WRITE,
+            java.nio.file.StandardOpenOption.CREATE_NEW
+        ).use { destination ->
+            staged.inputStream().buffered().use { input ->
+                val bytes = ByteArray(64 * 1024)
+                while (true) {
+                    val count = input.read(bytes)
+                    if (count < 0) break
+                    val chunk = java.nio.ByteBuffer.wrap(bytes, 0, count)
+                    while (chunk.hasRemaining()) destination.write(chunk)
+                }
+            }
+            destination.force(true)
+        }
+    } catch (_: java.nio.file.FileAlreadyExistsException) {
+        requireMatchingExisting()
+        return
+    }
+    // No Room record is committed until the freshly written copy has passed
+    // its full SHA and length check. Failed partial targets remain untouched.
+    requireMatchingExisting()
+}
+
+/**
  * Snapshot-only: never modifies provider URIs. Private copies remain valid after
  * Photo Picker's temporary URI grants expire. No broad media permission is used.
  */
@@ -210,16 +292,9 @@ class PhotoImporter(private val context: Context, private val dao: GlimpseDao) {
                 else -> ".jpg"
             }
             val target = File(originals, hex + extension)
-            if (!target.exists()) {
-                require(temp.renameTo(target)) { "Unable to finalize offline copy" }
-            } else {
-                require(existingOriginalMatches(target, hex, size)) {
-                    // Never overwrite an existing private original, even if
-                    // corrupt. The user-selected provider source and earlier
-                    // collection memberships are otherwise left untouched.
-                    "Existing imported original failed integrity check."
-                }
-            }
+            // Atomic no-replace publication. A raced matching SHA verifies and
+            // deduplicates; an existing corrupt/symlinked file is never replaced.
+            publishPrivateOriginalExclusively(temp, target, hex, size)
             val photo = PhotoRecord(
                 id = hex,
                 sha256 = hex,
