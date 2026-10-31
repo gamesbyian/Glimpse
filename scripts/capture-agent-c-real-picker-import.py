@@ -222,24 +222,38 @@ def main(out):
         raise RuntimeError("Repeat picker action failed to return to a one-photo Glimpse collection")
     base.capture("04-after-repeat-real-picker-photo-count",
                  "Repeat actual OS picker selection still shows exactly Photos: 1")
-    # The import report lives *below* the reel and is outside the initial
-    # 1080x2340 first fold. UIAutomator excludes off-screen Compose text.
-    # Check identity at the top and the duplicate notice in separate
-    # truthful, visible UI states; do not demand both from one hierarchy.
+    # The duplicate result must be visible *beside its initiating action*,
+    # not merely somewhere in the long scrolling column behind the fixed Reel.
+    # Verify actual Android bounds for both nodes on one screen. The earlier
+    # implementation displayed the correct text only beneath RotationPanel.
     notice = None
-    for _ in range(3):
-        base.swipe("up")
-        for _ in range(6):
-            visible = base.hierarchy()
-            if "duplicates 1" in visible and "imported 0" in visible:
+    screen_height = base.screen_geometry()[1]
+    for _ in range(13):
+        visible = base.hierarchy()
+        nodes = list(ET.fromstring(visible).iter("node"))
+        duplicate = next((n for n in nodes
+                          if "duplicates 1" in n.attrib.get("text", "") and
+                             "imported 0" in n.attrib.get("text", "")), None)
+        add = next((n for n in nodes
+                    if n.attrib.get("text") == "Add photos"), None)
+        duplicate_box = bounds(duplicate) if duplicate is not None else None
+        add_box = bounds(add) if add is not None else None
+        if duplicate_box and add_box:
+            gap = duplicate_box[1] - add_box[3]
+            if (0 <= gap < int(screen_height * .30) and
+                (duplicate_box[1] + duplicate_box[3]) // 2 <
+                    int(screen_height * .55)):
                 notice = visible
                 break
-            time.sleep(.5)
-        if notice is not None: break
+        base.swipe("up")
     if notice is None:
-        raise RuntimeError("Real picker repeat selection lacks visible imported 0 / duplicates 1 report after scrolling")
+        base.capture_failure("real-picker-duplicate-report-occluded",
+                             "Duplicate result and Add photos are not jointly visible above Reel")
+        raise RuntimeError(
+            "Real picker duplicate report is not visibly adjacent to Add photos above the fixed Reel"
+        )
     base.capture("05-after-repeat-real-picker-duplicate-report",
-                 "Scrolled actual Glimpse view confirms imported 0; duplicates 1")
+                 "Actual Android UI shows imported 0 / duplicates 1 immediately beside Add photos")
     for _ in range(3):
         base.swipe("down")
     if not wait_for_photo_count(1, timeout=8, scroll=True):
