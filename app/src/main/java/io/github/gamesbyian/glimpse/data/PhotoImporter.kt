@@ -108,12 +108,36 @@ internal fun existingOriginalMatches(
  * existing target, preserving evidence for explicit non-destructive recovery.
  * A genuine atomic no-replace rename remains desirable for a future NDK lane.
  */
+/**
+ * In-process publication admission. The first Android writer may own the
+ * CREATE_NEW SHA name before its content has finished streaming. Without a
+ * shared gate a second importer sees that still-partial name as corruption
+ * and fails a legitimate same-SHA reimport. Keep the OS's atomic exclusion,
+ * but do not inspect a collaborating writer's file until it has completed
+ * and verified its own publication.
+ *
+ * This controls every PhotoImporter in the current app process. Cross-process
+ * crash recovery and provenance are a separate #143 requirement; a JVM
+ * monitor is not represented as an interprocess lock.
+ */
+private val privateOriginalPublicationMonitor = Any()
+
 internal fun publishPrivateOriginalExclusively(
     staged: File,
     target: File,
     expectedSha256: String,
     expectedLength: Long,
     preferHardLink: Boolean = true
+) = synchronized(privateOriginalPublicationMonitor) {
+    publishPrivateOriginalUnderLock(staged, target, expectedSha256, expectedLength, preferHardLink)
+}
+
+private fun publishPrivateOriginalUnderLock(
+    staged: File,
+    target: File,
+    expectedSha256: String,
+    expectedLength: Long,
+    preferHardLink: Boolean
 ) {
     require(staged.isFile && !java.nio.file.Files.isSymbolicLink(staged.toPath())) {
         "Verified private staging file is unavailable."

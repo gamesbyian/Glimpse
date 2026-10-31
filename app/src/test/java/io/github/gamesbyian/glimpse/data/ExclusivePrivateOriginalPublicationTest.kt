@@ -3,6 +3,9 @@ package io.github.gamesbyian.glimpse.data
 import java.io.File
 import java.nio.file.Files
 import java.security.MessageDigest
+import java.util.concurrent.CountDownLatch
+import java.util.concurrent.Executors
+import java.util.concurrent.TimeUnit
 import org.junit.Assert.assertArrayEquals
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
@@ -107,6 +110,40 @@ class ExclusivePrivateOriginalPublicationTest {
         assertTrue(result.isFailure)
         assertArrayEquals("outside data".toByteArray(), outside.readBytes())
         assertTrue(Files.isSymbolicLink(target.toPath()))
+    }
+
+    @Test fun sixteenSameHashPublishersAllDeduplicateWithoutReadingPartialOutput() {
+        val sources = (0 until 16).map { index ->
+            scratch.newFile("import-concurrent-$index.partial").apply {
+                writeBytes(picture)
+            }
+        }
+        val target = File(scratch.root, hex(picture) + ".jpg")
+        val gate = CountDownLatch(1)
+        val executor = Executors.newFixedThreadPool(8)
+        try {
+            val futures = sources.map { staged ->
+                executor.submit<Boolean> {
+                    if (!gate.await(10, TimeUnit.SECONDS)) return@submit false
+                    runCatching {
+                        publishPrivateOriginalExclusively(
+                            staged, target, hex(picture), picture.size.toLong(),
+                            preferHardLink = false
+                        )
+                        true
+                    }.getOrDefault(false)
+                }
+            }
+            gate.countDown()
+            assertTrue(
+                "Every collaborating same-SHA publisher must receive verified bytes",
+                futures.all { it.get(30, TimeUnit.SECONDS) }
+            )
+            assertArrayEquals(picture, target.readBytes())
+            assertTrue(sources.all { it.exists() })
+        } finally {
+            executor.shutdownNow()
+        }
     }
 
     @Test fun missingOrForeignStagingSourceIsNeverPublished() {
