@@ -170,6 +170,9 @@ class GlimpseHomeWidgetRefreshWorker(
                 }.getOrNull()
             } else null
 
+            // Skip is offered only beside a SHA-verified visible next image.
+            // A registered but damaged original must not create a blind skip.
+            val skipVisible = decision.canSkipNext && verifiedThumb != null
             try {
                 val manager = AppWidgetManager.getInstance(context)
                 for (widgetId in widgetIds) {
@@ -184,9 +187,9 @@ class GlimpseHomeWidgetRefreshWorker(
                     )
                     views.setViewVisibility(
                         R.id.glimpse_widget_skip,
-                        if (decision.canSkipNext) View.VISIBLE else View.GONE
+                        if (skipVisible) View.VISIBLE else View.GONE
                     )
-                    if (decision.canSkipNext) {
+                    if (skipVisible) {
                         views.setOnClickPendingIntent(
                             R.id.glimpse_widget_skip, skipPreviewIntent(context)
                         )
@@ -246,6 +249,9 @@ class GlimpseHomeWidgetRefreshWorker(
                             views.setTextViewText(R.id.glimpse_widget_explainer,
                                 "The exact next photo is not confirmed in this preview.")
                         }
+                    }
+                    if (skipVisible) {
+                        views.setTextViewText(R.id.glimpse_widget_action, "APPLY HOME")
                     }
                     if (verifiedThumb != null) {
                         views.setImageViewBitmap(R.id.glimpse_widget_preview, verifiedThumb)
