@@ -69,8 +69,8 @@ internal class PrivatePublicationReceiptJournal(private val originals: File) {
         require(collectionId.isNotBlank() && encodedCollection.length <= 8192) {
             "Invalid publication collection identity."
         }
-        val row = ("1\\t" + staged.name + "\\t" + target.name + "\\t" +
-            sha256 + "\\t" + byteLength + "\\t" + encodedCollection + "\\n")
+        val row = ("1\t" + staged.name + "\t" + target.name + "\t" +
+            sha256 + "\t" + byteLength + "\t" + encodedCollection + "\n")
             .toByteArray(Charsets.UTF_8)
         require(row.size <= 9000)
 
@@ -105,7 +105,8 @@ internal class PrivatePublicationReceiptJournal(private val originals: File) {
     }
 
     /** Read-only aggregate evidence; no receipt content or IDs leave callers. */
-    fun inspect(): ReceiptCounts? = try {
+    fun inspect(): ReceiptCounts? {
+        return try {
         val root = checkedRoot()
         val entries = originals.listFiles() ?: return null
         var intact = 0
@@ -125,7 +126,7 @@ internal class PrivatePublicationReceiptJournal(private val originals: File) {
                 targetPattern.matches(pieces[2]) &&
                 pieces[2].substringBefore('.') == pieces[3] &&
                 digestPattern.matches(pieces[3]) &&
-                pieces[4].toLongOrNull() in 1L..(50L * 1024L * 1024L) &&
+                (pieces[4].toLongOrNull()?.let { it in 1L..(50L * 1024L * 1024L) } == true) &&
                 runCatching {
                     Base64.getUrlDecoder().decode(pieces[5]).isNotEmpty()
                 }.getOrDefault(false)
@@ -134,6 +135,7 @@ internal class PrivatePublicationReceiptJournal(private val originals: File) {
         ReceiptCounts(intact, suspect)
     } catch (_: Exception) {
         null
+    }
     }
 }
 
