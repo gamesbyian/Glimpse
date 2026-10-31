@@ -13,7 +13,8 @@ internal enum class WidgetPreviewKind {
 internal data class WidgetPreviewDecision(
     val kind: WidgetPreviewKind,
     val knownNextId: String? = null,
-    val canRequestChange: Boolean = false
+    val canRequestChange: Boolean = false,
+    val canSkipNext: Boolean = false
 )
 
 /**
@@ -25,7 +26,8 @@ internal fun widgetPreviewDecision(
     rotation: RotationRecord?,
     sourceExists: Boolean,
     knownValidQueueHead: String?,
-    soleEligiblePhotoId: String? = null
+    soleEligiblePhotoId: String? = null,
+    knownValidQueueSecond: String? = null
 ): WidgetPreviewDecision = when {
     rotation?.pendingPhotoId != null -> WidgetPreviewDecision(
         WidgetPreviewKind.UNCERTAIN
@@ -40,7 +42,11 @@ internal fun widgetPreviewDecision(
         soleEligiblePhotoId == rotation?.lastAcknowledgedPhotoId ->
         WidgetPreviewDecision(WidgetPreviewKind.CURRENT_ONLY)
     !knownValidQueueHead.isNullOrBlank() -> WidgetPreviewDecision(
-        WidgetPreviewKind.NEXT_KNOWN, knownValidQueueHead, canRequestChange = true
+        WidgetPreviewKind.NEXT_KNOWN, knownValidQueueHead,
+        canRequestChange = true,
+        canSkipNext = !knownValidQueueSecond.isNullOrBlank() &&
+            knownValidQueueSecond != knownValidQueueHead &&
+            knownValidQueueSecond != rotation?.lastAcknowledgedPhotoId
     )
     else -> WidgetPreviewDecision(
         WidgetPreviewKind.NEXT_UNDECIDED, canRequestChange = true

@@ -58,19 +58,39 @@
                 android:textSize="11sp"
                 android:maxLines="2"
                 android:ellipsize="end"/>
-            <TextView
-                android:id="@+id/glimpse_widget_action"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:layout_marginTop="5dp"
-                android:gravity="center"
-                android:text="OPEN GLIMPSE"
-                android:textSize="12sp"
-                android:textStyle="bold"
-                android:fontFamily="@font/plus_jakarta_sans"
-                android:textColor="#FFFFFFFF"
-                android:background="@drawable/glimpse_widget_action_bg"
-                android:contentDescription="Open Glimpse to set up wallpaper rotation"/>
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/glimpse_widget_action"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="48dp"
+                    android:gravity="center"
+                    android:text="OPEN GLIMPSE"
+                    android:textSize="10sp"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/plus_jakarta_sans"
+                    android:textColor="#FFFFFFFF"
+                    android:background="@drawable/glimpse_widget_action_bg"
+                    android:contentDescription="Open Glimpse to set up wallpaper rotation"/>
+                <TextView
+                    android:id="@+id/glimpse_widget_skip"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_marginStart="5dp"
+                    android:gravity="center"
+                    android:text="SKIP"
+                    android:textSize="11sp"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/plus_jakarta_sans"
+                    android:textColor="#FFFFFFFF"
+                    android:background="@drawable/glimpse_widget_action_bg"
+                    android:visibility="gone"
+                    android:contentDescription="Skip confirmed upcoming image without changing wallpaper"/>
+            </LinearLayout>
         </LinearLayout>
     </LinearLayout>
     <TextView
