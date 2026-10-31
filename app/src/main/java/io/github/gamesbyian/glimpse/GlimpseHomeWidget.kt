@@ -11,6 +11,7 @@ import android.graphics.Bitmap
 import android.view.View
 import android.widget.RemoteViews
 import androidx.work.CoroutineWorker
+import androidx.work.Data
 import androidx.work.ExistingWorkPolicy
 import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.WorkManager
@@ -69,7 +70,17 @@ class GlimpseWidgetActionReceiver : BroadcastReceiver() {
                 )
             }
             ACTION_SKIP_PREVIEW -> {
-                val request = OneTimeWorkRequestBuilder<GlimpseWidgetSkipWorker>().build()
+                // Capture the *displayed* candidate at tap time. Do not allow
+                // WorkManager delay or a collection change to skip another photo.
+                val collection = intent.getStringExtra(EXTRA_SKIP_COLLECTION).orEmpty()
+                val expected = intent.getStringExtra(EXTRA_SKIP_HEAD).orEmpty()
+                if (collection.isBlank() || !expected.matches(Regex("[0-9a-f]{64}"))) return
+                val input = Data.Builder()
+                    .putString(EXTRA_SKIP_COLLECTION, collection)
+                    .putString(EXTRA_SKIP_HEAD, expected)
+                    .build()
+                val request = OneTimeWorkRequestBuilder<GlimpseWidgetSkipWorker>()
+                    .setInputData(input).build()
                 WorkManager.getInstance(context).enqueueUniqueWork(
                     "glimpse-widget-user-skip-preview", ExistingWorkPolicy.KEEP, request
                 )
@@ -82,6 +93,8 @@ class GlimpseWidgetActionReceiver : BroadcastReceiver() {
             "io.github.gamesbyian.glimpse.action.USER_WIDGET_NEXT_HOME"
         const val ACTION_SKIP_PREVIEW =
             "io.github.gamesbyian.glimpse.action.USER_WIDGET_SKIP_PREVIEW"
+        const val EXTRA_SKIP_COLLECTION = "glimpse.widget.skip.collection"
+        const val EXTRA_SKIP_HEAD = "glimpse.widget.skip.expected_head"
     }
 }
 
@@ -94,7 +107,18 @@ class GlimpseWidgetSkipWorker(context: Context, params: WorkerParameters) :
     CoroutineWorker(context, params) {
     override suspend fun doWork(): Result = try {
         val dao = GlimpseDatabase.open(applicationContext).dao()
-        WallpaperCommands(applicationContext, dao).skipNextPreview()
+        val collection = inputData.getString(
+            GlimpseWidgetActionReceiver.EXTRA_SKIP_COLLECTION
+        ).orEmpty()
+        val expected = inputData.getString(
+            GlimpseWidgetActionReceiver.EXTRA_SKIP_HEAD
+        ).orEmpty()
+        if (collection.isBlank() || !expected.matches(Regex("[0-9a-f]{64}"))) {
+            return Result.failure()
+        }
+        WallpaperCommands(applicationContext, dao).skipNextPreview(collection, expected)
+        // Even an old/stale tap should replace the outdated widget preview.
+        GlimpseHomeWidgetRefresh.enqueue(applicationContext)
         Result.success()
     } catch (cancel: CancellationException) {
         throw cancel
@@ -172,7 +196,9 @@ class GlimpseHomeWidgetRefreshWorker(
 
             // Skip is offered only beside a SHA-verified visible next image.
             // A registered but damaged original must not create a blind skip.
-            val skipVisible = decision.canSkipNext && verifiedThumb != null
+            val skipVisible = decision.canSkipNext && verifiedThumb != null &&
+                !rotation?.collectionId.isNullOrBlank() &&
+                !decision.knownNextId.isNullOrBlank()
             try {
                 val manager = AppWidgetManager.getInstance(context)
                 for (widgetId in widgetIds) {
@@ -191,7 +217,9 @@ class GlimpseHomeWidgetRefreshWorker(
                     )
                     if (skipVisible) {
                         views.setOnClickPendingIntent(
-                            R.id.glimpse_widget_skip, skipPreviewIntent(context)
+                            R.id.glimpse_widget_skip,
+                            skipPreviewIntent(context, rotation!!.collectionId!!,
+                                decision.knownNextId!!)
                         )
                     }
                     views.setContentDescription(
@@ -306,9 +334,13 @@ class GlimpseHomeWidgetRefreshWorker(
             PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
     }
 
-    private fun skipPreviewIntent(context: Context): PendingIntent {
+    private fun skipPreviewIntent(
+        context: Context, collectionId: String, expectedPhotoId: String
+    ): PendingIntent {
         val intent = Intent(context, GlimpseWidgetActionReceiver::class.java).apply {
             action = GlimpseWidgetActionReceiver.ACTION_SKIP_PREVIEW
+            putExtra(GlimpseWidgetActionReceiver.EXTRA_SKIP_COLLECTION, collectionId)
+            putExtra(GlimpseWidgetActionReceiver.EXTRA_SKIP_HEAD, expectedPhotoId)
             addFlags(Intent.FLAG_RECEIVER_FOREGROUND)
         }
         return PendingIntent.getBroadcast(context, 3, intent,
