@@ -101,7 +101,9 @@ class WallpaperCommands(
      * It makes NO WallpaperManager call and does not alter the due time,
      * previous acknowledgment, current wallpaper, or rotation active state.
      */
-    suspend fun skipNextPreview(): String = mutex.withLock {
+    suspend fun skipNextPreview(
+        expectedCollectionId: String, expectedPhotoId: String
+    ): String = mutex.withLock {
         val previous = dao.readRotation()
             ?: return@withLock "Choose a shuffle collection before skipping."
         if (previous.pendingPhotoId != null) {
@@ -109,12 +111,16 @@ class WallpaperCommands(
         }
         val source = previous.collectionId
             ?: return@withLock "Choose a shuffle collection before skipping."
+        if (source != expectedCollectionId) {
+            return@withLock "Saved shuffle collection changed since widget preview."
+        }
         if (previous.remainingJson.length > 1_000_000) {
             return@withLock "Saved queue is too large to skip safely."
         }
         val ids = dao.photosIn(source).map { it.id }
         val updated = ShuffleBag.skipKnownNext(
-            ids, decodeBag(previous.remainingJson), previous.lastAcknowledgedPhotoId
+            ids, decodeBag(previous.remainingJson), previous.lastAcknowledgedPhotoId,
+            expectedPhotoId
         ) ?: return@withLock "No confirmed different next photo is available to skip."
         dao.saveRotation(previous.copy(
             remainingJson = encodeBag(updated),
