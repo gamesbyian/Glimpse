@@ -1,0 +1,138 @@
+name: Glimpse Android installed-data update acceptance
+
+# Test an old->new APK upgrade with a *temporary one-run* signing identity.
+# This does not satisfy owner-controlled stable signing or release signing.
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - ".github/workflows/android-in-place-upgrade.yml"
+      - "scripts/verify-android-in-place-upgrade.py"
+      - "app/build.gradle.kts"
+      - "app/src/main/java/io/github/gamesbyian/glimpse/data/GlimpseDatabase.kt"
+      - "app/src/main/java/io/github/gamesbyian/glimpse/data/PhotoImporter.kt"
+      - "app/src/debug/java/io/github/gamesbyian/glimpse/debug/VisualFixtureLauncher.kt"
+      - "app/src/main/AndroidManifest.xml"
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/android-in-place-upgrade.yml"
+      - "scripts/verify-android-in-place-upgrade.py"
+      - "app/build.gradle.kts"
+      - "app/src/main/java/io/github/gamesbyian/glimpse/data/GlimpseDatabase.kt"
+      - "app/src/main/java/io/github/gamesbyian/glimpse/data/PhotoImporter.kt"
+      - "app/src/main/AndroidManifest.xml"
+permissions:
+  contents: read
+concurrency:
+  group: glimpse-upgrade-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  populated-install-over-update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 50
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+      - uses: gradle/actions/setup-gradle@v4
+      - name: Prepare Android 37 compilation
+        shell: bash
+        run: |
+          set -euo pipefail
+          printf 'y\n' | "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --channel=3 "platforms;android-37.0" "build-tools;36.0.0"
+          if [ -d "$ANDROID_HOME/platforms/android-37.0" ] && [ ! -e "$ANDROID_HOME/platforms/android-37" ]; then
+            ln -s "$ANDROID_HOME/platforms/android-37.0" "$ANDROID_HOME/platforms/android-37"
+          fi
+      - name: Create isolated one-run signing identity, never publish its key
+        shell: bash
+        run: |
+          set -euo pipefail
+          umask 077
+          store="$RUNNER_TEMP/glimpse-upgrade-only.p12"
+          pass="$(python3 -c 'import secrets; print(secrets.token_urlsafe(32))')"
+          echo "::add-mask::$pass"
+          keytool -genkeypair -noprompt -keyalg RSA -keysize 3072 \
+            -validity 2 -alias upgrade-fixture -storetype PKCS12 \
+            -keystore "$store" -storepass "$pass" -keypass "$pass" \
+            -dname "CN=Glimpse Disposable Update Test,O=Glimpse CI,C=CA"
+          {
+            echo "GLIMPSE_CI_DEBUG_KEYSTORE_PATH=$store"
+            echo "GLIMPSE_CI_DEBUG_STORE_PASSWORD=$pass"
+            echo "GLIMPSE_CI_DEBUG_KEY_ALIAS=upgrade-fixture"
+            echo "GLIMPSE_CI_DEBUG_KEY_PASSWORD=$pass"
+          } >> "$GITHUB_ENV"
+          echo "::notice::One-run test-only signing. Production owner signing still required."
+      - name: Build old main/base APK without modifying its source
+        shell: bash
+        env:
+          PR_BASE: ${{ github.event.pull_request.base.sha }}
+          PUSH_BEFORE: ${{ github.event.before }}
+        run: |
+          set -euo pipefail
+          base="$PR_BASE"
+          if [[ -z "$base" || "$base" == "null" ]]; then base="$PUSH_BEFORE"; fi
+          if [[ -z "$base" || "$base" == "null" || "$base" =~ ^0+$ ]]; then
+            base="$(git rev-parse HEAD^)"
+          fi
+          git cat-file -e "$base^{commit}"
+          git worktree add --detach "$RUNNER_TEMP/glimpse-upgrade-baseline" "$base"
+          (
+            cd "$RUNNER_TEMP/glimpse-upgrade-baseline"
+            ./gradlew --no-daemon :app:assembleDebug
+          )
+          cp "$RUNNER_TEMP/glimpse-upgrade-baseline/app/build/outputs/apk/debug/app-debug.apk" \
+            "$RUNNER_TEMP/glimpse-before.apk"
+      - name: Build candidate with SAME isolated signing identity
+        shell: bash
+        run: |
+          set -euo pipefail
+          ./gradlew --no-daemon :app:assembleDebug
+          cp app/build/outputs/apk/debug/app-debug.apk "$RUNNER_TEMP/glimpse-after.apk"
+      - name: Prove both certificates match before installation
+        shell: bash
+        run: |
+          set -euo pipefail
+          signer="$ANDROID_HOME/build-tools/36.0.0/apksigner"
+          old="$("$signer" verify --print-certs "$RUNNER_TEMP/glimpse-before.apk" |
+            sed -n 's/.*Signer #1 certificate SHA-256 digest: //p')"
+          new="$("$signer" verify --print-certs "$RUNNER_TEMP/glimpse-after.apk" |
+            sed -n 's/.*Signer #1 certificate SHA-256 digest: //p')"
+          [[ -n "$old" && "$old" == "$new" ]] || {
+            echo "::error::Upgrade fixture signatures differ; abort before touching Android data."
+            exit 1
+          }
+          echo "PASS: public SHA-256 signing certificate identical for both test APKs"
+      - name: Enable emulator acceleration
+        shell: bash
+        run: if test -e /dev/kvm; then sudo chmod a+rw /dev/kvm; fi
+      - name: Install populated old app, then update over it without data loss
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 34
+          target: default
+          arch: x86_64
+          profile: pixel_5
+          cores: 2
+          ram-size: 3072
+          emulator-boot-timeout: 360
+          disable-animations: true
+          emulator-options: -no-window -gpu swiftshader_indirect -no-snapshot -noaudio -no-boot-anim
+          script: |
+            python3 scripts/verify-android-in-place-upgrade.py \
+              --old "$RUNNER_TEMP/glimpse-before.apk" \
+              --new "$RUNNER_TEMP/glimpse-after.apk" \
+              --report artifacts/upgrade-evidence.json
+      - name: Retain only aggregate upgrade evidence, never raw images or keys
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: glimpse-in-place-upgrade-aggregates
+          path: artifacts/upgrade-evidence.json
+          retention-days: 14
+          if-no-files-found: warn
