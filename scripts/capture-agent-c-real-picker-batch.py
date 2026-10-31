@@ -48,10 +48,21 @@ def read_json(name):
     raise RuntimeError("Missing debug-only test receipt "+name)
 
 def wait_count(n):
-    for _ in range(40):
+    last=""
+    for attempt in range(42):
         ui=base.hierarchy()
+        last=ui
         if "Photos: "+str(n) in ui and "No images yet." not in ui:return ui
+        if attempt % 3 == 2 and "com.android.providers.media.module" not in ui:
+            # The real Photo count is below the fixed-edge Reel in Home,
+            # and UIAutomator excludes below-fold Compose nodes.
+            base.swipe("up")
         time.sleep(.8)
+    (base.OUT / ("batch-photo-count-"+str(n)+"-not-visible.xml")).write_text(
+        last, encoding="utf-8"
+    )
+    base.capture_failure("picker-batch-count-missing",
+        "Actual Android batch picker returned but expected Room count was not visible")
     raise RuntimeError("Production Glimpse UI did not show exact Photos: "+str(n))
 
 def main(out):
@@ -59,7 +70,25 @@ def main(out):
     base.OUT=out
     assert base.adb("shell","getprop","ro.kernel.qemu").strip()=="1", "REFUSE physical handset"
     base.start_fixture(0)
-    assert "No images yet." in base.hierarchy(), "Collection not initially empty"
+    # Fixture readiness means Room writes completed, not that Activity/Compose
+    # has completed its first StateFlow and layout emission. Wait for the
+    # actual empty production UI rather than reading one transient hierarchy.
+    initial_xml = ""
+    for attempt in range(20):
+        initial_xml = base.hierarchy()
+        if "No images yet." in initial_xml and "Photos: 0" in initial_xml:
+            break
+        if attempt % 2 == 1:
+            # Home's actual collection count and empty state live *below*
+            # the photographic cover and controls. UIAutomator reports only
+            # visible descendants. Look at the real viewport while scrolling.
+            base.swipe("up")
+        time.sleep(.6)
+    else:
+        (out / "initial-empty-state-not-rendered.xml").write_text(
+            initial_xml, encoding="utf-8"
+        )
+        raise RuntimeError("Initial empty Room collection state not visible after scrolling")
     base.adb("shell","am","start","-n",FIXTURE)
     receipt=read_json("batch-fixture-ready.json")
     assert receipt.get("status")=="READY" and len(receipt.get("photos",[]))==2, str(receipt)
@@ -71,7 +100,7 @@ def main(out):
         originals[idx]=raw
         (out/("batch-published-"+str(idx)+".jpg")).write_bytes(raw)
     assert receipt["photos"][0]["sha"] != receipt["photos"][1]["sha"]
-    base.click_label("Add photos")
+    base.reach_and_click("Add photos", "down", attempts=14)
     time.sleep(2.0)
     visible=nodes()
     assert PICKER in {n.attrib.get("package") for n in visible}, "Native Android OS Photo Picker not present"
