@@ -7,6 +7,26 @@ import kotlin.random.Random
  * cycle boundary; removing unavailable photos does not skip a valid entry.
  */
 object ShuffleBag {
+    /**
+     * Explicitly move a known next preview to the tail of the saved cycle.
+     * The skipped photo is retained rather than silently excluded forever;
+     * Home wallpaper and timing are untouched. No random new candidate is
+     * invented and no pending Android acknowledgment is consumed.
+     *
+     * Returning null means there is no *known different* next candidate.
+     */
+    fun skipKnownNext(
+        available: Collection<String>,
+        remaining: List<String>,
+        lastAcknowledged: String?
+    ): List<String>? {
+        val valid = available.toSet()
+        val retained = remaining.filter { it in valid }.distinct()
+        if (retained.size < 2) return null
+        if (retained[1] == lastAcknowledged) return null
+        return retained.drop(1) + retained.first()
+    }
+
     fun replenish(
         available: Collection<String>,
         remaining: List<String>,
