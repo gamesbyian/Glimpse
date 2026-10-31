@@ -282,6 +282,15 @@ class GlimpseHomeWidgetRefreshWorker(
                     if (skipVisible) {
                         views.setTextViewText(R.id.glimpse_widget_action, "APPLY HOME")
                     }
+                    // Report the last saved Skip outcome through the same
+                    // Room rotation record used by the wallpaper gateway.
+                    // A stale/refused tap never claims a fresh OS change.
+                    if (rotation?.outcome?.startsWith("Skipped one upcoming image") == true) {
+                        views.setTextViewText(
+                            R.id.glimpse_widget_explainer,
+                            "Saved Skip: previous preview moved later. Home wallpaper unchanged."
+                        )
+                    }
                     if (verifiedThumb != null) {
                         views.setImageViewBitmap(R.id.glimpse_widget_preview, verifiedThumb)
                         views.setContentDescription(R.id.glimpse_widget_preview,
