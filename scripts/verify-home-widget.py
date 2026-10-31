@@ -48,6 +48,11 @@ assert int(get(button, "layout_height").removesuffix("dp")) >= 48
 assert get(button, "contentDescription"), "Action must identify purpose"
 assert "@+id/glimpse_widget_preview" in children
 assert "@+id/glimpse_widget_status" in children
+skip = children["@+id/glimpse_widget_skip"]
+assert int(get(skip, "layout_width").removesuffix("dp")) >= 48
+assert int(get(skip, "layout_height").removesuffix("dp")) >= 48
+assert get(skip, "visibility") == "gone", "Skip is unavailable until a verified preview"
+assert "Skip" in get(skip, "contentDescription")
 
 receiver_source = (
     ROOT / "app/src/main/java/io/github/gamesbyian/glimpse/GlimpseHomeWidget.kt"
@@ -57,5 +62,11 @@ assert "PendingIntent.FLAG_IMMUTABLE" in receiver_source
 assert "verifyPrivateOriginal(" in receiver_source
 assert "WidgetPreviewKind.UNCERTAIN" in receiver_source
 assert "maxEdge = 256" in receiver_source
+assert "ACTION_SKIP_PREVIEW" in receiver_source
+assert "OneTimeWorkRequestBuilder<GlimpseWidgetSkipWorker>()" in receiver_source
+assert "WallpaperCommands(applicationContext, dao).skipNextPreview()" in receiver_source
+assert "private fun skipPreviewIntent" in receiver_source
+assert "if (skipVisible) View.VISIBLE else View.GONE" in receiver_source
+assert "verifiedThumb != null" in receiver_source
 print("PASS: Home widget lifecycle/action boundary, no added permission, "
       "30min+ refresh, 48dp action, immutable PendingIntent and verified local thumb")
