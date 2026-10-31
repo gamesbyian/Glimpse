@@ -254,9 +254,17 @@ def main(out):
         )
     base.capture("05-after-repeat-real-picker-duplicate-report",
                  "Actual Android UI shows imported 0 / duplicates 1 immediately beside Add photos")
-    for _ in range(3):
+    # Restore the Room-backed photo count without assuming a fixed number
+    # of screens was needed to reveal the paired action/result.
+    for _ in range(14):
+        visible = base.hierarchy()
+        if ("Photos: 1" in visible or "Share 1 originals" in visible) and \
+                "No images yet." not in visible:
+            break
         base.swipe("down")
-    if not wait_for_photo_count(1, timeout=8, scroll=True):
+    else:
+        base.capture_failure("post-duplicate-count-not-restored",
+                             "Photo count not visible after bounded upward page traversal")
         raise RuntimeError("Failed to restore Photos: 1 view after checking duplicate report")
     assert base.adb("exec-out","run-as",APP,"cat",
                     "files/originals/"+record["sourceSHA256"]+".jpg",
