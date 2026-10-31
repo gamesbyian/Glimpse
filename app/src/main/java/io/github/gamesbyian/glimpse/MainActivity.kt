@@ -359,6 +359,11 @@ private fun GlimpseScreen(
                 }
             }
             GlimpseWallpaperSummary(state)
+            // Until a collection exists there is no Add photos section to own
+            // action feedback. Keep the initial onboarding/errors visible.
+            if (state.collections.isEmpty()) {
+                Text(state.message, style = MaterialTheme.typography.bodyMedium)
+            }
             if (state.collections.isEmpty() || showNewCollection) {
                 Text(
                     if (state.collections.isEmpty()) "Start with a collection of photographs."
@@ -598,6 +603,15 @@ private fun GlimpseScreen(
                 if (clipboardFeedback != null) {
                     Text(clipboardFeedback!!, style = MaterialTheme.typography.bodySmall)
                 }
+                // Keep import/duplicate/error results directly beside Add photos.
+                // The previously bottom-of-page status sat behind the fixed
+                // paper Reel on 320dp and normal portrait screens, making
+                // successful duplicate detection effectively invisible.
+                Text(
+                    state.message,
+                    style = MaterialTheme.typography.bodyMedium,
+                    modifier = Modifier.fillMaxWidth()
+                )
                 if (state.deferredPickerCount > 0) {
                     Text(
                         "Android returned ${state.deferredPickerCount} selected image(s) " +
@@ -692,7 +706,6 @@ private fun GlimpseScreen(
                 }
             }
             RotationPanel(state, model)
-            Text(state.message, style = MaterialTheme.typography.bodyMedium)
             Text(
                 "Paper-reel finish and motion are still being evaluated on physical Android devices.",
                 style = MaterialTheme.typography.bodySmall
