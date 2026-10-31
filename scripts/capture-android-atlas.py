@@ -814,16 +814,43 @@ def main():
                 capture_failure("background-consent-not-exposed",
                                 "Rotation Details lacked opt-in disclosure")
                 raise RuntimeError("Best-effort background consent setting missing")
-            reach_and_click("Enable best-effort background wallpaper checks",
-                            "up", attempts=7)
-            opted_in = hierarchy()
-            if "Background checks enabled (best effort)" not in opted_in:
+            # A fixed, touchable paper reel occupies the lower-left corner.
+            # UIAutomator can report a Compose Switch behind that overlay as
+            # visible and clickable, even though the real touch hits the reel.
+            # Scroll the switch above the reel BEFORE tapping. This verifies
+            # the user's actual interaction instead of trusting accessibility
+            # hierarchy presence as a physical hit-test.
+            toggle_label = "Enable best-effort background wallpaper checks"
+            _, screen_h, _ = screen_geometry()
+            for _ in range(9):
+                left, top, right, bottom = accessible_bounds(hierarchy(), toggle_label)
+                if (top + bottom) // 2 < int(screen_h * .55):
+                    break
+                swipe("up")
+            else:
+                capture_failure("background-consent-switch-occluded",
+                                "Cannot scroll the real Switch above fixed bottom Reel")
+                raise RuntimeError("Background consent switch remains under fixed Reel")
+            click_label(toggle_label)
+            for _ in range(8):
+                opted_in = hierarchy()
+                if "Background checks enabled (best effort)" in opted_in:
+                    break
+                time.sleep(.45)
+            else:
+                capture_failure("background-consent-opt-in-not-applied",
+                                "Visible Switch tap did not enable persisted consent")
                 raise RuntimeError("Explicit background consent failed to update visible state")
             capture("22-opt-in-background-rotation",
                     "Opt-in OS work disclosure distinguishes 15min+ background from visible five-minute")
-            reach_and_click("Enable best-effort background wallpaper checks",
-                            "up", attempts=7)
-            if "Allow background wallpaper checks" not in hierarchy():
+            click_label(toggle_label)
+            for _ in range(8):
+                if "Allow background wallpaper checks" in hierarchy():
+                    break
+                time.sleep(.45)
+            else:
+                capture_failure("background-consent-opt-out-not-applied",
+                                "Visible Switch tap did not disable persisted consent")
                 raise RuntimeError("Background opt-out did not restore disabled state")
             capture("22-opt-out-background-rotation",
                     "Background work explicitly disabled without changing Home wallpaper")
