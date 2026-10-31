@@ -68,6 +68,7 @@ assert "WallpaperCommands(applicationContext, dao).skipNextPreview(collection, e
 assert "EXTRA_SKIP_HEAD" in receiver_source
 assert "EXTRA_SKIP_COLLECTION" in receiver_source
 assert "putExtra(GlimpseWidgetActionReceiver.EXTRA_SKIP_HEAD, expectedPhotoId)" in receiver_source
+assert 'setIdentifier("widget-skip:$collectionId:$expectedPhotoId")' in receiver_source
 assert "private fun skipPreviewIntent" in receiver_source
 assert "if (skipVisible) View.VISIBLE else View.GONE" in receiver_source
 assert "verifiedThumb != null" in receiver_source
