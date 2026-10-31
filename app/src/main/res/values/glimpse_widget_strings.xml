@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="glimpse_widget_description">Preview the next known saved Home shuffle image and request one Home wallpaper change. Preview updates are best effort.</string>
+</resources>
