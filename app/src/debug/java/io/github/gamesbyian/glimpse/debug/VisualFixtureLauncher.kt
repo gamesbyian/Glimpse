@@ -24,6 +24,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.io.File
 import java.security.MessageDigest
+import org.json.JSONArray
 
 /**
  * Debug build only: seed deterministic actual Room content then open the
@@ -42,14 +43,15 @@ class VisualFixtureLauncher : ComponentActivity() {
         }
         val count = intent.getIntExtra("count", 22).coerceIn(0, 60)
         val active = intent.getBooleanExtra("active", false)
+        val knownQueue = intent.getBooleanExtra("knownQueue", false)
         lifecycleScope.launch {
-            withContext(Dispatchers.IO) { seed(count, active) }
+            withContext(Dispatchers.IO) { seed(count, active, knownQueue) }
             startActivity(Intent(this@VisualFixtureLauncher, MainActivity::class.java))
             finish()
         }
     }
 
-    private suspend fun seed(count: Int, active: Boolean) {
+    private suspend fun seed(count: Int, active: Boolean, knownQueue: Boolean) {
         verifyOrientationDecode()
         val dao = GlimpseDatabase.open(applicationContext).dao()
         val collectionId = "visual-atlas-$count"
@@ -121,7 +123,11 @@ class VisualFixtureLauncher : ComponentActivity() {
             dao.saveRotation(RotationRecord(
                 collectionId = collectionId,
                 active = true,
-                // Explicitly no wallpaper command during the capture window.
+                // The separate widget Skip test requests an already selected
+                // persistent queue. Never issue an OS wallpaper command.
+                remainingJson = if (knownQueue)
+                    JSONArray(dao.photosIn(collectionId).map { it.id }).toString()
+                else "[]",
                 nextEligibleAt = System.currentTimeMillis() + 12 * 60_000L,
                 outcome = "VISUAL FIXTURE ONLY; no OS wallpaper was changed"
             ))
