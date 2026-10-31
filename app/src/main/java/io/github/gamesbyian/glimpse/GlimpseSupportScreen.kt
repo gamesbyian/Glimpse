@@ -144,7 +144,13 @@ internal fun GlimpseSupportScreen(
             "On Android, edit your Quick Settings tiles to add Next Home photo. " +
                 "This requests one change from the saved shuffle collection, " +
                 "even when rotation is paused. Android may delay the request; " +
-                "open Glimpse to verify the outcome. The tile cannot set Lock wallpaper."
+                "open Glimpse to verify the outcome. The tile cannot set Lock wallpaper.",
+            "Add Glimpse Home from Android's widget picker to preview the next saved " +
+                "shuffle photo when its identity can be verified. If the next " +
+                "photo is not established, the widget says so instead of " +
+                "inventing a preview. CHANGE HOME is an explicit request, not " +
+                "a confirmed Android result; widget refresh is OS-delayed " +
+                "and is not a five-minute background scheduler."
         )
         SupportSection(
             "SHARING & ORIGINALS",
@@ -184,9 +190,11 @@ internal fun GlimpseSupportScreen(
             "Counts are physical SHA-named files and file lengths, not the number " +
                 "of photos assigned to a collection or a fresh integrity check. " +
                 "The same original may belong to multiple collections.",
-            "This screen never deletes files. Temporary fragments may be active or " +
-                "awaiting cleanup; do not manually remove imported originals because " +
-                "that can break collection access and sharing."
+            "This screen never deletes files. A nonempty import fragment may hold the " +
+                "only complete photo after an interrupted publication; Glimpse " +
+                "preserves those bytes pending verified recovery. Never manually " +
+                "delete a fragment or imported original, clear app storage, or " +
+                "uninstall merely to solve an import failure."
         )
         OutlinedButton(
             modifier = Modifier.heightIn(min = 48.dp),
