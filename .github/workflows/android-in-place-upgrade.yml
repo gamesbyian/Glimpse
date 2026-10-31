@@ -123,11 +123,9 @@ jobs:
           emulator-boot-timeout: 360
           disable-animations: true
           emulator-options: -no-window -gpu swiftshader_indirect -no-snapshot -noaudio -no-boot-anim
-          script: |
-            python3 scripts/verify-android-in-place-upgrade.py \
-              --old "$RUNNER_TEMP/glimpse-before.apk" \
-              --new "$RUNNER_TEMP/glimpse-after.apk" \
-              --report artifacts/upgrade-evidence.json
+          # Emulator runner executes script fragments separately: argument-bearing
+          # command must be a single shell line, not a continued YAML block.
+          script: python3 scripts/verify-android-in-place-upgrade.py --old "$RUNNER_TEMP/glimpse-before.apk" --new "$RUNNER_TEMP/glimpse-after.apk" --report artifacts/upgrade-evidence.json
       - name: Retain only aggregate upgrade evidence, never raw images or keys
         if: always()
         uses: actions/upload-artifact@v4
