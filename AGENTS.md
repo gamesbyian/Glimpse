@@ -4,7 +4,7 @@
 
 # Glimpse agent guide
 
-> **Coverage accounting:** The source-traced [73-workflow crosswalk](docs/quality/IMPLEMENTATION-COVERAGE-2026-10-28.md) remains **4 complete / 16 partial / 53 unimplemented = 16.4% scenario-equivalent**, with M1 at 75%, until explicitly recomputed against merged source and accepted tests. Technical foundations, conceptual mockups, drafts and emulator-only evidence do not inflate these counts.
+> **Coverage accounting:** The source-traced [73-workflow crosswalk](docs/quality/IMPLEMENTATION-COVERAGE-2026-10-28.md) remains **4 complete / 17 partial / 52 unimplemented = 17.1% scenario-equivalent** after merged #142 makes W61 a partial widget workflow; M1 stays at 75%. Only accepted user-facing scenarios affect this tally. Technical foundations, conceptual mockups, drafts and emulator-only evidence do not inflate these counts.
 
 Glimpse is an **installable native Android wallpaper manager** with actual photographed paper-reel interactions, an edge-to-edge Home, verified Android Photo Picker/offline originals, edited sharing, and a dedicated contact sheet. The integration suite has passed full running-emulator journeys, but **final Pixel-device visual/tactile approval, background rotation reliability, real TalkBack, stable release signing and a publishable release are still open**. Source code, mockups, unit tests, emulator evidence, and an owner-tested handset remain distinct evidence classes.
 
