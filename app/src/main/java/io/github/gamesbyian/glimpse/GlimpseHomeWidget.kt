@@ -114,12 +114,13 @@ class GlimpseWidgetSkipWorker(context: Context, params: WorkerParameters) :
             GlimpseWidgetActionReceiver.EXTRA_SKIP_HEAD
         ).orEmpty()
         if (collection.isBlank() || !expected.matches(Regex("[0-9a-f]{64}"))) {
-            return Result.failure()
+            Result.failure()
+        } else {
+            WallpaperCommands(applicationContext, dao).skipNextPreview(collection, expected)
+            // Even a stale tap should replace the outdated widget preview.
+            GlimpseHomeWidgetRefresh.enqueue(applicationContext)
+            Result.success()
         }
-        WallpaperCommands(applicationContext, dao).skipNextPreview(collection, expected)
-        // Even an old/stale tap should replace the outdated widget preview.
-        GlimpseHomeWidgetRefresh.enqueue(applicationContext)
-        Result.success()
     } catch (cancel: CancellationException) {
         throw cancel
     } catch (_: Exception) {
