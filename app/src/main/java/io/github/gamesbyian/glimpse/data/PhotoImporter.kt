@@ -182,6 +182,14 @@ internal fun publishPrivateOriginalExclusively(
 }
 
 /**
+ * A complete validated stage is itself user data until the immutable SHA
+ * publication has successfully finished. A failed CREATE_NEW copy must not
+ * destroy the only complete source in the importer's finally block.
+ */
+internal fun canDiscardImportStaging(validated: Boolean, published: Boolean): Boolean =
+    !validated || published
+
+/**
  * Snapshot-only: never modifies provider URIs. Private copies remain valid after
  * Photo Picker's temporary URI grants expire. No broad media permission is used.
  */
@@ -266,6 +274,8 @@ class PhotoImporter(private val context: Context, private val dao: GlimpseDao) {
     private suspend fun copyOne(uri: Uri, collectionId: String): Boolean {
         requirePrivateImportRoot(originals)
         val temp = File.createTempFile("import-", ".partial", originals)
+        var validatedStaging = false
+        var publishedOriginal = false
         try {
             val digest = MessageDigest.getInstance("SHA-256")
             var size = 0L
@@ -302,9 +312,14 @@ class PhotoImporter(private val context: Context, private val dao: GlimpseDao) {
                 else -> ".jpg"
             }
             val target = File(originals, hex + extension)
+            // A fully read, fsynced, image-validated source must be retained
+            // if the final SHA-name publication fails. A future recovery
+            // receipt will link the two names without persisting provider URIs.
+            validatedStaging = true
             // Atomic no-replace publication. A raced matching SHA verifies and
             // deduplicates; an existing corrupt/symlinked file is never replaced.
             publishPrivateOriginalExclusively(temp, target, hex, size)
+            publishedOriginal = true
             val photo = PhotoRecord(
                 id = hex,
                 sha256 = hex,
@@ -325,7 +340,11 @@ class PhotoImporter(private val context: Context, private val dao: GlimpseDao) {
             return dao.attachIfCollectionExists(photo, collectionId)
                 ?: error("The destination collection was removed during import. Re-select it and retry.")
         } finally {
-            temp.delete()
+            // Preserve the last complete staging copy on a failed publish.
+            // Normal success and unverified/empty staging clean up as before.
+            if (canDiscardImportStaging(validatedStaging, publishedOriginal)) {
+                temp.delete()
+            }
         }
     }
 }
