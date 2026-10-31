@@ -342,6 +342,10 @@ class GlimpseHomeWidgetRefreshWorker(
             action = GlimpseWidgetActionReceiver.ACTION_SKIP_PREVIEW
             putExtra(GlimpseWidgetActionReceiver.EXTRA_SKIP_COLLECTION, collectionId)
             putExtra(GlimpseWidgetActionReceiver.EXTRA_SKIP_HEAD, expectedPhotoId)
+            // PendingIntent identity ignores extras. Distinguish previews by
+            // their identity so FLAG_UPDATE_CURRENT cannot silently retarget
+            // an old launcher tap to an entirely different visible photo.
+            setIdentifier("widget-skip:$collectionId:$expectedPhotoId")
             addFlags(Intent.FLAG_RECEIVER_FOREGROUND)
         }
         return PendingIntent.getBroadcast(context, 3, intent,
