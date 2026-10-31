@@ -34,6 +34,29 @@ class ShuffleBagTest {
         )
     }
 
+    @Test fun explicitSkipRotatesKnownHeadWithoutDroppingOrRepeatingIds() {
+        val previous = listOf("a", "b", "c")
+        val next = ShuffleBag.skipKnownNext(listOf("a", "b", "c"), previous, "z")
+        assertEquals(listOf("b", "c", "a"), next)
+        assertEquals(listOf("a", "b", "c"), previous)
+        assertEquals(previous.toSet(), next!!.toSet())
+    }
+
+    @Test fun skipNeverUsesStaleIdsOrInventsUnknownCycle() {
+        assertEquals(
+            listOf("c", "b"),
+            ShuffleBag.skipKnownNext(listOf("b", "c"), listOf("missing", "b", "c"), "a")
+        )
+        assertEquals(null, ShuffleBag.skipKnownNext(listOf("b"), listOf("b"), "a"))
+        assertEquals(null, ShuffleBag.skipKnownNext(listOf("b", "c"), emptyList(), "a"))
+    }
+
+    @Test fun skipRefusesAlternativeThatIsAlreadyAppliedHome() {
+        assertEquals(null, ShuffleBag.skipKnownNext(
+            listOf("a", "b"), listOf("a", "b"), "b"
+        ))
+    }
+
     @Test fun emptyAndSingletonDoNotInventExtraPhotos() {
         assertTrue(ShuffleBag.replenish(emptyList(), emptyList(), null).isEmpty())
         assertEquals(listOf("a"), ShuffleBag.replenish(listOf("a"), emptyList(), "a"))
