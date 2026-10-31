@@ -41,26 +41,51 @@ class StalePartialImportTest {
         assertFalse(PhotoImporter.isStaleImportPartial("import-x.partial", now + 100L, now))
     }
 
-    @Test fun filesystemRecoveryRemovesOnlyOldPartialFragments() {
+    @Test fun onlyEmptyOldPlaceholdersAreCleanedWhileDataBearingStagesSurvive() {
         val root = temporary.newFolder("originals")
-        fun create(name: String, age: Long): File = File(root, name).apply {
-            writeText("private fixture")
-            assertTrue(setLastModified(now - age))
-        }
+        fun create(name: String, age: Long, bytes: ByteArray): File =
+            File(root, name).apply {
+                writeBytes(bytes)
+                assertTrue(setLastModified(now - age))
+            }
 
-        val stale = create("import-abandoned.partial", grace + 1000)
-        val recent = create("import-recent.partial", grace - 1000)
-        val finished = create("a".repeat(64) + ".jpg", grace + 1000)
-        val other = create("notes.partial", grace + 1000)
+        val salvageable = create(
+            "import-abandoned.partial", grace + 1000, "last complete staged image".toByteArray()
+        )
+        val empty = create("import-created-before-crash.partial", grace + 1000, byteArrayOf())
+        val recentEmpty = create("import-recent.partial", grace - 1000, byteArrayOf())
+        val finished = create("a".repeat(64) + ".jpg", grace + 1000, byteArrayOf())
+        val other = create("notes.partial", grace + 1000, byteArrayOf())
         val nested = File(root, "import-directory.partial").apply { mkdir() }
 
         assertEquals(1, pruneStalePartialFiles(root, now))
-        assertFalse(stale.exists())
-        assertTrue(recent.exists())
+        assertTrue(salvageable.exists())
+        assertEquals("last complete staged image", salvageable.readText())
+        assertFalse(empty.exists())
+        assertTrue(recentEmpty.exists())
         assertTrue(finished.exists())
         assertTrue(other.exists())
         assertTrue(nested.isDirectory)
         assertEquals(0, pruneStalePartialFiles(root, now))
+    }
+
+    @Test fun crashedExclusivePublicationPreservesFsyncedStagingAndIncompleteTarget() {
+        val root = temporary.newFolder("originals")
+        val stage = File(root, "import-interrupted.partial").apply {
+            writeBytes("entire verified source from Photo Picker".toByteArray())
+            assertTrue(setLastModified(now - grace - 1_000))
+        }
+        val existingDigest = File(root, "c".repeat(64) + ".jpg").apply {
+            writeBytes("partial finalization".toByteArray())
+            assertTrue(setLastModified(now - grace - 1_000))
+        }
+        val stageBefore = stage.readBytes()
+        val targetBefore = existingDigest.readBytes()
+        assertEquals(0, pruneStalePartialFiles(root, now))
+        assertTrue(stage.exists())
+        assertTrue(existingDigest.exists())
+        org.junit.Assert.assertArrayEquals(stageBefore, stage.readBytes())
+        org.junit.Assert.assertArrayEquals(targetBefore, existingDigest.readBytes())
     }
 
     @Test fun recoveryCannotEscapeOriginalsViaSymbolicLink() {
