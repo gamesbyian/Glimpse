@@ -8,6 +8,7 @@ import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
+import android.view.View
 import android.widget.RemoteViews
 import androidx.work.CoroutineWorker
 import androidx.work.ExistingWorkPolicy
@@ -20,6 +21,7 @@ import io.github.gamesbyian.glimpse.data.GlimpseDatabase
 import io.github.gamesbyian.glimpse.data.PhotoRecord
 import io.github.gamesbyian.glimpse.data.RotationRecord
 import io.github.gamesbyian.glimpse.data.verifyPrivateOriginal
+import io.github.gamesbyian.glimpse.domain.WallpaperCommands
 import io.github.gamesbyian.glimpse.domain.WidgetPreviewKind
 import io.github.gamesbyian.glimpse.domain.widgetPreviewDecision
 import kotlinx.coroutines.CancellationException
@@ -58,17 +60,46 @@ class GlimpseHomeWidgetProvider : AppWidgetProvider() {
  */
 class GlimpseWidgetActionReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent) {
-        if (intent.action != ACTION_CHANGE_HOME ||
-            !GlimpseHomeWidgetRefresh.hasWidgets(context)) return
-        val request = OneTimeWorkRequestBuilder<QuickHomeTileWorker>().build()
-        WorkManager.getInstance(context).enqueueUniqueWork(
-            QuickHomeTileService.UNIQUE_WORK, ExistingWorkPolicy.KEEP, request
-        )
+        if (!GlimpseHomeWidgetRefresh.hasWidgets(context)) return
+        when (intent.action) {
+            ACTION_CHANGE_HOME -> {
+                val request = OneTimeWorkRequestBuilder<QuickHomeTileWorker>().build()
+                WorkManager.getInstance(context).enqueueUniqueWork(
+                    QuickHomeTileService.UNIQUE_WORK, ExistingWorkPolicy.KEEP, request
+                )
+            }
+            ACTION_SKIP_PREVIEW -> {
+                val request = OneTimeWorkRequestBuilder<GlimpseWidgetSkipWorker>().build()
+                WorkManager.getInstance(context).enqueueUniqueWork(
+                    "glimpse-widget-user-skip-preview", ExistingWorkPolicy.KEEP, request
+                )
+            }
+        }
     }
 
     companion object {
         const val ACTION_CHANGE_HOME =
             "io.github.gamesbyian.glimpse.action.USER_WIDGET_NEXT_HOME"
+        const val ACTION_SKIP_PREVIEW =
+            "io.github.gamesbyian.glimpse.action.USER_WIDGET_SKIP_PREVIEW"
+    }
+}
+
+/**
+ * Only a user tap through the private widget action receiver can request
+ * a skip. Use the same serialized Room/WallpaperCommands state gateway.
+ * The gateway never invokes WallpaperManager for this operation.
+ */
+class GlimpseWidgetSkipWorker(context: Context, params: WorkerParameters) :
+    CoroutineWorker(context, params) {
+    override suspend fun doWork(): Result = try {
+        val dao = GlimpseDatabase.open(applicationContext).dao()
+        WallpaperCommands(applicationContext, dao).skipNextPreview()
+        Result.success()
+    } catch (cancel: CancellationException) {
+        throw cancel
+    } catch (_: Exception) {
+        Result.failure()
     }
 }
 
@@ -118,13 +149,15 @@ class GlimpseHomeWidgetRefreshWorker(
             val hasPhotos = liveCount > 0
             val solePhotoId = if (liveCount == 1 && rotation?.collectionId != null)
                 dao.widgetSoleSourcePhotoId(rotation.collectionId) else null
-            val nextPhoto = if (rotation != null && collection != null && hasPhotos &&
+            val nextCandidates = if (rotation != null && collection != null && hasPhotos &&
                 rotation.pendingPhotoId == null) {
-                knownNextPhoto(dao, rotation)
-            } else null
+                knownNextCandidates(dao, rotation)
+            } else emptyList()
+            val nextPhoto = nextCandidates.firstOrNull()
             val decision = widgetPreviewDecision(
                 rotation, collection != null && hasPhotos, nextPhoto?.id,
-                soleEligiblePhotoId = solePhotoId
+                soleEligiblePhotoId = solePhotoId,
+                knownValidQueueSecond = nextCandidates.getOrNull(1)?.id
             )
 
             val verifiedThumb = if (decision.kind == WidgetPreviewKind.NEXT_KNOWN &&
@@ -148,6 +181,19 @@ class GlimpseHomeWidgetRefreshWorker(
                     )
                     views.setOnClickPendingIntent(
                         R.id.glimpse_widget_root, openAppIntent(context)
+                    )
+                    views.setViewVisibility(
+                        R.id.glimpse_widget_skip,
+                        if (decision.canSkipNext) View.VISIBLE else View.GONE
+                    )
+                    if (decision.canSkipNext) {
+                        views.setOnClickPendingIntent(
+                            R.id.glimpse_widget_skip, skipPreviewIntent(context)
+                        )
+                    }
+                    views.setContentDescription(
+                        R.id.glimpse_widget_skip,
+                        "Skip the confirmed upcoming photo in the saved shuffle without changing Home wallpaper"
                     )
                     // The XML's static description describes the empty state.
                     // Keep TalkBack aligned with the *actual* tap target:
@@ -224,22 +270,25 @@ class GlimpseHomeWidgetRefreshWorker(
         }
     }
 
-    private suspend fun knownNextPhoto(
+    private suspend fun knownNextCandidates(
         dao: GlimpseDao, rotation: RotationRecord
-    ): PhotoRecord? {
-        val source = rotation.collectionId ?: return null
-        // Untrusted corrupted DB text cannot trigger an unbounded UI search.
-        if (rotation.remainingJson.length > 1_000_000) return null
+    ): List<PhotoRecord> {
+        val source = rotation.collectionId ?: return emptyList()
+        // Read-only, bounded lookup; never draw or reseed a random queue.
+        if (rotation.remainingJson.length > 1_000_000) return emptyList()
         val entries = runCatching { JSONArray(rotation.remainingJson) }.getOrNull()
-            ?: return null
+            ?: return emptyList()
+        val found = mutableListOf<PhotoRecord>()
+        val seen = mutableSetOf<String>()
         for (index in 0 until minOf(entries.length(), 32)) {
             val id = entries.optString(index)
-            if (id.isBlank()) continue
+            if (id.isBlank() || !seen.add(id)) continue
             if (dao.findMembership(source, id) == null) continue
-            val photo = dao.findPhoto(id)
-            if (photo != null) return photo
+            val photo = dao.findPhoto(id) ?: continue
+            found.add(photo)
+            if (found.size == 2) break
         }
-        return null
+        return found
     }
 
     private fun nextHomeIntent(context: Context): PendingIntent {
@@ -248,6 +297,15 @@ class GlimpseHomeWidgetRefreshWorker(
             addFlags(Intent.FLAG_RECEIVER_FOREGROUND)
         }
         return PendingIntent.getBroadcast(context, 1, intent,
+            PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
+    }
+
+    private fun skipPreviewIntent(context: Context): PendingIntent {
+        val intent = Intent(context, GlimpseWidgetActionReceiver::class.java).apply {
+            action = GlimpseWidgetActionReceiver.ACTION_SKIP_PREVIEW
+            addFlags(Intent.FLAG_RECEIVER_FOREGROUND)
+        }
+        return PendingIntent.getBroadcast(context, 3, intent,
             PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
     }
 
