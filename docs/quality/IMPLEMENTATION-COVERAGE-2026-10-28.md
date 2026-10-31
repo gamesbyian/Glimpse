@@ -1,8 +1,8 @@
-> **Interpretation rule (2026-10-29 engineering audit):** [GL-AUD-01–17](ARCHITECTURE-AUDIT-2026-10-29.md) are *engineering risks and safeguards*, not 17 new user workflows, and must not modify the 4 complete / 16 partial / 53 unimplemented baseline merely because documentation, tests or guarded internals change. Distinguish source-confirmed, emulator-verified, physically measured, owner-accepted and production-release evidence; see audit acceptance gates and active PR blockers.
+> **Interpretation rule (2026-10-29 engineering audit):** [GL-AUD-01–17](ARCHITECTURE-AUDIT-2026-10-29.md) are *engineering risks and safeguards*, not 17 new user workflows, and must not alter scenario coverage merely because documentation, tests or guarded internals change. A verified merged user workflow may legitimately change the classification, with a dated explanation. Distinguish source-confirmed, emulator-verified, physically measured, owner-accepted and production-release evidence; see audit acceptance gates and active PR blockers.
 
 # Glimpse implementation coverage of the 73 workflow specification
 
-**Audit date:** 2026-10-29 (reconciled with qualified Favorites merges #103 and #109, Home-only tile #110 and accessibility #105; large-library Grid Paging #111 and Help copy #112 are merged; widget #115 and filmstrip #116 remain pending). **Authority:** current merged Android `main` and [73-workflow contractual specification](../product/feature-audit.md), supplemented by [AGENTS.md](../../AGENTS.md), [implementation queue](../planning/implementation-queue.md) and final-head Android CI. **This is a conservative capability audit, not a code-completion claim or owner design acceptance.**
+**Audit origin:** 2026-10-29 (reconciled with qualified Favorites merges #103 and #109, Home-only tile #110 and accessibility #105; large-library Grid Paging #111 and Help copy #112 are merged; widget #115 and filmstrip #116 remain pending). **Authority:** current merged Android `main` and [73-workflow contractual specification](../product/feature-audit.md), supplemented by [AGENTS.md](../../AGENTS.md), [implementation queue](../planning/implementation-queue.md) and final-head Android CI. **This is a conservative capability audit, not a code-completion claim or owner design acceptance.**
 
 ## Counting method
 
@@ -11,12 +11,14 @@ Each of the **73** scenarios receives one of three states. *Implemented* means t
 | Tier | Complete | Partial | Not implemented | Total | Scenario-equivalent coverage |
 |---|---:|---:|---:|---:|---:|
 | M1 | 4 | 4 | 0 | 8 | 75% |
-| M2 | 0 | 9 | 13 | 22 | 20.5% |
+| M2 | 0 | 10 | 12 | 22 | 22.7% |
 | M3 | 0 | 3 | 39 | 42 | 4% |
 | M4 | 0 | 0 | 1 | 1 | 0% |
-| **All** | **4** | **16** | **53** | **73** | **16.4%** |
+| **All** | **4** | **17** | **52** | **73** | **17.1%** |
 
-**Current counted additions:** #99 raises W59 to Partial; #102 improves W01 within Partial. Merged #103 and #109 raise W06 from Not implemented to Partial: a global reversible favorite and Favorites-only collection contact sheet exist, but favorites do not yet constitute an independently selected shuffle source. Home-only Quick Settings #110 is useful but does **not** fulfill the W62 Lock-only request; no status credit was added. Accessibility #105 improves W67 without completing its app-wide physical-device acceptance. Merged #111 improves the existing W07 Partial classification without changing scenario-equivalent credit; a true temporary new-photo quarantine for the rotation engine and full Reel/Home virtualization remain absent.
+**31 October source-traced increment:** Merged [#142](https://github.com/gamesbyian/Glimpse/pull/142) supplies a native Home AppWidgetProvider, SHA-verified known-next bitmap, honest unknown-next/uncertain states, a private immutable user-initiated Change Home action through the existing command gateway and real AppWidgetHost, native, Room, picker and visual acceptance. This raises **W61 only from Not implemented to Partial**. The explicit Skip half of the W61 workflow remains unmerged in draft #148; physical owner/launcher and stable distribution signing remain unaccepted. No other tier receives new credit. Baseline recomputation: M2 0/10/12, all 4/17/52; scenario equivalent (4 + 17 × 0.5) / 73 = **17.1%**. The historical audit details below remain unchanged except the W61 row and aggregate counts.
+
+**Previous counted additions:** #99 raises W59 to Partial; #102 improves W01 within Partial. Merged #103 and #109 raise W06 from Not implemented to Partial: a global reversible favorite and Favorites-only collection contact sheet exist, but favorites do not yet constitute an independently selected shuffle source. Home-only Quick Settings #110 is useful but does **not** fulfill the W62 Lock-only request; no status credit was added. Accessibility #105 improves W67 without completing its app-wide physical-device acceptance. Merged #111 improves the existing W07 Partial classification without changing scenario-equivalent credit; a true temporary new-photo quarantine for the rotation engine and full Reel/Home virtualization remain absent.
 
 **Interpretation:** M1 core is substantially implemented but not production complete. The whole ambitious scope is mostly unimplemented because advanced schedule/rule, provider, per-target, widget and extensibility scenarios have not been built. This tally does **not** count several independently implemented supporting capabilities (collection rename, exact-byte import journal, ZIP safety, photo-only membership copy, diagnostic report, editor PNG export, real contact sheet) as *extra* scenarios. It does **not** count proposed mockups as working native screens.
 
@@ -84,7 +86,7 @@ Each of the **73** scenarios receives one of three states. *Implemented* means t
 | W58 | M2 | Not implemented | No evidence of a complete, independently operable native workflow matching this scenario; platform/provider feasibility may be gated. |
 | W59 | M2 | Partial | Merged #99 estimates remaining source pixels after crop/rotation, compares against approximate screen resolution and warns about softness. True target-specific framing, scaling and display acceptance remain unimplemented. |
 | W60 | M2 | Not implemented | No evidence of a complete, independently operable native workflow matching this scenario; platform/provider feasibility may be gated. |
-| W61 | M2 | Not implemented | No evidence of a complete, independently operable native workflow matching this scenario; platform/provider feasibility may be gated. |
+| W61 | M2 | Partial | Merged #142 implements a real Home widget with SHA-verified saved-next preview, truthful uncertain/unknown states and explicit manual Home change through the private gateway. The independent Skip action and post-tap result disclosure are pending in #148; this does not count as full W61 or owner/physical acceptance. |
 | W62 | M2 | Not implemented | Merged #110 provides a system-bound Quick Settings tile for an explicitly requested **Home-only** next-photo command. W62 specifically requires independently rotating **Lock** without changing Home; that destination is not implemented. |
 | W63 | M3 | Not implemented | No evidence of a complete, independently operable native workflow matching this scenario; platform/provider feasibility may be gated. |
 | W64 | M2 | Partial | Versioned, exact-byte validated photo-only ZIP export and restore exist; full settings/rules backup does not. |
@@ -102,7 +104,7 @@ Each of the **73** scenarios receives one of three states. *Implemented* means t
 
 1. **True Android background cadence:** current five-minute shuffle evaluation is foreground/visible-app only. No verified process-death, Doze/OEM-safe scheduled service with persistent due-window semantics; never advertise guaranteed five-minute background delivery.
 2. **User-facing design and human acceptance:** fixed bottom reel, responsive Hero/Editor/Grid and photo aperture drag exist, but the complete approved-reference visual system, physical Pixel gestures, real TalkBack, focus, 24 primary/34 support surfaces and second-reel composition remain open. Experimental [#94](https://github.com/gamesbyian/Glimpse/pull/94) / [#95](https://github.com/gamesbyian/Glimpse/pull/95) require explicit visual owner approval even if CI passes.
-3. **M2 daily-driver:** favorites/filters/recents, crop focal/blur extension, reversible applied-wallpaper history, pin/hold, independent Home/Lock recipes, widget/Quick Settings, settings backup and full per-operation diagnostics.
+3. **M2 daily-driver:** favorites/filters/recents, crop focal/blur extension, reversible applied-wallpaper history, pin/hold, independent Home/Lock recipes, verified widget Skip, independent Lock-target tile, settings backup and full per-operation diagnostics.
 4. **M3/M4 ambition:** scheduled condition/rule editor, nested/composite weighted collections, remote licensed media/source adapters, per-destination and display integration, simulation and external automation.
 5. **Release:** durable stable release signing, install/update compatibility, device manufacturer/background validation, security/privacy and visual acceptance. Debug APK and emulator CI do not satisfy a publishable release gate.
 
