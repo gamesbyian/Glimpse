@@ -9,7 +9,10 @@ import io.github.gamesbyian.glimpse.domain.PhotoEditGeometry
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.io.File
-import java.io.FileOutputStream
+import java.nio.channels.Channels
+import java.nio.channels.FileChannel
+import java.nio.file.StandardOpenOption
+import java.util.UUID
 import java.nio.file.Files
 
 /**
@@ -76,13 +79,19 @@ internal object EditedPhotoSharing {
             // CREATE a unique, owned cache destination atomically. Do not
             // perform staged.renameTo(target): POSIX rename can replace an
             // existing file even if its random name appeared after a check.
-            val target = File.createTempFile("glimpse-edited-", ".png", folder)
-            finished = target
-            FileOutputStream(target).use { output ->
+            val target = File(folder, "glimpse-edited-" + UUID.randomUUID() + ".png")
+            FileChannel.open(
+                target.toPath(), StandardOpenOption.CREATE_NEW, StandardOpenOption.WRITE
+            ).use { channel ->
+                // Mark ownership only AFTER the atomic no-existing-file open
+                // succeeds. A UUID collision must never be cleaned up as ours.
+                finished = target
+                val output = Channels.newOutputStream(channel)
                 require(pixels.compress(android.graphics.Bitmap.CompressFormat.PNG, 100, output)) {
                     "Unable to render the edited PNG for sharing."
                 }
-                output.fd.sync()
+                output.flush()
+                channel.force(true)
             }
             require(target.length() in 1..MAX_BYTES) {
                 "The edited PNG exceeds the safe sharing size limit."
