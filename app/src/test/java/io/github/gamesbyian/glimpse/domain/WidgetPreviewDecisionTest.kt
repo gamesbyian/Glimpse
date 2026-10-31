@@ -40,6 +40,42 @@ class WidgetPreviewDecisionTest {
         assertEquals("""["next","other"]""", saved.remainingJson)
     }
 
+    @Test fun onlyPhotoAlreadyAppliedCannotOfferFutileChange() {
+        val previous = RotationRecord(
+            collectionId = "source", lastAcknowledgedPhotoId = "sole",
+            remainingJson = """["sole"]"""
+        )
+        val decision = widgetPreviewDecision(
+            previous, true, "sole", soleEligiblePhotoId = "sole"
+        )
+        assertEquals(WidgetPreviewKind.CURRENT_ONLY, decision.kind)
+        assertFalse(decision.canRequestChange)
+        assertNull(decision.knownNextId)
+    }
+
+    @Test fun onePhotoDifferentFromLastAcknowledgedMayChange() {
+        val previous = RotationRecord(
+            collectionId = "source", lastAcknowledgedPhotoId = "other"
+        )
+        val decision = widgetPreviewDecision(
+            previous, true, null, soleEligiblePhotoId = "sole"
+        )
+        assertEquals(WidgetPreviewKind.NEXT_UNDECIDED, decision.kind)
+        assertTrue(decision.canRequestChange)
+    }
+
+    @Test fun uncertainWallpaperAlwaysBlocksEvenIfOnlySourceIsAlreadyApplied() {
+        val previous = RotationRecord(
+            collectionId = "source", lastAcknowledgedPhotoId = "sole",
+            pendingPhotoId = "sole"
+        )
+        val decision = widgetPreviewDecision(
+            previous, true, "sole", soleEligiblePhotoId = "sole"
+        )
+        assertEquals(WidgetPreviewKind.UNCERTAIN, decision.kind)
+        assertFalse(decision.canRequestChange)
+    }
+
     @Test fun missingPreviewDoesNotDisableExplicitManualChange() {
         val outcome = widgetPreviewDecision(RotationRecord(
             collectionId = "real", active = false

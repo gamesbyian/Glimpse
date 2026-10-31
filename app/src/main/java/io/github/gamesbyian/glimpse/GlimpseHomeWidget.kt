@@ -113,14 +113,18 @@ class GlimpseHomeWidgetRefreshWorker(
             val dao = GlimpseDatabase.open(context).dao()
             val rotation = dao.readRotation()
             val collection = rotation?.collectionId?.let { dao.findCollection(it) }
-            val hasPhotos = rotation?.collectionId?.takeIf { collection != null }
-                ?.let { dao.widgetSourcePhotoCount(it) > 0 } == true
+            val liveCount = rotation?.collectionId?.takeIf { collection != null }
+                ?.let { dao.widgetSourcePhotoCount(it) } ?: 0
+            val hasPhotos = liveCount > 0
+            val solePhotoId = if (liveCount == 1 && rotation?.collectionId != null)
+                dao.widgetSoleSourcePhotoId(rotation.collectionId) else null
             val nextPhoto = if (rotation != null && collection != null && hasPhotos &&
                 rotation.pendingPhotoId == null) {
                 knownNextPhoto(dao, rotation)
             } else null
             val decision = widgetPreviewDecision(
-                rotation, collection != null && hasPhotos, nextPhoto?.id
+                rotation, collection != null && hasPhotos, nextPhoto?.id,
+                soleEligiblePhotoId = solePhotoId
             )
 
             val verifiedThumb = if (decision.kind == WidgetPreviewKind.NEXT_KNOWN &&
@@ -173,6 +177,13 @@ class GlimpseHomeWidgetRefreshWorker(
                             views.setTextViewText(R.id.glimpse_widget_action, "REVIEW IN APP")
                             views.setTextViewText(R.id.glimpse_widget_explainer,
                                 "Review the previous Android result. No automatic retry.")
+                        }
+                        WidgetPreviewKind.CURRENT_ONLY -> {
+                            views.setTextViewText(R.id.glimpse_widget_status,
+                                "Only photo already applied")
+                            views.setTextViewText(R.id.glimpse_widget_action, "OPEN GLIMPSE")
+                            views.setTextViewText(R.id.glimpse_widget_explainer,
+                                "Import another photo to change Home without a repeat.")
                         }
                         WidgetPreviewKind.NEXT_KNOWN -> {
                             views.setTextViewText(R.id.glimpse_widget_status,

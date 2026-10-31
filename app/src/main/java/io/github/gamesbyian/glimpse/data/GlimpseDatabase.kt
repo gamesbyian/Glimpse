@@ -199,9 +199,19 @@ interface GlimpseDao {
     @Query("SELECT COUNT(*) FROM memberships WHERE photoId = :photoId")
     suspend fun membershipCount(photoId: String): Int
 
-    /** Cheap widget eligibility; never materialize thousands of PhotoRecords. */
-    @Query("SELECT COUNT(*) FROM memberships WHERE collectionId = :collectionId")
+    /** Count actual eligible records; historical dangling memberships do not count. */
+    @Query(
+        "SELECT COUNT(*) FROM memberships m INNER JOIN photos p ON p.id = m.photoId " +
+            "WHERE m.collectionId = :collectionId"
+    )
     suspend fun widgetSourcePhotoCount(collectionId: String): Int
+
+    /** Only queried when exactly one live source exists, to avoid a futile repeat. */
+    @Query(
+        "SELECT p.id FROM photos p INNER JOIN memberships m ON m.photoId = p.id " +
+            "WHERE m.collectionId = :collectionId LIMIT 1"
+    )
+    suspend fun widgetSoleSourcePhotoId(collectionId: String): String?
 
     @Query("DELETE FROM memberships WHERE collectionId = :collectionId AND photoId = :photoId")
     suspend fun deleteMembership(collectionId: String, photoId: String): Int

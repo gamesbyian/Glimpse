@@ -7,7 +7,7 @@ import io.github.gamesbyian.glimpse.data.RotationRecord
  * an exhausted bag cannot, because live rotation uses Random.Default.
  */
 internal enum class WidgetPreviewKind {
-    NO_SOURCE, UNCERTAIN, NEXT_KNOWN, NEXT_UNDECIDED
+    NO_SOURCE, UNCERTAIN, CURRENT_ONLY, NEXT_KNOWN, NEXT_UNDECIDED
 }
 
 internal data class WidgetPreviewDecision(
@@ -24,7 +24,8 @@ internal data class WidgetPreviewDecision(
 internal fun widgetPreviewDecision(
     rotation: RotationRecord?,
     sourceExists: Boolean,
-    knownValidQueueHead: String?
+    knownValidQueueHead: String?,
+    soleEligiblePhotoId: String? = null
 ): WidgetPreviewDecision = when {
     rotation?.pendingPhotoId != null -> WidgetPreviewDecision(
         WidgetPreviewKind.UNCERTAIN
@@ -32,6 +33,12 @@ internal fun widgetPreviewDecision(
     rotation?.collectionId.isNullOrBlank() || !sourceExists -> WidgetPreviewDecision(
         WidgetPreviewKind.NO_SOURCE
     )
+    // Mirror WallpaperCommands.performNextLocked: with exactly one eligible
+    // photo already applied, the command would make no OS wallpaper change.
+    // Never advertise an active Change button for that known no-op.
+    !soleEligiblePhotoId.isNullOrBlank() &&
+        soleEligiblePhotoId == rotation.lastAcknowledgedPhotoId ->
+        WidgetPreviewDecision(WidgetPreviewKind.CURRENT_ONLY)
     !knownValidQueueHead.isNullOrBlank() -> WidgetPreviewDecision(
         WidgetPreviewKind.NEXT_KNOWN, knownValidQueueHead, canRequestChange = true
     )
