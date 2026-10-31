@@ -205,9 +205,11 @@ class PhotoImporter(private val context: Context, private val dao: GlimpseDao) {
     }
 
     /**
-     * Recover only abandoned staging fragments after Android process death.
-     * Does not touch finished SHA originals, Room rows, provider copies or files
-     * that could still be part of a recent operation. A failure is nonfatal.
+     * Reclaim only aged zero-byte importer placeholders, never a data-bearing
+     * stage. A crash between final-file reservation and completed copy can
+     * leave the only good full image in a day-old staging file. Preserve it
+     * for independently provenance-verified recovery (#143). Normal finally
+     * cleanup still removes the current import's own temporary name.
      */
     suspend fun pruneStalePartialImports(now: Long = System.currentTimeMillis()): Int =
         withContext(Dispatchers.IO) { pruneStalePartialFiles(originals, now) }
