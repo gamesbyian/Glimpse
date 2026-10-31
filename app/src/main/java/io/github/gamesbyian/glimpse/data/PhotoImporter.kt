@@ -92,6 +92,40 @@ internal fun existingOriginalMatches(
 }
 
 /**
+ * Publish a fully written and fsynced private import without any replace window.
+ *
+ * File.renameTo(destination) has POSIX replacement semantics: a second importer
+ * can create a valid same-name original after an exists() preflight, then lose
+ * its file when the first caller renames. A same-directory hard link instead
+ * atomically creates the digest name only if absent; concurrent publishers
+ * get FileAlreadyExistsException and may attach only after checking *all*
+ * existing bytes. No fallback to rename/copy-over-existing is permitted.
+ *
+ * The staging file remains owned by its importer and is unlinked in its
+ * existing finally block. This does not modify provider files or other roots.
+ */
+internal fun publishPrivateOriginalExclusively(
+    staged: File,
+    target: File,
+    expectedSha256: String,
+    expectedLength: Long
+) {
+    require(staged.isFile && !java.nio.file.Files.isSymbolicLink(staged.toPath())) {
+        "Verified private staging file is unavailable."
+    }
+    require(staged.canonicalFile.parentFile == target.canonicalFile.parentFile) {
+        "Staged and final private originals must share one owned directory."
+    }
+    try {
+        java.nio.file.Files.createLink(target.toPath(), staged.toPath())
+    } catch (_: java.nio.file.FileAlreadyExistsException) {
+        require(existingOriginalMatches(target, expectedSha256, expectedLength)) {
+            "Existing imported original failed integrity check."
+        }
+    }
+}
+
+/**
  * Snapshot-only: never modifies provider URIs. Private copies remain valid after
  * Photo Picker's temporary URI grants expire. No broad media permission is used.
  */
@@ -210,16 +244,9 @@ class PhotoImporter(private val context: Context, private val dao: GlimpseDao) {
                 else -> ".jpg"
             }
             val target = File(originals, hex + extension)
-            if (!target.exists()) {
-                require(temp.renameTo(target)) { "Unable to finalize offline copy" }
-            } else {
-                require(existingOriginalMatches(target, hex, size)) {
-                    // Never overwrite an existing private original, even if
-                    // corrupt. The user-selected provider source and earlier
-                    // collection memberships are otherwise left untouched.
-                    "Existing imported original failed integrity check."
-                }
-            }
+            // Atomic no-replace publication. A raced matching SHA verifies and
+            // deduplicates; an existing corrupt/symlinked file is never replaced.
+            publishPrivateOriginalExclusively(temp, target, hex, size)
             val photo = PhotoRecord(
                 id = hex,
                 sha256 = hex,
