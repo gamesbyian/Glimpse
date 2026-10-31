@@ -16,6 +16,9 @@ on:
       - .github/workflows/android-visual-atlas.yml
       - scripts/capture-android-atlas.py
       - app/src/debug/**
+      - app/src/main/java/io/github/gamesbyian/glimpse/EditedPhotoOutput.kt
+      - app/src/main/java/io/github/gamesbyian/glimpse/data/CollectionZipRestorer.kt
+      - app/src/main/java/io/github/gamesbyian/glimpse/data/CollectionZipReader.kt
   pull_request:
     paths:
       - .github/workflows/android-visual-atlas.yml
@@ -29,6 +32,9 @@ on:
       - app/src/main/java/io/github/gamesbyian/glimpse/data/GlimpseDatabase.kt
       - app/src/main/java/io/github/gamesbyian/glimpse/GlimpsePhotoDetail.kt
       - app/src/main/java/io/github/gamesbyian/glimpse/GlimpsePhotoEditor.kt
+      - app/src/main/java/io/github/gamesbyian/glimpse/EditedPhotoOutput.kt
+      - app/src/main/java/io/github/gamesbyian/glimpse/data/CollectionZipRestorer.kt
+      - app/src/main/java/io/github/gamesbyian/glimpse/data/CollectionZipReader.kt
       - app/src/main/java/io/github/gamesbyian/glimpse/domain/CropResolutionAdvisory.kt
       - app/src/main/java/io/github/gamesbyian/glimpse/CircularPhotoReel.kt
       - app/src/main/java/io/github/gamesbyian/glimpse/GlimpseTypography.kt
