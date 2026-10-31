@@ -15,6 +15,7 @@ on:
     paths:
       - .github/workflows/android-visual-atlas.yml
       - scripts/capture-android-atlas.py
+      - app/src/main/java/io/github/gamesbyian/glimpse/EditedPhotoSharing.kt
       - app/src/debug/**
   pull_request:
     paths:
@@ -23,6 +24,7 @@ on:
       - app/src/main/java/io/github/gamesbyian/glimpse/MainActivity.kt
       - app/src/main/java/io/github/gamesbyian/glimpse/GlimpseReelRoom.kt
       - app/src/main/java/io/github/gamesbyian/glimpse/GlimpseHomeHero.kt
+      - app/src/main/java/io/github/gamesbyian/glimpse/EditedPhotoSharing.kt
       - app/src/main/java/io/github/gamesbyian/glimpse/GlimpseGridRoom.kt
       - app/src/main/java/io/github/gamesbyian/glimpse/GlimpseHomeComponents.kt
       - app/src/main/java/io/github/gamesbyian/glimpse/GlimpseModel.kt
