@@ -29,6 +29,44 @@ class ExclusivePrivateOriginalPublicationTest {
         assertArrayEquals(picture, target.readBytes())
     }
 
+    @Test fun exclusiveCopyFallbackWorksWhenAndroidDisallowsHardLinks() {
+        val stage = scratch.newFile("import-copy.partial").apply { writeBytes(picture) }
+        val target = File(scratch.root, hex(picture) + ".jpg")
+        publishPrivateOriginalExclusively(
+            stage, target, hex(picture), picture.size.toLong(), preferHardLink = false
+        )
+        assertArrayEquals(picture, target.readBytes())
+        assertFalse(Files.isSameFile(stage.toPath(), target.toPath()))
+        assertTrue(stage.delete())
+        assertArrayEquals(picture, target.readBytes())
+    }
+
+    @Test fun exclusiveCopyFallbackNeverReplacesCommittedDigest() {
+        val stage = scratch.newFile("import-copy-race.partial").apply { writeBytes(picture) }
+        val target = scratch.newFile(hex(picture) + ".jpg").apply {
+            writeBytes(picture)
+        }
+        publishPrivateOriginalExclusively(
+            stage, target, hex(picture), picture.size.toLong(), preferHardLink = false
+        )
+        assertArrayEquals(picture, target.readBytes())
+        assertFalse(Files.isSameFile(stage.toPath(), target.toPath()))
+    }
+
+    @Test fun exclusiveCopyFallbackDoesNotOverwriteCorruptedDigest() {
+        val stage = scratch.newFile("import-copy-corrupt.partial").apply { writeBytes(picture) }
+        val target = scratch.newFile(hex(picture) + ".jpg").apply {
+            writeBytes("do not erase".toByteArray())
+        }
+        val before = target.readBytes()
+        assertTrue(runCatching {
+            publishPrivateOriginalExclusively(
+                stage, target, hex(picture), picture.size.toLong(), preferHardLink = false
+            )
+        }.isFailure)
+        assertArrayEquals(before, target.readBytes())
+    }
+
     @Test fun sameShaNeverReplacesPreviouslyCommittedInode() {
         val stage = scratch.newFile("import-new.partial").apply { writeBytes(picture) }
         val originalStage = scratch.newFile("original-source.partial").apply {

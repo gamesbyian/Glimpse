@@ -92,23 +92,26 @@ internal fun existingOriginalMatches(
 }
 
 /**
- * Publish a fully written and fsynced private import without any replace window.
+ * Finalize a verified, fsynced private import without replacing any digest name.
  *
- * File.renameTo(destination) has POSIX replacement semantics: a second importer
- * can create a valid same-name original after an exists() preflight, then lose
- * its file when the first caller renames. A same-directory hard link instead
- * atomically creates the digest name only if absent; concurrent publishers
- * get FileAlreadyExistsException and may attach only after checking *all*
- * existing bytes. No fallback to rename/copy-over-existing is permitted.
+ * Android's untrusted_app SELinux policy can deny hard links under filesDir,
+ * despite Linux/JVM tests succeeding. Prefer same-directory link creation when
+ * supported: it atomically publishes complete bytes and fails if target exists.
+ * On OS denial, use Files.copy WITHOUT REPLACE_EXISTING: destination creation
+ * remains exclusive, and another writer's original is never truncated.
  *
- * The staging file remains owned by its importer and is unlinked in its
- * existing finally block. This does not modify provider files or other roots.
+ * Copy fallback has different crash behavior: a failed or interrupted copy
+ * could leave an incomplete, unregistered digest-name file. Never delete or
+ * overwrite such a file automatically. The next importer refuses a corrupted
+ * existing target, preserving evidence for explicit non-destructive recovery.
+ * A genuine atomic no-replace rename remains desirable for a future NDK lane.
  */
 internal fun publishPrivateOriginalExclusively(
     staged: File,
     target: File,
     expectedSha256: String,
-    expectedLength: Long
+    expectedLength: Long,
+    preferHardLink: Boolean = true
 ) {
     require(staged.isFile && !java.nio.file.Files.isSymbolicLink(staged.toPath())) {
         "Verified private staging file is unavailable."
@@ -116,13 +119,44 @@ internal fun publishPrivateOriginalExclusively(
     require(staged.canonicalFile.parentFile == target.canonicalFile.parentFile) {
         "Staged and final private originals must share one owned directory."
     }
-    try {
-        java.nio.file.Files.createLink(target.toPath(), staged.toPath())
-    } catch (_: java.nio.file.FileAlreadyExistsException) {
+    fun requireMatchingExisting() {
         require(existingOriginalMatches(target, expectedSha256, expectedLength)) {
             "Existing imported original failed integrity check."
         }
     }
+
+    if (preferHardLink) {
+        try {
+            java.nio.file.Files.createLink(target.toPath(), staged.toPath())
+            return
+        } catch (_: java.nio.file.FileAlreadyExistsException) {
+            requireMatchingExisting()
+            return
+        } catch (_: java.io.IOException) {
+            // Android app-private SELinux often rejects hard links. No
+            // renameTo/copy-overwrite fallback can ever be used here.
+        } catch (_: UnsupportedOperationException) {
+            // Filesystem does not support hard links. Try exclusive create.
+        } catch (_: SecurityException) {
+            // Java hard-link privileges are optional, even on API 26+.
+        }
+    }
+
+    try {
+        // No REPLACE_EXISTING: an existing file, including an adversarial
+        // symlink or a concurrent imported SHA, must NOT be overwritten.
+        java.nio.file.Files.copy(staged.toPath(), target.toPath())
+    } catch (_: java.nio.file.FileAlreadyExistsException) {
+        requireMatchingExisting()
+        return
+    }
+    // The destination is a separate inode after copy. Force its bytes to disk
+    // before the original PhotoRecord/membership transaction can commit.
+    // WRITE without CREATE or TRUNCATE avoids replacing/creating anything.
+    java.nio.channels.FileChannel.open(
+        target.toPath(), java.nio.file.StandardOpenOption.WRITE
+    ).use { it.force(true) }
+    requireMatchingExisting()
 }
 
 /**
