@@ -39,6 +39,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import io.github.gamesbyian.glimpse.data.LocalOriginalIntegritySummary
+import io.github.gamesbyian.glimpse.data.LibraryRelationshipAudit
 import io.github.gamesbyian.glimpse.data.LocalStorageInventory
 import io.github.gamesbyian.glimpse.data.PotentialOrphanInventory
 import io.github.gamesbyian.glimpse.data.inspectLocalStorage
@@ -69,6 +70,9 @@ internal fun GlimpseSupportScreen(
     }
     var integrityReadout by remember { mutableStateOf<IntegrityReadout>(IntegrityReadout.NotChecked) }
     var orphanReadout by remember { mutableStateOf<OrphanReadout>(OrphanReadout.NotChecked) }
+    var relationshipsReadout by remember {
+        mutableStateOf<RelationshipReadout>(RelationshipReadout.NotChecked)
+    }
     val packageInfo = remember(context) {
         runCatching {
             context.packageManager.getPackageInfo(context.packageName, 0)
@@ -274,6 +278,60 @@ internal fun GlimpseSupportScreen(
             )
         }
         SupportSection(
+            "LIBRARY LINKS · READ ONLY",
+            "Check whether every saved original belongs to a collection, and whether " +
+                "memberships, favorites and the saved shuffle record point to " +
+                "existing database records. This " +
+                "examines links only and does not validate image bytes.",
+            "Broken links can be inherited from an interrupted older import. " +
+                "Glimpse will not silently discard or repair such data."
+        )
+        OutlinedButton(
+            modifier = Modifier.heightIn(min = 48.dp),
+            enabled = relationshipsReadout != RelationshipReadout.Checking,
+            onClick = {
+                relationshipsReadout = RelationshipReadout.Checking
+                auditScope.launch {
+                    relationshipsReadout = try {
+                        RelationshipReadout.Ready(model.auditLibraryRelationships())
+                    } catch (cancel: CancellationException) {
+                        throw cancel
+                    } catch (_: Exception) {
+                        RelationshipReadout.Unavailable
+                    }
+                }
+            }
+        ) { Text("Check saved library links") }
+        when (val result = relationshipsReadout) {
+            RelationshipReadout.NotChecked -> Text(
+                "Optional and read-only. No photos or settings are changed.",
+                style = MaterialTheme.typography.bodySmall
+            )
+            RelationshipReadout.Checking -> Text(
+                "Checking library relationships…",
+                style = MaterialTheme.typography.bodySmall
+            )
+            RelationshipReadout.Unavailable -> Text(
+                "The library consistency check could not finish. Nothing was changed.",
+                style = MaterialTheme.typography.bodySmall
+            )
+            is RelationshipReadout.Ready -> Text(
+                "${result.snapshot.issueCount} potential broken library link(s). " +
+                    "Photo memberships: ${result.snapshot.membershipsWithoutPhoto}; " +
+                    "collection memberships: ${result.snapshot.membershipsWithoutCollection}; " +
+                    "favorites: ${result.snapshot.favoritesWithoutPhoto}; " +
+                    "photos without collections: ${result.snapshot.photosWithoutMembership}; " +
+                    "saved rotation references: " +
+                    listOf(
+                        result.snapshot.rotationCollectionMissing,
+                        result.snapshot.pendingPhotoMissing,
+                        result.snapshot.acknowledgedPhotoMissing
+                    ).count { it } + ". " +
+                    "No records or originals were changed.",
+                style = MaterialTheme.typography.bodySmall
+            )
+        }
+        SupportSection(
             "RESTORE AN EXPORTED COLLECTION",
             "Import a Glimpse originals-only ZIP through Android Documents. " +
                 "All entries, image types, byte counts and SHA-256 hashes must " +
@@ -441,4 +499,11 @@ private sealed interface OrphanReadout {
     data object Checking : OrphanReadout
     data object Unavailable : OrphanReadout
     data class Ready(val snapshot: PotentialOrphanInventory) : OrphanReadout
+}
+
+private sealed interface RelationshipReadout {
+    data object NotChecked : RelationshipReadout
+    data object Checking : RelationshipReadout
+    data object Unavailable : RelationshipReadout
+    data class Ready(val snapshot: LibraryRelationshipAudit) : RelationshipReadout
 }

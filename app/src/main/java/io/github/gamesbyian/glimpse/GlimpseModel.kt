@@ -16,6 +16,7 @@ import io.github.gamesbyian.glimpse.data.GlimpseDatabase
 import io.github.gamesbyian.glimpse.data.ImportResult
 import io.github.gamesbyian.glimpse.data.inspectRegisteredOriginals
 import io.github.gamesbyian.glimpse.data.LocalOriginalIntegritySummary
+import io.github.gamesbyian.glimpse.data.LibraryRelationshipAudit
 import io.github.gamesbyian.glimpse.data.PotentialOrphanInventory
 import io.github.gamesbyian.glimpse.data.inspectPotentialOrphans
 import io.github.gamesbyian.glimpse.data.PhotoImporter
@@ -288,6 +289,10 @@ class GlimpseModel(application: Application) : AndroidViewModel(application) {
             val active = coroutineContext
             inspectPotentialOrphans(root, registered) { active.ensureActive() }
         }
+
+    /** Read-only consistency check across all current Room relationships. */
+    internal suspend fun auditLibraryRelationships(): LibraryRelationshipAudit =
+        withContext(Dispatchers.IO) { dao.auditLibraryRelationships() }
 
     /**
      * Explicit SAF export. Does not promise restore, cloud synchronization,

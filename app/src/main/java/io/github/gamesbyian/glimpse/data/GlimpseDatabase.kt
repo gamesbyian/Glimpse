@@ -56,6 +56,26 @@ data class PhotoFavoriteRecord(
     val markedAt: Long
 )
 
+/** Aggregate referential diagnostics, deliberately containing no paths or IDs.
+ * A broken link is never authorization to delete an original or Room row.
+ */
+data class LibraryRelationshipAudit(
+    val membershipsWithoutPhoto: Int,
+    val membershipsWithoutCollection: Int,
+    val favoritesWithoutPhoto: Int,
+    val photosWithoutMembership: Int,
+    val rotationCollectionMissing: Boolean,
+    val pendingPhotoMissing: Boolean,
+    val acknowledgedPhotoMissing: Boolean
+) {
+    val issueCount: Int get() =
+        membershipsWithoutPhoto + membershipsWithoutCollection +
+            favoritesWithoutPhoto + photosWithoutMembership +
+            (if (rotationCollectionMissing) 1 else 0) +
+            (if (pendingPhotoMissing) 1 else 0) +
+            (if (acknowledgedPhotoMissing) 1 else 0)
+}
+
 @Entity(tableName = "rotation")
 data class RotationRecord(
     @PrimaryKey val id: Int = 1,
@@ -205,6 +225,59 @@ interface GlimpseDao {
     // Read-only registered originals, independent of overlapping memberships.
     @Query("SELECT * FROM photos ORDER BY id")
     suspend fun allPhotosForAudit(): List<PhotoRecord>
+
+    // Pre-FK schema v2 may contain historical dangling relationships. Count
+    // them with bounded SQL aggregates, without downloading every image row.
+    @Query(
+        "SELECT COUNT(*) FROM memberships m WHERE NOT EXISTS " +
+            "(SELECT 1 FROM photos p WHERE p.id = m.photoId)"
+    )
+    suspend fun membershipsWithoutPhotoCount(): Int
+
+    @Query(
+        "SELECT COUNT(*) FROM memberships m WHERE NOT EXISTS " +
+            "(SELECT 1 FROM collections c WHERE c.id = m.collectionId)"
+    )
+    suspend fun membershipsWithoutCollectionCount(): Int
+
+    @Query(
+        "SELECT COUNT(*) FROM photo_favorites f WHERE NOT EXISTS " +
+            "(SELECT 1 FROM photos p WHERE p.id = f.photoId)"
+    )
+    suspend fun favoritesWithoutPhotoCount(): Int
+
+    // A registered original can become invisible in all collections while
+    // its private bytes still exist. Never infer that it may be deleted.
+    @Query(
+        "SELECT COUNT(*) FROM photos p WHERE NOT EXISTS " +
+            "(SELECT 1 FROM memberships m WHERE m.photoId = p.id)"
+    )
+    suspend fun photosWithoutMembershipCount(): Int
+
+    /**
+     * Read-only, transactional integrity snapshot. Do not repair or delete
+     * historical rows: the user may still hold the sole intact SHA original.
+     * The three rotation flags only check IDs that are currently populated.
+     */
+    @Transaction
+    suspend fun auditLibraryRelationships(): LibraryRelationshipAudit {
+        val rotation = readRotation()
+        return LibraryRelationshipAudit(
+            membershipsWithoutPhoto = membershipsWithoutPhotoCount(),
+            membershipsWithoutCollection = membershipsWithoutCollectionCount(),
+            favoritesWithoutPhoto = favoritesWithoutPhotoCount(),
+            photosWithoutMembership = photosWithoutMembershipCount(),
+            rotationCollectionMissing = rotation?.collectionId?.let {
+                !collectionExists(it)
+            } ?: false,
+            pendingPhotoMissing = rotation?.pendingPhotoId?.let {
+                findPhoto(it) == null
+            } ?: false,
+            acknowledgedPhotoMissing = rotation?.lastAcknowledgedPhotoId?.let {
+                findPhoto(it) == null
+            } ?: false
+        )
+    }
 
     // The Android picker is external to this Activity. Never attach a photo
     // to a collection that disappeared during provider selection/restoration.
