@@ -22,8 +22,10 @@ data class ImportResult(
 )
 
 /**
- * Pure filesystem recovery boundary. Kept separate from Context/DAO so tests
- * can exercise actual deletion against isolated directories without Android.
+ * Conservative filesystem cleanup boundary. Only zero-byte, aged importer
+ * staging placeholders are removable. Nonempty partial files may contain
+ * irreplaceable user-selected bytes after process death and are preserved
+ * pending ownership-proven recovery (#143). Tests exercise isolated directories.
  */
 internal fun pruneStalePartialFiles(
     originals: File,
@@ -41,6 +43,12 @@ internal fun pruneStalePartialFiles(
                 !java.nio.file.Files.isSymbolicLink(candidate.toPath()) &&
                 candidate.canonicalFile.parentFile == root &&
                 PhotoImporter.isStaleImportPartial(candidate.name, candidate.lastModified(), now) &&
+                // An aged nonempty stage may be the *only complete fsynced*
+                // source after process death midway through CREATE_NEW copy.
+                // Do not destroy recoverable bytes merely because the
+                // provisional name is old. #143 must prove ownership before
+                // quarantining/cleaning any data-bearing staging file.
+                candidate.length() == 0L &&
                 candidate.delete()
         } catch (_: Exception) {
             false
@@ -108,12 +116,36 @@ internal fun existingOriginalMatches(
  * existing target, preserving evidence for explicit non-destructive recovery.
  * A genuine atomic no-replace rename remains desirable for a future NDK lane.
  */
+/**
+ * In-process publication admission. The first Android writer may own the
+ * CREATE_NEW SHA name before its content has finished streaming. Without a
+ * shared gate a second importer sees that still-partial name as corruption
+ * and fails a legitimate same-SHA reimport. Keep the OS's atomic exclusion,
+ * but do not inspect a collaborating writer's file until it has completed
+ * and verified its own publication.
+ *
+ * This controls every PhotoImporter in the current app process. Cross-process
+ * crash recovery and provenance are a separate #143 requirement; a JVM
+ * monitor is not represented as an interprocess lock.
+ */
+private val privateOriginalPublicationMonitor = Any()
+
 internal fun publishPrivateOriginalExclusively(
     staged: File,
     target: File,
     expectedSha256: String,
     expectedLength: Long,
     preferHardLink: Boolean = true
+) = synchronized(privateOriginalPublicationMonitor) {
+    publishPrivateOriginalUnderLock(staged, target, expectedSha256, expectedLength, preferHardLink)
+}
+
+private fun publishPrivateOriginalUnderLock(
+    staged: File,
+    target: File,
+    expectedSha256: String,
+    expectedLength: Long,
+    preferHardLink: Boolean
 ) {
     require(staged.isFile && !java.nio.file.Files.isSymbolicLink(staged.toPath())) {
         "Verified private staging file is unavailable."
@@ -174,6 +206,14 @@ internal fun publishPrivateOriginalExclusively(
 }
 
 /**
+ * A complete validated stage is itself user data until the immutable SHA
+ * publication has successfully finished. A failed CREATE_NEW copy must not
+ * destroy the only complete source in the importer's finally block.
+ */
+internal fun canDiscardImportStaging(validated: Boolean, published: Boolean): Boolean =
+    !validated || published
+
+/**
  * Snapshot-only: never modifies provider URIs. Private copies remain valid after
  * Photo Picker's temporary URI grants expire. No broad media permission is used.
  */
@@ -197,9 +237,11 @@ class PhotoImporter(private val context: Context, private val dao: GlimpseDao) {
     }
 
     /**
-     * Recover only abandoned staging fragments after Android process death.
-     * Does not touch finished SHA originals, Room rows, provider copies or files
-     * that could still be part of a recent operation. A failure is nonfatal.
+     * Reclaim only aged zero-byte importer placeholders, never a data-bearing
+     * stage. A crash between final-file reservation and completed copy can
+     * leave the only good full image in a day-old staging file. Preserve it
+     * for independently provenance-verified recovery (#143). Normal finally
+     * cleanup still removes the current import's own temporary name.
      */
     suspend fun pruneStalePartialImports(now: Long = System.currentTimeMillis()): Int =
         withContext(Dispatchers.IO) { pruneStalePartialFiles(originals, now) }
@@ -256,6 +298,8 @@ class PhotoImporter(private val context: Context, private val dao: GlimpseDao) {
     private suspend fun copyOne(uri: Uri, collectionId: String): Boolean {
         requirePrivateImportRoot(originals)
         val temp = File.createTempFile("import-", ".partial", originals)
+        var validatedStaging = false
+        var publishedOriginal = false
         try {
             val digest = MessageDigest.getInstance("SHA-256")
             var size = 0L
@@ -292,9 +336,14 @@ class PhotoImporter(private val context: Context, private val dao: GlimpseDao) {
                 else -> ".jpg"
             }
             val target = File(originals, hex + extension)
+            // A fully read, fsynced, image-validated source must be retained
+            // if the final SHA-name publication fails. A future recovery
+            // receipt will link the two names without persisting provider URIs.
+            validatedStaging = true
             // Atomic no-replace publication. A raced matching SHA verifies and
             // deduplicates; an existing corrupt/symlinked file is never replaced.
             publishPrivateOriginalExclusively(temp, target, hex, size)
+            publishedOriginal = true
             val photo = PhotoRecord(
                 id = hex,
                 sha256 = hex,
@@ -315,7 +364,11 @@ class PhotoImporter(private val context: Context, private val dao: GlimpseDao) {
             return dao.attachIfCollectionExists(photo, collectionId)
                 ?: error("The destination collection was removed during import. Re-select it and retry.")
         } finally {
-            temp.delete()
+            // Preserve the last complete staging copy on a failed publish.
+            // Normal success and unverified/empty staging clean up as before.
+            if (canDiscardImportStaging(validatedStaging, publishedOriginal)) {
+                temp.delete()
+            }
         }
     }
 }
