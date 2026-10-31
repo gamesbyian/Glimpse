@@ -138,6 +138,14 @@ class WidgetHostProbeActivity : ComponentActivity() {
      */
     override fun onStart() {
         super.onStart()
+        // A real AppWidgetHostView can fall back to provider initialLayout
+        // when Android recreates the host after wallpaper/launcher changes.
+        // Request an actual provider RemoteViews refresh on host resume;
+        // an initialLayout action is intentionally inert until it arrives.
+        // This debug-only host exercises the same public widget update path.
+        if (widgetId != AppWidgetManager.INVALID_APPWIDGET_ID) {
+            GlimpseHomeWidgetRefresh.enqueue(this)
+        }
         stateSnapshotJob?.cancel()
         stateSnapshotJob = lifecycleScope.launch(Dispatchers.IO) {
             while (isActive) {
@@ -146,6 +154,8 @@ class WidgetHostProbeActivity : ComponentActivity() {
                     val source = rotation?.collectionId != null
                     val outcome = when {
                         rotation?.pendingPhotoId != null -> "UNCERTAIN"
+                        rotation?.outcome?.startsWith("Skipped one upcoming image") == true ->
+                            "SKIPPED"
                         rotation?.lastAcknowledgedPhotoId != null -> "ACKNOWLEDGED"
                         rotation?.lastAttemptAt != null -> "NOT_CONFIRMED"
                         else -> "NOT_ATTEMPTED"

@@ -6,6 +6,7 @@ ACTION_APPWIDGET_BIND consent dialog. No privileged shell grant, production
 binding permission or mock host is used. Only disposable emulator media.
 """
 import argparse
+import json
 from pathlib import Path
 import re
 import subprocess
@@ -223,6 +224,53 @@ def main():
     capture(out, "widget-after-actual-home-command")
     print("PASS: Android AppWidgetHost, empty state, verified source, " +
           "honest undecided preview and user-requested result", flush=True)
+
+    # Second *real Android* widget journey: explicit SKIP of a persisted known
+    # candidate. This must never issue WallpaperManager, move due time or
+    # acknowledge wallpaper. The debug fixture seeds only generated photos and
+    # a saved queue, not a fake platform wallpaper result.
+    adb("shell", "run-as", APP, "rm", "-f", "files/visual-atlas-ready.txt")
+    adb("shell", "am", "start", "-n", APP + "/.debug.VisualFixtureLauncher",
+        "--ei", "count", "3", "--ez", "active", "true",
+        "--ez", "knownQueue", "true")
+    wait_for(lambda: "READY:3:" in adb(
+        "shell", "run-as", APP, "cat", "files/visual-atlas-ready.txt", check=False
+    ), "saved known queue, real Room fixture", 40)
+    time.sleep(3)
+    adb("shell", "am", "force-stop", APP)
+    start_probe(out)
+    wait_for(lambda: ("Next in the bag" in labels(hierarchy()) and
+                      "SKIP" in labels(hierarchy())),
+             "real AppWidgetHost exposes verified next and Skip", 45)
+    capture(out, "widget-skip-known-before")
+    def saved_state():
+        raw = adb("shell", "run-as", APP,
+                  "cat", "files/widget-probe-rotation-state.json", check=False)
+        try:
+            return json.loads(raw)
+        except json.JSONDecodeError:
+            return {}
+    before = wait_for(lambda: (state if state.get("savedSource") and
+                                       state.get("outcomeCategory") == "NOT_ATTEMPTED"
+                               else None) if (state := saved_state()) else None,
+                      "no wallpaper attempt before widget Skip", 20)
+    assert not before.get("attemptObserved") and not before.get("pending")
+    assert not before.get("acknowledged")
+    tap("SKIP")
+    after = wait_for(
+        lambda: (state if state.get("outcomeCategory") == "SKIPPED"
+                 else None) if (state := saved_state()) else None,
+        "saved queue Skip without OS wallpaper attempt", 30)
+    assert not after.get("attemptObserved"), "Skip invoked wallpaper gateway"
+    assert not after.get("pending"), "Skip reserved an OS wallpaper operation"
+    assert not after.get("acknowledged"), "Skip claimed an OS wallpaper result"
+    wait_for(lambda: ("Next in the bag" in labels(hierarchy()) and
+                      "SKIP" in labels(hierarchy())),
+             "widget re-rendered next saved image after explicit Skip", 30)
+    capture(out, "widget-skip-known-after")
+    print("PASS: explicit Skip changed only persisted shuffle queue; " +
+          "real Android widget remained actionable and no OS wallpaper " +
+          "attempt, pending token or acknowledgment occurred", flush=True)
 
 if __name__ == "__main__":
     main()

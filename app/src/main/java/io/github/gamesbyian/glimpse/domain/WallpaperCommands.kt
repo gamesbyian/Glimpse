@@ -95,6 +95,41 @@ class WallpaperCommands(
         "Uncertain attempt dismissed; rotation remains paused."
     }
 
+    /**
+     * User-requested widget preview skip. This advances only the persisted
+     * no-repeat queue under the same gateway mutex used by Home changes.
+     * It makes NO WallpaperManager call and does not alter the due time,
+     * previous acknowledgment, current wallpaper, or rotation active state.
+     */
+    suspend fun skipNextPreview(
+        expectedCollectionId: String, expectedPhotoId: String
+    ): String = mutex.withLock {
+        val previous = dao.readRotation()
+            ?: return@withLock "Choose a shuffle collection before skipping."
+        if (previous.pendingPhotoId != null) {
+            return@withLock "An Android wallpaper result is uncertain. Review it first."
+        }
+        val source = previous.collectionId
+            ?: return@withLock "Choose a shuffle collection before skipping."
+        if (source != expectedCollectionId) {
+            return@withLock "Saved shuffle collection changed since widget preview."
+        }
+        if (previous.remainingJson.length > 1_000_000) {
+            return@withLock "Saved queue is too large to skip safely."
+        }
+        val ids = dao.photosIn(source).map { it.id }
+        val updated = ShuffleBag.skipKnownNext(
+            ids, decodeBag(previous.remainingJson), previous.lastAcknowledgedPhotoId,
+            expectedPhotoId
+        ) ?: return@withLock "No confirmed different next photo is available to skip."
+        dao.saveRotation(previous.copy(
+            remainingJson = encodeBag(updated),
+            outcome = "Skipped one upcoming image; Home wallpaper and due time unchanged"
+        ))
+        refreshWidgetBestEffort()
+        "Skipped the next saved image. The current Home wallpaper was not changed."
+    }
+
     suspend fun applySelected(photoId: String): String = mutex.withLock {
         val photo = dao.findPhoto(photoId) ?: return@withLock "Selected photo is unavailable."
         val previous = dao.readRotation() ?: RotationRecord()

@@ -76,6 +76,32 @@ class WidgetPreviewDecisionTest {
         assertFalse(decision.canRequestChange)
     }
 
+    @Test fun skipRequiresTwoDistinctConfirmedCandidatesAndNoPendingAttempt() {
+        val base = RotationRecord(
+            collectionId = "real",
+            remainingJson = """["first","second"]""",
+            lastAcknowledgedPhotoId = "previous"
+        )
+        val ready = widgetPreviewDecision(
+            base, true, "first", knownValidQueueSecond = "second"
+        )
+        assertEquals(WidgetPreviewKind.NEXT_KNOWN, ready.kind)
+        assertTrue(ready.canSkipNext)
+        assertTrue(ready.canRequestChange)
+        assertFalse(widgetPreviewDecision(base, true, "first").canSkipNext)
+        assertFalse(widgetPreviewDecision(
+            base, true, "first", knownValidQueueSecond = "first"
+        ).canSkipNext)
+        assertFalse(widgetPreviewDecision(
+            base.copy(lastAcknowledgedPhotoId = "second"), true, "first",
+            knownValidQueueSecond = "second"
+        ).canSkipNext)
+        assertFalse(widgetPreviewDecision(
+            base.copy(pendingPhotoId = "uncertain"), true, "first",
+            knownValidQueueSecond = "second"
+        ).canSkipNext)
+    }
+
     @Test fun missingPreviewDoesNotDisableExplicitManualChange() {
         val outcome = widgetPreviewDecision(RotationRecord(
             collectionId = "real", active = false
