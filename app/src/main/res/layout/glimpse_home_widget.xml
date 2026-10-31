@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/glimpse_widget_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="12dp"
+    android:background="@drawable/glimpse_widget_paper">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="G L I M P S E  /  HOME"
+        android:textColor="#97694D"
+        android:textSize="10sp"
+        android:fontFamily="@font/plus_jakarta_sans"
+        android:letterSpacing="0.05"
+        android:contentDescription="Glimpse Home wallpaper widget"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginTop="8dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+        <ImageView
+            android:id="@+id/glimpse_widget_preview"
+            android:layout_width="86dp"
+            android:layout_height="86dp"
+            android:contentDescription="Next saved shuffle photograph preview, when available"
+            android:scaleType="centerCrop"
+            android:src="@drawable/glimpse_tile_next"
+            android:padding="5dp"
+            android:background="@drawable/glimpse_widget_photo_frame"/>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="10dp"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/glimpse_widget_status"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Next not chosen"
+                android:fontFamily="@font/fraunces_display"
+                android:textStyle="bold"
+                android:textColor="#1D4140"
+                android:textSize="17sp"
+                android:maxLines="2"
+                android:ellipsize="end"/>
+            <TextView
+                android:id="@+id/glimpse_widget_collection"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Open Glimpse to choose a collection"
+                android:textColor="#62574C"
+                android:fontFamily="@font/plus_jakarta_sans"
+                android:textSize="11sp"
+                android:maxLines="2"
+                android:ellipsize="end"/>
+            <TextView
+                android:id="@+id/glimpse_widget_action"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="5dp"
+                android:gravity="center"
+                android:text="OPEN GLIMPSE"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:fontFamily="@font/plus_jakarta_sans"
+                android:textColor="#FFFFFFFF"
+                android:background="@drawable/glimpse_widget_action_bg"
+                android:contentDescription="Open Glimpse to set up wallpaper rotation"/>
+        </LinearLayout>
+    </LinearLayout>
+    <TextView
+        android:id="@+id/glimpse_widget_explainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Preview only. Android wallpaper changes require an explicit action."
+        android:textSize="9sp"
+        android:fontFamily="@font/plus_jakarta_sans"
+        android:textColor="#71675D"
+        android:maxLines="2"
+        android:ellipsize="end"/>
+</LinearLayout>
