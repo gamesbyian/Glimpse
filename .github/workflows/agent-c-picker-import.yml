@@ -3,6 +3,13 @@ on:
   pull_request:
     paths:
       - scripts/capture-agent-c-real-picker-import.py
+      # Photo Picker data/feedback changes need real OS evidence. The old
+      # paths filter skipped source-only MainActivity changes even when the
+      # actual duplicate notice became hidden behind the fixed Reel.
+      - app/src/main/java/io/github/gamesbyian/glimpse/MainActivity.kt
+      - app/src/main/java/io/github/gamesbyian/glimpse/GlimpseModel.kt
+      - app/src/main/java/io/github/gamesbyian/glimpse/data/PhotoImporter.kt
+      - app/src/main/java/io/github/gamesbyian/glimpse/data/GlimpseDatabase.kt
       - scripts/validate-agent-c-real-picker-evidence.py
       - app/src/debug/java/io/github/gamesbyian/glimpse/debug/PickerMediaFixtureLauncher.kt
       - app/src/debug/AndroidManifest.xml
