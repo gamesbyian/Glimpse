@@ -97,8 +97,10 @@ internal fun existingOriginalMatches(
  * Android's untrusted_app SELinux policy can deny hard links under filesDir,
  * despite Linux/JVM tests succeeding. Prefer same-directory link creation when
  * supported: it atomically publishes complete bytes and fails if target exists.
- * On OS denial, use Files.copy WITHOUT REPLACE_EXISTING: destination creation
- * remains exclusive, and another writer's original is never truncated.
+ * On OS denial, use FileChannel.open with CREATE_NEW (O_EXCL): the
+ * existence check AND entry creation are atomic against concurrent writers.
+ * Files.copy without REPLACE_EXISTING is insufficient because its contract
+ * explicitly permits a non-atomic target check. Never truncate an original.
  *
  * Copy fallback has different crash behavior: a failed or interrupted copy
  * could leave an incomplete, unregistered digest-name file. Never delete or
@@ -143,19 +145,31 @@ internal fun publishPrivateOriginalExclusively(
     }
 
     try {
-        // No REPLACE_EXISTING: an existing file, including an adversarial
-        // symlink or a concurrent imported SHA, must NOT be overwritten.
-        java.nio.file.Files.copy(staged.toPath(), target.toPath())
+        // CREATE_NEW atomically reserves the digest path and refuses existing
+        // regular files, symlinks and simultaneous writers. No preflight
+        // exists() check and no truncate/replace-capable operation occurs.
+        java.nio.channels.FileChannel.open(
+            target.toPath(),
+            java.nio.file.StandardOpenOption.WRITE,
+            java.nio.file.StandardOpenOption.CREATE_NEW
+        ).use { destination ->
+            staged.inputStream().buffered().use { input ->
+                val bytes = ByteArray(64 * 1024)
+                while (true) {
+                    val count = input.read(bytes)
+                    if (count < 0) break
+                    val chunk = java.nio.ByteBuffer.wrap(bytes, 0, count)
+                    while (chunk.hasRemaining()) destination.write(chunk)
+                }
+            }
+            destination.force(true)
+        }
     } catch (_: java.nio.file.FileAlreadyExistsException) {
         requireMatchingExisting()
         return
     }
-    // The destination is a separate inode after copy. Force its bytes to disk
-    // before the original PhotoRecord/membership transaction can commit.
-    // WRITE without CREATE or TRUNCATE avoids replacing/creating anything.
-    java.nio.channels.FileChannel.open(
-        target.toPath(), java.nio.file.StandardOpenOption.WRITE
-    ).use { it.force(true) }
+    // No Room record is committed until the freshly written copy has passed
+    // its full SHA and length check. Failed partial targets remain untouched.
     requireMatchingExisting()
 }
 
