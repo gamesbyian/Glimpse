@@ -30,6 +30,21 @@ The API34 picker, real Room and native suite passed on the final #141 head.
 Oldest supported API29 acceptance is independently tracked in
 [PR #144](https://github.com/gamesbyian/Glimpse/pull/144).
 
+## Subsequent merged safeguards
+
+PRs #144, #146 and #147 add actual API29 private-filesystem tests,
+same-process SHA publication serialization, and retention of validated
+nonempty importer staging files after publication failure. Only zero-byte,
+aged importer staging placeholders may be pruned automatically.
+
+PR #149 adds a successful populated, same-temporary-signer Android upgrade
+test covering five Room tables and three exact-byte originals. This does not
+establish stable owner signing.
+
+Issue #143 remains open: these corrections do not establish durable per-attempt
+publication receipts, cross-process recovery, or safe handling of a partial
+unregistered digest target after abrupt process termination.
+
 ## Invariants
 
 1. A provider URI is an ephemeral grant. Never persist it in the import
