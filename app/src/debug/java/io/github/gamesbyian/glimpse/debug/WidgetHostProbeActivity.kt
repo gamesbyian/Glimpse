@@ -146,6 +146,8 @@ class WidgetHostProbeActivity : ComponentActivity() {
                     val source = rotation?.collectionId != null
                     val outcome = when {
                         rotation?.pendingPhotoId != null -> "UNCERTAIN"
+                        rotation?.outcome?.startsWith("Skipped one upcoming image") == true ->
+                            "SKIPPED"
                         rotation?.lastAcknowledgedPhotoId != null -> "ACKNOWLEDGED"
                         rotation?.lastAttemptAt != null -> "NOT_CONFIRMED"
                         else -> "NOT_ATTEMPTED"
