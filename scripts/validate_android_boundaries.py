@@ -12,6 +12,13 @@ ANDROID = "{http://schemas.android.com/apk/res/android}"
 PROVIDERS = {".GlimpseOriginalFileProvider", ".GlimpseEditedFileProvider"}
 MUTATIONS = re.compile(r"\b(?:WallpaperManager\.getInstance|setBitmap|setStream|setResource)\s*\(")
 DESTRUCTIVE = re.compile(r"\bfallbackToDestructiveMigration\w*\s*\(")
+DB_FILE = Path("app/src/main/java/io/github/gamesbyian/glimpse/data/GlimpseDatabase.kt")
+# Keep all imported-file linkage through transactional collection validation.
+# Direct raw DAO writes can create dangling photo/membership rows when an
+# Android provider returns after its original destination was deleted.
+RAW_MEMBERSHIP = re.compile(
+    r"\bdao\s*\.\s*(?:attach|insertMembership|insertPhoto)\s*\("
+)
 
 def inspect(root: Path) -> list[str]:
     errors = []
@@ -22,6 +29,11 @@ def inspect(root: Path) -> list[str]:
         body = source.read_text(encoding="utf-8")
         if DESTRUCTIVE.search(body):
             errors.append(str(source.relative_to(root)) + ": destructive Room fallback")
+        if source.relative_to(root) != DB_FILE and RAW_MEMBERSHIP.search(body):
+            errors.append(
+                str(source.relative_to(root)) +
+                ": direct unguarded Room photo/membership attachment"
+            )
         if source != root / GATEWAY and MUTATIONS.search(body):
             errors.append(str(source.relative_to(root)) + ": second wallpaper gateway")
     try:

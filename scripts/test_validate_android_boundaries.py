@@ -50,6 +50,26 @@ class BoundaryTests(unittest.TestCase):
         self.gateway.write_text('fallbackToDestructiveMigration()', encoding='utf8')
         self.assertTrue(any('destructive Room fallback' in x for x in inspect(self.root)))
 
+    def test_unprotected_importer_attachment_fails(self):
+        rogue = self.gateway.parent / "UnprotectedImporter.kt"
+        rogue.write_text("fun import(dao: GlimpseDao) { dao.attach(photo, collection) }",
+                         encoding="utf8")
+        self.assertTrue(any("unguarded Room" in x for x in inspect(self.root)))
+
+    def test_external_direct_membership_insert_fails(self):
+        rogue = self.gateway.parent / "UnsafeCollectionEdit.kt"
+        rogue.write_text(
+            "fun change(dao: GlimpseDao) { dao.insertMembership(membership) }",
+            encoding="utf8")
+        self.assertTrue(any("unguarded Room" in x for x in inspect(self.root)))
+
+    def test_guarded_importer_api_is_allowed(self):
+        safe = self.gateway.parent / "SafeImporter.kt"
+        safe.write_text(
+            "fun import(dao: GlimpseDao) { dao.attachIfCollectionExists(photo, id) }",
+            encoding="utf8")
+        self.assertFalse(inspect(self.root))
+
     def test_exported_photo_provider_fails(self):
         self.manifest.write_text(MANIFEST_TEXT.replace('android:exported="false"',
             'android:exported="true"', 1), encoding='utf8')
