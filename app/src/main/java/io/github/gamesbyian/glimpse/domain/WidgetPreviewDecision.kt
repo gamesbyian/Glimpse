@@ -37,7 +37,7 @@ internal fun widgetPreviewDecision(
     // photo already applied, the command would make no OS wallpaper change.
     // Never advertise an active Change button for that known no-op.
     !soleEligiblePhotoId.isNullOrBlank() &&
-        soleEligiblePhotoId == rotation.lastAcknowledgedPhotoId ->
+        soleEligiblePhotoId == rotation?.lastAcknowledgedPhotoId ->
         WidgetPreviewDecision(WidgetPreviewKind.CURRENT_ONLY)
     !knownValidQueueHead.isNullOrBlank() -> WidgetPreviewDecision(
         WidgetPreviewKind.NEXT_KNOWN, knownValidQueueHead, canRequestChange = true
