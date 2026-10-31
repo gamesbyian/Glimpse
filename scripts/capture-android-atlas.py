@@ -832,26 +832,51 @@ def main():
                                 "Cannot scroll the real Switch above fixed bottom Reel")
                 raise RuntimeError("Background consent switch remains under fixed Reel")
             click_label(toggle_label)
-            for _ in range(8):
+            # The 2026-10-31 emulator screenshot confirms that the Switch
+            # *did* become enabled, but the dynamic label remained partly
+            # beneath the fixed paper Reel and UIAutomator omitted it. A
+            # screenshot-only state is not sufficient acceptance: scroll the
+            # changed label above the overlay and require its Android node.
+            for attempt in range(12):
                 opted_in = hierarchy()
                 if "Background checks enabled (best effort)" in opted_in:
                     break
+                if attempt % 2 == 1:
+                    swipe("up")
                 time.sleep(.45)
             else:
-                capture_failure("background-consent-opt-in-not-applied",
-                                "Visible Switch tap did not enable persisted consent")
-                raise RuntimeError("Explicit background consent failed to update visible state")
+                capture_failure("background-consent-opt-in-not-exposed",
+                                "Enabled consent text not visible after scrolling above Reel")
+                raise RuntimeError("Explicit background consent state was not exposed above fixed Reel")
             capture("22-opt-in-background-rotation",
-                    "Opt-in OS work disclosure distinguishes 15min+ background from visible five-minute")
-            click_label(toggle_label)
-            for _ in range(8):
+                    "Consent enabled: label is accessible above Reel; OS work is 15min+ best effort")
+            # Revealing the outcome can scroll the Switch itself offscreen.
+            # Re-find its physical, non-occluded bounds before opting out.
+            for attempt in range(12):
+                current = hierarchy()
+                try:
+                    _, top, _, bottom = accessible_bounds(current, toggle_label)
+                    midpoint = (top + bottom) // 2
+                    if int(screen_h * .12) < midpoint < int(screen_h * .55):
+                        click_label(toggle_label)
+                        break
+                except (RuntimeError, ValueError):
+                    pass
+                swipe("down")
+            else:
+                capture_failure("background-consent-opt-out-switch-hidden",
+                                "Cannot restore touchable Switch above fixed Reel")
+                raise RuntimeError("Opt-out Switch could not be reached safely")
+            for attempt in range(12):
                 if "Allow background wallpaper checks" in hierarchy():
                     break
+                if attempt % 2 == 1:
+                    swipe("up")
                 time.sleep(.45)
             else:
-                capture_failure("background-consent-opt-out-not-applied",
-                                "Visible Switch tap did not disable persisted consent")
-                raise RuntimeError("Background opt-out did not restore disabled state")
+                capture_failure("background-consent-opt-out-not-exposed",
+                                "Disabled consent text not visible after scrolling above Reel")
+                raise RuntimeError("Background opt-out did not expose disabled state")
             capture("22-opt-out-background-rotation",
                     "Background work explicitly disabled without changing Home wallpaper")
             start_fixture(3)
