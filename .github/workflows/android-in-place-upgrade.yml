@@ -11,6 +11,15 @@ on:
       - "app/build.gradle.kts"
       - "app/src/main/java/io/github/gamesbyian/glimpse/data/GlimpseDatabase.kt"
       - "app/src/main/java/io/github/gamesbyian/glimpse/data/PhotoImporter.kt"
+      # High-risk commands and alternate original-writing entry points must
+      # exercise installed-data preservation, not merely ordinary compilation.
+      - "app/src/main/java/io/github/gamesbyian/glimpse/GlimpseModel.kt"
+      - "app/src/main/java/io/github/gamesbyian/glimpse/GlimpseHomeWidget.kt"
+      - "app/src/main/java/io/github/gamesbyian/glimpse/EditedPhotoOutput.kt"
+      - "app/src/main/java/io/github/gamesbyian/glimpse/domain/WallpaperCommands.kt"
+      - "app/src/main/java/io/github/gamesbyian/glimpse/data/CollectionZipRestorer.kt"
+      - "app/src/main/java/io/github/gamesbyian/glimpse/data/ImportJournal.kt"
+      - "app/src/main/java/io/github/gamesbyian/glimpse/data/PrivateOriginalVerifier.kt"
       - "app/src/debug/java/io/github/gamesbyian/glimpse/debug/VisualFixtureLauncher.kt"
       - "app/src/main/AndroidManifest.xml"
   push:
@@ -21,6 +30,15 @@ on:
       - "app/build.gradle.kts"
       - "app/src/main/java/io/github/gamesbyian/glimpse/data/GlimpseDatabase.kt"
       - "app/src/main/java/io/github/gamesbyian/glimpse/data/PhotoImporter.kt"
+      # High-risk commands and alternate original-writing entry points must
+      # exercise installed-data preservation, not merely ordinary compilation.
+      - "app/src/main/java/io/github/gamesbyian/glimpse/GlimpseModel.kt"
+      - "app/src/main/java/io/github/gamesbyian/glimpse/GlimpseHomeWidget.kt"
+      - "app/src/main/java/io/github/gamesbyian/glimpse/EditedPhotoOutput.kt"
+      - "app/src/main/java/io/github/gamesbyian/glimpse/domain/WallpaperCommands.kt"
+      - "app/src/main/java/io/github/gamesbyian/glimpse/data/CollectionZipRestorer.kt"
+      - "app/src/main/java/io/github/gamesbyian/glimpse/data/ImportJournal.kt"
+      - "app/src/main/java/io/github/gamesbyian/glimpse/data/PrivateOriginalVerifier.kt"
       - "app/src/main/AndroidManifest.xml"
 permissions:
   contents: read
