@@ -2,6 +2,7 @@ package io.github.gamesbyian.glimpse.data
 
 import com.google.gson.JsonParser
 import java.io.File
+import java.io.FileOutputStream
 import java.io.InputStream
 import java.io.InputStreamReader
 import java.nio.file.Files
@@ -100,7 +101,7 @@ internal object CollectionZipReader {
                     staged += StagedArchivePhoto(sha, mime, expectedBytes, temp)
                     val sha256 = MessageDigest.getInstance("SHA-256")
                     var length = 0L
-                    temp.outputStream().buffered().use { output ->
+                    FileOutputStream(temp).use { output ->
                         val buffer = ByteArray(64 * 1024)
                         while (true) {
                             checkpoint()
@@ -113,6 +114,10 @@ internal object CollectionZipReader {
                             sha256.update(buffer, 0, read)
                             output.write(buffer, 0, read)
                         }
+                        // The ZIP publisher now retains validated images on
+                        // downstream failure. Stage bytes must be durable
+                        // before they can enter the exclusive SHA gateway.
+                        output.fd.sync()
                     }
                     archive.closeEntry() // verifies ZIP CRC when available
                     require(length == expectedBytes &&
