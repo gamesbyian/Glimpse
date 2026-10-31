@@ -19,6 +19,13 @@ DB_FILE = Path("app/src/main/java/io/github/gamesbyian/glimpse/data/GlimpseDatab
 RAW_MEMBERSHIP = re.compile(
     r"\bdao\s*\.\s*(?:attach|insertMembership|insertPhoto)\s*\("
 )
+# These two user-photo writers historically had exists() followed by
+# replace-capable renameTo(), bypassing the guarded PhotoImporter gateway.
+# Keep the explicit no-replace path as a permanent source gate.
+SECONDARY_ORIGINAL_WRITERS = (
+    Path("app/src/main/java/io/github/gamesbyian/glimpse/EditedPhotoOutput.kt"),
+    Path("app/src/main/java/io/github/gamesbyian/glimpse/data/CollectionZipRestorer.kt"),
+)
 
 def inspect(root: Path) -> list[str]:
     errors = []
@@ -36,6 +43,17 @@ def inspect(root: Path) -> list[str]:
             )
         if source != root / GATEWAY and MUTATIONS.search(body):
             errors.append(str(source.relative_to(root)) + ": second wallpaper gateway")
+    for name in SECONDARY_ORIGINAL_WRITERS:
+        candidate = root / name
+        if not candidate.exists():
+            # Synthetic unit fixtures may omit the writer entirely; the
+            # canonical production tree still includes both modules.
+            continue
+        content = candidate.read_text(encoding="utf-8")
+        if re.search(r"\.renameTo\s*\(", content):
+            errors.append(str(name) + ": replace-capable original rename")
+        if not re.search(r"\bpublishPrivateOriginalExclusively\s*\(", content):
+            errors.append(str(name) + ": missing exclusive original publisher")
     try:
         app = ET.parse(root / MANIFEST).getroot().find("application")
         if app is None:
