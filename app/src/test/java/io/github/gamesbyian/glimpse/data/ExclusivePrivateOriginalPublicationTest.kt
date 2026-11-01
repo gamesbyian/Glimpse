@@ -8,6 +8,7 @@ import java.util.concurrent.CountDownLatch
 import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit
 import org.junit.Assert.assertArrayEquals
+import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
 import org.junit.Rule
@@ -267,10 +268,46 @@ class ExclusivePrivateOriginalPublicationTest {
             releaseFirst.countDown()
             firstJob.get(10, TimeUnit.SECONDS)
             assertArrayEquals(first, firstTarget.readBytes())
+            assertEquals(0, activePrivateOriginalPublicationGates())
         } finally {
             releaseFirst.countDown()
             threads.shutdownNow()
         }
+    }
+
+    @Test fun shaGateRegistryDoesNotGrowWithDistinctPublishedOriginals() {
+        val initial = activePrivateOriginalPublicationGates()
+        assertEquals(0, initial)
+        repeat(128) { index ->
+            val content = "unique verified image bytes $index".toByteArray()
+            val stage = scratch.newFile("import-bounded-$index.partial")
+                .apply { writeBytes(content) }
+            val target = File(scratch.root, hex(content) + ".jpg")
+            publishPrivateOriginalExclusively(
+                stage, target, hex(content), content.size.toLong(),
+                preferHardLink = false
+            )
+            assertArrayEquals(content, target.readBytes())
+            assertEquals("No idle SHA monitor must be retained", 0,
+                activePrivateOriginalPublicationGates())
+        }
+    }
+
+    @Test fun failedPublicationAlsoReleasesBorrowedShaMonitor() {
+        val target = scratch.newFile(hex(picture) + ".jpg")
+        val fragment = "untrusted fragment".toByteArray()
+        target.writeBytes(fragment)
+        val stage = scratch.newFile("import-bad-existing.partial")
+            .apply { writeBytes(picture) }
+        assertTrue(runCatching {
+            publishPrivateOriginalExclusively(
+                stage, target, hex(picture), picture.size.toLong(),
+                preferHardLink = false
+            )
+        }.isFailure)
+        assertEquals(0, activePrivateOriginalPublicationGates())
+        assertArrayEquals(fragment, target.readBytes())
+        assertArrayEquals(picture, stage.readBytes())
     }
 
     @Test fun missingOrForeignStagingSourceIsNeverPublished() {
