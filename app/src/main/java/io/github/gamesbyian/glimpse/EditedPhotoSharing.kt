@@ -9,8 +9,11 @@ import io.github.gamesbyian.glimpse.domain.PhotoEditGeometry
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.io.File
-import java.io.FileOutputStream
+import java.nio.channels.Channels
+import java.nio.channels.FileChannel
+import java.nio.file.StandardOpenOption
 import java.util.UUID
+import java.nio.file.Files
 
 /**
  * An explicit Share action for edited pixels. Never exports an original
@@ -20,59 +23,81 @@ import java.util.UUID
  * not the immutable originals or internal Room/settings data. Android gets a
  * temporary read-only content grant when the user opens its Sharesheet.
  */
+/**
+ * Remove only explicitly Glimpse-owned, expired share-cache objects.
+ * Arbitrarily named PNGs and links can appear inside this app-private cache,
+ * but their presence never grants permission to delete them.
+ */
+internal fun pruneOwnedEditedShareCache(folder: File, now: Long): Int {
+    if (!folder.isDirectory || Files.isSymbolicLink(folder.toPath())) return 0
+    val root = folder.canonicalFile
+    val owned = Regex("^(glimpse-edited-[A-Za-z0-9_-]{6,80}\\.png|" +
+        "glimpse-[A-Za-z0-9_-]{6,80}\\.partial)$")
+    return folder.listFiles()?.count { file ->
+        try {
+            val modified = file.lastModified()
+            file.isFile && !Files.isSymbolicLink(file.toPath()) &&
+                file.canonicalFile.parentFile == root &&
+                owned.matches(file.name) &&
+                modified > 0 && now >= modified &&
+                now - modified >= 24L * 60L * 60L * 1000L &&
+                file.delete()
+        } catch (_: Exception) {
+            false
+        }
+    } ?: 0
+}
+
 internal object EditedPhotoSharing {
     private const val DIRECTORY = "shared-edits"
     private const val MAX_BYTES = 50L * 1024 * 1024
-    private const val STALE_MILLIS = 24L * 60 * 60 * 1000
 
     internal fun shareCache(context: Context): File {
         val folder = File(context.cacheDir, DIRECTORY)
         require(folder.isDirectory || folder.mkdirs()) {
             "Unable to prepare the temporary edited-share cache."
         }
-        require(folder.canonicalFile.parentFile == context.cacheDir.canonicalFile) {
+        require(!Files.isSymbolicLink(folder.toPath()) &&
+            folder.canonicalFile.parentFile == context.cacheDir.canonicalFile) {
             "Unexpected temporary-share directory."
         }
         return folder
-    }
-
-    private fun removeExpired(folder: File, now: Long) {
-        folder.listFiles()?.filter { file ->
-            file.isFile && !file.isDirectory &&
-                (file.name.endsWith(".png") || file.name.endsWith(".partial")) &&
-                file.lastModified() < now - STALE_MILLIS
-        }?.forEach { it.delete() }
     }
 
     suspend fun chooser(
         context: Context, original: PhotoRecord, geometry: PhotoEditGeometry
     ): Intent = withContext(Dispatchers.IO) {
         val folder = shareCache(context)
-        removeExpired(folder, System.currentTimeMillis())
+        pruneOwnedEditedShareCache(folder, System.currentTimeMillis())
         // The same verified, EXIF-upright and bounded renderer powers the
         // edited PNG Save As flow. PNG contains only transformed image pixels.
         val pixels = EditedPhotoOutput.renderVerified(
             context, original, geometry, EditedPhotoOutput.MAX_EXPORT_EDGE
         )
-        val staged = File.createTempFile("glimpse-", ".partial", folder)
         var finished: File? = null
         try {
-            FileOutputStream(staged).use { output ->
+            // CREATE a unique, owned cache destination atomically. Do not
+            // perform staged.renameTo(target): POSIX rename can replace an
+            // existing file even if its random name appeared after a check.
+            val target = File(folder, "glimpse-edited-" + UUID.randomUUID() + ".png")
+            FileChannel.open(
+                target.toPath(), StandardOpenOption.CREATE_NEW, StandardOpenOption.WRITE
+            ).use { channel ->
+                // Mark ownership only AFTER the atomic no-existing-file open
+                // succeeds. A UUID collision must never be cleaned up as ours.
+                finished = target
+                val output = Channels.newOutputStream(channel)
                 require(pixels.compress(android.graphics.Bitmap.CompressFormat.PNG, 100, output)) {
                     "Unable to render the edited PNG for sharing."
                 }
-                output.fd.sync()
+                output.flush()
+                channel.force(true)
             }
-            require(staged.length() in 1..MAX_BYTES) {
+            require(target.length() in 1..MAX_BYTES) {
                 "The edited PNG exceeds the safe sharing size limit."
             }
-            // Do not use the original's SHA or identifying filename for a
-            // share target; only the user-chosen transformation is relevant.
-            val target = File(folder, "glimpse-edited-" + UUID.randomUUID() + ".png")
-            require(staged.renameTo(target)) {
-                "Unable to prepare the edited photo for Android sharing."
-            }
-            finished = target
+            // Only after successful fsync does Android receive this freshly
+            // generated image through a scoped, read-only FileProvider grant.
             val uri = FileProvider.getUriForFile(
                 context, context.packageName + ".edits", target
             )
@@ -89,7 +114,6 @@ internal object EditedPhotoSharing {
             finished?.delete()
             throw failure
         } finally {
-            staged.delete()
             pixels.recycle()
         }
     }
