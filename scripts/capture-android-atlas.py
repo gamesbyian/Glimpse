@@ -600,6 +600,26 @@ def main():
                 raise RuntimeError("Registered-original exact-byte audit failed")
             capture("22-help-original-integrity-audit",
                     "User-triggered verified 22/22 private SHA originals, no mutation")
+            # The new publication-receipt evidence is intentionally
+            # opt-in and read only. Exercise real Compose/Android navigation,
+            # not just its Kotlin presentation unit tests.
+            reach_and_click("Check interrupted import evidence", "up", attempts=20)
+            evidence_visible = False
+            for _ in range(14):
+                publication_xml = hierarchy()
+                if ("No publication-attempt receipts found." in publication_xml or
+                    "Examined " in publication_xml) and (
+                    "not recovery clearance" in publication_xml):
+                    evidence_visible = True
+                    break
+                swipe("up")
+                time.sleep(0.35)
+            if not evidence_visible:
+                capture_failure("interrupted-import-evidence-unreachable",
+                                "Read-only publication evidence did not render after opt-in")
+                raise RuntimeError("Interrupted import read-only evidence unavailable")
+            capture("22-help-interrupted-import-evidence",
+                    "Real user-triggered aggregate receipt evidence without deletion or repair")
             # Restore the exact ZIP we just exported via the *real* Android
             # OpenDocument chooser. The app must create a new Room collection
             # without changing the source library or applying wallpaper.

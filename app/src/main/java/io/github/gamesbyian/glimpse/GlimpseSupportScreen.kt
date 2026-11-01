@@ -42,9 +42,13 @@ import io.github.gamesbyian.glimpse.data.LocalOriginalIntegritySummary
 import io.github.gamesbyian.glimpse.data.LibraryRelationshipAudit
 import io.github.gamesbyian.glimpse.data.LocalStorageInventory
 import io.github.gamesbyian.glimpse.data.PotentialOrphanInventory
+import io.github.gamesbyian.glimpse.data.PendingPublicationEvidence
+import io.github.gamesbyian.glimpse.data.PrivatePublicationReceiptJournal
 import io.github.gamesbyian.glimpse.data.inspectLocalStorage
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.currentCoroutineContext
+import kotlinx.coroutines.ensureActive
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.io.File
@@ -70,6 +74,9 @@ internal fun GlimpseSupportScreen(
     }
     var integrityReadout by remember { mutableStateOf<IntegrityReadout>(IntegrityReadout.NotChecked) }
     var orphanReadout by remember { mutableStateOf<OrphanReadout>(OrphanReadout.NotChecked) }
+    var publicationReadout by remember {
+        mutableStateOf<PublicationReadout>(PublicationReadout.NotChecked)
+    }
     var relationshipsReadout by remember {
         mutableStateOf<RelationshipReadout>(RelationshipReadout.NotChecked)
     }
@@ -282,6 +289,59 @@ internal fun GlimpseSupportScreen(
                         context, result.snapshot.unreferencedBytes
                     ) +
                     ". No files were changed. This is not deletion clearance.",
+                style = MaterialTheme.typography.bodySmall
+            )
+        }
+        SupportSection(
+            "INTERRUPTED IMPORT EVIDENCE · READ ONLY",
+            "An interrupted photo import may leave an attempt receipt, a fully " +
+                "written temporary copy or an incomplete digest-named file. " +
+                "Check current evidence without opening other apps or altering photos.",
+            "Matching image bytes prove present-day integrity, not which writer " +
+                "created the file. An absent or damaged file gives Glimpse no " +
+                "permission to delete, replace or recover it. Ongoing imports " +
+                "may change these counts while inspection is running."
+        )
+        OutlinedButton(
+            modifier = Modifier.heightIn(min = 48.dp),
+            enabled = publicationReadout != PublicationReadout.Checking,
+            onClick = {
+                publicationReadout = PublicationReadout.Checking
+                auditScope.launch {
+                    publicationReadout = try {
+                        val snapshot = withContext(Dispatchers.IO) {
+                            val task = currentCoroutineContext()
+                            PrivatePublicationReceiptJournal(
+                                File(context.filesDir, "originals")
+                            ).inspectFileEvidence(checkpoint = { task.ensureActive() })
+                        }
+                        if (snapshot == null) PublicationReadout.Unavailable
+                        else PublicationReadout.Ready(snapshot)
+                    } catch (cancel: CancellationException) {
+                        throw cancel
+                    } catch (_: Exception) {
+                        PublicationReadout.Unavailable
+                    }
+                }
+            }
+        ) { Text("Check interrupted import evidence") }
+        when (val result = publicationReadout) {
+            PublicationReadout.NotChecked -> Text(
+                "Optional, read-only. Checks at most 64 attempt receipts and " +
+                    "64 MiB of current file bytes. No repair is attempted.",
+                style = MaterialTheme.typography.bodySmall
+            )
+            PublicationReadout.Checking -> Text(
+                "Checking interrupted-import evidence without changing files…",
+                style = MaterialTheme.typography.bodySmall
+            )
+            PublicationReadout.Unavailable -> Text(
+                "Publication evidence could not be verified. Nothing was changed. " +
+                    "This does not mean saved originals are missing.",
+                style = MaterialTheme.typography.bodySmall
+            )
+            is PublicationReadout.Ready -> Text(
+                describePublicationEvidence(result.snapshot),
                 style = MaterialTheme.typography.bodySmall
             )
         }
@@ -507,6 +567,34 @@ private sealed interface OrphanReadout {
     data object Checking : OrphanReadout
     data object Unavailable : OrphanReadout
     data class Ready(val snapshot: PotentialOrphanInventory) : OrphanReadout
+}
+
+/**
+ * Only aggregate integers leave the storage scanner. This readout never
+ * identifies a user's collection, photo, source URI or private path.
+ */
+internal fun describePublicationEvidence(result: PendingPublicationEvidence): String {
+    val baseline = if (result.examinedReceipts == 0 && result.omittedReceipts == 0)
+        "No publication-attempt receipts found. Older interruptions may have no receipt."
+    else "Examined ${result.examinedReceipts} attempt receipt(s); " +
+        "${result.omittedReceipts} omitted; ${result.untrustedReceipts} untrusted. " +
+        "Staging: ${result.stagesExact} exact, ${result.stagesMissing} missing, " +
+        "${result.stagesUnverified} unverified. Targets: " +
+        "${result.targetsExact} exact, ${result.targetsMissing} missing, " +
+        "${result.targetsUnverified} unverified."
+    val limit = if (result.hashBudgetExhausted)
+        " The byte-check budget was reached, so some files were not hashed."
+    else ""
+    return baseline + limit +
+        " These counts can change during an import and cannot establish file ownership. " +
+        "No photos, receipts or library records were modified; this is not recovery clearance."
+}
+
+private sealed interface PublicationReadout {
+    data object NotChecked : PublicationReadout
+    data object Checking : PublicationReadout
+    data object Unavailable : PublicationReadout
+    data class Ready(val snapshot: PendingPublicationEvidence) : PublicationReadout
 }
 
 private sealed interface RelationshipReadout {

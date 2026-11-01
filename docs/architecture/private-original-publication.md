@@ -105,6 +105,15 @@ crash recovery. Actual Android kill/interruption tests, cross-process
 coordination, proven inode provenance and reversible owner-visible quarantine
 are still required before any recovery mutation.
 
+**Optional Help inspection:** Glimpse now exposes the existing bounded
+receipt checker through an explicit "Check interrupted import evidence"
+control in Help & Privacy. It executes on the IO dispatcher, checks
+cancellation, and shows only aggregate exact, missing, unverified, omitted
+and untrusted counts. Its labels explicitly deny repair authority and do not
+claim that zero receipts proves every older import succeeded. Rendering is
+tested both in JVM presentation tests and through the native Android Help
+journey. No unattended scan, automatic quarantine or recovery is added.
+
 ## Remaining crash window and recovery plan
 
 A process kill, storage exhaustion, device power loss or cancelled file-channel
