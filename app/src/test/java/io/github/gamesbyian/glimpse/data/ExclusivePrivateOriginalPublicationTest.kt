@@ -190,7 +190,7 @@ class ExclusivePrivateOriginalPublicationTest {
         publishPrivateOriginalExclusively(
             stage, target, hex(picture), picture.size.toLong(), preferHardLink = false
         )
-        val lockFile = File(scratch.root, ".glimpse-original-publication.lock")
+        val lockFile = File(scratch.root, ".glimpse-publication-${hex(picture)}.lock")
         assertTrue(lockFile.isFile)
         assertFalse(Files.isSymbolicLink(lockFile.toPath()))
         val metadata = "stable lock inode content (test only)".toByteArray()
@@ -211,7 +211,7 @@ class ExclusivePrivateOriginalPublicationTest {
         val foreign = scratch.newFile("must-not-write").apply {
             writeText("sentinel user data")
         }
-        val lockFile = File(scratch.root, ".glimpse-original-publication.lock")
+        val lockFile = File(scratch.root, ".glimpse-publication-${hex(picture)}.lock")
         Files.createSymbolicLink(lockFile.toPath(), foreign.toPath())
         assertTrue(runCatching {
             publishPrivateOriginalExclusively(
@@ -222,6 +222,55 @@ class ExclusivePrivateOriginalPublicationTest {
         assertArrayEquals(picture, stage.readBytes())
         assertTrue(Files.isSymbolicLink(lockFile.toPath()))
         assertTrue(foreign.readText() == "sentinel user data")
+    }
+
+    @Test fun differentShaOriginalsRemainIndependentlyPublishableDuringPausedWriter() {
+        val first = ByteArray(128 * 1024) { (it % 251).toByte() }
+        val second = ByteArray(128 * 1024) { ((it + 17) % 251).toByte() }
+        val firstStage = scratch.newFile("import-first-concurrent.partial")
+            .apply { writeBytes(first) }
+        val secondStage = scratch.newFile("import-second-concurrent.partial")
+            .apply { writeBytes(second) }
+        val firstTarget = File(scratch.root, hex(first) + ".jpg")
+        val secondTarget = File(scratch.root, hex(second) + ".jpg")
+        val firstPaused = CountDownLatch(1)
+        val releaseFirst = CountDownLatch(1)
+        val threads = Executors.newFixedThreadPool(2)
+        try {
+            val firstJob = threads.submit {
+                publishPrivateOriginalExclusively(
+                    firstStage, firstTarget, hex(first), first.size.toLong(),
+                    preferHardLink = false,
+                    copyCheckpoint = { copied ->
+                        if (copied == 64L * 1024L) {
+                            firstPaused.countDown()
+                            check(releaseFirst.await(10, TimeUnit.SECONDS)) {
+                                "Synthetic writer not released"
+                            }
+                        }
+                    }
+                )
+            }
+            assertTrue("First writer must pause while holding its SHA lock",
+                firstPaused.await(5, TimeUnit.SECONDS))
+            val otherJob = threads.submit {
+                publishPrivateOriginalExclusively(
+                    secondStage, secondTarget, hex(second), second.size.toLong(),
+                    preferHardLink = false
+                )
+            }
+            // The second digest must finish while the first remains paused.
+            // A global JVM or OS lock would time out here.
+            otherJob.get(5, TimeUnit.SECONDS)
+            assertArrayEquals(second, secondTarget.readBytes())
+            assertFalse(firstJob.isDone)
+            releaseFirst.countDown()
+            firstJob.get(10, TimeUnit.SECONDS)
+            assertArrayEquals(first, firstTarget.readBytes())
+        } finally {
+            releaseFirst.countDown()
+            threads.shutdownNow()
+        }
     }
 
     @Test fun missingOrForeignStagingSourceIsNeverPublished() {
