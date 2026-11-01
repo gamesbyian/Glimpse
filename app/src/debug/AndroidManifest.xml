@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <application>
-        <!-- Disposable test only: unexported real second process, never release. -->
         <service android:name=".debug.PublicationCooperationProbeService"
             android:exported="false"
             android:process=":glimpse_publication_cooperation" />
+        <!-- Debug-only, unexported bound service; performs SIGKILL only
+             inside a UUID-named instrumentation cache child. Never release. -->
+        <service android:name=".debug.PublicationKillProbeService"
+            android:exported="false"
+            android:process=":glimpse_publication_kill_probe" />
         <!-- Debug variant only. Do not seed a real user installation. -->
         <activity android:name=".debug.WidgetHostProbeActivity"
             android:exported="true"

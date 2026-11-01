@@ -94,7 +94,9 @@ and whether the cumulative hash budget ran out. Names, images, collection IDs
 and original paths are never returned.
 
 The scan runs only when explicitly invoked by a caller on IO, with a
-cancellation checkpoint. It follows no symlink, hashes no more than its
+cancellation checkpoint at receipt traversal and throughout each 64-KiB
+original-digest read. Cancelling midway through hashing propagates rather
+than returning a misleading unverified file count. It follows no symlink, hashes no more than its
 configured byte budget and **never** deletes, renames, quarantines, truncates,
 reattaches or overwrites a file. It cannot prove which writer created an
 inode or whether another process is writing now. Matching bytes establish
@@ -189,6 +191,23 @@ physical process-death or power-loss proof. API29/modern Android
 instrumentation and actual process kill at each receipt/reservation/force/
 DAO transition remain required under issue #143. Real symlink, foreign
 file and same-hash race refusal remain independent gates.
+
+## Actual Android child-process SIGKILL acceptance
+
+A debug-only, non-exported bound service runs under a distinct process name, inside
+a unique instrumentation cache child, and invokes the actual exclusive
+`CREATE_NEW` writer against a 128-KiB synthetic staging source. Immediately
+after the first 64-KiB write it fsyncs a test-only PID marker and issues
+`android.os.Process.killProcess` against **its own** process. The main
+instrumentation runner separately verifies that the child PID exited, that the
+staged bytes and receipt survived, that the digest path retains the exact
+first chunk, and that a reselect cannot overwrite it.
+
+This establishes a real **post-reservation/mid-copy SIGKILL** case on the
+Android API(s) where its CI executes. It does not claim a power-cut durability
+guarantee, a physically tested Pixel, process kill before/after *other*
+publication boundaries, cross-process ownership proof, recovery quarantine,
+successful reselect or a Room commit. Issue #143 remains open.
 
 ## Platform pitfalls and alternatives
 

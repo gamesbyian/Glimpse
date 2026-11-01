@@ -12,8 +12,8 @@ import java.nio.channels.FileChannel
 import java.nio.file.Files
 import java.nio.file.LinkOption
 import java.nio.file.StandardOpenOption
-import java.security.MessageDigest
 import java.util.concurrent.ConcurrentHashMap
+import java.security.MessageDigest
 import java.util.UUID
 
 data class ImportResult(
@@ -82,7 +82,10 @@ internal fun requirePrivateImportRoot(originals: File) {
 internal fun existingOriginalMatches(
     file: File,
     expectedSha256: String,
-    expectedLength: Long
+    expectedLength: Long,
+    // Optional caller cancellation/fault checkpoint during bounded read-only scans.
+    // Production admission callers retain the default no-op for normal verification.
+    checkpoint: () -> Unit = {}
 ): Boolean {
     if (!expectedSha256.matches(Regex("[0-9a-f]{64}")) || expectedLength <= 0L ||
         !file.isFile || java.nio.file.Files.isSymbolicLink(file.toPath()) ||
@@ -93,12 +96,18 @@ internal fun existingOriginalMatches(
         file.inputStream().buffered().use { stream ->
             val buffer = ByteArray(64 * 1024)
             while (true) {
+                // A single 50 MiB original takes many chunks to hash. Respect
+                // cancellation *inside* the read, not only between receipts.
+                checkpoint()
                 val count = stream.read(buffer)
                 if (count == -1) break
                 digest.update(buffer, 0, count)
             }
         }
         digest.digest().joinToString("") { "%02x".format(it) } == expectedSha256
+    } catch (cancel: CancellationException) {
+        // Never turn a cancelled scan into misleading "unverified" evidence.
+        throw cancel
     } catch (_: Exception) {
         false
     }
