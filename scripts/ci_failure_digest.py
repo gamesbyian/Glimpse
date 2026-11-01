@@ -116,8 +116,8 @@ def main():
                 summary.write(f"- Error: `{receipt['firstFailure']['message']}`\n")
             elif receipt["firstHarnessFailure"]:
                 observed = receipt["firstHarnessFailure"]
-                summary.write(f"- Python: \`{observed['exceptionType']}\` in \`{observed['phase']}\`\n")
-                summary.write(f"- Error: \`{observed['message']}\`\n")
+                summary.write(f"- Python: `{observed['exceptionType']}` in `{observed['phase']}`\n")
+                summary.write(f"- Error: `{observed['message']}`\n")
             else:
                 summary.write("- No observed JUnit/Python assertion. Inspect the earliest failed workflow step.\n")
             if receipt["runUrl"]:
