@@ -126,6 +126,32 @@ class PrivateOriginalPublicationDeviceTest {
         assertTrue(receipt.file.exists())
     }
 
+    @Test fun preflightConfirmsStageAndNoFollowMissingTargetOnActualAndroid() {
+        val source = durableStage("import-device-preflight.partial")
+        val target = finalName()
+        val journal = PrivatePublicationReceiptJournal(owned)
+        val receipt = journal.begin(
+            source, target, sha(bytes), bytes.size.toLong(), "device-test"
+        )
+        val ready = journal.inspectMissingTargetStages()!!
+        assertEquals(1, ready.possibleCount)
+        assertEquals(1, ready.examinedReceipts)
+        assertEquals("device-test", ready.candidates.single().collectionId)
+        assertArrayEquals(bytes, source.readBytes())
+        assertTrue(receipt.file.exists())
+        assertFalse(target.exists())
+
+        // A dangling digest symlink is never classified as missing, even
+        // though ordinary File.exists() would incorrectly return false.
+        val notPresent = File(owned, "never-created")
+        java.nio.file.Files.createSymbolicLink(target.toPath(), notPresent.toPath())
+        val refused = journal.inspectMissingTargetStages()!!
+        assertEquals(0, refused.possibleCount)
+        assertTrue(java.nio.file.Files.isSymbolicLink(target.toPath()))
+        assertArrayEquals(bytes, source.readBytes())
+        assertTrue(receipt.file.exists())
+    }
+
     @Test fun midCopyFaultRetainsDurableStageReceiptAndUnmodifiedPartialTarget() {
         val staged = durableStage("import-midcopy-fault.partial")
         val target = finalName()
