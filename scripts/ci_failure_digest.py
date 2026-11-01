@@ -11,7 +11,8 @@ SENSITIVE = re.compile(r"(?i)\b(password|authorization|bearer|token|secret|api[_
 
 
 def safe_line(value):
-    return SENSITIVE.sub(r"\1=[REDACTED]", (value or "").splitlines()[0][:240])
+    lines = (value or "").splitlines()
+    return SENSITIVE.sub(r"\1=[REDACTED]", (lines[0] if lines else "")[:240])
 
 
 def first_failure(root):
@@ -64,11 +65,11 @@ def main():
     if os.environ.get("GITHUB_STEP_SUMMARY"):
         with open(os.environ["GITHUB_STEP_SUMMARY"], "a", encoding="utf-8") as summary:
             summary.write("### CI failure receipt (schema 1)\n")
-            summary.write(f"- Workflow: {receipt['workflow']}; SHA: \`{receipt['sha']}\`\n")
+            summary.write(f"- Workflow: {receipt['workflow']}; SHA: `{receipt['sha']}`\n")
             summary.write(f"- Classification: {receipt['classification']} ({receipt['evidence']})\n")
             if receipt["firstFailure"]:
-                summary.write(f"- Test: \`{receipt['firstFailure']['test']}\`\n")
-                summary.write(f"- Error: \`{receipt['firstFailure']['message']}\`\n")
+                summary.write(f"- Test: `{receipt['firstFailure']['test']}`\n")
+                summary.write(f"- Error: `{receipt['firstFailure']['message']}`\n")
             else:
                 summary.write("- JUnit assertion unavailable. Inspect the earliest failed workflow step.\n")
             if receipt["runUrl"]:
