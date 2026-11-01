@@ -24,6 +24,7 @@ on:
       - "app/src/main/java/io/github/gamesbyian/glimpse/domain/WallpaperCommands.kt"
       - "app/src/main/java/io/github/gamesbyian/glimpse/data/CollectionZipRestorer.kt"
       - "app/src/main/java/io/github/gamesbyian/glimpse/data/ImportJournal.kt"
+      - "app/src/main/java/io/github/gamesbyian/glimpse/data/PrivatePublicationReceiptJournal.kt"
       - "app/src/main/java/io/github/gamesbyian/glimpse/data/PrivateOriginalVerifier.kt"
       - "app/src/debug/java/io/github/gamesbyian/glimpse/debug/VisualFixtureLauncher.kt"
       - "app/src/main/AndroidManifest.xml"
@@ -48,6 +49,7 @@ on:
       - "app/src/main/java/io/github/gamesbyian/glimpse/domain/WallpaperCommands.kt"
       - "app/src/main/java/io/github/gamesbyian/glimpse/data/CollectionZipRestorer.kt"
       - "app/src/main/java/io/github/gamesbyian/glimpse/data/ImportJournal.kt"
+      - "app/src/main/java/io/github/gamesbyian/glimpse/data/PrivatePublicationReceiptJournal.kt"
       - "app/src/main/java/io/github/gamesbyian/glimpse/data/PrivateOriginalVerifier.kt"
       - "app/src/main/AndroidManifest.xml"
 permissions:
