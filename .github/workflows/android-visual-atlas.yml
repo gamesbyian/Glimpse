@@ -18,6 +18,7 @@ on:
       - "app/build.gradle.kts"
       - .github/workflows/android-visual-atlas.yml
       - scripts/capture-android-atlas.py
+      - scripts/ci_harness_runner.py
       - app/src/main/java/io/github/gamesbyian/glimpse/EditedPhotoSharing.kt
       - app/src/debug/**
       - app/src/main/java/io/github/gamesbyian/glimpse/EditedPhotoOutput.kt
@@ -108,7 +109,7 @@ jobs:
           emulator-options: -no-window -gpu swiftshader_indirect -no-snapshot -noaudio -no-boot-anim
           script: |
             adb install -r app/build/outputs/apk/debug/app-debug.apk
-            python3 scripts/capture-android-atlas.py --mode "$ATLAS_MODE" --out artifacts/android-visual-atlas
+            python3 scripts/ci_harness_runner.py --workflow android-visual-atlas.yml --phase atlas-ui --api 34 -- python3 scripts/capture-android-atlas.py --mode "$ATLAS_MODE" --out artifacts/android-visual-atlas
       - name: Upload screenshot gallery and accessibility evidence
         if: always()
         uses: actions/upload-artifact@v4
