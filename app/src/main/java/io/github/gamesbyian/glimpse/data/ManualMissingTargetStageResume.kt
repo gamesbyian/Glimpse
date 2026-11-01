@@ -73,9 +73,17 @@ internal class ManualMissingTargetStageResume(
                 }
 
                 val prior = dao.findPhoto(candidate.sha256)
+                // Android may name the same private directory as both
+                // /data/user/0/... and /data/data/.... Preserve the already
+                // registered path spelling only when canonical identities
+                // agree and the registered leaf is not a symlink. The Room
+                // transaction still rejects a conflicting concurrent row.
+                val registered = prior?.let { File(it.localPath) }
                 if (prior != null &&
                     (prior.sha256 != candidate.sha256 ||
-                     prior.localPath != candidate.target.absolutePath ||
+                     registered == null ||
+                     Files.isSymbolicLink(registered.toPath()) ||
+                     registered.canonicalFile != candidate.target.canonicalFile ||
                      prior.mime != mime ||
                      prior.byteLength != candidate.byteLength ||
                      prior.width != options.outWidth ||
@@ -94,7 +102,7 @@ internal class ManualMissingTargetStageResume(
                 val photo = PhotoRecord(
                     id = candidate.sha256,
                     sha256 = candidate.sha256,
-                    localPath = candidate.target.absolutePath,
+                    localPath = prior?.localPath ?: candidate.target.absolutePath,
                     mime = requireNotNull(mime),
                     width = options.outWidth,
                     height = options.outHeight,
