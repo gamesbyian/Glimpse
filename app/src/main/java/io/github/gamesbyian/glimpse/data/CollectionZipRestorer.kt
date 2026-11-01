@@ -38,6 +38,7 @@ internal class CollectionZipRestorer(
         val staged = context.contentResolver.openInputStream(uri)?.use { stream ->
             CollectionZipReader.stage(stream, root) { workingContext.ensureActive() }
         } ?: error("Android could not open the selected archive.")
+        var completedCollection = false
         try {
             val title = checkedCollectionTitle(staged.title)
             // The v1 ZIP contains original bytes only. Confirm Android
@@ -55,18 +56,17 @@ internal class CollectionZipRestorer(
                 ) { "Archive image dimensions are outside Glimpse limits." }
                 val filename = expectedPrivateOriginalName(item.sha256, item.sha256, item.mime)
                 val target = File(root, filename)
-                require(!target.exists() ||
-                    existingOriginalMatches(target, item.sha256, item.bytes)
-                ) { "An existing original is damaged. No archive was imported." }
                 Triple(item, target, options)
             }
             val rows = ready.map { (item, target, dimensions) ->
                 workingContext.ensureActive()
-                if (!target.exists()) {
-                    require(item.temporaryFile.renameTo(target)) {
-                        "Could not save the verified archive image."
-                    }
-                }
+                // Never use exists()->renameTo(): another writer may create
+                // the SHA name between those steps and be overwritten.
+                // The shared publisher serializes collaborators and reserves
+                // the final name exclusively, validating existing bytes.
+                publishPrivateOriginalExclusively(
+                    item.temporaryFile, target, item.sha256, item.bytes
+                )
                 PhotoRecord(
                     id = item.sha256, sha256 = item.sha256,
                     localPath = target.absolutePath, mime = item.mime,
@@ -78,9 +78,14 @@ internal class CollectionZipRestorer(
             val collection = CollectionRecord(UUID.randomUUID().toString(),
                 title, System.currentTimeMillis())
             dao.insertRestoredCollection(collection, rows)
+            completedCollection = true
             CollectionRestoreResult(collection.id, title, rows.size)
         } finally {
-            staged.discardStaging()
+            // Every staged ZIP image passed SHA/image validation before the
+            // publisher ran. If any SHA publication or Room insert fails,
+            // preserve complete staged copies for provenance-backed recovery.
+            // A successful guarded Room commit makes staging redundant.
+            if (completedCollection) staged.discardStaging()
         }
     }
 }

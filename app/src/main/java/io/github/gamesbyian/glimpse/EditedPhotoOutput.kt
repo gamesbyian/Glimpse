@@ -7,7 +7,9 @@ import android.net.Uri
 import io.github.gamesbyian.glimpse.data.BoundedPhotoDecode
 import io.github.gamesbyian.glimpse.data.PhotoRecord
 import io.github.gamesbyian.glimpse.data.GlimpseDao
-import io.github.gamesbyian.glimpse.data.existingOriginalMatches
+import io.github.gamesbyian.glimpse.data.canDiscardImportStaging
+import io.github.gamesbyian.glimpse.data.publishPrivateOriginalExclusively
+import io.github.gamesbyian.glimpse.data.requirePrivateImportRoot
 import io.github.gamesbyian.glimpse.data.verifyPrivateOriginal
 import io.github.gamesbyian.glimpse.domain.PhotoEditGeometry
 import kotlinx.coroutines.Dispatchers
@@ -86,20 +88,25 @@ internal object EditedPhotoOutput {
         }
         val pixels = renderVerified(context, original, geometry, MAX_EXPORT_EDGE)
         val root = File(context.filesDir, "originals")
-        val temporary = File.createTempFile("import-", ".partial", root)
+        var temporary: File? = null
+        var validatedStaging = false
+        var publishedOriginal = false
         try {
-            FileOutputStream(temporary).use { output ->
+            requirePrivateImportRoot(root)
+            val stage = File.createTempFile("import-", ".partial", root)
+            temporary = stage
+            FileOutputStream(stage).use { output ->
                 require(pixels.compress(Bitmap.CompressFormat.PNG, 100, output)) {
                     "Unable to encode edited image."
                 }
                 output.fd.sync()
             }
-            val byteCount = temporary.length()
+            val byteCount = stage.length()
             require(byteCount in 1..(50L * 1024 * 1024)) {
                 "The edited image is too large for local importing."
             }
             val digest = MessageDigest.getInstance("SHA-256")
-            temporary.inputStream().buffered().use { input ->
+            stage.inputStream().buffered().use { input ->
                 val buffer = ByteArray(64 * 1024)
                 while (true) {
                     val n = input.read(buffer)
@@ -109,15 +116,12 @@ internal object EditedPhotoOutput {
             }
             val id = digest.digest().joinToString("") { "%02x".format(it) }
             val target = File(root, id + ".png")
-            if (!target.exists()) {
-                require(temporary.renameTo(target)) {
-                    "Unable to finalize the edited offline copy."
-                }
-            } else {
-                require(existingOriginalMatches(target, id, byteCount)) {
-                    "An existing edited original is damaged; it was not overwritten."
-                }
-            }
+            // The newly baked and fsynced PNG is user data even if its
+            // immutable SHA-name publication is rejected. Reuse the same
+            // exclusive, serialized publisher as the normal Photo Picker.
+            validatedStaging = true
+            publishPrivateOriginalExclusively(stage, target, id, byteCount)
+            publishedOriginal = true
             val record = PhotoRecord(
                 id = id, sha256 = id, localPath = target.absolutePath,
                 mime = "image/png", width = pixels.width, height = pixels.height,
@@ -128,7 +132,9 @@ internal object EditedPhotoOutput {
             EditedCollectionCopy(record, attached)
         } finally {
             pixels.recycle()
-            temporary.delete()
+            if (canDiscardImportStaging(validatedStaging, publishedOriginal)) {
+                temporary?.delete()
+            }
         }
     }
 

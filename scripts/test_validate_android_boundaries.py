@@ -70,6 +70,38 @@ class BoundaryTests(unittest.TestCase):
             encoding="utf8")
         self.assertFalse(inspect(self.root))
 
+    def test_edited_png_writer_cannot_bypass_exclusive_publication(self):
+        path = self.root / (
+            "app/src/main/java/io/github/gamesbyian/glimpse/EditedPhotoOutput.kt"
+        )
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(
+            "fun unsafe() { if (!target.exists()) stage.renameTo(target) }",
+            encoding="utf8"
+        )
+        report = inspect(self.root)
+        self.assertTrue(any("replace-capable original rename" in x for x in report))
+        self.assertTrue(any("missing exclusive original publisher" in x for x in report))
+        path.write_text(
+            "fun safe() = publishPrivateOriginalExclusively(stage, target, sha, bytes)",
+            encoding="utf8"
+        )
+        self.assertFalse(inspect(self.root))
+
+    def test_zip_restore_must_use_exclusive_private_publisher(self):
+        path = self.root / (
+            "app/src/main/java/io/github/gamesbyian/glimpse/data/CollectionZipRestorer.kt"
+        )
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text("fun save() = staged.renameTo(target)", encoding="utf8")
+        self.assertTrue(any("replace-capable original rename" in x for x in
+                            inspect(self.root)))
+        path.write_text(
+            "fun save() = publishPrivateOriginalExclusively(stage, target, sha, bytes)",
+            encoding="utf8"
+        )
+        self.assertFalse(inspect(self.root))
+
     def test_exported_photo_provider_fails(self):
         self.manifest.write_text(MANIFEST_TEXT.replace('android:exported="false"',
             'android:exported="true"', 1), encoding='utf8')
