@@ -19,4 +19,4 @@ jobs:
       - name: Install pinned workflow YAML parser
         run: python3 -m pip install --disable-pip-version-check PyYAML==6.0.2
       - name: Verify dispatch, risk coverage and cross-ref cancellation
-        run: python3 -m unittest discover -s scripts -p 'test_ci_dispatch.py' -v
+        run: python3 -m unittest discover -s scripts -p 'test_ci_*.py' -v
