@@ -254,6 +254,20 @@ internal class PrivatePublicationReceiptJournal(private val originals: File) {
     }
 
     /**
+     * Before any consented repair, verify that the same exact receipt remains
+     * present. The read itself refuses symlinks, even if swapped after a
+     * separate metadata check. This NEVER retires or modifies the receipt.
+     */
+    fun isReceiptIntact(handle: Handle): Boolean = try {
+        val root = checkedRoot()
+        handle.file.canonicalFile.parentFile == root &&
+            receiptPattern.matches(handle.file.name) &&
+            readReceiptNoFollow(handle.file)?.contentEquals(handle.exactBytes) == true
+    } catch (_: Exception) {
+        false
+    }
+
+    /**
      * Bounded, read-only *preflight* for the narrow case where a fully
      * verifiable staging copy survives and its digest path is absent.
      *
