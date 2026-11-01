@@ -126,10 +126,22 @@ internal class PrivatePublicationReceiptJournal(private val originals: File) {
         require(maxHashedBytes in 1L..(256L * 1024L * 1024L))
         return try {
             val root = checkedRoot()
-            val receipts = originals.listFiles()
-                ?.filter { receiptPattern.matches(it.name) }
-                ?.sortedBy { it.name }
-                ?: return null
+            // DirectoryStream iterates lazily: do not allocate a list of
+            // every imported original merely to inspect a few receipts.
+            // A separate omitted counter preserves visibility into large
+            // backlogs while the retained file list stays bounded.
+            val receipts = mutableListOf<File>()
+            var omitted = 0
+            Files.newDirectoryStream(root.toPath(), "publication-*.receipt").use { stream ->
+                for (path in stream) {
+                    checkpoint()
+                    val candidate = path.toFile()
+                    if (!receiptPattern.matches(candidate.name)) continue
+                    if (receipts.size < maxReceipts) receipts += candidate
+                    else omitted++
+                }
+            }
+            receipts.sortBy { it.name }
             var suspect = 0
             var stagesExact = 0
             var stagesMissing = 0
@@ -140,7 +152,7 @@ internal class PrivatePublicationReceiptJournal(private val originals: File) {
             var hashedBytes = 0L
             var exhausted = false
 
-            for (candidate in receipts.take(maxReceipts)) {
+            for (candidate in receipts) {
                 checkpoint()
                 if (!candidate.isFile ||
                     Files.isSymbolicLink(candidate.toPath()) ||
@@ -196,8 +208,8 @@ internal class PrivatePublicationReceiptJournal(private val originals: File) {
                 }
             }
             PendingPublicationEvidence(
-                examinedReceipts = minOf(receipts.size, maxReceipts),
-                omittedReceipts = (receipts.size - maxReceipts).coerceAtLeast(0),
+                examinedReceipts = receipts.size,
+                omittedReceipts = omitted,
                 untrustedReceipts = suspect,
                 stagesExact = stagesExact,
                 stagesMissing = stagesMissing,
