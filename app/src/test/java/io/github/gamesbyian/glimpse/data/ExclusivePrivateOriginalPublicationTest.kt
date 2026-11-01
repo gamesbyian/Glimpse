@@ -184,6 +184,46 @@ class ExclusivePrivateOriginalPublicationTest {
         assertArrayEquals(content, stage.readBytes())
     }
 
+    @Test fun durableCoordinationSentinelIsStableAndNeverTruncated() {
+        val stage = scratch.newFile("import-stable-lock.partial").apply { writeBytes(picture) }
+        val target = File(scratch.root, hex(picture) + ".jpg")
+        publishPrivateOriginalExclusively(
+            stage, target, hex(picture), picture.size.toLong(), preferHardLink = false
+        )
+        val lockFile = File(scratch.root, ".glimpse-original-publication.lock")
+        assertTrue(lockFile.isFile)
+        assertFalse(Files.isSymbolicLink(lockFile.toPath()))
+        val metadata = "stable lock inode content (test only)".toByteArray()
+        lockFile.writeBytes(metadata)
+        // A later identical publication must reuse the very same lock path
+        // without truncating/replacing its existing contents.
+        publishPrivateOriginalExclusively(
+            stage, target, hex(picture), picture.size.toLong(), preferHardLink = false
+        )
+        assertArrayEquals(metadata, lockFile.readBytes())
+        assertArrayEquals(picture, stage.readBytes())
+        assertArrayEquals(picture, target.readBytes())
+    }
+
+    @Test fun forgedSymlinkedCoordinationSentinelCannotRedirectPublisher() {
+        val stage = scratch.newFile("import-symlink-lock.partial").apply { writeBytes(picture) }
+        val target = File(scratch.root, hex(picture) + ".jpg")
+        val foreign = scratch.newFile("must-not-write").apply {
+            writeText("sentinel user data")
+        }
+        val lockFile = File(scratch.root, ".glimpse-original-publication.lock")
+        Files.createSymbolicLink(lockFile.toPath(), foreign.toPath())
+        assertTrue(runCatching {
+            publishPrivateOriginalExclusively(
+                stage, target, hex(picture), picture.size.toLong(), preferHardLink = false
+            )
+        }.isFailure)
+        assertFalse(target.exists())
+        assertArrayEquals(picture, stage.readBytes())
+        assertTrue(Files.isSymbolicLink(lockFile.toPath()))
+        assertTrue(foreign.readText() == "sentinel user data")
+    }
+
     @Test fun missingOrForeignStagingSourceIsNeverPublished() {
         val target = File(scratch.root, hex(picture) + ".jpg")
         val missing = File(scratch.root, "import-missing.partial")
