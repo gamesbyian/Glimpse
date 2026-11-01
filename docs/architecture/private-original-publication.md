@@ -165,6 +165,23 @@ instrumentation and actual process kill at each receipt/reservation/force/
 DAO transition remain required under issue #143. Real symlink, foreign
 file and same-hash race refusal remain independent gates.
 
+## Actual Android child-process SIGKILL acceptance
+
+A debug-only, non-exported Activity runs under a distinct process name, inside
+a unique instrumentation cache child, and invokes the actual exclusive
+`CREATE_NEW` writer against a 128-KiB synthetic staging source. Immediately
+after the first 64-KiB write it fsyncs a test-only PID marker and issues
+`android.os.Process.killProcess` against **its own** process. The main
+instrumentation runner separately verifies that the child PID exited, that the
+staged bytes and receipt survived, that the digest path retains the exact
+first chunk, and that a reselect cannot overwrite it.
+
+This establishes a real **post-reservation/mid-copy SIGKILL** case on the
+Android API(s) where its CI executes. It does not claim a power-cut durability
+guarantee, a physically tested Pixel, process kill before/after *other*
+publication boundaries, cross-process ownership proof, recovery quarantine,
+successful reselect or a Room commit. Issue #143 remains open.
+
 ## Platform pitfalls and alternatives
 
 - Android's `Files.copy` documentation explicitly states that its target
