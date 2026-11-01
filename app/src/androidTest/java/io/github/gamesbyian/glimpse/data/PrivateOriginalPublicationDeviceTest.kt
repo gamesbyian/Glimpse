@@ -87,6 +87,25 @@ class PrivateOriginalPublicationDeviceTest {
         assertArrayEquals(bytes, source.readBytes())
     }
 
+    @Test fun receiptEvidenceRemainsReadOnlyAgainstRealAndroidIncompleteDigest() {
+        val stage = staged("import-device-receipt.partial")
+        val target = finalName()
+        val journal = PrivatePublicationReceiptJournal(owned)
+        val receipt = journal.begin(stage, target, sha(bytes), bytes.size.toLong(), "test")
+        // Simulate an abruptly interrupted CREATE_NEW copy using a
+        // disposable, test-owned fragment only, never a real app original.
+        val fragment = byteArrayOf(1, 2, 3, 4)
+        target.writeBytes(fragment)
+        val evidence = journal.inspectFileEvidence()
+        assertTrue(evidence != null)
+        assertTrue(evidence!!.stagesExact == 1)
+        assertTrue(evidence.targetsUnverified == 1)
+        assertTrue(evidence.targetsExact == 0)
+        assertArrayEquals(bytes, stage.readBytes())
+        assertArrayEquals(fragment, target.readBytes())
+        assertTrue(receipt.file.exists())
+    }
+
     @Test fun competingSameShaWritersCannotOverwriteEachOther() {
         val left = staged("import-left.partial")
         val right = staged("import-right.partial")
