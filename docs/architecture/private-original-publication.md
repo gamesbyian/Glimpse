@@ -41,9 +41,20 @@ PR #149 adds a successful populated, same-temporary-signer Android upgrade
 test covering five Room tables and three exact-byte originals. This does not
 establish stable owner signing.
 
-Issue #143 remains open: these corrections do not establish durable per-attempt
-publication receipts, cross-process recovery, or safe handling of a partial
-unregistered digest target after abrupt process termination.
+PR #155 subsequently added durable, fsynced, URI-free per-attempt
+publication receipts before the final digest-name reservation, and retires
+each exact intact receipt only after a verified original and committed Room
+membership. Receipt content is not itself proof of inode ownership and cannot
+authorize repair or deletion. Merged PR #156 extends exclusive no-replace
+publication to edited PNG originals and collection ZIP restores; PR #157
+bounds edited-share cache writes and pruning to newly owned files.
+
+Issue #143 remains open: those changes do **not** establish cross-process
+interrupted-publication recovery, authenticated ownership of a damaged
+unregistered target, non-destructive quarantine, or the process-kill/device
+fault-injection evidence required for completion. Issue #72 likewise remains
+open until the owner-controlled persistent signer and two separate main-build
+install-over-update checks are independently demonstrated.
 
 ## Invariants
 
@@ -68,6 +79,10 @@ unregistered digest target after abrupt process termination.
    opportunity. Different SHAs should remain independently usable.
 7. Android API29, API34 and current-target behavior require actual emulator
    evidence; a Linux JVM test alone is never Android filesystem acceptance.
+
+**Receipt status update:** the proposed receipt stage below now exists in
+`PrivatePublicationReceiptJournal`; the remaining proposed *recovery*,
+ownership proof and quarantine steps have not been implemented or accepted.
 
 ## Remaining crash window and recovery plan
 
