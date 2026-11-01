@@ -82,3 +82,15 @@ jobs:
           path: app/build/outputs/androidTest-results/
           if-no-files-found: warn
           retention-days: 14
+
+      - name: Record first actionable CI failure without private data
+        if: failure()
+        run: python3 scripts/ci_failure_digest.py --workflow "android-private-original-api29.yml"
+      - name: Upload versioned machine-readable failure receipt
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: glimpse-ci-failure-android-private-original-api29
+          path: artifacts/ci-failure-digest.json
+          retention-days: 7
+          if-no-files-found: warn
