@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <application>
+        <service android:name=".debug.PublicationCooperationProbeService"
+            android:exported="false"
+            android:process=":glimpse_publication_cooperation" />
         <!-- Debug-only, unexported bound service; performs SIGKILL only
              inside a UUID-named instrumentation cache child. Never release. -->
         <service android:name=".debug.PublicationKillProbeService"

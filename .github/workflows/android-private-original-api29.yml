@@ -17,6 +17,9 @@ on:
       - "app/src/main/java/io/github/gamesbyian/glimpse/data/PrivatePublicationReceiptJournal.kt"
       - ".github/workflows/android-private-original-api29.yml"
       - "app/src/androidTest/java/io/github/gamesbyian/glimpse/data/PrivateOriginalPublicationDeviceTest.kt"
+      - "app/src/androidTest/java/io/github/gamesbyian/glimpse/data/CrossProcessPublicationDeviceTest.kt"
+      - "app/src/debug/java/io/github/gamesbyian/glimpse/debug/PublicationCooperationProbeService.kt"
+      - "app/src/debug/AndroidManifest.xml"
       - "app/src/main/java/io/github/gamesbyian/glimpse/data/PhotoImporter.kt"
       - "app/build.gradle.kts"
   push:
@@ -33,6 +36,9 @@ on:
       - "app/src/main/java/io/github/gamesbyian/glimpse/data/PrivatePublicationReceiptJournal.kt"
       - ".github/workflows/android-private-original-api29.yml"
       - "app/src/androidTest/java/io/github/gamesbyian/glimpse/data/PrivateOriginalPublicationDeviceTest.kt"
+      - "app/src/androidTest/java/io/github/gamesbyian/glimpse/data/CrossProcessPublicationDeviceTest.kt"
+      - "app/src/debug/java/io/github/gamesbyian/glimpse/debug/PublicationCooperationProbeService.kt"
+      - "app/src/debug/AndroidManifest.xml"
       - "app/src/main/java/io/github/gamesbyian/glimpse/data/PhotoImporter.kt"
       - "app/build.gradle.kts"
 permissions:
@@ -75,7 +81,7 @@ jobs:
           disable-animations: true
           emulator-options: -no-window -gpu swiftshader_indirect -no-snapshot -noaudio -no-boot-anim
           script: |
-            ./gradlew --no-daemon :app:connectedDebugAndroidTest -Pandroid.testInstrumentationRunnerArguments.class=io.github.gamesbyian.glimpse.data.PrivateOriginalPublicationDeviceTest
+            ./gradlew --no-daemon :app:connectedDebugAndroidTest -Pandroid.testInstrumentationRunnerArguments.class=io.github.gamesbyian.glimpse.data.PrivateOriginalPublicationDeviceTest,io.github.gamesbyian.glimpse.data.CrossProcessPublicationDeviceTest
       - name: Preserve API29 actual-device-result evidence
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4

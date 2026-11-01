@@ -116,6 +116,31 @@ claim that zero receipts proves every older import succeeded. Rendering is
 tested both in JVM presentation tests and through the native Android Help
 journey. No unattended scan, automatic quarantine or recovery is added.
 
+## Cross-process publication admission (candidate, pending Android acceptance)
+
+An optional implementation now wraps every private original digest publication
+in a stable app-private `.glimpse-publication-<SHA>.lock` FileChannel
+exclusive lock, **in addition** to a SHA-scoped in-process JVM monitor. Each distinct SHA has an independent lock; the same-hash lock spans the digest
+path reservation, entire fallback write, force, and final SHA validation. A second Android process following this publisher
+contract must wait for an active writer to complete before inspecting its SHA
+path; unrelated operations never truncate, unlink or overwrite the sentinel.
+The lock opens with `NOFOLLOW_LINKS` and fails closed on symlink or missing
+staging. A process kill releases the OS lock but does **not** justify deleting,
+quarantining or reusing its possibly incomplete digest path.
+
+This is cross-process **cooperative serialization only**, not proof that a
+preexisting target was created by the current writer, not an authenticated
+reservation receipt, and not recovery. First acquire runtime evidence on
+Android API29 and modern Android (including an actual two-process, same-hash
+live-writer test), and verify interruption/restart regression against issue
+#143 before accepting a production merge. Each persistent SHA-scoped sentinel is not an
+original and is excluded by the existing SHA/image and staging inventories.
+Different SHAs must continue publishing independently even while a
+same-SHA writer is paused; the focused JVM regression proves this invariant.
+All private-original writers must continue using the shared publication
+gateway; Android advisory file locks do not constrain unrelated code that
+ignores the lock.
+
 ## Remaining crash window and recovery plan
 
 A process kill, storage exhaustion, device power loss or cancelled file-channel
