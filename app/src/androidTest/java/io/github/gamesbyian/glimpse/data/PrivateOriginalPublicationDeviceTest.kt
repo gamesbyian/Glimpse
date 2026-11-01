@@ -189,7 +189,15 @@ class PrivateOriginalPublicationDeviceTest {
         assertArrayEquals(bytes, target.readBytes())
     }
 
-    @Test fun actualChildProcessSigkillRetainsPrivateStageReceiptAndPartialDigest() {
+    @Test fun actualChildProcessSigkillRetainsPartialDigestAndDurableSource() {
+        verifyChildProcessKill(64L * 1024L)
+    }
+
+    @Test fun actualChildProcessSigkillAfterFinalWriteStillDoesNotCommitOriginal() {
+        verifyChildProcessKill(bytes.size.toLong())
+    }
+
+    private fun verifyChildProcessKill(killAfter: Long) {
         // This is an actual separate Android app process, not an exception
         // injected into the instrumentation runner. All files are disposable
         // and scoped to the unique cache child created by setUp().
@@ -201,6 +209,7 @@ class PrivateOriginalPublicationDeviceTest {
         val context = ApplicationProvider.getApplicationContext<Context>()
         val intent = Intent(context, PublicationKillProbeService::class.java)
             .putExtra(PublicationKillProbeService.EXTRA_DIRECTORY, owned.name)
+            .putExtra(PublicationKillProbeService.EXTRA_KILL_AFTER_BYTES, killAfter)
         val connection = object : ServiceConnection {
             override fun onServiceConnected(name: ComponentName?, binder: IBinder?) = Unit
             override fun onServiceDisconnected(name: ComponentName?) = Unit
@@ -236,20 +245,34 @@ class PrivateOriginalPublicationDeviceTest {
             assertTrue("The isolated writer must die via actual SIGKILL", childDied)
 
             val fragment = target.readBytes()
-            assertEquals(64 * 1024, fragment.size)
+            assertEquals(killAfter, fragment.size.toLong())
             assertArrayEquals(bytes.copyOf(fragment.size), fragment)
             assertArrayEquals(bytes, staged.readBytes())
             assertTrue(receipt.file.exists())
             val report = journal.inspectFileEvidence()!!
-            assertTrue(report.stagesExact == 1 && report.targetsUnverified == 1)
-
-            // No restart may truncate the already-reserved digest filename.
-            assertTrue(runCatching {
+            assertEquals(1, report.stagesExact)
+            if (killAfter < bytes.size.toLong()) {
+                assertEquals(1, report.targetsUnverified)
+                // A crash after one chunk leaves an incomplete reserved path.
+                // No later importer may delete or replace the suspect bytes.
+                assertTrue(runCatching {
+                    publishPrivateOriginalExclusively(
+                        staged, target, sha(bytes), bytes.size.toLong(),
+                        preferHardLink = false
+                    )
+                }.isFailure)
+            } else {
+                assertEquals(1, report.targetsExact)
+                // Exact current bytes do not prove fsync or a committed Room
+                // membership. A later writer may verify and reuse them, but
+                // neither this test nor the scanner attaches anything to DB.
                 publishPrivateOriginalExclusively(
-                    staged, target, sha(bytes), bytes.size.toLong(), preferHardLink = false
+                    staged, target, sha(bytes), bytes.size.toLong(),
+                    preferHardLink = false
                 )
-            }.isFailure)
+            }
             assertArrayEquals(fragment, target.readBytes())
+            assertTrue(receipt.file.exists())
         } finally {
             context.unbindService(connection)
         }
