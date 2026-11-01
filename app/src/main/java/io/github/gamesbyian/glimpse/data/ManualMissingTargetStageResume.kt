@@ -101,7 +101,7 @@ internal class ManualMissingTargetStageResume(
                     byteLength = candidate.byteLength,
                     importedAt = System.currentTimeMillis()
                 )
-                val result = dao.attachIfCollectionExists(photo, candidate.collectionId)
+                val result = dao.attachRecoveredOriginalIfMatching(photo, candidate.collectionId)
                 when (result) {
                     true -> attached++
                     false -> duplicates++
