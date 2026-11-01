@@ -720,7 +720,12 @@ def main():
             capture("22-help-diagnostic-preview",
                     "Real Android local report preview before copy or share")
             reach_and_click("Close report", "up", attempts=8)
-            reach_and_click("Back to Home", "down", attempts=12)
+            # Help contains long, scrollable disclosure/diagnostic text. A
+            # longer native Help paragraph can leave Back many viewports above
+            # the diagnostic preview. Keep the actual visible Back-button tap
+            # as an accessibility gate instead of substituting a system Back
+            # key or assuming a fixed page length.
+            reach_and_click("Back to Home", "down", attempts=32)
             if "Glimpse" not in hierarchy():
                 raise RuntimeError("Help & privacy did not return Home")
             # The new primary doorway must open a real photographic Reel,
