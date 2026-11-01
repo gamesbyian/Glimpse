@@ -77,7 +77,8 @@ class DispatchSafetyTest(unittest.TestCase):
     def test_immutable_originals_all_writers_and_recovery(self):
         base = "app/src/main/java/io/github/gamesbyian/glimpse/"
         for suffix in ["EditedPhotoOutput.kt", "data/CollectionZipRestorer.kt",
-                       "data/PrivateOriginalVerifier.kt", "data/ImportJournal.kt"]:
+                       "data/PrivateOriginalVerifier.kt", "data/ImportJournal.kt",
+                       "data/PrivatePublicationReceiptJournal.kt"]:
             for check in ("android-room-integrity.yml", "android-private-original-api29.yml",
                           "android-in-place-upgrade.yml"):
                 with self.subTest(path=suffix, check=check):
