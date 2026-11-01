@@ -8,6 +8,10 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.io.File
 import java.io.FileOutputStream
+import java.nio.channels.FileChannel
+import java.nio.file.Files
+import java.nio.file.LinkOption
+import java.nio.file.StandardOpenOption
 import java.security.MessageDigest
 import java.util.UUID
 
@@ -130,6 +134,38 @@ internal fun existingOriginalMatches(
  */
 private val privateOriginalPublicationMonitor = Any()
 
+/**
+ * The JVM monitor above covers collaborating importers in this process.
+ * Android may also run isolated services or another process with the same
+ * private root: a FileLock is held across *reservation, full write, force and
+ * SHA validation* so a live second process never mistakes the first process'
+ * incomplete SHA path for an orphan. The OS releases it on process death.
+ *
+ * Keep one stable, no-follow sentinel inode. Removing a lock file after use
+ * would let two writers lock different inodes under the same name; never
+ * truncate, unlink, rewrite or clean this file as an import side effect.
+ * Any lock acquisition error fails closed and preserves validated staging.
+ */
+private fun withPrivateOriginalProcessLock(target: File, publish: () -> Unit) {
+    val root = requireNotNull(target.parentFile) {
+        "Private original destination is unavailable."
+    }
+    require(root.isDirectory && !Files.isSymbolicLink(root.toPath())) {
+        "Private original coordination directory is unavailable."
+    }
+    val lockFile = File(root, ".glimpse-original-publication.lock")
+    FileChannel.open(
+        lockFile.toPath(),
+        StandardOpenOption.CREATE,
+        StandardOpenOption.WRITE,
+        LinkOption.NOFOLLOW_LINKS
+    ).use { channel ->
+        channel.lock().use {
+            publish()
+        }
+    }
+}
+
 internal fun publishPrivateOriginalExclusively(
     staged: File,
     target: File,
@@ -140,9 +176,11 @@ internal fun publishPrivateOriginalExclusively(
     // A thrown exception must leave the staged source and final path intact.
     copyCheckpoint: (Long) -> Unit = {}
 ) = synchronized(privateOriginalPublicationMonitor) {
-    publishPrivateOriginalUnderLock(
-        staged, target, expectedSha256, expectedLength, preferHardLink, copyCheckpoint
-    )
+    withPrivateOriginalProcessLock(target) {
+        publishPrivateOriginalUnderLock(
+            staged, target, expectedSha256, expectedLength, preferHardLink, copyCheckpoint
+        )
+    }
 }
 
 private fun publishPrivateOriginalUnderLock(
