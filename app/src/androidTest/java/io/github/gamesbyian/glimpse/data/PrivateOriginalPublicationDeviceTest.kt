@@ -4,6 +4,7 @@ import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import android.content.Context
 import java.io.File
+import java.io.FileOutputStream
 import java.security.MessageDigest
 import java.util.UUID
 import java.util.concurrent.CountDownLatch
@@ -47,6 +48,13 @@ class PrivateOriginalPublicationDeviceTest {
     }
 
     private fun staged(name: String) = File(owned, name).apply { writeBytes(bytes) }
+    private fun durableStage(name: String) = File(owned, name).apply {
+        FileOutputStream(this).use { output ->
+            output.write(bytes)
+            output.fd.sync()
+        }
+    }
+
     private fun finalName() = File(owned, "${sha(bytes)}.jpg")
 
     @Test fun defaultPublicationWorksWithRealAndroidSELinuxAndSurvivesStagingCleanup() {
@@ -104,6 +112,69 @@ class PrivateOriginalPublicationDeviceTest {
         assertArrayEquals(bytes, stage.readBytes())
         assertArrayEquals(fragment, target.readBytes())
         assertTrue(receipt.file.exists())
+    }
+
+    @Test fun midCopyFaultRetainsDurableStageReceiptAndUnmodifiedPartialTarget() {
+        val staged = durableStage("import-midcopy-fault.partial")
+        val target = finalName()
+        val journal = PrivatePublicationReceiptJournal(owned)
+        val receipt = journal.begin(staged, target, sha(bytes), bytes.size.toLong(), "test")
+        val result = runCatching {
+            publishPrivateOriginalExclusively(
+                staged, target, sha(bytes), bytes.size.toLong(),
+                preferHardLink = false,
+                copyCheckpoint = { copied ->
+                    if (copied in 1L until bytes.size.toLong()) {
+                        throw java.io.IOException("Injected failure after real Android partial write")
+                    }
+                }
+            )
+        }
+        assertTrue(result.isFailure)
+        val savedFragment = target.readBytes()
+        assertTrue(savedFragment.isNotEmpty())
+        assertTrue(savedFragment.size < bytes.size)
+        assertArrayEquals(bytes.copyOf(savedFragment.size), savedFragment)
+        assertArrayEquals(bytes, staged.readBytes())
+        assertTrue(receipt.file.exists())
+        val evidence = journal.inspectFileEvidence()!!
+        assertTrue(evidence.stagesExact == 1 && evidence.targetsUnverified == 1)
+        // A subsequent publisher must refuse this existing partial rather
+        // than silently repair it by truncating or replacing the digest path.
+        assertTrue(runCatching {
+            publishPrivateOriginalExclusively(
+                staged, target, sha(bytes), bytes.size.toLong(), preferHardLink = false
+            )
+        }.isFailure)
+        assertArrayEquals(savedFragment, target.readBytes())
+        assertArrayEquals(bytes, staged.readBytes())
+    }
+
+    @Test fun afterLastWriteFaultLeavesCompleteUncommittedDigestAndReceipt() {
+        val staged = durableStage("import-lastwrite-fault.partial")
+        val target = finalName()
+        val journal = PrivatePublicationReceiptJournal(owned)
+        val receipt = journal.begin(staged, target, sha(bytes), bytes.size.toLong(), "test")
+        val result = runCatching {
+            publishPrivateOriginalExclusively(
+                staged, target, sha(bytes), bytes.size.toLong(),
+                preferHardLink = false,
+                copyCheckpoint = { copied ->
+                    if (copied == bytes.size.toLong()) {
+                        throw java.io.IOException("Injected failure before destination force")
+                    }
+                }
+            )
+        }
+        assertTrue(result.isFailure)
+        assertArrayEquals(bytes, staged.readBytes())
+        assertArrayEquals(bytes, target.readBytes())
+        assertTrue(receipt.file.exists())
+        val evidence = journal.inspectFileEvidence()!!
+        assertTrue(evidence.stagesExact == 1 && evidence.targetsExact == 1)
+        // A matching SHA here is still no evidence of a committed Room row,
+        // fsync or an exclusively owned origin. The scan must change nothing.
+        assertArrayEquals(bytes, target.readBytes())
     }
 
     @Test fun competingSameShaWritersCannotOverwriteEachOther() {

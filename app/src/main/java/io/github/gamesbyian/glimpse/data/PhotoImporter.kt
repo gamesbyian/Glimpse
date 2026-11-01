@@ -135,9 +135,14 @@ internal fun publishPrivateOriginalExclusively(
     target: File,
     expectedSha256: String,
     expectedLength: Long,
-    preferHardLink: Boolean = true
+    preferHardLink: Boolean = true,
+    // Test-only fault/cancellation checkpoint after complete 64-KiB chunks.
+    // A thrown exception must leave the staged source and final path intact.
+    copyCheckpoint: (Long) -> Unit = {}
 ) = synchronized(privateOriginalPublicationMonitor) {
-    publishPrivateOriginalUnderLock(staged, target, expectedSha256, expectedLength, preferHardLink)
+    publishPrivateOriginalUnderLock(
+        staged, target, expectedSha256, expectedLength, preferHardLink, copyCheckpoint
+    )
 }
 
 private fun publishPrivateOriginalUnderLock(
@@ -145,7 +150,8 @@ private fun publishPrivateOriginalUnderLock(
     target: File,
     expectedSha256: String,
     expectedLength: Long,
-    preferHardLink: Boolean
+    preferHardLink: Boolean,
+    copyCheckpoint: (Long) -> Unit
 ) {
     require(staged.isFile && !java.nio.file.Files.isSymbolicLink(staged.toPath())) {
         "Verified private staging file is unavailable."
@@ -187,11 +193,17 @@ private fun publishPrivateOriginalUnderLock(
         ).use { destination ->
             staged.inputStream().buffered().use { input ->
                 val bytes = ByteArray(64 * 1024)
+                var copied = 0L
                 while (true) {
                     val count = input.read(bytes)
                     if (count < 0) break
                     val chunk = java.nio.ByteBuffer.wrap(bytes, 0, count)
                     while (chunk.hasRemaining()) destination.write(chunk)
+                    copied += count
+                    // Deliberately after the real Android destination write
+                    // and before force/Room commit. This enables deterministic
+                    // interruption evidence without mutating actual originals.
+                    copyCheckpoint(copied)
                 }
             }
             destination.force(true)

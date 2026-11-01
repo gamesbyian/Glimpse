@@ -137,6 +137,25 @@ same-hash writers; preexisting valid, truncated, corrupted or symlinked target;
 full-disk error; process restart; exact-byte reselect. Verify unchanged
 preexisting bytes and no lost memberships in **real Android** tests.
 
+## Deterministic exclusive-copy interruption tests
+
+The exclusive `CREATE_NEW` fallback now exposes an optional internal
+post-chunk checkpoint (the production default is a no-op). JVM and real
+Android app-private tests can throw a controlled exception **after a
+destination write but before force/Room admission**, without touching
+external storage or owner photos. The tested outcomes distinguish a
+partially written digest target from an exact-byte target whose last
+write completed but whose publication did not finish. Both retain the
+complete staged copy and the durable attempt receipt; neither test
+authorizes unlinking/replacing the existing digest name or auto-attaching
+a database membership.
+
+This is deterministic fault injection in disposable files, **not**
+physical process-death or power-loss proof. API29/modern Android
+instrumentation and actual process kill at each receipt/reservation/force/
+DAO transition remain required under issue #143. Real symlink, foreign
+file and same-hash race refusal remain independent gates.
+
 ## Platform pitfalls and alternatives
 
 - Android's `Files.copy` documentation explicitly states that its target
