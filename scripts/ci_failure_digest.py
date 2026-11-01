@@ -11,8 +11,9 @@ SENSITIVE = re.compile(r"(?i)\b(password|authorization|bearer|token|secret|api[_
 
 
 def safe_line(value):
-    lines = (value or "").splitlines()
-    return SENSITIVE.sub(r"\1=[REDACTED]", (lines[0] if lines else "")[:240])
+    # The same privacy policy applies to JUnit and Python harness messages.
+    from ci_harness_runner import safe
+    return safe(value)
 
 
 def first_failure(root):
