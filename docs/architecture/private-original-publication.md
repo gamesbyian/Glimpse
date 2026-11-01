@@ -84,6 +84,27 @@ install-over-update checks are independently demonstrated.
 `PrivatePublicationReceiptJournal`; the remaining proposed *recovery*,
 ownership proof and quarantine steps have not been implemented or accepted.
 
+## Read-only interrupted-publication evidence (not recovery)
+
+A bounded `PrivatePublicationReceiptJournal.inspectFileEvidence()` can corroborate
+each structurally valid receipt with the **current** SHA-256 and length of
+its staged source and digest-named target. It reports only aggregate
+exact/missing/unverified counts, malformed receipt counts, omitted receipts
+and whether the cumulative hash budget ran out. Names, images, collection IDs
+and original paths are never returned.
+
+The scan runs only when explicitly invoked by a caller on IO, with a
+cancellation checkpoint. It follows no symlink, hashes no more than its
+configured byte budget and **never** deletes, renames, quarantines, truncates,
+reattaches or overwrites a file. It cannot prove which writer created an
+inode or whether another process is writing now. Matching bytes establish
+integrity at the moment of inspection, not ownership or repair authority.
+
+This is a read-only JVM-tested diagnostic primitive for issue #143, not
+crash recovery. Actual Android kill/interruption tests, cross-process
+coordination, proven inode provenance and reversible owner-visible quarantine
+are still required before any recovery mutation.
+
 ## Remaining crash window and recovery plan
 
 A process kill, storage exhaustion, device power loss or cancelled file-channel
