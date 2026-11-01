@@ -229,6 +229,31 @@ internal class PrivatePublicationReceiptJournal(private val originals: File) {
     }
 
     /**
+     * Open the receipt with NOFOLLOW_LINKS rather than checking and then
+     * following the path through File.readBytes(). A racing symlink must
+     * never be read as an app-private publication receipt.
+     */
+    private fun readReceiptNoFollow(file: File): ByteArray? = try {
+        FileChannel.open(
+            file.toPath(),
+            StandardOpenOption.READ,
+            java.nio.file.LinkOption.NOFOLLOW_LINKS
+        ).use { channel ->
+            val length = channel.size()
+            if (length !in 1L..9000L) null
+            else {
+                val bytes = ByteBuffer.allocate(length.toInt())
+                while (bytes.hasRemaining()) {
+                    if (channel.read(bytes) <= 0) return@use null
+                }
+                bytes.array()
+            }
+        }
+    } catch (_: Exception) {
+        null
+    }
+
+    /**
      * Bounded, read-only *preflight* for the narrow case where a fully
      * verifiable staging copy survives and its digest path is absent.
      *
@@ -273,7 +298,11 @@ internal class PrivatePublicationReceiptJournal(private val originals: File) {
                     unreadable++
                     continue
                 }
-                val exact = receipt.readBytes()
+                val exact = readReceiptNoFollow(receipt)
+                if (exact == null) {
+                    unreadable++
+                    continue
+                }
                 val fields = String(exact, Charsets.UTF_8).trimEnd('\n').split('\t')
                 val length = fields.getOrNull(4)?.toLongOrNull()
                 val collection = runCatching {
