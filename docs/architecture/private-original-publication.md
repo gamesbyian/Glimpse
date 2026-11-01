@@ -167,7 +167,7 @@ file and same-hash race refusal remain independent gates.
 
 ## Actual Android child-process SIGKILL acceptance
 
-A debug-only, non-exported Activity runs under a distinct process name, inside
+A debug-only, non-exported bound service runs under a distinct process name, inside
 a unique instrumentation cache child, and invokes the actual exclusive
 `CREATE_NEW` writer against a 128-KiB synthetic staging source. Immediately
 after the first 64-KiB write it fsyncs a test-only PID marker and issues
