@@ -28,7 +28,12 @@ class PublicationKillProbeService : Service() {
                 directory.canonicalFile.parentFile == cacheDir.canonicalFile
             ) {
                 val stage = File(directory, "import-kill-source.partial")
-                if (stage.isFile && !Files.isSymbolicLink(stage.toPath()) &&
+                // BIND_AUTO_CREATE can restart a killed bound service on some
+                // Android versions. Never replay the publication probe after
+                // the first child has recorded its imminent SIGKILL identity.
+                val marker = File(directory, "probe-killed.pid")
+                if (!marker.exists() &&
+                    stage.isFile && !Files.isSymbolicLink(stage.toPath()) &&
                     stage.length() == EXPECTED_BYTES.toLong()
                 ) {
                     Thread({ runProbe(directory, stage) }, "glimpse-publication-sigkill")
