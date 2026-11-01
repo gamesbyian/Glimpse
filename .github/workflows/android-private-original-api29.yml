@@ -6,6 +6,14 @@ on:
   workflow_dispatch:
   pull_request:
     paths:
+      - "gradle/**"
+      - "gradle.properties"
+      - "settings.gradle.kts"
+      - "build.gradle.kts"
+      - "app/src/main/java/io/github/gamesbyian/glimpse/EditedPhotoOutput.kt"
+      - "app/src/main/java/io/github/gamesbyian/glimpse/data/CollectionZipRestorer.kt"
+      - "app/src/main/java/io/github/gamesbyian/glimpse/data/PrivateOriginalVerifier.kt"
+      - "app/src/main/java/io/github/gamesbyian/glimpse/data/ImportJournal.kt"
       - ".github/workflows/android-private-original-api29.yml"
       - "app/src/androidTest/java/io/github/gamesbyian/glimpse/data/PrivateOriginalPublicationDeviceTest.kt"
       - "app/src/main/java/io/github/gamesbyian/glimpse/data/PhotoImporter.kt"
@@ -13,6 +21,14 @@ on:
   push:
     branches: [main]
     paths:
+      - "gradle/**"
+      - "gradle.properties"
+      - "settings.gradle.kts"
+      - "build.gradle.kts"
+      - "app/src/main/java/io/github/gamesbyian/glimpse/EditedPhotoOutput.kt"
+      - "app/src/main/java/io/github/gamesbyian/glimpse/data/CollectionZipRestorer.kt"
+      - "app/src/main/java/io/github/gamesbyian/glimpse/data/PrivateOriginalVerifier.kt"
+      - "app/src/main/java/io/github/gamesbyian/glimpse/data/ImportJournal.kt"
       - ".github/workflows/android-private-original-api29.yml"
       - "app/src/androidTest/java/io/github/gamesbyian/glimpse/data/PrivateOriginalPublicationDeviceTest.kt"
       - "app/src/main/java/io/github/gamesbyian/glimpse/data/PhotoImporter.kt"
