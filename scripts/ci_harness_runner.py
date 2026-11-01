@@ -14,7 +14,11 @@ import sys
 
 EXCEPTION = re.compile(r"^([A-Za-z_][A-Za-z_0-9.]*(?:Error|Exception|Exit|Interrupt))(?::\s*(.*))?$")
 SOURCE = re.compile(r'File "[^"]*?(/?scripts/[^"/]+\.py)", line (\d+)')
-SENSITIVE = re.compile(r"(?i)\b(password|authorization|bearer|token|secret|api[_-]?key)\b\s*[:=]\s*\S+")
+# Multi-token headers and labeled credentials must be completely redacted.
+# Redact the rest of the line, not only the first whitespace-delimited token.
+AUTH_HEADER = re.compile(r"(?i)\\b(?:proxy-)?authorization\\s*[:=]\\s*[^\\r\\n]*")
+BARE_CREDENTIAL = re.compile(r"(?i)\\bbearer\\s+[^\\r\\n]+")
+SENSITIVE = re.compile(r"(?i)\\b(password|authorization|bearer|token|secret|api[_-]?key)\\b\\s*[:=]\\s*[^\\r\\n]*")
 PRIVATE_PATH = re.compile(r"(?i)(?:content://|file://|/data/|/storage/|/sdcard/|/home/|/mnt/)[^\s,)]+")
 WINDOWS_PATH = re.compile(r"(?i)\b[A-Z]:\\[^\s,)]+")
 LONG_ID = re.compile(r"\b[a-fA-F0-9]{32,}\b")
@@ -24,7 +28,9 @@ EMBEDDED = re.compile(r"(?i)\b(?:photo|image|uri|path|filename)\s*[:=]\s*\S+")
 
 def safe(value):
     first = str(value or "").splitlines()[0][:280]
-    first = SENSITIVE.sub(r"\1=[REDACTED]", first)
+    first = AUTH_HEADER.sub("authorization=[REDACTED]", first)
+    first = BARE_CREDENTIAL.sub("bearer=[REDACTED]", first)
+    first = SENSITIVE.sub(r"\\1=[REDACTED]", first)
     first = EMBEDDED.sub("[REDACTED_FIELD]", first)
     first = PRIVATE_PATH.sub("[REDACTED_PATH]", first)
     first = WINDOWS_PATH.sub("[REDACTED_PATH]", first)
