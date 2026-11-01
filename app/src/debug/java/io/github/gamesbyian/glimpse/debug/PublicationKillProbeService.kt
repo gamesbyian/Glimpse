@@ -14,7 +14,7 @@ import java.security.MessageDigest
 /**
  * Unexported debug-only bound service in a separate app process. It calls the
  * real exclusive publisher on a disposable instrumentation cache child, then
- * SIGKILLs its OWN process after the first completed destination chunk.
+ * SIGKILLs its OWN process at a strictly allowlisted chunk boundary.
  *
  * A bound service avoids background Activity-launch policy as a confounder.
  * No user original, provider URI, Room database or external path is accessed.
@@ -22,7 +22,9 @@ import java.security.MessageDigest
 class PublicationKillProbeService : Service() {
     override fun onBind(intent: Intent?): IBinder {
         val directoryName = intent?.getStringExtra(EXTRA_DIRECTORY)
-        if (directoryName != null && DIRECTORY_NAME.matches(directoryName)) {
+        val killAfter = intent?.getLongExtra(EXTRA_KILL_AFTER_BYTES, -1L) ?: -1L
+        if (directoryName != null && DIRECTORY_NAME.matches(directoryName) &&
+            killAfter in setOf(64L * 1024L, EXPECTED_BYTES.toLong())) {
             val directory = File(cacheDir, directoryName)
             if (directory.isDirectory && !Files.isSymbolicLink(directory.toPath()) &&
                 directory.canonicalFile.parentFile == cacheDir.canonicalFile
@@ -36,7 +38,7 @@ class PublicationKillProbeService : Service() {
                     stage.isFile && !Files.isSymbolicLink(stage.toPath()) &&
                     stage.length() == EXPECTED_BYTES.toLong()
                 ) {
-                    Thread({ runProbe(directory, stage) }, "glimpse-publication-sigkill")
+                    Thread({ runProbe(directory, stage, killAfter) }, "glimpse-publication-sigkill")
                         .start()
                 }
             }
@@ -44,7 +46,7 @@ class PublicationKillProbeService : Service() {
         return Binder()
     }
 
-    private fun runProbe(directory: File, stage: File) {
+    private fun runProbe(directory: File, stage: File, killAfter: Long) {
         try {
             val data = stage.readBytes()
             val sha = MessageDigest.getInstance("SHA-256").digest(data)
@@ -54,7 +56,7 @@ class PublicationKillProbeService : Service() {
                 stage, target, sha, data.size.toLong(),
                 preferHardLink = false,
                 copyCheckpoint = { copied ->
-                    if (copied == 64L * 1024L) {
+                    if (copied == killAfter) {
                         val pid = android.os.Process.myPid()
                         FileOutputStream(File(directory, "probe-killed.pid")).use { out ->
                             out.write(ByteBuffer.allocate(4).putInt(pid).array())
@@ -74,6 +76,7 @@ class PublicationKillProbeService : Service() {
 
     companion object {
         const val EXTRA_DIRECTORY = "glimpse_test_private_directory"
+        const val EXTRA_KILL_AFTER_BYTES = "glimpse_test_kill_after_bytes"
         const val EXPECTED_BYTES = 128 * 1024
         private val DIRECTORY_NAME = Regex(
             "^glimpse-publish-instrumentation-[0-9a-fA-F-]{36}$"
