@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <application>
+        <!-- Debug-only, unexported isolated process; performs SIGKILL only
+             inside a UUID-named instrumentation cache child. Never release. -->
+        <activity android:name=".debug.PublicationKillProbeActivity"
+            android:exported="false"
+            android:process=":glimpse_publication_kill_probe"
+            android:excludeFromRecents="true"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <!-- Debug variant only. Do not seed a real user installation. -->
         <activity android:name=".debug.WidgetHostProbeActivity"
             android:exported="true"
