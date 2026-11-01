@@ -5,7 +5,7 @@ from pathlib import Path
 import tempfile
 import unittest
 from unittest.mock import patch
-from ci_harness_runner import observe, run, safe
+from ci_harness_runner import observe, run, safe, safe_sha
 
 
 class HarnessReceiptTests(unittest.TestCase):
@@ -65,11 +65,11 @@ class HarnessReceiptTests(unittest.TestCase):
             with patch("ci_harness_runner.subprocess.Popen", return_value=Process()):
                 code = run(["python3", "scripts/capture-android-atlas.py"],
                            output=output, workflow="visual", phase="capture", api="34",
-                           environ={"GITHUB_SHA": "abc"})
+                           environ={"GITHUB_SHA": "a" * 40})
             self.assertEqual(code, 7)
             data = json.loads(output.read_text())
             self.assertEqual(data["exception"]["message"], "Missing wallpaper action")
-            self.assertEqual(data["sourceSha"], "abc")
+            self.assertEqual(data["sourceSha"], "a" * 40)
             self.assertEqual(data["exitCode"], 7)
 
     def test_non_python_failure_is_unclassified_and_does_not_invent_trace(self):
@@ -113,6 +113,12 @@ class HarnessReceiptTests(unittest.TestCase):
                         output=output, workflow="visual", phase="capture", api="34")
             self.assertTrue(child.terminated)
             self.assertFalse(output.exists())
+
+    def test_public_git_sha_survives_but_arbitrary_hex_content_is_redacted(self):
+        self.assertEqual(safe_sha("A" * 40), "a" * 40)
+        self.assertIsNone(safe_sha("not-a-valid-commit"))
+        self.assertIsNone(safe_sha("b" * 64))
+        self.assertNotIn("b" * 64, safe("Image digest: " + "b" * 64))
 
     def test_rejects_non_script_commands_without_execution(self):
         with tempfile.TemporaryDirectory() as folder:
