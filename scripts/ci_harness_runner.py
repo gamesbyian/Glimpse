@@ -33,6 +33,12 @@ def safe(value):
     return first[:220]
 
 
+def safe_sha(value):
+    """A GitHub commit SHA is public provenance, unlike arbitrary photo hashes."""
+    candidate = str(value or "").strip()
+    return candidate.lower() if re.fullmatch(r"[a-fA-F0-9]{40}", candidate) else None
+
+
 def observe(lines):
     """Accept parsed stderr/stdout lines, retaining bounded traceback metadata only."""
     error = None
@@ -73,7 +79,7 @@ def emit_exception(error, *, output="artifacts/ci-harness-failure.json",
     record = {
         "schemaVersion": 1, "outcome": "failure",
         "workflow": safe(workflow), "phase": safe(phase),
-        "sourceSha": safe(os.environ.get("GITHUB_SHA", "")),
+        "sourceSha": safe_sha(os.environ.get("GITHUB_SHA", "")),
         "emulatorApi": safe(api), "reproduction": safe("python3 scripts/capture-android-atlas.py"),
         "exitCode": 1, "evidence": "observed_caught_python_exception",
         "exception": {"exceptionType": safe(type(error).__name__),
@@ -129,7 +135,7 @@ def run(command, *, output, workflow, phase, api, environ=None):
         "outcome": "failure",
         "workflow": safe(workflow),
         "phase": safe(phase),
-        "sourceSha": safe(env.get("GITHUB_SHA", "")),
+        "sourceSha": safe_sha(env.get("GITHUB_SHA", "")),
         "emulatorApi": safe(api),
         "reproduction": safe(" ".join(command)),
         "exitCode": code,
