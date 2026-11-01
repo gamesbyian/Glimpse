@@ -120,6 +120,33 @@ class PendingPublicationEvidenceTest {
         assertEquals(1, journal.inspect()!!.structurallyValid)
     }
 
+    @Test fun cancellationDuringMultiChunkDigestPropagatesAndLeavesFilesUntouched() {
+        // Two 64-KiB chunks must be read before cancellation is injected.
+        // This distinguishes a real mid-hash checkpoint from the existing
+        // per-receipt checkpoints which already protected short scans.
+        val content = ByteArray(3 * 64 * 1024) { (it % 251).toByte() }
+        val digest = MessageDigest.getInstance("SHA-256").digest(content)
+            .joinToString("") { "%02x".format(it) }
+        val staged = File.createTempFile("import-", ".partial", tmp.root)
+            .apply { writeBytes(content) }
+        val destination = File(tmp.root, "$digest.jpg")
+        val receipt = journal.begin(
+            staged, destination, digest, content.size.toLong(), "test-collection"
+        )
+        var checkpoints = 0
+        val cancelled = runCatching {
+            journal.inspectFileEvidence(checkpoint = {
+                checkpoints++
+                if (checkpoints == 5) throw CancellationException("cancelled during SHA read")
+            })
+        }
+        assertTrue(cancelled.exceptionOrNull() is CancellationException)
+        assertEquals(5, checkpoints)
+        assertArrayEquals(content, staged.readBytes())
+        assertTrue(receipt.file.exists())
+        assertFalse(destination.exists())
+    }
+
     @Test fun symlinkedRootIsNotAnAuthorityToInspectExternalBytes() {
         val external = tmp.newFolder("outside-root")
         val fakeRoot = File(tmp.root, "root-link")

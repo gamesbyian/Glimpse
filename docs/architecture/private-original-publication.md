@@ -94,7 +94,9 @@ and whether the cumulative hash budget ran out. Names, images, collection IDs
 and original paths are never returned.
 
 The scan runs only when explicitly invoked by a caller on IO, with a
-cancellation checkpoint. It follows no symlink, hashes no more than its
+cancellation checkpoint at receipt traversal and throughout each 64-KiB
+original-digest read. Cancelling midway through hashing propagates rather
+than returning a misleading unverified file count. It follows no symlink, hashes no more than its
 configured byte budget and **never** deletes, renames, quarantines, truncates,
 reattaches or overwrites a file. It cannot prove which writer created an
 inode or whether another process is writing now. Matching bytes establish
