@@ -2,13 +2,16 @@ package io.github.gamesbyian.glimpse.data
 
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
+import android.content.ServiceConnection
+import android.os.IBinder
 import android.os.SystemClock
 import android.system.ErrnoException
 import android.system.Os
 import android.system.OsConstants
-import io.github.gamesbyian.glimpse.debug.PublicationKillProbeActivity
+import io.github.gamesbyian.glimpse.debug.PublicationKillProbeService
 import java.io.DataInputStream
 import java.io.File
 import java.io.FileInputStream
@@ -196,11 +199,16 @@ class PrivateOriginalPublicationDeviceTest {
         val receipt = journal.begin(staged, target, sha(bytes), bytes.size.toLong(), "test")
         val marker = File(owned, "probe-killed.pid")
         val context = ApplicationProvider.getApplicationContext<Context>()
-        val intent = Intent(context, PublicationKillProbeActivity::class.java)
-            .putExtra(PublicationKillProbeActivity.EXTRA_DIRECTORY, owned.name)
-            .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-        context.startActivity(intent)
-
+        val intent = Intent(context, PublicationKillProbeService::class.java)
+            .putExtra(PublicationKillProbeService.EXTRA_DIRECTORY, owned.name)
+        val connection = object : ServiceConnection {
+            override fun onServiceConnected(name: ComponentName?, binder: IBinder?) = Unit
+            override fun onServiceDisconnected(name: ComponentName?) = Unit
+        }
+        assertTrue("Debug child service must bind", context.bindService(
+            intent, connection, Context.BIND_AUTO_CREATE
+        ))
+        try {
         var childPid: Int? = null
         val markerDeadline = SystemClock.elapsedRealtime() + 15_000L
         while (SystemClock.elapsedRealtime() < markerDeadline && childPid == null) {
@@ -242,6 +250,9 @@ class PrivateOriginalPublicationDeviceTest {
             )
         }.isFailure)
         assertArrayEquals(fragment, target.readBytes())
+        } finally {
+            context.unbindService(connection)
+        }
     }
 
     @Test fun competingSameShaWritersCannotOverwriteEachOther() {
