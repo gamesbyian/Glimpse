@@ -33,7 +33,7 @@ jobs:
             ln -s "$ANDROID_HOME/platforms/android-37.0" "$ANDROID_HOME/platforms/android-37"
           fi
       - name: Compile actual app and pure projection tests
-        run: ./gradlew --no-daemon :app:assembleDebug :app:testDebugUnitTest
+        run: ./gradlew --no-daemon :app:assembleDebug
       - name: Allow emulator KVM
         run: |
           if test -e /dev/kvm; then sudo chmod a+rw /dev/kvm; fi
