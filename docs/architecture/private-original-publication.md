@@ -117,10 +117,9 @@ journey. No unattended scan, automatic quarantine or recovery is added.
 ## Cross-process publication admission (candidate, pending Android acceptance)
 
 An optional implementation now wraps every private original digest publication
-in a stable app-private `.glimpse-original-publication.lock` FileChannel
-exclusive lock, **in addition** to the existing in-process JVM monitor. The
-same lock spans the digest path reservation, entire fallback write, force,
-and final SHA validation. A second Android process following this publisher
+in a stable app-private `.glimpse-publication-<SHA>.lock` FileChannel
+exclusive lock, **in addition** to a SHA-scoped in-process JVM monitor. Each distinct SHA has an independent lock; the same-hash lock spans the digest
+path reservation, entire fallback write, force, and final SHA validation. A second Android process following this publisher
 contract must wait for an active writer to complete before inspecting its SHA
 path; unrelated operations never truncate, unlink or overwrite the sentinel.
 The lock opens with `NOFOLLOW_LINKS` and fails closed on symlink or missing
@@ -132,8 +131,10 @@ preexisting target was created by the current writer, not an authenticated
 reservation receipt, and not recovery. First acquire runtime evidence on
 Android API29 and modern Android (including an actual two-process, same-hash
 live-writer test), and verify interruption/restart regression against issue
-#143 before accepting a production merge. The persistent sentinel is not an
+#143 before accepting a production merge. Each persistent SHA-scoped sentinel is not an
 original and is excluded by the existing SHA/image and staging inventories.
+Different SHAs must continue publishing independently even while a
+same-SHA writer is paused; the focused JVM regression proves this invariant.
 All private-original writers must continue using the shared publication
 gateway; Android advisory file locks do not constrain unrelated code that
 ignores the lock.
