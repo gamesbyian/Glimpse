@@ -176,6 +176,14 @@ internal fun publishPrivateOriginalExclusively(
     // A thrown exception must leave the staged source and final path intact.
     copyCheckpoint: (Long) -> Unit = {}
 ) = synchronized(privateOriginalPublicationMonitor) {
+    // Fail on an invalid caller before creating even a coordination sentinel.
+    // Revalidate again inside the lock at the publication boundary.
+    require(staged.isFile && !Files.isSymbolicLink(staged.toPath())) {
+        "Verified private staging file is unavailable."
+    }
+    require(staged.canonicalFile.parentFile == target.canonicalFile.parentFile) {
+        "Staged and final private originals must share one owned directory."
+    }
     withPrivateOriginalProcessLock(target) {
         publishPrivateOriginalUnderLock(
             staged, target, expectedSha256, expectedLength, preferHardLink, copyCheckpoint
