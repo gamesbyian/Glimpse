@@ -109,3 +109,15 @@ jobs:
           path: artifacts/android-visual-atlas/
           retention-days: 14
           if-no-files-found: warn
+
+      - name: Record first actionable CI failure without private data
+        if: failure()
+        run: python3 scripts/ci_failure_digest.py --workflow "android-visual-atlas.yml"
+      - name: Upload versioned machine-readable failure receipt
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: glimpse-ci-failure-android-visual-atlas
+          path: artifacts/ci-failure-digest.json
+          retention-days: 7
+          if-no-files-found: warn
