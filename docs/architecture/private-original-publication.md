@@ -120,7 +120,14 @@ journey. No unattended scan, automatic quarantine or recovery is added.
 
 An optional implementation now wraps every private original digest publication
 in a stable app-private `.glimpse-publication-<SHA>.lock` FileChannel
-exclusive lock, **in addition** to a SHA-scoped in-process JVM monitor. Each distinct SHA has an independent lock; the same-hash lock spans the digest
+exclusive lock, **in addition** to a SHA-scoped in-process JVM monitor. 
+The JVM monitor registry uses reference-counted leases: a monitor survives
+while any writer is active or waiting on that SHA, then its in-memory entry
+is retired after the last borrower exits. Distinct content hashes do not
+share an in-process monitor and importing many unique images does not
+accumulate a permanent JVM gate for every photo. Persistent OS lock files
+remain stable on disk; unlinking them while another process may hold an
+inode is forbidden. Each distinct SHA has an independent lock; the same-hash lock spans the digest
 path reservation, entire fallback write, force, and final SHA validation. A second Android process following this publisher
 contract must wait for an active writer to complete before inspecting its SHA
 path; unrelated operations never truncate, unlink or overwrite the sentinel.
