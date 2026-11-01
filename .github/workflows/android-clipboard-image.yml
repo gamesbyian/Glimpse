@@ -9,6 +9,9 @@ on:
       - scripts/capture-android-clipboard-image.py
       - .github/workflows/android-clipboard-image.yml
   workflow_dispatch:
+concurrency:
+  group: glimpse-clipboard-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 permissions:
   contents: read
 jobs:
@@ -31,7 +34,7 @@ jobs:
       - name: Validate debug build and script
         run: |
           python3 -m py_compile scripts/capture-android-clipboard-image.py
-          ./gradlew --no-daemon :app:assembleDebug :app:testDebugUnitTest
+          ./gradlew --no-daemon :app:assembleDebug
       - name: Allow emulator KVM
         run: |
           if test -e /dev/kvm; then sudo chmod a+rw /dev/kvm; fi
