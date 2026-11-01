@@ -63,13 +63,13 @@ class MissingTargetStagePreflightTest {
     @Test fun danglingDestinationSymlinkDoesNotMasqueradeAsMissingFile() {
         val source = stage()
         val destination = target()
-        val external = tmp.newFile("foreign-original").apply { writeText("foreign") }
+        val absent = File(tmp.root, "not-present")
         val receipt = journal.begin(
             source, destination, digest, bytes.size.toLong(), "collection"
         )
-        Files.createSymbolicLink(destination.toPath(), external.toPath())
+        Files.createSymbolicLink(destination.toPath(), absent.toPath())
         assertEquals(0, journal.inspectMissingTargetStages()!!.possibleCount)
-        assertEquals("foreign", external.readText())
+        assertFalse(absent.exists())
         assertTrue(Files.isSymbolicLink(destination.toPath()))
         assertTrue(receipt.file.exists())
     }
