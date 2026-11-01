@@ -26,6 +26,12 @@ class FailureReceiptTest(unittest.TestCase):
             self.assertEqual(result["message"], "expected true, was false")
             self.assertNotIn("PRIVATE PHOTO", repr(result))
 
+    def test_bearer_auth_header_cannot_leak_trailing_secret(self):
+        result = safe_line("Authorization: Bearer secret_part_one secret_part_two")
+        self.assertNotIn("secret_part_one", result)
+        self.assertNotIn("secret_part_two", result)
+        self.assertIn("[REDACTED]", result)
+
     def test_sensitive_error_values_are_redacted(self):
         self.assertNotIn("12345", safe_line("authorization=12345"))
         self.assertNotIn("abcde", safe_line("token: abcde"))
