@@ -13,6 +13,7 @@ import java.nio.file.Files
 import java.nio.file.LinkOption
 import java.nio.file.StandardOpenOption
 import java.security.MessageDigest
+import java.util.concurrent.ConcurrentHashMap
 import java.util.UUID
 
 data class ImportResult(
@@ -132,7 +133,10 @@ internal fun existingOriginalMatches(
  * crash recovery and provenance are a separate #143 requirement; a JVM
  * monitor is not represented as an interprocess lock.
  */
-private val privateOriginalPublicationMonitor = Any()
+// Distinct SHAs must not block one another, including within this JVM.
+// Retain monitor identities for the life of the process: removing a monitor
+// while a second thread waits would split the same-SHA critical section.
+private val privateOriginalPublicationMonitors = ConcurrentHashMap<String, Any>()
 
 /**
  * The JVM monitor above covers collaborating importers in this process.
@@ -141,19 +145,23 @@ private val privateOriginalPublicationMonitor = Any()
  * SHA validation* so a live second process never mistakes the first process'
  * incomplete SHA path for an orphan. The OS releases it on process death.
  *
- * Keep one stable, no-follow sentinel inode. Removing a lock file after use
+ * Keep one stable, no-follow sentinel inode per SHA. Removing a lock file after use
  * would let two writers lock different inodes under the same name; never
  * truncate, unlink, rewrite or clean this file as an import side effect.
  * Any lock acquisition error fails closed and preserves validated staging.
  */
-private fun withPrivateOriginalProcessLock(target: File, publish: () -> Unit) {
+private fun withPrivateOriginalProcessLock(
+    target: File,
+    expectedSha256: String,
+    publish: () -> Unit
+) {
     val root = requireNotNull(target.parentFile) {
         "Private original destination is unavailable."
     }
     require(root.isDirectory && !Files.isSymbolicLink(root.toPath())) {
         "Private original coordination directory is unavailable."
     }
-    val lockFile = File(root, ".glimpse-original-publication.lock")
+    val lockFile = File(root, ".glimpse-publication-$expectedSha256.lock")
     FileChannel.open(
         lockFile.toPath(),
         StandardOpenOption.CREATE,
@@ -175,7 +183,13 @@ internal fun publishPrivateOriginalExclusively(
     // Test-only fault/cancellation checkpoint after complete 64-KiB chunks.
     // A thrown exception must leave the staged source and final path intact.
     copyCheckpoint: (Long) -> Unit = {}
-) = synchronized(privateOriginalPublicationMonitor) {
+) {
+    require(expectedSha256.matches(Regex("^[0-9a-f]{64}$")) &&
+        target.name.matches(Regex("^[0-9a-f]{64}\\.(jpg|png|webp)$")) &&
+        target.name.substringBefore('.') == expectedSha256
+    ) { "Private original SHA and destination must agree." }
+    val monitor = privateOriginalPublicationMonitors.computeIfAbsent(expectedSha256) { Any() }
+    synchronized(monitor) {
     // Fail on an invalid caller before creating even a coordination sentinel.
     // Revalidate again inside the lock at the publication boundary.
     require(staged.isFile && !Files.isSymbolicLink(staged.toPath())) {
@@ -184,10 +198,11 @@ internal fun publishPrivateOriginalExclusively(
     require(staged.canonicalFile.parentFile == target.canonicalFile.parentFile) {
         "Staged and final private originals must share one owned directory."
     }
-    withPrivateOriginalProcessLock(target) {
+    withPrivateOriginalProcessLock(target, expectedSha256) {
         publishPrivateOriginalUnderLock(
             staged, target, expectedSha256, expectedLength, preferHardLink, copyCheckpoint
         )
+    }
     }
 }
 
