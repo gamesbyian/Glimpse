@@ -228,6 +228,142 @@ internal class PrivatePublicationReceiptJournal(private val originals: File) {
         }
     }
 
+    /**
+     * Open the receipt with NOFOLLOW_LINKS rather than checking and then
+     * following the path through File.readBytes(). A racing symlink must
+     * never be read as an app-private publication receipt.
+     */
+    private fun readReceiptNoFollow(file: File): ByteArray? = try {
+        FileChannel.open(
+            file.toPath(),
+            StandardOpenOption.READ,
+            java.nio.file.LinkOption.NOFOLLOW_LINKS
+        ).use { channel ->
+            val length = channel.size()
+            if (length !in 1L..9000L) null
+            else {
+                val bytes = ByteBuffer.allocate(length.toInt())
+                while (bytes.hasRemaining()) {
+                    if (channel.read(bytes) <= 0) return@use null
+                }
+                bytes.array()
+            }
+        }
+    } catch (_: Exception) {
+        null
+    }
+
+    /**
+     * Bounded, read-only *preflight* for the narrow case where a fully
+     * verifiable staging copy survives and its digest path is absent.
+     *
+     * Even a matching receipt/stage is only provenance evidence, not
+     * authorization to publish an original or attach Room membership.
+     * An already occupied digest path (including a dangling symlink) is
+     * strictly excluded, even if its bytes happen to match.
+     *
+     * The typed paths are application-internal. UI/reporting must expose
+     * aggregate counts only, never receipts, collection IDs, hashes or paths.
+     */
+    fun inspectMissingTargetStages(
+        maxReceipts: Int = 64,
+        maxHashedBytes: Long = 64L * 1024L * 1024L,
+        checkpoint: () -> Unit = {}
+    ): MissingTargetStagePreflight? {
+        require(maxReceipts in 1..256)
+        require(maxHashedBytes in 1L..(256L * 1024L * 1024L))
+        return try {
+            val root = checkedRoot()
+            val receipts = mutableListOf<File>()
+            var omitted = 0
+            Files.newDirectoryStream(root.toPath(), "publication-*.receipt").use { stream ->
+                for (entry in stream) {
+                    checkpoint()
+                    if (!receiptPattern.matches(entry.fileName.toString())) continue
+                    if (receipts.size < maxReceipts) receipts += entry.toFile()
+                    else omitted++
+                }
+            }
+            receipts.sortBy { it.name }
+            val ready = mutableListOf<MissingTargetStageCandidate>()
+            var unreadable = 0
+            var hashBytes = 0L
+            var hashBudgetExhausted = false
+            for (receipt in receipts) {
+                checkpoint()
+                if (!receipt.isFile || Files.isSymbolicLink(receipt.toPath()) ||
+                    receipt.canonicalFile.parentFile != root ||
+                    receipt.length() !in 1L..9000L
+                ) {
+                    unreadable++
+                    continue
+                }
+                val exact = readReceiptNoFollow(receipt)
+                if (exact == null) {
+                    unreadable++
+                    continue
+                }
+                val fields = String(exact, Charsets.UTF_8).trimEnd('\n').split('\t')
+                val length = fields.getOrNull(4)?.toLongOrNull()
+                val collection = runCatching {
+                    java.nio.charset.StandardCharsets.UTF_8.newDecoder()
+                        .onMalformedInput(java.nio.charset.CodingErrorAction.REPORT)
+                        .onUnmappableCharacter(java.nio.charset.CodingErrorAction.REPORT)
+                        .decode(java.nio.ByteBuffer.wrap(
+                            Base64.getUrlDecoder().decode(fields.getOrNull(5).orEmpty())
+                        )).toString()
+                }.getOrNull()
+                if (fields.size != 6 || fields[0] != "1" ||
+                    !stagePattern.matches(fields[1]) ||
+                    !targetPattern.matches(fields[2]) ||
+                    !digestPattern.matches(fields[3]) ||
+                    fields[2].substringBefore('.') != fields[3] ||
+                    length == null || length !in 1L..(50L * 1024L * 1024L) ||
+                    collection.isNullOrBlank() || collection.contains('\u0000')
+                ) {
+                    unreadable++
+                    continue
+                }
+                val stage = File(root, fields[1])
+                val target = File(root, fields[2])
+                // NOFOLLOW_LINKS is essential: File.exists() is false for
+                // a dangling symlink, yet CREATE_NEW must not overwrite it.
+                // Files.exists() may be false for unreadable/unknown states.
+                // Only an affirmative notExists() under NOFOLLOW_LINKS can
+                // qualify as missing; inaccessible targets must fail closed.
+                if (!Files.notExists(
+                        target.toPath(), java.nio.file.LinkOption.NOFOLLOW_LINKS
+                    )
+                ) continue
+                if (!stage.isFile || Files.isSymbolicLink(stage.toPath()) ||
+                    stage.canonicalFile.parentFile != root ||
+                    stage.length() != length
+                ) continue
+                if (length > maxHashedBytes - hashBytes) {
+                    hashBudgetExhausted = true
+                    continue
+                }
+                hashBytes += length
+                if (!existingOriginalMatches(stage, fields[3], length, checkpoint)) continue
+                ready += MissingTargetStageCandidate(
+                    stage, target, fields[3], length, collection,
+                    Handle(receipt, exact)
+                )
+            }
+            MissingTargetStagePreflight(
+                candidates = ready,
+                examinedReceipts = receipts.size,
+                omittedReceipts = omitted,
+                untrustedReceipts = unreadable,
+                hashBudgetExhausted = hashBudgetExhausted
+            )
+        } catch (cancel: kotlinx.coroutines.CancellationException) {
+            throw cancel
+        } catch (_: Exception) {
+            null
+        }
+    }
+
     /** Read-only aggregate evidence; no receipt content or IDs leave callers. */
     fun inspect(): ReceiptCounts? {
         return try {
@@ -285,3 +421,24 @@ internal data class PendingPublicationEvidence(
     val targetsUnverified: Int,
     val hashBudgetExhausted: Boolean
 )
+
+/** Only data-layer code may hold these private identifiers. */
+internal data class MissingTargetStageCandidate(
+    val staged: File,
+    val target: File,
+    val sha256: String,
+    val byteLength: Long,
+    val collectionId: String,
+    val receipt: PrivatePublicationReceiptJournal.Handle
+)
+
+/** Read-only possible-recovery evidence; never authority for a file mutation. */
+internal data class MissingTargetStagePreflight(
+    val candidates: List<MissingTargetStageCandidate>,
+    val examinedReceipts: Int,
+    val omittedReceipts: Int,
+    val untrustedReceipts: Int,
+    val hashBudgetExhausted: Boolean
+) {
+    val possibleCount: Int get() = candidates.size
+}
