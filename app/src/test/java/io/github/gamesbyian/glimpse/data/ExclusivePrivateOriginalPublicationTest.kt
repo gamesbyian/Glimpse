@@ -1,6 +1,7 @@
 package io.github.gamesbyian.glimpse.data
 
 import java.io.File
+import java.io.FileOutputStream
 import java.nio.file.Files
 import java.security.MessageDigest
 import java.util.concurrent.CountDownLatch
@@ -144,6 +145,43 @@ class ExclusivePrivateOriginalPublicationTest {
         } finally {
             executor.shutdownNow()
         }
+    }
+
+    @Test fun injectedExclusiveCopyFailureDoesNotDiscardSourceOrOverwriteFragment() {
+        val content = ByteArray(128 * 1024) { (it % 251).toByte() }
+        val stage = scratch.newFile("import-fault-proof.partial")
+        FileOutputStream(stage).use { output ->
+            output.write(content)
+            output.fd.sync()
+        }
+        val target = File(scratch.root, hex(content) + ".jpg")
+        val progress = mutableListOf<Long>()
+        val failure = runCatching {
+            publishPrivateOriginalExclusively(
+                stage, target, hex(content), content.size.toLong(),
+                preferHardLink = false,
+                copyCheckpoint = { copied ->
+                    progress += copied
+                    if (copied < content.size) {
+                        throw java.io.IOException("Injected mid-copy error")
+                    }
+                }
+            )
+        }
+        assertTrue(failure.isFailure)
+        assertTrue(progress.isNotEmpty())
+        val fragment = target.readBytes()
+        assertTrue(fragment.isNotEmpty() && fragment.size < content.size)
+        assertArrayEquals(content.copyOf(fragment.size), fragment)
+        assertArrayEquals(content, stage.readBytes())
+        assertTrue(runCatching {
+            publishPrivateOriginalExclusively(
+                stage, target, hex(content), content.size.toLong(),
+                preferHardLink = false
+            )
+        }.isFailure)
+        assertArrayEquals(fragment, target.readBytes())
+        assertArrayEquals(content, stage.readBytes())
     }
 
     @Test fun missingOrForeignStagingSourceIsNeverPublished() {
