@@ -32,6 +32,23 @@ class FailureReceiptTest(unittest.TestCase):
         self.assertNotIn("secret_part_two", result)
         self.assertIn("[REDACTED]", result)
 
+    def test_empty_junit_failure_message_preserves_original_test_identity(self):
+        self.assertEqual("", safe_line(None))
+        self.assertEqual("", safe_line(""))
+        self.assertEqual("", safe_line("\n\n"))
+        with tempfile.TemporaryDirectory() as d:
+            path = Path(d) / "app/build/outputs/androidTest-results/connected/TEST-empty.xml"
+            path.parent.mkdir(parents=True)
+            path.write_text(
+                '<testsuite><testcase classname="RecoveryDeviceTest" '
+                'name="realApi29Mismatch"><failure/></testcase></testsuite>'
+            )
+            report = build_receipt(d, "android-room-integrity.yml", {})
+            self.assertEqual(report["classification"], "test_assertion")
+            self.assertEqual(report["firstFailure"]["test"],
+                             "RecoveryDeviceTest.realApi29Mismatch")
+            self.assertEqual(report["firstFailure"]["message"], "")
+
     def test_sensitive_error_values_are_redacted(self):
         self.assertNotIn("12345", safe_line("authorization=12345"))
         self.assertNotIn("abcde", safe_line("token: abcde"))
