@@ -209,47 +209,47 @@ class PrivateOriginalPublicationDeviceTest {
             intent, connection, Context.BIND_AUTO_CREATE
         ))
         try {
-        var childPid: Int? = null
-        val markerDeadline = SystemClock.elapsedRealtime() + 15_000L
-        while (SystemClock.elapsedRealtime() < markerDeadline && childPid == null) {
-            childPid = runCatching {
-                DataInputStream(FileInputStream(marker)).use { it.readInt() }
-            }.getOrNull()
-            if (childPid == null) SystemClock.sleep(50L)
-        }
-        assertTrue("Separate process must reach the first real chunk", childPid != null)
-        val pid = childPid!!
-        assertTrue("The test process must survive its child kill", pid != android.os.Process.myPid())
-
-        // Only ESRCH confirms that the distinct child PID actually died.
-        // The debug activity records its own PID just before SIGKILL.
-        var childDied = false
-        val deathDeadline = SystemClock.elapsedRealtime() + 15_000L
-        while (SystemClock.elapsedRealtime() < deathDeadline && !childDied) {
-            try {
-                Os.kill(pid, 0)
-                SystemClock.sleep(50L)
-            } catch (error: ErrnoException) {
-                if (error.errno == OsConstants.ESRCH) childDied = true else throw error
+            var childPid: Int? = null
+            val markerDeadline = SystemClock.elapsedRealtime() + 15_000L
+            while (SystemClock.elapsedRealtime() < markerDeadline && childPid == null) {
+                childPid = runCatching {
+                    DataInputStream(FileInputStream(marker)).use { it.readInt() }
+                }.getOrNull()
+                if (childPid == null) SystemClock.sleep(50L)
             }
-        }
-        assertTrue("The isolated writer must die via actual SIGKILL", childDied)
+            assertTrue("Separate process must reach the first real chunk", childPid != null)
+            val pid = childPid!!
+            assertTrue("The test process must survive its child kill", pid != android.os.Process.myPid())
 
-        val fragment = target.readBytes()
-        assertEquals(64 * 1024, fragment.size)
-        assertArrayEquals(bytes.copyOf(fragment.size), fragment)
-        assertArrayEquals(bytes, staged.readBytes())
-        assertTrue(receipt.file.exists())
-        val report = journal.inspectFileEvidence()!!
-        assertTrue(report.stagesExact == 1 && report.targetsUnverified == 1)
+            // Only ESRCH confirms that the distinct child PID actually died.
+            // The debug service records its own PID just before SIGKILL.
+            var childDied = false
+            val deathDeadline = SystemClock.elapsedRealtime() + 15_000L
+            while (SystemClock.elapsedRealtime() < deathDeadline && !childDied) {
+                try {
+                    Os.kill(pid, 0)
+                    SystemClock.sleep(50L)
+                } catch (error: ErrnoException) {
+                    if (error.errno == OsConstants.ESRCH) childDied = true else throw error
+                }
+            }
+            assertTrue("The isolated writer must die via actual SIGKILL", childDied)
 
-        // No restart may truncate the already-reserved digest filename.
-        assertTrue(runCatching {
-            publishPrivateOriginalExclusively(
-                staged, target, sha(bytes), bytes.size.toLong(), preferHardLink = false
-            )
-        }.isFailure)
-        assertArrayEquals(fragment, target.readBytes())
+            val fragment = target.readBytes()
+            assertEquals(64 * 1024, fragment.size)
+            assertArrayEquals(bytes.copyOf(fragment.size), fragment)
+            assertArrayEquals(bytes, staged.readBytes())
+            assertTrue(receipt.file.exists())
+            val report = journal.inspectFileEvidence()!!
+            assertTrue(report.stagesExact == 1 && report.targetsUnverified == 1)
+
+            // No restart may truncate the already-reserved digest filename.
+            assertTrue(runCatching {
+                publishPrivateOriginalExclusively(
+                    staged, target, sha(bytes), bytes.size.toLong(), preferHardLink = false
+                )
+            }.isFailure)
+            assertArrayEquals(fragment, target.readBytes())
         } finally {
             context.unbindService(connection)
         }
