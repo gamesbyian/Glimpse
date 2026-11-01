@@ -141,6 +141,30 @@ All private-original writers must continue using the shared publication
 gateway; Android advisory file locks do not constrain unrelated code that
 ignores the lock.
 
+## Conservative preflight: intact stage and *missing* target (read-only)
+
+The opt-in recovery lane may someday use the typed
+`PrivatePublicationReceiptJournal.inspectMissingTargetStages()` preflight.
+It scans only a bounded number of exact-format local receipts, hashes at most
+its configured aggregate byte budget, refuses symlinked roots/stages, checks
+the complete stage's length and SHA, decodes the original collection identity
+with strict UTF-8, and accepts only a digest path that is **absent even under
+NOFOLLOW_LINKS**. An existing digest path (including an exact complete
+original, a foreign fragment, or a dangling symlink) is excluded entirely.
+
+Candidates and receipt handles stay within the data layer. The user-facing
+Help/Privacy view still exposes only aggregates. This preflight never
+publishes a digest, inserts Room membership, modifies a receipt, deletes a
+file, decides writer ownership, or claims that a missing target is guaranteed
+to remain missing after the scan. An ongoing writer may change the evidence
+while it runs. The only safe future mutation route must revalidate under the
+same SHA-scoped process lock, prove target absence and collection identity,
+ask for explicit owner consent, and pass real Android interruption/restart
+tests before a data-modifying recovery action can ship.
+
+This is strictly a read-only staging plan. **Issue #143 remains open** for
+real recovery and quarantine of partially published targets.
+
 ## Remaining crash window and recovery plan
 
 A process kill, storage exhaustion, device power loss or cancelled file-channel
