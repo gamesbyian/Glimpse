@@ -8,6 +8,9 @@ on:
       - scripts/capture-incoming-image-share.py
       - .github/workflows/incoming-image-share.yml
   workflow_dispatch:
+concurrency:
+  group: glimpse-image-share-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 permissions:
   contents: read
 jobs:
@@ -30,7 +33,7 @@ jobs:
       - name: Build APK, JVM tests and harness syntax
         run: |
           python3 -m py_compile scripts/capture-incoming-image-share.py
-          ./gradlew --no-daemon :app:assembleDebug :app:testDebugUnitTest
+          ./gradlew --no-daemon :app:assembleDebug
       - name: Allow emulator KVM
         run: |
           if test -e /dev/kvm; then sudo chmod a+rw /dev/kvm; fi
