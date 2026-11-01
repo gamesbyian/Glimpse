@@ -1,3 +1,17 @@
+> **Latest observed mismatch (2026-10-31/2026-11-01 UTC):** Three
+> successful distinct `main` Android CI builds still use *different* public
+> signer certificates: [run 41249622784](https://github.com/gamesbyian/Glimpse/actions/runs/41249622784)
+> `6cadb7f2db006fc9ac33b0ca53f3547ec6880b91ba15f65a15585bf9126c84f9`;
+> [run 41250242171](https://github.com/gamesbyian/Glimpse/actions/runs/41250242171)
+> `4b5ac005254a8d45b4e40207c038db0bcc8ac3683501df0561bedcdd7ca0a832`;
+> [run 41265420324](https://github.com/gamesbyian/Glimpse/actions/runs/41265420324)
+> `1cc8d03391d1c7de8c329610207641949550eb582999bb2080cf5759070fc93e`.
+> The `Configure optional stable CI debug signing` script executes successfully,
+> but logs explicitly warn that persistent signing is unavailable. The green
+> step is **not** evidence of a configured owner-controlled key. Issue #72
+> was reopened; exact installed-update continuity remains unproven. These
+> values are public `apksigner` fingerprints, not secret key material.
+
 > **P0 acceptance reaffirmed (2026-10-29, GL-AUD-01):** Signed debug artifacts from different runners were empirically incompatible. A configured optional key is **not** proof of upgrade safety. Release remains blocked until two consecutive protected main builds have the identical public signing fingerprint and `adb install -r` preserves populated Room and immutable originals without uninstall. Owner must separately provision and escrow secrets; neither agent nor CI should disclose private signing bytes. See [audit](../quality/ARCHITECTURE-AUDIT-2026-10-29.md) and [#72](https://github.com/gamesbyian/Glimpse/issues/72).
 
 # Glimpse Android signing and update continuity
