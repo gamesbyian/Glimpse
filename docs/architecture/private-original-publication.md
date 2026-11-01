@@ -162,7 +162,7 @@ authorizes unlinking/replacing the existing digest name or auto-attaching
 a database membership.
 
 This is deterministic fault injection in disposable files, **not**
-physical process-death or power-loss proof. API29/modern Android
+physical power-loss proof. API29/modern Android
 instrumentation and actual process kill at each receipt/reservation/force/
 DAO transition remain required under issue #143. Real symlink, foreign
 file and same-hash race refusal remain independent gates.
@@ -178,8 +178,18 @@ instrumentation runner separately verifies that the child PID exited, that the
 staged bytes and receipt survived, that the digest path retains the exact
 first chunk, and that a reselect cannot overwrite it.
 
-This establishes a real **post-reservation/mid-copy SIGKILL** case on the
-Android API(s) where its CI executes. It does not claim a power-cut durability
+The debug service now accepts only two hard-coded interruption points:
+after 64 KiB of a 128 KiB original, and after all 128 KiB are written but
+**before** the destination's `FileChannel.force(true)`, final SHA validation,
+or any Room membership commit. The latter is a real post-last-write
+process-kill scenario; it verifies staged and currently readable target bytes
+and the retained receipt, without representing volatile cache contents as
+power-loss durability or an admitted library record. A subsequent publisher
+can verify and reuse the exact current complete bytes, while an incomplete
+digest remains non-replaceable.
+
+This establishes real **mid-copy and post-last-write/pre-force SIGKILL** cases
+on the Android API(s) where their exact-head CI executes. It does not claim a power-cut durability
 guarantee, a physically tested Pixel, process kill before/after *other*
 publication boundaries, cross-process ownership proof, recovery quarantine,
 successful reselect or a Room commit. Issue #143 remains open.
