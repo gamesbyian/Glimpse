@@ -1413,6 +1413,15 @@ def main():
             capture("03-edited-variant-immutable-collection-copy",
                     "Actual cropped/rotated PNG became fourth collection photo; three originals retained")
     except Exception as error:
+        # The atlas handles failures to produce a partial screenshot gallery.
+        # Preserve the observed exception as bounded structured metadata too.
+        # Reporting failures must never conceal the original atlas failure.
+        try:
+            from ci_harness_runner import emit_exception
+            emit_exception(error, workflow="android-visual-atlas.yml",
+                           phase="atlas-ui", api="34")
+        except Exception:
+            pass
         failures.append(str(error))
         print("Atlas failed:", error, flush=True)
         capture_failure("atlas-unexpected-error", str(error))

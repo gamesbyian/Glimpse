@@ -14,6 +14,7 @@ on:
       - "app/src/main/res/xml/glimpse_home_widget_info.xml"
       - "app/src/main/res/values/glimpse_widget_strings.xml"
       - "scripts/capture-android-home-widget.py"
+      - scripts/ci_harness_runner.py
       - "scripts/verify-home-widget.py"
       - ".github/workflows/android-widget-acceptance.yml"
 permissions:
@@ -60,7 +61,7 @@ jobs:
           emulator-options: -no-window -gpu swiftshader_indirect -no-snapshot -noaudio -no-boot-anim
           script: |
             adb install -r app/build/outputs/apk/debug/app-debug.apk
-            python3 scripts/capture-android-home-widget.py --out artifacts/android-home-widget
+            python3 scripts/ci_harness_runner.py --workflow android-widget-acceptance.yml --phase widget-host-ui --api 34 -- python3 scripts/capture-android-home-widget.py --out artifacts/android-home-widget
       - name: Upload real hosted widget PNG/XML evidence
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4

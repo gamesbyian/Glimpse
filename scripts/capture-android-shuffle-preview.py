@@ -33,10 +33,16 @@ def main(out):
     )
     seek("Details",attempts=16)
     seek("Preview next four photos",attempts=16)
-    for _ in range(8):
+    # Android's accessibility hierarchy omits content below the viewport.
+    # Expanding this panel can put its actual heading below the fold even
+    # though the button was tapped successfully. Search by scrolling through
+    # real native content, never by assuming an offscreen element is absent.
+    for attempt in range(12):
         xml=base.hierarchy()
         if "READ-ONLY ROTATION REHEARSAL" in xml:
             break
+        if attempt % 2 == 1:
+            base.swipe("up")
         time.sleep(.7)
     else:
         raise RuntimeError("Read-only Home shuffle preview never rendered")

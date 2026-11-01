@@ -7,6 +7,7 @@ on:
       - "app/src/main/java/io/github/gamesbyian/glimpse/MainActivity.kt"
       - "app/src/main/java/io/github/gamesbyian/glimpse/domain/ShuffleProjection.kt"
       - "scripts/capture-android-shuffle-preview.py"
+      - scripts/ci_harness_runner.py
       - ".github/workflows/shuffle-preview-acceptance.yml"
 permissions:
   contents: read
@@ -50,7 +51,7 @@ jobs:
           emulator-options: -no-window -gpu swiftshader_indirect -no-snapshot -noaudio -no-boot-anim
           script: |
             adb install -r app/build/outputs/apk/debug/app-debug.apk
-            python3 scripts/capture-android-shuffle-preview.py --out artifacts/android-shuffle-preview
+            python3 scripts/ci_harness_runner.py --workflow shuffle-preview-acceptance.yml --phase filmstrip-ui --api 34 -- python3 scripts/capture-android-shuffle-preview.py --out artifacts/android-shuffle-preview
       - name: Upload actual Android filmstrip PNG/XML
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
