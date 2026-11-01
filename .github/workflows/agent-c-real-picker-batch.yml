@@ -2,6 +2,10 @@ name: Agent C actual Android Photo Picker two-photo batch
 on:
   pull_request:
     paths:
+      - "app/src/main/java/io/github/gamesbyian/glimpse/data/PhotoImporter.kt"
+      - "app/src/main/java/io/github/gamesbyian/glimpse/data/GlimpseDatabase.kt"
+      - "app/src/main/java/io/github/gamesbyian/glimpse/MainActivity.kt"
+      - "app/src/main/java/io/github/gamesbyian/glimpse/GlimpseModel.kt"
       - app/src/debug/AndroidManifest.xml
       - app/src/debug/java/io/github/gamesbyian/glimpse/debug/PickerBatchFixtureLauncher.kt
       - scripts/capture-agent-c-real-picker-batch.py
