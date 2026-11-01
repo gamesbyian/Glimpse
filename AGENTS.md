@@ -58,3 +58,8 @@ Visual design work must begin with [the two-way visual gap audit](docs/design/re
 The private `gamesbyian/general-purpose/Glimpse` directory is a preservation archive, not the active implementation. Do not move, delete or overwrite it during ordinary work. Older Waltz decks, transfer chunks and superseded mockups remain historical evidence. The active repository is public; public visibility does not itself provide an open-source license.
 
 When sources conflict: **current observed code and device evidence** determine what works; **current decisions** determine intended UX; the **implementation queue** determines what is next; the **evidence ledger** determines which acceptance gates have actually been met. Report the conflict rather than quietly promoting a proposal into an accepted feature.
+
+
+## Automatic Android skill selection
+
+For **every native Android implementation, review, test, regression, lifecycle, accessibility, storage, security, widget or performance task**, read and apply [Android evidence-first](.agents/skills/android-evidence-first/SKILL.md) without waiting for the owner to request it. During task discovery identify relevant specialist skill references in that file and, **if installed and available**, read the appropriate Google Android, Android Testing or Compose Performance skill; use official Android documentation otherwise. Apply narrow skills to the actual failure mode, not indiscriminately. The repository's normative specifications, agent ownership, security rules, CI policy and proof gates always take precedence. Record when a specialist skill materially changed the implementation or test plan; never treat a skill as proof of working behavior.
