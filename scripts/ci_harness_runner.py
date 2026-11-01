@@ -94,7 +94,7 @@ def run(command, *, output, workflow, phase, api, environ=None):
         "phase": safe(phase),
         "sourceSha": safe(env.get("GITHUB_SHA", "")),
         "emulatorApi": safe(api),
-        "reproduction": " ".join(command)[:220],
+        "reproduction": safe(" ".join(command)),
         "exitCode": code,
         "evidence": "observed_python_traceback" if failure else "unclassified_nonzero_exit",
         "exception": failure,
