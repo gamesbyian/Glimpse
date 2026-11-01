@@ -243,7 +243,10 @@ def swipe(direction="up"):
     # a gesture is harmless once the scroll owner has accepted the down event.
     a = int(h * (0.49 if direction == "up" else 0.18))
     b = int(h * (0.17 if direction == "up" else 0.53))
-    x = int(w * .92)
+    # With two corner reels, the right-edge swipe lane is itself a rotating
+    # collection control. The central photographic lane remains unoccupied
+    # by either physical wheel, allowing intentional scroll-behind gestures.
+    x = int(w * .52)
     adb("shell", "input", "swipe", str(x), str(a),
         str(x), str(b), "520")
     time.sleep(1)
@@ -1189,15 +1192,71 @@ def main():
                 if "Photos: 3" in membership_xml:
                     found_three = True
                     break
-                # The new photographic Home count is at the TOP of the
-                # scrolling page, not below the collection-management tile.
-                swipe("down")
+                # Clicking the actual collection card may return the scroll
+                # position to the top of a full-height photograph. The Room
+                # membership count lives in the management area BELOW it.
+                swipe("up")
             if not found_three:
                 capture_failure("cross-collection-membership-not-visible",
                                 "Membership copy did not appear in alternate collection")
                 raise RuntimeError("Adding existing photo did not update target collection")
             capture("22-cross-collection-membership-copy",
                     "Photo 3 reused in alternate collection without recopy or wallpaper change")
+            # Reset the *content* viewport for the corner-reel gesture test.
+            # Both physical reels must remain fixed while it scrolls.
+            for _ in range(4):
+                swipe("down")
+            # A second functional fixed reel appears only when TWO real
+            # collections are present on a sufficiently wide normal-font
+            # viewport. Exercise both physical directions against real Room
+            # membership, not a decorative Canvas or hardcoded categories.
+            if "Collection paper reel" not in hierarchy():
+                capture_failure("collection-reel-not-visible",
+                                "Two real collection choices did not expose fixed corner reel")
+                raise RuntimeError("Functional collection reel was not displayed")
+            w, h, dpi = screen_geometry()
+            logical_width = w * 160 / dpi
+            if logical_width >= 390:
+                import math
+                scale = dpi / 160
+                cx = w - (196 - 28 - 196 * .80) * scale
+                cy = (32 + 196 * .18) * scale
+                rr = 196 * .68 * .72 * scale
+                def collection_reel_drag(first, last):
+                    x1 = round(cx + math.cos(math.radians(first)) * rr)
+                    y1 = round(cy + math.sin(math.radians(first)) * rr)
+                    x2 = round(cx + math.cos(math.radians(last)) * rr)
+                    y2 = round(cy + math.sin(math.radians(last)) * rr)
+                    if not (0 <= x1 < w and 0 <= y1 < h and
+                            0 <= x2 < w and 0 <= y2 < h):
+                        raise RuntimeError("Collection reel gesture fell outside device viewport")
+                    adb("shell", "input", "swipe", str(x1), str(y1),
+                        str(x2), str(y2), "640")
+                    time.sleep(1.8)
+                # Clockwise turn advances toward earlier actual collections.
+                collection_reel_drag(112, 168)
+                # UIAutomator does not serialize Compose stateDescription
+                # consistently. The reel's visible 1/2 · Title label is
+                # reliable native UI evidence and changes with the real ID.
+                selected_source = any(
+                    "· ATLAS FIXTURE" in node.attrib.get("text", "")
+                    for node in ET.fromstring(hierarchy()).iter("node"))
+                if not selected_source:
+                    capture_failure("collection-reel-first-selection",
+                                    "Physical turn did not select the original collection ID")
+                    raise RuntimeError("Collection reel cannot select prior collection")
+                capture("22-two-functional-corner-reels",
+                        "Both fixed paper discs shown; upper reel selected real source collection")
+                collection_reel_drag(168, 112)
+                selected_alternate = any(
+                    "· ALTERNATE ATLAS" in node.attrib.get("text", "")
+                    for node in ET.fromstring(hierarchy()).iter("node"))
+                if not selected_alternate:
+                    capture_failure("collection-reel-return-selection",
+                                    "Reel return did not restore alternate collection ID")
+                    raise RuntimeError("Collection reel did not retain real source IDs")
+                capture("22-collection-reel-bidirectional",
+                        "Two anchored functional reels; alternate collection restored by wheel")
             # Removing an additional membership must not delete the verified
             # private original still used by the original 22-photo collection.
             reach_and_click("Open photo details", "up", attempts=12)

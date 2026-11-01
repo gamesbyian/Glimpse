@@ -45,6 +45,8 @@ on:
       - app/src/main/java/io/github/gamesbyian/glimpse/data/CollectionZipReader.kt
       - app/src/main/java/io/github/gamesbyian/glimpse/domain/CropResolutionAdvisory.kt
       - app/src/main/java/io/github/gamesbyian/glimpse/CircularPhotoReel.kt
+      - app/src/main/java/io/github/gamesbyian/glimpse/GlimpseCollectionReel.kt
+      - app/src/main/java/io/github/gamesbyian/glimpse/domain/CollectionReelMath.kt
       - app/src/main/java/io/github/gamesbyian/glimpse/GlimpseTypography.kt
       - app/src/main/java/io/github/gamesbyian/glimpse/GlimpseSupportScreen.kt
       - app/src/main/java/io/github/gamesbyian/glimpse/LocalDiagnosticReport.kt
