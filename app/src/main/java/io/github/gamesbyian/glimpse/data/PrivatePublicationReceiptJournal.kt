@@ -194,7 +194,7 @@ internal class PrivatePublicationReceiptJournal(private val originals: File) {
                         return 2
                     }
                     hashedBytes += expectedBytes
-                    return if (existingOriginalMatches(file, expectedSha, expectedBytes)) 0 else 2
+                    return if (existingOriginalMatches(file, expectedSha, expectedBytes, checkpoint)) 0 else 2
                 }
                 when (classify(parts[1])) {
                     0 -> stagesExact++
