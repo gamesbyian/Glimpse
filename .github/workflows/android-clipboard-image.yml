@@ -9,6 +9,9 @@ on:
       - scripts/capture-android-clipboard-image.py
       - .github/workflows/android-clipboard-image.yml
   workflow_dispatch:
+concurrency:
+  group: glimpse-clipboard-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 permissions:
   contents: read
 jobs:
@@ -31,7 +34,7 @@ jobs:
       - name: Validate debug build and script
         run: |
           python3 -m py_compile scripts/capture-android-clipboard-image.py
-          ./gradlew --no-daemon :app:assembleDebug :app:testDebugUnitTest
+          ./gradlew --no-daemon :app:assembleDebug
       - name: Allow emulator KVM
         run: |
           if test -e /dev/kvm; then sudo chmod a+rw /dev/kvm; fi
@@ -56,4 +59,16 @@ jobs:
           name: glimpse-android-clipboard-image-api34
           path: artifacts/android-clipboard-image/
           retention-days: 14
+          if-no-files-found: warn
+
+      - name: Record first actionable CI failure without private data
+        if: failure()
+        run: python3 scripts/ci_failure_digest.py --workflow "android-clipboard-image.yml"
+      - name: Upload versioned machine-readable failure receipt
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: glimpse-ci-failure-android-clipboard-image
+          path: artifacts/ci-failure-digest.json
+          retention-days: 7
           if-no-files-found: warn

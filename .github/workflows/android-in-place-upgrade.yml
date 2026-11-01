@@ -6,6 +6,11 @@ on:
   workflow_dispatch:
   pull_request:
     paths:
+      - "gradle/**"
+      - "gradle.properties"
+      - "settings.gradle.kts"
+      - "build.gradle.kts"
+      - "app/schemas/**"
       - ".github/workflows/android-in-place-upgrade.yml"
       - "scripts/verify-android-in-place-upgrade.py"
       - "app/build.gradle.kts"
@@ -25,6 +30,11 @@ on:
   push:
     branches: [main]
     paths:
+      - "gradle/**"
+      - "gradle.properties"
+      - "settings.gradle.kts"
+      - "build.gradle.kts"
+      - "app/schemas/**"
       - ".github/workflows/android-in-place-upgrade.yml"
       - "scripts/verify-android-in-place-upgrade.py"
       - "app/build.gradle.kts"
@@ -151,4 +161,16 @@ jobs:
           name: glimpse-in-place-upgrade-aggregates
           path: artifacts/upgrade-evidence.json
           retention-days: 14
+          if-no-files-found: warn
+
+      - name: Record first actionable CI failure without private data
+        if: failure()
+        run: python3 scripts/ci_failure_digest.py --workflow "android-in-place-upgrade.yml"
+      - name: Upload versioned machine-readable failure receipt
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: glimpse-ci-failure-android-in-place-upgrade
+          path: artifacts/ci-failure-digest.json
+          retention-days: 7
           if-no-files-found: warn

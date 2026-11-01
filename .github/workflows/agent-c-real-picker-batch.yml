@@ -2,12 +2,19 @@ name: Agent C actual Android Photo Picker two-photo batch
 on:
   pull_request:
     paths:
+      - "app/src/main/java/io/github/gamesbyian/glimpse/data/PhotoImporter.kt"
+      - "app/src/main/java/io/github/gamesbyian/glimpse/data/GlimpseDatabase.kt"
+      - "app/src/main/java/io/github/gamesbyian/glimpse/MainActivity.kt"
+      - "app/src/main/java/io/github/gamesbyian/glimpse/GlimpseModel.kt"
       - app/src/debug/AndroidManifest.xml
       - app/src/debug/java/io/github/gamesbyian/glimpse/debug/PickerBatchFixtureLauncher.kt
       - scripts/capture-agent-c-real-picker-batch.py
       - scripts/validate-agent-c-real-picker-batch-evidence.py
       - .github/workflows/agent-c-real-picker-batch.yml
   workflow_dispatch:
+concurrency:
+  group: glimpse-picker-batch-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 permissions:
   contents: read
 jobs:
@@ -58,4 +65,16 @@ jobs:
           name: glimpse-c-real-two-photo-picker-api34
           path: artifacts/agent-c-real-picker-batch/
           retention-days: 14
+          if-no-files-found: warn
+
+      - name: Record first actionable CI failure without private data
+        if: failure()
+        run: python3 scripts/ci_failure_digest.py --workflow "agent-c-real-picker-batch.yml"
+      - name: Upload versioned machine-readable failure receipt
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: glimpse-ci-failure-agent-c-real-picker-batch
+          path: artifacts/ci-failure-digest.json
+          retention-days: 7
           if-no-files-found: warn

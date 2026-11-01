@@ -1,6 +1,17 @@
 name: Validate Glimpse proposal-reference structure
 on:
   workflow_dispatch:
+  pull_request:
+    paths:
+      - "design/proposals/**"
+      - "design/atlas/**"
+      - "design/tokens/brand.json"
+      - "docs/design/screen-contract.json"
+      - "scripts/validate-visual-spec.py"
+      - "scripts/build-visual-proposal-atlas.py"
+      - "scripts/validate-storyboard-coverage.py"
+      - "scripts/render-storyboard-samples.py"
+      - ".github/workflows/visual-reference-check.yml"
   push:
     branches: [main]
     paths:
@@ -16,7 +27,7 @@ on:
 permissions:
   contents: read
 concurrency:
-  group: glimpse-reference-check
+  group: glimpse-reference-check-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
 jobs:
   check:
@@ -35,6 +46,7 @@ jobs:
       - name: Render P0 storyboard samples for pixel inspection
         run: python3 scripts/render-storyboard-samples.py
       - name: Publish visual reference atlas
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: glimpse-visual-proposals
