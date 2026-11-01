@@ -11,27 +11,46 @@ on:
     branches: [agent/visual-state-reconciliation-20261023]
 permissions:
   contents: read
-  pages: write
-  id-token: write
 concurrency:
   group: glimpse-review-pages-main
   cancel-in-progress: true
 jobs:
-  publish:
-    if: github.event_name != 'workflow_run' || (github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.head_repository.full_name == 'gamesbyian/Glimpse' && github.event.workflow_run.head_branch == 'agent/visual-state-reconciliation-20261023')
+  stage:
+    if: >-
+      (github.event_name == 'workflow_run' &&
+       github.event.workflow_run.conclusion == 'success' &&
+       github.event.workflow_run.head_repository.full_name == 'gamesbyian/Glimpse' &&
+       github.event.workflow_run.head_repository.id == github.event.repository.id &&
+       github.event.workflow_run.head_branch == 'agent/visual-state-reconciliation-20261023' &&
+       (github.event.workflow_run.name == 'Glimpse | Build complete draft visual evidence atlas' ||
+        github.event.workflow_run.name == 'Glimpse | Chromium owner reviewer interaction QA')) ||
+      ((github.event_name == 'push' || github.event_name == 'workflow_dispatch') &&
+       github.ref == 'refs/heads/main')
     runs-on: ubuntu-latest
-    timeout-minutes: 14
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+    timeout-minutes: 12
+    permissions:
+      contents: read
+    outputs:
+      candidate_sha: ${{ steps.identity.outputs.sha }}
     steps:
-      - name: Check out unmerged owner-review candidate
-        uses: actions/checkout@v4
+      - name: Check out unmerged owner-review candidate without deploy credentials
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
         with:
           # Deploy precisely the draft revision that passed the triggering workflow.
           # workflow_dispatch/main workflow edits use the current draft branch.
           ref: ${{ github.event_name == 'workflow_run' && github.event.workflow_run.head_sha || 'agent/visual-state-reconciliation-20261023' }}
           persist-credentials: false
+      - name: Check exact upstream candidate identity
+        id: identity
+        env:
+          EXPECTED_SHA: ${{ github.event_name == 'workflow_run' && github.event.workflow_run.head_sha || '' }}
+        run: |
+          actual="$(git rev-parse HEAD)"
+          if [ -n "$EXPECTED_SHA" ] && [ "$actual" != "$EXPECTED_SHA" ]; then
+            echo "::error::Candidate commit differs from successful upstream run"
+            exit 1
+          fi
+          echo "sha=$actual" >> "$GITHUB_OUTPUT"
       - name: Validate current source-exact owner-review candidate
         run: |
           python3 scripts/validate-integration-source-freeze.py
@@ -41,8 +60,12 @@ jobs:
           python3 scripts/test-review-studio.py
           node --check review/app.js
           node --check review/excellence.js
-      - name: Stage source-complete interactive review
+      - name: Stage source-complete interactive review without deploy credentials
         run: |
+          if find design review -type l -print -quit | grep -q .; then
+            echo "::error::Pages does not accept symbolic links"
+            exit 1
+          fi
           mkdir -p _site
           cp -a design review _site/
           touch _site/.nojekyll
@@ -65,16 +88,32 @@ jobs:
           assert pathlib.Path('_site/design/atlas/whole-product-review-snapshot.v1.json').is_file()
           print('PASS: staging source-pinned reviewer from unmerged draft',sha)
           PY
-      - uses: actions/configure-pages@v5
-      - uses: actions/upload-pages-artifact@v3
+      - name: Upload staged Pages artifact without deploy authority
+        uses: actions/upload-pages-artifact@56afc609e74202658d3ffba0e8f6dda462b719fa # v3
         with:
           path: _site
-      - name: Deploy
+
+  publish:
+    needs: stage
+    if: needs.stage.result == 'success'
+    runs-on: ubuntu-latest
+    timeout-minutes: 14
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      # Never check out or execute candidate-branch code with deploy credentials.
+      - uses: actions/configure-pages@983d7736d9b0ae728b81ab479565c72886d7745b # v5
+      - name: Deploy same-run immutable artifact
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e # v4
       - name: Probe live HTML, app JS and exact deployed SHA
         run: |
-          wanted="$(git rev-parse HEAD)"
+          wanted="${{ needs.stage.outputs.candidate_sha }}"
           for attempt in 1 2 3 4 5 6 7 8 9 10; do
             if curl --fail --silent --show-error --location --max-time 12 "https://gamesbyian.github.io/Glimpse/review/build.json?probe=${GITHUB_RUN_ID}" -o /tmp/glimpse-review-build.json && \
                curl --fail --silent --show-error --location --max-time 12 "https://gamesbyian.github.io/Glimpse/review/?probe=${GITHUB_RUN_ID}" -o /tmp/glimpse-review-index.html; then
