@@ -64,5 +64,20 @@ class PagesBoundaryTests(unittest.TestCase):
                 self.assertRegex(step["uses"], r"@[0-9a-f]{40}$")
 
 
+    def test_all_workflow_actions_are_immutable_pinned(self):
+        count = 0
+        for path in (ROOT / ".github/workflows").glob("*.yml"):
+            workflow = yaml.load(path.read_text(), Loader=yaml.BaseLoader)
+            for job in workflow.get("jobs", {}).values():
+                for step in job.get("steps", []):
+                    ref = step.get("uses", "")
+                    if not ref:
+                        continue
+                    count += 1
+                    with self.subTest(path=path.name, action=ref):
+                        self.assertRegex(ref, r"^[a-zA-Z0-9_.-]+/[a-zA-Z0-9_.-]+(?:/[a-zA-Z0-9_.-]+)?@[0-9a-f]{40}$")
+        self.assertGreaterEqual(count, 40)
+
+
 if __name__ == "__main__":
     unittest.main()
