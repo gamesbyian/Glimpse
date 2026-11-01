@@ -172,6 +172,34 @@ tests before a data-modifying recovery action can ship.
 This is strictly a read-only staging plan. **Issue #143 remains open** for
 real recovery and quarantine of partially published targets.
 
+## Explicit-confirmation backend for absent digest paths (unaccepted draft)
+
+A proposed `ManualMissingTargetStageResume` backend can process only a bounded
+candidate set from the verified-stage/missing-target preflight. Callers must
+provide an affirmative confirmation flag. No native UI invokes it, so this is
+**not yet an exercised human-consent journey** and should remain a draft
+implementation until an explicit, understandable owner-facing confirmation is
+built and tested.
+
+On IO, the backend rechecks the exact receipt through a no-follow channel,
+the existing staged bytes and SHA, affirmative no-follow target absence, the
+existing destination collection and the decoded JPEG/PNG/WebP dimensions.
+It rejects a conflicting registered photo, uses the existing SHA-scoped
+exclusive publisher, and attempts a **single Room transaction** which rechecks both the destination collection and immutable metadata of any existing PhotoRecord before admitting a membership. A concurrent conflicting photo record is rejected, never silently reused. Return values
+contain aggregate counts only. Stages and receipts are always retained.
+A raced existing foreign or partial digest fails closed, and a vanished
+collection receives no membership. A successful file publication followed by
+a failed Room transaction can leave a complete orphan; because the target
+now exists, this preflight deliberately will not retry or delete it. The
+remaining post-publication/Room crash window needs separate reconciliation
+and verification.
+
+Until real API29/modern Android, owner consent/UX and interruption tests are
+accepted, this backend must never be automatically called on app startup,
+from a worker or widget, or silently presented as a recovery feature.
+Ambiguous preexisting digest files still cannot be quarantined or replaced.
+Issue #143 remains open.
+
 ## Remaining crash window and recovery plan
 
 A process kill, storage exhaustion, device power loss or cancelled file-channel
