@@ -299,9 +299,13 @@ internal class PrivatePublicationReceiptJournal(private val originals: File) {
                 val target = File(root, fields[2])
                 // NOFOLLOW_LINKS is essential: File.exists() is false for
                 // a dangling symlink, yet CREATE_NEW must not overwrite it.
-                if (Files.exists(target.toPath(), java.nio.file.LinkOption.NOFOLLOW_LINKS)) {
-                    continue
-                }
+                // Files.exists() may be false for unreadable/unknown states.
+                // Only an affirmative notExists() under NOFOLLOW_LINKS can
+                // qualify as missing; inaccessible targets must fail closed.
+                if (!Files.notExists(
+                        target.toPath(), java.nio.file.LinkOption.NOFOLLOW_LINKS
+                    )
+                ) continue
                 if (!stage.isFile || Files.isSymbolicLink(stage.toPath()) ||
                     stage.canonicalFile.parentFile != root ||
                     stage.length() != length
