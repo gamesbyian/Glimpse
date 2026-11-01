@@ -25,12 +25,12 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 25
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-java@v4
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+      - uses: actions/setup-java@cf277c60eb25467037889841efdb72551f06f6c3 # v4
         with:
           distribution: temurin
           java-version: "17"
-      - uses: gradle/actions/setup-gradle@v4
+      - uses: gradle/actions/setup-gradle@ed408507eac070d1f99cc633dbcf757c94c7933a # v4
       - name: Prepare Android 37 SDK
         run: |
           printf 'y\n' | "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --channel=3 "platforms;android-37.0" "build-tools;36.0.0"
@@ -45,7 +45,7 @@ jobs:
         run: |
           if test -e /dev/kvm; then sudo chmod a+rw /dev/kvm; fi
       - name: Select photo in actual Android OS Photo Picker and prove private SHA
-        uses: reactivecircus/android-emulator-runner@v2
+        uses: reactivecircus/android-emulator-runner@a421e43855164a8197daf9d8d40fe71c6996bb0d # v2
         with:
           api-level: 34
           arch: x86_64
@@ -63,7 +63,7 @@ jobs:
         run: python3 scripts/validate-agent-c-real-picker-evidence.py --artifacts artifacts/agent-c-real-picker-import
       - name: Preserve OS Photo Picker source and imported image evidence
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
           name: glimpse-c-real-android-picker-import-api34
           path: artifacts/agent-c-real-picker-import/
@@ -75,7 +75,7 @@ jobs:
         run: python3 scripts/ci_failure_digest.py --workflow "agent-c-picker-import.yml"
       - name: Upload versioned machine-readable failure receipt
         if: failure()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
           name: glimpse-ci-failure-agent-c-picker-import
           path: artifacts/ci-failure-digest.json
