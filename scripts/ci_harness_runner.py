@@ -57,6 +57,40 @@ def observe(lines):
     return error
 
 
+def emit_exception(error, *, output="artifacts/ci-harness-failure.json",
+                   workflow, phase, api):
+    """Report an exception an atlas catches internally without exporting traceback data."""
+    import traceback
+    frames = traceback.extract_tb(error.__traceback__)
+    frame = next((f for f in reversed(frames)
+                  if re.search(r"(?:^|/)scripts/[a-zA-Z0-9_-]+\.py$", f.filename.replace("\\", "/"))),
+                 None)
+    source = None
+    if frame:
+        filename = frame.filename.replace("\\", "/")
+        source = {"script": "scripts/" + filename.split("/scripts/")[-1].removeprefix("scripts/"),
+                  "line": frame.lineno}
+    record = {
+        "schemaVersion": 1, "outcome": "failure",
+        "workflow": safe(workflow), "phase": safe(phase),
+        "sourceSha": safe(os.environ.get("GITHUB_SHA", "")),
+        "emulatorApi": safe(api), "reproduction": safe("python3 scripts/capture-android-atlas.py"),
+        "exitCode": 1, "evidence": "observed_caught_python_exception",
+        "exception": {"exceptionType": safe(type(error).__name__),
+                      "message": safe(str(error)), "source": source},
+    }
+    path = Path(output)
+    try:
+        path.parent.mkdir(parents=True, exist_ok=True)
+        with path.open("x", encoding="utf-8") as stream:
+            json.dump(record, stream, sort_keys=True, indent=2)
+            stream.write("\n")
+    except OSError:
+        # Diagnostics must never replace the primary Android failure.
+        return False
+    return True
+
+
 def run(command, *, output, workflow, phase, api, environ=None):
     env = os.environ if environ is None else environ
     if not command or command[0] != "python3" or len(command) < 2:
@@ -87,6 +121,9 @@ def run(command, *, output, workflow, phase, api, environ=None):
         return 0
     failure = observe(recent)
     root = Path(output)
+    if root.exists():
+        # An internally caught and already recorded exception owns this receipt.
+        return code if code > 0 else 128 - code
     record = {
         "schemaVersion": 1,
         "outcome": "failure",
