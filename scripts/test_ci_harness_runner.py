@@ -114,6 +114,22 @@ class HarnessReceiptTests(unittest.TestCase):
             self.assertTrue(child.terminated)
             self.assertFalse(output.exists())
 
+    def test_multiword_authorization_and_bearer_are_fully_redacted(self):
+        for message in (
+            "Authorization: Bearer topsecret separate-secret-part",
+            "Proxy-Authorization = Basic extremelysecret string",
+            "Bearer veryprivate-token",
+            "token: secret-one secret-two",
+            "password=alpha omega",
+        ):
+            with self.subTest(message=message.split()[0]):
+                result = safe(message)
+                for fragment in ("topsecret", "separate-secret-part",
+                                 "extremelysecret", "veryprivate-token",
+                                 "secret-one", "secret-two", "alpha", "omega"):
+                    self.assertNotIn(fragment, result)
+                self.assertIn("[REDACTED]", result)
+
     def test_public_git_sha_survives_but_arbitrary_hex_content_is_redacted(self):
         self.assertEqual(safe_sha("A" * 40), "a" * 40)
         self.assertIsNone(safe_sha("not-a-valid-commit"))
