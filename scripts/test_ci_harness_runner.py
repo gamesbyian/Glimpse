@@ -85,6 +85,35 @@ class HarnessReceiptTests(unittest.TestCase):
             self.assertEqual(data["evidence"], "unclassified_nonzero_exit")
             self.assertIsNone(data["exception"])
 
+    def test_emulator_launch_failure_does_not_invent_a_python_assertion(self):
+        with tempfile.TemporaryDirectory() as folder:
+            output = Path(folder) / "receipt.json"
+            with patch("ci_harness_runner.subprocess.Popen",
+                       side_effect=OSError("emulator launch unavailable")):
+                with self.assertRaises(OSError):
+                    run(["python3", "scripts/capture-android-atlas.py"],
+                        output=output, workflow="visual", phase="setup", api="34")
+            self.assertFalse(output.exists())
+
+    def test_cancellation_propagates_and_terminates_child_without_false_receipt(self):
+        with tempfile.TemporaryDirectory() as folder:
+            output = Path(folder) / "receipt.json"
+            class InterruptingOutput:
+                def __iter__(self):
+                    raise KeyboardInterrupt()
+            class Process:
+                stdout = InterruptingOutput()
+                terminated = False
+                def terminate(self): self.terminated = True
+                def wait(self): return -15
+            child = Process()
+            with patch("ci_harness_runner.subprocess.Popen", return_value=child):
+                with self.assertRaises(KeyboardInterrupt):
+                    run(["python3", "scripts/capture-android-atlas.py"],
+                        output=output, workflow="visual", phase="capture", api="34")
+            self.assertTrue(child.terminated)
+            self.assertFalse(output.exists())
+
     def test_rejects_non_script_commands_without_execution(self):
         with tempfile.TemporaryDirectory() as folder:
             with self.assertRaises(ValueError):
