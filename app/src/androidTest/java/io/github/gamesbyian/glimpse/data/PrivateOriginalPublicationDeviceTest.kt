@@ -3,7 +3,15 @@ package io.github.gamesbyian.glimpse.data
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import android.content.Context
+import android.content.Intent
+import android.os.SystemClock
+import android.system.ErrnoException
+import android.system.Os
+import android.system.OsConstants
+import io.github.gamesbyian.glimpse.debug.PublicationKillProbeActivity
+import java.io.DataInputStream
 import java.io.File
+import java.io.FileInputStream
 import java.io.FileOutputStream
 import java.security.MessageDigest
 import java.util.UUID
@@ -12,6 +20,7 @@ import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit
 import org.junit.After
 import org.junit.Assert.assertArrayEquals
+import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
 import org.junit.Before
@@ -175,6 +184,64 @@ class PrivateOriginalPublicationDeviceTest {
         // A matching SHA here is still no evidence of a committed Room row,
         // fsync or an exclusively owned origin. The scan must change nothing.
         assertArrayEquals(bytes, target.readBytes())
+    }
+
+    @Test fun actualChildProcessSigkillRetainsPrivateStageReceiptAndPartialDigest() {
+        // This is an actual separate Android app process, not an exception
+        // injected into the instrumentation runner. All files are disposable
+        // and scoped to the unique cache child created by setUp().
+        val staged = durableStage("import-kill-source.partial")
+        val target = finalName()
+        val journal = PrivatePublicationReceiptJournal(owned)
+        val receipt = journal.begin(staged, target, sha(bytes), bytes.size.toLong(), "test")
+        val marker = File(owned, "probe-killed.pid")
+        val context = ApplicationProvider.getApplicationContext<Context>()
+        val intent = Intent(context, PublicationKillProbeActivity::class.java)
+            .putExtra(PublicationKillProbeActivity.EXTRA_DIRECTORY, owned.name)
+            .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+        context.startActivity(intent)
+
+        var childPid: Int? = null
+        val markerDeadline = SystemClock.elapsedRealtime() + 15_000L
+        while (SystemClock.elapsedRealtime() < markerDeadline && childPid == null) {
+            childPid = runCatching {
+                DataInputStream(FileInputStream(marker)).use { it.readInt() }
+            }.getOrNull()
+            if (childPid == null) SystemClock.sleep(50L)
+        }
+        assertTrue("Separate process must reach the first real chunk", childPid != null)
+        val pid = childPid!!
+        assertTrue("The test process must survive its child kill", pid != android.os.Process.myPid())
+
+        // Only ESRCH confirms that the distinct child PID actually died.
+        // The debug activity records its own PID just before SIGKILL.
+        var childDied = false
+        val deathDeadline = SystemClock.elapsedRealtime() + 15_000L
+        while (SystemClock.elapsedRealtime() < deathDeadline && !childDied) {
+            try {
+                Os.kill(pid, 0)
+                SystemClock.sleep(50L)
+            } catch (error: ErrnoException) {
+                if (error.errno == OsConstants.ESRCH) childDied = true else throw error
+            }
+        }
+        assertTrue("The isolated writer must die via actual SIGKILL", childDied)
+
+        val fragment = target.readBytes()
+        assertEquals(64 * 1024, fragment.size)
+        assertArrayEquals(bytes.copyOf(fragment.size), fragment)
+        assertArrayEquals(bytes, staged.readBytes())
+        assertTrue(receipt.file.exists())
+        val report = journal.inspectFileEvidence()!!
+        assertTrue(report.stagesExact == 1 && report.targetsUnverified == 1)
+
+        // No restart may truncate the already-reserved digest filename.
+        assertTrue(runCatching {
+            publishPrivateOriginalExclusively(
+                staged, target, sha(bytes), bytes.size.toLong(), preferHardLink = false
+            )
+        }.isFailure)
+        assertArrayEquals(fragment, target.readBytes())
     }
 
     @Test fun competingSameShaWritersCannotOverwriteEachOther() {
