@@ -32,6 +32,7 @@ import io.github.gamesbyian.glimpse.data.ManualMissingTargetStageResume
 import io.github.gamesbyian.glimpse.data.MissingTargetStageCandidate
 import io.github.gamesbyian.glimpse.data.MissingTargetStagePreflight
 import io.github.gamesbyian.glimpse.data.PrivatePublicationReceiptJournal
+import io.github.gamesbyian.glimpse.data.existingOriginalMatches
 import java.io.File
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Dispatchers
@@ -82,7 +83,15 @@ internal fun GlimpseManualRecoveryPanel(context: Context) {
                 val preview = withContext(Dispatchers.IO) {
                     val task = currentCoroutineContext()
                     task.ensureActive()
-                    val bitmap = BoundedPhotoDecode.decode(candidate.staged, maxEdge = 256)
+                    // Preflight is a snapshot; refuse to preview a source
+                    // swapped or modified after the original SHA inspection.
+                    val stillVerified = existingOriginalMatches(
+                        candidate.staged, candidate.sha256, candidate.byteLength,
+                        checkpoint = { task.ensureActive() }
+                    )
+                    val bitmap = if (stillVerified) {
+                        BoundedPhotoDecode.decode(candidate.staged, maxEdge = 256)
+                    } else null
                     val collection = GlimpseDatabase.open(context).dao()
                         .findCollection(candidate.collectionId)?.title
                     if (bitmap == null || collection.isNullOrBlank()) {
