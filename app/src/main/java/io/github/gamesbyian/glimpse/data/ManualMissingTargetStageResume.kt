@@ -11,7 +11,7 @@ import java.nio.file.Files
 import java.nio.file.LinkOption
 
 /**
- * Narrow, explicit-consent recovery for a digest path that is truly absent.
+ * Narrow, explicit-consent recovery for ONE selected receipt with an absent digest.
  * Never cleans up a receipt, staged source, ambiguous existing digest or
  * database row. No automatic startup, worker, widget, or background caller.
  *
@@ -24,9 +24,13 @@ internal class ManualMissingTargetStageResume(
     private val dao: GlimpseDao
 ) {
     suspend fun resumeOnlyAfterExplicitConfirmation(
-        userConfirmed: Boolean
+        userConfirmed: Boolean,
+        selectedReceiptName: String
     ): MissingTargetResumeResult = withContext(Dispatchers.IO) {
         require(userConfirmed) { "An explicit user decision is required." }
+        require(selectedReceiptName.matches(
+            Regex("^publication-[0-9a-f-]{36}\\.receipt$")
+        )) { "One selected private recovery receipt is required." }
         val ctx = currentCoroutineContext()
         val journal = PrivatePublicationReceiptJournal(originals)
         val scan = journal.inspectMissingTargetStages(
@@ -36,8 +40,11 @@ internal class ManualMissingTargetStageResume(
         var attached = 0
         var duplicates = 0
         var refused = 0
+        // A single owner confirmation must never authorize arbitrary other
+        // receipts discovered since the user inspected the candidate list.
         for (candidate in scan.candidates) {
             ctx.ensureActive()
+            if (candidate.receipt.file.name != selectedReceiptName) continue
             try {
                 // Preflight is a snapshot. Revalidate receipt, source bytes,
                 // destination absence and collection immediately before use.
@@ -92,12 +99,13 @@ internal class ManualMissingTargetStageResume(
                     refused++
                     continue
                 }
-                // The existing SHA-scoped JVM/OS gate and CREATE_NEW publisher
+                // The recovery-only SHA-scoped JVM/OS gate and CREATE_NEW publisher
                 // protect concurrent writers. A newly occupied corrupt or
                 // foreign target is refused, never replaced or quarantined.
-                publishPrivateOriginalExclusively(
+                publishMissingPrivateOriginalExclusively(
                     candidate.staged, candidate.target,
-                    candidate.sha256, candidate.byteLength
+                    candidate.sha256, candidate.byteLength,
+                    checkpoint = { ctx.ensureActive() }
                 )
                 val photo = PhotoRecord(
                     id = candidate.sha256,
