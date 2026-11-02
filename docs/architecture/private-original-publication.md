@@ -198,6 +198,22 @@ now exists, this preflight deliberately will not retry or delete it. The
 remaining post-publication/Room crash window needs separate reconciliation
 and verification.
 
+A stacked UI prototype in `GlimpseManualRecoveryPanel` is available only
+on its separate draft branch. Help exposes an **opt-in** local scan, then
+previews only one bounded 256-pixel-edge decoded staged photo at a time with
+its existing collection title. The interface requires a preview, a separate
+confirmation dialog for that exact receipt, and a dedicated "Restore this
+photo" action. Cancelling has no side effects; after any attempt the scan is
+discarded and a fresh examination is required. The panel shows no hashes,
+private paths or original provider URIs; it preserves all staged bytes and
+receipts. It makes no background, widget or startup recovery calls.
+
+The stacked UI remains **unaccepted** pending real Android 320dp/200%-font,
+TalkBack and physical owner review, exact installed-data negative testing and
+full recovery-state acceptance. The narrowly-scoped backend can still leave
+an unregistered complete digest if Room admission fails. No feature is to be
+described as fully crash-safe or generally self-recovering.
+
 Until real API29/modern Android, owner consent/UX and interruption tests are
 accepted, this backend must never be automatically called on app startup,
 from a worker or widget, or silently presented as a recovery feature.
