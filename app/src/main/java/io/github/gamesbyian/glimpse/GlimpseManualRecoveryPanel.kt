@@ -70,7 +70,12 @@ internal fun GlimpseManualRecoveryPanel(context: Context) {
     }
 
     fun select(candidates: List<MissingTargetStageCandidate>, selected: Int) {
+        // Invalidate the previous bitmap before changing the selection.
+        // A slow next preview must never look like an actionable preview
+        // of a different receipt.
         busy = true
+        loaded = null
+        index = selected
         scope.launch {
             try {
                 val candidate = candidates[selected]
@@ -86,7 +91,6 @@ internal fun GlimpseManualRecoveryPanel(context: Context) {
                     } else RecoveryPhotoPreview(bitmap, collection)
                 }
                 loaded = preview
-                index = selected
             } catch (cancel: CancellationException) {
                 throw cancel
             } catch (_: Exception) {
