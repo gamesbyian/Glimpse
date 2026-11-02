@@ -72,5 +72,13 @@ assert 'setIdentifier("widget-skip:$collectionId:$expectedPhotoId")' in receiver
 assert "private fun skipPreviewIntent" in receiver_source
 assert "if (skipVisible) View.VISIBLE else View.GONE" in receiver_source
 assert "verifiedThumb != null" in receiver_source
+tile_worker = (
+    ROOT / "app/src/main/java/io/github/gamesbyian/glimpse/QuickHomeTileService.kt"
+).read_text(encoding="utf-8")
+worker = tile_worker.split("class QuickHomeTileWorker(", 1)[1]
+assert "GlimpseHomeWidgetRefresh.enqueue(applicationContext)" in worker
+assert "finally {" in worker, "Terminal success/failure must refresh widget even if command failed"
+assert "runCatching { GlimpseHomeWidgetRefresh.enqueue(applicationContext) }" in worker
+
 print("PASS: Home widget lifecycle/action boundary, no added permission, "
       "30min+ refresh, 48dp action, immutable PendingIntent and verified local thumb")

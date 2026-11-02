@@ -131,6 +131,14 @@ class QuickHomeTileWorker(
         } catch (_: Exception) {
             // Only the user may resubmit after a failure. No automatic replay.
             Result.failure()
+        } finally {
+            // Both the Quick Settings tile and the Home widget invoke this
+            // serialized worker. Its Room outcome can commit while the real
+            // AppWidgetHost still shows the pre-tap RemoteViews. Explicitly
+            // enqueue a read-only refresh for all terminal outcomes, including
+            // failure/uncertain. This must never retry WallpaperManager or
+            // override the primary result if widget delivery fails.
+            runCatching { GlimpseHomeWidgetRefresh.enqueue(applicationContext) }
         }
     }
 }
