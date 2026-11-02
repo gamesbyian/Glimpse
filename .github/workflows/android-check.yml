@@ -126,7 +126,8 @@ jobs:
           path: |
             app/build/distributions/glimpse-debug.apk
             app/build/distributions/glimpse-signing-fingerprint.txt
-          retention-days: 7
+          # Per-PR test-only signing is not a stable owner-upgrade distribution.
+          retention-days: 3
 
       - name: Record first actionable CI failure without private data
         if: failure()
