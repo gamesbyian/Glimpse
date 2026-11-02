@@ -62,9 +62,11 @@ internal fun GlimpseManualRecoveryPanel(context: Context) {
     var confirm by remember { mutableStateOf(false) }
     var message by remember { mutableStateOf<String?>(null) }
 
-    // Bitmap wraps app-private bytes. Never persist, export or log the photo.
-    DisposableEffect(loaded) {
-        onDispose { loaded?.bitmap?.recycle() }
+    // Capture the exact bitmap for disposal. Reading the mutable loaded
+    // delegate inside onDispose could recycle a newer preview by mistake.
+    val bitmapForDisposal = loaded?.bitmap
+    DisposableEffect(bitmapForDisposal) {
+        onDispose { bitmapForDisposal?.recycle() }
     }
 
     fun select(candidates: List<MissingTargetStageCandidate>, selected: Int) {
