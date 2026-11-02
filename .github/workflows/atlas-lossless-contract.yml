@@ -1,0 +1,28 @@
+name: Optional lossless atlas shadow bundle contracts
+on:
+  pull_request:
+    paths:
+      - 'scripts/repack_atlas_lossless.py'
+      - 'scripts/test_repack_atlas_lossless.py'
+      - '.github/workflows/atlas-lossless-contract.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: glimpse-lossless-atlas-${{ github.event.pull_request.number || github.run_id }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  synthetic-contracts:
+    runs-on: ubuntu-latest
+    timeout-minutes: 7
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+        with:
+          persist-credentials: false
+      - name: Install only the experimental image encoder dependency
+        run: python3 -m pip install --disable-pip-version-check Pillow==12.3.0
+      - name: Verify exact RGBA pixel equality and reject malformed shadow packs
+        run: python3 -m unittest discover -s scripts -p 'test_repack_atlas_lossless.py' -v
