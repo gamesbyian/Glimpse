@@ -24,9 +24,11 @@ class ActualWidgetActionGateTest(unittest.TestCase):
                        hierarchy("CHANGE HOME"),
                        hierarchy("CHANGE HOME")])
         with tempfile.TemporaryDirectory() as folder:
-            with patch.object(widget, "hierarchy", side_effect=lambda: next(values)), (
-                 patch.object(widget, "tap") as tap), (
-                 patch.object(widget.time, "sleep")):
+            with (
+                patch.object(widget, "hierarchy", side_effect=lambda: next(values)),
+                patch.object(widget, "tap") as tap,
+                patch.object(widget.time, "sleep"),
+            ):
                 widget.tap_stably_accessible("CHANGE HOME", Path(folder), attempts=3)
                 tap.assert_called_once()
                 self.assertEqual(tap.call_args.kwargs["xml_text"], hierarchy("CHANGE HOME"))
@@ -38,11 +40,13 @@ class ActualWidgetActionGateTest(unittest.TestCase):
                        hierarchy("OPEN GLIMPSE", False),
                        hierarchy("CHANGE HOME")])
         with tempfile.TemporaryDirectory() as folder:
-            with patch.object(widget, "hierarchy", side_effect=lambda: next(values)), (
-                 patch.object(widget, "tap") as tap), (
-                 patch.object(widget, "capture") as capture), (
-                 patch.object(widget, "adb", return_value="synthetic activity status")), (
-                 patch.object(widget.time, "sleep")):
+            with (
+                patch.object(widget, "hierarchy", side_effect=lambda: next(values)),
+                patch.object(widget, "tap") as tap,
+                patch.object(widget, "capture") as capture,
+                patch.object(widget, "adb", return_value="synthetic activity status"),
+                patch.object(widget.time, "sleep"),
+            ):
                 with self.assertRaisesRegex(RuntimeError, "never stayed accessible"):
                     widget.tap_stably_accessible("CHANGE HOME", Path(folder), attempts=4)
                 tap.assert_not_called()
