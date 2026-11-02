@@ -167,9 +167,11 @@ real recovery and quarantine of partially published targets.
 
 ## Explicit-confirmation backend for absent digest paths (unaccepted draft)
 
-A proposed `ManualMissingTargetStageResume` backend can process only a bounded
-candidate set from the verified-stage/missing-target preflight. Callers must
-provide an affirmative confirmation flag. No native UI invokes it, so this is
+A proposed `ManualMissingTargetStageResume` backend can process only
+**one specifically selected receipt** from the bounded verified-stage/missing-target
+preflight. Callers must provide an affirmative confirmation flag **and** the
+exact selected receipt name; subsequent newly discovered valid receipts cannot
+be swept into the same confirmation. No native UI invokes it, so this is
 **not yet an exercised human-consent journey** and should remain a draft
 implementation until an explicit, understandable owner-facing confirmation is
 built and tested.
@@ -177,8 +179,10 @@ built and tested.
 On IO, the backend rechecks the exact receipt through a no-follow channel,
 the existing staged bytes and SHA, affirmative no-follow target absence, the
 existing destination collection and the decoded JPEG/PNG/WebP dimensions.
-It rejects a conflicting registered photo, uses the existing SHA-scoped
-exclusive publisher, and attempts a **single Room transaction** which rechecks both the destination collection and immutable metadata of any existing PhotoRecord before admitting a membership. A concurrent conflicting photo record is rejected, never silently reused. Return values
+It rejects a conflicting registered photo, uses a recovery-only SHA-scoped
+exclusive publisher that rechecks target absence while holding both JVM/OS
+locks and requires CREATE_NEW to reserve the digest (never deduplicating an
+already occupied name even when SHA matches), and attempts a **single Room transaction** which rechecks both the destination collection and immutable metadata of any existing PhotoRecord before admitting a membership. A concurrent conflicting photo record is rejected, never silently reused. Return values
 contain aggregate counts only. Stages and receipts are always retained.
 A raced existing foreign or partial digest fails closed, and a vanished
 collection receives no membership. A successful file publication followed by
