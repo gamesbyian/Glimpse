@@ -345,6 +345,10 @@ internal fun GlimpseSupportScreen(
                 style = MaterialTheme.typography.bodySmall
             )
         }
+        // Explicit, per-photo recovery candidate is stacked behind the
+        // unaccepted owner-confirmed storage backend. It does no disk scan
+        // or mutation until the user opens its review and confirms one photo.
+        GlimpseManualRecoveryPanel(context)
         SupportSection(
             "LIBRARY LINKS · READ ONLY",
             "Check whether every saved original belongs to a collection, and whether " +
