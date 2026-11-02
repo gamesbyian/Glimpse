@@ -142,10 +142,38 @@ internal fun existingOriginalMatches(
  * crash recovery and provenance are a separate #143 requirement; a JVM
  * monitor is not represented as an interprocess lock.
  */
-// Distinct SHAs must not block one another, including within this JVM.
-// Retain monitor identities for the life of the process: removing a monitor
-// while a second thread waits would split the same-SHA critical section.
-private val privateOriginalPublicationMonitors = ConcurrentHashMap<String, Any>()
+// Stable SHA monitors must cover BOTH active and waiting publishers. Count
+// borrowers before acquisition, and retire the entry only after the last
+// borrower exits; a naive map.remove() would split a same-SHA critical section
+// when a second thread is already queued. Different SHAs remain independent.
+private class PublicationGate {
+    val monitor = Any()
+    var borrowers = 0 // Access only inside ConcurrentHashMap.compute.
+}
+private val privateOriginalPublicationMonitors =
+    ConcurrentHashMap<String, PublicationGate>()
+
+internal fun activePrivateOriginalPublicationGates(): Int =
+    privateOriginalPublicationMonitors.size
+
+private inline fun withPrivateOriginalJvmGate(sha: String, action: () -> Unit) {
+    val gate = requireNotNull(privateOriginalPublicationMonitors.compute(sha) { _, prior ->
+        (prior ?: PublicationGate()).also { it.borrowers++ }
+    })
+    try {
+        synchronized(gate.monitor) {
+            action()
+        }
+    } finally {
+        privateOriginalPublicationMonitors.computeIfPresent(sha) { _, current ->
+            check(current === gate && current.borrowers > 0) {
+                "Private original publication gate identity changed unexpectedly."
+            }
+            current.borrowers--
+            if (current.borrowers == 0) null else current
+        }
+    }
+}
 
 /**
  * The JVM monitor above covers collaborating importers in this process.
@@ -197,8 +225,7 @@ internal fun publishPrivateOriginalExclusively(
         target.name.matches(Regex("^[0-9a-f]{64}\\.(jpg|png|webp)$")) &&
         target.name.substringBefore('.') == expectedSha256
     ) { "Private original SHA and destination must agree." }
-    val monitor = privateOriginalPublicationMonitors.computeIfAbsent(expectedSha256) { Any() }
-    synchronized(monitor) {
+    withPrivateOriginalJvmGate(expectedSha256) {
     // Fail on an invalid caller before creating even a coordination sentinel.
     // Revalidate again inside the lock at the publication boundary.
     require(staged.isFile && !Files.isSymbolicLink(staged.toPath())) {
