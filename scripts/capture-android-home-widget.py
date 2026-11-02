@@ -103,13 +103,15 @@ def start_probe(out):
         time.sleep(.8)
     raise RuntimeError("Timed out waiting for real Android widget bind result")
 
-def tap(label):
-    xml = ET.fromstring(hierarchy())
+def tap(label, xml_text=None):
+    xml = ET.fromstring(xml_text if xml_text is not None else hierarchy())
     def visit(node, parents=()):
         words = (node.attrib.get("text", ""), node.attrib.get("content-desc", ""))
         if any(label in text for text in words):
             target = next((n for n in (node, *reversed(parents))
-                           if n.attrib.get("clickable") == "true"), node)
+                           if n.attrib.get("clickable") == "true"), None)
+            if target is None:
+                return False  # Never tap an inert initialLayout label.
             bounds = re.findall(r"\d+", target.attrib.get("bounds", ""))
             if len(bounds) == 4:
                 x0,y0,x1,y1 = map(int, bounds)
@@ -118,6 +120,41 @@ def tap(label):
         return any(visit(c, parents + (node,)) for c in node)
     if not visit(xml):
         raise RuntimeError("Real Android action was missing: " + label)
+
+def tap_stably_accessible(label, out, attempts=12):
+    """Only tap a control which is accessible in two consecutive real dumps.
+
+    Android's real AppWidgetHostView sometimes briefly exposes its XML
+    initialLayout even while SurfaceFlinger still displays updated RemoteViews.
+    Never synthesize a broadcast or blindly tap screenshot coordinates.
+    Save bounded failing XML evidence, then fail if actionability never settles.
+    """
+    consecutive = 0
+    for attempt in range(attempts):
+        xml = hierarchy()
+        nodes = ET.fromstring(xml).iter("node")
+        # Both visible text and semantic clickability have to identify the
+        # actual action, rather than an inert default-host placeholder.
+        matching = [node for node in nodes
+                    if node.attrib.get("text") == label and
+                       node.attrib.get("clickable") == "true"]
+        if len(matching) == 1:
+            consecutive += 1
+            if consecutive >= 2:
+                tap(label, xml_text=xml)
+                return
+        else:
+            consecutive = 0
+            if attempt < 3:  # Bounded, synthetic-emulator-only evidence.
+                (out / ("widget-action-not-accessible-%02d.xml" % attempt)).write_text(
+                    xml, encoding="utf-8")
+        time.sleep(.6)
+    capture(out, "widget-change-action-disappeared")
+    (out / "widget-change-action-activity-state.txt").write_text(
+        adb("shell", "dumpsys", "activity", "activities", check=False)[:100000],
+        encoding="utf-8")
+    raise RuntimeError("Real Android action never stayed accessible: " + label)
+
 
 def main():
     parser = argparse.ArgumentParser()
@@ -159,24 +196,9 @@ def main():
              "an unsampled shuffle must never show a fictitious next photo", 45)
     assert "CHANGE HOME" in labels(hierarchy())
     capture(out, "widget-true-undecided-draw")
-    # Android may recreate the host Activity while applying a widget
-    # RemoteViews update. Require the *same* real labeled action to be
-    # actionable in a fresh UI hierarchy before touching it; never blindly
-    # reuse old coordinates, synthesize a broadcast or claim a wallpaper set.
-    for attempt in range(5):
-        try:
-            tap("CHANGE HOME")
-            break
-        except RuntimeError as failure:
-            if "Real Android action was missing: CHANGE HOME" not in str(failure):
-                raise
-            if attempt == 4:
-                capture(out, "widget-change-action-disappeared")
-                (out / "widget-change-action-activity-state.txt").write_text(
-                    adb("shell", "dumpsys", "activity", "activities", check=False)[:100000],
-                    encoding="utf-8")
-                raise
-            time.sleep(0.7)
+    # Two consecutive real accessibility snapshots must agree that the
+    # button is genuinely clickable before an actual user-style tap.
+    tap_stably_accessible("CHANGE HOME", out)
     # The click itself is not an acknowledgment. Capture actual post-tap UI
     # and OS state, so a wrong PendingIntent, stalled worker or failed Android
     # wallpaper call is diagnosable rather than an opaque late timeout.
