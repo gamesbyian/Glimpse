@@ -70,7 +70,7 @@ class ManualMissingTargetStageResumeDeviceTest {
         dao.insertCollection(CollectionRecord(collection, "Synthetic", 1L))
         assertTrue(runCatching {
             ManualMissingTargetStageResume(root, dao)
-                .resumeOnlyAfterExplicitConfirmation(userConfirmed = false)
+                .resumeOnlyAfterExplicitConfirmation(userConfirmed = false, selectedReceiptName = receipt.file.name)
         }.isFailure)
         assertFalse(target.exists())
         assertArrayEquals(bytes, stage.readBytes())
@@ -81,7 +81,7 @@ class ManualMissingTargetStageResumeDeviceTest {
     @Test fun confirmedResumePublishesNewDigestAndAttachesExactlyOnce() = runBlocking {
         dao.insertCollection(CollectionRecord(collection, "Synthetic", 1L))
         val resumed = ManualMissingTargetStageResume(root, dao)
-            .resumeOnlyAfterExplicitConfirmation(userConfirmed = true)
+            .resumeOnlyAfterExplicitConfirmation(userConfirmed = true, selectedReceiptName = receipt.file.name)
         assertEquals(1, resumed.possibleCandidates)
         assertEquals(1, resumed.attached)
         assertEquals(0, resumed.refused)
@@ -111,7 +111,7 @@ class ManualMissingTargetStageResumeDeviceTest {
         )
         dao.insertPhoto(already)
         val resumed = ManualMissingTargetStageResume(root, dao)
-            .resumeOnlyAfterExplicitConfirmation(userConfirmed = true)
+            .resumeOnlyAfterExplicitConfirmation(userConfirmed = true, selectedReceiptName = receipt.file.name)
         assertEquals(1, resumed.attached)
         assertEquals(0, resumed.refused)
         assertEquals(already.localPath, dao.findPhoto(sha)?.localPath)
@@ -121,12 +121,46 @@ class ManualMissingTargetStageResumeDeviceTest {
         assertTrue(receipt.file.exists())
     }
 
+    @Test fun selectionCannotRecoverAnotherNewlyDiscoveredReceipt() = runBlocking {
+        dao.insertCollection(CollectionRecord(collection, "Synthetic", 1L))
+        // This is a real second image+receipt, not a mock scanner result.
+        val secondStage = File.createTempFile("import-", ".partial", root)
+        val otherBitmap = Bitmap.createBitmap(3, 3, Bitmap.Config.ARGB_8888)
+        try {
+            otherBitmap.eraseColor(android.graphics.Color.RED)
+            FileOutputStream(secondStage).use { out ->
+                assertTrue(otherBitmap.compress(Bitmap.CompressFormat.PNG, 100, out))
+                out.fd.sync()
+            }
+        } finally {
+            otherBitmap.recycle()
+        }
+        val secondBytes = secondStage.readBytes()
+        val secondSha = MessageDigest.getInstance("SHA-256").digest(secondBytes)
+            .joinToString("") { "%02x".format(it) }
+        val secondTarget = File(root, "$secondSha.png")
+        val secondReceipt = journal.begin(
+            secondStage, secondTarget, secondSha, secondBytes.size.toLong(), collection
+        )
+        val result = ManualMissingTargetStageResume(root, dao)
+            .resumeOnlyAfterExplicitConfirmation(
+                userConfirmed = true, selectedReceiptName = receipt.file.name
+            )
+        assertEquals(2, result.possibleCandidates)
+        assertEquals(1, result.attached)
+        assertArrayEquals(bytes, target.readBytes())
+        assertFalse(secondTarget.exists())
+        assertArrayEquals(secondBytes, secondStage.readBytes())
+        assertTrue(secondReceipt.file.exists())
+        assertNull(dao.findPhoto(secondSha))
+    }
+
     @Test fun existingForeignDigestIsNeverTruncatedOrUsedForRoomAdmission() = runBlocking {
         dao.insertCollection(CollectionRecord(collection, "Synthetic", 1L))
         val foreign = byteArrayOf(9, 8, 7, 6)
         target.writeBytes(foreign)
         val resumed = ManualMissingTargetStageResume(root, dao)
-            .resumeOnlyAfterExplicitConfirmation(userConfirmed = true)
+            .resumeOnlyAfterExplicitConfirmation(userConfirmed = true, selectedReceiptName = receipt.file.name)
         assertEquals(0, resumed.possibleCandidates)
         assertEquals(0, resumed.attached)
         assertArrayEquals(foreign, target.readBytes())
@@ -137,7 +171,7 @@ class ManualMissingTargetStageResumeDeviceTest {
 
     @Test fun deletedDestinationCollectionRefusesBeforePublishingFiles() = runBlocking {
         val resumed = ManualMissingTargetStageResume(root, dao)
-            .resumeOnlyAfterExplicitConfirmation(userConfirmed = true)
+            .resumeOnlyAfterExplicitConfirmation(userConfirmed = true, selectedReceiptName = receipt.file.name)
         assertEquals(1, resumed.possibleCandidates)
         assertEquals(0, resumed.attached)
         assertEquals(1, resumed.refused)
@@ -151,7 +185,7 @@ class ManualMissingTargetStageResumeDeviceTest {
         dao.insertCollection(CollectionRecord(collection, "Synthetic", 1L))
         receipt.file.appendText("\tforeign")
         val resumed = ManualMissingTargetStageResume(root, dao)
-            .resumeOnlyAfterExplicitConfirmation(userConfirmed = true)
+            .resumeOnlyAfterExplicitConfirmation(userConfirmed = true, selectedReceiptName = receipt.file.name)
         assertEquals(0, resumed.possibleCandidates)
         assertEquals(0, resumed.attached)
         assertFalse(target.exists())
