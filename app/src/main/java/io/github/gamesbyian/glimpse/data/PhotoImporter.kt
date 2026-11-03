@@ -330,23 +330,29 @@ private fun publishPrivateOriginalUnderLock(
     }
 
     if (preferHardLink) {
-        try {
+        // Catch only link creation failures. A successful link followed by
+        // failed integrity validation or parent-directory fsync must fail
+        // closed; treating that failure as an unsupported-link fallback would
+        // leave the new SHA path in place and falsely report publication as
+        // successful on the next matching-existing-file branch.
+        val linked = try {
             java.nio.file.Files.createLink(target.toPath(), staged.toPath())
-            requireMatchingExisting()
-            // The hard-link name is new, even though the staged inode was
-            // already forced. The new parent entry needs its own barrier.
-            forcePrivateOriginalDirectory(requireNotNull(target.parentFile))
-            return
+            true
         } catch (_: java.nio.file.FileAlreadyExistsException) {
             requireMatchingExisting()
             return
         } catch (_: java.io.IOException) {
-            // Android app-private SELinux often rejects hard links. No
-            // renameTo/copy-overwrite fallback can ever be used here.
+            // Android app-private SELinux may reject hard links.
+            false
         } catch (_: UnsupportedOperationException) {
-            // Filesystem does not support hard links. Try exclusive create.
+            false
         } catch (_: SecurityException) {
-            // Java hard-link privileges are optional, even on API 26+.
+            false
+        }
+        if (linked) {
+            requireMatchingExisting()
+            forcePrivateOriginalDirectory(requireNotNull(target.parentFile))
+            return
         }
     }
 
