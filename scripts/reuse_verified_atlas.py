@@ -79,7 +79,8 @@ def run_eligible(run, pr, repo_id, repo=REPO):
             run["head_repository"]["id"] == repo_id,
             "workflow repo identity mismatch")
     require(run.get("created_at") and run.get("updated_at") and
-            run["created_at"] <= pr["merged_at"],
+            run["created_at"] <= pr["merged_at"] and
+            run["updated_at"] <= pr["merged_at"],
             "PR workflow was not completed before the merge")
     require(isinstance(run.get("id"), int), "missing workflow run ID")
     return run
@@ -106,7 +107,8 @@ def artifact_eligible(items, run, repo_id):
 
 
 def api(path, token):
-    require(path.startswith("/repos/" + REPO + "/"),
+    require(path == "/repos/" + REPO or
+            path.startswith("/repos/" + REPO + "/"),
             "API path outside the protected repository")
     url = "https://api.github.com" + path
     req = urllib.request.Request(url, headers={
@@ -240,16 +242,13 @@ def try_reuse(out_dir, main_sha, token):
 
     prs = api("/repos/" + REPO + "/commits/" + main_sha + "/pulls", token)
     pr = pr_eligible(prs, main_sha, parent)
-    repo_id = main.get("repository", {}).get("id")
-    if not repo_id:
-        repo_id = api("/repos/" + REPO + "/commits/" + parent, token
-                      ).get("repository", {}).get("id")
-    # REST commit endpoints do not always expose a repository object.
-    if not repo_id:
-        repo_id = int(os.environ.get("GITHUB_REPOSITORY_ID") or 0)
-    require(repo_id > 0 and
+    # Verify the action environment against GitHub's authoritative repository
+    # identity, not just a self-echo of GITHUB_REPOSITORY_ID.
+    repo_info = api("/repos/" + REPO, token)
+    repo_id = repo_info.get("id")
+    require(isinstance(repo_id, int) and repo_id > 0 and
             int(os.environ.get("GITHUB_REPOSITORY_ID") or 0) == repo_id,
-            "source repository identity is unknown")
+            "source repository identity is unknown or mismatched")
     url = ("/repos/" + REPO + "/actions/runs?head_sha=" +
            pr["head"]["sha"] + "&per_page=100")
     runs = api(url, token).get("workflow_runs", [])
