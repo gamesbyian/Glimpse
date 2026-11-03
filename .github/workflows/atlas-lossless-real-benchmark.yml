@@ -1,0 +1,126 @@
+name: Glimpse opt-in real atlas lossless artifact benchmark
+
+# Dedicated, non-release measurement. Does NOT change the authoritative
+# native screenshot atlas, CI retention, or any build/test acceptance gate.
+on:
+  workflow_dispatch:
+    inputs:
+      artifact_id:
+        description: "Existing real Glimpse native screenshot artifact ID"
+        required: true
+        default: "13124561527"
+        type: string
+      original_sha256:
+        description: "Original Actions ZIP SHA-256, independently measured"
+        required: true
+        default: "99a398451a6f490f97e5dd324415491a0b646c2042e9bf7c2045dcf0c095ec1a"
+        type: string
+  pull_request:
+    paths:
+      - ".github/workflows/atlas-lossless-real-benchmark.yml"
+
+permissions:
+  contents: read
+  actions: read
+
+concurrency:
+  group: glimpse-optin-atlas-benchmark-${{ github.event.pull_request.number || github.run_id }}
+  cancel-in-progress: true
+
+jobs:
+  source-matched-lossless:
+    # No untrusted forks consuming large artifacts or accessing job tokens.
+    if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    env:
+      SOURCE_ARTIFACT_ID: ${{ inputs.artifact_id || '13124561527' }}
+      SOURCE_SHA256: ${{ inputs.original_sha256 || '99a398451a6f490f97e5dd324415491a0b646c2042e9bf7c2045dcf0c095ec1a' }}
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+        with:
+          persist-credentials: false
+      - name: Install pinned experimental lossless encoder
+        run: python3 -m pip install --disable-pip-version-check Pillow==12.3.0
+      - name: Fetch exact original Android atlas ZIP and verify provenance
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p artifacts
+          [[ "$SOURCE_ARTIFACT_ID" =~ ^[0-9]{8,20}$ ]] || exit 2
+          [[ "$SOURCE_SHA256" =~ ^[0-9a-f]{64}$ ]] || exit 2
+          curl --fail --silent --show-error --location --retry 2 \
+            --connect-timeout 20 --max-time 240 \
+            -H "Authorization: Bearer $GH_TOKEN" \
+            -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/$GITHUB_REPOSITORY/actions/artifacts/$SOURCE_ARTIFACT_ID/zip" \
+            -o artifacts/atlas-source.zip
+          echo "$SOURCE_SHA256  artifacts/atlas-source.zip" | sha256sum -c -
+          python3 - <<'PY'
+          from zipfile import ZipFile
+          with ZipFile("artifacts/atlas-source.zip") as source:
+              bad = source.testzip()
+              assert bad is None, f"Source ZIP corrupt: {bad}"
+              shots = [x for x in source.namelist() if x.lower().endswith(".png")]
+              assert len(shots) >= 40, f"Not a representative native atlas: {len(shots)} PNGs"
+              print(f"Verified {len(shots)} actual native PNGs in source ZIP")
+          PY
+      - name: Pack, validate and restore every actual PNG at identical RGBA pixels
+        shell: bash
+        run: |
+          set -euo pipefail
+          /usr/bin/time -p python3 scripts/repack_atlas_lossless.py \
+            --input artifacts/atlas-source.zip \
+            --output artifacts/benchmark-shadow.zip --method 2
+          /usr/bin/time -p python3 scripts/repack_atlas_lossless.py \
+            --restore artifacts/benchmark-shadow.zip \
+            --output artifacts/benchmark-restored-review.zip
+          python3 - <<'PY'
+          import hashlib, io, json
+          from pathlib import Path
+          from PIL import Image
+          from zipfile import ZipFile
+          original = Path("artifacts/atlas-source.zip")
+          shadow = Path("artifacts/benchmark-shadow.zip")
+          restored = Path("artifacts/benchmark-restored-review.zip")
+          pixels = 0
+          with ZipFile(original) as before, ZipFile(restored) as after:
+              assert set(before.namelist()) == set(after.namelist())
+              for name in before.namelist():
+                  a, b = before.read(name), after.read(name)
+                  if name.lower().endswith(".png"):
+                      with Image.open(io.BytesIO(a)) as first, Image.open(io.BytesIO(b)) as second:
+                          assert first.size == second.size
+                          assert first.convert("RGBA").tobytes() == second.convert("RGBA").tobytes()
+                      pixels += 1
+                  else:
+                      assert a == b
+          report = {
+              "source_artifact_id": int(__import__("os").environ["SOURCE_ARTIFACT_ID"]),
+              "source_sha256": hashlib.sha256(original.read_bytes()).hexdigest(),
+              "source_bytes": original.stat().st_size,
+              "shadow_bytes": shadow.stat().st_size,
+              "recovered_review_bytes": restored.stat().st_size,
+              "rgba_exact_images": pixels,
+              "all_other_files_exact": True,
+              "original_png_bytes_reconstructed": False,
+              "authoritative_native_atlas_unchanged": True,
+          }
+          assert pixels >= 40
+          Path("artifacts/review-proof.json").write_text(
+              json.dumps(report, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+          )
+          print(json.dumps(report, sort_keys=True))
+          PY
+      - name: Upload optional shadow ZIP and exact-source verification receipt
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: glimpse-optin-lossless-atlas-shadow-benchmark
+          path: |
+            artifacts/benchmark-shadow.zip
+            artifacts/review-proof.json
+          retention-days: 1
+          compression-level: 0
+          if-no-files-found: error
