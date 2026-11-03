@@ -22,6 +22,7 @@ APP = "io.github.gamesbyian.glimpse"
 FIXTURE = APP + "/.debug.VisualFixtureLauncher"
 OUT = None
 RESULTS = []
+HIERARCHY_TIMING = {"calls": 0, "totalSeconds": 0.0, "maxSeconds": 0.0}
 
 
 def adb(*args, check=True, binary=False, timeout=35):
@@ -39,11 +40,23 @@ def adb(*args, check=True, binary=False, timeout=35):
 
 
 def hierarchy():
-    result = adb("shell", "uiautomator", "dump", "/sdcard/glimpse-atlas.xml", check=False, timeout=25)
-    raw = adb("exec-out", "cat", "/sdcard/glimpse-atlas.xml", check=False, timeout=15)
-    if not raw.lstrip().startswith("<?xml"):
-        raise RuntimeError("Cannot obtain the Android accessibility hierarchy: " + result + raw[:150])
-    return raw
+    started = time.monotonic()
+    try:
+        result = adb("shell", "uiautomator", "dump", "/sdcard/glimpse-atlas.xml",
+                     check=False, timeout=25)
+        raw = adb("exec-out", "cat", "/sdcard/glimpse-atlas.xml",
+                  check=False, timeout=15)
+        if not raw.lstrip().startswith("<?xml"):
+            raise RuntimeError("Cannot obtain the Android accessibility hierarchy: " +
+                               result + raw[:150])
+        return raw
+    finally:
+        duration = time.monotonic() - started
+        HIERARCHY_TIMING["calls"] += 1
+        HIERARCHY_TIMING["totalSeconds"] += duration
+        HIERARCHY_TIMING["maxSeconds"] = max(
+            HIERARCHY_TIMING["maxSeconds"], duration
+        )
 
 
 def screen_geometry():
@@ -58,29 +71,38 @@ def screen_geometry():
     return w, h, dpi
 
 
-def clear_system_obstructions():
-    """A valid atlas image must never be obscured by an Android ANR dialog."""
+def clear_system_obstructions(xml=None):
+    """Return a checked hierarchy, dismissing an ANR or failing closed.
+
+    Accept the already-observed hierarchy so a tap or capture does not run a
+    second expensive UIAutomator dump merely to check for a system dialog.
+    A failed initial dump retains the historical caller-controlled fallback.
+    """
     for _ in range(3):
         try:
-            xml = hierarchy()
+            if xml is None:
+                xml = hierarchy()
         except Exception:
-            return
+            return None
         if "isn't responding" not in xml and "is not responding" not in xml:
-            return
+            return xml
         root = ET.fromstring(xml)
         wait = next((n for n in root.iter("node")
                      if n.attrib.get("text") == "Wait"), None)
         if wait is None:
             raise RuntimeError("System ANR obscures Glimpse; no safe Wait control")
-        bounds = re.findall(r"\\d+", wait.attrib.get("bounds", ""))
+        bounds = re.findall(r"\d+", wait.attrib.get("bounds", ""))
         if len(bounds) != 4:
             raise RuntimeError("System ANR has no tappable Wait bounds")
-        a,b,c,d = map(int, bounds)
+        a, b, c, d = map(int, bounds)
         adb("shell", "input", "tap", str((a+c)//2), str((b+d)//2))
         time.sleep(2.0)
+        xml = None  # Wait changes the OS screen: a fresh dump is mandatory.
     xml = hierarchy()
     if "isn't responding" in xml or "is not responding" in xml:
         raise RuntimeError("System ANR still obscures Glimpse after Wait")
+    return xml
+
 
 def start_fixture(count, active=False):
     """Seed debug Room and confirm completion via a local marker, not UI text."""
@@ -181,8 +203,8 @@ def capture_failure(slug, detail):
 
 
 def click_label(expected):
-    clear_system_obstructions()
-    root = ET.fromstring(hierarchy())
+    checked = clear_system_obstructions()
+    root = ET.fromstring(checked if checked is not None else hierarchy())
     candidates = []
 
     def inspect(node, ancestors=()):
@@ -293,23 +315,40 @@ def inspect_controls(xml, dpi):
 
 
 def capture(slug, explanation):
-    clear_system_obstructions()
+    started = time.monotonic()
     w, h, dpi = screen_geometry()
     raw = adb("exec-out", "screencap", "-p", binary=True)
     if not raw.startswith(b"\x89PNG\r\n\x1a\n") or len(raw) < 15000:
         raise RuntimeError("Android did not return a plausible screenshot: " + slug)
-    (OUT / (slug + ".png")).write_bytes(raw)
     xml = ""
     controls = []
     try:
         xml = hierarchy()
-        (OUT / (slug + ".xml")).write_text(xml, encoding="utf-8")
-        controls = inspect_controls(xml, dpi)
     except Exception as exc:
         (OUT / (slug + ".xml-error.txt")).write_text(
             str(exc)[:800], encoding="utf-8"
         )
         print("Accessibility unavailable for", slug, str(exc)[:180], flush=True)
+    else:
+        # Check the hierarchy collected for THIS screenshot. When it shows an
+        # Android ANR, dismiss it or fail before saving a misleading frame.
+        # Only the rare ANR path needs another hierarchy and screenshot.
+        if "isn't responding" in xml or "is not responding" in xml:
+            xml = clear_system_obstructions(xml)
+            if xml is None:
+                raise RuntimeError("Cannot verify screen after dismissing ANR")
+            raw = adb("exec-out", "screencap", "-p", binary=True)
+            if not raw.startswith(b"\x89PNG\r\n\x1a\n") or len(raw) < 15000:
+                raise RuntimeError("Android did not return a plausible post-ANR screenshot: " + slug)
+        try:
+            (OUT / (slug + ".xml")).write_text(xml, encoding="utf-8")
+            controls = inspect_controls(xml, dpi)
+        except Exception as exc:
+            (OUT / (slug + ".xml-error.txt")).write_text(
+                str(exc)[:800], encoding="utf-8"
+            )
+            print("Accessibility unavailable for", slug, str(exc)[:180], flush=True)
+    (OUT / (slug + ".png")).write_bytes(raw)
     RESULTS.append({
         "id": slug,
         "image": slug + ".png",
@@ -320,6 +359,7 @@ def capture(slug, explanation):
         "fontScale": adb("shell", "settings", "get", "system", "font_scale", check=False),
         "clickableCount": len(controls),
         "smallClickableControls": [c for c in controls if c["under44dp"]][:20],
+        "captureElapsedSeconds": round(time.monotonic() - started, 3),
         "capturedFrom": "Android emulator running actual debug MainActivity",
     })
     print("Captured", slug, w, "x", h, "clickable:", len(controls), flush=True)
@@ -1437,9 +1477,13 @@ def main():
             "evidenceKind": "automated emulator screenshot, not user/handset observation",
             "fixture": "six public design fixtures, numbered as synthetic unique records",
             "captures": RESULTS,
+            "hierarchyTiming": {**HIERARCHY_TIMING,
+                                "totalSeconds": round(HIERARCHY_TIMING["totalSeconds"], 3),
+                                "maxSeconds": round(HIERARCHY_TIMING["maxSeconds"], 3)},
             "errors": failures,
         }, indent=2) + "\n", encoding="utf-8")
         write_gallery()
+        print("Atlas hierarchy timing:", json.dumps(HIERARCHY_TIMING), flush=True)
     if failures:
         raise SystemExit(1)
 
