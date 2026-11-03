@@ -177,8 +177,16 @@ real recovery and quarantine of partially published targets.
 A proposed `ManualMissingTargetStageResume` backend can process only
 **one specifically selected receipt** from the bounded verified-stage/missing-target
 preflight. Callers must provide an affirmative confirmation flag **and** the
-exact selected receipt name; subsequent newly discovered valid receipts cannot
-be swept into the same confirmation. No native UI invokes it, so this is
+exact selected receipt name **plus a SHA-256 fingerprint of the receipt
+bytes held at preview time**. The receipt bytes include stage/target names,
+source SHA, length and encoded destination collection identity. A replaced
+but otherwise valid receipt under the same name must not inherit a previous
+preview's consent. The backend checks the fingerprint before any publication,
+uses a no-follow exact-receipt check throughout the write, then rechecks it
+before any Room admission. A changed receipt leaves all original and staged
+bytes intact; any newly created unregistered target is preserved for later
+manual reconciliation. Subsequent newly discovered valid receipts cannot be
+swept into the same confirmation. No native UI invokes it, so this is
 **not yet an exercised human-consent journey** and should remain a draft
 implementation until an explicit, understandable owner-facing confirmation is
 built and tested.
