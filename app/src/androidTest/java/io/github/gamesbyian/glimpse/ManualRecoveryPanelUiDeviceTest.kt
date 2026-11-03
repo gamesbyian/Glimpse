@@ -27,6 +27,7 @@ import org.junit.Assert.assertNotNull
 import org.junit.Assert.assertNull
 import org.junit.Assert.assertTrue
 import org.junit.Test
+import org.junit.Assume.assumeTrue
 import org.junit.runner.RunWith
 
 /**
@@ -121,17 +122,38 @@ class ManualRecoveryPanelUiDeviceTest {
 
     private fun awaitText(text: String) {
         val deadline = SystemClock.elapsedRealtime() + 25_000L
+        var attempts = 0
         while (SystemClock.elapsedRealtime() < deadline) {
             val root = automation.rootInActiveWindow
-            if (root != null && root.findAccessibilityNodeInfosByText(text)
-                    ?.any { it.text?.toString()?.contains(text) == true } == true
+            if (root != null && allNodes(root).any { node ->
+                    val words = node.text?.toString().orEmpty()
+                    val description = node.contentDescription?.toString().orEmpty()
+                    words.contains(text) || description.contains(text)
+                }
             ) return
+            // At 320dp/200%-font a genuine label may be offscreen.
+            // Search both directions instead of endlessly advancing and
+            // accidentally leaving a newly rendered action above viewport.
+            root?.let { findScrollable(it) }?.let { scroll ->
+                val direction = if ((attempts / 4) % 2 == 0)
+                    AccessibilityNodeInfo.ACTION_SCROLL_FORWARD
+                else AccessibilityNodeInfo.ACTION_SCROLL_BACKWARD
+                scroll.performAction(direction)
+            }
+            attempts++
             SystemClock.sleep(200L)
         }
-        throw AssertionError("Actual Android accessibility text missing: $text")
+        throw AssertionError(
+            "Actual Android accessibility text missing: $text; ${safeWindowSummary()}"
+        )
     }
 
     @Test fun compactTwoHundredPercentConsentCancelThenConfirmPreservesAllBytes() = runBlocking {
+        // Explicitly scoped to the dedicated API29/320dp/200% job. The
+        // generic Room API34 workflow enumerates all instrumentation classes
+        // and must not mutate its display or run this special UI fixture.
+        assumeTrue("Dedicated API29 compact UI acceptance only",
+            Build.VERSION.SDK_INT == 29)
         // This debug-only acceptance must never create synthetic records on
         // the owner's real handset, regardless of instrumentation settings.
         assertTrue(
@@ -168,9 +190,14 @@ class ManualRecoveryPanelUiDeviceTest {
         val collection = "recovery-consent-test-${UUID.randomUUID()}"
         val dao = GlimpseDatabase.open(context).dao()
         dao.insertCollection(CollectionRecord(collection, "Synthetic recovery collection", 1L))
-        val receipt = PrivatePublicationReceiptJournal(originals).begin(
+        val journal = PrivatePublicationReceiptJournal(originals)
+        val receipt = journal.begin(
             stage, target, sha, bytes.size.toLong(), collection
         )
+        val evidence = journal.inspectMissingTargetStages()
+        assertNotNull("Exact synthetic stage must be visible to preflight", evidence)
+        assertTrue("Exact synthetic stage/receipt must be eligible before UI",
+            evidence!!.candidates.any { it.receipt.file.name == receipt.file.name })
 
         val activity = instrumentation.startActivitySync(
             Intent(context, ManualRecoveryProbeActivity::class.java)
