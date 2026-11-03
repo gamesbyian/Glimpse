@@ -115,8 +115,21 @@ internal class ManualMissingTargetStageResume(
                 publishMissingPrivateOriginalExclusively(
                     candidate.staged, candidate.target,
                     candidate.sha256, candidate.byteLength,
-                    checkpoint = { ctx.ensureActive() }
+                    checkpoint = {
+                        ctx.ensureActive()
+                        check(journal.isReceiptIntact(candidate.receipt)) {
+                            "Selected receipt changed during recovery publication."
+                        }
+                    }
                 )
+                // The publisher may have successfully created a complete
+                // destination, but a changed consent record cannot authorize
+                // the subsequent Room membership. Leave both bytes/receipt
+                // untouched for explicit orphan reconciliation.
+                if (!journal.isReceiptIntact(candidate.receipt)) {
+                    refused++
+                    continue
+                }
                 val photo = PhotoRecord(
                     id = candidate.sha256,
                     sha256 = candidate.sha256,
