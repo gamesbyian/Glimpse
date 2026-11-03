@@ -106,6 +106,12 @@ class ManualRecoveryPanelUiDeviceTest {
                 Build.MODEL.contains("sdk_gphone", ignoreCase = true)
         )
         val context = ApplicationProvider.getApplicationContext<Context>()
+        val configuredWidthDp = context.resources.displayMetrics.widthPixels /
+            context.resources.displayMetrics.density
+        assertTrue("Real UI must run at 320dp, not just scaled pixels",
+            configuredWidthDp in 300f..340f)
+        assertTrue("Real system text scale must be 200%, not simulated",
+            context.resources.configuration.fontScale >= 1.95f)
         val originals = File(context.filesDir, "originals")
         assertTrue(originals.isDirectory || originals.mkdirs())
         val stage = File.createTempFile("import-", ".partial", originals)
