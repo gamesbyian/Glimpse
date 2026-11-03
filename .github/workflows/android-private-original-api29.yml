@@ -19,6 +19,9 @@ on:
       - "app/src/androidTest/java/io/github/gamesbyian/glimpse/data/PrivateOriginalPublicationDeviceTest.kt"
       - "app/src/androidTest/java/io/github/gamesbyian/glimpse/data/PrivateOriginalFileIdentityEvidenceDeviceTest.kt"
       - "app/src/androidTest/java/io/github/gamesbyian/glimpse/data/ManualMissingTargetStageResumeDeviceTest.kt"
+      - "app/src/androidTest/java/io/github/gamesbyian/glimpse/ManualRecoveryPanelUiDeviceTest.kt"
+      - "app/src/debug/java/io/github/gamesbyian/glimpse/debug/ManualRecoveryProbeActivity.kt"
+      - "app/src/main/java/io/github/gamesbyian/glimpse/GlimpseManualRecoveryPanel.kt"
       - "app/src/main/java/io/github/gamesbyian/glimpse/data/ManualMissingTargetStageResume.kt"
       - "app/src/androidTest/java/io/github/gamesbyian/glimpse/data/CrossProcessPublicationDeviceTest.kt"
       - "app/src/debug/java/io/github/gamesbyian/glimpse/debug/PublicationCooperationProbeService.kt"
@@ -42,6 +45,9 @@ on:
       - "app/src/androidTest/java/io/github/gamesbyian/glimpse/data/PrivateOriginalPublicationDeviceTest.kt"
       - "app/src/androidTest/java/io/github/gamesbyian/glimpse/data/PrivateOriginalFileIdentityEvidenceDeviceTest.kt"
       - "app/src/androidTest/java/io/github/gamesbyian/glimpse/data/ManualMissingTargetStageResumeDeviceTest.kt"
+      - "app/src/androidTest/java/io/github/gamesbyian/glimpse/ManualRecoveryPanelUiDeviceTest.kt"
+      - "app/src/debug/java/io/github/gamesbyian/glimpse/debug/ManualRecoveryProbeActivity.kt"
+      - "app/src/main/java/io/github/gamesbyian/glimpse/GlimpseManualRecoveryPanel.kt"
       - "app/src/main/java/io/github/gamesbyian/glimpse/data/ManualMissingTargetStageResume.kt"
       - "app/src/androidTest/java/io/github/gamesbyian/glimpse/data/CrossProcessPublicationDeviceTest.kt"
       - "app/src/debug/java/io/github/gamesbyian/glimpse/debug/PublicationCooperationProbeService.kt"
@@ -89,7 +95,11 @@ jobs:
           disable-animations: true
           emulator-options: -no-window -gpu swiftshader_indirect -no-snapshot -noaudio -no-boot-anim
           script: |
-            ./gradlew --no-daemon :app:connectedDebugAndroidTest -Pandroid.testInstrumentationRunnerArguments.class=io.github.gamesbyian.glimpse.data.PrivateOriginalPublicationDeviceTest,io.github.gamesbyian.glimpse.data.CrossProcessPublicationDeviceTest,io.github.gamesbyian.glimpse.data.PrivateOriginalFileIdentityEvidenceDeviceTest,io.github.gamesbyian.glimpse.data.ManualMissingTargetStageResumeDeviceTest
+            # Real 320dp, 200%-system-font acceptance on disposable API29.
+            adb shell wm size 320x700
+            adb shell wm density 160
+            adb shell settings put system font_scale 2.0
+            ./gradlew --no-daemon :app:connectedDebugAndroidTest -Pandroid.testInstrumentationRunnerArguments.class=io.github.gamesbyian.glimpse.data.PrivateOriginalPublicationDeviceTest,io.github.gamesbyian.glimpse.data.CrossProcessPublicationDeviceTest,io.github.gamesbyian.glimpse.data.PrivateOriginalFileIdentityEvidenceDeviceTest,io.github.gamesbyian.glimpse.data.ManualMissingTargetStageResumeDeviceTest,io.github.gamesbyian.glimpse.ManualRecoveryPanelUiDeviceTest
       - name: Preserve API29 actual-device-result evidence
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
