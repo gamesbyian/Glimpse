@@ -13,6 +13,7 @@ import tempfile
 from hashlib import sha256
 from io import BytesIO
 import json
+import re
 from pathlib import PurePosixPath, Path
 import zipfile
 
@@ -115,24 +116,32 @@ def verify(pack_zip):
         manifest = json.loads(archive.read(MANIFEST))
         if manifest.get("schema") != SCHEMA or not isinstance(manifest.get("entries"), list):
             raise ValueError("unsupported manifest")
-        seen, png_count, input_bytes, output_bytes = set(), 0, 0, 0
+        seen, originals, png_count, input_bytes, output_bytes = set(), set(), 0, 0, 0
         for entry in manifest["entries"]:
             name = safe_path(entry["packed_path"])
-            if name in seen or name not in names:
-                raise ValueError("missing/duplicate manifest entry")
+            original = safe_path(entry["original_path"])
+            if (name != entry["packed_path"] or original != entry["original_path"] or
+                    name in seen or original in originals or name not in names):
+                raise ValueError("missing, unsafe or duplicate manifest entry")
             seen.add(name)
+            originals.add(original)
             data = archive.read(name)
             if name.endswith(".webp"):
                 dims, rgba, _ = pixels(data, fmt="WEBP")
                 if (entry.get("webp_sha256") != digest(data) or
                         entry.get("rgba_sha256") != digest(rgba) or
                         [entry.get("width"), entry.get("height")] != list(dims) or
-                        not str(entry.get("original_path", "")).endswith(".png")):
+                        not original.endswith(".png") or
+                        name != original[:-4] + ".webp" or
+                        not re.fullmatch(r"[0-9a-f]{64}", str(entry.get("png_sha256", ""))) or
+                        not isinstance(entry.get("png_bytes"), int) or
+                        entry["png_bytes"] <= 0):
                     raise ValueError("encoded screenshot provenance/pixels mismatch")
                 png_count += 1
                 input_bytes += entry["png_bytes"]
                 output_bytes += len(data)
-            elif entry.get("sha256") != digest(data) or entry.get("bytes") != len(data):
+            elif (original != name or entry.get("sha256") != digest(data) or
+                  entry.get("bytes") != len(data)):
                 raise ValueError("unchanged file hash mismatch")
         if ((seen | {MANIFEST}) != set(names) or png_count != manifest.get("png_count") or
                 input_bytes != manifest.get("source_png_bytes") or
@@ -141,20 +150,68 @@ def verify(pack_zip):
         return manifest
 
 
+def restore(pack_zip, output_zip):
+    """Recreate an ordinary PNG-named review ZIP with pixel-identical images.
+
+    The restored PNG *bytes* differ from the original encoder's PNG bytes.
+    The manifest inside the shadow ZIP retains original SHA provenance.
+    Source and destination are never overwritten; publish is create-only.
+    """
+    src, dst = Path(pack_zip).resolve(), Path(output_zip).resolve()
+    if src == dst:
+        raise ValueError("input and output must be different files")
+    if dst.exists():
+        raise FileExistsError("refusing to overwrite an existing output archive")
+    manifest = verify(src)
+    with zipfile.ZipFile(src) as packed:
+        with tempfile.NamedTemporaryFile(dir=dst.parent, suffix=".partial", delete=False) as temp:
+            temp_path = Path(temp.name)
+        try:
+            with zipfile.ZipFile(temp_path, "w", compression=zipfile.ZIP_DEFLATED,
+                                 compresslevel=6) as restored:
+                for entry in manifest["entries"]:
+                    original = safe_path(entry["original_path"])
+                    packed_name = safe_path(entry["packed_path"])
+                    data = packed.read(packed_name)
+                    if original.endswith(".png"):
+                        dims, source_rgba, decoded = pixels(data, fmt="WEBP")
+                        output = BytesIO()
+                        decoded.save(output, format="PNG")
+                        data = output.getvalue()
+                        check_dims, check_rgba, _ = pixels(data, fmt="PNG")
+                        if (check_dims != dims or check_rgba != source_rgba or
+                                digest(check_rgba) != entry["rgba_sha256"]):
+                            raise ValueError("restored screenshot pixel mismatch")
+                    restored.writestr(original, data)
+            # A consumer can open these conventional PNG filenames unchanged,
+            # but MUST NOT mistake the regenerated PNG bytes for the original.
+            with zipfile.ZipFile(temp_path) as check:
+                if set(check.namelist()) != {e["original_path"] for e in manifest["entries"]}:
+                    raise ValueError("restored screenshot inventory mismatch")
+            os.link(temp_path, dst)
+        finally:
+            temp_path.unlink(missing_ok=True)
+    return manifest
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--input", type=Path, help="existing original GitHub Actions artifact ZIP")
     ap.add_argument("--output", type=Path, help="new, non-overwriting shadow ZIP")
     ap.add_argument("--method", type=int, default=2)
     ap.add_argument("--verify", type=Path, help="verify an existing shadow ZIP")
+    ap.add_argument("--restore", type=Path,
+                    help="restore a verified shadow ZIP to PNG-named review ZIP")
     args = ap.parse_args()
-    if args.verify:
+    if args.verify and not args.input and not args.restore and not args.output:
         result = verify(args.verify)
-    elif args.input and args.output:
+    elif args.restore and args.output and not args.input and not args.verify:
+        result = restore(args.restore, args.output)
+    elif args.input and args.output and not args.restore and not args.verify:
         result = pack(args.input, args.output, method=args.method)
         verify(args.output)
     else:
-        ap.error("choose --verify, or both --input and --output")
+        ap.error("choose --verify, --restore with --output, or --input with --output")
     print(json.dumps({"schema": result["schema"], "png_count": result["png_count"],
                       "png_bytes": result["source_png_bytes"],
                       "webp_bytes": result["webp_bytes"]}, sort_keys=True))
