@@ -27,7 +27,11 @@ EMBEDDED = re.compile(r"(?i)\b(?:photo|image|uri|path|filename)\s*[:=]\s*\S+")
 
 
 def safe(value):
-    first = str(value or "").splitlines()[0][:280]
+    lines = str(value or "").splitlines()
+    # JUnit <failure> may legally omit its message attribute. A missing or
+    # blank message must not crash the secondary diagnostics step and hide the
+    # actual failing test/Android evidence.
+    first = (lines[0] if lines else "")[:280]
     first = AUTH_HEADER.sub("authorization=[REDACTED]", first)
     first = BARE_CREDENTIAL.sub("bearer=[REDACTED]", first)
     first = SENSITIVE.sub(r"\1=[REDACTED]", first)
