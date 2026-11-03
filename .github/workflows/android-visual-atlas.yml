@@ -18,6 +18,7 @@ on:
       - "app/build.gradle.kts"
       - .github/workflows/android-visual-atlas.yml
       - scripts/capture-android-atlas.py
+      - scripts/test_capture_android_atlas.py
       - scripts/ci_harness_runner.py
       - app/src/main/java/io/github/gamesbyian/glimpse/EditedPhotoSharing.kt
       - app/src/debug/**
@@ -31,6 +32,7 @@ on:
       - "app/build.gradle.kts"
       - .github/workflows/android-visual-atlas.yml
       - scripts/capture-android-atlas.py
+      - scripts/test_capture_android_atlas.py
       - app/src/main/java/io/github/gamesbyian/glimpse/MainActivity.kt
       - app/src/main/java/io/github/gamesbyian/glimpse/GlimpseReelRoom.kt
       - app/src/main/java/io/github/gamesbyian/glimpse/GlimpseHomeHero.kt
@@ -75,6 +77,8 @@ jobs:
       - uses: gradle/actions/setup-gradle@ed408507eac070d1f99cc633dbcf757c94c7933a # v4
       - name: Verify capture script syntax
         run: python3 -m py_compile scripts/capture-android-atlas.py
+      - name: Verify atlas screenshot and ANR contracts (no emulator)
+        run: python3 -m unittest discover -s scripts -p 'test_capture_android_atlas.py' -v
       - name: Install Android SDK 37.0
         shell: bash
         run: |
