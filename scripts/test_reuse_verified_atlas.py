@@ -84,7 +84,7 @@ class ProvenanceContracts(unittest.TestCase):
     def test_not_real_successful_head_source_workflow(self):
         pr, run, _, _ = eligible_fixture()
         for change in ("head", "event", "conclusion", "path",
-                       "repo", "run_started_after_merge"):
+                       "repo", "run_started_after_merge", "run_finished_after_merge"):
             bad = copy.deepcopy(run)
             if change == "head": bad["head_sha"] = "f" * 40
             if change == "event": bad["event"] = "workflow_dispatch"
@@ -93,6 +93,8 @@ class ProvenanceContracts(unittest.TestCase):
             if change == "repo": bad["head_repository"]["id"] = 2
             if change == "run_started_after_merge":
                 bad["created_at"] = "2026-11-03T07:00:00Z"
+            if change == "run_finished_after_merge":
+                bad["updated_at"] = "2026-11-03T07:00:00Z"
             with self.subTest(change=change), self.assertRaises(ValueError):
                 run_eligible(bad, pr, REPO_ID)
 
