@@ -62,6 +62,62 @@ class PackTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError,"mismatch"):
                 m.verify(broken)
 
+    def test_restored_review_zip_keeps_every_filename_and_exact_pixels(self):
+        with tempfile.TemporaryDirectory() as td:
+            directory = pathlib.Path(td)
+            source, shadow, restored = (directory / name for name in
+                                        ("source.zip", "shadow.zip", "review.zip"))
+            first = png((13, 92, 172, 77))
+            second = png((13, 92, 172, 255))
+            with zipfile.ZipFile(source, "w") as z:
+                z.writestr("atlas/a.png", first)
+                z.writestr("atlas/b.png", first)
+                z.writestr("atlas/c.png", second)
+                z.writestr("atlas/a.xml", "<hierarchy />")
+                z.writestr("index.html", "<html />")
+            m.pack(source, shadow)
+            shadow_bytes = shadow.read_bytes()
+            m.restore(shadow, restored)
+            self.assertEqual(shadow_bytes, shadow.read_bytes())
+            with zipfile.ZipFile(source) as originals, zipfile.ZipFile(restored) as output:
+                self.assertEqual(set(originals.namelist()), set(output.namelist()))
+                for name in originals.namelist():
+                    if name.endswith(".png"):
+                        with Image.open(io.BytesIO(originals.read(name))) as a:
+                            with Image.open(io.BytesIO(output.read(name))) as b:
+                                self.assertEqual(a.size, b.size)
+                                self.assertEqual(a.convert("RGBA").tobytes(),
+                                                 b.convert("RGBA").tobytes())
+                    else:
+                        self.assertEqual(originals.read(name), output.read(name))
+            # These are regenerated PNGs, not byte-identical source PNGs.
+            self.assertEqual(m.verify(shadow)["png_count"], 3)
+
+    def test_restore_rejects_unsafe_manifest_paths_and_existing_output(self):
+        with tempfile.TemporaryDirectory() as td:
+            directory = pathlib.Path(td)
+            source, shadow, tampered, restored = (directory / name for name in
+                ("source.zip", "shadow.zip", "bad.zip", "restored.zip"))
+            with zipfile.ZipFile(source, "w") as z:
+                z.writestr("a.png", png((20, 40, 60, 80)))
+            m.pack(source, shadow)
+            m.restore(shadow, restored)
+            with self.assertRaises(FileExistsError):
+                m.restore(shadow, restored)
+            with self.assertRaises(ValueError):
+                m.restore(shadow, shadow)
+            with zipfile.ZipFile(shadow) as z:
+                manifest = json.loads(z.read(m.MANIFEST))
+                manifest["entries"][0]["original_path"] = "../outside.png"
+                with zipfile.ZipFile(tampered, "w") as dst:
+                    for name in z.namelist():
+                        dst.writestr(
+                            name, json.dumps(manifest) if name == m.MANIFEST else z.read(name)
+                        )
+            with self.assertRaises(ValueError):
+                m.restore(tampered, directory / "not-created.zip")
+            self.assertFalse((directory / "not-created.zip").exists())
+
     def test_no_overwrite_or_missing_png(self):
         with tempfile.TemporaryDirectory() as td:
             p = pathlib.Path(td)/"in.zip"; q = pathlib.Path(td)/"out.zip"
