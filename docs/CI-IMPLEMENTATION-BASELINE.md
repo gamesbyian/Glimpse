@@ -68,3 +68,22 @@ must have exact source SHA, provenance/digest verification and fork isolation;
 the old-version upgrade build and independent Android OS proofs must remain.
 **No compilation reuse optimization or runner-minute saving is claimed yet.**
 See issue #161 for the live evidence ledger and next experiment.
+
+## 2026-11-03 real native atlas optimization (merged #209)
+
+| Genuine API34 visual-atlas job | Observed elapsed | Actual capture inventory |
+| --- | ---: | --- |
+| [Before #41562319210](https://github.com/gamesbyian/Glimpse/actions/runs/41562319210) (PR source `814dba8a`) | ~27m 58s | 46 real Android PNGs + 46 UIAutomator XML |
+| [After #41583239867](https://github.com/gamesbyian/Glimpse/actions/runs/41583239867) (PR source `0fcac291`, synthetic merge `7518b6f8`) | ~20m 12s | 46 real Android PNGs + 46 UIAutomator XML |
+
+**Difference on these comparable successful runs: approximately 7m46s / 27.7% elapsed reduction.** This is one before/after observation, not a controlled distribution or guaranteed percentage. Both ran a real API34 KVM emulator, debug APK, 46 screenshot states, and complete original Room/Photo Picker/Save As/large-text journeys. New output retained 94 files (46 PNG, 46 XML, one HTML, one JSON), valid PNG/XML, zero manifest errors and valid artifact ZIP integrity. The [merged #209](https://github.com/gamesbyian/Glimpse/pull/209) eliminated redundant consecutive UIAutomator dumps in normal click/capture paths, repaired ANR bounds and preserved fresh ANR recapture on actual system obstructions. Six fast harness tests and the exact-head CI contract passed.
+
+The new manifest reported **319 hierarchy dumps totaling 636.219 seconds**, max single 2.186 seconds, making UIAutomator interaction the dominant measured remaining hotspot. The 46 `capture()` calls themselves consumed ~133s, while capture/navigation altogether occupied more than 17 minutes. Smaller AVD boot savings (around 25 seconds observed) alone would not materially improve this critical path.
+
+Subsequent draft [#210](https://github.com/gamesbyian/Glimpse/pull/210) experiments with shorter post-input settling and a cheap automatic real-PNG/XML/SHA artifact gate. Its final-head Android outcome is **pending**, so no further measured speedup or acceptance is claimed here.
+
+### Superseded-commit waste during #210 preparation
+
+Draft #210's intermediate source commits launched full atlas CI, then later commits canceled the obsolete same-ref jobs. For example [run #41586367764](https://github.com/gamesbyian/Glimpse/actions/runs/41586367764) was canceled after more than five minutes had elapsed, and [#41586825061](https://github.com/gamesbyian/Glimpse/actions/runs/41586825061) after about 25 seconds. Cancellation correctly prevents stale results from being used for merge, but does not refund runner work already performed. This is a concrete reason to batch all coherent harness/test/workflow changes **before** opening or updating an expensive PR, then run a single required final-head acceptance. Never skip that final acceptance to reduce cancellation costs.
+
+See [issue #161](https://github.com/gamesbyian/Glimpse/issues/161) for the separate, measured Gradle compilation fan-out and test-topology decisions.
