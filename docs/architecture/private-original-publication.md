@@ -223,6 +223,17 @@ exclusive-new-target publisher requires the same namespace force after file
 integrity verification. This follows the Linux `fsync(2)` requirement that
 file fsync alone does not necessarily persist its containing directory name.
 
+A later duplicate import which finds the correct SHA bytes at an existing
+digest path must **also** force the parent directory before declaring
+publication successful. That path could be the remnant of an earlier failed
+directory synchronization; exact current bytes alone do not prove the name
+will survive process or device failure. This applies to the hard-link
+FileAlreadyExists and CREATE_NEW FileAlreadyExists routes. A failure in the
+barrier after successful hard-link creation must propagate, never fall back
+to the matching-existing-target route and report success. Synthetic JVM
+fault-injection tests cover fresh hard link, fresh fallback copy and retry
+on a pre-existing exact target, retaining staged/target bytes throughout.
+
 The barrier opens the real directory with `READ` and `NOFOLLOW_LINKS`,
 does `FileChannel.force(true)` on that descriptor, and **propagates
 unsupported/fsync/permission errors**. No fallback silently claims durable
