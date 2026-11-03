@@ -375,8 +375,10 @@ def write_gallery():
             html.escape(case["image"]) + '" alt="' +
             html.escape(case["id"]) + '"></a><p>' +
             str(case["widthPx"]) + '×' + str(case["heightPx"]) +
-            ' · <a href="' + html.escape(case["hierarchy"]) +
-            '">Accessibility hierarchy</a></p></article>'
+            (' · <a href="' + html.escape(case["hierarchy"]) +
+             '">Accessibility hierarchy</a>'
+             if case["hierarchy"] else
+             ' · Accessibility hierarchy unavailable') + '</p></article>'
         )
     page = """<!doctype html><html lang="en"><meta charset="utf-8">
 <title>Glimpse native Android evidence atlas</title>
