@@ -248,7 +248,7 @@ def main():
     shell_picker = None
     shell_picker_limitation = None
     try:
-        base.reach_and_click("Add photos", "down", attempts=14)
+        base.reach_and_click("Add photos", "up", attempts=14)
         shell_picker = measure(strict_shell_hierarchy)
         picker_xml = shell_picker[1]
         if not any(n.get("package") == PICKER
@@ -285,7 +285,7 @@ def main():
             "glimpse-compose-3-photos", session, shell_compose, APP))
         if shell_picker is not None:
             try:
-                appium_reach_and_click(session, "Add photos", "down", attempts=14)
+                appium_reach_and_click(session, "Add photos", "up", attempts=14)
                 picker = scene(
                     "real-android-photo-picker", session, shell_picker, PICKER)
                 report["scenes"].append(picker)
