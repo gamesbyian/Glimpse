@@ -86,6 +86,27 @@ def appium_source(session_id):
     return value
 
 
+def strict_shell_hierarchy():
+    """Require fresh shell output, never read an old XML after dump failure.
+
+    UiAutomator's one-active-connection constraint makes simultaneous shell
+    and Appium probes invalid. Each shell read uses a unique destination,
+    requires successful exit and an actual XML document, and runs only
+    BEFORE a persistent session is started.
+    """
+    unique = "/sdcard/glimpse-hierarchy-probe-" + str(time.monotonic_ns()) + ".xml"
+    try:
+        result = base.adb("shell", "uiautomator", "dump", unique,
+                          timeout=40)
+        if "dumped to" not in result.lower():
+            raise RuntimeError("uiautomator reported no fresh hierarchy dump")
+        raw = base.adb("exec-out", "cat", unique, timeout=15)
+        nodes(raw)
+        return raw
+    finally:
+        base.adb("shell", "rm", "-f", unique, check=False)
+
+
 def nodes(xml):
     root = ET.fromstring(xml)
     if root.tag != "hierarchy":
@@ -145,8 +166,8 @@ def measure(reader, attempts=5):
     }, last
 
 
-def scene(label, session, expected_package=None):
-    shell_times, shell = measure(base.hierarchy)
+def scene(label, session, shell_baseline, expected_package=None):
+    shell_times, shell = shell_baseline
     appium_times, appium = measure(lambda: appium_source(session))
     parity = compare_xml(shell, appium)
     # A package check confirms the actual subject: Glimpse Compose or an
@@ -173,6 +194,37 @@ def scene(label, session, expected_package=None):
     }
 
 
+def appium_reach_and_click(session, label, direction="down", attempts=14):
+    """Find a real visible clickable label using Appium, then native ADB tap."""
+    import re
+    for attempt in range(attempts):
+        xml = appium_source(session)
+        root = ET.fromstring(xml)
+        candidates = []
+
+        def visit(node, ancestors=()):
+            a = node.attrib
+            if label in (a.get("text", ""), a.get("content-desc", "")):
+                target = next((n for n in (node, *reversed(ancestors))
+                               if n.attrib.get("clickable") == "true"), None)
+                if target is not None:
+                    bounds = re.findall(r"\d+", target.attrib.get("bounds", ""))
+                    if len(bounds) == 4:
+                        candidates.append(tuple(map(int, bounds)))
+            for child in node:
+                visit(child, ancestors + (node,))
+        visit(root)
+        if candidates:
+            x0, y0, x1, y1 = candidates[0]
+            base.adb("shell", "input", "tap",
+                     str((x0+x1)//2), str((y0+y1)//2))
+            time.sleep(0.65)
+            return
+        if attempt != attempts - 1:
+            base.swipe(direction)
+    raise RuntimeError("Appium could not locate actual visible action " + label)
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--out", type=Path, required=True)
@@ -188,10 +240,34 @@ def main():
 
     print("Preparing disposable real Android Glimpse 3-photo UI", flush=True)
     base.start_fixture(3)
+
+    # Capture actual shell evidence while shell UiAutomator owns the
+    # automation connection. Running it simultaneously with Appium can fail
+    # quickly and silently reuse the previous XML file, fabricating speed.
+    shell_compose = measure(strict_shell_hierarchy)
+    shell_picker = None
+    shell_picker_limitation = None
+    try:
+        base.reach_and_click("Add photos", "down", attempts=14)
+        shell_picker = measure(strict_shell_hierarchy)
+        picker_xml = shell_picker[1]
+        if not any(n.get("package") == PICKER
+                   for n in ET.fromstring(picker_xml).iter()):
+            raise RuntimeError("Real Android system Photo Picker was not visible")
+    except Exception as error:
+        shell_picker = None
+        shell_picker_limitation = str(error)[:400]
+    finally:
+        base.adb("shell", "input", "keyevent", "4")
+        base.adb("shell", "am", "start", "-n", APP + "/.MainActivity")
+        time.sleep(0.6)
+
     session = None
     report = {
-        "schema": "glimpse/hierarchy-backend-research/v1",
+        "schema": "glimpse/hierarchy-backend-research/v2",
         "researchOnly": True,
+        "shellReadFreshnessEnforced": True,
+        "simultaneousAutomationDisallowed": True,
         "changesNativeAtlas": False,
         "sourceSha": os.environ.get("GITHUB_SHA", ""),
         "device": base.adb("shell", "getprop", "ro.build.version.release"),
@@ -199,23 +275,24 @@ def main():
         "appiumSetupOutsideSessionSeconds": "See GitHub workflow step timing",
         "requiredSystemUiParityVerified": False
     }
+    if shell_picker_limitation:
+        report["shellSystemPickerLimitation"] = shell_picker_limitation
     try:
         session, report["appiumSessionSeconds"] = appium_session()
-        # Start the fixture again if session initialization moved Android
-        # focus. This is a disposable emulator, never a user device.
-        base.start_fixture(3)
-        report["scenes"].append(scene("glimpse-compose-3-photos", session, APP))
-        try:
-            # No media is selected: entering/backing out of the actual
-            # platform Photo Picker is a safe OS-boundary read-only probe.
-            base.reach_and_click("Add photos", "down", attempts=14)
-            picker = scene("real-android-photo-picker", session, PICKER)
-            report["scenes"].append(picker)
-            report["requiredSystemUiParityVerified"] = picker["candidateCompatible"]
-        except Exception as error:
-            # Missing/changed OS semantics is explicitly *not compatible*.
-            # Keep the successful app measurement as research evidence.
-            report["systemPickerLimitation"] = str(error)[:400]
+        base.adb("shell", "am", "start", "-n", APP + "/.MainActivity")
+        time.sleep(0.5)
+        report["scenes"].append(scene(
+            "glimpse-compose-3-photos", session, shell_compose, APP))
+        if shell_picker is not None:
+            try:
+                appium_reach_and_click(session, "Add photos", "down", attempts=14)
+                picker = scene(
+                    "real-android-photo-picker", session, shell_picker, PICKER)
+                report["scenes"].append(picker)
+                report["requiredSystemUiParityVerified"] = picker["candidateCompatible"]
+            except Exception as error:
+                # Missing/changed OS semantics is explicitly NOT compatible.
+                report["systemPickerLimitation"] = str(error)[:400]
         report["appSceneEquivalent"] = report["scenes"][0]["candidateCompatible"]
         report["readyForProductionTrial"] = (
             report["appSceneEquivalent"] and
