@@ -219,7 +219,10 @@ internal fun publishPrivateOriginalExclusively(
     preferHardLink: Boolean = true,
     // Test-only fault/cancellation checkpoint after complete 64-KiB chunks.
     // A thrown exception must leave the staged source and final path intact.
-    copyCheckpoint: (Long) -> Unit = {}
+    copyCheckpoint: (Long) -> Unit = {},
+    // Inject only in deterministic filesystem-failure tests. Production
+    // always forces the app-private parent entry before a successful return.
+    forceParentDirectory: (File) -> Unit = ::forcePrivateOriginalDirectory
 ) {
     require(expectedSha256.matches(Regex("^[0-9a-f]{64}$")) &&
         target.name.matches(Regex("^[0-9a-f]{64}\\.(jpg|png|webp)$")) &&
@@ -236,7 +239,8 @@ internal fun publishPrivateOriginalExclusively(
     }
     withPrivateOriginalProcessLock(target, expectedSha256) {
         publishPrivateOriginalUnderLock(
-            staged, target, expectedSha256, expectedLength, preferHardLink, copyCheckpoint
+            staged, target, expectedSha256, expectedLength, preferHardLink,
+            copyCheckpoint, forceParentDirectory
         )
     }
     }
@@ -302,6 +306,9 @@ internal fun publishMissingPrivateOriginalExclusively(
             require(existingOriginalMatches(target, expectedSha256, expectedLength, checkpoint)) {
                 "Published recovery target could not be verified."
             }
+            // Complete digest bytes and a reserved pathname require
+            // independent durability barriers before Room may attach.
+            forcePrivateOriginalDirectory(requireNotNull(target.parentFile))
         }
     }
 }
@@ -312,7 +319,8 @@ private fun publishPrivateOriginalUnderLock(
     expectedSha256: String,
     expectedLength: Long,
     preferHardLink: Boolean,
-    copyCheckpoint: (Long) -> Unit
+    copyCheckpoint: (Long) -> Unit,
+    forceParentDirectory: (File) -> Unit
 ) {
     require(staged.isFile && !java.nio.file.Files.isSymbolicLink(staged.toPath())) {
         "Verified private staging file is unavailable."
@@ -324,22 +332,35 @@ private fun publishPrivateOriginalUnderLock(
         require(existingOriginalMatches(target, expectedSha256, expectedLength)) {
             "Existing imported original failed integrity check."
         }
+        // This also covers a *previously* created digest whose file bytes
+        // survived a failed namespace barrier. Never admit Room membership
+        // based on matching SHA alone without confirming its directory entry.
+        forceParentDirectory(requireNotNull(target.parentFile))
     }
 
     if (preferHardLink) {
-        try {
+        // Catch only link creation failures. A successful link followed by
+        // failed integrity validation or parent-directory fsync must fail
+        // closed; treating that failure as an unsupported-link fallback would
+        // leave the new SHA path in place and falsely report publication as
+        // successful on the next matching-existing-file branch.
+        val linked = try {
             java.nio.file.Files.createLink(target.toPath(), staged.toPath())
-            return
+            true
         } catch (_: java.nio.file.FileAlreadyExistsException) {
             requireMatchingExisting()
             return
         } catch (_: java.io.IOException) {
-            // Android app-private SELinux often rejects hard links. No
-            // renameTo/copy-overwrite fallback can ever be used here.
+            // Android app-private SELinux may reject hard links.
+            false
         } catch (_: UnsupportedOperationException) {
-            // Filesystem does not support hard links. Try exclusive create.
+            false
         } catch (_: SecurityException) {
-            // Java hard-link privileges are optional, even on API 26+.
+            false
+        }
+        if (linked) {
+            requireMatchingExisting()
+            return
         }
     }
 
@@ -373,8 +394,9 @@ private fun publishPrivateOriginalUnderLock(
         requireMatchingExisting()
         return
     }
-    // No Room record is committed until the freshly written copy has passed
-    // its full SHA and length check. Failed partial targets remain untouched.
+    // Re-verifies bytes and forces the parent entry for both fresh and
+    // pre-existing paths. An interrupted earlier write may have left a
+    // complete digest but never successfully fsynced its containing dir.
     requireMatchingExisting()
 }
 

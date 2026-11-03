@@ -69,6 +69,24 @@ class PrivateOriginalPublicationDeviceTest {
 
     private fun finalName() = File(owned, "${sha(bytes)}.jpg")
 
+    @Test fun directoryNamespaceForceSucceedsForActualAndroidAppPrivateReceiptAndOriginal() {
+        val staged = durableStage("import-directory-barrier.partial")
+        val target = finalName()
+        val journal = PrivatePublicationReceiptJournal(owned)
+        val receipt = journal.begin(
+            staged, target, sha(bytes), bytes.size.toLong(), "test"
+        )
+        // A real API29 fsync on the original's private directory is required.
+        // A device without this support must fail, not invent durability.
+        forcePrivateOriginalDirectory(owned)
+        publishPrivateOriginalExclusively(
+            staged, target, sha(bytes), bytes.size.toLong(), preferHardLink = false
+        )
+        assertArrayEquals(bytes, staged.readBytes())
+        assertArrayEquals(bytes, target.readBytes())
+        assertTrue(receipt.file.exists())
+    }
+
     @Test fun defaultPublicationWorksWithRealAndroidSELinuxAndSurvivesStagingCleanup() {
         val stage = staged("import-real-android.partial")
         val target = finalName()

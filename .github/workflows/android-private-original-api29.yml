@@ -24,6 +24,7 @@ on:
       - "app/src/debug/java/io/github/gamesbyian/glimpse/debug/PublicationCooperationProbeService.kt"
       - "app/src/debug/AndroidManifest.xml"
       - "app/src/main/java/io/github/gamesbyian/glimpse/data/PhotoImporter.kt"
+      - "app/src/main/java/io/github/gamesbyian/glimpse/data/PrivateOriginalDirectoryDurability.kt"
       - "app/build.gradle.kts"
   push:
     branches: [main]
@@ -46,6 +47,7 @@ on:
       - "app/src/debug/java/io/github/gamesbyian/glimpse/debug/PublicationCooperationProbeService.kt"
       - "app/src/debug/AndroidManifest.xml"
       - "app/src/main/java/io/github/gamesbyian/glimpse/data/PhotoImporter.kt"
+      - "app/src/main/java/io/github/gamesbyian/glimpse/data/PrivateOriginalDirectoryDurability.kt"
       - "app/build.gradle.kts"
 permissions:
   contents: read
