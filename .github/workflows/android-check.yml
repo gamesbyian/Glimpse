@@ -1,6 +1,12 @@
 name: Native Android slice
 on:
   workflow_dispatch:
+    inputs:
+      publish_owner_test_apk:
+        description: "Explicitly publish this main build as the current owner-test APK"
+        type: boolean
+        required: false
+        default: false
   push:
     branches: [main]
     paths:
@@ -34,8 +40,9 @@ permissions:
 # Obsolete commits within one PR may cancel each other. Separate PRs and
 # main must not cancel one another's compilation/acceptance evidence.
 concurrency:
-  group: glimpse-native-check-${{ github.event.pull_request.number || github.ref }}
-  cancel-in-progress: true
+  # Never cancel an owner-requested publication for a later main push.
+  group: glimpse-native-check-${{ github.event_name == 'workflow_dispatch' && 'owner-test' || (github.event.pull_request.number || github.ref) }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -119,14 +126,24 @@ jobs:
           "$ANDROID_HOME/build-tools/36.0.0/apksigner" verify --print-certs             app/build/distributions/glimpse-debug.apk |
             grep "Signer #1 certificate SHA-256 digest:" |
             tee app/build/distributions/glimpse-signing-fingerprint.txt
+      # Routine CI proves the APK can be packaged but does not store binaries.
+      # Only a trusted manual request transfers one APK to the publication job.
+      - name: Record checksummed handoff for explicitly requested owner APK
+        if: success() && github.event_name == 'workflow_dispatch' && inputs.publish_owner_test_apk && github.ref == 'refs/heads/main'
+        shell: bash
+        run: |
+          (cd app/build/distributions && sha256sum glimpse-debug.apk > GLIMPSE-BUILD-SHA256.txt)
+          cat app/build/distributions/GLIMPSE-BUILD-SHA256.txt
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
-        if: success()
+        if: success() && github.event_name == 'workflow_dispatch' && inputs.publish_owner_test_apk && github.ref == 'refs/heads/main'
         with:
-          name: glimpse-debug-test-only
+          name: glimpse-owner-test-handoff
           path: |
             app/build/distributions/glimpse-debug.apk
             app/build/distributions/glimpse-signing-fingerprint.txt
-          retention-days: 7
+            app/build/distributions/GLIMPSE-BUILD-SHA256.txt
+          retention-days: 1
+          if-no-files-found: error
 
       - name: Record first actionable CI failure without private data
         if: failure()
@@ -139,3 +156,52 @@ jobs:
           path: artifacts/ci-failure-digest.json
           retention-days: 7
           if-no-files-found: warn
+
+  owner-test-publication:
+    # Privileged Release writes are *only* on an explicit manual main dispatch,
+    # never on pull_request, push, merge_group or their checkout code.
+    if: github.event_name == 'workflow_dispatch' && inputs.publish_owner_test_apk && github.ref == 'refs/heads/main'
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+        with:
+          name: glimpse-owner-test-handoff
+          path: ${{ runner.temp }}/owner-test-apk
+      - name: Verify exact downloaded APK and publish current owner test
+        env:
+          GH_TOKEN: ${{ github.token }}
+          SOURCE_SHA: ${{ github.sha }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd "$RUNNER_TEMP/owner-test-apk"
+          sha256sum -c GLIMPSE-BUILD-SHA256.txt
+          test -s glimpse-signing-fingerprint.txt
+          test "${#SOURCE_SHA}" -eq 40
+          current="glimpse-owner-test-${SOURCE_SHA:0:12}"
+          if gh release view "$current" --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
+            echo "::error::Requested source already published as $current; no replacement"
+            exit 1
+          fi
+          gh release create "$current" \
+            glimpse-debug.apk#glimpse-debug.apk \
+            GLIMPSE-BUILD-SHA256.txt#GLIMPSE-BUILD-SHA256.txt \
+            glimpse-signing-fingerprint.txt#glimpse-signing-fingerprint.txt \
+            --repo "$GITHUB_REPOSITORY" --target "$SOURCE_SHA" \
+            --title "Glimpse owner test build ${SOURCE_SHA:0:12}" --prerelease \
+            --notes "Explicitly requested debug test APK for exact main SHA $SOURCE_SHA. Verify SHA256 before installing. Debug signing may change between runs; DO NOT uninstall an installed Glimpse to bypass a signing mismatch because that can destroy app-owned photo data. This build is NOT evidence of safe in-place upgrade or physical-device acceptance."
+          gh release view "$current" --repo "$GITHUB_REPOSITORY" >/dev/null
+          # Retire only prior releases in this dedicated user-test namespace.
+          gh release list --repo "$GITHUB_REPOSITORY" --limit 1000 \
+            --json tagName,isPrerelease \
+            --jq '.[] | select(.isPrerelease and (.tagName | test("^glimpse-owner-test-[0-9a-f]{12}$"))) | .tagName' |
+          while IFS= read -r obsolete; do
+            [ -n "$obsolete" ] || continue
+            [ "$obsolete" != "$current" ] || continue
+            gh release delete "$obsolete" --repo "$GITHUB_REPOSITORY" --cleanup-tag --yes
+          done
+          echo "Current explicitly requested owner test release: $current" >> "$GITHUB_STEP_SUMMARY"
