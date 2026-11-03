@@ -2,6 +2,7 @@ package io.github.gamesbyian.glimpse.data
 
 import java.io.File
 import java.io.FileOutputStream
+import java.io.IOException
 import java.nio.file.Files
 import java.security.MessageDigest
 import java.util.concurrent.CountDownLatch
@@ -33,6 +34,68 @@ class ExclusivePrivateOriginalPublicationTest {
             preferHardLink = false
         )
         assertArrayEquals(picture, target.readBytes())
+    }
+
+    @Test fun hardLinkNamespaceForceFailureCannotBecomeSuccessThroughCopyFallback() {
+        val staged = scratch.newFile("import-force-hardlink.partial")
+            .apply { writeBytes(picture) }
+        val target = File(scratch.root, hex(picture) + ".jpg")
+        var calls = 0
+        val failForce: (File) -> Unit = {
+            calls++
+            throw IOException("Synthetic parent-directory fsync failure")
+        }
+        assertTrue(runCatching {
+            publishPrivateOriginalExclusively(
+                staged, target, hex(picture), picture.size.toLong(),
+                preferHardLink = true, forceParentDirectory = failForce
+            )
+        }.isFailure)
+        assertEquals(1, calls)
+        assertTrue(Files.isSameFile(staged.toPath(), target.toPath()))
+        assertArrayEquals(picture, staged.readBytes())
+        assertArrayEquals(picture, target.readBytes())
+
+        // The matching digest *still* needs a successful parent directory
+        // barrier on retry. Reusing exact current bytes is not proof that
+        // the previous failed namespace sync became durable.
+        assertTrue(runCatching {
+            publishPrivateOriginalExclusively(
+                staged, target, hex(picture), picture.size.toLong(),
+                preferHardLink = false, forceParentDirectory = failForce
+            )
+        }.isFailure)
+        assertEquals(2, calls)
+        assertArrayEquals(picture, target.readBytes())
+        publishPrivateOriginalExclusively(
+            staged, target, hex(picture), picture.size.toLong(), preferHardLink = false
+        )
+        assertEquals(0, activePrivateOriginalPublicationGates())
+        assertArrayEquals(picture, target.readBytes())
+    }
+
+    @Test fun exclusiveCopyNamespaceForceFailureRetainsStageAndNeverAdmitsRetryWithoutForce() {
+        val staged = scratch.newFile("import-force-copy.partial")
+            .apply { writeBytes(picture) }
+        val target = File(scratch.root, hex(picture) + ".jpg")
+        var calls = 0
+        val failForce: (File) -> Unit = {
+            calls++
+            throw IOException("Synthetic directory barrier failure")
+        }
+        repeat(2) {
+            assertTrue(runCatching {
+                publishPrivateOriginalExclusively(
+                    staged, target, hex(picture), picture.size.toLong(),
+                    preferHardLink = false, forceParentDirectory = failForce
+                )
+            }.isFailure)
+            assertArrayEquals(picture, staged.readBytes())
+            assertArrayEquals(picture, target.readBytes())
+        }
+        assertEquals(2, calls)
+        assertFalse(Files.isSameFile(staged.toPath(), target.toPath()))
+        assertEquals(0, activePrivateOriginalPublicationGates())
     }
 
     @Test fun directoryNamespaceForceRefusesSymlinkWithoutTouchingExternalFiles() {
