@@ -20,8 +20,8 @@ ANR = ('<?xml version="1.0"?><hierarchy>'
        '</hierarchy>')
 NO_WAIT = ('<?xml version="1.0"?><hierarchy>'
            '<node text="Glimpse is not responding"/></hierarchy>')
-PNG = b"\\x89PNG\\r\\n\\x1a\\n" + b"0" * 16000
-AFTER_ANR_PNG = b"\\x89PNG\\r\\n\\x1a\\n" + b"1" * 16000
+PNG = b"\x89PNG\r\n\x1a\n" + b"0" * 16000
+AFTER_ANR_PNG = b"\x89PNG\r\n\x1a\n" + b"1" * 16000
 
 
 class AtlasHarnessTest(unittest.TestCase):
