@@ -25,12 +25,15 @@ internal class ManualMissingTargetStageResume(
 ) {
     suspend fun resumeOnlyAfterExplicitConfirmation(
         userConfirmed: Boolean,
-        selectedReceiptName: String
+        selectedReceiptName: String,
+        selectedReceiptFingerprint: String
     ): MissingTargetResumeResult = withContext(Dispatchers.IO) {
         require(userConfirmed) { "An explicit user decision is required." }
         require(selectedReceiptName.matches(
             Regex("^publication-[0-9a-f-]{36}\\.receipt$")
-        )) { "One selected private recovery receipt is required." }
+        ) && selectedReceiptFingerprint.matches(Regex("^[0-9a-f]{64}$"))) {
+            "The exact previously previewed receipt is required."
+        }
         val ctx = currentCoroutineContext()
         val journal = PrivatePublicationReceiptJournal(originals)
         val scan = journal.inspectMissingTargetStages(
@@ -45,6 +48,13 @@ internal class ManualMissingTargetStageResume(
         for (candidate in scan.candidates) {
             ctx.ensureActive()
             if (candidate.receipt.file.name != selectedReceiptName) continue
+            // A name-only selector can be rebound to a different stage,
+            // SHA or collection between preview and consent. Compare the
+            // original immutable receipt fingerprint before ANY mutation.
+            if (candidate.receiptConfirmationFingerprint() != selectedReceiptFingerprint) {
+                refused++
+                continue
+            }
             try {
                 // Preflight is a snapshot. Revalidate receipt, source bytes,
                 // destination absence and collection immediately before use.
