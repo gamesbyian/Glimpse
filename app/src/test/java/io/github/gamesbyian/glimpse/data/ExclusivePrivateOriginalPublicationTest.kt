@@ -23,6 +23,28 @@ class ExclusivePrivateOriginalPublicationTest {
         MessageDigest.getInstance("SHA-256").digest(bytes)
             .joinToString("") { "%02x".format(it) }
 
+    @Test fun directoryNamespaceForceUsesActualNoFollowDirectoryDescriptor() {
+        val original = scratch.newFile("import-sync-namespace.partial")
+            .apply { writeBytes(picture) }
+        val target = File(scratch.root, hex(picture) + ".jpg")
+        forcePrivateOriginalDirectory(scratch.root)
+        publishPrivateOriginalExclusively(
+            original, target, hex(picture), picture.size.toLong(),
+            preferHardLink = false
+        )
+        assertArrayEquals(picture, target.readBytes())
+    }
+
+    @Test fun directoryNamespaceForceRefusesSymlinkWithoutTouchingExternalFiles() {
+        val other = scratch.newFolder("foreign-directory")
+        val external = File(other, "keep-photo.jpg").apply { writeBytes(picture) }
+        val alias = File(scratch.root, "directory-alias")
+        Files.createSymbolicLink(alias.toPath(), other.toPath())
+        assertTrue(runCatching { forcePrivateOriginalDirectory(alias) }.isFailure)
+        assertTrue(Files.isSymbolicLink(alias.toPath()))
+        assertArrayEquals(picture, external.readBytes())
+    }
+
     @Test fun newShaIsPublishedAtomicallyAsSameVerifiedInode() {
         val stage = scratch.newFile("import-test.partial").apply { writeBytes(picture) }
         val target = File(scratch.root, hex(picture) + ".jpg")

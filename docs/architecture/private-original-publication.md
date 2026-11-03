@@ -211,6 +211,28 @@ from a worker or widget, or silently presented as a recovery feature.
 Ambiguous preexisting digest files still cannot be quarantined or replaced.
 Issue #143 remains open.
 
+## Explicit directory-name synchronization before Room admission
+
+After a previously complete staging file has been fsynced and its publication
+receipt written and `FileChannel.force(true)`d, the publisher now also
+forces the containing **app-private directory entry** before publishing
+anything. After CREATE_NEW content fsync and SHA/length verification, or
+hard-link creation and SHA verification, it forces the same parent directory
+before allowing a Room membership transaction. The recovery-only
+exclusive-new-target publisher requires the same namespace force after file
+integrity verification. This follows the Linux `fsync(2)` requirement that
+file fsync alone does not necessarily persist its containing directory name.
+
+The barrier opens the real directory with `READ` and `NOFOLLOW_LINKS`,
+does `FileChannel.force(true)` on that descriptor, and **propagates
+unsupported/fsync/permission errors**. No fallback silently claims durable
+names, deletes a suspect digest or discards the validated staged source.
+JVM tests cover synthetic copy, no-follow symlink refusal and byte retention;
+real API29 instrumentation explicitly exercises both receipt and original
+directory barriers. These checks do not simulate sudden device power loss,
+flash-controller failure, full-storage behavior or every OEM filesystem.
+Issue #143 retains those physical and crash-recovery gates.
+
 ## Remaining crash window and recovery plan
 
 A process kill, storage exhaustion, device power loss or cancelled file-channel

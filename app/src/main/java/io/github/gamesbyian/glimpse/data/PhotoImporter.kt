@@ -302,6 +302,9 @@ internal fun publishMissingPrivateOriginalExclusively(
             require(existingOriginalMatches(target, expectedSha256, expectedLength, checkpoint)) {
                 "Published recovery target could not be verified."
             }
+            // Complete digest bytes and a reserved pathname require
+            // independent durability barriers before Room may attach.
+            forcePrivateOriginalDirectory(requireNotNull(target.parentFile))
         }
     }
 }
@@ -329,6 +332,10 @@ private fun publishPrivateOriginalUnderLock(
     if (preferHardLink) {
         try {
             java.nio.file.Files.createLink(target.toPath(), staged.toPath())
+            requireMatchingExisting()
+            // The hard-link name is new, even though the staged inode was
+            // already forced. The new parent entry needs its own barrier.
+            forcePrivateOriginalDirectory(requireNotNull(target.parentFile))
             return
         } catch (_: java.nio.file.FileAlreadyExistsException) {
             requireMatchingExisting()
@@ -376,6 +383,9 @@ private fun publishPrivateOriginalUnderLock(
     // No Room record is committed until the freshly written copy has passed
     // its full SHA and length check. Failed partial targets remain untouched.
     requireMatchingExisting()
+    // force(true) on the destination alone need not persist CREATE_NEW's
+    // directory entry. Fail closed rather than admitting Room prematurely.
+    forcePrivateOriginalDirectory(requireNotNull(target.parentFile))
 }
 
 /**
