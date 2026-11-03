@@ -345,6 +345,9 @@ internal fun GlimpseSupportScreen(
                 style = MaterialTheme.typography.bodySmall
             )
         }
+        // Explicit one-photo review is off until the user opens it.
+        // The backend refuses occupied SHA names and changed receipt bytes.
+        GlimpseManualRecoveryPanel(context)
         SupportSection(
             "LIBRARY LINKS · READ ONLY",
             "Check whether every saved original belongs to a collection, and whether " +

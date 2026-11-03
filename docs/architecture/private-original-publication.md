@@ -186,8 +186,8 @@ uses a no-follow exact-receipt check throughout the write, then rechecks it
 before any Room admission. A changed receipt leaves all original and staged
 bytes intact; any newly created unregistered target is preserved for later
 manual reconciliation. Subsequent newly discovered valid receipts cannot be
-swept into the same confirmation. No released native UI invokes it. The separately stacked preview and
-confirmation UI is tracked in **draft #200**, and is not accepted for release
+swept into the same confirmation. No released native UI invokes it. The separately proposed preview and
+confirmation UI is unaccepted and is not suitable for release
 until accessible explicit consent has been independently tested and approved.
 
 On IO, the backend rechecks the exact receipt through a no-follow channel,
@@ -243,6 +243,25 @@ real API29 instrumentation explicitly exercises both receipt and original
 directory barriers. These checks do not simulate sudden device power loss,
 flash-controller failure, full-storage behavior or every OEM filesystem.
 Issue #143 retains those physical and crash-recovery gates.
+
+## Owner-gated one-photo recovery UI prototype (unaccepted draft)
+
+A separately proposed `GlimpseManualRecoveryPanel` in Help scans only after
+the user explicitly requests it. The owner reviews one 256px-edge verified
+staging-image preview with its real destination collection title, then a
+separate dialog asks for consent bound to the **exact receipt bytes shown at
+preview time**, not merely a reusable filename. Cancel makes no filesystem
+or Room changes. Every attempted recovery invalidates the prior scan.
+No original hashes, provider URIs, receipt paths or image filenames are
+displayed.
+
+The proposed Android emulator acceptance runs a genuine 320dp viewport,
+200%-system-font Compose UI with real accessibility actions for Cancel and
+Confirm, then compares preserved source/receipt bytes and Room membership.
+That is machine evidence, not owner/tactile/TalkBack signoff. The UI remains
+**unaccepted**; issue #143 still governs occupied digest ambiguity,
+interrupted post-publication/Room recovery, physical device testing and
+approval before any user-facing release.
 
 ## Remaining crash window and recovery plan
 
