@@ -102,6 +102,7 @@ class ManualRecoveryPanelUiDeviceTest {
         val display = context.resources.displayMetrics
         val viewport = Rect(0, 0, display.widthPixels, display.heightPixels)
         val deadline = SystemClock.elapsedRealtime() + 25_000L
+        var attempts = 0
         while (SystemClock.elapsedRealtime() < deadline) {
             val click = findClickable(label)
             if (click != null) {
@@ -111,8 +112,15 @@ class ManualRecoveryPanelUiDeviceTest {
                     click.performAction(AccessibilityNodeInfo.ACTION_CLICK)
                 ) return
             }
+            // Real narrow/large-font UI may place the next control either
+            // above or below the current scroll position. Exercise actual
+            // scroll actions in both directions rather than tapping blind.
             val scrollable = automation.rootInActiveWindow?.let { findScrollable(it) }
-            scrollable?.performAction(AccessibilityNodeInfo.ACTION_SCROLL_FORWARD)
+            val direction = if ((attempts / 4) % 2 == 0)
+                AccessibilityNodeInfo.ACTION_SCROLL_FORWARD
+            else AccessibilityNodeInfo.ACTION_SCROLL_BACKWARD
+            scrollable?.performAction(direction)
+            attempts++
             SystemClock.sleep(250L)
         }
         throw AssertionError(
