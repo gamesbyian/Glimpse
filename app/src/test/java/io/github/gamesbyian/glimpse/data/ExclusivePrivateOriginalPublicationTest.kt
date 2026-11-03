@@ -310,6 +310,38 @@ class ExclusivePrivateOriginalPublicationTest {
         assertArrayEquals(picture, stage.readBytes())
     }
 
+    @Test fun recoveryPublisherRefusesEvenExactPreexistingTargetWithoutChangingIt() {
+        val staged = scratch.newFile("import-recovery-exact.partial")
+            .apply { writeBytes(picture) }
+        val target = scratch.newFile(hex(picture) + ".jpg")
+            .apply { writeBytes(picture) }
+        assertTrue(runCatching {
+            publishMissingPrivateOriginalExclusively(
+                staged, target, hex(picture), picture.size.toLong()
+            )
+        }.isFailure)
+        assertArrayEquals(picture, staged.readBytes())
+        assertArrayEquals(picture, target.readBytes())
+        assertEquals(0, activePrivateOriginalPublicationGates())
+    }
+
+    @Test fun recoveryPublisherRefusesDanglingDigestSymlink() {
+        val staged = scratch.newFile("import-recovery-dangling.partial")
+            .apply { writeBytes(picture) }
+        val target = File(scratch.root, hex(picture) + ".jpg")
+        val missing = File(scratch.root, "never-created")
+        Files.createSymbolicLink(target.toPath(), missing.toPath())
+        assertTrue(runCatching {
+            publishMissingPrivateOriginalExclusively(
+                staged, target, hex(picture), picture.size.toLong()
+            )
+        }.isFailure)
+        assertTrue(Files.isSymbolicLink(target.toPath()))
+        assertFalse(missing.exists())
+        assertArrayEquals(picture, staged.readBytes())
+        assertEquals(0, activePrivateOriginalPublicationGates())
+    }
+
     @Test fun missingOrForeignStagingSourceIsNeverPublished() {
         val target = File(scratch.root, hex(picture) + ".jpg")
         val missing = File(scratch.root, "import-missing.partial")

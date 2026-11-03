@@ -340,6 +340,33 @@ interface GlimpseDao {
         return attach(photo, collectionId)
     }
 
+    /**
+     * A recovery stage must not silently reuse an existing photo ID whose
+     * immutable metadata disagrees. Check current Room state and guarded
+     * membership in ONE transaction, so another importer cannot insert a
+     * conflicting PhotoRecord between the check and attach.
+     *
+     * Null: vanished collection or conflicting registered photo.
+     * True: newly added membership. False: exact membership already exists.
+     * No original file or database record is ever replaced or deleted.
+     */
+    @Transaction
+    suspend fun attachRecoveredOriginalIfMatching(
+        photo: PhotoRecord, collectionId: String
+    ): Boolean? {
+        if (!collectionExists(collectionId)) return null
+        val known = findPhoto(photo.id)
+        if (known != null && (
+            known.sha256 != photo.sha256 ||
+            known.localPath != photo.localPath ||
+            known.mime != photo.mime ||
+            known.width != photo.width ||
+            known.height != photo.height ||
+            known.byteLength != photo.byteLength
+        )) return null
+        return attach(photo, collectionId)
+    }
+
     @Transaction
     suspend fun attach(photo: PhotoRecord, collectionId: String): Boolean {
         insertPhoto(photo)

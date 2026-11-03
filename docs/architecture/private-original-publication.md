@@ -172,6 +172,45 @@ tests before a data-modifying recovery action can ship.
 This is strictly a read-only staging plan. **Issue #143 remains open** for
 real recovery and quarantine of partially published targets.
 
+## Explicit-confirmation backend for absent digest paths (unaccepted draft)
+
+The integrated, **internal-only** `ManualMissingTargetStageResume` backend can process only
+**one specifically selected receipt** from the bounded verified-stage/missing-target
+preflight. Callers must provide an affirmative confirmation flag **and** the
+exact selected receipt name **plus a SHA-256 fingerprint of the receipt
+bytes held at preview time**. The receipt bytes include stage/target names,
+source SHA, length and encoded destination collection identity. A replaced
+but otherwise valid receipt under the same name must not inherit a previous
+preview's consent. The backend checks the fingerprint before any publication,
+uses a no-follow exact-receipt check throughout the write, then rechecks it
+before any Room admission. A changed receipt leaves all original and staged
+bytes intact; any newly created unregistered target is preserved for later
+manual reconciliation. Subsequent newly discovered valid receipts cannot be
+swept into the same confirmation. No released native UI invokes it. The separately stacked preview and
+confirmation UI is tracked in **draft #200**, and is not accepted for release
+until accessible explicit consent has been independently tested and approved.
+
+On IO, the backend rechecks the exact receipt through a no-follow channel,
+the existing staged bytes and SHA, affirmative no-follow target absence, the
+existing destination collection and the decoded JPEG/PNG/WebP dimensions.
+It rejects a conflicting registered photo, uses a recovery-only SHA-scoped
+exclusive publisher that rechecks target absence while holding both JVM/OS
+locks and requires CREATE_NEW to reserve the digest (never deduplicating an
+already occupied name even when SHA matches), and attempts a **single Room transaction** which rechecks both the destination collection and immutable metadata of any existing PhotoRecord before admitting a membership. A concurrent conflicting photo record is rejected, never silently reused. Return values
+contain aggregate counts only. Stages and receipts are always retained.
+A raced existing foreign or partial digest fails closed, and a vanished
+collection receives no membership. A successful file publication followed by
+a failed Room transaction can leave a complete orphan; because the target
+now exists, this preflight deliberately will not retry or delete it. The
+remaining post-publication/Room crash window needs separate reconciliation
+and verification.
+
+Until real API29/modern Android, owner consent/UX and interruption tests are
+accepted, this internal backend must never be automatically called on app startup,
+from a worker or widget, or silently presented as a recovery feature.
+Ambiguous preexisting digest files still cannot be quarantined or replaced.
+Issue #143 remains open.
+
 ## Remaining crash window and recovery plan
 
 A process kill, storage exhaustion, device power loss or cancelled file-channel

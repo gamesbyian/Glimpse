@@ -242,6 +242,70 @@ internal fun publishPrivateOriginalExclusively(
     }
 }
 
+/**
+ * Recovery-specific publisher: a selected, verified stage may claim only a
+ * digest name that is affirmatively absent while its SHA-scoped JVM/OS locks
+ * are held. Unlike ordinary import deduplication, an existing target is
+ * ALWAYS refused, including exact-matching bytes or a dangling symlink.
+ *
+ * CREATE_NEW remains the final atomic defense against an uncooperative
+ * process. Never truncate, rename, unlink, or replace the prior target.
+ * The staged source/receipt stay intact, even if this copy is interrupted.
+ */
+internal fun publishMissingPrivateOriginalExclusively(
+    staged: File,
+    target: File,
+    expectedSha256: String,
+    expectedLength: Long,
+    checkpoint: () -> Unit = {}
+) {
+    require(expectedSha256.matches(Regex("^[0-9a-f]{64}$")) &&
+        target.name.matches(Regex("^[0-9a-f]{64}\\.(jpg|png|webp)$")) &&
+        target.name.substringBefore('.') == expectedSha256
+    ) { "Invalid recovery original identity." }
+    withPrivateOriginalJvmGate(expectedSha256) {
+        withPrivateOriginalProcessLock(target, expectedSha256) {
+            require(staged.isFile && !Files.isSymbolicLink(staged.toPath()) &&
+                staged.canonicalFile.parentFile == target.canonicalFile.parentFile
+            ) { "Private staging is no longer owned." }
+            require(Files.notExists(target.toPath(), LinkOption.NOFOLLOW_LINKS)) {
+                "The destination is occupied or its absence is unknown."
+            }
+            require(existingOriginalMatches(
+                staged, expectedSha256, expectedLength, checkpoint
+            )) { "Recovery staging has changed." }
+
+            // This operation alone is allowed to reserve this digest path.
+            // An unexpected foreign writer must fail with FileAlreadyExists;
+            // NEVER convert that exception to deduplication/recovery.
+            FileChannel.open(
+                target.toPath(),
+                StandardOpenOption.CREATE_NEW, StandardOpenOption.WRITE
+            ).use { destination ->
+                FileChannel.open(
+                    staged.toPath(), StandardOpenOption.READ, LinkOption.NOFOLLOW_LINKS
+                ).use { source ->
+                    val buffer = java.nio.ByteBuffer.allocate(64 * 1024)
+                    while (true) {
+                        checkpoint()
+                        buffer.clear()
+                        val read = source.read(buffer)
+                        if (read < 0) break
+                        if (read == 0) continue
+                        buffer.flip()
+                        while (buffer.hasRemaining()) destination.write(buffer)
+                    }
+                }
+                destination.force(true)
+            }
+            checkpoint()
+            require(existingOriginalMatches(target, expectedSha256, expectedLength, checkpoint)) {
+                "Published recovery target could not be verified."
+            }
+        }
+    }
+}
+
 private fun publishPrivateOriginalUnderLock(
     staged: File,
     target: File,

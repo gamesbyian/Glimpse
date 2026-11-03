@@ -254,6 +254,20 @@ internal class PrivatePublicationReceiptJournal(private val originals: File) {
     }
 
     /**
+     * Before any consented repair, verify that the same exact receipt remains
+     * present. The read itself refuses symlinks, even if swapped after a
+     * separate metadata check. This NEVER retires or modifies the receipt.
+     */
+    fun isReceiptIntact(handle: Handle): Boolean = try {
+        val root = checkedRoot()
+        handle.file.canonicalFile.parentFile == root &&
+            receiptPattern.matches(handle.file.name) &&
+            readReceiptNoFollow(handle.file)?.contentEquals(handle.exactBytes) == true
+    } catch (_: Exception) {
+        false
+    }
+
+    /**
      * Bounded, read-only *preflight* for the narrow case where a fully
      * verifiable staging copy survives and its digest path is absent.
      *
@@ -442,3 +456,15 @@ internal data class MissingTargetStagePreflight(
 ) {
     val possibleCount: Int get() = candidates.size
 }
+
+/**
+ * Consent binds the original *receipt contents*, not merely its reusable
+ * filename. The receipt carries staged/target names, SHA, length and encoded
+ * collection identity. An authenticated same-name replacement after visual
+ * preview changes this digest and must never inherit earlier user approval.
+ * The fingerprint stays app-private; it is not a photo identifier for UI.
+ */
+internal fun MissingTargetStageCandidate.receiptConfirmationFingerprint(): String =
+    java.security.MessageDigest.getInstance("SHA-256")
+        .digest(receipt.exactBytes)
+        .joinToString("") { "%02x".format(it) }

@@ -67,6 +67,32 @@ class ImportMembershipIntegrityTest {
         assertEquals(1, dao.membershipCount(photo.id))
     }
 
+    @Test fun recoveredOriginalAttachmentRejectsConflictingPhotoInOneTransaction() = runBlocking {
+        val source = "source"
+        val recovery = "recovery"
+        val original = fixturePhoto()
+        dao.insertCollection(CollectionRecord(source, "Original", 1L))
+        dao.insertCollection(CollectionRecord(recovery, "Recovered", 2L))
+        assertEquals(true, dao.attachIfCollectionExists(original, source))
+        val conflicting = original.copy(localPath = "/fixture/different-owner/photo.jpg")
+        assertNull(dao.attachRecoveredOriginalIfMatching(conflicting, recovery))
+        assertNull(dao.findMembership(recovery, original.id))
+        assertEquals(original.localPath, dao.findPhoto(original.id)?.localPath)
+        assertEquals(1, dao.membershipCount(original.id))
+        // Matching bytes/metadata may deduplicate without replacing the row.
+        assertEquals(true, dao.attachRecoveredOriginalIfMatching(original, recovery))
+        assertEquals(false, dao.attachRecoveredOriginalIfMatching(original, recovery))
+        assertEquals(2, dao.membershipCount(original.id))
+        assertEquals(original.localPath, dao.findPhoto(original.id)?.localPath)
+    }
+
+    @Test fun vanishedRecoveryCollectionNeverAdmitsPhotoRecord() = runBlocking {
+        val recovered = fixturePhoto()
+        assertNull(dao.attachRecoveredOriginalIfMatching(recovered, "absent"))
+        assertNull(dao.findPhoto(recovered.id))
+        assertNull(dao.findMembership("absent", recovered.id))
+    }
+
     @Test fun deletingRedundantCollectionCannotStrandAnOriginal() = runBlocking {
         val source = "source"
         val second = "second"
