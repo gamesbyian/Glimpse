@@ -32,6 +32,61 @@ class AtlasHarnessTest(unittest.TestCase):
         atlas.RESULTS.clear()
         atlas.HIERARCHY_TIMING.update(calls=0, totalSeconds=0.0, maxSeconds=0.0)
         atlas.ACTION_SETTLE.update(taps=0, swipes=0, requestedSeconds=0.0)
+        atlas._GEOMETRY_CACHE = None
+        atlas.GEOMETRY_CACHE_STATS.update(
+            freshReads=0, cacheHits=0, invalidations=0, readSeconds=0.0)
+
+    def test_geometry_cache_uses_two_reads_until_wm_changes(self):
+        state = {"size": "1440x3120", "density": "560"}
+        commands = []
+
+        def run(argv, **_):
+            args = tuple(argv[1:])
+            commands.append(args)
+            if args[:3] == ("shell", "wm", "size"):
+                if len(args) == 4:
+                    state["size"] = args[3]
+                    return mock.Mock(returncode=0, stdout=b"", stderr=b"")
+                return mock.Mock(returncode=0, stdout=(
+                    "Physical size: " + state["size"]).encode(), stderr=b"")
+            if args[:3] == ("shell", "wm", "density"):
+                if len(args) == 4:
+                    state["density"] = args[3]
+                    return mock.Mock(returncode=0, stdout=b"", stderr=b"")
+                return mock.Mock(returncode=0, stdout=(
+                    "Physical density: " + state["density"]).encode(), stderr=b"")
+            raise AssertionError("unexpected ADB operation " + str(args))
+
+        with mock.patch.object(atlas.subprocess, "run", side_effect=run):
+            self.assertEqual(atlas.screen_geometry(), (1440, 3120, 560))
+            self.assertEqual(atlas.screen_geometry(), (1440, 3120, 560))
+            self.assertEqual(len(commands), 2)  # second read is cache-only
+            atlas.adb("shell", "wm", "size", "320x700")
+            self.assertEqual(atlas.screen_geometry(), (320, 700, 560))
+            atlas.adb("shell", "wm", "density", "720")
+            self.assertEqual(atlas.screen_geometry(), (320, 700, 720))
+            atlas.adb("shell", "wm", "density", "reset")
+            self.assertEqual(atlas.GEOMETRY_CACHE_STATS["invalidations"], 3)
+        self.assertEqual(atlas.GEOMETRY_CACHE_STATS["freshReads"], 3)
+        self.assertEqual(atlas.GEOMETRY_CACHE_STATS["cacheHits"], 1)
+        self.assertGreaterEqual(atlas.GEOMETRY_CACHE_STATS["readSeconds"], 0)
+
+    def test_failed_wm_mutation_never_preserves_stale_geometry(self):
+        atlas._GEOMETRY_CACHE = (1440, 3120, 560)
+        with mock.patch.object(atlas.subprocess, "run",
+                 return_value=mock.Mock(returncode=1, stdout=b"",
+                                        stderr=b"wm denied")):
+            with self.assertRaisesRegex(RuntimeError, "wm denied"):
+                atlas.adb("shell", "wm", "size", "320x700")
+        self.assertIsNone(atlas._GEOMETRY_CACHE)
+        self.assertEqual(atlas.GEOMETRY_CACHE_STATS["invalidations"], 1)
+
+    def test_invalid_native_geometry_does_not_poison_cache(self):
+        with mock.patch.object(atlas, "adb", side_effect=(
+                "Physical size: 0x700", "Physical density: 560")):
+            with self.assertRaisesRegex(RuntimeError, "Invalid Android geometry"):
+                atlas.screen_geometry()
+        self.assertIsNone(atlas._GEOMETRY_CACHE)
 
     def test_normal_click_uses_exactly_one_hierarchy(self):
         with mock.patch.object(atlas, "hierarchy", return_value=NORMAL) as dump, \
