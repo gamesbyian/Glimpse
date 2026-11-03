@@ -174,7 +174,7 @@ real recovery and quarantine of partially published targets.
 
 ## Explicit-confirmation backend for absent digest paths (unaccepted draft)
 
-A proposed `ManualMissingTargetStageResume` backend can process only
+The integrated, **internal-only** `ManualMissingTargetStageResume` backend can process only
 **one specifically selected receipt** from the bounded verified-stage/missing-target
 preflight. Callers must provide an affirmative confirmation flag **and** the
 exact selected receipt name **plus a SHA-256 fingerprint of the receipt
@@ -186,10 +186,9 @@ uses a no-follow exact-receipt check throughout the write, then rechecks it
 before any Room admission. A changed receipt leaves all original and staged
 bytes intact; any newly created unregistered target is preserved for later
 manual reconciliation. Subsequent newly discovered valid receipts cannot be
-swept into the same confirmation. No native UI invokes it, so this is
-**not yet an exercised human-consent journey** and should remain a draft
-implementation until an explicit, understandable owner-facing confirmation is
-built and tested.
+swept into the same confirmation. No released native UI invokes it. The separately stacked preview and
+confirmation UI is tracked in **draft #200**, and is not accepted for release
+until accessible explicit consent has been independently tested and approved.
 
 On IO, the backend rechecks the exact receipt through a no-follow channel,
 the existing staged bytes and SHA, affirmative no-follow target absence, the
@@ -207,7 +206,7 @@ remaining post-publication/Room crash window needs separate reconciliation
 and verification.
 
 Until real API29/modern Android, owner consent/UX and interruption tests are
-accepted, this backend must never be automatically called on app startup,
+accepted, this internal backend must never be automatically called on app startup,
 from a worker or widget, or silently presented as a recovery feature.
 Ambiguous preexisting digest files still cannot be quarantined or replaced.
 Issue #143 remains open.

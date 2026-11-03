@@ -41,6 +41,46 @@ a measured GitHub upload duration or savings for every future build. The
 existing `scripts/repack_atlas_lossless.py` offers a corresponding opt-in
 packer and verifier with a stricter provenance manifest.
 
+## Actual GitHub Actions benchmark (3 November 2026 UTC)
+
+This follow-up separately ran the **real merged opt-in repacker and reviewer
+restorer**, rather than the independent one-off encoder. [PR #202](https://github.com/gamesbyian/Glimpse/pull/202)
+added a narrowly triggered, read-only-token [benchmark workflow
+#41561367402](https://github.com/gamesbyian/Glimpse/actions/runs/41561367402).
+It fetched the exact same source Actions artifact #13124561527, checked the
+unchanged original ZIP SHA above, and verified all 46 native screenshot
+members before beginning.
+
+| Source-matched Actions measurement | Observed value |
+| --- | ---: |
+| Original downloaded authoritative source ZIP | 72,606,231 bytes |
+| Optional lossless WebP shadow ZIP | **44,594,660 bytes** |
+| Regenerated PNG-filename review ZIP | 72,452,779 bytes |
+| Independently verified original-to-review RGBA images | **46 / 46 pass** |
+| Unchanged non-PNG XML/HTML/JSON files | All byte-identical |
+| Pack wall/CPU time on ubuntu-latest | 84.05 / 83.17 seconds |
+| Restore wall/CPU time on ubuntu-latest | 40.69 / 40.08 seconds |
+| End-to-end review/original verification after restore | ~10.3 seconds |
+| Actions artifact stored bytes (including report) | **44,595,314 bytes** |
+| Actual upload-artifact step until finalized | **~1.50 seconds** |
+| Stored size reduction compared with source ZIP | **~38.58%** |
+| Experimental shadow artifact retention | **1 day** |
+
+The experimental uploaded artifact was #13197038689 with SHA-256
+`3d0e17110f34b67feaeaff3ab6d1daf9dded33e9f32dbd6697fab9843e2ace9f`.
+The small difference between the original one-off shadow result (44,588,189
+bytes) and the canonical packer result (44,594,660 bytes) reflects ZIP
+metadata/manifests and encodings; both preserve all 46 pixel arrays exactly.
+The uploader result is one concrete run, not a claim of universal network
+throughput. The pack and restore costs are more significant than the observed
+1.5-second artifact upload; the workflow is therefore **manual/own-file PR
+only**, not an extra job on every Android development commit.
+
+The normal native atlas **continues uploading the original PNG filenames and
+bytes, retaining them for 14 days**. The optional packed bundle is not a
+production substitute until historical PNG-byte provenance and all reviewer
+consumers are evaluated and accepted.
+
 ## Consumer and provenance constraints
 
 The actual captured `index.html` and `manifest.json` still reference
