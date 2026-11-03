@@ -32,6 +32,7 @@ class ManualMissingTargetStageResumeDeviceTest {
     private lateinit var sha: String
     private lateinit var journal: PrivatePublicationReceiptJournal
     private lateinit var receipt: PrivatePublicationReceiptJournal.Handle
+    private lateinit var previewedReceiptFingerprint: String
     private val collection = "test-recovery-collection"
 
     @Before fun setUp() {
@@ -57,6 +58,8 @@ class ManualMissingTargetStageResumeDeviceTest {
         target = File(root, "$sha.png")
         journal = PrivatePublicationReceiptJournal(root)
         receipt = journal.begin(stage, target, sha, bytes.size.toLong(), collection)
+        previewedReceiptFingerprint = journal.inspectMissingTargetStages()!!
+            .candidates.single().receiptConfirmationFingerprint()
     }
 
     @After fun tearDown() {
@@ -70,7 +73,8 @@ class ManualMissingTargetStageResumeDeviceTest {
         dao.insertCollection(CollectionRecord(collection, "Synthetic", 1L))
         assertTrue(runCatching {
             ManualMissingTargetStageResume(root, dao)
-                .resumeOnlyAfterExplicitConfirmation(userConfirmed = false, selectedReceiptName = receipt.file.name)
+                .resumeOnlyAfterExplicitConfirmation(userConfirmed = false, selectedReceiptName = receipt.file.name,
+                    selectedReceiptFingerprint = previewedReceiptFingerprint)
         }.isFailure)
         assertFalse(target.exists())
         assertArrayEquals(bytes, stage.readBytes())
@@ -81,7 +85,8 @@ class ManualMissingTargetStageResumeDeviceTest {
     @Test fun confirmedResumePublishesNewDigestAndAttachesExactlyOnce() = runBlocking {
         dao.insertCollection(CollectionRecord(collection, "Synthetic", 1L))
         val resumed = ManualMissingTargetStageResume(root, dao)
-            .resumeOnlyAfterExplicitConfirmation(userConfirmed = true, selectedReceiptName = receipt.file.name)
+            .resumeOnlyAfterExplicitConfirmation(userConfirmed = true, selectedReceiptName = receipt.file.name,
+                    selectedReceiptFingerprint = previewedReceiptFingerprint)
         assertEquals(1, resumed.possibleCandidates)
         assertEquals(1, resumed.attached)
         assertEquals(0, resumed.refused)
@@ -111,7 +116,8 @@ class ManualMissingTargetStageResumeDeviceTest {
         )
         dao.insertPhoto(already)
         val resumed = ManualMissingTargetStageResume(root, dao)
-            .resumeOnlyAfterExplicitConfirmation(userConfirmed = true, selectedReceiptName = receipt.file.name)
+            .resumeOnlyAfterExplicitConfirmation(userConfirmed = true, selectedReceiptName = receipt.file.name,
+                    selectedReceiptFingerprint = previewedReceiptFingerprint)
         assertEquals(1, resumed.attached)
         assertEquals(0, resumed.refused)
         assertEquals(already.localPath, dao.findPhoto(sha)?.localPath)
@@ -144,7 +150,8 @@ class ManualMissingTargetStageResumeDeviceTest {
         )
         val result = ManualMissingTargetStageResume(root, dao)
             .resumeOnlyAfterExplicitConfirmation(
-                userConfirmed = true, selectedReceiptName = receipt.file.name
+                userConfirmed = true, selectedReceiptName = receipt.file.name,
+                    selectedReceiptFingerprint = previewedReceiptFingerprint
             )
         assertEquals(2, result.possibleCandidates)
         assertEquals(1, result.attached)
@@ -155,12 +162,45 @@ class ManualMissingTargetStageResumeDeviceTest {
         assertNull(dao.findPhoto(secondSha))
     }
 
+    @Test fun replacedValidReceiptCannotHijackPreviewedPhotoConsent() = runBlocking {
+        dao.insertCollection(CollectionRecord(collection, "Original destination", 1L))
+        dao.insertCollection(CollectionRecord("new-destination", "Different", 2L))
+        val replacement = journal.begin(
+            stage, target, sha, bytes.size.toLong(), "new-destination"
+        )
+        // A different fully valid receipt is written at the exact OLD receipt
+        // name after the user has previewed and confirmed its original identity.
+        // A name-only selector would attach to the unapproved collection.
+        val differentReceiptBytes = replacement.file.readBytes()
+        FileOutputStream(receipt.file).use { output ->
+            output.write(differentReceiptBytes)
+            output.fd.sync()
+        }
+        val outcome = ManualMissingTargetStageResume(root, dao)
+            .resumeOnlyAfterExplicitConfirmation(
+                userConfirmed = true,
+                selectedReceiptName = receipt.file.name,
+                selectedReceiptFingerprint = previewedReceiptFingerprint
+            )
+        assertEquals(2, outcome.possibleCandidates)
+        assertEquals(0, outcome.attached)
+        assertEquals(1, outcome.refused)
+        assertFalse(target.exists())
+        assertArrayEquals(bytes, stage.readBytes())
+        assertTrue(receipt.file.exists())
+        assertTrue(replacement.file.exists())
+        assertNull(dao.findPhoto(sha))
+        assertNull(dao.findMembership(collection, sha))
+        assertNull(dao.findMembership("new-destination", sha))
+    }
+
     @Test fun existingForeignDigestIsNeverTruncatedOrUsedForRoomAdmission() = runBlocking {
         dao.insertCollection(CollectionRecord(collection, "Synthetic", 1L))
         val foreign = byteArrayOf(9, 8, 7, 6)
         target.writeBytes(foreign)
         val resumed = ManualMissingTargetStageResume(root, dao)
-            .resumeOnlyAfterExplicitConfirmation(userConfirmed = true, selectedReceiptName = receipt.file.name)
+            .resumeOnlyAfterExplicitConfirmation(userConfirmed = true, selectedReceiptName = receipt.file.name,
+                    selectedReceiptFingerprint = previewedReceiptFingerprint)
         assertEquals(0, resumed.possibleCandidates)
         assertEquals(0, resumed.attached)
         assertArrayEquals(foreign, target.readBytes())
@@ -171,7 +211,8 @@ class ManualMissingTargetStageResumeDeviceTest {
 
     @Test fun deletedDestinationCollectionRefusesBeforePublishingFiles() = runBlocking {
         val resumed = ManualMissingTargetStageResume(root, dao)
-            .resumeOnlyAfterExplicitConfirmation(userConfirmed = true, selectedReceiptName = receipt.file.name)
+            .resumeOnlyAfterExplicitConfirmation(userConfirmed = true, selectedReceiptName = receipt.file.name,
+                    selectedReceiptFingerprint = previewedReceiptFingerprint)
         assertEquals(1, resumed.possibleCandidates)
         assertEquals(0, resumed.attached)
         assertEquals(1, resumed.refused)
@@ -185,7 +226,8 @@ class ManualMissingTargetStageResumeDeviceTest {
         dao.insertCollection(CollectionRecord(collection, "Synthetic", 1L))
         receipt.file.appendText("\tforeign")
         val resumed = ManualMissingTargetStageResume(root, dao)
-            .resumeOnlyAfterExplicitConfirmation(userConfirmed = true, selectedReceiptName = receipt.file.name)
+            .resumeOnlyAfterExplicitConfirmation(userConfirmed = true, selectedReceiptName = receipt.file.name,
+                    selectedReceiptFingerprint = previewedReceiptFingerprint)
         assertEquals(0, resumed.possibleCandidates)
         assertEquals(0, resumed.attached)
         assertFalse(target.exists())
