@@ -87,3 +87,35 @@ Subsequent draft [#210](https://github.com/gamesbyian/Glimpse/pull/210) experime
 Draft #210's intermediate source commits launched full atlas CI, then later commits canceled the obsolete same-ref jobs. For example [run #41586367764](https://github.com/gamesbyian/Glimpse/actions/runs/41586367764) was canceled after more than five minutes had elapsed, and [#41586825061](https://github.com/gamesbyian/Glimpse/actions/runs/41586825061) after about 25 seconds. Cancellation correctly prevents stale results from being used for merge, but does not refund runner work already performed. This is a concrete reason to batch all coherent harness/test/workflow changes **before** opening or updating an expensive PR, then run a single required final-head acceptance. Never skip that final acceptance to reduce cancellation costs.
 
 See [issue #161](https://github.com/gamesbyian/Glimpse/issues/161) for the separate, measured Gradle compilation fan-out and test-topology decisions.
+
+## 2026-11-03 exact-source post-merge Android atlas duplication
+
+Two independent successful pairs prove the actual expensive native `push/main`
+capture repeated the exact **Git tree** already verified by the PR job:
+
+| Merged PR | PR synthetic merge Git tree | Main squash Git tree | Extra completed main atlas |
+| --- | --- | --- | --- |
+| [#209](https://github.com/gamesbyian/Glimpse/pull/209) | `580dcc4465812f1a61d110df1785c2c8653cf0e7` | **same** | [#41585865492](https://github.com/gamesbyian/Glimpse/actions/runs/41585865492), ~21 min |
+| [#210](https://github.com/gamesbyian/Glimpse/pull/210) | `3a98034a7491535cd24580a23666c980d7ae8428` | **same** | [#41589030074](https://github.com/gamesbyian/Glimpse/actions/runs/41589030074), ~17m22s |
+
+These tree IDs were independently retrieved via GitHub's commit API for
+the PR synthetic merge, source head and resulting main commit. A squash commit
+changes its **commit SHA** even if the entire checked-out tested content is
+unchanged; comparing only commit SHAs would miss this waste.
+
+**Proposed verified artifact-reuse acceptance:** a main push's stable `capture`
+check must itself either execute the full 46-frame native emulator or verify
+and republish *real previous* PNG/XML evidence. Reuse requires a single trusted
+same-repo PR, merged squash parent matching PR base, successful PR source-head
+native workflow before merge, immutable and unexpired workflow artifact with
+a GitHub digest, ZIP CRC and all 46 native PNG/XML, and a PR test's **synthetic
+merge tree SHA exactly equal to the main SHA's checked-out tree**. The main job
+must leave an explicit identity/provenance receipt, and any missing, changed or
+ambiguous fact must fall back to the real API34 emulator. Manual dispatch,
+PR runs, direct pushes and merged source changes that differ in tree must
+still run Android. Retain current required job/check contexts and all artifacts.
+The normative policy is [CI-ENGINEERING-STANDARD.md](CI-ENGINEERING-STANDARD.md);
+the live work owner is [issue #161](https://github.com/gamesbyian/Glimpse/issues/161).
+
+**Status:** This is historical evidence and a candidate design, *not* a claim
+that reused evidence was already implemented or tested in production.
