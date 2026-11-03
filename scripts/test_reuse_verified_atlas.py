@@ -3,6 +3,8 @@ import copy
 import io
 import os
 import tempfile
+import hashlib
+import urllib.error
 import unittest
 import zipfile
 from pathlib import Path
@@ -11,7 +13,7 @@ from unittest import mock
 from reuse_verified_atlas import (
     REPO, WORKFLOW, WORKFLOW_NAME, ARTIFACT,
     pr_eligible, run_eligible, artifact_eligible, merge_tree_eligible,
-    safe_extract, try_reuse
+    safe_extract, download_artifact, try_reuse
 )
 
 MAIN = "a" * 40
@@ -132,6 +134,48 @@ class ProvenanceContracts(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, "unsafe"):
                 safe_extract(p, dest)
             self.assertFalse((Path(tmp) / "escape.txt").exists())
+
+    def test_artifact_download_token_not_forwarded_to_signed_host(self):
+        archive = b"real-zip-bytes"
+        signed = "https://test.blob.core.windows.net/atlas?signature=opaque"
+        redirected = urllib.error.HTTPError(
+            "https://api.github.com/artifact", 302, "Found",
+            {"Location": signed}, None)
+
+        def open_signed(request, **kwargs):
+            self.assertEqual(request.full_url, signed)
+            self.assertNotIn("Authorization", request.headers)
+            return io.BytesIO(archive)
+
+        with tempfile.TemporaryDirectory() as directory, \
+             mock.patch("reuse_verified_atlas.urllib.request.build_opener") as opener, \
+             mock.patch("reuse_verified_atlas.urllib.request.urlopen",
+                        side_effect=open_signed) as download:
+            opener.return_value.open.side_effect = redirected
+            expected = {"id": 77, "size_in_bytes": len(archive),
+                        "digest": "sha256:" + hashlib.sha256(archive).hexdigest()}
+            dest = Path(directory) / "source.zip"
+            sha = download_artifact(expected, "read-only-token", dest)
+            self.assertEqual(sha, hashlib.sha256(archive).hexdigest())
+            self.assertEqual(dest.read_bytes(), archive)
+            opener.return_value.open.assert_called_once()
+            self.assertIn("Authorization",
+                          opener.return_value.open.call_args.args[0].headers)
+            download.assert_called_once()
+
+    def test_untrusted_artifact_redirect_is_rejected_before_download(self):
+        redirected = urllib.error.HTTPError(
+            "https://api.github.com/artifact", 302, "Found",
+            {"Location": "https://malicious.example/collect"}, None)
+        with tempfile.TemporaryDirectory() as directory, \
+             mock.patch("reuse_verified_atlas.urllib.request.build_opener") as opener, \
+             mock.patch("reuse_verified_atlas.urllib.request.urlopen") as download:
+            opener.return_value.open.side_effect = redirected
+            a = {"id": 77, "size_in_bytes": 10, "digest": "sha256:" + "1" * 64}
+            with self.assertRaisesRegex(ValueError, "not an approved"):
+                download_artifact(a, "read-only-token",
+                                  Path(directory) / "source.zip")
+            download.assert_not_called()
 
     def test_nonauthorized_events_stop_before_any_network(self):
         with mock.patch.dict(os.environ, {
