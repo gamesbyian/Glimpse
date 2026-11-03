@@ -8,6 +8,7 @@ on:
       - .github/workflows/android-hierarchy-transport-benchmark.yml
       - scripts/benchmark_hierarchy_transport.py
       - scripts/test_benchmark_hierarchy_transport.py
+      - scripts/run_hierarchy_transport_benchmark.sh
 
 permissions:
   contents: read
@@ -69,27 +70,7 @@ jobs:
           emulator-boot-timeout: 360
           disable-animations: true
           emulator-options: -no-window -gpu swiftshader_indirect -no-snapshot -noaudio -no-boot-anim
-          script: |
-            set -eu
-            mkdir -p artifacts/hierarchy-transport
-            export APPIUM_HOME="$RUNNER_TEMP/glimpse-appium-home"
-            "$RUNNER_TEMP/glimpse-appium/bin/appium" --address 127.0.0.1 --port 4723 --log-no-colors > artifacts/hierarchy-transport/appium-server.log 2>&1 &
-            appium_pid=$!
-            trap 'kill "$appium_pid" 2>/dev/null || true' EXIT
-            ready=0
-            for attempt in $(seq 1 35); do
-              if curl --silent --fail "http://127.0.0.1:4723/status" -o /dev/null; then
-                ready=1
-                break
-              fi
-              sleep 1
-            done
-            if [ "$ready" -ne 1 ]; then
-              echo "::error::Pinned Appium service failed readiness within 35 seconds"
-              exit 1
-            fi
-            adb install -r app/build/outputs/apk/debug/app-debug.apk
-            python3 scripts/benchmark_hierarchy_transport.py --out artifacts/hierarchy-transport
+          script: bash scripts/run_hierarchy_transport_benchmark.sh
       - name: Keep compact benchmark report and bounded failure diagnostics
         if: always()
         shell: bash
