@@ -51,7 +51,7 @@ class AtlasHarnessTest(unittest.TestCase):
              mock.patch.object(atlas.time, "sleep") as settle:
             atlas.swipe("up")
         adb.assert_called_once_with("shell", "input", "swipe", "294", "343",
-                                    "294", "118", "520")
+                                    "294", "119", "520")
         settle.assert_called_once_with(atlas.SWIPE_SETTLE_SECONDS)
         self.assertEqual(atlas.ACTION_SETTLE["taps"], 0)
         self.assertEqual(atlas.ACTION_SETTLE["swipes"], 1)
