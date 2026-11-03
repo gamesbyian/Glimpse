@@ -163,7 +163,7 @@ def restore(pack_zip, output_zip):
     if dst.exists():
         raise FileExistsError("refusing to overwrite an existing output archive")
     manifest = verify(src)
-    with ZipFile(src) as packed:
+    with zipfile.ZipFile(src) as packed:
         with tempfile.NamedTemporaryFile(dir=dst.parent, suffix=".partial", delete=False) as temp:
             temp_path = Path(temp.name)
         try:
