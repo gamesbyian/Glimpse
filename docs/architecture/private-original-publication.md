@@ -177,8 +177,16 @@ real recovery and quarantine of partially published targets.
 A proposed `ManualMissingTargetStageResume` backend can process only
 **one specifically selected receipt** from the bounded verified-stage/missing-target
 preflight. Callers must provide an affirmative confirmation flag **and** the
-exact selected receipt name; subsequent newly discovered valid receipts cannot
-be swept into the same confirmation. No native UI invokes it, so this is
+exact selected receipt name **plus a SHA-256 fingerprint of the receipt
+bytes held at preview time**. The receipt bytes include stage/target names,
+source SHA, length and encoded destination collection identity. A replaced
+but otherwise valid receipt under the same name must not inherit a previous
+preview's consent. The backend checks the fingerprint before any publication,
+uses a no-follow exact-receipt check throughout the write, then rechecks it
+before any Room admission. A changed receipt leaves all original and staged
+bytes intact; any newly created unregistered target is preserved for later
+manual reconciliation. Subsequent newly discovered valid receipts cannot be
+swept into the same confirmation. The companion UI is only in a separately unaccepted draft; this is
 **not yet an exercised human-consent journey** and should remain a draft
 implementation until an explicit, understandable owner-facing confirmation is
 built and tested.
@@ -198,21 +206,20 @@ now exists, this preflight deliberately will not retry or delete it. The
 remaining post-publication/Room crash window needs separate reconciliation
 and verification.
 
-A stacked UI prototype in `GlimpseManualRecoveryPanel` is available only
-on its separate draft branch. Help exposes an **opt-in** local scan, then
-previews only one bounded 256-pixel-edge decoded staged photo at a time with
-its existing collection title. The interface requires a preview, a separate
-confirmation dialog for that exact receipt, and a dedicated "Restore this
-photo" action. Cancelling has no side effects; after any attempt the scan is
-discarded and a fresh examination is required. The panel shows no hashes,
-private paths or original provider URIs; it preserves all staged bytes and
-receipts. It makes no background, widget or startup recovery calls.
+A stacked **unaccepted UI prototype** in `GlimpseManualRecoveryPanel` is
+available only on the separate draft branch. Help explicitly starts a local
+read-only scan, then previews one bounded 256-pixel-edge staged photo with its
+destination collection title. A distinct dialog confirms the exact selected
+receipt, now cryptographically bound to the previewed receipt bytes including
+the collection identity. Cancel makes no filesystem or Room changes; each
+attempt discards the preflight snapshot. No hashes, provider URIs, receipt
+paths or photo filenames appear in the UI.
 
-The stacked UI remains **unaccepted** pending real Android 320dp/200%-font,
-TalkBack and physical owner review, exact installed-data negative testing and
-full recovery-state acceptance. The narrowly-scoped backend can still leave
-an unregistered complete digest if Room admission fails. No feature is to be
-described as fully crash-safe or generally self-recovering.
+This preview/confirmation journey needs real Android native 320dp/200%-font,
+TalkBack and owner physical-device acceptance. It has **no license** to
+replace or quarantine occupied targets. An orphan after file publication and
+before Room admission remains possible, and the backend is not accepted as a
+general crash-recovery mechanism.
 
 Until real API29/modern Android, owner consent/UX and interruption tests are
 accepted, this backend must never be automatically called on app startup,
