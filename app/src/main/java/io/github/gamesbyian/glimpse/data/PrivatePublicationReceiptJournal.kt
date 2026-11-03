@@ -82,6 +82,10 @@ internal class PrivatePublicationReceiptJournal(private val originals: File) {
             while (bytes.hasRemaining()) channel.write(bytes)
             channel.force(true)
         }
+        // Also forces the staged name in this same app-private directory
+        // after the caller has already forced staged bytes. A lost receipt
+        // name after a power failure must not authorize a later repair.
+        forcePrivateOriginalDirectory(root)
         return Handle(receipt, row)
     }
 
