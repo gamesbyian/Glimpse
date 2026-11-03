@@ -23,6 +23,26 @@ FIXTURE = APP + "/.debug.VisualFixtureLauncher"
 OUT = None
 RESULTS = []
 HIERARCHY_TIMING = {"calls": 0, "totalSeconds": 0.0, "maxSeconds": 0.0}
+# Small bounded settles are sufficient before the next full UIAutomator dump,
+# which itself takes ~2s on the API34 CI guest. Keep any scenario-specific
+# longer wait at its call site (e.g. Android Photo Picker/Save As transitions).
+TAP_SETTLE_SECONDS = 0.45
+SWIPE_SETTLE_SECONDS = 0.30
+ACTION_SETTLE = {"taps": 0, "swipes": 0, "requestedSeconds": 0.0}
+
+
+def settle_after_action(action):
+    """Record real fixed-sleep cost; never skip an Android read/assertion."""
+    if action == "tap":
+        seconds = TAP_SETTLE_SECONDS
+        ACTION_SETTLE["taps"] += 1
+    elif action == "swipe":
+        seconds = SWIPE_SETTLE_SECONDS
+        ACTION_SETTLE["swipes"] += 1
+    else:
+        raise ValueError("Unknown Android input action")
+    ACTION_SETTLE["requestedSeconds"] += seconds
+    time.sleep(seconds)
 
 
 def adb(*args, check=True, binary=False, timeout=35):
@@ -242,7 +262,7 @@ def click_label(expected):
     candidates.sort(key=lambda item: item[0])
     x0, y0, x1, y1 = map(int, candidates[0][1])
     adb("shell", "input", "tap", str((x0 + x1)//2), str((y0 + y1)//2))
-    time.sleep(1.2)
+    settle_after_action("tap")
 
 def reach_and_click(label, direction="up", attempts=7):
     """A human-visible native action may sit below the current viewport."""
@@ -268,7 +288,7 @@ def swipe(direction="up"):
     x = int(w * .92)
     adb("shell", "input", "swipe", str(x), str(a),
         str(x), str(b), "520")
-    time.sleep(1)
+    settle_after_action("swipe")
 
 
 def accessible_bounds(xml, phrase):
@@ -1482,10 +1502,13 @@ def main():
             "hierarchyTiming": {**HIERARCHY_TIMING,
                                 "totalSeconds": round(HIERARCHY_TIMING["totalSeconds"], 3),
                                 "maxSeconds": round(HIERARCHY_TIMING["maxSeconds"], 3)},
+            "inputSettleTiming": {**ACTION_SETTLE,
+                                  "requestedSeconds": round(ACTION_SETTLE["requestedSeconds"], 3)},
             "errors": failures,
         }, indent=2) + "\n", encoding="utf-8")
         write_gallery()
         print("Atlas hierarchy timing:", json.dumps(HIERARCHY_TIMING), flush=True)
+        print("Atlas fixed input settling:", json.dumps(ACTION_SETTLE), flush=True)
     if failures:
         raise SystemExit(1)
 

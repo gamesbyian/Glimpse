@@ -31,14 +31,38 @@ class AtlasHarnessTest(unittest.TestCase):
         atlas.OUT = Path(self.temp.name)
         atlas.RESULTS.clear()
         atlas.HIERARCHY_TIMING.update(calls=0, totalSeconds=0.0, maxSeconds=0.0)
+        atlas.ACTION_SETTLE.update(taps=0, swipes=0, requestedSeconds=0.0)
 
     def test_normal_click_uses_exactly_one_hierarchy(self):
         with mock.patch.object(atlas, "hierarchy", return_value=NORMAL) as dump, \
              mock.patch.object(atlas, "adb") as adb, \
-             mock.patch.object(atlas.time, "sleep"):
+             mock.patch.object(atlas.time, "sleep") as settle:
             atlas.click_label("Open photo details")
         dump.assert_called_once_with()
         adb.assert_called_once_with("shell", "input", "tap", "50", "50")
+        settle.assert_called_once_with(atlas.TAP_SETTLE_SECONDS)
+        self.assertEqual(atlas.ACTION_SETTLE["taps"], 1)
+        self.assertEqual(atlas.ACTION_SETTLE["swipes"], 0)
+        self.assertEqual(atlas.ACTION_SETTLE["requestedSeconds"], atlas.TAP_SETTLE_SECONDS)
+
+    def test_swipe_preserves_real_input_and_bounded_settle(self):
+        with mock.patch.object(atlas, "screen_geometry", return_value=(320, 700, 160)), \
+             mock.patch.object(atlas, "adb") as adb, \
+             mock.patch.object(atlas.time, "sleep") as settle:
+            atlas.swipe("up")
+        adb.assert_called_once_with("shell", "input", "swipe", "294", "343",
+                                    "294", "119", "520")
+        settle.assert_called_once_with(atlas.SWIPE_SETTLE_SECONDS)
+        self.assertEqual(atlas.ACTION_SETTLE["taps"], 0)
+        self.assertEqual(atlas.ACTION_SETTLE["swipes"], 1)
+        self.assertEqual(atlas.ACTION_SETTLE["requestedSeconds"], atlas.SWIPE_SETTLE_SECONDS)
+
+    def test_settle_rejects_unrecognized_action_without_sleep(self):
+        with mock.patch.object(atlas.time, "sleep") as settle:
+            with self.assertRaisesRegex(ValueError, "Unknown Android input action"):
+                atlas.settle_after_action("unknown")
+        settle.assert_not_called()
+        self.assertEqual(atlas.ACTION_SETTLE["requestedSeconds"], 0.0)
 
     def test_anr_wait_uses_actual_bounds_and_fresh_observation(self):
         with mock.patch.object(atlas, "hierarchy", side_effect=[ANR, NORMAL]) as dump, \
