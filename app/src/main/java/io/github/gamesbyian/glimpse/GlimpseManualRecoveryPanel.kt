@@ -33,6 +33,7 @@ import io.github.gamesbyian.glimpse.data.MissingTargetStageCandidate
 import io.github.gamesbyian.glimpse.data.MissingTargetStagePreflight
 import io.github.gamesbyian.glimpse.data.PrivatePublicationReceiptJournal
 import io.github.gamesbyian.glimpse.data.existingOriginalMatches
+import io.github.gamesbyian.glimpse.data.receiptConfirmationFingerprint
 import java.io.File
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Dispatchers
@@ -85,7 +86,9 @@ internal fun GlimpseManualRecoveryPanel(context: Context) {
                     task.ensureActive()
                     // Preflight is a snapshot; refuse to preview a source
                     // swapped or modified after the original SHA inspection.
-                    val stillVerified = existingOriginalMatches(
+                    val stillVerified = PrivatePublicationReceiptJournal(
+                        File(context.filesDir, "originals")
+                    ).isReceiptIntact(candidate.receipt) && existingOriginalMatches(
                         candidate.staged, candidate.sha256, candidate.byteLength,
                         checkpoint = { task.ensureActive() }
                     )
@@ -254,7 +257,11 @@ internal fun GlimpseManualRecoveryPanel(context: Context) {
                     onClick = {
                         confirm = false
                         busy = true
+                        // Bind consent to the exact bytes displayed at
+                        // preview time, including the source and collection.
+                        // A reused receipt filename must not inherit approval.
                         val receiptName = selected.receipt.file.name
+                        val receiptFingerprint = selected.receiptConfirmationFingerprint()
                         scope.launch {
                             try {
                                 val result = ManualMissingTargetStageResume(
@@ -262,7 +269,8 @@ internal fun GlimpseManualRecoveryPanel(context: Context) {
                                     GlimpseDatabase.open(context).dao()
                                 ).resumeOnlyAfterExplicitConfirmation(
                                     userConfirmed = true,
-                                    selectedReceiptName = receiptName
+                                    selectedReceiptName = receiptName,
+                                    selectedReceiptFingerprint = receiptFingerprint
                                 )
                                 message = when {
                                     result.attached == 1 ->
