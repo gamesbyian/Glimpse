@@ -29,6 +29,9 @@ HIERARCHY_TIMING = {"calls": 0, "totalSeconds": 0.0, "maxSeconds": 0.0}
 TAP_SETTLE_SECONDS = 0.45
 SWIPE_SETTLE_SECONDS = 0.30
 ACTION_SETTLE = {"taps": 0, "swipes": 0, "requestedSeconds": 0.0}
+_GEOMETRY_CACHE = None
+GEOMETRY_CACHE_STATS = {"freshReads": 0, "cacheHits": 0, "invalidations": 0,
+                        "readSeconds": 0.0}
 
 
 def settle_after_action(action):
@@ -46,6 +49,14 @@ def settle_after_action(action):
 
 
 def adb(*args, check=True, binary=False, timeout=35):
+    global _GEOMETRY_CACHE
+    # All atlas size/density mutations pass through this ADB wrapper, including
+    # Android's reset commands. Invalidate before attempting a mutation, even
+    # if it later fails: never use geometry from a potentially changed device.
+    if (len(args) >= 4 and args[:2] == ("shell", "wm") and
+            args[2] in ("size", "density")):
+        _GEOMETRY_CACHE = None
+        GEOMETRY_CACHE_STATS["invalidations"] += 1
     result = subprocess.run(
         ["adb", *args],
         stdout=subprocess.PIPE,
@@ -80,6 +91,13 @@ def hierarchy():
 
 
 def screen_geometry():
+    global _GEOMETRY_CACHE
+    # This is static screen configuration, never cached UI/accessibility
+    # content. Real app and system-control hierarchy reads remain fresh.
+    if _GEOMETRY_CACHE is not None:
+        GEOMETRY_CACHE_STATS["cacheHits"] += 1
+        return _GEOMETRY_CACHE
+    started = time.monotonic()
     size = adb("shell", "wm", "size")
     density = adb("shell", "wm", "density")
     pairs = re.findall(r"(\d+)x(\d+)", size)
@@ -88,7 +106,12 @@ def screen_geometry():
     w, h = map(int, pairs[-1])
     d = re.findall(r"\d+", density)
     dpi = int(d[-1]) if d else 420
-    return w, h, dpi
+    if w <= 0 or h <= 0 or dpi <= 0:
+        raise RuntimeError("Invalid Android geometry: " + size + " " + density)
+    _GEOMETRY_CACHE = (w, h, dpi)
+    GEOMETRY_CACHE_STATS["freshReads"] += 1
+    GEOMETRY_CACHE_STATS["readSeconds"] += time.monotonic() - started
+    return _GEOMETRY_CACHE
 
 
 def clear_system_obstructions(xml=None):
@@ -1504,11 +1527,14 @@ def main():
                                 "maxSeconds": round(HIERARCHY_TIMING["maxSeconds"], 3)},
             "inputSettleTiming": {**ACTION_SETTLE,
                                   "requestedSeconds": round(ACTION_SETTLE["requestedSeconds"], 3)},
+            "geometryCache": {**GEOMETRY_CACHE_STATS,
+                              "readSeconds": round(GEOMETRY_CACHE_STATS["readSeconds"], 3)},
             "errors": failures,
         }, indent=2) + "\n", encoding="utf-8")
         write_gallery()
         print("Atlas hierarchy timing:", json.dumps(HIERARCHY_TIMING), flush=True)
         print("Atlas fixed input settling:", json.dumps(ACTION_SETTLE), flush=True)
+        print("Atlas screen geometry cache:", json.dumps(GEOMETRY_CACHE_STATS), flush=True)
     if failures:
         raise SystemExit(1)
 
