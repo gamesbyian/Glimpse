@@ -32,3 +32,39 @@ The governing policy is [CI-ENGINEERING-STANDARD.md](CI-ENGINEERING-STANDARD.md)
 - Treat the visual atlas's approximately 27-minute median separately; optimize capture coverage, emulator startup and image/video transfer without relaxing owner optical or physical-device acceptance.
 - Preserve separate oldest-API publication, populated Room upgrade, native data recovery, real Photo Picker and widget evidence. Mock and screenshot checks are not substitutes for real device/owner validation.
 - Verify required check contexts and branch-protection/merge-queue rules against actual repository settings before declaring CI fully compliant. No observed permission to edit those rules is implied by this PR.
+
+
+## 2026-11-02 exact-head job-time measurement (candidate #185)
+
+Source SHA: `91a56bd2791a05748d59f00a587d789d66d0f418`.
+GitHub REST `/actions/runs?head_sha=...` plus each run's `/jobs` timestamps,
+measured independently of log messages and without assuming billable-minute
+rounding. The following seven completed **real** workflows overlap in time.
+The native visual atlas was still running when this snapshot was taken, so the
+aggregate is deliberately a lower bound.
+
+| Exact-head workflow | Runner occupancy | Workflow elapsed |
+| --- | ---: | ---: |
+| Always-on CI contract | 0.08 min | 0.13 min |
+| Native build, JVM tests and lint | 1.77 min | 1.82 min |
+| API29 private-original publication | 2.43 min | 2.48 min |
+| Actual Room/schema instrumentation | 3.03 min | 3.08 min |
+| Real OS two-photo picker | 4.23 min | 4.30 min |
+| Installed-data old-to-new APK upgrade | 3.83 min | 3.87 min |
+| Real OS single-photo picker | 4.80 min | 5.02 min |
+
+**Total observed runner occupancy: 20.2 minutes, excluding atlas.** This
+is the sum of GitHub job start-to-completion durations, not an assertion about
+GitHub invoice rounding. The critical-path time for these seven concurrent jobs
+was approximately 5 minutes, not their summed occupancy. Queuing affects
+real elapsed time; this is a single SHA, not a statistically controlled
+comparison against the older 2026-10-31 median sample.
+
+Candidate build duplication worth measuring experimentally: 1.40 min native
+Gradle test/lint, 1.18 min Room test compile, 1.10 min single-picker APK build,
+1.17 min two-photo APK build, and 1.08 min each for the separately signed
+old and candidate APKs in the actual populated upgrade. A shared artifact
+must have exact source SHA, provenance/digest verification and fork isolation;
+the old-version upgrade build and independent Android OS proofs must remain.
+**No compilation reuse optimization or runner-minute saving is claimed yet.**
+See issue #161 for the live evidence ledger and next experiment.
