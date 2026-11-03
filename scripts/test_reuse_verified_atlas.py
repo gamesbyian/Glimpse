@@ -5,6 +5,9 @@ import os
 import tempfile
 import hashlib
 import urllib.error
+import json
+import struct
+import zlib
 import unittest
 import zipfile
 from pathlib import Path
@@ -176,6 +179,80 @@ class ProvenanceContracts(unittest.TestCase):
                 download_artifact(a, "read-only-token",
                                   Path(directory) / "source.zip")
             download.assert_not_called()
+
+    def test_full_prior_native_atlas_replay_and_wrong_tree_fallback(self):
+        """Prove all 46 actually parsed PNG/XML before main may reuse."""
+        pr, run, art, synthetic = eligible_fixture()
+        with tempfile.TemporaryDirectory() as tmp:
+            dest = Path(tmp) / "verified-native-atlas"
+            def png_chunk(kind, data):
+                return (struct.pack(">I", len(data)) + kind + data +
+                        struct.pack(">I", zlib.crc32(data, zlib.crc32(kind)) & 0xffffffff))
+            png = (b"\x89PNG\r\n\x1a\n" +
+                   png_chunk(b"IHDR", struct.pack(">IIBBBBB", 1, 1, 8, 6, 0, 0, 0)) +
+                   png_chunk(b"IDAT", zlib.compress(b"\x00\xff\x00\x00\xff")) +
+                   png_chunk(b"IEND", b""))
+            def fake_download(_artifact, _token, path):
+                manifest = {
+                    "sourceSha": SYNTHETIC, "mode": "full", "errors": [],
+                    "hierarchyTiming": {"calls": 46, "totalSeconds": 120.0},
+                    "captures": []}
+                with zipfile.ZipFile(path, "w") as archive:
+                    for n in range(46):
+                        slug = f"native-frame-{n:02d}"
+                        archive.writestr(slug + ".png", png)
+                        archive.writestr(slug + ".xml",
+                                         '<?xml version="1.0"?><hierarchy/>')
+                        manifest["captures"].append({
+                            "id": slug, "image": slug + ".png",
+                            "hierarchy": slug + ".xml",
+                            "widthPx": 1, "heightPx": 1})
+                    archive.writestr("manifest.json", json.dumps(manifest))
+                    archive.writestr("index.html", "<html>actual evidence</html>")
+                return "4" * 64
+            responses = {
+                f"/repos/{REPO}/commits/{MAIN}": {
+                    "sha": MAIN, "parents": [{"sha": PARENT}],
+                    "commit": {"tree": {"sha": TREE}}},
+                f"/repos/{REPO}/commits/{MAIN}/pulls": [pr],
+                f"/repos/{REPO}": {"id": REPO_ID},
+                f"/repos/{REPO}/actions/runs?head_sha={HEAD}&per_page=100": {
+                    "workflow_runs": [run]},
+                f"/repos/{REPO}/actions/runs/{run['id']}/jobs?per_page=100": {
+                    "jobs": [{"name": "capture", "conclusion": "success"}]},
+                f"/repos/{REPO}/actions/runs/{run['id']}/artifacts?per_page=100": {
+                    "artifacts": [art]},
+                f"/repos/{REPO}/commits/{SYNTHETIC}": synthetic
+            }
+            def shell(command, **kwargs):
+                return (MAIN + "\n") if command[-1] == "HEAD" else (TREE + "\n")
+            environment = {
+                "GITHUB_EVENT_NAME": "push",
+                "GITHUB_REF": "refs/heads/main",
+                "GITHUB_REPOSITORY": REPO,
+                "GITHUB_REPOSITORY_ID": str(REPO_ID)}
+            with mock.patch.dict(os.environ, environment), \
+                 mock.patch("reuse_verified_atlas.api",
+                            side_effect=lambda path, token: responses[path]), \
+                 mock.patch("reuse_verified_atlas.subprocess.check_output",
+                            side_effect=shell), \
+                 mock.patch("reuse_verified_atlas.download_artifact",
+                            side_effect=fake_download):
+                source, run_id, receipt = try_reuse(dest, MAIN, "token")
+                self.assertEqual(source, SYNTHETIC)
+                self.assertEqual(run_id, run["id"])
+                self.assertEqual(receipt["verified_png_and_xml_pairs"], 46)
+                self.assertEqual(receipt["main_tree_sha"], TREE)
+                self.assertTrue((dest / "reuse-provenance.json").exists())
+                self.assertEqual(len(list(dest.glob("*.png"))), 46)
+                self.assertEqual(len(list(dest.glob("*.xml"))), 46)
+                # A different tree is a hard rejection, never "close enough".
+                responses[f"/repos/{REPO}/commits/{SYNTHETIC}"] = {
+                    **synthetic, "commit": {"tree": {"sha": "f"*40}}}
+                other = Path(tmp) / "must-run-emulator"
+                with self.assertRaisesRegex(ValueError, "No exact-tree artifact"):
+                    try_reuse(other, MAIN, "token")
+                self.assertFalse(other.exists())
 
     def test_nonauthorized_events_stop_before_any_network(self):
         with mock.patch.dict(os.environ, {
