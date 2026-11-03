@@ -39,11 +39,28 @@ class ManualRecoveryPanelUiDeviceTest {
     private val instrumentation = InstrumentationRegistry.getInstrumentation()
     private val automation get() = instrumentation.uiAutomation
 
+    private fun allNodes(node: AccessibilityNodeInfo): List<AccessibilityNodeInfo> {
+        val found = mutableListOf<AccessibilityNodeInfo>()
+        fun descend(current: AccessibilityNodeInfo) {
+            found += current
+            for (i in 0 until current.childCount) {
+                current.getChild(i)?.let { descend(it) }
+            }
+        }
+        descend(node)
+        return found
+    }
+
     private fun findClickable(label: String): AccessibilityNodeInfo? {
         val root = automation.rootInActiveWindow ?: return null
-        val nodes = root.findAccessibilityNodeInfosByText(label) ?: return null
-        for (candidate in nodes) {
-            if (candidate.text?.toString() != label) continue
+        // Compose frequently merges Text semantics into its button parent;
+        // the provider search-by-text index is not guaranteed to include
+        // the merged clickable node. Traverse actual accessibility nodes
+        // instead of relying on a mock Compose callback or tap coordinates.
+        for (candidate in allNodes(root)) {
+            val text = candidate.text?.toString()?.trim()
+            val description = candidate.contentDescription?.toString()?.trim()
+            if (text != label && description != label) continue
             var current: AccessibilityNodeInfo? = candidate
             while (current != null) {
                 if (current.isClickable && current.isEnabled) return current
@@ -51,6 +68,22 @@ class ManualRecoveryPanelUiDeviceTest {
             }
         }
         return null
+    }
+
+    private fun safeWindowSummary(): String {
+        val root = automation.rootInActiveWindow ?: return "root=unavailable"
+        val window = root.packageName?.toString().orEmpty().take(70)
+        val nodes = allNodes(root)
+        val matches = nodes.take(60).mapNotNull { node ->
+            val words = node.text?.toString()?.trim().orEmpty()
+            val description = node.contentDescription?.toString()?.trim().orEmpty()
+            val shown = (words.ifEmpty { description }).take(66)
+            if (shown.isEmpty()) null else
+                (if (node.isClickable) "[clickable] " else "") + shown
+        }
+        // The fixture contains generated pixels only; these are capped
+        // semantic labels, never screen bitmaps, photo paths or receipt IDs.
+        return "window=$window nodes=${nodes.size} labels=${matches.joinToString(" | ").take(1100)}"
     }
 
     private fun findScrollable(node: AccessibilityNodeInfo): AccessibilityNodeInfo? {
@@ -81,7 +114,9 @@ class ManualRecoveryPanelUiDeviceTest {
             scrollable?.performAction(AccessibilityNodeInfo.ACTION_SCROLL_FORWARD)
             SystemClock.sleep(250L)
         }
-        throw AssertionError("Real accessible action unavailable: $label")
+        throw AssertionError(
+            "Real accessible action unavailable: $label; ${safeWindowSummary()}"
+        )
     }
 
     private fun awaitText(text: String) {
