@@ -259,7 +259,11 @@ def main():
         shell_picker_limitation = str(error)[:400]
     finally:
         base.adb("shell", "input", "keyevent", "4")
-        base.adb("shell", "am", "start", "-n", APP + "/.MainActivity")
+        # OS picker traversal scrolls the current Compose screen. Reset the
+        # disposable 3-photo fixture to its original top-of-Home viewport
+        # BEFORE starting Appium, or two different scroll states would
+        # misleadingly register as different accessibility backends.
+        base.start_fixture(3)
         time.sleep(0.6)
 
     session = None
