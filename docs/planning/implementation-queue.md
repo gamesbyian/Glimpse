@@ -8,6 +8,15 @@
 
 # Glimpse native implementation queue
 
+## Current execution: integrated release campaigns (2026-11-08)
+
+**Use [the consolidated release-blocker campaign map](RELEASE-BLOCKER-CAMPAIGNS-2026-11-08.md) for active dependencies, ownership, first-release versus later-scope classification and evidence gates.** The 41 conversational audit items are grouped into ten work campaigns, **not** separate release tickets. Preserve the detailed historical merge log below for provenance; its older pending claims do not supersede live source, current issues or the campaign map.
+
+**Work first:** R1 photo preservation/crash and Room recovery, R2 owner-stable signing/data-preserving release proof plus protected build provenance, R3 wallpaper uncertainty and honest scheduling, R4 one coherent visual/accessibility owner-device pass, R5 bounded Home/Reel performance, and R6 the installed first-use/recovery journey. R0 resolves scope; R7–R9 stay separate until the owner includes M2/M3/M4 features. Several efforts can proceed in parallel, but a campaign's specialist evidence remains independently required.
+
+**Safety:** no photo loss, automatic deletion or overwrite, destructive Room migrations, false wallpaper success, blind OS retries, unsupported scheduling guarantees or release qualification inferred from historical green CI. **Owner-only:** persistent signing key/privileged GitHub configuration and final visual/device decisions cannot be presumed done. Source-reviewed planning does not alter the [73-workflow coverage score](../quality/IMPLEMENTATION-COVERAGE-2026-10-28.md).
+
+
 ## Live merged Android baseline · October 27
 
 - **Merged [#27](https://github.com/gamesbyian/Glimpse/pull/27)** (main `5c9bcc21`): original five-window paper face, genuine bounded notch rotation, licensed editorial typography, collection-scoped persisted photo focus, stale-gesture rejection, 320dp/200%-type action wrapping. Branch native build and full screenshot atlas passed; owner visual/touch approval remains open.
