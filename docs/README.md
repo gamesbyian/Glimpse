@@ -1,5 +1,7 @@
 > **Engineering audit and action program:** [October 29 Android codebase audit, 17 findings, six agent work packages and dependency-aware release gates](quality/ARCHITECTURE-AUDIT-2026-10-29.md). Prioritize alongside the [live queue](planning/implementation-queue.md). Existing historical blueprints remain useful design sources, not proof of merged implementation.
 
+> **Current dependency-first release plan (2026-11-08):** [ten integrated campaigns covering the 41-point release audit](planning/RELEASE-BLOCKER-CAMPAIGNS-2026-11-08.md). This is the current cross-workstream execution map; the [implementation queue](planning/implementation-queue.md) retains detailed merged history and future feature work. The consolidation does **not** approve a first-release scope or retire safety, owner-device or release-signing gates.
+
 # Documentation map
 
 **Read [current decisions](planning/current-decisions.md) first.** Documents from the historical Waltz phase sometimes describe superseded UI and staged implementation ideas. The more recent specific contract takes precedence.
